@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="src" path="apps"/>
+	<buildpathentry kind="src" path="cache"/>
+	<buildpathentry kind="src" path="config"/>
+	<buildpathentry kind="src" path="data"/>
+	<buildpathentry kind="src" path="lib/form"/>
+	<buildpathentry excluding="form/" kind="src" path="lib"/>
+	<buildpathentry kind="src" path="log"/>	
+	<buildpathentry kind="src" path="plugins"/>
+	<buildpathentry kind="src" path="test/bootstrap"/>
+	<buildpathentry excluding="bootstrap/" kind="src" path="test"/>
+	<buildpathentry kind="src" path="web"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/symfony-1.4.9"/>
+</buildpath>
