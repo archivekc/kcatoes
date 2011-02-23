@@ -12,4 +12,17 @@
 class Test extends BaseTest
 {
 
+	/**
+	 *
+	 * Récupération du nom court à partir du nom pour éxécution du test correspondant....
+	 *
+	 * @date 23/02/2011
+	 * @tested
+	 */
+	public function getNomCourt()
+	{
+    //return $this->getNom();
+    return '';
+	}
+
 }
