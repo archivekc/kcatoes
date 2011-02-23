@@ -4,3 +4,4 @@ target
 lib/model/doctrine/base
 lib/form/doctrine/base
 lib/filter/doctrine/base
+data/sql
