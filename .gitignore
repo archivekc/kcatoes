@@ -1,3 +1,6 @@
 cache
 log
 target
+lib/model/doctrine/base
+lib/form/doctrine/base
+lib/filter/doctrine/base
