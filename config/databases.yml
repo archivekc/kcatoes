@@ -1,10 +1,27 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/07-Databases
 
+dev:
+  doctrine:
+    param:
+      dsn:      mysql:host=localhost;dbname=kcatoes_dev
+      username: root
+      password: 
+
+test:
+  doctrine:
+    param:
+      dsn:       mysql:host=localhost;dbname=kcatoes_test
+      username:  root
+      password: 
+
 all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=localhost;dbname=kcatoes
-      username: root
-      password: 
+      persistent: true
+      pooling: true
+      encoding: utf8
+      attributes:
+        use_dql_callbacks: true
+        use_native_enum: true
