@@ -8,5 +8,8 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     $this->enablePlugins('sfDoctrinePlugin');
+
+    //Autloading Goutte
+    require_once sfConfig::get('sf_lib_dir').'\vendor\goutte\src\autoload.php';
   }
 }
