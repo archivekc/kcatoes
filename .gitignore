@@ -5,3 +5,4 @@ lib/model/doctrine/base
 lib/form/doctrine/base
 lib/filter/doctrine/base
 data/sql
+lib/vendor/goutte/src/vendor
