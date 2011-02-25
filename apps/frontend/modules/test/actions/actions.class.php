@@ -17,12 +17,5 @@ class testActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->urlDeTest = 'http://www.keyconsulting.fr';
-
-    require_once sfConfig::get('sf_lib_dir').'/vendor/goutte/goutte.phar';
-
-    $client = new Goutte\Client();
-    $this->crawler = $client->request('GET', $this->urlDeTest);
-
   }
 }
