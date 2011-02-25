@@ -5,7 +5,8 @@
  *
  * @package    kcatoes
  * @subpackage test
- * @author     Adrien Couet
+ * @author     Your name here
+ * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class testActions extends sfActions
 {
@@ -16,21 +17,12 @@ class testActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->forward('test','goutte');
-  }
+    $this->urlDeTest = 'http://www.keyconsulting.fr';
 
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeGoutte(sfWebRequest $request)
-  {
-    $this->urlDeTest = 'http://www.keyconsulting.fr/';
+    require_once sfConfig::get('sf_lib_dir').'/vendor/goutte/goutte.phar';
 
-    $page = new Page();
-    $crawler = $page->request('GET', $this->urlDeTest);
-    $nodes = $crawler->filter('div');
-    $this->nbDiv = $nodes->count();
+    $client = new Goutte\Client();
+    $this->crawler = $client->request('GET', $this->urlDeTest);
+
   }
 }
