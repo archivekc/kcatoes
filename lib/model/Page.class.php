@@ -69,12 +69,22 @@ class Page extends Client
 		catch(KcatoesUrlException $e)
 		{
 			$errorMessage = $e->getMessage();
-			if($this->logger instanceof sfLogger)
-			{
-        $this->logger->err($errorMessage);
-			}
-		  die($errorMessage);
+      $this->addLogErreur($errorMessage);
+			throw new KcatoesCrawlerException($errorMessage);
 		}
 		$this->request('GET', $this->url);
+	}
+
+  /**
+   * Ajoute un message d'erreur au journal de log
+   *
+   * @param String $errorMessage Message à ajouter
+   */
+	private function addLogErreur($errorMessage)
+	{
+		if($this->logger instanceof sfLogger)
+		{
+			$this->logger->err($errorMessage);
+		}
 	}
 }
