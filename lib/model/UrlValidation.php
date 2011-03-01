@@ -22,8 +22,6 @@ class UrlValidation
 		$meta = self::isDnsValide($url);
 		self::isCodeHttpValide($meta);
 		self::isFormatValide($meta);
-
-		return true;
 	}
 
 	/**
@@ -36,7 +34,7 @@ class UrlValidation
 	{
 		if(!preg_match('#^http://([a-zA-Z0-9-]+.)?([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}(:[0-9]+)?(/[a-zA-Z0-9-]*)?(.[a-zA-Z0-9]{1,4})?#', $url))
 		{
-			throw new KcatoesUrlException('L\'URL indiquee ne respecte pas la convention d\'ecriture.');
+			throw new KcatoesUrlException('L\'URL indiquée ne respecte pas la convention d\'écriture.');
 		}
 	}
 
@@ -57,7 +55,6 @@ class UrlValidation
 		else
 		{
 			$meta = stream_get_meta_data($fp);
-//			print_r($meta['wrapper_data']);
 			fclose($fp);
 			return $meta;
 		}
@@ -75,10 +72,9 @@ class UrlValidation
 	{
 
 		$return = explode(' ', $meta['wrapper_data'][0]);
-
-		if(!$return[1] == 200)
+		if($return[1] != 200)
 		{
-			throw new KcatoesUrlException('Le serveur a renvoye un code HTTP non valide: '.$return[1]);
+			throw new KcatoesUrlException('Le serveur a renvoyé un code HTTP non valide: '.$return[1]);
 		}
 	}
 
@@ -100,7 +96,7 @@ class UrlValidation
 		}
     if(!preg_match('#text/html#', $return[1]) && !preg_match('#text/xml#', $return[1]))
 		{
-			throw new KcatoesUrlException('La page recuperee n\'est pas au format XHTML.');
+			throw new KcatoesUrlException('La page recuperée n\'est pas au format XHTML.');
 		}
 	}
 }
