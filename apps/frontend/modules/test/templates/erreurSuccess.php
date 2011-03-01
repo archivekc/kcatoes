@@ -1,0 +1,1 @@
+<p>Une erreur est survenue: <?php echo $errorMessage?> </p>
