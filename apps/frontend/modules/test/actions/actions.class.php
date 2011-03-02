@@ -39,6 +39,11 @@ class testActions extends sfActions
     $crawler = $page->crawler;
     $nodes = $crawler->filter('div');
     $this->nbDiv = $nodes->count();
+
+    //A terme, initialisé par la configuration des tests
+    $listeIds = array();
+
+    $tester = new Tester($page, Doctrine::getTable('Test')->getCollectionFromIds($listeIds));
   }
 
   public function executeErreur(sfWebRequest $request)
