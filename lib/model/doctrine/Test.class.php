@@ -11,16 +11,17 @@
  */
 class Test extends BaseTest
 {
+  private $resultat;
 
-	/**
-	 *
-	 * Récupération du nom court à partir du nom pour éxécution du test correspondant....
-	 *
-	 * @date 23/02/2011
-	 * @tested
-	 */
-	public function getNomCourt()
-	{
+  /**
+   *
+   * Récupération du nom court à partir du nom pour éxécution du test correspondant
+   *
+   * @date 23/02/2011
+   * @tested
+   */
+  public function getNomCourt()
+  {
     $nomCourt = $this->getNom();
     $accent = array(
       'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'ç' => 'c',
@@ -39,5 +40,67 @@ class Test extends BaseTest
     $nomCourt = ucwords(strtolower($nomCourt));
     $nomCourt = preg_replace('/\s/', '', $nomCourt);
     return $nomCourt;
-	}
+  }
+
+  /**
+   * Vérifie si le test est automatisable
+   *
+   */
+  public function isAutomatisable()
+  {
+    return $this->automatisable;
+  }
+
+  /**
+   * Vérifie si le test est exécutable
+   *
+   */
+  public function isExecutable()
+  {
+    if($this->hasExecutabe())
+    {
+      $className = $this->getNomCourt();
+      $class = new $className();
+      return ($class instanceof ASource);
+    }
+    return false;
+  }
+
+  /**
+   * Vérifie la classe implémentant l'exécution du test existe
+   *
+   */
+  public function hasExecutabe()
+  {
+    return class_exists($this->getNomCourt());
+  }
+
+  /**
+   * Exécute le test
+   *
+   * @param Page $page La page sur laquelle exécuter le test
+   */
+  public function execute($page)
+  {
+    $className = $this->getNomCourt();
+    $class = new $className();
+
+    try
+    {
+      $res = $class->execute($page);
+    }
+    catch(KcatoesTestException $e)
+    {
+      $this->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
+    }
+
+    if($res)
+    {
+      $this->resultat = new Resultat(Resultat::REUSSITE, $class->getExplication());
+    }
+    else
+    {
+      $this->resultat = new Resultat(Resultat::ECHEC, $class->getExplication());
+    }
+  }
 }
