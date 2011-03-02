@@ -89,6 +89,7 @@ Test:
     nom:             { type: string(255), notnull: true }
     description:     { type: string(1024), notnull: true }
     automatisable:   { type: boolean, notnull: true }
+    aide:            { type: string(1024), notnull: true }
     regroupement_id: { type: integer, notnull: true }
   relations:
     Regroupement:
