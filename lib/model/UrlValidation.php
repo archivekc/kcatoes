@@ -19,7 +19,7 @@ class UrlValidation
    *
    * @tested
    */
-  public static function isValide(String $url)
+  public static function isValide($url)
   {
     self::isSyntaxeValide($url);
     $meta = self::isDnsValide($url);
@@ -34,7 +34,7 @@ class UrlValidation
    * @throws KcatoesUrlException
    * @tested
    */
-  public static function isSyntaxeValide(String $url)
+  public static function isSyntaxeValide($url)
   {
     if (!preg_match('#^http://([a-zA-Z0-9-]+.)?([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}(:[0-9]+)?(/[a-zA-Z0-9-]*)?(.[a-zA-Z0-9]{1,4})?#', $url))
     {
@@ -53,7 +53,7 @@ class UrlValidation
    *
    * @tested
    */
-  public static function isDnsValide(String $url)
+  public static function isDnsValide($url)
   {
     $page = @fopen($url, 'r');
     if (!$page)
@@ -73,7 +73,7 @@ class UrlValidation
    * Vérifie que le serveur renvoit bien un code HTTP 200 lors de l'accès
    * à la page désignée par une URL
    *
-   * @param array $meta Meta données de l'URL à tester
+   * @param $meta Meta données de l'URL à tester
    * @throws KcatoesUrlException
    *
    * @tested

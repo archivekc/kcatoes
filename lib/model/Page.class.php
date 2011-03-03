@@ -20,7 +20,7 @@ class Page extends Client
    * @param String   $_url    L'URL de la page
    * @param sfLogger $_logger Le logger à utiliser (optionel)
    */
-  public function __construct(String $_url, sfLogger $_logger = null)
+  public function __construct($_url, sfLogger $_logger = null)
   {
     $this->url = $_url;
     $this->logger = $_logger;
@@ -33,7 +33,7 @@ class Page extends Client
    * @param  String $var Le nom de la variable à récupérer
    * @return La valeur de la variable
    */
-  public function __get(String $var)
+  public function __get($var)
   {
     return $this->$var;
   }
@@ -92,7 +92,7 @@ class Page extends Client
    *
    * @param String $errorMessage Message à ajouter
    */
-  private function addLogErreur(String $errorMessage)
+  private function addLogErreur($errorMessage)
   {
     if($this->logger instanceof sfLogger)
     {

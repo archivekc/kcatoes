@@ -25,7 +25,7 @@ class Resultat
    * @param int    $_resultatCode Code de résultat (doit correspondre à l'une des constantes de la classe)
    * @param String $_explication  Explication du résultat
    */
-  public function __construct($_resultatCode, String $_explication)
+  public function __construct($_resultatCode, $_explication)
   {
     $this->resultatCode = $_resultatCode;
     $this->explication = $_explication;
@@ -37,7 +37,7 @@ class Resultat
    *
    * @param String $_instruction Instructions pour l'exécution manuelle
    */
-  public function setAide(String $_instruction)
+  public function setAide($_instruction)
   {
     $this->instruction = $_instruction;
   }
@@ -48,7 +48,7 @@ class Resultat
    * @param  String $var Le nom de la variable à récupérer
    * @return La valeur de la variable
    */
-  public function __get(String $var)
+  public function __get($var)
   {
     return $this->$var;
   }
