@@ -20,9 +20,9 @@ class testActions extends sfActions
 //    $test->setNom("\t toto \n");
 //    $this->nom = $test->getNom();
 //    $this->nomCourt = $test->getNomCourt();
-//    $this->urlDeTest = 'http://www.keyconsulting.fr/'; //Valide
+    $this->urlDeTest = 'http://www.keyconsulting.fr/'; //Valide
 //    $this->urlDeTest = 'www.jesuisdeconnecte.fr';      //404
-    $this->urlDeTest = 'http://abonnes.lemonde.fr/';   //302
+//    $this->urlDeTest = 'http://abonnes.lemonde.fr/';   //302
 //    $this->urlDeTest = 'toto';                         //Syntaxe invalide
 //    $this->urlDeTest = 'http://www.keyconsulting.fr/images/KeyConsulting.jpg'; //Format invalide
 
@@ -36,14 +36,16 @@ class testActions extends sfActions
     	$this->getRequest()->setParameter('errorMessage', $e->getMessage());
     	$this->forward('Test', 'Erreur');
     }
-    $crawler = $page->crawler;
-    $nodes = $crawler->filter('div');
-    $this->nbDiv = $nodes->count();
+//    $crawler = $page->crawler;
+//    $nodes = $crawler->filter('div');
+//    $this->nbDiv = $nodes->count();
 
     //A terme, initialisé par la configuration des tests
-    $listeIds = array();
+    $listeIds = array(1, 2 ,3 ,4 ,5 ,6 ,7);
 
-    $tester = new Tester($page, Doctrine::getTable('Test')->getCollectionFromIds($listeIds));
+    $tester = new Tester($page, Doctrine::getTable('Test')->getCollectionFromIds($listeIds), sfContext::getInstance()->getLogger());
+    $tester->executeTest();
+    $this->message = 'Traitement terminé';
   }
 
   public function executeErreur(sfWebRequest $request)
