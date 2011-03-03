@@ -11,7 +11,14 @@ class Tester
   private $tests;
   private $page;
 
-  public function __construct($_page, $_tests)
+  /**
+   * Créé un testeur à partir d'une page web et d'une liste de tests
+   * qui lui seront appliqués
+   *
+   * @param Page  $_page  Page sur laquelle sont exécutés les tests
+   * @param array $_tests Liste des tests à exécuter
+   */
+  public function __construct(Page $_page, $_tests)
   {
     $this->page = $_page;
     $this->tests = $_tests;
@@ -25,15 +32,15 @@ class Tester
   {
     foreach($this->tests as $test)
     {
-      if($test->isAutomatisable())
+      if ($test->isAutomatisable())
       {
-        if($test->isExecutable())
+        if ($test->isExecutable())
         {
           try
           {
-            $test->execute($page);
+            $test->execute($this->page);
           }
-          catch(KcatoesTestException $e)
+          catch (KcatoesTestException $e)
           {
             $test->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
           }
