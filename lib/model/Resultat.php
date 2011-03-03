@@ -37,7 +37,7 @@ class Resultat
    *
    * @param String $_instruction Instructions pour l'exécution manuelle
    */
-  public function setAide($_instruction)
+  public function setInstruction($_instruction)
   {
     $this->instruction = $_instruction;
   }
@@ -51,5 +51,29 @@ class Resultat
   public function __get($var)
   {
     return $this->$var;
+  }
+
+  public function __toString()
+  {
+    switch ($this->resultatCode)
+    {
+      case self::ECHEC:
+          return 'Terminé: Echec';
+          break;
+      case self::REUSSITE:
+          return 'Terminé: Réussite';
+          break;
+      case self::MANUEL:
+          return 'Terminé: Exécution manuelle';
+          break;
+      case self::NON_EXEC:
+          return 'Non exécutable: '.$this->explication;
+          break;
+      case self::ERREUR:
+          return 'Erreur d\'exécution: '.$this->explication;
+          break;
+      default:
+          return '';
+    }
   }
 }

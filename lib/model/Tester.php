@@ -10,6 +10,7 @@ class Tester
 {
   private $tests;
   private $page;
+  private $logger;
 
   /**
    * Créé un testeur à partir d'une page web et d'une liste de tests
@@ -18,10 +19,11 @@ class Tester
    * @param Page  $_page  Page sur laquelle sont exécutés les tests
    * @param array $_tests Liste des tests à exécuter
    */
-  public function __construct(Page $_page, $_tests)
+  public function __construct(Page $_page, $_tests, sfLogger $_logger = null)
   {
     $this->page = $_page;
     $this->tests = $_tests;
+    $this->logger = $_logger;
   }
 
   /**
@@ -32,26 +34,50 @@ class Tester
   {
     foreach($this->tests as $test)
     {
+      $this->addLogInfo($test->getNom().' - Lancement de l\'exécution');
       if ($test->isAutomatisable())
       {
         if ($test->isExecutable())
         {
-          try
-          {
-            $test->execute($this->page);
-          }
-          catch (KcatoesTestException $e)
-          {
-            $test->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
-          }
+          $test->execute($this->page);
         }
+      }
+      if ($test->getResultat()->resultatCode != Resultat::ERREUR && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
+      {
+        $this->addLogInfo($test->getnom().' - '.$test->getResultat());
       }
       else
       {
-        $aide = $test->getAide();
-        $test->resultat = new Resultat(Resultat::MANUEL, 'Ce test doit être effectué manuellement.');
-        $test->resultat->setAide($aide);
+        $this->addLogErreur($test->getnom().' - '.$test->getResultat());
       }
+      echo $test->getNom().': ';
+      echo $test->getResultat().'<br />';
+    }
+  }
+
+  /**
+   * Ajoute un message d'erreur au journal de log
+   *
+   * @param String $errorMessage Message à ajouter
+   */
+  private function addLogErreur($errorMessage)
+  {
+    if($this->logger instanceof sfLogger)
+    {
+      $this->logger->err($errorMessage);
+    }
+  }
+
+  /**
+   * Ajoute un message d'information au journal de log
+   *
+   * @param String $infoMessage Message à ajouter
+   */
+  private function addLogInfo($infoMessage)
+  {
+    if($this->logger instanceof sfLogger)
+    {
+      $this->logger->info($infoMessage);
     }
   }
 }

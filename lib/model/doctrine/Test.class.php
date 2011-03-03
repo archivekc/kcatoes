@@ -51,7 +51,16 @@ class Test extends BaseTest
    */
   public function isAutomatisable()
   {
-    return $this->automatisable;
+    if ($this->automatisable)
+    {
+      return true;
+    }
+    else
+    {
+      $this->resultat = new Resultat(Resultat::MANUEL, 'Ce test doit être effectué manuellement');
+      $this->resultat->setInstruction($this->instruction);
+      return false;
+    }
   }
 
   /**
@@ -65,9 +74,20 @@ class Test extends BaseTest
     {
       $className = $this->getNomCourt();
       $class = new $className();
-      return ($class instanceof ASource);
+      if ($class instanceof ASource)
+      {
+        return true;
+      }
+      else
+      {
+        $this->resultat = new Resultat(Resultat::NON_EXEC, 'La classe n\'hérite pas de ASource');
+        return false;
+      }
     }
-    return false;
+    else {
+      $this->resultat = new Resultat(Resultat::NON_EXEC, 'Impossible de trouver l\'implémentation');
+      return false;
+    }
   }
 
   /**
@@ -96,15 +116,25 @@ class Test extends BaseTest
     catch (KcatoesTestException $e)
     {
       $this->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
+      return 0;
     }
 
     if ($res)
     {
-      $this->resultat = new Resultat(Resultat::REUSSITE, $class->getExplication());
+      $this->resultat = new Resultat(Resultat::REUSSITE, '');
     }
     else
     {
       $this->resultat = new Resultat(Resultat::ECHEC, $class->getExplication());
     }
+  }
+
+  /**
+   * Accesseur de la variable $resultat
+   *
+   */
+  public function getResultat()
+  {
+    return $this->resultat;
   }
 }
