@@ -16,20 +16,39 @@ class Resultat
 
   private $resultatCode;
   private $explication = '';
-  private $aide = '';
+  private $instruction = '';
 
-  public function __construct($_resultatCode, $_explication)
+  /**
+   * Contructuit un résultat avec un code de résultat
+   * et l'explication associée
+   *
+   * @param int    $_resultatCode Code de résultat (doit correspondre à l'une des constantes de la classe)
+   * @param String $_explication  Explication du résultat
+   */
+  public function __construct($_resultatCode, String $_explication)
   {
     $this->resultatCode = $_resultatCode;
     $this->explication = $_explication;
   }
 
-  public function setAide($_aide)
+  /**
+   * Permet d'ajouter des instructions pour l'exécution manuelle
+   * du test auquel est associé le résultat
+   *
+   * @param String $_instruction Instructions pour l'exécution manuelle
+   */
+  public function setAide(String $_instruction)
   {
-    $this->aide = $_aide;
+    $this->instruction = $_instruction;
   }
 
-  public function __get($var)
+  /**
+   * Fonction d'accès aux paramètres de la classe
+   *
+   * @param  String $var Le nom de la variable à récupérer
+   * @return La valeur de la variable
+   */
+  public function __get(String $var)
   {
     return $this->$var;
   }

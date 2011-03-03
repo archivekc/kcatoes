@@ -14,8 +14,10 @@ class Test extends BaseTest
   private $resultat;
 
   /**
+   * Récupération du nom court à partir
+   * du nom pour éxécution du test correspondant
    *
-   * Récupération du nom court à partir du nom pour éxécution du test correspondant
+   * @return Le nom court du test
    *
    * @date 23/02/2011
    * @tested
@@ -45,6 +47,7 @@ class Test extends BaseTest
   /**
    * Vérifie si le test est automatisable
    *
+   * @return true si le test est automatisable, false sinon
    */
   public function isAutomatisable()
   {
@@ -54,6 +57,7 @@ class Test extends BaseTest
   /**
    * Vérifie si le test est exécutable
    *
+   * @return true si le test est exécutable, false sinon
    */
   public function isExecutable()
   {
@@ -89,12 +93,12 @@ class Test extends BaseTest
     {
       $res = $class->execute($page);
     }
-    catch(KcatoesTestException $e)
+    catch (KcatoesTestException $e)
     {
       $this->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
     }
 
-    if($res)
+    if ($res)
     {
       $this->resultat = new Resultat(Resultat::REUSSITE, $class->getExplication());
     }

@@ -14,14 +14,26 @@ class Page extends Client
   private $url;
   private $logger;
 
-  public function __construct($_url, $_logger = null)
+  /**
+   * Construit une page à partir d'une URL
+   *
+   * @param String   $_url    L'URL de la page
+   * @param sfLogger $_logger Le logger à utiliser (optionel)
+   */
+  public function __construct(String $_url, sfLogger $_logger = null)
   {
     $this->url = $_url;
     $this->logger = $_logger;
     parent::__construct();
   }
 
-  public function __get($var)
+  /**
+   * Fonction d'accès aux paramètres de la classe
+   *
+   * @param  String $var Le nom de la variable à récupérer
+   * @return La valeur de la variable
+   */
+  public function __get(String $var)
   {
     return $this->$var;
   }
@@ -31,29 +43,29 @@ class Page extends Client
    *
    * @throws Exception
    */
-//  public function __call($method, $arguments)
-//  {
-//    if (in_array($verb = substr($method, 0, 3), array('set', 'get')))
-//    {
-//      $name = strtolower(substr($method, 3));
-//
-//      if (in_array($name, get_class_vars(get_class($this))))
-//      {
-//        if ($verb == 'get')
-//        {
-//          return $this->$name;
-//        }
-//        else
-//        {
-//          $this->$name = $arguments[0];
-//        }
-//      }
-//      else
-//      {
-//        throw new Exception('Variable '.$name.' introuvable');
-//      }
-//    }
-//  }
+  //  public function __call($method, $arguments)
+  //  {
+  //    if (in_array($verb = substr($method, 0, 3), array('set', 'get')))
+  //    {
+  //      $name = strtolower(substr($method, 3));
+  //
+  //      if (in_array($name, get_class_vars(get_class($this))))
+  //      {
+  //        if ($verb == 'get')
+  //        {
+  //          return $this->$name;
+  //        }
+  //        else
+  //        {
+  //          $this->$name = $arguments[0];
+  //        }
+  //      }
+  //      else
+  //      {
+  //        throw new Exception('Variable '.$name.' introuvable');
+  //      }
+  //    }
+  //  }
 
   /**
    * Vérifie la validité de l'url de la page puis génère son crawler
@@ -80,7 +92,7 @@ class Page extends Client
    *
    * @param String $errorMessage Message à ajouter
    */
-  private function addLogErreur($errorMessage)
+  private function addLogErreur(String $errorMessage)
   {
     if($this->logger instanceof sfLogger)
     {
