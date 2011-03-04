@@ -76,4 +76,33 @@ class Resultat
           return '';
     }
   }
+
+  /**
+   * Retourne le nom du résultat associé à $resultatCode
+   *
+   */
+  public function getCode()
+  {
+    switch ($this->resultatCode)
+    {
+      case self::ECHEC:
+          return 'Echec';
+          break;
+      case self::REUSSITE:
+          return 'Réussite';
+          break;
+      case self::MANUEL:
+          return 'Exécution manuelle';
+          break;
+      case self::NON_EXEC:
+          return 'Non exécutable';
+          break;
+      case self::ERREUR:
+          return 'Erreur d\'exécution';
+          break;
+      default:
+          return '';
+    }
+  }
+
 }

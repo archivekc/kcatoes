@@ -80,4 +80,29 @@ class Tester
       $this->logger->info($infoMessage);
     }
   }
+
+  /**
+   * Exporte le résultat des tests au format CSV
+   *
+   */
+  public function toCSV()
+  {
+    $fileName = 'csv\\test_'.date('dmY_Hi').'.csv';
+    $strCsv = 'id ; nom ; description ; résultat ; explication du résultat ; aide à l’exécution manuelle ;'."\n";
+
+    foreach ($this->tests as $test)
+    {
+      $strCsv .=
+        $test->getId().' ; '.
+        $test->getNom().' ; '.
+        $test->getResultat()->getCode().' ; '.
+        trim($test->getResultat()->explication).' ; '.
+        trim($test->getResultat()->instruction).' ; '.
+        "\n";
+    }
+
+    $csv = fopen($fileName, "cb");
+    fprintf($csv, $strCsv);
+    fclose($csv);
+  }
 }
