@@ -94,7 +94,7 @@ class Test extends BaseTest
    * Vérifie la classe implémentant l'exécution du test existe
    *
    */
-  public function hasExecutabe()
+  private function hasExecutabe()
   {
     return class_exists($this->getNomCourt());
   }
@@ -116,7 +116,7 @@ class Test extends BaseTest
     catch (KcatoesTestException $e)
     {
       $this->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
-      return 0;
+      return;
     }
 
     if ($res)
