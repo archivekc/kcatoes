@@ -46,6 +46,7 @@ class testActions extends sfActions
     $tester = new Tester($page, Doctrine::getTable('Test')->getCollectionFromIds($listeIds), sfContext::getInstance()->getLogger());
     $tester->executeTest();
     $this->message = 'Traitement terminé';
+    $tester->toCSV();
   }
 
   public function executeErreur(sfWebRequest $request)
