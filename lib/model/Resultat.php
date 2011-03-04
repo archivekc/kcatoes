@@ -8,11 +8,11 @@
  */
 class Resultat
 {
-  const ECHEC     = 0; //La page n'a pas passé le test
-  const REUSSITE  = 1; //La page a passé le test
-  const MANUEL    = 2; //Le test doit être effectué manuellement
-  const NON_EXEC  = 3; //Problème lié à la classe du test (classe non trouvée ou mal implémentée)
-  const ERREUR    = 4; //Erreur lors de l'exécution du test
+  const ECHEC    = 0; //La page n'a pas passé le test
+  const REUSSITE = 1; //La page a passé le test
+  const MANUEL   = 2; //Le test doit être effectué manuellement
+  const NON_EXEC = 3; //Problème lié à la classe du test (classe non trouvée ou mal implémentée)
+  const ERREUR   = 4; //Erreur lors de l'exécution du test
 
   private $resultatCode;
   private $explication = '';
@@ -58,22 +58,22 @@ class Resultat
     switch ($this->resultatCode)
     {
       case self::ECHEC:
-          return 'Terminé: Echec';
-          break;
+        return 'Terminé: Echec';
+        break;
       case self::REUSSITE:
-          return 'Terminé: Réussite';
-          break;
+        return 'Terminé: Réussite';
+        break;
       case self::MANUEL:
-          return 'Terminé: Exécution manuelle';
-          break;
+        return 'Terminé: Exécution manuelle';
+        break;
       case self::NON_EXEC:
-          return 'Non exécutable: '.$this->explication;
-          break;
+        return 'Non exécutable: '.$this->explication;
+        break;
       case self::ERREUR:
-          return 'Erreur d\'exécution: '.$this->explication;
-          break;
+        return 'Erreur d\'exécution: '.$this->explication;
+        break;
       default:
-          return '';
+        return '';
     }
   }
 
@@ -86,22 +86,22 @@ class Resultat
     switch ($this->resultatCode)
     {
       case self::ECHEC:
-          return 'Echec';
-          break;
+        return 'Echec';
+        break;
       case self::REUSSITE:
-          return 'Réussite';
-          break;
+        return 'Réussite';
+        break;
       case self::MANUEL:
-          return 'Exécution manuelle';
-          break;
+        return 'Exécution manuelle';
+        break;
       case self::NON_EXEC:
-          return 'Non exécutable';
-          break;
+        return 'Non exécutable';
+        break;
       case self::ERREUR:
-          return 'Erreur d\'exécution';
-          break;
+        return 'Erreur d\'exécution';
+        break;
       default:
-          return '';
+        return '';
     }
   }
 
