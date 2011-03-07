@@ -70,7 +70,7 @@ class Test extends BaseTest
    */
   public function isExecutable()
   {
-    if($this->hasExecutabe())
+    if($this->hasExecutable())
     {
       $className = $this->getNomCourt();
       $class = new $className();
@@ -94,9 +94,9 @@ class Test extends BaseTest
    * Vérifie la classe implémentant l'exécution du test existe
    *
    */
-  private function hasExecutabe()
+  private function hasExecutable()
   {
-    return class_exists($this->getNomCourt());
+    return class_exists('KCatoes::lib::implementation::'.$this->getNomCourt());
   }
 
   /**
@@ -107,11 +107,11 @@ class Test extends BaseTest
   public function execute($page)
   {
     $className = $this->getNomCourt();
-    $class = new $className();
+    $implementation = new $className();
 
     try
     {
-      $res = $class->execute($page);
+      $res = $implementation->execute($page);
     }
     catch (KcatoesTestException $e)
     {
@@ -125,7 +125,7 @@ class Test extends BaseTest
     }
     else
     {
-      $this->resultat = new Resultat(Resultat::ECHEC, $class->getExplication());
+      $this->resultat = new Resultat(Resultat::ECHEC, $implementation->getExplication());
     }
   }
 
