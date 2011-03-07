@@ -93,7 +93,7 @@ class Tester
       $strCsv .=
         $test->getId().' ; '.
         $test->getNom().' ; '.
-        $test->getDescription().' ; '.
+        trim($test->getDescription()).' ; '.
         $test->getResultat()->getCode().' ; '.
         trim($test->getResultat()->explication).' ; '.
         trim($test->getResultat()->instruction).' ; '.

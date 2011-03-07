@@ -80,7 +80,7 @@ class Page extends Client
     }
     catch(KcatoesUrlException $e)
     {
-      $errorMessage = $e->getMessage();
+      $errorMessage = 'L\'URL indiquée n\'est pas valide: '.$e->getMessage();
       $this->addLogErreur($errorMessage);
       throw new KcatoesCrawlerException($errorMessage);
     }
