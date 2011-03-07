@@ -25,6 +25,9 @@
  <target name="phpunit">
   <copy file="/home/arolland/ProjectConfiguration.class.php" tofile="${basedir}/config/ProjectConfiguration.class.php" overwrite="true" />
   <exec executable="php">
+   <arg line="symfony doctrine:build --model" />
+  </exec>
+  <exec executable="php">
    <arg line="symfony test:unit --xml=${basedir}/build/logs/junit.xml" />
   </exec>
  </target>
