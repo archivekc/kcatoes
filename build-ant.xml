@@ -23,7 +23,13 @@
 
  <!-- Run unit tests and generate junit.xml and clover.xml -->
  <target name="phpunit">
-  <exec executable="phpunit" failonerror="true"/>
+  <copy file="/home/arolland/ProjectConfiguration.class.php" tofile="${basedir}/config/ProjectConfiguration.class.php" overwrite="true" />
+  <exec executable="php">
+   <arg line="symfony doctrine:build --model" />
+  </exec>
+  <exec executable="php">
+   <arg line="symfony test:unit --xml=${basedir}/build/logs/junit.xml" />
+  </exec>
  </target>
 
  <!-- Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks
@@ -102,8 +108,8 @@
   </exec>
  </target>
 
- <!--<target name="build" depends="clean,parallelTasks,phpunit,phpcb" />-->
- <target name="build" depends="clean,parallelTasks,phpcb">
+ <target name="build" depends="clean,parallelTasks,phpunit,phpcb">
+ <!-- <target name="build" depends="clean,parallelTasks,phpcb"> -->
   <!-- <exec executable="${rootDirForPhp}phing" /> -->
  </target>
 </project>
