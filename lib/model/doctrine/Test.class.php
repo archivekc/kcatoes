@@ -96,7 +96,7 @@ class Test extends BaseTest
    */
   private function hasExecutable()
   {
-    return class_exists('KCatoes::lib::implementation::'.$this->getNomCourt());
+    return class_exists($this->getNomCourt());
   }
 
   /**
