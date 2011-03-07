@@ -24,7 +24,9 @@
  <!-- Run unit tests and generate junit.xml and clover.xml -->
  <target name="phpunit">
   <copy file="/home/arolland/ProjectConfiguration.class.php" tofile="${basedir}/config/ProjectConfiguration.class.php" overwrite="true" />
-  <exec executable="php symfony test:unit --xml=${basedir}/build/logs/junit.xml" failonerror="true"/>
+  <exec executable="php">
+   <arg line="symfony test:unit --xml=${basedir}/build/logs/junit.xml" />
+  </exec>
  </target>
 
  <!-- Run the pdepend, phpmd, phpcpd, phpcs, phpdoc and phploc tasks
