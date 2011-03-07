@@ -85,6 +85,7 @@ class Page extends Client
       throw new KcatoesCrawlerException($errorMessage);
     }
     $this->request('GET', $this->url);
+    $this->addLogInfo('Génération du crawler - Ok');
   }
 
   /**
@@ -97,6 +98,19 @@ class Page extends Client
     if($this->logger instanceof sfLogger)
     {
       $this->logger->err($errorMessage);
+    }
+  }
+
+  /**
+   * Ajoute un message d'information au journal de log
+   *
+   * @param String $infoMessage Message à ajouter
+   */
+  private function addLogInfo($infoMessage)
+  {
+    if($this->logger instanceof sfLogger)
+    {
+      $this->logger->info($infoMessage);
     }
   }
 }
