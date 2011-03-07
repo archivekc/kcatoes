@@ -10,5 +10,9 @@
   </head>
   <body>
     <?php echo $sf_content ?>
+    <hr />
+    Version <?php echo sfConfig::get('app_version') ?> -
+    <?php echo sfConfig::get('app_date') ?> -
+    Key Consulting
   </body>
 </html>
