@@ -53,56 +53,37 @@ class Resultat
     return $this->$var;
   }
 
-  public function __toString()
-  {
-    switch ($this->resultatCode)
-    {
-      case self::ECHEC:
-        return 'Terminé: Echec';
-        break;
-      case self::REUSSITE:
-        return 'Terminé: Réussite';
-        break;
-      case self::MANUEL:
-        return 'Terminé: Exécution manuelle';
-        break;
-      case self::NON_EXEC:
-        return 'Non exécutable: '.$this->explication;
-        break;
-      case self::ERREUR:
-        return 'Erreur d\'exécution: '.$this->explication;
-        break;
-      default:
-        return '';
-    }
-  }
-
   /**
    * Retourne le nom du résultat associé à $resultatCode
    *
    */
-  public function getCode()
+  public function getCode($withExplication = false)
   {
+    $code = '';
+
     switch ($this->resultatCode)
     {
       case self::ECHEC:
-        return 'Echec';
+        $code = 'Echec';
         break;
       case self::REUSSITE:
-        return 'Réussite';
+        $code = 'Réussite';
         break;
       case self::MANUEL:
-        return 'Exécution manuelle';
+        $code = 'Exécution manuelle';
         break;
       case self::NON_EXEC:
-        return 'Non exécutable';
+        $code = $withExplication ? 'Non exécutable: '.$this->explication : 'Non exécutable';
         break;
       case self::ERREUR:
-        return 'Erreur d\'exécution';
+        $code = $withExplication ? 'Erreur d\'exécution: '.$this->explication : 'Erreur d\'exécution';
         break;
       default:
-        return '';
+         $code = '';
+         break;
     }
+
+    return $code;
   }
 
 }

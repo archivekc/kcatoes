@@ -44,14 +44,12 @@ class Tester
       }
       if ($test->getResultat()->resultatCode != Resultat::ERREUR && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
       {
-        $this->addLogInfo($test->getnom().' - '.$test->getResultat());
+        $this->addLogInfo($test->getnom().' - '.$test->getResultat()->getCode(true));
       }
       else
       {
-        $this->addLogErreur($test->getnom().' - '.$test->getResultat());
+        $this->addLogErreur($test->getnom().' - '.$test->getResultat()->getCode(true));
       }
-      echo $test->getNom().': ';
-      echo $test->getResultat().'<br />';
     }
   }
 
@@ -95,6 +93,7 @@ class Tester
       $strCsv .=
         $test->getId().' ; '.
         $test->getNom().' ; '.
+        $test->getDescription().' ; '.
         $test->getResultat()->getCode().' ; '.
         trim($test->getResultat()->explication).' ; '.
         trim($test->getResultat()->instruction).' ; '.
@@ -104,5 +103,7 @@ class Tester
     $csv = fopen($fileName, "cb");
     fprintf($csv, $strCsv);
     fclose($csv);
+
+    return $fileName;
   }
 }
