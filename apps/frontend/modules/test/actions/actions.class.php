@@ -16,14 +16,14 @@ class testActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->getUser()->setAttribute('urlDeTest', 'http://www.keyconsulting.fr/');
+    $this->getUser()->setAttribute('urlDeTest', 'jenesuispasunformatd\'URLvalide');
     $this->getUser()->setAttribute('testsSelectionnes', array(1, 2, 3, 4, 5, 6, 7));
 
     //A terme, initialisé par la configuration des tests
     $this->urlDeTest = $this->getUser()->getAttribute('urlDeTest');
-//    $this->urlDeTest = 'www.jesuisdeconnecte.fr';      //404
-//    $this->urlDeTest = 'http://abonnes.lemonde.fr/';   //302
-//    $this->urlDeTest = 'toto';                         //Syntaxe invalide
+//    $this->urlDeTest = 'www.jesuisdeconnecte.fr';                              //404
+//    $this->urlDeTest = 'http://abonnes.lemonde.fr/';                           //302
+//    $this->urlDeTest = 'jenesuispasunformatd\'URLvalide';                      //Syntaxe invalide
 //    $this->urlDeTest = 'http://www.keyconsulting.fr/images/KeyConsulting.jpg'; //Format invalide
 
     $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
@@ -49,14 +49,17 @@ class testActions extends sfActions
     }
     catch (KcatoesCrawlerException $e)
     {
-      $this->message = $e->getMessage();
+      $this->erreur = $e->getMessage();
+      $this->info = 'Erreur lors de la création du crawler';
+      $this->cheminFichierCsv = '';
+      return sfView::SUCCESS;
     }
 
     $tester = new Tester($page,
                          $this->tests,
                          sfContext::getInstance()->getLogger());
     $tester->executeTest();
-    $this->message = 'Traitement terminé';
+    $this->info = 'Traitement terminé';
     $this->cheminFichierCsv = $tester->toCSV();
   }
 
