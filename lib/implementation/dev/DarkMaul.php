@@ -1,5 +1,7 @@
 <?php
 
+namespace KCatoes\lib\implementation;
+
 class DarkMaul
 {
   public function __construct()

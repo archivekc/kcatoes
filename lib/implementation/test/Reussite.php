@@ -1,5 +1,7 @@
 <?php
 
+namespace KCatoes\lib\implementation;
+
 class Reussite extends ASource
 {
   public function __construct()

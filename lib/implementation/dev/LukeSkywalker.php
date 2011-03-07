@@ -1,5 +1,7 @@
 <?php
 
+namespace KCatoes\lib\implementation;
+
 class LukeSkywalker extends ASource
 {
   public function __construct()
@@ -14,7 +16,7 @@ class LukeSkywalker extends ASource
     $alts = $crawler->filter('img')->extract('alt');
     foreach ($alts as $alt)
     {
-      echo 'Luke Skywalker - texte alternatif à une image trouvé: '.$alt.'<br />';
+      //echo 'Luke Skywalker - texte alternatif à une image trouvé: '.$alt.'<br />';
       $result = $result && ($alt != '');
     }
     return $result;

@@ -1,10 +1,12 @@
 <?php
 
-class Echec extends ASource
+namespace KCatoes\lib\implementation;
+
+class MalImplemente
 {
   public function __construct()
   {
-    $this->explication = 'Echoue toujours';
+    $this->explication = 'N\'herite pas de ASource';
   }
 
   public function execute(Page $page)
