@@ -1,0 +1,53 @@
+Thematique:
+  recette:
+    nom:         Thematique de recette
+    description: |
+       Données utilisées pour la recette
+       
+Referentiel:
+  recette:
+    nom:        Référentiel de recette 
+    url:        http://www.keyconsulting.fr
+    Thematique: recette
+    
+Regroupement:
+  recette:
+    nom:         Regroupement de recette
+    Referentiel: recette
+
+Test:
+  test1:
+    nom:           Test 1
+    description:   |
+      Ceci est un exemple de test non automatisable.
+    automatisable: false
+    Regroupement:  recette
+    instruction:   |
+      Pas d'exécution manuelle non plus.
+
+  test2:
+    nom:           Test 2
+    description:   |
+      Ceci est un exemple de test automatisable.
+    automatisable: true
+    Regroupement:  recette
+    instruction:   |
+      
+
+  test3:
+    nom:           Test 3
+    description:   |
+      Ceci est un exemple de test automatisable et correctement implémenté.
+    automatisable: true
+    Regroupement:  recette
+    instruction:   |
+    
+
+  test4:
+    nom:           Test 4
+    description:   |
+      Ceci est un exemple de test automatisable et correctement implémenté mais provoquant une erreur à l'exécution.
+    automatisable: true
+    Regroupement:  recette
+    instruction:   |
+      
