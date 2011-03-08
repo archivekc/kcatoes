@@ -6,8 +6,8 @@ use Goutte\Client;
 /**
  * Wrapper de Goutte pour KCatoes
  *
- * @author Antoine Rolland
- *
+ * @package Kcatoes
+ * @author Antoine Rolland <antoine.rolland@keyconsulting.fr>
  */
 class Page extends Client
 {

@@ -3,9 +3,9 @@
 /**
  * test actions.
  *
- * @package    kcatoes
+ * @package    Kcatoes
  * @subpackage test
- * @author     Adrien Couet
+ * @author     Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 class testActions extends sfActions
 {

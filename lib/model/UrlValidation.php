@@ -1,13 +1,14 @@
 <?php
 
+use Zend\Validator\File\Count;
+use Zend\Db\Select;
+
 /**
  * Librarie de validation d'URL
  *
- * @author Adrien Couet
+ * @package Kcatoes
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
-
-use Zend\Validator\File\Count;
-use Zend\Db\Select;
 class UrlValidation
 {
 

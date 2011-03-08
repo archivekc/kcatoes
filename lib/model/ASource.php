@@ -3,8 +3,8 @@
 /**
  * Classe dont devra hériter le code de chaque test automatisable
  *
- * @author Adrien Couet
- *
+ * @package Kcatoes
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 abstract class ASource
 {

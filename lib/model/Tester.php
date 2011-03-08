@@ -3,8 +3,8 @@
 /**
  * Gestionnaire de tests de KCatoes
  *
- * @author Adrien Couet
- *
+ * @package Kcatoes
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 class Tester
 {

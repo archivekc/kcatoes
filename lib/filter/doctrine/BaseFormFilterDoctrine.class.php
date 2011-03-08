@@ -3,10 +3,9 @@
 /**
  * Project filter form base class.
  *
- * @package    kcatoes
+ * @package    Kcatoes
  * @subpackage filter
- * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormFilterBaseTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 abstract class BaseFormFilterDoctrine extends sfFormFilterDoctrine
 {

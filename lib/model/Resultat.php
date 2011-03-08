@@ -3,8 +3,8 @@
 /**
  * Stocke le résultat d'un test et les informations qui y sont associées
  *
- * @author Adrien Couet
- *
+ * @package Kcatoes
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 class Resultat
 {
