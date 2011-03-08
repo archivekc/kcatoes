@@ -1,98 +1,1698 @@
-
 Thematique:
-  force:
-    nom:         Utilisateurs de la force
+  acces:
+    nom:         Accessibilité
     description: |
-       Faut expliquer ?
+        L'accessibilité du web signifie que les personnes handicapées peuvent 
+        l'utiliser. Plus spécifiquement, elle signifie que ces gens peuvent 
+        percevoir, comprendre, naviguer, interagir avec le web, et y contribuer. 
+        L'accessibilité du Web bénéficie également à d'autres, notamment les 
+        personnes âgées ayant des capacités diminuées dues au vieillissement.
+        (http://fr.wikipedia.org/wiki/Accessibilité_du_Web)
        
 Referentiel:
-  clair:
-    nom:        Le coté clair de la force
-    url:        http://www.jedionline.fr
-    Thematique: force
-  
-  obscur:
-    nom:        Le coté obscur de la force
-    url:        http://www.jesuissith.fr
-    Thematique: force
-    
-Regroupement:
-  cjedi:
-    nom:         Chevalier Jedi
-    Referentiel: clair
-   
-  mjedi:
-    nom:         Maitre Jedi
-    Referentiel: clair
-    
-  csith:
-    nom:         Chevalier Sith
-    Referentiel: obscur
-    
-  ssith:
-    nom:         Seigneur Sith
-    Referentiel: obscur
-    
-Test:
-  obi:
-    nom:           Obi-Wan Kenobi
-    description:   |
-      Il était chevalier Jedi dans l'episode 1
-    automatisable: false
-    Regroupement:  cjedi
-    instruction:   |
-      Mais il est devenu maitre Jedi dans les suivants
+  rgaaA:
+    nom:        Référentiel Général d'Accessibilité pour les Administrations - Niveau A
+    url:        http://references.modernisation.gouv.fr/rgaa-accessibilite
+    Thematique: acces
 
-  ana:
-    nom:           Anakin Skywalker
+  rgaaAA:
+    nom:        Référentiel Général d'Accessibilité pour les Administrations - Niveau AA
+    url:        http://references.modernisation.gouv.fr/rgaa-accessibilite
+    Thematique: acces
+
+  rgaaAAA:
+    nom:        Référentiel Général d'Accessibilité pour les Administrations - Niveau AAA
+    url:        http://references.modernisation.gouv.fr/rgaa-accessibilite
+    Thematique: acces
+
+Regroupement:
+  cadreA:
+    nom:         Cadres - Niveau A
+    Referentiel: rgaaA
+    
+  couleurA:
+    nom:         Couleurs - Niveau A
+    Referentiel: rgaaA
+  
+  couleurAA:
+    nom:         Couleurs - Niveau AA
+    Referentiel: rgaaAA
+  
+  couleurAAA:
+    nom:         Couleurs - Niveau AAA
+    Referentiel: rgaaAAA
+  
+  formulaireA:
+    nom:         Formulaires - Niveau A
+    Referentiel: rgaaA
+  
+  formulaireAA:
+    nom:         Formulaires - Niveau AA
+    Referentiel: rgaaAA
+  
+  formulaireAAA:
+    nom:         Formulaires - Niveau AAA
+    Referentiel: rgaaAAA
+  
+  imageA:
+    nom:         Images - Niveau A
+    Referentiel: rgaaA
+  
+  imageAA:
+    nom:         Images - Niveau AA
+    Referentiel: rgaaAA
+  
+  multimediaA:
+    nom:         Multimédias - Niveau A
+    Referentiel: rgaaA
+  
+  multimediaAA:
+    nom:         Multimédias - Niveau AA
+    Referentiel: rgaaAA
+  
+  multimediaAAA:
+    nom:         Multimédias - Niveau AAA
+    Referentiel: rgaaAAA
+  
+  navigationA:
+    nom:         Navigation - Niveau A
+    Referentiel: rgaaA
+  
+  navigationAA:
+    nom:         Navigation - Niveau AA
+    Referentiel: rgaaAA
+  
+  navigationAAA:
+    nom:         Navigation - Niveau AAA
+    Referentiel: rgaaAAA
+  
+  presentationA:
+    nom:         Présentation - Niveau A
+    Referentiel: rgaaA
+  
+  presentationAA:
+    nom:         Présentation - Niveau AA
+    Referentiel: rgaaAA
+  
+  presentationAAA:
+    nom:         Présentation - Niveau AAA
+    Referentiel: rgaaAAA
+  
+  scriptA:
+    nom:         Scripts - Niveau A
+    Referentiel: rgaaA
+  
+  scriptAAA:
+    nom:         Scripts - Niveau AAA
+    Referentiel: rgaaAAA
+  
+  standardA:
+    nom:         Standards - Niveau A
+    Referentiel: rgaaA
+    
+  structureA:
+    nom:         Structures - Niveau A
+    Referentiel: rgaaA
+  
+  structureAAA:
+    nom:         Structures - Niveau AAA
+    Referentiel: rgaaAAA
+  
+  tableauA:
+    nom:         Tableaux - Niveau A
+    Referentiel: rgaaA
+  
+  texteA:
+    nom:         Texte - Niveau A
+    Referentiel: rgaaA
+  
+  texteAA:
+    nom:         Texte - Niveau AA
+    Referentiel: rgaaAA
+  
+  texteAAA:
+    nom:         Texte - Niveau AAA
+    Referentiel: rgaaAAA
+  
+Test:
+  test11:
+    nom:           Absence de cadres non titrés
     description:   |
-      Il a été chevalier Jedi (si si)
+      Tous les cadres de la page doivent avoir un titre
     automatisable: true
-    Regroupement:  cjedi
+    Regroupement:  cadreA
     instruction:   |
       
-
-  yoda:
-    nom:           Maitre Yoda
+  test12:
+    nom:           Pertinence des titres donnés aux cadres
     description:   |
-      Faut vraiment le présenter ?
-    automatisable: true
-    Regroupement:  mjedi
+      Les titres donnés aux cadres doivent correspondre à leur contenu.
+    automatisable: false
+    Regroupement:  cadreA
     instruction:   |
-      "Quand 900 ans comme moi tu auras, moins en forme tu seras."
-
-  luke:
-    nom:           Luke Skywalker
+      
+  test21:
+    nom:           Alternative à la couleur 1
     description:   |
-      Le dernier Jedi
-    automatisable: true
-    Regroupement:  mjedi
+      Présence d'un autre moyen que la couleur pour identifier 
+      un contenu auquel il est fait référence textuellement
+    automatisable: false
+    Regroupement:  couleurA
     instruction:   |
-      " Luke, quand je ne serai plus, le dernier des Jedi tu seras…"
-
-  maul:
-    nom:           Dark Maul
+      
+  test22:
+    nom:           Alternative à la couleur 2
     description:   |
-      Mr Sabreadeuxlames
-    automatisable: true
-    Regroupement:  csith
+      Présence d'un autre moyen que la couleur pour identifier 
+      un contenu auquel il est fait référence dans un élément non textuel
+    automatisable: false
+    Regroupement:  couleurA
     instruction:   |
-      Pas la peine de s'attarder sur lui
-
-  palpa:
-    nom:           Palpatine
+      
+  test23:
+    nom:           Alternative à la couleur 3
     description:   |
-      Aussi connu sous le nom d'Empereur
-    automatisable: true
-    Regroupement:  ssith
+      Présence d'un moyen de transmission de l'information autre 
+      qu'une mise en couleur réalisée par des styles CSS
+    automatisable: false
+    Regroupement:  couleurA
     instruction:   |
-      Dire qu'il a été sénateur avant...
-
-  vador:
-    nom:           Dark Vador
+      
+  test24:
+    nom:           Alternative à la couleur 4
     description:   |
-      "Luke, je suis ton père"
-    automatisable: true
-    Regroupement:  ssith
+      Présence d'un moyen de transmission de l'information autre 
+      qu'une utilisation de la couleur dans les éléments non textuels
+    automatisable: false
+    Regroupement:  couleurA
     instruction:   |
-      Une citation devenue culte
+      
+  test25:
+    nom:           Valeur de contraste 1
+    description:   |
+      Valeur du rapport de contraste du texte contenu 
+      dans des éléments non textuels (minimum)
+    automatisable: false
+    Regroupement:  couleurAA
+    instruction:   |
+      
+  test26:
+    nom:           Valeur de contraste 2
+    description:   |
+      Valeur du rapport de contraste du texte contenu dans des éléments 
+      non textuels utilisés comme fond d'éléments HTML (minimum)
+    automatisable: false
+    Regroupement:  couleurAA
+    instruction:   |
+      
+  test27:
+    nom:           Valeur de contraste 3
+    description:   |
+      Valeur du rapport de contraste du texte 
+      contenu dans un segment de texte (minimum)
+    automatisable: false
+    Regroupement:  couleurAA
+    instruction:   |
+      
+  test28:
+    nom:           Valeur de contraste 4
+    description:   |
+      Valeur du rapport de contraste du texte
+    automatisable: false
+    Regroupement:  couleurAA
+    instruction:   |
+      
+  test29:
+    nom:           Valeur de contraste 5
+    description:   |
+       Valeur du rapport de contraste du texte agrandi contenu 
+       dans des éléments non textuels utilisés comme 
+       fond d'éléments HTML (minimum)
+    automatisable: false
+    Regroupement:  couleurAA
+    instruction:   |
+      
+  test210:
+    nom:           Valeur de contraste 6
+    description:   |
+      Valeur du rapport de contraste du texte agrandi 
+      contenu dans un segment de texte (minimum)
+    automatisable: false
+    Regroupement:  couleurAA
+    instruction:   |
+      
+  test211:
+    nom:           Valeur de contraste 7
+    description:   |
+      Valeur du rapport de contraste du texte contenu 
+      dans des éléments non textuels (améliorée)
+    automatisable: false
+    Regroupement:  couleurAAA
+    instruction:   |
+      
+  test212:
+    nom:           Valeur de contraste 8
+    description:   |
+      Valeur du rapport de contraste du texte contenu dans des éléments
+       non textuels utilisés comme fond d'éléments HTML (améliorée)
+    automatisable: false
+    Regroupement:  couleurAAA
+    instruction:   |
+      
+  test213:
+    nom:           Valeur de contraste 9
+    description:   |
+      Valeur du rapport de contraste du texte 
+      contenu dans un segment de texte (améliorée)
+    automatisable: false
+    Regroupement:  couleurAAA
+    instruction:   |
+      
+  test214:
+    nom:           Valeur de contraste 10
+    description:   |
+      Valeur du rapport de contraste du texte agrandi 
+      contenu dans des éléments non textuels (améliorée)
+    automatisable: false
+    Regroupement:  couleurAAA
+    instruction:   |
+      
+  test215:
+    nom:           Valeur de contraste 11
+    description:   |
+      Valeur du rapport de contraste du texte 
+      agrandi contenu dans des éléments non textuels
+       utilisés comme fond d'éléments HTML (améliorée)
+    automatisable: false
+    Regroupement:  couleurAAA
+    instruction:   |
+      
+  test216:
+    nom:           Valeur de contraste 12
+    description:   |
+      Valeur du rapport de contraste du texte agrandi 
+      contenu dans un segment de texte (améliorée)
+    automatisable: false
+    Regroupement:  couleurAAA
+    instruction:   |
+      
+  test31:
+    nom:           Indentification des erreurs de saisie
+    description:   |
+      Possibilité d'identifier les erreurs de saisie
+    automatisable: false
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test32:
+    nom:           Indication des contraintes sur les champs
+    description:   |
+      Présence d'information préalable sur le caractère 
+      obligatoire de certains champs de saisie et du type/format
+       de saisie attendue si nécessaire
+    automatisable: false
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test33:
+    nom:           Position des étiquettes
+    description:   |
+      Positionnement correct des étiquettes par rapport aux champs
+      dans les formulaires
+    automatisable: false
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test34:
+    nom:           Utilisation de l'élément fieldset
+    description:   |
+      Regroupement d'éléments de formulaire via l'élément fieldset
+    automatisable: true
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test35:
+    nom:           Absence d'élément fieldset sans élément legend
+    description:   |
+      Chaque élément fieldset doit être accompagné d'un élément legend
+    automatisable: true
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test36:
+    nom:           Pertinence de l'élément legend
+    description:   |
+      Pertinence du contenu de l'élément legend dans l'élément fieldset
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test37:
+    nom:           Utilisation de l'élément optgroup dans un élément select
+    description:   |
+      Regroupement d'éléments option dans un élément 
+      select via l'élément optgroup
+    automatisable: true
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test38:
+    nom:           Absence d'élément optgroup sans attribut label
+    description:   |
+      Chaque élément optgroup doit posséder son propre attribut label
+    automatisable: true
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test39:
+    nom:           Pertinence de l'attribut label
+    description:   |
+      Pertinence du contenu de l'attribut label de l'élément optgroup
+    automatisable: false
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test310:
+    nom:           Absence d'élément de formulaire sans identifiant
+    description:   |
+      Tous les éléments d'un formulaire doivent posséder un identifiant
+    automatisable: true
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test311:
+    nom:           Absence d'élément de formulaire sans étiquette associée
+    description:   |
+      Tous les éléments d'un formulaire doivent avoir une étiquette associée
+    automatisable: true
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test312:
+    nom:           Pertinence des étiquettes
+    description:   |
+      Pertinence des étiquettes délément de formulaire
+    automatisable: false
+    Regroupement:  formulaireA
+    instruction:   |
+      
+  test313:
+    nom:           Aide à la correction des erreurs de saisie
+    description:   |
+      Présence d'informations ou de suggestions facilitant 
+      la correction des erreurs de saisie
+    automatisable: false
+    Regroupement:  formulaireAA
+    instruction:   |
+      
+  test314:
+    nom:           Traitement des données juridiques, financières et personnelles
+    description:   |
+      Présence de mécanismes permettant de vérifier, modifier ou 
+      confirmer les données à caractère juridique, financier, personnel
+    automatisable: false
+    Regroupement:  formulaireAA
+    instruction:   |
+      
+  test315:
+    nom:           Vérification, modification, confirmation des données utilisateur
+    description:   |
+      Présence de mécanismes permettant de vérifier, modifier ou 
+      confirmer tous types de données saisie par l'utilisateur
+    automatisable: false
+    Regroupement:  formulaireAAA
+    instruction:   |
+      
+  test316:
+    nom:           Aide à la saisie des formulaire
+    description:   |
+      Présence d'une page d'aide ou d'un mécanisme d'aide 
+      contextuelle pour la saisie des formulaires
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test41:
+    nom:           Présence de l'attribut alt
+    description:   |
+      Toutes les images doivent avoir un texte alternatif
+    automatisable: true
+    Regroupement:  imageA
+    instruction:   |
+      
+  test42:
+    nom:           Pertinence de l'alternative textuelle 1
+    description:   |
+      Pertinence de l'alternative textuelle aux images liens
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test43:
+    nom:           Pertinence de l'alternative textuelle 2
+    description:   |
+      Pertinence de l'alternative textuelle aux 
+      zones cliquables ou aux boutons graphiques
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test44:
+    nom:           Pertinence de l'alternative textuelle 3
+    description:   |
+      Pertinence de l'alternative textuelle aux éléments non textuels
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test45:
+    nom:           Pertinence de l'alternative textuelle 4
+    description:   |
+      Pertinence de l'alternative textuelle vide aux éléments décoratifs
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test46:
+    nom:           Longueur du contenu des alternatives textuelles
+    description:   |
+      Les alternatives textuelles doivent être le plus concises possible
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test47:
+    nom:           Existance d'une description longue
+    description:   |
+      Existence d'une description longue pour les images le nécessitant
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test48:
+    nom:           Pertinance de la description longue
+    description:   |
+      Pertinence de la description longue pour les images le nécessitant
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test49:
+    nom:           Présence de l'attribut longdsc
+    description:   |
+      Présence de l'attribut longdesc pour établir une relation entre une image et sa description longue
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test410:
+    nom:           Gestion des cas où l'alternative ne peut pas être communiquée
+    description:   |
+      Présence d'une information de contexte et d'une 
+      solution d'accès pour les captcha lorsque 
+      l'alternative ne peut pas être communiquée
+    automatisable: false
+    Regroupement:  imageA
+    instruction:   |
+      
+  test411:
+    nom:           Cohérence des alternative textuelles et des étiquettes de formulaire
+    description:   |
+       Cohérence dans l'identification des alternatives textuelles et des étiquettes de formulaires
+    automatisable: false
+    Regroupement:  imageAA
+    instruction:   |
+      
+  test51:
+    nom:           Synthèse des médias non textuels
+    description:   |
+      Accès à une information synthétique pour les contenus 
+      sonores, visuel animé ou les médias synchronisé
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test52:
+    nom:           Transcription textuelle des médias nons textuels
+    description:   |
+      Présence de la transcription textuelle des contenus 
+      visuels animés, sonores ou des médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test53:
+    nom:           Pertinence de la transcription textuelle des médias non textuels
+    description:   |
+      Pertinence de la transcription textuelle des contenus 
+      visuels animés, sonores ou des médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test54:
+    nom:           Description audio synchronisée ou transcription textuelle
+    description:   |
+      Présence d'un description audio synchronisée 
+      ou d'une transcription textuelle pour les 
+      contenus visuels animés et les médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test55:
+    nom:           Pertinence de la description audio synchronisée ou transcription textuelle
+    description:   |
+      Pertinence de la description audio synchronisée des 
+      contenus visuels animés ou des médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test56:
+    nom:           Contrôle de l'activation de la description audio synchronisée
+    description:   |
+      Possibilité de contrôler l'activation de la description audio synchronisée
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test57:
+    nom:           Description audio synchronisée étendue
+    description:   |
+      Présence d'une description audio synchronisée étendue 
+      pour les contenus visuels animés ou les médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaAAA
+    instruction:   |
+      
+  test58:
+    nom:           Description audio synchronisée
+    description:   |
+      Présence d'une description audio synchronisée pour les 
+      contenus visuels animés ou les médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaAA
+    instruction:   |
+      
+  test59:
+    nom:           Sous-titrage synchronisé non direct
+    description:   |
+      Présence du sous-titrage synchronisé des médias 
+      synchronisés qui ne sont pas diffusés en direct
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test510:
+    nom:           Pertinance du sous-titrage synchronisé
+    description:   |
+      Pertinence du sous-titrage synchronisé des médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test511:
+    nom:           Alternative aux éléments applet et object
+    description:   |
+      Présence d'une alternative aux éléments applet et object
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test512:
+    nom:           Alternative aux éléments embed
+    description:   |
+      Présence d'une alternative aux éléments embed
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test513:
+    nom:           Changements de luminosité et flashs rouges 1
+    description:   |
+      Absence d'éléments provoquant des changements brusques de 
+      luminosité ou des effets de flash rouge à fréquence élevée
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test514:
+    nom:           Changements de luminosité et flashs rouges 2
+    description:   |
+      Absence de code javascript provoquant des changements brusques 
+      de luminosité ou des effets de flash rouge à fréquence élevée
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test515:
+    nom:           Changements de luminosité et flashs rouges 3
+    description:   |
+      Absence de mise en forme provoquant des changements brusques 
+      de luminosité ou des effets de flash rouge à fréquence élevée
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test516:
+    nom:           Compatibilité des éléments programmables avec les aides techniques
+    description:   |
+      
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test517:
+    nom:           Changements de luminosité et flashs rouges 4
+    description:   |
+      Absence totale de changements brusques de luminosité 
+      ou des effets flash rouge à fréquence élevée
+    automatisable: false
+    Regroupement:  multimediaAAA
+    instruction:   |
+      
+  test518:
+    nom:           Sous-titrage synchronisé direct
+    description:   |
+      Présence du sous-titrage synchronisé des médias 
+      synchronisés ou sonores diffusés en direct
+    automatisable: false
+    Regroupement:  multimediaAA
+    instruction:   |
+      
+  test519:
+    nom:           Absence de l'élément blink
+    description:   |
+      
+    automatisable: true
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test520:
+    nom:           Clignotements automatiques 1
+    description:   |
+      Absence d'éléments provoquant des clignotements 
+      déclenchés automatiquement ne pouvant pas être arrêtés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test521:
+    nom:           Clignotements automatiques 2
+    description:   |
+      Absence de code javascript provoquant des clignotements 
+      déclenchés automatiquement ne pouvant pas être arrêtés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test522:
+    nom:           Clignotements automatiques 3
+    description:   |
+      Absence de mise en forme provoquant des clignotements 
+      déclenchés automatiquement ne pouvant pas être arrêtés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test523:
+    nom:           Absence d'élément marquee
+    description:   |
+      
+    automatisable: true
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test524:
+    nom:           Mouvements automatiques 1
+    description:   |
+      Absence d'éléments affichant des mouvements déclenchés 
+      automatiquement ne pouvant pas être arrêtés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test525:
+    nom:           Mouvements automatiques 2
+    description:   |
+      Absence de code javascript provoquant des mouvements 
+      déclenchés automatiquement ne pouvant pas être arrêtés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test526:
+    nom:           Mouvements automatiques 3
+    description:   |
+      Absence de mise en forme provoquant des mouvements 
+      déclenchés automatiquement ne pouvant pas être arrêtés
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test527:
+    nom:           Indépendance du périphérique d'accès
+    description:   |
+      Indépendance du périphérique d'accès aux éléments object, embed et applet
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test528:
+    nom:           Alternative aux éléments object, applet et embed
+    description:   |
+      Présence d'une alternative aux éléments object, 
+      applet et embed dépendant d'un périphérique
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test529:
+    nom:           Arrêt de la lecture de son
+    description:   |
+      Absence d'éléments déclenchant la lecture de son ne pouvant pas être arrêtée
+    automatisable: false
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test530:
+    nom:           Absence d'élément bgsound
+    description:   |
+      
+    automatisable: true
+    Regroupement:  multimediaA
+    instruction:   |
+      
+  test531:
+    nom:           Version en langue des signes française
+    description:   |
+      Présence de version en langue des signes française 
+      facilitant la compréhension des médias synchronisés
+    automatisable: false
+    Regroupement:  multimediaAAA
+    instruction:   |
+      
+  test532:
+    nom:           Pertinance de la version en langue des signes française
+    description:   |
+      
+    automatisable: false
+    Regroupement:  multimediaAAA
+    instruction:   |
+      
+  test533:
+    nom:           Niveau sonore de la piste de dialogue
+    description:   |
+      La ou les pistes de dialogue doivent être au minimum 20 décibels plus 
+      élevées que le fond sonore ou alors celui-ci peut être désactivé
+    automatisable: false
+    Regroupement:  multimediaAAA
+    instruction:   |
+      
+  test534:
+    nom:           Couleur d'avant et d'arrière plan des blocs de texte
+    description:   |
+      Présence d'un mécanisme pour personnaliser la couleur 
+      d'avant plan et d'arrière plan des blocs de texte
+    automatisable: false
+    Regroupement:  multimediaAAA
+    instruction:   |
+      
+  test61:
+    nom:           Accès aux liens textuels doublant les zones clicables côté serveur
+    description:   |
+      
+    automatisable: true
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test62:
+    nom:           Avertissement préalable 1
+    description:   |
+      Présence d'un avertissement préalable à l'ouverture de 
+      nouvelle fenêtre lors de l'utilisation de l'attribut 
+      target sur les liens textuels et les formulaires
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test63:
+    nom:           Avertissement préalable 2
+    description:   |
+      Présence d'un avertissement préalable à l'ouverture de 
+      nouvelle fenêtre lors de l'utilisation de l'attribut 
+      target sur les images liens et les zones cliquables
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test64:
+    nom:           Avertissement préalable 3
+    description:   |
+      Présence d'un avertissement préalable à l'ouverture de 
+      nouvelle fenêtre lors de l'utilisation de code javascript
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test65:
+    nom:           Absence d'ouverture de nouvelles fenêtres sans action de l'utilisateur
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test66:
+    nom:           Absence de piège lors de la navigation clavier
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test67:
+    nom:           Rafraichissement automatique 1
+    description:   |
+      Absence d'élément meta provoquant un rafraîchissement automatique de la page
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test68:
+    nom:           Rafraichissement automatique 2
+    description:   |
+      Absence de code javascript provoquant un rafraîchissement 
+      automatique de la page ne pouvant pas être arrêté
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test69:
+    nom:           Rafraichissement automatique 3
+    description:   |
+      Absence d'éléments provoquant un rafraîchissement 
+      automatique de la page ne pouvant pas être arrêté
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test610:
+    nom:           Redirection automatique 1
+    description:   |
+      Absence d'élément meta provoquant une redirection automatique de la page
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test611:
+    nom:           Redirection automatique 2
+    description:   |
+      Absence de code javascript provoquant une redirection 
+      automatique de la page ne pouvant pas être arrêtée
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test612:
+    nom:           Redirection automatique 3
+    description:   |
+      Absence d'éléments provoquant une redirection 
+      automatique de la page ne pouvant pas être arrêtée
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test613:
+    nom:           Destination des liens et boutons 1
+    description:   |
+      Possibilité d'identifier la destination 
+      ou l'action des liens et des boutons
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test614:
+    nom:           Destination des liens et boutons 2
+    description:   |
+      Possibilité d'identifier la destination ou l'action
+       des liens et des boutons (intitulé seul)
+    automatisable: false
+    Regroupement:  navigationAAA
+    instruction:   |
+      
+  test615:
+    nom:           Cohérence de la destination ou de l'action des liens ayant un intitulé identique
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test616:
+    nom:           Absence de liens sans intitulé
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test617:
+    nom:           Présence d'une page contenant le plan du site
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test618:
+    nom:           Cohérence du plan du site
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test619:
+    nom:           Accès au plan depuis l'accueil
+    description:   |
+      Présence d'un accès à la page contenant le plan du site depuis la page d'accueil
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test620:
+    nom:           Présence d'un fil d'ariane
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationAAA
+    instruction:   |
+      
+  test621:
+    nom:           Présence de menus ou de barres de navigation
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test622:
+    nom:           Cohérence de la position des menus et barres de navigation
+    description:   |
+      Cohérence de la position des menus et barres de 
+      navigation dans le code source de la structure HTML
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test623:
+    nom:           Cohérence de la présentation des menus et barres de navigation
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test624:
+    nom:           Navigation au clavier
+    description:   |
+      Navigation au clavier dans un ordre logique par rapport au contenu
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test625:
+    nom:           Avertissement préalable 4
+    description:   |
+      Présence d'un avertissement préalable à l'ouverture de nouvelle 
+      fenêtre lors de l'utilisation d'éléments object ou embed
+    automatisable: false
+    Regroupement:  navigationAAA
+    instruction:   |
+      
+  test626:
+    nom:           Format des fichiers téléchargeables
+    description:   |
+      Présence des informations de format pour les documents en téléchargement.
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test627:
+    nom:           Poid des fichiers téléchargeables
+    description:   |
+      Présence des informations de poids pour les documents en téléchargement
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test628:
+    nom:           Langue des fichiers téléchargeables
+    description:   |
+      Présence des informations de langue pour les documents en téléchargement
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  tes629:
+    nom:           Présence de regroupement pour les liens importants
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test630:
+    nom:           Balisage des groupes de lien
+    description:   |
+      Présence d'un balisage permettant d'identifier les groupes de liens importants
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test631:
+    nom:           Liens d'évitement et d'accès rapide
+    description:   |
+      Présence de liens d'évitement ou d'accès rapide aux groupes de liens importants
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test632:
+    nom:           Cohérence des liens d'évitement et d'accès rapide
+    description:   |
+      Cohérence des liens d'évitement ou d'accès rapide aux groupes de liens importants
+    automatisable: false
+    Regroupement:  navigationA
+    instruction:   |
+      
+  test633:
+    nom:           Ordre des liens dévitement et d'accès rapide
+    description:   |
+      Ordre des liens d'évitement ou d'accès rapide dans le code source des pages
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test634:
+    nom:           Présence d'un moteur de recherche
+    description:   |
+      
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test635:
+    nom:           Navigation dans un groupe de page
+    description:   |
+      Possibilité de naviguer facilement dans un groupe de pages
+    automatisable: false
+    Regroupement:  navigationAA
+    instruction:   |
+      
+  test636:
+    nom:           Position courante
+    description:   |
+      Présence d'une indication de la position courante dans la navigation
+    automatisable: false
+    Regroupement:  navigationAAA
+    instruction:   |
+      
+  test116:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test117:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test118:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test119:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test120:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test121:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test122:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test123:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test124:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test125:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test126:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test127:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test128:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test129:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test130:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test131:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test132:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test133:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test134:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test135:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test136:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test137:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test138:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test139:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test140:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test141:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test142:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test143:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test144:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test145:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test146:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test147:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test148:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test149:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test150:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test151:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test152:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test153:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test154:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test155:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test156:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test157:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test158:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test159:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test160:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test161:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test162:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test163:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test164:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test165:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test166:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test167:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test168:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test169:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test170:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test171:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test172:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test173:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test174:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test175:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test176:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test177:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test178:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test179:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test180:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test181:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test182:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test183:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test184:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test185:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test186:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      
+  test187:
+    nom:           
+    description:   |
+      
+    automatisable: 
+    Regroupement:  
+    instruction:   |
+      

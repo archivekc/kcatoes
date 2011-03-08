@@ -86,7 +86,7 @@ Test:
   tableName: test
   columns:
     id:              { type: integer, primary: true, autoincrement: true }
-    nom:             { type: string(255), notnull: true }
+    nom:             { type: string(255), notnull: true, unique: true }
     description:     { type: string(1024), notnull: true }
     automatisable:   { type: boolean, notnull: true }
     instruction:     { type: string(1024), notnull: true }
