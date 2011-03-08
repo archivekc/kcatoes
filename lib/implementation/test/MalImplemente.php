@@ -1,7 +1,5 @@
 <?php
 
-namespace KCatoes\lib\implementation;
-
 class MalImplemente
 {
   public function __construct()

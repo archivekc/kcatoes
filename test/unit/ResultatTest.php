@@ -12,27 +12,27 @@ $t->comment('Controle de la fonction getCode() de Resultat');
 $t->comment('Resultat du test => \'Valeur de getCode() attendue\'');
 
 $t->is(
-  (String)$reussite,
-  'Terminé: Réussite',
-  'Reussite => \'Terminé: Réussite\''
+  $reussite->getCode(true),
+  'Réussite',
+  'Reussite => \'Réussite\''
 );
 $t->is(
-  (String)$echec,
-  'Terminé: Echec',
-  'Echec => \'Terminé: Echec\''
+  $echec->getCode(true),
+  'Echec',
+  'Echec => \'Echec\''
 );
 $t->is(
-  (String)$manuel,
-  'Terminé: Exécution manuelle',
-  'Execution manuelle => \'Terminé: Exécution manuelle\''
+  $manuel->getCode(true),
+  'Exécution manuelle',
+  'Execution manuelle => \'Exécution manuelle\''
 );
 $t->is(
-  (String)$nonExec,
+  $nonExec->getCode(true),
   'Non exécutable: Ce test n\'est pas executable',
   'Non executable => \'Ce test n\'est pas executable\''
 );
 $t->is(
-  (String)$erreur,
+  $erreur->getCode(true),
   'Erreur d\'exécution: Ce test a provoque une erreur',
   'Erreur d\'exécution => \'Erreur d\'exécution: Ce test a provoque une erreur\''
 );

@@ -1,7 +1,5 @@
 <?php
 
-namespace KCatoes\lib\implementation;
-
 class Echec extends ASource
 {
   public function __construct()

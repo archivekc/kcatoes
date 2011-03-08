@@ -1,7 +1,5 @@
 <?php
 
-namespace KCatoes\lib\implementation;
-
 class Erreur extends ASource
 {
   public function __construct()
