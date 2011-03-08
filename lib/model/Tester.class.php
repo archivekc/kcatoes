@@ -100,9 +100,14 @@ class Tester
         "\n";
     }
 
-    $csv = fopen($fileName, "cb");
-    fprintf($csv, $strCsv);
-    fclose($csv);
+    $csv = @fopen($fileName, "w");
+    if($csv){
+      fprintf($csv, $strCsv);
+      fclose($csv);
+    }
+    else{
+      throw new KcatoesTecException('Impossible d\'écrire dans un fichier CSV');
+    }
 
     return $fileName;
   }

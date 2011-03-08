@@ -88,7 +88,7 @@ Test:
     id:              { type: integer, primary: true, autoincrement: true }
     nom:             { type: string(255), notnull: true, unique: true }
     description:     { type: string(1024), notnull: true }
-    automatisable:   { type: boolean, notnull: true }
+    automatisable:   { type: boolean, notnull: true, default: false }
     instruction:     { type: string(1024), notnull: true }
     regroupement_id: { type: integer, notnull: true }
   relations:
