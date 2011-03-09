@@ -16,7 +16,7 @@ class testActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->getUser()->setAttribute('urlDeTest', 'http://www.keyconsulting.fr/');
+    $this->getUser()->setAttribute('urlDeTest', 'http://www.csvt.qc.ca/patriotes/html/code_spec/xmpl_mrq.htm');
     $this->getUser()->setAttribute('testsSelectionnes', array(8));
 
     //A terme, initialisé par la configuration des tests
@@ -27,7 +27,8 @@ class testActions extends sfActions
 //    $this->urlDeTest = 'http://www.keyconsulting.fr/images/sign.jpg'; //Format invalide
 
     $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
-    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
+//    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
+    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
 
   }
 
@@ -40,7 +41,8 @@ class testActions extends sfActions
   {
     $this->urlDeTest = $this->getUser()->getAttribute('urlDeTest');
     $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
-    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
+//    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
+    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
 
     $page = new page($this->urlDeTest, sfContext::getInstance()->getLogger());
     try
@@ -62,6 +64,36 @@ class testActions extends sfActions
     $this->erreur = '';
     $this->info = 'Traitement terminé';
     $this->cheminFichierCsv = $tester->toCSV();
+  }
+
+  public function executeDev(sfWebRequest $request)
+  {
+    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
+
+    foreach($this->tests as $test)
+    {
+      $fileName = 'dev\\'.$test->getNomCourt().'.class.php';
+      $contenu =
+        '<?php'."\n".
+        "\n".
+        'class '.$test->getNomCourt().' extends ASource'."\n".
+        '{'."\n".
+        '  public function __construct()'."\n".
+        '  {'."\n".
+        '    $this->explication = \'\';'."\n".
+        '  }'."\n".
+        "\n".
+        '  public function execute(Page $page)'."\n".
+        '  {'."\n".
+        '    '."\n".
+        '  }'."\n".
+        '}';
+      $file = @fopen($fileName, "w");
+      if($file){
+        fprintf($file, $contenu);
+        fclose($file);
+      }
+    }
   }
 
 }

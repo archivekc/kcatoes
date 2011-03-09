@@ -29,4 +29,9 @@ class TestTable extends Doctrine_Table
   {
     return $this->createQuery('t')->whereIn('t.id', $ids)->execute();
   }
+
+  public function getTestAutomatisable()
+  {
+    return $this->createQuery('t')->where('t.automatisable', true)->execute();
+  }
 }
