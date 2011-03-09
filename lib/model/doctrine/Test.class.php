@@ -48,6 +48,7 @@ class Test extends BaseTest
    * Vérifie si le test est automatisable
    *
    * @return true si le test est automatisable, false sinon
+   * @tested
    */
   public function isAutomatisable()
   {
@@ -67,6 +68,7 @@ class Test extends BaseTest
    * Vérifie si le test est exécutable
    *
    * @return true si le test est exécutable, false sinon
+   * @tested
    */
   public function isExecutable()
   {
@@ -103,6 +105,7 @@ class Test extends BaseTest
    * Exécute le test
    *
    * @param Page $page La page sur laquelle exécuter le test
+   * @tested
    */
   public function execute($page)
   {
