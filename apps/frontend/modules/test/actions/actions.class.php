@@ -16,7 +16,7 @@ class testActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->getUser()->setAttribute('urlDeTest', 'http://www.csvt.qc.ca/patriotes/html/code_spec/xmpl_mrq.htm');
+    $this->getUser()->setAttribute('urlDeTest', 'http://dev.kcatoes.local/dev/test.html');
     $this->getUser()->setAttribute('testsSelectionnes', array(8));
 
     //A terme, initialisé par la configuration des tests
