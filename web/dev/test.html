@@ -5,11 +5,15 @@
 <title>Page d'expérimentation des test de KCatoes</title>
 </head>
 <body>
+
 <h1>CSS text-align Example</h1>
+
 <p style={text-align:justify;} class="date">May, 2009</p>
 <p align="justify" class="main">In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since. 'Whenever you feel like criticizing anyone,' he told me, just remember that all the people in this world haven't had the advantages that you've had.'</p>
 <p><b>Note:</b> Resize the browser window to see how the value "justify" works.</p>
+
 <blink>Coucou je blink !</blink>
+
 <form id="contact" method="post" action="traitement_formulaire.php">
   <fieldset><legend>Vos coordonnées</legend>
     <p><label for="nom">Nom :</label><input type="text" id="nom" name="nom" tabindex="1" /></p>
@@ -18,14 +22,45 @@
 
   <fieldset><legend>Votre message :</legend>
     <p><input type="text" id="objet" name="objet" tabindex="3" /></p>
-    <p><label for="message">Message :</label><textarea id="message" name="message" tabindex="4" cols="30" rows="8"></textarea></p>
+    <p><label for="message">Message :</label><textarea id="objet" name="message" tabindex="4" cols="30" rows="8"></textarea></p>
   </fieldset>
 
   <div style="text-align:center;"><input type="submit" name="envoi" value="Envoyer le formulaire !" /></div>
 </form>
+
+<marquee>
+Toutes les possibilités de la balise MARQUEE
+</marquee>
+
+<h1>Titre super important</h1>
+  <h2>Titre important</h2>
+    <h3>Titre un peu moins important (sous-titre)</h3>
+
+      <h4>Titre pas trop important</h4>
+          <h6>Titre vraiment pas important du tout</h6>
+
+<dl>
+    <dd>- black hot drink</dd>
+    <dd>- tata1</dd>
+    <dd>- tata2</dd>
+    <dd>- tata3</dd>
+  <dt>Milk</dt>
+    <dd>- white cold drink</dd>
+    <dd>- tata4</dd>
+    <dd>- tata5</dd>
+    <dd>- tata6</dd>
+</dl>
+
+<dl>
+  <dt>Tata</dt>
+    <dd>- tata7</dd>
+  <dt>Toto</dt>
+    <dd>- toto</dd>
+</dl>
+
 </body>
 <frameset cols="25%,50%,25%">
-  <frame />
+  <frame title="toto" />
   <frame />
   <frame />
 </frameset>
