@@ -357,7 +357,7 @@ Test:
     instruction:   >
       
   test38:
-    nom:           Absence d'élément optgroup sans attribut label
+    nom:           Présence d'un attribut label sur l'élément optgroup
     description:   >
       Chaque élément optgroup doit posséder son propre attribut label
     automatisable: true
@@ -823,7 +823,7 @@ Test:
     nom:           Accès aux liens textuels doublant les zones clicables côté serveur
     description:   >
       
-    automatisable: true
+    automatisable: false
     Regroupement:  navigationA
     instruction:   >
       
@@ -1193,7 +1193,7 @@ Test:
     nom:           Absence d'éléments HTML utilisés à des fins de présentation
     description:   >
       
-    automatisable: true
+    automatisable: false
     Regroupement:  presentationA
     instruction:   >
       
@@ -1487,7 +1487,7 @@ Test:
     instruction:   >
       
   test103:
-    nom:           Avsence d'interruption dans la hiérarchie des titres
+    nom:           Absence d'interruption dans la hiérarchie des titres
     description:   >
       
     automatisable: true
