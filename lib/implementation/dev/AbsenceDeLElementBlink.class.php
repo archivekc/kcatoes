@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Compte le nombre d'éléments blink dans la page.
+ * Si ce compte est différent de 0, le test échoue.
+ *
+ * @author Adrien Couet
+ *
+ */
 class AbsenceDeLElementBlink extends ASource
 {
   public function __construct()

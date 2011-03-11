@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * Recherche dans la page la présence des éléments ou attribut suivants:
+ * basefont, blink, center, font, marquee, s, strike, tt, u, align, alink,
+ * background, basefont, bgcolor, border, color, link, text, vlink
+ *
+ * Si une correspondance est trouvé, le test échoue et son explication contient
+ * la liste des éléments correspondant trouvés
+ *
+ * @package Kcatoes
+ * @author Adrien Couet
+ *
+ */
 class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
 {
   public function __construct()

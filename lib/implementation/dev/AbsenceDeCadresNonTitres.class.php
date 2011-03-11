@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Compte dans la page le nombre d'élément frame et iframe sans attribut title
+ * ou avec un attribut title vide.
+ * Si ce compte est différent de 0, le test échoue.
+ *
+ * @author Adrien Couet
+ *
+ */
 class AbsenceDeCadresNonTitres extends ASource
 {
   public function __construct()
@@ -10,17 +18,17 @@ class AbsenceDeCadresNonTitres extends ASource
   public function execute(Page $page)
   {
     $count = 0;
-    $resultat = true;
     $crawler = $page->crawler;
-    $titles = $crawler->filter('frame, iframe')->extract('title');
-
+    $titles = $crawler->filter('iframe, frame')->extract('title');
     foreach ($titles as $title)
     {
-      $resultat = $resultat && ($title != '');
-      $count++;
+      if ($title == '')
+      {
+        $count++;
+      }
     }
 
     $this->explication .= $count.' éléments (i)frame sans titre ou avec un titre vide';
-    return $resultat;
+    return ($count == 0);
   }
 }
