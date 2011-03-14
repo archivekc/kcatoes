@@ -8,23 +8,31 @@
  * @author Adrien Couet
  *
  */
+use Symfony\Component\DomCrawler\Crawler;
 class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
 {
   public function __construct()
   {
     $this->explication = 'La page contient ';
   }
-  //TODO Gérer les cas [title=""]
   public function execute(Page $page)
   {
     $count = 0;
     $crawler = $page->crawler;
     $filedId = array();
     $nombres = array();
-    $ids = $crawler->filter('input[type=text]:not([title]), input[type=password]:not([title]),
-                             input[type=file]:not([title]), input[type=radio]:not([title]),
-                             input[type=checkbox]:not([title]), textarea:not([title]),
-                             select:not([title])')->extract('id');
+    $elements = new Crawler();
+    $formulaire = $crawler->filter('input[type=text][id], input[type=password][id],
+                              input[type=file][id], input[type=radio][id],
+                              input[type=checkbox][id], textarea[id], select[id]');
+    foreach ($formulaire as $node)
+    {
+      if (!$node->hasAttribute('title') || $node->getAttribute('title') == '')
+      {
+        $elements->add($node);
+      }
+    }
+    $ids = $elements->extract('id');
     foreach($ids as $id)
     {
       if ($id == '')

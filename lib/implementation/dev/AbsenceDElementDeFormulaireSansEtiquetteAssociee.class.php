@@ -8,21 +8,29 @@
  * @author Adrien Couet
  *
  */
+use Symfony\Component\DomCrawler\Crawler;
 class AbsenceDElementDeFormulaireSansEtiquetteAssociee extends ASource
 {
   public function __construct()
   {
     $this->explication = 'La page contient ';
   }
-  //TODO Gérer les cas [title=""]
+
   public function execute(Page $page)
   {
     $count = 0;
     $crawler = $page->crawler;
-    $elements = $crawler->filter('input[type=text][id]:not([title]), input[type=password][id]:not([title]),
-                                  input[type=file][id]:not([title]), input[type=radio][id]:not([title]),
-                                  input[type=checkbox][id]:not([title]), textarea[id]:not([title]),
-                                  select[id]:not([title])');
+    $elements = new Crawler();
+    $formulaire = $crawler->filter('input[type=text][id], input[type=password][id],
+                              input[type=file][id], input[type=radio][id],
+                              input[type=checkbox][id], textarea[id], select[id]');
+    foreach ($formulaire as $node)
+    {
+      if (!$node->hasAttribute('title') || $node->getAttribute('title') == '')
+      {
+        $elements->add($node);
+      }
+    }
     $ids = $elements->each(function ($node, $i)
     {
       return $node->attributes->getNamedItem('id')->nodeValue;

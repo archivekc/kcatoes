@@ -28,10 +28,9 @@ class AbsenceDInterruptionDansLaHierarchieDesTitres extends ASource
     {
       $titleRange = intval(preg_replace('#h#', '', $titleNames[$i]));
       $previousRange = intval(preg_replace('#h#', '', $titleNames[$i-1]));
-
       if (($titleRange - $previousRange) != 0
            && ($titleRange - $previousRange) != 1
-           && ($previousRange - $titleRange) > 4)
+           && (($previousRange - $titleRange) < 0 || ($previousRange - $titleRange) > 4))
       {
         $resultat = false;
       }
