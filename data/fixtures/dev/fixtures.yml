@@ -327,7 +327,7 @@ Test:
     nom:           Utilisation de l'élément fieldset
     description:   >
       Regroupement d'éléments de formulaire via l'élément fieldset
-    automatisable: true
+    automatisable: false
     Regroupement:  formulaireA
     instruction:   >
       
@@ -352,7 +352,7 @@ Test:
     description:   >
       Regroupement d'éléments option dans un élément 
       select via l'élément optgroup
-    automatisable: true
+    automatisable: false
     Regroupement:  formulaireA
     instruction:   >
       
