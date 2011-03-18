@@ -1,7 +1,5 @@
 <?php
 
-namespace KCatoes\Implementation;
-
 /**
  * Recherche dans la page la présence des éléments ou attribut suivants:
  * basefont, blink, center, font, marquee, s, strike, tt, u, align, alink,

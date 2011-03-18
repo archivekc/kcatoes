@@ -4,10 +4,13 @@ require_once sfConfig::get('sf_lib_dir').'/vendor/symfony/src/Symfony/Component/
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 
-$env = sfContext::getInstance()->getConfiguration()->getEnvironment();
+//$env = sfContext::getInstance()->getConfiguration()->getEnvironment();
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'Implementation' => __DIR__.'/'.$env,
+    'Implementation' => __DIR__.'/dev',//.$env,
 ));
+//$loader->registerPrefixes(array(
+//    'Implementation_' => __DIR__.'/dev',//.$env,
+//));
 $loader->register();

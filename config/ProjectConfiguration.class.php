@@ -15,6 +15,7 @@ class ProjectConfiguration extends sfProjectConfiguration
   {
     $this->enablePlugins('sfDoctrinePlugin');
     $this->autoloadGoutte();
+//    $this->autoloadTest();
   }
 
   /**
