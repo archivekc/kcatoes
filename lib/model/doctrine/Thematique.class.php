@@ -12,4 +12,13 @@
 class Thematique extends BaseThematique
 {
 
+  /**
+   * (non-PHPdoc)
+   * @see record/sfDoctrineRecord::__toString()
+   */
+  public function __toString()
+  {
+    return (string) $this->getNom();
+  }
+
 }
