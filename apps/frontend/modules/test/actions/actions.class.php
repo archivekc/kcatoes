@@ -27,9 +27,52 @@ class testActions extends sfActions
 //    $this->urlDeTest = 'jenesuispasunformatd\'URLvalide';             //Syntaxe invalide
 //    $this->urlDeTest = 'http://www.keyconsulting.fr/images/sign.jpg'; //Format invalide
 
-    $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
+//    $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
 //    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
     $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
+
+  }
+
+  public function executeUrl(sfWebRequest $request)
+  {
+    $this->form = new urlForm();
+  }
+
+  public function executeThematique(sfWebRequest $request)
+  {
+    $this->form = new urlForm();
+    $this->processForm($request, $this->form, 'test/url');
+
+    $formContent = $request->getParameter($this->form->getName());
+    $this->getUser()->setAttribute('url', $formContent['url']);
+    $this->redirect('test/url');
+//    $formContent = $request->getParameter($this->form->getName());
+//
+//    $this->addLogInfo('Lancement de la validation de l\'URL.');
+//    try
+//    {
+//      UrlValidation::isValide($formContent['url']);
+//    }
+//    catch (KcatoesUrlException $e)
+//    {
+//      $errorMessage = $e->getMessage();
+//      $this->addLogErreur($errorMessage);
+//      $this->getUser()->setAttribute('errorMessage', $errorMessage);
+//    }
+  }
+
+  public function executeReferentiel(sfWebRequest $request)
+  {
+
+  }
+
+  public function executeRegroupement(sfWebRequest $request)
+  {
+
+  }
+
+  public function executeTest(sfWebRequest $request)
+  {
 
   }
 
@@ -41,7 +84,7 @@ class testActions extends sfActions
   public function executeExecute(sfWebRequest $request)
   {
     $this->urlDeTest = $this->getUser()->getAttribute('urlDeTest');
-    $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
+//    $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
 //    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
     $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
 
@@ -97,4 +140,35 @@ class testActions extends sfActions
     }
   }
 
+  /**
+   * Ajoute un message d'erreur au journal de log
+   *
+   * @param String $errorMessage Message à ajouter
+   */
+  private function addLogErreur($errorMessage)
+  {
+    sfContext::getInstance()->getLogger()->err($errorMessage);
+  }
+
+  /**
+   * Ajoute un message d'information au journal de log
+   *
+   * @param String $infoMessage Message à ajouter
+   */
+  private function addLogInfo($infoMessage)
+  {
+    sfContext::getInstance()->getLogger()->info($infoMessage);
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form, $redirectPath)
+  {
+    $form->bind(
+      $request->getParameter($form->getName())
+    );
+
+    if ($form->isValid())
+    {
+      $this->setTemplate('test');
+    }
+  }
 }
