@@ -47,7 +47,7 @@ class Page extends Client
   {
     try
     {
-      UrlValidation::isValide($this->url);
+      KcatoesUrlValidator::isValide($this->url);
     }
     catch(KcatoesUrlException $e)
     {

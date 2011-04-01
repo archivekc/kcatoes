@@ -104,7 +104,7 @@ try
 {
   $t->comment('Test de validation d\'URL complet sur '.$urlValide);
   $t->comment('Doit passer sans lancer d\'exception');
-  UrlValidation::isValide($urlValide);
+  KcatoesUrlValidator::isValide($urlValide);
   $t->pass('Aucune exception n\'a ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -157,7 +157,7 @@ catch(KcatoesUrlException $e)
 try{
   $t->comment('Test de validite sur: toto');
   $t->comment('Doit lancer une exception de type KcatoesUrlException');
-  UrlValidation::isValide('toto');
+  KcatoesUrlValidator::isValide('toto');
   $t->fail('L\'exception attendue n\'a pas ete recuperee');
 }
 catch(KcatoesUrlException $e)
