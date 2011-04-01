@@ -2,7 +2,7 @@
 <?php use_javascripts_for_form($form) ?>
 
 <?php //echo form_tag_for($form, '@test') ?>
-<form method="post" action="thematique">
+<form method="post" action="<?php echo url_for('test/url') ?>">
   <table id="url_form">
     <tfoot>
       <tr>
@@ -12,9 +12,7 @@
       </tr>
     </tfoot>
     <tbody>
-      <?php $widget = $form['url'] ?>
-      <?php echo $widget->renderError() ?>
-      <?php echo $widget->renderRow() ?>
+      <?php echo $form ?>
     </tbody>
   </table>
 </form>

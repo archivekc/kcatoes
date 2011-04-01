@@ -35,30 +35,29 @@ class testActions extends sfActions
 
   public function executeUrl(sfWebRequest $request)
   {
-    $this->form = new urlForm();
+    $this->form = new UrlForm();
+    if ($request->isMethod('post'))
+    {
+      if ($this->processForm($request, $this->form))
+      {
+        $formContent = $request->getParameter($this->form->getName());
+        $this->getUser()->setAttribute('url', $formContent['url']);
+        $this->redirect('test/thematique');
+      }
+    }
   }
 
   public function executeThematique(sfWebRequest $request)
   {
-    $this->form = new urlForm();
-    $this->processForm($request, $this->form, 'test/url');
-
-    $formContent = $request->getParameter($this->form->getName());
-    $this->getUser()->setAttribute('url', $formContent['url']);
-    $this->redirect('test/url');
-//    $formContent = $request->getParameter($this->form->getName());
-//
-//    $this->addLogInfo('Lancement de la validation de l\'URL.');
-//    try
-//    {
-//      UrlValidation::isValide($formContent['url']);
-//    }
-//    catch (KcatoesUrlException $e)
-//    {
-//      $errorMessage = $e->getMessage();
-//      $this->addLogErreur($errorMessage);
-//      $this->getUser()->setAttribute('errorMessage', $errorMessage);
-//    }
+    $this->form = new ThematiqueForm();
+    if ($request->isMethod('post'))
+    {
+      if ($this->processForm($request, $this->form))
+      {
+        $formContent = $request->getParameter($this->form->getName());
+        print_r($formContent);
+      }
+    }
   }
 
   public function executeReferentiel(sfWebRequest $request)
@@ -160,15 +159,12 @@ class testActions extends sfActions
     sfContext::getInstance()->getLogger()->info($infoMessage);
   }
 
-  protected function processForm(sfWebRequest $request, sfForm $form, $redirectPath)
+  protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind(
       $request->getParameter($form->getName())
     );
 
-    if ($form->isValid())
-    {
-      $this->setTemplate('test');
-    }
+    return ($form->isValid()) ? true : false;
   }
 }

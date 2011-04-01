@@ -1,7 +1,7 @@
 <?php
 
 use Symfony\Component\Validator\Constraints\UrlValidator;
-class urlForm extends sfForm
+class UrlForm extends sfForm
 {
   public function configure()
   {
@@ -10,10 +10,10 @@ class urlForm extends sfForm
     ));
 
     $this->setValidators(array(
-      'url' => new sfValidatorUrl()
+      'url' => new KcatoesUrlValidator()
     ));
 
-    $this->widgetSchema->setNameFormat('url[%s]');
+    $this->widgetSchema->setNameFormat('userUrl[%s]');
     $this->widgetSchema->setLabel('url', 'Entrez l\'URL à valider :');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

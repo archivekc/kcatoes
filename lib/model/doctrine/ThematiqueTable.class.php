@@ -19,4 +19,10 @@ class ThematiqueTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('Thematique');
   }
+
+  public function getNom()
+  {
+    print_r($this->createQuery('t')->select('nom')->execute()->toArray());
+    return $this->createQuery('t')->select('nom')->execute();
+  }
 }
