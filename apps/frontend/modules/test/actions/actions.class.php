@@ -55,24 +55,55 @@ class testActions extends sfActions
       if ($this->processForm($request, $this->form))
       {
         $formContent = $request->getParameter($this->form->getName());
-        print_r($formContent);
+        $this->getUser()->setAttribute('thematique', $formContent['thematique'], 'wizard');
+        $this->redirect('test/referentiel');
       }
     }
   }
 
   public function executeReferentiel(sfWebRequest $request)
   {
-
+    $thematiques = $this->getUser()->getAttribute('thematique', null, 'wizard');
+    $this->form = new ReferentielForm(null, array('thematiques' => $thematiques));
+    if ($request->isMethod('post'))
+    {
+      if ($this->processForm($request, $this->form))
+      {
+        $formContent = $request->getParameter($this->form->getName());
+        $this->getUser()->setAttribute('referentiel', $formContent['referentiel'], 'wizard');
+        $this->redirect('test/regroupement');
+      }
+    }
   }
 
   public function executeRegroupement(sfWebRequest $request)
   {
-
+    $referentiels = $this->getUser()->getAttribute('referentiel', null, 'wizard');
+    $this->form = new RegroupementForm(null, array('referentiel' => $referentiels));
+    if ($request->isMethod('post'))
+    {
+      if ($this->processForm($request, $this->form))
+      {
+        $formContent = $request->getParameter($this->form->getName());
+        $this->getUser()->setAttribute('regroupement', $formContent['regroupement'], 'wizard');
+        $this->redirect('test/test');
+      }
+    }
   }
 
   public function executeTest(sfWebRequest $request)
   {
-
+    $regroupements = $this->getUser()->getAttribute('regroupement', null, 'wizard');
+    $this->form = new TestForm(null, array('regroupement' => $regroupements));
+    if ($request->isMethod('post'))
+    {
+      if ($this->processForm($request, $this->form))
+      {
+        $formContent = $request->getParameter($this->form->getName());
+        $this->getUser()->setAttribute('test', $formContent['test']);
+//        $this->redirect('test/test');
+      }
+    }
   }
 
   /**

@@ -1,8 +1,19 @@
 <?php
 
 use Symfony\Component\Validator\Constraints\UrlValidator;
-class UrlForm extends sfForm
+
+/**
+ *
+ * Enter description here ...
+ * @author Adrien
+ *
+ */
+class UrlForm extends BaseForm
 {
+  /**
+   * (non-PHPdoc)
+   * @see sfForm::configure()
+   */
   public function configure()
   {
     $this->setWidgets(array(
@@ -17,5 +28,7 @@ class UrlForm extends sfForm
     $this->widgetSchema->setLabel('url', 'Entrez l\'URL à valider :');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    parent::configure();
   }
 }

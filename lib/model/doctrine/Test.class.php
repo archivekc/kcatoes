@@ -140,4 +140,9 @@ class Test extends BaseTest
   {
     return $this->resultat;
   }
+
+  public function getLongName()
+  {
+    return (string) $this->getNom().', '.$this->getDescription();
+  }
 }

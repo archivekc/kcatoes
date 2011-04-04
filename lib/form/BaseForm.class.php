@@ -9,4 +9,9 @@
  */
 class BaseForm extends sfFormSymfony
 {
+  public function configure()
+  {
+    $this->widgetSchema->setFormFormatterName('KCatoes');
+  }
+
 }

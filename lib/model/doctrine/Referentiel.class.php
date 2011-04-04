@@ -21,4 +21,12 @@ class Referentiel extends BaseReferentiel
     return (string) $this->getNom();
   }
 
+  /**
+   * Méthode de rendu pour label de formulaire
+   */
+  public function getLongName()
+  {
+    return (string) $this->getNom().', '.$this->getUrl();
+  }
+
 }
