@@ -19,9 +19,4 @@ class ThematiqueTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('Thematique');
   }
-
-  public function findData()
-  {
-    return $this->createQuery('t')->select('nom')->execute();
-  }
 }
