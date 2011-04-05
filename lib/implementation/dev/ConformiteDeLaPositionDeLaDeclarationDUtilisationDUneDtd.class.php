@@ -29,7 +29,7 @@ class ConformiteDeLaPositionDeLaDeclarationDUtilisationDUneDtd extends ASource
         $doctype = $i;
         $foundDoctype = true;
       }
-      if (preg_match('#<html>#', $lines[$i]))
+      if (preg_match('#<html .*#', $lines[$i]))
       {
         $html = $i;
         $foundHtml = true;
