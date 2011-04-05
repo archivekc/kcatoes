@@ -1,5 +1,8 @@
 <?php
 
+use Zend\Validator\File\Count;
+
+
 /**
  * test actions.
  *
@@ -7,33 +10,8 @@
  * @subpackage test
  * @author     Adrien Couet <adrien.couet@keyconsulting.fr>
  */
-use Zend\Validator\File\Count;
 class testActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->getUser()->setAttribute('urlDeTest', 'http://dev.kcatoes.local/dev/test.html');
-//    $this->getUser()->setAttribute('urlDeTest', 'http://www.keyconsulting.fr/');
-    $this->getUser()->setAttribute('testsSelectionnes', array(8));
-
-    //A terme, initialisé par la configuration des tests
-    $this->urlDeTest = $this->getUser()->getAttribute('urlDeTest');
-//    $this->urlDeTest = 'http://www.jesuisdeconnecte.fr';              //404
-//    $this->urlDeTest = 'http://abonnes.lemonde.fr/';                  //302
-//    $this->urlDeTest = 'jenesuispasunformatd\'URLvalide';             //Syntaxe invalide
-//    $this->urlDeTest = 'http://www.keyconsulting.fr/images/sign.jpg'; //Format invalide
-
-//    $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
-//    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
-    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
-
-  }
-
   /**
    * Contrôleur de la page de saise de l'URL
    *
@@ -47,7 +25,7 @@ class testActions extends sfActions
       if ($this->processForm($request, $this->form))
       {
         $formContent = $request->getParameter($this->form->getName());
-        $this->getUser()->setAttribute('url', $formContent['url']);
+        $this->getUser()->setAttribute('url', $formContent['url'], 'wizard');
         $this->redirect('test/thematique');
       }
     }
@@ -135,11 +113,13 @@ class testActions extends sfActions
   public function executeConfirmation(sfWebRequest $request)
   {
     $testsId = $this->getUser()->getAttribute('test', null, 'wizard');
+    $url = $this->getUser()->getAttribute('url', null, 'wizard');
     $valide = $request->getParameter('valide');
     if ($valide)
     {
       $this->getUser()->getAttributeHolder()->removeNamespace('wizard');
       $this->getUser()->setAttribute('selectedTests', $testsId);
+      $this->getUser()->setAttribute('url', $url);
       $this->redirect('test/execute');
     }
     else
@@ -165,9 +145,9 @@ class testActions extends sfActions
   public function executeExecute(sfWebRequest $request)
   {
     $this->urlDeTest = $this->getUser()->getAttribute('url');
+
     $listeIds = $this->getUser()->getAttribute('selectedTests');
     $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
-//    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
 
     $page = new page($this->urlDeTest, sfContext::getInstance()->getLogger());
     try
@@ -178,6 +158,13 @@ class testActions extends sfActions
     {
       $this->erreur = $e->getMessage();
       $this->info = 'Une erreur est survenue lors de la création du crawler de la page.';
+      $this->cheminFichierCsv = '';
+      return sfView::SUCCESS;
+    }
+    catch(Zend\Http\Client\Exception\RuntimeException $e)
+    {
+      $this->erreur = $e->getMessage();
+      $this->info = 'La page ne semble pas accessible.';
       $this->cheminFichierCsv = '';
       return sfView::SUCCESS;
     }
@@ -249,10 +236,7 @@ class testActions extends sfActions
    */
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
-    $form->bind(
-      $request->getParameter($form->getName())
-    );
-
-    return ($form->isValid()) ? true : false;
+    $form->bind($request->getParameter($form->getName()));
+    return $form->isValid();
   }
 }
