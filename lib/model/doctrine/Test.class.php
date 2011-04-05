@@ -141,8 +141,20 @@ class Test extends BaseTest
     return $this->resultat;
   }
 
+  /**
+   * Méthode de rendu pour label de formulaire
+   */
   public function getLongName()
   {
     return (string) $this->getNom().', '.$this->getDescription();
+  }
+
+  /**
+   * (non-PHPdoc)
+   * @see record/sfDoctrineRecord::__toString()
+   */
+  public function __toString()
+  {
+    return (string) $this->getNom();
   }
 }

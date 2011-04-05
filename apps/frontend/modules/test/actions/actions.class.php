@@ -7,6 +7,7 @@
  * @subpackage test
  * @author     Adrien Couet <adrien.couet@keyconsulting.fr>
  */
+use Zend\Validator\File\Count;
 class testActions extends sfActions
 {
  /**
@@ -33,6 +34,11 @@ class testActions extends sfActions
 
   }
 
+  /**
+   * Contrôleur de la page de saise de l'URL
+   *
+   * @param sfWebRequest $request
+   */
   public function executeUrl(sfWebRequest $request)
   {
     $this->form = new UrlForm();
@@ -47,6 +53,11 @@ class testActions extends sfActions
     }
   }
 
+  /**
+   * Contrôleur de la page de sélection des thématiques principales
+   *
+   * @param sfWebRequest $request
+   */
   public function executeThematique(sfWebRequest $request)
   {
     $this->form = new ThematiqueForm();
@@ -61,6 +72,11 @@ class testActions extends sfActions
     }
   }
 
+  /**
+   * Contrôleur de la page de sélection des référentiels
+   *
+   * @param sfWebRequest $request
+   */
   public function executeReferentiel(sfWebRequest $request)
   {
     $thematiques = $this->getUser()->getAttribute('thematique', null, 'wizard');
@@ -76,6 +92,11 @@ class testActions extends sfActions
     }
   }
 
+  /**
+   * Contrôleur de la page de sélection des regroupements
+   *
+   * @param sfWebRequest $request
+   */
   public function executeRegroupement(sfWebRequest $request)
   {
     $referentiels = $this->getUser()->getAttribute('referentiel', null, 'wizard');
@@ -91,6 +112,11 @@ class testActions extends sfActions
     }
   }
 
+  /**
+   * Contrôleur de la page de sélection des tests
+   *
+   * @param sfWebRequest $request
+   */
   public function executeTest(sfWebRequest $request)
   {
     $regroupements = $this->getUser()->getAttribute('regroupement', null, 'wizard');
@@ -100,23 +126,48 @@ class testActions extends sfActions
       if ($this->processForm($request, $this->form))
       {
         $formContent = $request->getParameter($this->form->getName());
-        $this->getUser()->setAttribute('test', $formContent['test']);
-//        $this->redirect('test/test');
+        $this->getUser()->setAttribute('test', $formContent['test'], 'wizard');
+        $this->redirect('test/confirmation');
       }
     }
   }
 
+  public function executeConfirmation(sfWebRequest $request)
+  {
+    $testsId = $this->getUser()->getAttribute('test', null, 'wizard');
+    $valide = $request->getParameter('valide');
+    if ($valide)
+    {
+      $this->getUser()->getAttributeHolder()->removeNamespace('wizard');
+      $this->getUser()->setAttribute('selectedTests', $testsId);
+      $this->redirect('test/execute');
+    }
+    else
+    {
+      $this->selectedTests = array();
+      $tableTest = Doctrine_Core::getTable('test');
+
+      foreach ($testsId as $testId)
+      {
+        $test = $tableTest->findOneById($testId);
+        $this->selectedTests[] = (string)$test;
+      }
+
+      $this->testCount = count($this->selectedTests);
+    }
+  }
+
   /**
-   *
+   * Contrôleur du coeur de l'application
    *
    * @param sfWebRequest $request
    */
   public function executeExecute(sfWebRequest $request)
   {
-    $this->urlDeTest = $this->getUser()->getAttribute('urlDeTest');
-//    $listeIds = $this->getUser()->getAttribute('testsSelectionnes');
-//    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
-    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
+    $this->urlDeTest = $this->getUser()->getAttribute('url');
+    $listeIds = $this->getUser()->getAttribute('selectedTests');
+    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
+//    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
 
     $page = new page($this->urlDeTest, sfContext::getInstance()->getLogger());
     try
@@ -190,6 +241,12 @@ class testActions extends sfActions
     sfContext::getInstance()->getLogger()->info($infoMessage);
   }
 
+  /**
+   * Valide les données saisies dans un formulaire
+   *
+   * @param sfWebRequest $request La requête contenant les données à valider
+   * @param sfForm       $form    Le fomulaire à valider
+   */
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind(
