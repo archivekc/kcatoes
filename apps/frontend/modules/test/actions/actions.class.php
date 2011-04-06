@@ -38,7 +38,7 @@ class testActions extends sfActions
    */
   public function executeThematique(sfWebRequest $request)
   {
-    $this->form = new ThematiqueForm();
+    $this->form = new SelectThematiqueForm();
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->form))
@@ -58,7 +58,7 @@ class testActions extends sfActions
   public function executeReferentiel(sfWebRequest $request)
   {
     $thematiques = $this->getUser()->getAttribute('thematique', null, 'wizard');
-    $this->form = new ReferentielForm(null, array('thematiques' => $thematiques));
+    $this->form = new SelectReferentielForm(null, array('thematiques' => $thematiques));
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->form))
@@ -78,7 +78,7 @@ class testActions extends sfActions
   public function executeRegroupement(sfWebRequest $request)
   {
     $referentiels = $this->getUser()->getAttribute('referentiel', null, 'wizard');
-    $this->form = new RegroupementForm(null, array('referentiel' => $referentiels));
+    $this->form = new SelectRegroupementForm(null, array('referentiel' => $referentiels));
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->form))
@@ -98,7 +98,7 @@ class testActions extends sfActions
   public function executeTest(sfWebRequest $request)
   {
     $regroupements = $this->getUser()->getAttribute('regroupement', null, 'wizard');
-    $this->form = new TestForm(null, array('regroupement' => $regroupements));
+    $this->form = new SelectTestForm(null, array('regroupement' => $regroupements));
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->form))
@@ -110,6 +110,11 @@ class testActions extends sfActions
     }
   }
 
+  /**
+   * Contrôleur de la page de confirmation des choix
+   *
+   * @param sfWebRequest $request
+   */
   public function executeConfirmation(sfWebRequest $request)
   {
     $testsId = $this->getUser()->getAttribute('test', null, 'wizard');
