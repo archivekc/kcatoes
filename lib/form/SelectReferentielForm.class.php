@@ -13,7 +13,7 @@ class SelectReferentielForm extends BaseReferentielForm
   {
     $thematiques = $this->getOption('thematiques');
 
-    $query = Doctrine_Core::getTable('referentiel')->createQuery()->select()->whereIn('thematique_id', $thematiques);
+    $query = Doctrine_Core::getTable('referentiel')->createQuery()->select()->whereIn('thematique_id', $thematiques)->orderBy('nom');
 
     $this->setWidgets(array(
       'referentiel' => new sfWidgetFormDoctrineChoice(array(

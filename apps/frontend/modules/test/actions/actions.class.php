@@ -22,6 +22,7 @@ class testActions extends sfActions
     $this->form = new UrlForm();
     if ($request->isMethod('post'))
     {
+      $this->addLogInfo('Lancement de la validation de l\'URL');
       if ($this->processForm($request, $this->form))
       {
         $formContent = $request->getParameter($this->form->getName());
@@ -39,6 +40,12 @@ class testActions extends sfActions
   public function executeThematique(sfWebRequest $request)
   {
     $this->form = new SelectThematiqueForm();
+    $recommencer = $request->getParameter('recommencer');
+    if ($recommencer)
+    {
+      $this->getUser()->getAttributeHolder()->removeNamespace('wizard');
+    }
+
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->form))
@@ -137,7 +144,7 @@ class testActions extends sfActions
         $test = $tableTest->findOneById($testId);
         $this->selectedTests[] = (string)$test;
       }
-
+      sort($this->selectedTests);
       $this->testCount = count($this->selectedTests);
     }
   }

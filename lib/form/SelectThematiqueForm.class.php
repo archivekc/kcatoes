@@ -11,10 +11,13 @@ class SelectThematiqueForm extends BaseThematiqueForm
 {
   public function configure()
   {
+    $query = Doctrine_Core::getTable('thematique')->createQuery()->select()->orderBy('nom');
+
     $this->setWidgets(array(
       'thematique' => new sfWidgetFormDoctrineChoice(array(
-        'model' => 'Thematique',
-        'method' => 'getLongName',
+        'model'    => 'Thematique',
+        'method'   => 'getLongName',
+        'query'    => $query,
         'expanded' => true,
         'multiple' => true
       ))
@@ -24,7 +27,8 @@ class SelectThematiqueForm extends BaseThematiqueForm
 
     $this->setValidators(array(
       'thematique' => new sfValidatorDoctrineChoice(array(
-        'model'  => 'Thematique',
+        'model'    => 'Thematique',
+        'query'    => $query,
         'multiple' => true,
         'min'      => 1
     ))));

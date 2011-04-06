@@ -13,7 +13,7 @@ class SelectRegroupementForm extends BaseRegroupementForm
   {
     $referentiels = $this->getOption('referentiel');
 
-    $query = Doctrine_Core::getTable('regroupement')->createQuery()->select()->whereIn('referentiel_id', $referentiels);
+    $query = Doctrine_Core::getTable('regroupement')->createQuery()->select()->whereIn('referentiel_id', $referentiels)->orderBy('nom');
 
     $this->setWidgets(array(
       'regroupement' => new sfWidgetFormDoctrineChoice(array(

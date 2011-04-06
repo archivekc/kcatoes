@@ -85,6 +85,7 @@ class Tester
    */
   public function toCSV()
   {
+    date_default_timezone_set('Europe/Paris');
     $fileName = 'csv\\test_'.date('dmY_Hi').'.csv';
     $strCsv = 'id ; nom ; description ; résultat ; explication du résultat ; aide à l’exécution manuelle ;'."\n";
 

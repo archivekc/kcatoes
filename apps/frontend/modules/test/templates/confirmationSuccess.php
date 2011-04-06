@@ -1,7 +1,7 @@
 <h1>Configuration des tests - Etape 5/5</h1>
 <p>Récapitulatif de votre sélection:</p>
 <ul>
-  <?php foreach ($selectedTests as $toto => $test): ?>
+  <?php foreach ($selectedTests as $test): ?>
     <li><?php echo $test ?></li>
   <?php endforeach ?>
 </ul>

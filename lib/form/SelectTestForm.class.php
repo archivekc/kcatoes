@@ -13,7 +13,7 @@ class SelectTestForm extends BaseTestForm
   {
     $regroupements = $this->getOption('regroupement');
 
-    $query = Doctrine_Core::getTable('test')->createQuery()->select()->whereIn('regroupement_id', $regroupements);
+    $query = Doctrine_Core::getTable('test')->createQuery()->select()->whereIn('regroupement_id', $regroupements)->orderBy('nom');
 
     $this->setWidgets(array(
       'test' => new sfWidgetFormDoctrineChoice(array(
