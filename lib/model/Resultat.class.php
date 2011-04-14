@@ -15,8 +15,9 @@ class Resultat
   const ERREUR   = 4; //Erreur lors de l'exécution du test
 
   private $resultatCode;
-  private $explication = '';
+  private $explicationErreur = '';
   private $instruction = '';
+  private $echecs = array();
 
   /**
    * Contructuit un résultat avec un code de résultat
@@ -25,10 +26,9 @@ class Resultat
    * @param int    $_resultatCode Code de résultat (doit correspondre à l'une des constantes de la classe)
    * @param String $_explication  Explication du résultat
    */
-  public function __construct($_resultatCode, $_explication)
+  public function __construct($_resultatCode)
   {
     $this->resultatCode = $_resultatCode;
-    $this->explication = $_explication;
   }
 
   /**
@@ -40,6 +40,16 @@ class Resultat
   public function setInstruction($_instruction)
   {
     $this->instruction = $_instruction;
+  }
+
+  public function setExplicationErreur($_explicationErreur)
+  {
+    $this->explicationErreur = $_explicationErreur;
+  }
+
+  public function setEchecs($_echecs)
+  {
+    $this->echecs = $_echecs;
   }
 
   /**
@@ -73,10 +83,10 @@ class Resultat
         $code = 'Exécution manuelle';
         break;
       case self::NON_EXEC:
-        $code = $withExplication ? 'Non exécutable: '.$this->explication : 'Non exécutable';
+        $code = $withExplication ? 'Non exécutable: '.$this->explicationErreur : 'Non exécutable';
         break;
       case self::ERREUR:
-        $code = $withExplication ? 'Erreur d\'exécution: '.$this->explication : 'Erreur d\'exécution';
+        $code = $withExplication ? 'Erreur d\'exécution: '.$this->explicationErreur : 'Erreur d\'exécution';
         break;
       default:
          $code = '';

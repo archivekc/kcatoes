@@ -8,16 +8,16 @@
  */
 abstract class ASource
 {
-  protected $explication;
+  protected $echecs;
 
   /**
    * Renvoi l'explication du résultat de l'exécution du test
    *
    * @return String $explication L'explication du résultat
    */
-  public function getExplication()
+  public function getEchecs()
   {
-    return $this->explication;
+    return $this->echecs;
   }
 
   /**

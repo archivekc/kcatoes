@@ -82,12 +82,14 @@ class Test extends BaseTest
       }
       else
       {
-        $this->resultat = new Resultat(Resultat::NON_EXEC, 'La classe n\'hérite pas de ASource');
+        $this->resultat = new Resultat(Resultat::NON_EXEC);
+        $this->resultat->setExplicationErreur('La classe n\'hérite pas de ASource');
         return false;
       }
     }
     else {
-      $this->resultat = new Resultat(Resultat::NON_EXEC, 'Impossible de trouver l\'implémentation');
+      $this->resultat = new Resultat(Resultat::NON_EXEC);
+      $this->resultat->setExplicationErreur('Impossible de trouver l\'implémentation');
       return false;
     }
   }
@@ -118,7 +120,8 @@ class Test extends BaseTest
     }
     catch (KcatoesTestException $e)
     {
-      $this->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
+      $this->resultat = new Resultat(Resultat::ERREUR);
+      $this->resultat->setExplicationErreur($e->getMessage());
       return;
     }
 
@@ -128,7 +131,8 @@ class Test extends BaseTest
     }
     else
     {
-      $this->resultat = new Resultat(Resultat::ECHEC, $implementation->getExplication());
+      $this->resultat = new Resultat(Resultat::ECHEC);
+      $this->resultat->setEchecs($implementation->getEchecs());
     }
   }
 

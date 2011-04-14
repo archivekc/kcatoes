@@ -11,6 +11,7 @@ use Goutte\Client;
  */
 class Page extends Client
 {
+  private $content;
   private $url;
   private $logger;
 
@@ -20,8 +21,9 @@ class Page extends Client
    * @param String   $_url    L'URL de la page
    * @param sfLogger $_logger Le logger à utiliser (optionel)
    */
-  public function __construct($_url, sfLogger $_logger = null)
+  public function __construct($_content, $_url = null, sfLogger $_logger = null)
   {
+    $this->content = $_content;
     $this->url = $_url;
     $this->logger = $_logger;
     parent::__construct();
@@ -39,23 +41,14 @@ class Page extends Client
   }
 
   /**
-   * Vérifie la validité de l'url de la page puis génère son crawler
+   * Génère le crawler de la page à partir de son contenu
    *
    * @date 25/02/2011
    */
   public function buildCrawler()
   {
-    try
-    {
-      KcatoesUrlValidator::isValide($this->url);
-    }
-    catch(KcatoesUrlException $e)
-    {
-      $errorMessage = 'L\'URL indiquée n\'est pas valide: '.$e->getMessage();
-      $this->addLogErreur($errorMessage);
-      throw new KcatoesCrawlerException($errorMessage);
-    }
-    $this->request('GET', $this->url);
+
+    $this->crawler = $this->createCrawlerFromContent($this->url, $this->content, 'text/html');
     $this->addLogInfo('Génération du crawler - Ok');
   }
 

@@ -87,18 +87,34 @@ class Tester
   {
     date_default_timezone_set('Europe/Paris');
     $fileName = 'csv\\test_'.date('dmY_Hi').'.csv';
-    $strCsv = 'id ; nom ; description ; résultat ; explication du résultat ; aide à l’exécution manuelle ;'."\n";
+    $strCsv = 'id ; nom ; description ; résultat ; explication de l\'erreur ; aide à l\'exécution manuelle ; code source de l\'échec ; XPath de de l\'échec ; explication de l\'échec ;'."\n";
 
     foreach ($this->tests as $test)
     {
-      $strCsv .=
+      $testResultat =
         $test->getId().' ; '.
         $test->getNom().' ; '.
         trim($test->getDescription()).' ; '.
         $test->getResultat()->getCode().' ; '.
-        trim($test->getResultat()->explication).' ; '.
-        trim($test->getResultat()->instruction).' ; '.
-        "\n";
+        trim($test->getResultat()->explicationErreur).' ; '.
+        trim($test->getResultat()->instruction).' ; ';
+      $echecs = $test->getResultat()->echecs;
+      if (empty($echecs))
+      {
+        $strCsv .= $testResultat.' ;  ;  ;'."\n";
+      }
+      else
+      {
+        foreach ($echecs as $echec)
+        {
+          $strCsv .=
+            $testResultat.' ; '.
+            $echec->code.' ; '.
+            $echec->xPath.' ; '.
+            $echec->explication.' ; '.
+            "\n";
+        }
+      }
     }
 
     $csv = @fopen($fileName, "w");
