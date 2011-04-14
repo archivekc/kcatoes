@@ -1,10 +1,9 @@
 <?php
 
-class Erreur extends ASource
+class TestErreur extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'Declenche toujours une erreur';
   }
 
   public function execute(Page $page)

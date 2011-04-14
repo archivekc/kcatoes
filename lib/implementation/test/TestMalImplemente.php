@@ -1,14 +1,14 @@
 <?php
 
-class MalImplemente
+class TestMalImplemente
 {
   public function __construct()
   {
-    $this->explication = 'N\'herite pas de ASource';
   }
 
   public function execute(Page $page)
   {
+    $this->echecs[] = new Echec('Test de code', 'Test de XPath', 'Echoue toujours');
     return false;
   }
 }

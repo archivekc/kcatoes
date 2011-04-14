@@ -1,10 +1,9 @@
 <?php
 
-class BienImplemente extends ASource
+class TestBienImplemente extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'Herite bien de ASource';
   }
 
   public function execute(Page $page)

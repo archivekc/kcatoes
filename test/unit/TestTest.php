@@ -67,13 +67,13 @@ $t->is(
   'Un test non implemente a pour resultat \'Non executable\''
 );
 $t->is(
-  $test->getResultat()->explication,
+  $test->getResultat()->explicationErreur,
   'Impossible de trouver l\'implémentation',
   'Un test non implemente a pour explication \'Impossible de trouver l\'implémentation\''
 );
 
 $t->comment('Test mal implemente (n\'heritant pas de ASource)');
-$test->setNom('Mal implémenté');
+$test->setNom('Test mal implémenté');
 $t->is($test->isExecutable(), false, 'Un test mal implemente n\'est pas executable');
 $t->is(
   $test->getResultat()->resultatCode,
@@ -81,20 +81,20 @@ $t->is(
   'Un test mal implemente a pour resultat \'Non executable\''
 );
 $t->is(
-  $test->getResultat()->explication,
+  $test->getResultat()->explicationErreur,
   'La classe n\'hérite pas de ASource',
   'Un test mal implemente a pour explication \'La classe n\'hérite pas de ASource\''
 );
 
 $t->comment('Test bien implemente');
-$test->setNom('Bien implémenté');
+$test->setNom('Test bien implémenté');
 $t->is($test->isExecutable(), true, 'Un test bien implemente est executable');
 
 
 $t->comment('Controle de la fonction execute(Page $page)');
 
 $t->comment('Test passe avec succes');
-$test->setNom('Réussite');
+$test->setNom('Test réussite');
 $test->execute($page);
 $t->is(
   $test->getResultat()->resultatCode,
@@ -103,7 +103,7 @@ $t->is(
 );
 
 $t->comment('Test echoue');
-$test->setNom('Echec');
+$test->setNom('Test echec');
 $className = $test->getNomCourt();
 $class = new $className();
 $test->execute($page);
@@ -112,14 +112,15 @@ $t->is(
   Resultat::ECHEC,
   'Un test qui a echoue a pour resultat \'Echec\''
 );
+
 $t->is(
-  $test->getResultat()->explication,
-  $class->getExplication(),
+  $test->getResultat()->echecs->explication,
+  $class->getEchecs()->explication,
   'Un test qui a echoue a pour explication celles indiquees dans son implementation'
 );
 
 $t->comment('Test provoquant une erreur');
-$test->setNom('Erreur');
+$test->setNom('Test erreur');
 $test->execute($page);
 $t->is(
   $test->getResultat()->resultatCode,
