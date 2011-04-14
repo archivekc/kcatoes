@@ -282,7 +282,7 @@ Test:
     description:   >
       Valeur du rapport de contraste du texte 
       agrandi contenu dans des éléments non textuels
-       utilisés comme fond d'éléments HTML (améliorée)
+      utilisés comme fond d'éléments HTML (améliorée)
     automatisable: false
     Regroupement:  couleurAAA
     instruction:   >
@@ -309,7 +309,7 @@ Test:
     description:   >
       Présence d'information préalable sur le caractère 
       obligatoire de certains champs de saisie et du type/format
-       de saisie attendue si nécessaire
+      de saisie attendue si nécessaire
     automatisable: false
     Regroupement:  formulaireA
     instruction:   >
@@ -937,7 +937,7 @@ Test:
     nom:           Destination des liens et boutons 2
     description:   >
       Possibilité d'identifier la destination ou l'action
-       des liens et des boutons (intitulé seul)
+      des liens et des boutons (intitulé seul)
     automatisable: false
     Regroupement:  navigationAAA
     instruction:   >
