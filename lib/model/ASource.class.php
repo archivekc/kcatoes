@@ -11,9 +11,9 @@ abstract class ASource
   protected $echecs;
 
   /**
-   * Renvoi l'explication du résultat de l'exécution du test
+   * Renvoi la liste des objets Echec correspondants aux élément de la page
+   * ayant échoué à passer le test
    *
-   * @return String $explication L'explication du résultat
    */
   public function getEchecs()
   {

@@ -42,11 +42,23 @@ class Resultat
     $this->instruction = $_instruction;
   }
 
+  /**
+   * Si le résultat du test est Erreur ou Non exécutable, cette variable
+   * contient une explication de ce résultat
+   *
+   * @param string $_explicationErreur L'explication de l'erreur
+   */
   public function setExplicationErreur($_explicationErreur)
   {
     $this->explicationErreur = $_explicationErreur;
   }
 
+  /**
+   * $echec contient la liste des échecs correspondant aux éléments de la page
+   * ayant échoué à passer le test
+   *
+   * @param  $_echecs Un liste d'objets Echec
+   */
   public function setEchecs($_echecs)
   {
     $this->echecs = $_echecs;
