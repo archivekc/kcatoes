@@ -11,7 +11,6 @@ class AbsenceDElementBgsound extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
@@ -19,7 +18,12 @@ class AbsenceDElementBgsound extends ASource
     $crawler = $page->crawler;
     $bgsounds = $crawler->filter('bgsound');
 
-    $this->explication .= count($bgsounds).' élément(s) bgsound';
+    foreach ($bgsounds as $bgsound)
+    {
+      $this->echecs[] = new Echec($this->getSourceCode($bgsound),
+                                  $this->getXPath($bgsound),
+                                  'Cet élément ne devrait pas être présent dans la page');
+    }
 
     return count($bgsounds) == 0;
   }

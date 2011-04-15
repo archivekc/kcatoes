@@ -11,7 +11,6 @@ class AbsenceDeLElementBlink extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
@@ -19,7 +18,12 @@ class AbsenceDeLElementBlink extends ASource
     $crawler = $page->crawler;
     $blinks = $crawler->filter('blink');
 
-    $this->explication .= count($blinks).' élément(s) blink';
+    foreach ($blinks as $blink)
+    {
+      $this->echecs[] = new Echec($this->getSourceCode($blink),
+                                  $this->getXPath($blink),
+                                  'Cet élément ne devrait pas être présent dans la page');
+    }
 
     return count($blinks) == 0;
   }

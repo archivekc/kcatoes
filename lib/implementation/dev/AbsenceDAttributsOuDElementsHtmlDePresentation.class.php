@@ -5,8 +5,8 @@
  * basefont, blink, center, font, marquee, s, strike, tt, u, align, alink,
  * background, basefont, bgcolor, border, color, link, text, vlink
  *
- * Si une correspondance est trouvé, le test échoue et son explication contient
- * la liste des éléments correspondant trouvés
+ * Si aucune correspondance n'est trouvée, le test est réussit. Sinon, il échoue
+ * et un Echec est créé pour chaque correspondance trouvée.
  *
  * @package Kcatoes
  * @author Adrien Couet
@@ -16,32 +16,39 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient le(s) élément(s) suivants:';
   }
 
   public function execute(Page $page)
   {
     $resultat = true;
     $crawler = $page->crawler;
-    $elements = array('basefont', 'blink', 'center', 'font', 'marquee', 's', 'strike', 'tt', 'u',
-                     '[align]', '[alink]', '[background]', '[basefont]', '[bgcolor]', '[border]',
-                     '[color]', '[link]', '[text]', '[vlink]');
-    foreach($elements as $element)
+
+    $elements = 'basefont, blink, center, font, marquee, s, strike, tt, u';
+    $attributs  = '[align], [alink], [background], [basefont], [bgcolor], [border],
+                [color], [link], [text], [vlink]';
+
+    $nodes = $crawler->filter($elements);
+    foreach ($nodes as $node)
     {
-      $nodes = $crawler->filter($element);
-      if (count($nodes) != 0)
-      {
-        if ($resultat)
-        {
-          $this->explication .= ' '.$element;
-          $resultat = false;
-        }
-        else
-        {
-          $this->explication .= ', '.(String)$element;
-        }
-      }
+      $this->echecs[] = new Echec(
+        $this->getSourceCode($node),
+        $this->getXPath($node),
+        'Cet élément est un élément HTML de présentation'
+      );
     }
+    $resultat = $resultat && (count($nodes) === 0);
+
+    $nodes = $crawler->filter($attributs);
+    foreach ($nodes as $node)
+    {
+      $this->echecs[] = new Echec(
+        $this->getSourceCode($node),
+        $this->getXPath($node),
+        'Cet élément utilise un attribut de présentation'
+      );
+    }
+    $resultat = $resultat && (count($nodes) === 0);
+
     return $resultat;
   }
 }

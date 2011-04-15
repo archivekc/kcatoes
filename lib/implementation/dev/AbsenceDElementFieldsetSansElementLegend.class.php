@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Compte dans la page le nombre d'élément fieldset sans attribut legend
- * ou avec un attribut legend vide.
- * Si ce compte est différent de 0, le test échoue.
+ * Vérifie que tous les éléments fieldset contiennent un élément legend
  *
  * @author Adrien Couet
  *
@@ -12,23 +10,34 @@ class AbsenceDElementFieldsetSansElementLegend extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient: ';
   }
 
   public function execute(Page $page)
   {
-    $count = 0;
+    $resultat = true;
     $crawler = $page->crawler;
-    $legends = $crawler->filter('fieldset')->extract('legend');
-    foreach ($legends as $legend)
+
+    $fieldsets = $crawler->filter('fieldset');
+    foreach ($fieldsets as $fieldset)
     {
-      if ($legend == '')
+      $legendFound = false;
+      foreach ($fieldset->childNodes as $child)
       {
-        $count++;
+        if (strtolower($child->nodeName) === 'legend')
+        {
+          $legendFound = true;
+        }
+      }
+
+      if (!$legendFound)
+      {
+        $this->echecs[] = new Echec($this->getSourceCode($fieldset),
+                                    $this->getXPath($fieldset),
+                                    'Cet élément ne contient pas d\'élément legend');
+        $resultat = false;
       }
     }
 
-    $this->explication .= $count.' éléments fieldset sans légende ou avec une légende vide';
-    return ($count == 0);
+    return $resultat;
   }
 }
