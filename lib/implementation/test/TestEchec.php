@@ -4,7 +4,6 @@ class TestEchec extends ASource
 {
   public function __construct()
   {
-    $this->echecs = array();
   }
 
   public function execute(Page $page)
