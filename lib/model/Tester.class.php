@@ -101,17 +101,17 @@ class Tester
       $echecs = $test->getResultat()->echecs;
       if (empty($echecs))
       {
-        $strCsv .= $testResultat.' ;  ;  ;'."\n";
+        $strCsv .= $testResultat.'n.a. ; n.a. ; n.a. ;'."\n";
       }
       else
       {
         foreach ($echecs as $echec)
         {
           $strCsv .=
-            $testResultat.' ; '.
-            $echec->code.' ; '.
-            $echec->xPath.' ; '.
-            $echec->explication.' ; '.
+            $testResultat.
+            preg_replace('/(\r\n|\n|\r)/', '', $echec->code).' ; '.
+            preg_replace('/(\r\n|\n|\r)/', '', $echec->xPath).' ; '.
+            preg_replace('/(\r\n|\n|\r)/', '', $echec->explication).' ; '.
             "\n";
         }
       }

@@ -15,8 +15,8 @@ class Resultat
   const ERREUR   = 4; //Erreur lors de l'exécution du test
 
   private $resultatCode;
-  private $explicationErreur = '';
-  private $instruction = '';
+  private $explicationErreur = 'n.a.';
+  private $instruction = 'n.a.';
   private $echecs = array();
 
   /**

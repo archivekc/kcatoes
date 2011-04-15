@@ -127,7 +127,7 @@ class Test extends BaseTest
 
     if ($res)
     {
-      $this->resultat = new Resultat(Resultat::REUSSITE, '');
+      $this->resultat = new Resultat(Resultat::REUSSITE);
     }
     else
     {
