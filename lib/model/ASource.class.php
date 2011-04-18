@@ -21,14 +21,19 @@ abstract class ASource
     return $this->echecs;
   }
 
+  /**
+   * Recréée le chemin XPath permettant d'accéder au DOMNode passé en paramètre
+   *
+   * @param DOMNode $node La node dont il faut recrééer le chemin XPath
+   */
   protected  function getXPath(DOMNode $node)
   {
-    $q     = new DOMXPath($node->ownerDocument);
+    $domXpath     = new DOMXPath($node->ownerDocument);
     $xpath = '';
 
     do
     {
-      $position = 1 + $q->query('preceding-sibling::*[name()="' . $node->nodeName . '"]', $node)->length;
+      $position = 1 + $domXpath->query('preceding-sibling::*[name()="' . $node->nodeName . '"]', $node)->length;
       $xpath    = '/' . $node->nodeName . '[position()=' . $position . ']' . $xpath;
       $node     = $node->parentNode;
     }
@@ -37,6 +42,11 @@ abstract class ASource
     return $xpath;
   }
 
+  /**
+   * Récupère le code source de la DOMNode passée en paramètre
+   *
+   * @param DOMNode $node La node dont il faut récupérer le code source
+   */
   protected function getSourceCode(DOMNode $node)
   {
     $temp_doc  = new DOMDocument('1.0', 'UTF-8');
