@@ -90,15 +90,15 @@ class Tester
     $fileName = 'csv\\test_'.date('dmY_Hi').'.csv';
 
     $header = array();
-    $header['id'] = 'Id';
-    $header['nom'] = 'Nom';
+    $header['id']          = 'Id';
+    $header['nom']         = 'Nom';
     $header['description'] = 'Description';
-    $header['resultat'] = 'Résultat';
-    $header['erreurExp'] = 'Explication de l\'erreur';
-    $header['aide'] = 'Aide à l\'exécution manuelle';
-    $header['source'] = 'Code source de l\'élément en échec';
-    $header['xpath'] = 'XPath de de l\'élément en échec';
-    $header['echecExp'] = 'Explication de l\'élément en échec';
+    $header['resultat']    = 'Résultat';
+    $header['erreurExp']   = 'Explication de l\'erreur';
+    $header['aide']        = 'Aide à l\'exécution manuelle';
+    $header['source']      = 'Code source de l\'élément en échec';
+    $header['xpath']       = 'XPath de de l\'élément en échec';
+    $header['echecExp']    = 'Explication de l\'élément en échec';
 
     $csv = @fopen($fileName, "w");
     if (!$csv)
@@ -110,15 +110,15 @@ class Tester
     foreach ($this->tests as $test)
     {
       $line = array();
-      $line['id'] = $test->getId();
-      $line['nom'] = $test->getNom();
+      $line['id']          = $test->getId();
+      $line['nom']         = $test->getNom();
       $line['description'] = trim($test->getDescription());
-      $line['resultat'] = $test->getResultat()->getCode();
-      $line['erreurExp'] = trim($test->getResultat()->explicationErreur);
-      $line['aide'] = trim($test->getResultat()->instruction);
-      $line['source'] = 'n.a.';
-      $line['xpath'] = 'n.a.';
-      $line['echecExp'] = 'n.a.';
+      $line['resultat']    = $test->getResultat()->getCode();
+      $line['erreurExp']   = trim($test->getResultat()->explicationErreur);
+      $line['aide']        = trim($test->getResultat()->instruction);
+      $line['source']      = 'n.a.';
+      $line['xpath']       = 'n.a.';
+      $line['echecExp']    = 'n.a.';
 
       $echecs = $test->getResultat()->echecs;
       if (empty($echecs))
@@ -129,8 +129,8 @@ class Tester
       {
         foreach ($echecs as $echec)
         {
-          $line['source'] = preg_replace('/(\r\n|\n|\r)/', '', $echec->code);
-          $line['xpath'] = preg_replace('/(\r\n|\n|\r)/', '', $echec->xPath);
+          $line['source']   = preg_replace('/(\r\n|\n|\r)/', '', $echec->code);
+          $line['xpath']    = preg_replace('/(\r\n|\n|\r)/', '', $echec->xPath);
           $line['echecExp'] = preg_replace('/(\r\n|\n|\r)/', '', $echec->explication);
 
           fputcsv($csv, $line, ';', '"');
