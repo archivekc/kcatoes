@@ -22,7 +22,7 @@ class AbsenceDElementBgsound extends ASource
     {
       $this->echecs[] = new Echec($this->getSourceCode($bgsound),
                                   $this->getXPath($bgsound),
-                                  'Cet élément ne devrait pas être présent dans la page');
+                                  'La balise bgsound ne devrait pas être présente dans la page');
     }
 
     return count($bgsounds) == 0;

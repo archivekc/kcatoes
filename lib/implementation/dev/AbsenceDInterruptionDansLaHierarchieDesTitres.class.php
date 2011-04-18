@@ -12,29 +12,39 @@ class AbsenceDInterruptionDansLaHierarchieDesTitres extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'Un titre doit se situer par rapport à celui qui le précède au même niveau, un niveau au dessus ou jusqu\'à 4 niveaux en dessous';
   }
 
   public function execute(Page $page)
   {
-    $resultat = true;
+    $reussite = true;
     $crawler = $page->crawler;
-    $titles = $crawler->filter('h2, h3, h4, h5, h6');
-    $titleNames = $titles->each(function ($node, $i)
+    $titles = $crawler->filter('h2, h3, h4, h5, h6')->each(function ($node, $i)
     {
-      return $node->nodeName;
+      return $node;
     });
-    for ($i = count($titleNames)-1; $i > 0; $i--)
+
+    for ($i = count($titles)-1 ; $i > 0 ; $i--)
     {
-      $titleRange = intval(preg_replace('#h#', '', $titleNames[$i]));
-      $previousRange = intval(preg_replace('#h#', '', $titleNames[$i-1]));
-      if (($titleRange - $previousRange) != 0
-           && ($titleRange - $previousRange) != 1
-           && (($previousRange - $titleRange) < 0 || ($previousRange - $titleRange) > 4))
+      $current  = $titles[$i];
+      $previous = $titles[$i-1];
+
+      $currentRange  = intval(preg_replace('#h#', '', $current->nodeName));
+      $previousRange = intval(preg_replace('#h#', '', $previous->nodeName));
+
+      if (($currentRange - $previousRange) != 0
+           && ($currentRange - $previousRange) != 1
+           && (($previousRange - $currentRange) < 0 || ($previousRange - $currentRange) > 4))
       {
-        $resultat = false;
+        $reussite = false;
+        $this->echecs[] = new Echec($this->getSourceCode($current),
+                                    $this->getXPath($current),
+                                    'Ce titre interrompt ne respecte pas les règles '.
+                                    'de hiérarchie: il n\'est ni au même niveau, '.
+                                    'ni un niveau en dessous, ni dans un intervale '.
+                                    'de 4 niveaux au dessus de celui qui le précède');
       }
     }
-    return $resultat;
+
+    return $reussite;
   }
 }

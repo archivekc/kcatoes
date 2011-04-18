@@ -18,7 +18,7 @@ class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
 
   public function execute(Page $page)
   {
-    $resultat = true;
+    $reussite = true;
     $crawler = $page->crawler;
     $ids = array();
 
@@ -35,7 +35,7 @@ class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
           $this->echecs[] = new Echec($this->getSourceCode($node),
                                       $this->getXPath($node),
                                       'Cet élément n\'a pas d\'attribut id ni d\'attribut title renseigné');
-          $resultat = false;
+          $reussite = false;
         }
         else
         {
@@ -46,11 +46,11 @@ class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
             $this->echecs[] = new Echec($this->getSourceCode($node),
                                         $this->getXPath($node),
                                         'Cet élément n\'a pas d\'attribut title renseigné et son attribut id n\'est pas unique');
-            $resultat = false;
+            $reussite = false;
           }
         }
       }
     }
-    return $resultat;
+    return $reussite;
   }
 }

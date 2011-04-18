@@ -11,7 +11,6 @@ class AbsenceDElementMarquee extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
@@ -19,7 +18,12 @@ class AbsenceDElementMarquee extends ASource
     $crawler = $page->crawler;
     $marquees = $crawler->filter('marquee');
 
-    $this->explication .= count($marquees).' élément(s) marquee';
+    foreach ($marquees as $marquee)
+    {
+      $this->echecs[] = new Echec($this->getSourceCode($marquee),
+                                  $this->getXPath($marquee),
+                                  'La balise marquee ne devrait pas être présente dans la page');
+    }
 
     return count($marquees) == 0;
   }

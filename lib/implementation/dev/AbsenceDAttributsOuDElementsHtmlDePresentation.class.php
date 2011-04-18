@@ -20,7 +20,7 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
 
   public function execute(Page $page)
   {
-    $resultat = true;
+    $reussite = true;
     $crawler = $page->crawler;
 
     $elements = 'basefont, blink, center, font, marquee, s, strike, tt, u';
@@ -36,7 +36,7 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
         'Cet élément est un élément HTML de présentation'
       );
     }
-    $resultat = $resultat && (count($nodes) === 0);
+    $reussite = $reussite && (count($nodes) === 0);
 
     $nodes = $crawler->filter($attributs);
     foreach ($nodes as $node)
@@ -47,8 +47,8 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
         'Cet élément utilise un attribut de présentation'
       );
     }
-    $resultat = $resultat && (count($nodes) === 0);
+    $reussite = $reussite && (count($nodes) === 0);
 
-    return $resultat;
+    return $reussite;
   }
 }

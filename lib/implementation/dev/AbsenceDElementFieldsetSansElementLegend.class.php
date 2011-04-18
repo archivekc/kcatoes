@@ -14,7 +14,7 @@ class AbsenceDElementFieldsetSansElementLegend extends ASource
 
   public function execute(Page $page)
   {
-    $resultat = true;
+    $reussite = true;
     $crawler = $page->crawler;
 
     $fieldsets = $crawler->filter('fieldset');
@@ -34,10 +34,10 @@ class AbsenceDElementFieldsetSansElementLegend extends ASource
         $this->echecs[] = new Echec($this->getSourceCode($fieldset),
                                     $this->getXPath($fieldset),
                                     'Cet élément ne contient pas d\'élément legend');
-        $resultat = false;
+        $reussite = false;
       }
     }
 
-    return $resultat;
+    return $reussite;
   }
 }

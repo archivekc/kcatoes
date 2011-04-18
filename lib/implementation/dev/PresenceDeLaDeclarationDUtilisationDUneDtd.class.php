@@ -10,7 +10,6 @@ class PresenceDeLaDeclarationDUtilisationDUneDtd extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'Aucune déclaration de DOCTYPE n\'est présente dans la page';
   }
 
   public function execute(Page $page)
@@ -30,6 +29,11 @@ class PresenceDeLaDeclarationDUtilisationDUneDtd extends ASource
       $i++;
     }
 
-    return $foundDoctype;
+    if (!$foundDoctype)
+    {
+      $this->echecs[] = new Echec('', '', 'Aucune déclaration de DOCTYPE n\'est présente dans la page');
+      return false;
+    }
+    return true;
   }
 }

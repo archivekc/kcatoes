@@ -22,7 +22,7 @@ class AbsenceDeLElementBlink extends ASource
     {
       $this->echecs[] = new Echec($this->getSourceCode($blink),
                                   $this->getXPath($blink),
-                                  'Cet élément ne devrait pas être présent dans la page');
+                                  'La balise blink ne devrait pas être présente dans la page');
     }
 
     return count($blinks) == 0;

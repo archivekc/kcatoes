@@ -14,7 +14,7 @@ class AbsenceDeJustificationDuTexte extends ASource
 
   public function execute(Page $page)
   {
-    $resultat = true;
+    $reussite = true;
     $crawler = $page->crawler;
 
     $nodes = $crawler->filter('*');
@@ -25,17 +25,17 @@ class AbsenceDeJustificationDuTexte extends ASource
         $this->echecs[] = new Echec($this->getSourceCode($node),
                                     $this->getXPath($node),
                                     'Cet élément utilise la propriété d\'alignement de texte justify');
-        $resultat = false;
+        $reussite = false;
       }
       if ($node->hasAttribute('style') && preg_match('#justify#', $node->getAttribute('style')))
       {
         $this->echecs[] = new Echec($this->getSourceCode($node),
                                     $this->getXPath($node),
                                     'Cet élément utilise la propriété d\'alignement de texte justify');
-        $resultat = false;
+        $reussite = false;
       }
     }
 
-    return $resultat;
+    return $reussite;
   }
 }

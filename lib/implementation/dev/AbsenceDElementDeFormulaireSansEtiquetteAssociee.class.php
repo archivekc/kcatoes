@@ -15,7 +15,7 @@ class AbsenceDElementDeFormulaireSansEtiquetteAssociee extends ASource
 
   public function execute(Page $page)
   {
-    $resultat = true;
+    $reussite = true;
     $crawler = $page->crawler;
     $ids = array();
 
@@ -39,12 +39,12 @@ class AbsenceDElementDeFormulaireSansEtiquetteAssociee extends ASource
               $this->echecs[] = new Echec($this->getSourceCode($node),
                                           $this->getXPath($node),
                                           'Cet élément n\'a pas de label associé à son attribut id ni d\'attribut title renseigné');
-              $resultat = false;
+              $reussite = false;
             }
           }
         }
       }
     }
-    return $resultat;
+    return $reussite;
   }
 }

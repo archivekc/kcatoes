@@ -18,7 +18,7 @@ class AbsenceDeCadresNonTitres extends ASource
 
   public function execute(Page $page)
   {
-    $resultat = true;
+    $reussite = true;
     $crawler = $page->crawler;
     $nodes = $crawler->filter('iframe, frame');
     foreach ($nodes as $node)
@@ -28,17 +28,17 @@ class AbsenceDeCadresNonTitres extends ASource
         $this->echecs[] = new Echec($this->getSourceCode($node),
                                     $this->getXPath($node),
                                     'Cet élément n\'a pas d\'attribut title');
-        $resultat = false;
+        $reussite = false;
       }
       elseif ($node->getAttribute('title') === '')
       {
         $this->echecs[] = new Echec($this->getSourceCode($node),
                                     $this->getXPath($node),
                                     'Cet élément a un attribut title vide');
-        $resultat = false;
+        $reussite = false;
       }
     }
 
-    return $resultat;
+    return $reussite;
   }
 }
