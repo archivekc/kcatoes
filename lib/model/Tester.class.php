@@ -6,6 +6,7 @@
  * @package Kcatoes
  * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
+use Zend\Validator\File\Count;
 class Tester
 {
   private $tests;
@@ -87,45 +88,58 @@ class Tester
   {
     date_default_timezone_set('Europe/Paris');
     $fileName = 'csv\\test_'.date('dmY_Hi').'.csv';
-    $strCsv = 'id ; nom ; description ; résultat ; explication de l\'erreur ; aide à l\'exécution manuelle ; code source de l\'échec ; XPath de de l\'échec ; explication de l\'échec ;'."\n";
+
+    $header = array();
+    $header['id'] = 'Id';
+    $header['nom'] = 'Nom';
+    $header['description'] = 'Description';
+    $header['resultat'] = 'Résultat';
+    $header['erreurExp'] = 'Explication de l\'erreur';
+    $header['aide'] = 'Aide à l\'exécution manuelle';
+    $header['source'] = 'Code source de l\'élément en échec';
+    $header['xpath'] = 'XPath de de l\'élément en échec';
+    $header['echecExp'] = 'Explication de l\'élément en échec';
+
+    $csv = @fopen($fileName, "w");
+    if (!$csv)
+    {
+      throw new KcatoesTecException('Impossible d\'écrire dans un fichier CSV');
+    }
+    fputcsv($csv, $header, ';', '"');
 
     foreach ($this->tests as $test)
     {
-      $testResultat =
-        $test->getId().' ; '.
-        $test->getNom().' ; '.
-        trim($test->getDescription()).' ; '.
-        $test->getResultat()->getCode().' ; '.
-        trim($test->getResultat()->explicationErreur).' ; '.
-        trim($test->getResultat()->instruction).' ; ';
+      $line = array();
+      $line['id'] = $test->getId();
+      $line['nom'] = $test->getNom();
+      $line['description'] = trim($test->getDescription());
+      $line['resultat'] = $test->getResultat()->getCode();
+      $line['erreurExp'] = trim($test->getResultat()->explicationErreur);
+      $line['aide'] = trim($test->getResultat()->instruction);
+      $line['source'] = 'n.a.';
+      $line['xpath'] = 'n.a.';
+      $line['echecExp'] = 'n.a.';
+
       $echecs = $test->getResultat()->echecs;
       if (empty($echecs))
       {
-        $strCsv .= $testResultat.'n.a. ; n.a. ; n.a. ;'."\n";
+        fputcsv($csv, $line, ';', '"');
       }
       else
       {
         foreach ($echecs as $echec)
         {
-          $strCsv .=
-            $testResultat.
-            preg_replace('/(\r\n|\n|\r)/', '', $echec->code).' ; '.
-            preg_replace('/(\r\n|\n|\r)/', '', $echec->xPath).' ; '.
-            preg_replace('/(\r\n|\n|\r)/', '', $echec->explication).' ; '.
-            "\n";
+          $line['source'] = preg_replace('/(\r\n|\n|\r)/', '', $echec->code);
+          $line['xpath'] = preg_replace('/(\r\n|\n|\r)/', '', $echec->xPath);
+          $line['echecExp'] = preg_replace('/(\r\n|\n|\r)/', '', $echec->explication);
+
+          fputcsv($csv, $line, ';', '"');
         }
       }
     }
 
-    $csv = @fopen($fileName, "w");
-    if($csv){
-      fprintf($csv, $strCsv);
-      fclose($csv);
-    }
-    else{
-      throw new KcatoesTecException('Impossible d\'écrire dans un fichier CSV');
-    }
-
+    fclose($csv);
     return $fileName;
   }
+
 }
