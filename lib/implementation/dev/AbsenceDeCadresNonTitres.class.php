@@ -19,8 +19,7 @@ class AbsenceDeCadresNonTitres extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
-    $nodes = $crawler->filter('iframe, frame');
+    $nodes = $page->crawler->filter('iframe, frame');
     foreach ($nodes as $node)
     {
       if (!$node->hasAttribute('title'))

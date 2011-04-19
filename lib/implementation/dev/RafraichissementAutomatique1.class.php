@@ -15,8 +15,7 @@ class RafraichissementAutomatique1 extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
-    $metas = $crawler->filter('meta[http-equiv]');
+    $metas = $page->crawler->filter('meta[http-equiv]');
 
     foreach ($metas as $meta)
     {

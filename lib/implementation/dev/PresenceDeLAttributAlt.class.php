@@ -16,8 +16,7 @@ class PresenceDeLAttributAlt extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
-    $images = $crawler->filter('img, area, input[type=image], applet');
+    $images = $page->crawler->filter('img, area, input[type=image], applet');
 
     foreach($images as $image)
     {

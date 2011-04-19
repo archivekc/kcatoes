@@ -15,8 +15,7 @@ class AbsenceDeLElementBlink extends ASource
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $blinks = $crawler->filter('blink');
+    $blinks = $page->crawler->filter('blink');
 
     foreach ($blinks as $blink)
     {

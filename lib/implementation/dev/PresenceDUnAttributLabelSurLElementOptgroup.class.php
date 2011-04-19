@@ -16,9 +16,8 @@ class PresenceDUnAttributLabelSurLElementOptgroup extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
     $count = 0;
-    $optGroups = $crawler->filter('optgroup');
+    $optGroups = $page->crawler->filter('optgroup');
 
     foreach ($optGroups as $optGroup)
     {

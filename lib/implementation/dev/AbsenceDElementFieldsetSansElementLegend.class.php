@@ -15,9 +15,7 @@ class AbsenceDElementFieldsetSansElementLegend extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
-
-    $fieldsets = $crawler->filter('fieldset');
+    $fieldsets = $page->crawler->filter('fieldset');
     foreach ($fieldsets as $fieldset)
     {
       $legendFound = false;

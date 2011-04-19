@@ -15,8 +15,7 @@ class PresenceDAuMoinsUnTitreDePremierNiveauH1 extends ASource
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $h1 = $crawler->filter('h1');
+    $h1 = $page->crawler->filter('h1');
 
     if (!(count($h1) > 0))
     {

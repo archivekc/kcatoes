@@ -17,8 +17,7 @@ class AbsenceDInterruptionDansLaHierarchieDesTitres extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
-    $titles = $crawler->filter('h2, h3, h4, h5, h6')->each(function ($node, $i)
+    $titles = $page->crawler->filter('h2, h3, h4, h5, h6')->each(function ($node, $i)
     {
       return $node;
     });

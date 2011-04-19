@@ -15,9 +15,7 @@ class AbsenceDeJustificationDuTexte extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
-
-    $nodes = $crawler->filter('*');
+    $nodes = $page->crawler->filter('*');
     foreach ($nodes as $node)
     {
       if ($node->hasAttribute('align') && $node->getAttribute('align') === 'justify')

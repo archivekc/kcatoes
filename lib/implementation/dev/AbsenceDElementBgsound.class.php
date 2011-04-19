@@ -15,8 +15,7 @@ class AbsenceDElementBgsound extends ASource
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $bgsounds = $crawler->filter('bgsound');
+    $bgsounds = $page->crawler->filter('bgsound');
 
     foreach ($bgsounds as $bgsound)
     {

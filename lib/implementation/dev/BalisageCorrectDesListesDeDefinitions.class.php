@@ -17,8 +17,7 @@ class BalisageCorrectDesListesDeDefinitions extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $crawler = $page->crawler;
-    $liste = $crawler->filter('dl');
+    $liste = $page->crawler->filter('dl');
 
     foreach($liste as $item)
     {

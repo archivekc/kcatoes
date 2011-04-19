@@ -15,8 +15,7 @@ class AbsenceDElementMarquee extends ASource
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $marquees = $crawler->filter('marquee');
+    $marquees = $page->crawler->filter('marquee');
 
     foreach ($marquees as $marquee)
     {

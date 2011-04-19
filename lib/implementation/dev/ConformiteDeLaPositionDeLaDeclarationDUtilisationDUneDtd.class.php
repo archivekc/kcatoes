@@ -26,12 +26,13 @@ class ConformiteDeLaPositionDeLaDeclarationDUtilisationDUneDtd extends ASource
     {
       if (preg_match('#<!DOCTYPE.*#', $lines[$i]))
       {
-        $doctype = $i;
+        $doctype = trim($lines[$i]);
+        $doctypePos = $i;
         $foundDoctype = true;
       }
       if (preg_match('#<html.*#', $lines[$i]))
       {
-        $html = $i;
+        $htmlPos = $i;
         $foundHtml = true;
       }
       $i++;
@@ -46,14 +47,10 @@ class ConformiteDeLaPositionDeLaDeclarationDUtilisationDUneDtd extends ASource
       throw new KcatoesTestException('Aucune balise html n\'est présente dans la page');
     }
 
-    if ($doctype > $html)
+    if ($doctypePos > $htmlPos)
     {
       $reussite = false;
-      $htmlNode = $page->crawler->filter('html')->each(function ($node, $i)
-      {
-        return $node;
-      });
-      $this->echecs[] = new Echec('',
+      $this->echecs[] = new Echec($doctype,
                                   '',
                                   'La balise html est située avant la déclaration de DOCTYPE');
     }

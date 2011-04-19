@@ -14,8 +14,7 @@ class PresenceDUnTitreDansLaPage extends ASource
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $titles = $crawler->filter('title');
+    $titles = $page->crawler->filter('title');
 
     if (count($titles) === 0)
     {
