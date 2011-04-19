@@ -18,16 +18,13 @@ class AbsenceDElementFieldsetSansElementLegend extends ASource
     $fieldsets = $page->crawler->filter('fieldset');
     foreach ($fieldsets as $fieldset)
     {
-      $legendFound = false;
+      $hasLegend = false;
       foreach ($fieldset->childNodes as $child)
       {
-        if (strtolower($child->nodeName) === 'legend')
-        {
-          $legendFound = true;
-        }
+        $hasLegend = $hasLegend || (strtolower($child->nodeName) === 'legend');
       }
 
-      if (!$legendFound)
+      if (!$hasLegend)
       {
         $this->echecs[] = new Echec($this->getSourceCode($fieldset),
                                     $this->getXPath($fieldset),

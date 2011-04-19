@@ -24,8 +24,8 @@ class IndicationDesContraintesSurLesChamps extends ASource
     foreach ($champs as $champ)
     {
       $reussite = false;
-      $this->echecs[] = new Echec($this->getSourceCode($form),
-                                  $this->getXPath($form),
+      $this->echecs[] = new Echec($this->getSourceCode($champ),
+                                  $this->getXPath($champ),
                                   'Si ce champ est soumis à un contrôle de saisie'.
                                   ' avant traitement, vérifier que l\'utilisateur'.
                                   ' est averti de son caractère obligatoire et'.
