@@ -21,15 +21,16 @@ class IndentificationDesErreursDeSaisie extends ASource
     $forms = $page->crawler->filter('form');
     foreach ($forms as $form)
     {
-      $this->echecs[] = new Echec($this->getSourceCode($form),
-                                  $this->getXPath($form),
-                                  'Si ce formulaire dispose d\'un contrôle des'.
-                                  ' information saisies avant traitement, vérifier'.
-                                  ' que les champs erronés sont indiqués et si '.
-                                  'nécessaire si une information sur le format '.
-                                  'ou le type de saisie attendu est présente');
+      $this->complements[] = new Complement(
+        $this->getSourceCode($form),
+        $this->getXPath($form),
+        'Si ce formulaire dispose d\'un contrôle des information saisies avant'.
+        ' traitement, vérifier que les champs erronés sont indiqués et si '.
+        'nécessaire si une information sur le format ou le type de saisie '.
+        'attendu est présente'
+      );
       $reussite = false;
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

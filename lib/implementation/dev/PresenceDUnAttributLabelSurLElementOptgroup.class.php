@@ -24,9 +24,11 @@ class PresenceDUnAttributLabelSurLElementOptgroup extends ASource
       if (!$optGroup->hasAttribute('label'))
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($optGroup),
-                                    $this->getXPath($optGroup),
-                                    'Cet élément optgroup ne possède pas d\'attribut label');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($optGroup),
+          $this->getXPath($optGroup),
+          'Cet élément optgroup ne possède pas d\'attribut label'
+        );
       }
       else
       {
@@ -34,13 +36,15 @@ class PresenceDUnAttributLabelSurLElementOptgroup extends ASource
         if (empty($label))
         {
           $reussite = false;
-          $this->echecs[] = new Echec($this->getSourceCode($optGroup),
-                                      $this->getXPath($optGroup),
-                                      'Cet élément optgroup a un attribut label vide');
+          $this->complements[] = new Complement(
+            $this->getSourceCode($optGroup),
+            $this->getXPath($optGroup),
+            'Cet élément optgroup a un attribut label vide'
+          );
         }
       }
     }
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

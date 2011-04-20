@@ -50,11 +50,13 @@ class ConformiteDeLaPositionDeLaDeclarationDUtilisationDUneDtd extends ASource
     if ($doctypePos > $htmlPos)
     {
       $reussite = false;
-      $this->echecs[] = new Echec($doctype,
-                                  '',
-                                  'La balise html est située avant la déclaration de DOCTYPE');
+      $this->complements[] = new Complement(
+        $doctype,
+        '',
+        'La balise html est située avant la déclaration de DOCTYPE'
+      );
     }
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

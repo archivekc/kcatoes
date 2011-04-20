@@ -23,12 +23,14 @@ class PresenceDeLAttributAlt extends ASource
       if (!$image->hasAttribute('alt'))
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($image),
-                                    $this->getXPath($image),
-                                    'Cette image ne possède pas d\'attribut alt');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($image),
+          $this->getXPath($image),
+          'Cette image ne possède pas d\'attribut alt'
+        );
       }
     }
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

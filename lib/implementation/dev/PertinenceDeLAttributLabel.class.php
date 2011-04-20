@@ -28,13 +28,14 @@ class PertinenceDeLAttributLabel extends ASource
       if ($hasLabel)
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($optgroup),
-                                    $this->getXPath($optgroup),
-                                    'Vérifier que l\'élément label donne les'.
-                                    ' information nécessaire pour identifier'.
-                                    ' le contenu de l\'élément optgroup');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($optgroup),
+          $this->getXPath($optgroup),
+          'Vérifier que l\'élément label donne les information nécessaire pour'.
+          ' identifier le contenu de l\'élément optgroup'
+        );
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

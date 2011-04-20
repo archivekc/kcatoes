@@ -15,6 +15,7 @@ class ConformiteSyntaxiqueDeLaDeclarationDUtilisationDUneDtd extends ASource
 
   public function execute(Page $page)
   {
+    $reussite = true;
     $url = $page->url;
     $lines = file($url);
     $i = 0;
@@ -45,11 +46,13 @@ class ConformiteSyntaxiqueDeLaDeclarationDUtilisationDUneDtd extends ASource
 
     if (!in_array($doctype, $knownDoctypes))
     {
-      $this->echecs[] = new Echec($doctype,
-                                  '',
-                                  'La déclaration de DOCTYPE n\'a pas été faite selon une syntaxe validée par le W3C');
-      return false;
+      $this->complements[] = new Complement(
+        $doctype,
+        '',
+        'La déclaration de DOCTYPE n\'a pas été faite selon une syntaxe validée par le W3C'
+      );
+      $reussite = false;
     }
-    return true;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

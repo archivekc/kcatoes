@@ -29,14 +29,15 @@ class UtilisationDeLElementFieldset extends ASource
       if (!$hasFieldset)
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($form),
-                                    $this->getXPath($form),
-                                    'Vérifier si des  groupes de champs ne peuvent'.
-                                    ' pas être formés pour apporter une information'.
-                                    ' commune à plusieurs labels ou pour réunir des'.
-                                    ' champs par type d\'information attendu');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($form),
+          $this->getXPath($form),
+          'Vérifier si des  groupes de champs ne peuvent pas être formés pour '.
+          'apporter une information commune à plusieurs labels ou pour réunir '.
+          'des champs par type d\'information attendu'
+        );
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

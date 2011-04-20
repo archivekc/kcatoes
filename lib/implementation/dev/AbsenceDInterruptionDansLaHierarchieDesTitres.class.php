@@ -35,15 +35,16 @@ class AbsenceDInterruptionDansLaHierarchieDesTitres extends ASource
            && (($previousRange - $currentRange) < 0 || ($previousRange - $currentRange) > 4))
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($current),
-                                    $this->getXPath($current),
-                                    'Ce titre interrompt ne respecte pas les règles '.
-                                    'de hiérarchie: il n\'est ni au même niveau, '.
-                                    'ni un niveau en dessous, ni dans un intervale '.
-                                    'de 4 niveaux au dessus de celui qui le précède');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($current),
+          $this->getXPath($current),
+          'Ce titre ne respecte pas les règles de hiérarchie: il n\'est ni au '.
+          'même niveau, ni un niveau en dessous, ni dans un intervale de 4 '.
+          'niveaux au dessus de celui qui le précède'
+        );
       }
     }
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

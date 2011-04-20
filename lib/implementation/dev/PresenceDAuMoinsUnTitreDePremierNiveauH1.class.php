@@ -15,13 +15,14 @@ class PresenceDAuMoinsUnTitreDePremierNiveauH1 extends ASource
 
   public function execute(Page $page)
   {
+    $reussite = true;
     $h1 = $page->crawler->filter('h1');
 
     if (!(count($h1) > 0))
     {
-      $this->echecs[] = new Echec('', '', 'La page ne contient pas de titre de hiérarchie de premier niveau (h1)');
-      return false;
+      $this->complements[] = new Complement('', '', 'La page ne contient pas de titre de hiérarchie de premier niveau (h1)');
+      $reussite = false;
     }
-    return true;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

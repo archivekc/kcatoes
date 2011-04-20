@@ -34,7 +34,7 @@ class RafraichissementAutomatique1 extends ASource
               if ($page->url === $target)
               {
                 $reussite = false;
-                $this->echecs[] = new Echec(
+                $this->complements[] = new Complement(
                   $this->getSourceCode($meta),
                   $this->getXPath($meta),
                   'Vérifiez que le rafraichissement de cette page peut être supprimé'.
@@ -45,7 +45,7 @@ class RafraichissementAutomatique1 extends ASource
             else
             {
               $reussite = false;
-              $this->echecs[] = new Echec(
+              $this->complements[] = new Complement(
                 $this->getSourceCode($meta),
                 $this->getXPath($meta),
                 'Vérifiez que le rafraichissement de cette page peut être supprimé'.
@@ -56,6 +56,6 @@ class RafraichissementAutomatique1 extends ASource
         }
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

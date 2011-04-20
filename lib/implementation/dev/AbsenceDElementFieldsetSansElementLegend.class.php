@@ -26,13 +26,15 @@ class AbsenceDElementFieldsetSansElementLegend extends ASource
 
       if (!$hasLegend)
       {
-        $this->echecs[] = new Echec($this->getSourceCode($fieldset),
-                                    $this->getXPath($fieldset),
-                                    'Cet élément ne contient pas d\'élément legend');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($fieldset),
+          $this->getXPath($fieldset),
+          'Cet élément ne contient pas d\'élément legend'
+        );
         $reussite = false;
       }
     }
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

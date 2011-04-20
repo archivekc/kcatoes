@@ -36,15 +36,17 @@ class AbsenceDElementDeFormulaireSansEtiquetteAssociee extends ASource
             $labels = $crawler->filter('label[for='.$id.']');
             if (count($labels) === 0)
             {
-              $this->echecs[] = new Echec($this->getSourceCode($node),
-                                          $this->getXPath($node),
-                                          'Cet élément n\'a pas de label associé à son attribut id ni d\'attribut title renseigné');
+              $this->complements[] = new Complement(
+                $this->getSourceCode($node),
+                $this->getXPath($node),
+                'Cet élément n\'a pas de label associé à son attribut id ni d\'attribut title renseigné'
+              );
               $reussite = false;
             }
           }
         }
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

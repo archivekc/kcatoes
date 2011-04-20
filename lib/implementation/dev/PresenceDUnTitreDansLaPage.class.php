@@ -14,13 +14,14 @@ class PresenceDUnTitreDansLaPage extends ASource
 
   public function execute(Page $page)
   {
+    $reussite = true;
     $titles = $page->crawler->filter('title');
 
     if (count($titles) === 0)
     {
-      $this->echecs[] = new Echec('', '', 'Aucun titre n\'est présent dans la page');
-      return false;
+      $this->complements[] = new Complement('', '', 'Aucun titre n\'est présent dans la page');
+      $reussite = false;
     }
-    return true;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

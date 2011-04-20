@@ -23,11 +23,12 @@ class PertinenceDesEtiquettes extends ASource
       if ($label->hasAttribute('title'))
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($label),
-                                    $this->getXPath($label),
-                                    'Vérifier que l\'attribut title de ce label'.
-                                    ' donne la fonction exacte de l\'élément'.
-                                    ' auquel il se rapporte');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($label),
+          $this->getXPath($label),
+          'Vérifier que l\'attribut title de ce label donne la fonction exacte'.
+          ' de l\'élément auquel il se rapporte'
+        );
       }
       else
       {
@@ -38,14 +39,15 @@ class PertinenceDesEtiquettes extends ASource
         }
         if ($hasTextContent)
         {
-          $this->echecs[] = new Echec($this->getSourceCode($label),
-                                      $this->getXPath($label),
-                                      'Vérifier que le contenu texte de ce label'.
-                                      ' donne la fonction exacte de l\'élément'.
-                                      ' auquel il se rapporte');
+          $this->complements[] = new Complement(
+            $this->getSourceCode($label),
+            $this->getXPath($label),
+            'Vérifier que le contenu texte de ce label donne la fonction exacte'.
+            ' de l\'élément auquel il se rapporte'
+          );
         }
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

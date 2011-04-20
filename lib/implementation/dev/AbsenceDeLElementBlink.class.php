@@ -19,11 +19,13 @@ class AbsenceDeLElementBlink extends ASource
 
     foreach ($blinks as $blink)
     {
-      $this->echecs[] = new Echec($this->getSourceCode($blink),
-                                  $this->getXPath($blink),
-                                  'La balise blink ne devrait pas être présente dans la page');
+      $this->complements[] = new Complement(
+        $this->getSourceCode($blink),
+        $this->getXPath($blink),
+        'La balise blink ne devrait pas être présente dans la page'
+      );
     }
 
-    return count($blinks) == 0;
+    return (count($blinks) == 0) ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

@@ -13,7 +13,6 @@ class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
@@ -32,9 +31,10 @@ class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
       {
         if(!$node->hasAttribute('id'))
         {
-          $this->echecs[] = new Echec($this->getSourceCode($node),
-                                      $this->getXPath($node),
-                                      'Cet élément n\'a pas d\'attribut id ni d\'attribut title renseigné');
+          $this->complements[] = new Complement(
+            $this->getSourceCode($node),
+            $this->getXPath($node),
+            'Cet élément n\'a pas d\'attribut id ni d\'attribut title renseigné');
           $reussite = false;
         }
         else
@@ -43,14 +43,16 @@ class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
           $occurences = $crawler->filter('[id='.$id.']');
           if (count($occurences) > 1)
           {
-            $this->echecs[] = new Echec($this->getSourceCode($node),
-                                        $this->getXPath($node),
-                                        'Cet élément n\'a pas d\'attribut title renseigné et son attribut id n\'est pas unique');
+            $this->complements[] = new Complement(
+              $this->getSourceCode($node),
+              $this->getXPath($node),
+              'Cet élément n\'a pas d\'attribut title renseigné et son attribut id n\'est pas unique'
+            );
             $reussite = false;
           }
         }
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

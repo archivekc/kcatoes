@@ -19,11 +19,13 @@ class AbsenceDElementBgsound extends ASource
 
     foreach ($bgsounds as $bgsound)
     {
-      $this->echecs[] = new Echec($this->getSourceCode($bgsound),
-                                  $this->getXPath($bgsound),
-                                  'La balise bgsound ne devrait pas être présente dans la page');
+      $this->complements[] = new Complement(
+        $this->getSourceCode($bgsound),
+        $this->getXPath($bgsound),
+        'La balise bgsound ne devrait pas être présente dans la page'
+      );
     }
 
-    return count($bgsounds) == 0;
+    return (count($bgsounds) == 0) ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

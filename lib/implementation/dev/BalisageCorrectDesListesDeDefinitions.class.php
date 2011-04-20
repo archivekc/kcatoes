@@ -30,15 +30,17 @@ class BalisageCorrectDesListesDeDefinitions extends ASource
           if ($childNodes->item($i)->nodeName == 'dd')
           {
             $reussite = false;
-            $this->echecs[] = new Echec($this->getSourceCode($childNodes->item($i)),
-                                        $this->getXPath($childNodes->item($i)),
-                                        'Cet élément dd n\' pas associé à un élément dt');
+            $this->complements[] = new Complement(
+              $this->getSourceCode($childNodes->item($i)),
+              $this->getXPath($childNodes->item($i)),
+              'Cet élément dd n\' pas associé à un élément dt'
+            );
           }
           $i++;
         }
       }
     }
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

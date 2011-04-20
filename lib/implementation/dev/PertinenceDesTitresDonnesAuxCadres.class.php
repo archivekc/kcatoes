@@ -24,15 +24,16 @@ class PertinenceDesTitresDonnesAuxCadres extends ASource
       {
         if ($node->getAttribute('title') !== '')
         {
-          $this->echecs[] = new Echec($this->getSourceCode($node),
-                                      $this->getXPath($node),
-                                      'Vérifier que l\'attribut title de ce cadre'.
-                                      ' correspond à son contenu');
+          $this->complements[] = new Complement(
+            $this->getSourceCode($node),
+            $this->getXPath($node),
+            'Vérifier que l\'attribut title de ce cadre correspond à son contenu'
+          );
           $reussite = false;
         }
       }
     }
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

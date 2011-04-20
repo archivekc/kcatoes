@@ -24,14 +24,14 @@ class IndicationDesContraintesSurLesChamps extends ASource
     foreach ($champs as $champ)
     {
       $reussite = false;
-      $this->echecs[] = new Echec($this->getSourceCode($champ),
-                                  $this->getXPath($champ),
-                                  'Si ce champ est soumis à un contrôle de saisie'.
-                                  ' avant traitement, vérifier que l\'utilisateur'.
-                                  ' est averti de son caractère obligatoire et'.
-                                  ' si nécessaire du format ou du type de saisie'.
-                                  ' recquis');
+      $this->complements[] = new Complement(
+        $this->getSourceCode($champ),
+        $this->getXPath($champ),
+        'Si ce champ est soumis à un contrôle de saisie avant traitement, '.
+        'vérifier que l\'utilisateur est averti de son caractère obligatoire '.
+        'et si nécessaire du format ou du type de saisie recquis'
+      );
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

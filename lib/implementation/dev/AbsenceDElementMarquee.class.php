@@ -19,11 +19,13 @@ class AbsenceDElementMarquee extends ASource
 
     foreach ($marquees as $marquee)
     {
-      $this->echecs[] = new Echec($this->getSourceCode($marquee),
-                                  $this->getXPath($marquee),
-                                  'La balise marquee ne devrait pas être présente dans la page');
+      $this->complements[] = new Complement(
+        $this->getSourceCode($marquee),
+        $this->getXPath($marquee),
+        'La balise marquee ne devrait pas être présente dans la page'
+      );
     }
 
-    return count($marquees) == 0;
+    return (count($marquees) == 0) ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

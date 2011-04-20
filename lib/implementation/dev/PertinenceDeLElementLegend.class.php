@@ -28,13 +28,14 @@ class PertinenceDeLElementLegend extends ASource
       if ($hasLegend)
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($fieldset),
-                                    $this->getXPath($fieldset),
-                                    'Vérifier que l\'élément legend donne les'.
-                                    ' information nécessaire pour identifier'.
-                                    ' le contenu de l\'élément fieldset');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($fieldset),
+          $this->getXPath($fieldset),
+          'Vérifier que l\'élément legend donne les information nécessaire '.
+          'pour identifier le contenu de l\'élément fieldset'
+        );
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

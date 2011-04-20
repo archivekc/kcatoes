@@ -14,6 +14,7 @@ class PresenceDeLaDeclarationDUtilisationDUneDtd extends ASource
 
   public function execute(Page $page)
   {
+    $reussite = true;
     $url = $page->url;
     $lines = file($url);
     $i = 0;
@@ -31,9 +32,9 @@ class PresenceDeLaDeclarationDUtilisationDUneDtd extends ASource
 
     if (!$foundDoctype)
     {
-      $this->echecs[] = new Echec('', '', 'Aucune déclaration de DOCTYPE n\'est présente dans la page');
-      return false;
+      $this->complements[] = new Complement('', '', 'Aucune déclaration de DOCTYPE n\'est présente dans la page');
+      $reussite = false;
     }
-    return true;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

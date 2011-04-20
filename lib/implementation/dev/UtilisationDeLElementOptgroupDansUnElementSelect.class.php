@@ -28,13 +28,14 @@ class UtilisationDeLElementOptgroupDansUnElementSelect extends ASource
       if (!$hasOptgroup)
       {
         $reussite = false;
-        $this->echecs[] = new Echec($this->getSourceCode($select),
-                                    $this->getXPath($select),
-                                    'Vérifier si les éléments option présent'.
-                                    ' dans l\'élément select ne nécessite pas'.
-                                    ' de faire au moins deux regroupements distincs');
+        $this->complements[] = new Complement(
+          $this->getSourceCode($select),
+          $this->getXPath($select),
+          'Vérifier si les éléments option présent dans l\'élément select ne '.
+          'nécessite pas de faire au moins deux regroupements distincs'
+        );
       }
     }
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::MANUEL;
   }
 }

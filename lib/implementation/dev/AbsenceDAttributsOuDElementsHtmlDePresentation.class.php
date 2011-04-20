@@ -30,7 +30,7 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
     $nodes = $crawler->filter($elements);
     foreach ($nodes as $node)
     {
-      $this->echecs[] = new Echec(
+      $this->complements[] = new Complement(
         $this->getSourceCode($node),
         $this->getXPath($node),
         'Cet élément est un élément HTML de présentation'
@@ -41,7 +41,7 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
     $nodes = $crawler->filter($attributs);
     foreach ($nodes as $node)
     {
-      $this->echecs[] = new Echec(
+      $this->complements[] = new Complement(
         $this->getSourceCode($node),
         $this->getXPath($node),
         'Cet élément utilise un attribut de présentation'
@@ -49,6 +49,6 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
     }
     $reussite = $reussite && (count($nodes) === 0);
 
-    return $reussite;
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }
