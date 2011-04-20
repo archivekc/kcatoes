@@ -141,7 +141,6 @@ Test:
       Tous les cadres de la page doivent avoir un titre
     automatisable: true
     Regroupement:  cadreA
-    instruction:   >
       
   test12:
     nom:           Pertinence des titres donnés aux cadres
@@ -149,7 +148,6 @@ Test:
       Les titres donnés aux cadres doivent correspondre à leur contenu.
     automatisable: false
     Regroupement:  cadreA
-    instruction:   >
       
   test21:
     nom:           Alternative à la couleur 1
@@ -158,7 +156,6 @@ Test:
       un contenu auquel il est fait référence textuellement
     automatisable: false
     Regroupement:  couleurA
-    instruction:   >
       
   test22:
     nom:           Alternative à la couleur 2
@@ -167,7 +164,6 @@ Test:
       un contenu auquel il est fait référence dans un élément non textuel
     automatisable: false
     Regroupement:  couleurA
-    instruction:   >
       
   test23:
     nom:           Alternative à la couleur 3
@@ -176,7 +172,6 @@ Test:
       qu'une mise en couleur réalisée par des styles CSS
     automatisable: false
     Regroupement:  couleurA
-    instruction:   >
       
   test24:
     nom:           Alternative à la couleur 4
@@ -185,7 +180,6 @@ Test:
       qu'une utilisation de la couleur dans les éléments non textuels
     automatisable: false
     Regroupement:  couleurA
-    instruction:   >
       
   test25:
     nom:           Valeur de contraste 1
@@ -194,7 +188,6 @@ Test:
       dans des éléments non textuels (minimum)
     automatisable: false
     Regroupement:  couleurAA
-    instruction:   >
       
   test26:
     nom:           Valeur de contraste 2
@@ -203,7 +196,6 @@ Test:
       non textuels utilisés comme fond d'éléments HTML (minimum)
     automatisable: false
     Regroupement:  couleurAA
-    instruction:   >
       
   test27:
     nom:           Valeur de contraste 3
@@ -212,7 +204,6 @@ Test:
       contenu dans un segment de texte (minimum)
     automatisable: false
     Regroupement:  couleurAA
-    instruction:   >
       
   test28:
     nom:           Valeur de contraste 4
@@ -220,7 +211,6 @@ Test:
       Valeur du rapport de contraste du texte
     automatisable: false
     Regroupement:  couleurAA
-    instruction:   >
       
   test29:
     nom:           Valeur de contraste 5
@@ -230,7 +220,6 @@ Test:
        fond d'éléments HTML (minimum)
     automatisable: false
     Regroupement:  couleurAA
-    instruction:   >
       
   test210:
     nom:           Valeur de contraste 6
@@ -239,7 +228,6 @@ Test:
       contenu dans un segment de texte (minimum)
     automatisable: false
     Regroupement:  couleurAA
-    instruction:   >
       
   test211:
     nom:           Valeur de contraste 7
@@ -248,7 +236,6 @@ Test:
       dans des éléments non textuels (améliorée)
     automatisable: false
     Regroupement:  couleurAAA
-    instruction:   >
       
   test212:
     nom:           Valeur de contraste 8
@@ -257,7 +244,6 @@ Test:
        non textuels utilisés comme fond d'éléments HTML (améliorée)
     automatisable: false
     Regroupement:  couleurAAA
-    instruction:   >
       
   test213:
     nom:           Valeur de contraste 9
@@ -266,7 +252,6 @@ Test:
       contenu dans un segment de texte (améliorée)
     automatisable: false
     Regroupement:  couleurAAA
-    instruction:   >
       
   test214:
     nom:           Valeur de contraste 10
@@ -275,7 +260,6 @@ Test:
       contenu dans des éléments non textuels (améliorée)
     automatisable: false
     Regroupement:  couleurAAA
-    instruction:   >
       
   test215:
     nom:           Valeur de contraste 11
@@ -285,7 +269,6 @@ Test:
       utilisés comme fond d'éléments HTML (améliorée)
     automatisable: false
     Regroupement:  couleurAAA
-    instruction:   >
       
   test216:
     nom:           Valeur de contraste 12
@@ -294,7 +277,6 @@ Test:
       contenu dans un segment de texte (améliorée)
     automatisable: false
     Regroupement:  couleurAAA
-    instruction:   >
       
   test31:
     nom:           Indentification des erreurs de saisie
@@ -302,7 +284,6 @@ Test:
       Possibilité d'identifier les erreurs de saisie
     automatisable: false
     Regroupement:  formulaireA
-    instruction:   >
       
   test32:
     nom:           Indication des contraintes sur les champs
@@ -312,7 +293,6 @@ Test:
       de saisie attendue si nécessaire
     automatisable: false
     Regroupement:  formulaireA
-    instruction:   >
       
   test33:
     nom:           Position des étiquettes
@@ -321,7 +301,6 @@ Test:
       dans les formulaires
     automatisable: false
     Regroupement:  formulaireA
-    instruction:   >
       
   test34:
     nom:           Utilisation de l'élément fieldset
@@ -329,7 +308,6 @@ Test:
       Regroupement d'éléments de formulaire via l'élément fieldset
     automatisable: false
     Regroupement:  formulaireA
-    instruction:   >
       
   test35:
     nom:           Absence d'élément fieldset sans élément legend
@@ -337,7 +315,6 @@ Test:
       Chaque élément fieldset doit être accompagné d'un élément legend
     automatisable: true
     Regroupement:  formulaireA
-    instruction:   >
       
   test36:
     nom:           Pertinence de l'élément legend
@@ -345,7 +322,6 @@ Test:
       Pertinence du contenu de l'élément legend dans l'élément fieldset
     automatisable: 
     Regroupement:  formulaireA
-    instruction:   >
       
   test37:
     nom:           Utilisation de l'élément optgroup dans un élément select
@@ -354,7 +330,6 @@ Test:
       select via l'élément optgroup
     automatisable: false
     Regroupement:  formulaireA
-    instruction:   >
       
   test38:
     nom:           Présence d'un attribut label sur l'élément optgroup
@@ -362,7 +337,6 @@ Test:
       Chaque élément optgroup doit posséder son propre attribut label
     automatisable: true
     Regroupement:  formulaireA
-    instruction:   >
       
   test39:
     nom:           Pertinence de l'attribut label
@@ -370,7 +344,6 @@ Test:
       Pertinence du contenu de l'attribut label de l'élément optgroup
     automatisable: false
     Regroupement:  formulaireA
-    instruction:   >
       
   test310:
     nom:           Absence d'élément de formulaire sans identifiant
@@ -378,7 +351,6 @@ Test:
       Tous les éléments d'un formulaire doivent posséder un identifiant
     automatisable: true
     Regroupement:  formulaireA
-    instruction:   >
       
   test311:
     nom:           Absence d'élément de formulaire sans étiquette associée
@@ -386,7 +358,6 @@ Test:
       Tous les éléments d'un formulaire doivent avoir une étiquette associée
     automatisable: true
     Regroupement:  formulaireA
-    instruction:   >
       
   test312:
     nom:           Pertinence des étiquettes
@@ -394,7 +365,6 @@ Test:
       Pertinence des étiquettes délément de formulaire
     automatisable: false
     Regroupement:  formulaireA
-    instruction:   >
       
   test313:
     nom:           Aide à la correction des erreurs de saisie
@@ -403,7 +373,6 @@ Test:
       la correction des erreurs de saisie
     automatisable: false
     Regroupement:  formulaireAA
-    instruction:   >
       
   test314:
     nom:           Traitement des données juridiques, financières et personnelles
@@ -412,7 +381,6 @@ Test:
       confirmer les données à caractère juridique, financier, personnel
     automatisable: false
     Regroupement:  formulaireAA
-    instruction:   >
       
   test315:
     nom:           Vérification, modification, confirmation des données utilisateur
@@ -421,7 +389,6 @@ Test:
       confirmer tous types de données saisie par l'utilisateur
     automatisable: false
     Regroupement:  formulaireAAA
-    instruction:   >
       
   test316:
     nom:           Aide à la saisie des formulaire
@@ -430,7 +397,6 @@ Test:
       contextuelle pour la saisie des formulaires
     automatisable: false
     Regroupement:  formulaireAAA
-    instruction:   >
       
   test41:
     nom:           Présence de l'attribut alt
@@ -438,7 +404,6 @@ Test:
       Toutes les images doivent avoir un texte alternatif
     automatisable: true
     Regroupement:  imageA
-    instruction:   >
       
   test42:
     nom:           Pertinence de l'alternative textuelle 1
@@ -446,7 +411,6 @@ Test:
       Pertinence de l'alternative textuelle aux images liens
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test43:
     nom:           Pertinence de l'alternative textuelle 2
@@ -455,7 +419,6 @@ Test:
       zones cliquables ou aux boutons graphiques
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test44:
     nom:           Pertinence de l'alternative textuelle 3
@@ -463,7 +426,6 @@ Test:
       Pertinence de l'alternative textuelle aux éléments non textuels
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test45:
     nom:           Pertinence de l'alternative textuelle 4
@@ -471,7 +433,6 @@ Test:
       Pertinence de l'alternative textuelle vide aux éléments décoratifs
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test46:
     nom:           Longueur du contenu des alternatives textuelles
@@ -479,7 +440,6 @@ Test:
       Les alternatives textuelles doivent être le plus concises possible
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test47:
     nom:           Existance d'une description longue
@@ -487,7 +447,6 @@ Test:
       Existence d'une description longue pour les images le nécessitant
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test48:
     nom:           Pertinance de la description longue
@@ -495,7 +454,6 @@ Test:
       Pertinence de la description longue pour les images le nécessitant
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test49:
     nom:           Présence de l'attribut longdsc
@@ -503,7 +461,6 @@ Test:
       Présence de l'attribut longdesc pour établir une relation entre une image et sa description longue
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test410:
     nom:           Gestion des cas où l'alternative ne peut pas être communiquée
@@ -513,7 +470,6 @@ Test:
       l'alternative ne peut pas être communiquée
     automatisable: false
     Regroupement:  imageA
-    instruction:   >
       
   test411:
     nom:           Cohérence des alternative textuelles et des étiquettes de formulaire
@@ -521,7 +477,6 @@ Test:
        Cohérence dans l'identification des alternatives textuelles et des étiquettes de formulaires
     automatisable: false
     Regroupement:  imageAA
-    instruction:   >
       
   test51:
     nom:           Synthèse des médias non textuels
@@ -530,7 +485,6 @@ Test:
       sonores, visuel animé ou les médias synchronisé
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test52:
     nom:           Transcription textuelle des médias nons textuels
@@ -539,7 +493,6 @@ Test:
       visuels animés, sonores ou des médias synchronisés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test53:
     nom:           Pertinence de la transcription textuelle des médias non textuels
@@ -548,7 +501,6 @@ Test:
       visuels animés, sonores ou des médias synchronisés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test54:
     nom:           Description audio synchronisée ou transcription textuelle
@@ -558,7 +510,6 @@ Test:
       contenus visuels animés et les médias synchronisés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test55:
     nom:           Pertinence de la description audio synchronisée ou transcription textuelle
@@ -567,7 +518,6 @@ Test:
       contenus visuels animés ou des médias synchronisés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test56:
     nom:           Contrôle de l'activation de la description audio synchronisée
@@ -575,7 +525,6 @@ Test:
       Possibilité de contrôler l'activation de la description audio synchronisée
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test57:
     nom:           Description audio synchronisée étendue
@@ -584,7 +533,6 @@ Test:
       pour les contenus visuels animés ou les médias synchronisés
     automatisable: false
     Regroupement:  multimediaAAA
-    instruction:   >
       
   test58:
     nom:           Description audio synchronisée
@@ -593,7 +541,6 @@ Test:
       contenus visuels animés ou les médias synchronisés
     automatisable: false
     Regroupement:  multimediaAA
-    instruction:   >
       
   test59:
     nom:           Sous-titrage synchronisé non direct
@@ -602,7 +549,6 @@ Test:
       synchronisés qui ne sont pas diffusés en direct
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test510:
     nom:           Pertinance du sous-titrage synchronisé
@@ -610,7 +556,6 @@ Test:
       Pertinence du sous-titrage synchronisé des médias synchronisés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test511:
     nom:           Alternative aux éléments applet et object
@@ -618,7 +563,6 @@ Test:
       Présence d'une alternative aux éléments applet et object
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test512:
     nom:           Alternative aux éléments embed
@@ -626,7 +570,6 @@ Test:
       Présence d'une alternative aux éléments embed
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test513:
     nom:           Changements de luminosité et flashs rouges 1
@@ -635,7 +578,6 @@ Test:
       luminosité ou des effets de flash rouge à fréquence élevée
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test514:
     nom:           Changements de luminosité et flashs rouges 2
@@ -644,7 +586,6 @@ Test:
       de luminosité ou des effets de flash rouge à fréquence élevée
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test515:
     nom:           Changements de luminosité et flashs rouges 3
@@ -653,7 +594,6 @@ Test:
       de luminosité ou des effets de flash rouge à fréquence élevée
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test516:
     nom:           Compatibilité des éléments programmables avec les aides techniques
@@ -661,7 +601,6 @@ Test:
       
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test517:
     nom:           Changements de luminosité et flashs rouges 4
@@ -670,7 +609,6 @@ Test:
       ou des effets flash rouge à fréquence élevée
     automatisable: false
     Regroupement:  multimediaAAA
-    instruction:   >
       
   test518:
     nom:           Sous-titrage synchronisé direct
@@ -679,7 +617,6 @@ Test:
       synchronisés ou sonores diffusés en direct
     automatisable: false
     Regroupement:  multimediaAA
-    instruction:   >
       
   test519:
     nom:           Absence de l'élément blink
@@ -687,7 +624,6 @@ Test:
       
     automatisable: true
     Regroupement:  multimediaA
-    instruction:   >
       
   test520:
     nom:           Clignotements automatiques 1
@@ -696,7 +632,6 @@ Test:
       déclenchés automatiquement ne pouvant pas être arrêtés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test521:
     nom:           Clignotements automatiques 2
@@ -705,7 +640,6 @@ Test:
       déclenchés automatiquement ne pouvant pas être arrêtés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test522:
     nom:           Clignotements automatiques 3
@@ -714,7 +648,6 @@ Test:
       déclenchés automatiquement ne pouvant pas être arrêtés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test523:
     nom:           Absence d'élément marquee
@@ -722,7 +655,6 @@ Test:
       
     automatisable: true
     Regroupement:  multimediaA
-    instruction:   >
       
   test524:
     nom:           Mouvements automatiques 1
@@ -731,7 +663,6 @@ Test:
       automatiquement ne pouvant pas être arrêtés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test525:
     nom:           Mouvements automatiques 2
@@ -740,7 +671,6 @@ Test:
       déclenchés automatiquement ne pouvant pas être arrêtés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test526:
     nom:           Mouvements automatiques 3
@@ -749,7 +679,6 @@ Test:
       déclenchés automatiquement ne pouvant pas être arrêtés
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test527:
     nom:           Indépendance du périphérique d'accès
@@ -757,7 +686,6 @@ Test:
       Indépendance du périphérique d'accès aux éléments object, embed et applet
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test528:
     nom:           Alternative aux éléments object, applet et embed
@@ -766,7 +694,6 @@ Test:
       applet et embed dépendant d'un périphérique
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test529:
     nom:           Arrêt de la lecture de son
@@ -774,7 +701,6 @@ Test:
       Absence d'éléments déclenchant la lecture de son ne pouvant pas être arrêtée
     automatisable: false
     Regroupement:  multimediaA
-    instruction:   >
       
   test530:
     nom:           Absence d'élément bgsound
@@ -782,7 +708,6 @@ Test:
       
     automatisable: true
     Regroupement:  multimediaA
-    instruction:   >
       
   test531:
     nom:           Version en langue des signes française
@@ -791,7 +716,6 @@ Test:
       facilitant la compréhension des médias synchronisés
     automatisable: false
     Regroupement:  multimediaAAA
-    instruction:   >
       
   test532:
     nom:           Pertinance de la version en langue des signes française
@@ -799,7 +723,6 @@ Test:
       
     automatisable: false
     Regroupement:  multimediaAAA
-    instruction:   >
       
   test533:
     nom:           Niveau sonore de la piste de dialogue
@@ -808,7 +731,6 @@ Test:
       élevées que le fond sonore ou alors celui-ci peut être désactivé
     automatisable: false
     Regroupement:  multimediaAAA
-    instruction:   >
       
   test534:
     nom:           Couleur d'avant et d'arrière plan des blocs de texte
@@ -817,7 +739,6 @@ Test:
       d'avant plan et d'arrière plan des blocs de texte
     automatisable: false
     Regroupement:  multimediaAAA
-    instruction:   >
       
   test61:
     nom:           Accès aux liens textuels doublant les zones clicables côté serveur
@@ -825,7 +746,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test62:
     nom:           Avertissement préalable 1
@@ -835,7 +755,6 @@ Test:
       target sur les liens textuels et les formulaires
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test63:
     nom:           Avertissement préalable 2
@@ -845,7 +764,6 @@ Test:
       target sur les images liens et les zones cliquables
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test64:
     nom:           Avertissement préalable 3
@@ -854,7 +772,6 @@ Test:
       nouvelle fenêtre lors de l'utilisation de code javascript
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test65:
     nom:           Absence d'ouverture de nouvelles fenêtres sans action de l'utilisateur
@@ -862,7 +779,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test66:
     nom:           Absence de piège lors de la navigation clavier
@@ -870,7 +786,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test67:
     nom:           Rafraichissement automatique 1
@@ -878,7 +793,6 @@ Test:
       Absence d'élément meta provoquant un rafraîchissement automatique de la page
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test68:
     nom:           Rafraichissement automatique 2
@@ -887,7 +801,6 @@ Test:
       automatique de la page ne pouvant pas être arrêté
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test69:
     nom:           Rafraichissement automatique 3
@@ -896,7 +809,6 @@ Test:
       automatique de la page ne pouvant pas être arrêté
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test610:
     nom:           Redirection automatique 1
@@ -904,7 +816,6 @@ Test:
       Absence d'élément meta provoquant une redirection automatique de la page
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test611:
     nom:           Redirection automatique 2
@@ -913,7 +824,6 @@ Test:
       automatique de la page ne pouvant pas être arrêtée
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test612:
     nom:           Redirection automatique 3
@@ -922,7 +832,6 @@ Test:
       automatique de la page ne pouvant pas être arrêtée
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test613:
     nom:           Destination des liens et boutons 1
@@ -931,7 +840,6 @@ Test:
       ou l'action des liens et des boutons
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test614:
     nom:           Destination des liens et boutons 2
@@ -940,7 +848,6 @@ Test:
       des liens et des boutons (intitulé seul)
     automatisable: false
     Regroupement:  navigationAAA
-    instruction:   >
       
   test615:
     nom:           Cohérence de la destination ou de l'action des liens ayant un intitulé identique
@@ -948,7 +855,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test616:
     nom:           Absence de liens sans intitulé
@@ -956,7 +862,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test617:
     nom:           Présence d'une page contenant le plan du site
@@ -964,7 +869,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test618:
     nom:           Cohérence du plan du site
@@ -972,7 +876,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test619:
     nom:           Accès au plan depuis l'accueil
@@ -980,7 +883,6 @@ Test:
       Présence d'un accès à la page contenant le plan du site depuis la page d'accueil
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test620:
     nom:           Présence d'un fil d'ariane
@@ -988,7 +890,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationAAA
-    instruction:   >
       
   test621:
     nom:           Présence de menus ou de barres de navigation
@@ -996,7 +897,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test622:
     nom:           Cohérence de la position des menus et barres de navigation
@@ -1005,7 +905,6 @@ Test:
       navigation dans le code source de la structure HTML
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test623:
     nom:           Cohérence de la présentation des menus et barres de navigation
@@ -1013,7 +912,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test624:
     nom:           Navigation au clavier
@@ -1021,7 +919,6 @@ Test:
       Navigation au clavier dans un ordre logique par rapport au contenu
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test625:
     nom:           Avertissement préalable 4
@@ -1030,7 +927,6 @@ Test:
       fenêtre lors de l'utilisation d'éléments object ou embed
     automatisable: false
     Regroupement:  navigationAAA
-    instruction:   >
       
   test626:
     nom:           Format des fichiers téléchargeables
@@ -1038,7 +934,6 @@ Test:
       Présence des informations de format pour les documents en téléchargement.
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test627:
     nom:           Poid des fichiers téléchargeables
@@ -1046,7 +941,6 @@ Test:
       Présence des informations de poids pour les documents en téléchargement
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test628:
     nom:           Langue des fichiers téléchargeables
@@ -1054,7 +948,6 @@ Test:
       Présence des informations de langue pour les documents en téléchargement
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   tes629:
     nom:           Présence de regroupement pour les liens importants
@@ -1062,7 +955,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test630:
     nom:           Balisage des groupes de lien
@@ -1070,7 +962,6 @@ Test:
       Présence d'un balisage permettant d'identifier les groupes de liens importants
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test631:
     nom:           Liens d'évitement et d'accès rapide
@@ -1078,7 +969,6 @@ Test:
       Présence de liens d'évitement ou d'accès rapide aux groupes de liens importants
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test632:
     nom:           Cohérence des liens d'évitement et d'accès rapide
@@ -1086,7 +976,6 @@ Test:
       Cohérence des liens d'évitement ou d'accès rapide aux groupes de liens importants
     automatisable: false
     Regroupement:  navigationA
-    instruction:   >
       
   test633:
     nom:           Ordre des liens dévitement et d'accès rapide
@@ -1094,7 +983,6 @@ Test:
       Ordre des liens d'évitement ou d'accès rapide dans le code source des pages
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test634:
     nom:           Présence d'un moteur de recherche
@@ -1102,7 +990,6 @@ Test:
       
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test635:
     nom:           Navigation dans un groupe de page
@@ -1110,7 +997,6 @@ Test:
       Possibilité de naviguer facilement dans un groupe de pages
     automatisable: false
     Regroupement:  navigationAA
-    instruction:   >
       
   test636:
     nom:           Position courante
@@ -1118,7 +1004,6 @@ Test:
       Présence d'une indication de la position courante dans la navigation
     automatisable: false
     Regroupement:  navigationAAA
-    instruction:   >
       
   test71:
     nom:           Génération d'information par CSS
@@ -1126,7 +1011,6 @@ Test:
       Absence de génération de contenus porteur d'information via les styles CSS
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test72:
     nom:           Modification de l'information par CSS
@@ -1135,7 +1019,6 @@ Test:
       d'un bloc d'informations lorsque les styles sont désactivés
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test73:
     nom:           Lisibilité des information avec style et images désactivés
@@ -1144,7 +1027,6 @@ Test:
       les styles CSS lorsque les styles et/ou les images sont désactivés
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test74:
     nom:           Absence d'espaces utilisés pour séparer les lettres d'un mot
@@ -1152,7 +1034,6 @@ Test:
       
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test75:
     nom:           Couleur de texte et couleurs de fond
@@ -1161,7 +1042,6 @@ Test:
       définition d'une couleur de fond et inversement
     automatisable: false
     Regroupement:  presentationAA
-    instruction:   >
       
   test76:
     nom:           Remplacement des éléments non textuels par CSS
@@ -1170,7 +1050,6 @@ Test:
       une mise en forme effectuée grâce aux styles CSS
     automatisable: false
     Regroupement:  presentationAA
-    instruction:   >
       
   test77:
     nom:           Remplacement des éléments non textuels par CSS (sans exceptions)
@@ -1179,7 +1058,6 @@ Test:
       mise en forme effectuée grâce aux styles CSS (sans exceptions)
     automatisable: false
     Regroupement:  presentationAAA
-    instruction:   >
       
   test78:
     nom:           Absence d'attributs ou d'éléments HTML de présentation
@@ -1187,7 +1065,6 @@ Test:
       
     automatisable: true
     Regroupement:  presentationA
-    instruction:   >
       
   test79:
     nom:           Absence d'éléments HTML utilisés à des fins de présentation
@@ -1195,7 +1072,6 @@ Test:
       
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test710:
     nom:           Maintien de la distinction visuelle des liens
@@ -1203,7 +1079,6 @@ Test:
       
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test711:
     nom:           Absence de suppression de l'effet visuel au focus des éléments
@@ -1211,7 +1086,6 @@ Test:
       
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test712:
     nom:           Absence de justification du texte
@@ -1219,7 +1093,6 @@ Test:
       
     automatisable: true
     Regroupement:  presentationAAA
-    instruction:   >
       
   test713:
     nom:           Lisibilité du document en cas d'agrandissement de la taille du texte
@@ -1227,7 +1100,6 @@ Test:
       
     automatisable: false
     Regroupement:  presentationAA
-    instruction:   >
       
   test714:
     nom:           Unités de taille de caractère des éléments de formulaire
@@ -1236,7 +1108,6 @@ Test:
       styles pour la taille de caractère des éléments de formulaire
     automatisable: false
     Regroupement:  presentationAA
-    instruction:   >
       
   test715:
     nom:           Affichage plein écran
@@ -1245,7 +1116,6 @@ Test:
       horizontale en affichage plein écran
     automatisable: false
     Regroupement:  presentationAAA
-    instruction:   >
       
   test716:
     nom:           Largeur des blocs de textes
@@ -1256,7 +1126,6 @@ Test:
       redimensionne la fenêtre du navigateur
     automatisable: false
     Regroupement:  presentationAAA
-    instruction:   >
       
   test717:
     nom:           Valeur de l'espace entre les lignes et entre les paragraphes
@@ -1267,7 +1136,6 @@ Test:
       doit permettre d'agrandir ces espacements.
     automatisable: false
     Regroupement:  presentationAAA
-    instruction:   >
       
   test718:
     nom:           Restitution des éléments masqués dans les lecteurs d'écran
@@ -1275,7 +1143,6 @@ Test:
       Restitution correcte dans les lecteurs d'écran des éléments masqués
     automatisable: false
     Regroupement:  presentationA
-    instruction:   >
       
   test81:
     nom:           Mise à jour des alternatives aux éléments non textuels dans la page
@@ -1284,7 +1151,6 @@ Test:
       alternative doit également être mise à jour
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test82:
     nom:           Universalité du gestionnaire d'évènement onclick
@@ -1296,7 +1162,6 @@ Test:
       résultat sans l'utilisation de gestionnaire d'évènements
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test83:
     nom:           Universalité des gestionnaires d'évènements
@@ -1309,7 +1174,6 @@ Test:
       l'utilisation de gestionnaire d'évènement  
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test84:
     nom:           Contrôle des alertes et des mises à jour
@@ -1318,7 +1182,6 @@ Test:
       ou toute mise à jour automatique d'un contenu de la page
     automatisable: false
     Regroupement:  scriptAAA
-    instruction:   >
       
   test85:
     nom:           Information de l'utilisateur lors des changmenet de contexte
@@ -1327,7 +1190,6 @@ Test:
       l'utilisateur sans validation explicite ou information préalable
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test86:
     nom:           Ordre d'accès au clavier aux contenus mis à jour dynamiquement en javascript
@@ -1337,7 +1199,6 @@ Test:
       situer juste après l'élément ayant permis de déclencher sa génération
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test87:
     nom:           Utilisation correcte du rôle des éléments
@@ -1346,7 +1207,6 @@ Test:
       doit correspondre à son rôle dans la page
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test88:
     nom:           Alternative au code javascript 1
@@ -1356,7 +1216,6 @@ Test:
       à un périphérique
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test89:
     nom:           Absence de suppression du focus clavier à l'aide de code javascript
@@ -1364,7 +1223,6 @@ Test:
       
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test810:
     nom:           Absence de limite de temps pour compléter une tâche
@@ -1372,7 +1230,6 @@ Test:
       
     automatisable: false
     Regroupement:  scriptAAA
-    instruction:   >
       
   test811:
     nom:           Absence de perte d'informations lors de l'expiration des sessions authentifiées
@@ -1380,7 +1237,6 @@ Test:
       
     automatisable: false
     Regroupement:  scriptAAA
-    instruction:   >
       
   test812:
     nom:           Alternative au code javascript 2
@@ -1388,7 +1244,6 @@ Test:
       Présence d'une alternative au code javascript
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test813:
     nom:           Accessibilité des contenus dynamiques en javascript
@@ -1398,7 +1253,6 @@ Test:
       accessible après l'exécution du code
     automatisable: false
     Regroupement:  scriptA
-    instruction:   >
       
   test91:
     nom:           Présence de la déclaration d'utilisation d'une DTD
@@ -1406,7 +1260,6 @@ Test:
       L'instruction !DOCTYPE doit être présente dans la page
     automatisable: true
     Regroupement:  standardA
-    instruction:   >
       
   test92:
     nom:           Conformité de la position de la déclaration d'utilisation d'une DTD
@@ -1414,7 +1267,6 @@ Test:
       L'instruction !DOCTYPE doit être située avant la balise html
     automatisable: true
     Regroupement:  standardA
-    instruction:   >
       
   test93:
     nom:           Conformité syntaxique de la déclaration d'utilisation d'une DTD
@@ -1423,7 +1275,6 @@ Test:
       être une syntaxe validée par le W3C
     automatisable: true
     Regroupement:  standardA
-    instruction:   >
       
   test94:
     nom:           Validité du code HTML / XHTML au regard de la DTD déclarée
@@ -1433,7 +1284,6 @@ Test:
       l'arbre du document ou l'écriture des balises et des attributs
     automatisable: false
     Regroupement:  standardA
-    instruction:   >
       
   test95:
     nom:           Conformité à la version des spécifications W3C utilisée
@@ -1442,7 +1292,6 @@ Test:
       la version des spécifications W3C utilisée
     automatisable: false 
     Regroupement:  standardA
-    instruction:   >
       
   test96:
     nom:           Présence d'un titre dans la page
@@ -1450,7 +1299,6 @@ Test:
       
     automatisable: true
     Regroupement:  standardA
-    instruction:   >
       
   test97:
     nom:           Pertinence du titre de la page
@@ -1458,7 +1306,6 @@ Test:
       
     automatisable: false
     Regroupement:  standardA
-    instruction:   >
       
   test98:
     nom:           Présence d'une langue de traitement
@@ -1468,7 +1315,6 @@ Test:
       code identifiant correctement la lange de traitement de la page
     automatisable: false
     Regroupement:  standardA
-    instruction:   >
       
   test101:
     nom:           Présence d'au moins un titre de premier niveau (h1)
@@ -1476,7 +1322,6 @@ Test:
       
     automatisable: true
     Regroupement:  structureA
-    instruction:   >
       
   test102:
     nom:           Pertinence du contenu des titres de hiérarchie
@@ -1484,7 +1329,6 @@ Test:
       
     automatisable: false
     Regroupement:  structureA
-    instruction:   >
       
   test103:
     nom:           Absence d'interruption dans la hiérarchie des titres
@@ -1492,7 +1336,6 @@ Test:
       
     automatisable: true
     Regroupement:  structureA
-    instruction:   >
       
   test104:
     nom:           Présence d'une hiérarchie de titres complète
@@ -1500,7 +1343,6 @@ Test:
       
     automatisable: false
     Regroupement:  structureA
-    instruction:   >
       
   test105:
     nom:           Absence de simulation visuelle de liste non ordonnée
@@ -1509,7 +1351,6 @@ Test:
       différentes parties dans des éléments li
     automatisable: false
     Regroupement:  structureA
-    instruction:   >
       
   test106:
     nom:           Utilisation systématique de listes ordonnées pour les énumérations
@@ -1517,7 +1358,6 @@ Test:
       
     automatisable: false
     Regroupement:  structureA
-    instruction:   >
       
   test107:
     nom:           Balisage correct des listes de définitions
@@ -1526,7 +1366,6 @@ Test:
       doit être précédé par un élément dt
     automatisable: true
     Regroupement:  structureA
-    instruction:   >
       
   test108:
     nom:           Balisage correct des citations
@@ -1535,7 +1374,6 @@ Test:
       block-quote si c'est une citation longue
     automatisable: false
     Regroupement:  structureA
-    instruction:   >
       
   test109:
     nom:           Balisage correct des abréviations présentes dans la page
@@ -1545,7 +1383,6 @@ Test:
       un élément abbr doté d'un attribut titre non vide
     automatisable: false
     Regroupement:  structureAAA
-    instruction:   >
       
   test1010:
     nom:           Balisage correct des acronymes présents dans la page
@@ -1555,7 +1392,6 @@ Test:
       un élément acronym doté d'un attribut titre non vide
     automatisable: false
     Regroupement:  structureAAA
-    instruction:   >
       
   test1011:
     nom:           Pertinence de la version non abrégée de l'abréviation
@@ -1563,7 +1399,6 @@ Test:
       
     automatisable: false
     Regroupement:  structureAAA
-    instruction:   >
       
   test1012:
     nom:           Pertinence de la version complète de l'acronyme
@@ -1571,7 +1406,6 @@ Test:
       
     automatisable: false
     Regroupement:  structureAAA
-    instruction:   >
       
   test1013:
     nom:           Accessibilité des documents bureautiques en téléchargement
@@ -1581,7 +1415,6 @@ Test:
       accessible
     automatisable: false
     Regroupement:  structureA
-    instruction:   >
       
   test111:
     nom:           En-tête de lignes et de colonnes 1
@@ -1590,7 +1423,6 @@ Test:
       de lignes et de colonnes dans les tableaux de données
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test112:
     nom:           En-tête de lignes et de colonnes 2
@@ -1600,7 +1432,6 @@ Test:
       et headers ou scope
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test113:
     nom:           En-tête de lignes et de colonnes 3
@@ -1610,7 +1441,6 @@ Test:
       attributs id et headers
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test114:
     nom:           Absence des éléments propres aux tableaux de données dans les tableaux de mise en page
@@ -1618,7 +1448,6 @@ Test:
       
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test115:
     nom:           Absence de tableaux de données ou de colonnes formatés à l'aide de texte
@@ -1628,7 +1457,6 @@ Test:
       colonnes ou un tableau de données
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test116:
     nom:           Linéarisation correcte des tableaux de mise en page
@@ -1637,7 +1465,6 @@ Test:
       doit conserver les associations logiques présentes dans son rendu affiché
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test117:
     nom:           Présence d'un titre pour les tableaux de données
@@ -1645,7 +1472,6 @@ Test:
       
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test118:
     nom:           Présence d'un résumé pour les tableaux de données
@@ -1653,7 +1479,6 @@ Test:
       
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test119:
     nom:           Pertinence du titre du tableau de données
@@ -1661,7 +1486,6 @@ Test:
       
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test1110:
     nom:           Pertinence du résumé du tableau de données
@@ -1669,7 +1493,6 @@ Test:
       
     automatisable: false
     Regroupement:  tableauA
-    instruction:   >
       
   test121:
     nom:           Présence de l'indication des changements de langue dans le texte
@@ -1677,7 +1500,6 @@ Test:
       
     automatisable: false
     Regroupement:  texteAA
-    instruction:   >
       
   test122:
     nom:           Présence de l'indication des changements de langue dans les valeurs d'attributs HTML
@@ -1685,7 +1507,6 @@ Test:
       
     automatisable: false
     Regroupement:  texteAA
-    instruction:   >
       
   test123:
     nom:           Equivalence de l'information mise à disposition dans la version alternative
@@ -1696,7 +1517,6 @@ Test:
       apportées de façon visuelle ou sonore)  
     automatisable: false
     Regroupement:  texteA
-    instruction:   >
       
   test124:
     nom:           Compréhension des contenus
@@ -1705,7 +1525,6 @@ Test:
       aux informations nécessaires à la compréhension des contenus
     automatisable: false
     Regroupement:  texteAAA
-    instruction:   >
       
   test125:
     nom:           Absence de syntaxes cryptiques par rapport au contenu du site
@@ -1714,7 +1533,6 @@ Test:
       doit disposer d'un alternative textuelle de compréhension aisée
     automatisable: false
     Regroupement:  texteA
-    instruction:   >
       
   test126:
     nom:           Pronciation phonétique
@@ -1723,7 +1541,6 @@ Test:
       à disposition de leur prononciation phonétique
     automatisable: false
     Regroupement:  texteA
-    instruction:   >
       
   test127:
     nom:           Transmission de l'information des élément non textuels
@@ -1732,7 +1549,6 @@ Test:
       utilisation de la forme ou la position dans les éléments non textuels
     automatisable: false
     Regroupement:  texteA
-    instruction:   >
       
   test128:
     nom:           Identification des éléments non textuels
@@ -1741,7 +1557,6 @@ Test:
       contenu auquel il est fait référence dans un élément non textuel
     automatisable: false
     Regroupement:  texteA
-    instruction:   >
       
   test129:
     nom:           Identification d'un contenu référencé textuellement
@@ -1750,7 +1565,6 @@ Test:
       identifier un contenu auquel il est fait référence textuellement
     automatisable: false
     Regroupement:  texteA
-    instruction:   >
       
   test1210:
     nom:           Utilisation d'un style de rédaction simple et compréhensible de tous
@@ -1758,5 +1572,4 @@ Test:
       
     automatisable: false
     Regroupement:  texteAAA
-    instruction:   >
       
