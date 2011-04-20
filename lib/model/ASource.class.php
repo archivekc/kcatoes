@@ -9,16 +9,16 @@
 use Symfony\Component\DomCrawler\Crawler;
 abstract class ASource
 {
-  protected $echecs = array();
+  protected $complements = array();
 
   /**
-   * Renvoi la liste des objets Echec correspondants aux élément de la page
+   * Renvoi la liste des objets Complement correspondants aux élément de la page
    * ayant échoué à passer le test
    *
    */
-  public function getEchecs()
+  public function getComplements()
   {
-    return $this->echecs;
+    return $this->complements;
   }
 
   /**

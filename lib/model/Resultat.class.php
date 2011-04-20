@@ -18,7 +18,7 @@ class Resultat
   private $resultatCode;
   private $explicationErreur = 'n.a.';
   private $instruction       = 'n.a.';
-  private $echecs            = array();
+  private $complements       = array();
 
   /**
    * Contructuit un résultat avec un code de résultat
@@ -55,14 +55,14 @@ class Resultat
   }
 
   /**
-   * $echec contient la liste des échecs correspondant aux éléments de la page
-   * ayant échoué à passer le test
+   * $echec contient la liste des complements correspondant aux éléments de la
+   * page ayant échoué à passer le test
    *
-   * @param array $_echecs Une liste d'objets Echec
+   * @param array $_complements Une liste d'objets Echec
    */
-  public function setEchecs($_echecs)
+  public function setComplements($_complements)
   {
-    $this->echecs = $_echecs;
+    $this->complements = $_complements;
   }
 
   /**

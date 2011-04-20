@@ -45,26 +45,6 @@ class Test extends BaseTest
   }
 
   /**
-   * Vérifie si le test est automatisable
-   *
-   * @return true si le test est automatisable, false sinon
-   * @tested
-   */
-  public function isAutomatisable()
-  {
-    if ($this->automatisable)
-    {
-      return true;
-    }
-    else
-    {
-      $this->resultat = new Resultat(Resultat::MANUEL, 'Ce test doit être effectué manuellement');
-      $this->resultat->setInstruction($this->instruction);
-      return false;
-    }
-  }
-
-  /**
    * Vérifie si le test est exécutable
    *
    * @return true si le test est exécutable, false sinon
@@ -125,14 +105,21 @@ class Test extends BaseTest
       return;
     }
 
-    if ($res)
+    if ($res === Resultat::REUSSITE)
     {
-      $this->resultat = new Resultat(Resultat::REUSSITE);
+      $this->resultat = new Resultat($res);
+    }
+    elseif ($res === Resultat::ECHEC || $res === Resultat::MANUEL)
+    {
+      $this->resultat = new Resultat($res);
+      $this->resultat->setComplements($implementation->getComplements());
     }
     else
     {
-      $this->resultat = new Resultat(Resultat::ECHEC);
-      $this->resultat->setEchecs($implementation->getEchecs());
+      $this->resultat = new Resultat(Resultat::ERREUR);
+      $this->resultat->setExplicationErreur('L\'implémentation a renvoyé un code'.
+                                            ' résultat inconnu');
+      return;
     }
   }
 

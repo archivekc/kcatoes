@@ -36,12 +36,9 @@ class Tester
     foreach($this->tests as $test)
     {
       $this->addLogInfo($test->getNom().' - Lancement de l\'exécution');
-      if ($test->isAutomatisable())
+      if ($test->isExecutable())
       {
-        if ($test->isExecutable())
-        {
-          $test->execute($this->page);
-        }
+        $test->execute($this->page);
       }
       if ($test->getResultat()->resultatCode != Resultat::ERREUR
           && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
@@ -121,18 +118,18 @@ class Tester
       $line['xpath']       = 'n.a.';
       $line['echecExp']    = 'n.a.';
 
-      $echecs = $test->getResultat()->echecs;
-      if (empty($echecs))
+      $complements = $test->getResultat()->complements;
+      if (empty($complements))
       {
         fputcsv($csv, $line, ';', '"');
       }
       else
       {
-        foreach ($echecs as $echec)
+        foreach ($complements as $complement)
         {
-          $line['source']   = preg_replace('/(\r\n|\n|\r)/', '', $echec->code);
-          $line['xpath']    = preg_replace('/(\r\n|\n|\r)/', '', $echec->xPath);
-          $line['echecExp'] = preg_replace('/(\r\n|\n|\r)/', '', $echec->explication);
+          $line['source']   = preg_replace('/(\r\n|\n|\r)/', '', $complement->code);
+          $line['xpath']    = preg_replace('/(\r\n|\n|\r)/', '', $complement->xPath);
+          $line['echecExp'] = preg_replace('/(\r\n|\n|\r)/', '', $complement->explication);
 
           fputcsv($csv, $line, ';', '"');
         }
