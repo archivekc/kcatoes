@@ -2,12 +2,12 @@
 
 /**
  * Regroupe les informations relatives à un élément de la page ayant échoué
- * à passer un test
+ * à passer un test ou nécessitant une vérification manuelle
  *
  * @package Kcatoes
  * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
-class Echec
+class Complement
 {
   private $code;
   private $xPath;
@@ -18,7 +18,7 @@ class Echec
    *
    * @param String $_code        Code source de l'élément
    * @param String $_xPath       Chemin XPath de l'élément dans la page
-   * @param String $_explication Explication de la raison de l'échec
+   * @param String $_explication Message d'explication
    */
   public function __construct($_code, $_xPath, $_explication)
   {
@@ -31,6 +31,7 @@ class Echec
    * Fonction d'accès aux paramètres de la classe
    *
    * @param  String $var Le nom de la variable à récupérer
+   *
    * @return La valeur de la variable
    */
   public function __get($var)
