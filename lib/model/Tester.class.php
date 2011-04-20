@@ -43,7 +43,8 @@ class Tester
           $test->execute($this->page);
         }
       }
-      if ($test->getResultat()->resultatCode != Resultat::ERREUR && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
+      if ($test->getResultat()->resultatCode != Resultat::ERREUR
+          && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
       {
         $this->addLogInfo($test->getnom().' - '.$test->getResultat()->getCode(true));
       }

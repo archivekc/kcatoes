@@ -4,27 +4,28 @@
  * Stocke le résultat d'un test et les informations qui y sont associées
  *
  * @package Kcatoes
- * @author Adrien Couet <adrien.couet@keyconsulting.fr>
+ * @author  Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 class Resultat
 {
   const ECHEC    = 0; //La page n'a pas passé le test
   const REUSSITE = 1; //La page a passé le test
   const MANUEL   = 2; //Le test doit être effectué manuellement
-  const NON_EXEC = 3; //Problème lié à la classe du test (classe non trouvée ou mal implémentée)
+  const NON_EXEC = 3; //Problème lié à la classe du test
+                      //(classe non trouvée ou mal implémentée)
   const ERREUR   = 4; //Erreur lors de l'exécution du test
 
   private $resultatCode;
   private $explicationErreur = 'n.a.';
-  private $instruction = 'n.a.';
-  private $echecs = array();
+  private $instruction       = 'n.a.';
+  private $echecs            = array();
 
   /**
    * Contructuit un résultat avec un code de résultat
    * et l'explication associée
    *
-   * @param int    $_resultatCode Code de résultat (doit correspondre à l'une des constantes de la classe)
-   * @param String $_explication  Explication du résultat
+   * @param int    $_resultatCode Code de résultat (doit correspondre à
+   *                              l'une des constantes de la classe)
    */
   public function __construct($_resultatCode)
   {
@@ -57,7 +58,7 @@ class Resultat
    * $echec contient la liste des échecs correspondant aux éléments de la page
    * ayant échoué à passer le test
    *
-   * @param  $_echecs Un liste d'objets Echec
+   * @param array $_echecs Une liste d'objets Echec
    */
   public function setEchecs($_echecs)
   {
@@ -67,7 +68,8 @@ class Resultat
   /**
    * Fonction d'accès aux paramètres de la classe
    *
-   * @param  String $var Le nom de la variable à récupérer
+   * @param String $var Le nom de la variable à récupérer
+   *
    * @return La valeur de la variable
    */
   public function __get($var)
@@ -78,6 +80,10 @@ class Resultat
   /**
    * Retourne le nom du résultat associé à $resultatCode
    *
+   * @param boolean $withExplication Indique si le nom du résultat doit être
+   *                                 accompagné d'une description
+   *
+   * @return La version littérale du résultat
    */
   public function getCode($withExplication = false)
   {
@@ -85,24 +91,26 @@ class Resultat
 
     switch ($this->resultatCode)
     {
-      case self::ECHEC:
-        $code = 'Echec';
+    case self::ECHEC:
+      $code = 'Echec';
         break;
-      case self::REUSSITE:
-        $code = 'Réussite';
+    case self::REUSSITE:
+      $code = 'Réussite';
         break;
-      case self::MANUEL:
-        $code = 'Exécution manuelle';
+    case self::MANUEL:
+      $code = 'Exécution manuelle';
         break;
-      case self::NON_EXEC:
-        $code = $withExplication ? 'Non exécutable: '.$this->explicationErreur : 'Non exécutable';
+    case self::NON_EXEC:
+      $code = $withExplication ?
+       'Non exécutable: '.$this->explicationErreur : 'Non exécutable';
         break;
-      case self::ERREUR:
-        $code = $withExplication ? 'Erreur d\'exécution: '.$this->explicationErreur : 'Erreur d\'exécution';
+    case self::ERREUR:
+      $code = $withExplication ?
+       'Erreur d\'exécution: '.$this->explicationErreur : 'Erreur d\'exécution';
         break;
-      default:
-         $code = '';
-         break;
+    default:
+      $code = '';
+        break;
     }
 
     return $code;

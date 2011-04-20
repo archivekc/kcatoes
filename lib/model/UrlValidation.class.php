@@ -7,7 +7,7 @@ use Zend\Db\Select;
  * Librarie de validation d'URL
  *
  * @package Kcatoes
- * @author Adrien Couet <adrien.couet@keyconsulting.fr>
+ * @author  Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 class UrlValidation
 {
@@ -16,8 +16,8 @@ class UrlValidation
    * Vérifie la validité d'une URL à partir des tests présents dans la classe
    *
    * @param String $url URL à tester
-   * @throws KcatoesUrlException
    *
+   * @throws KcatoesUrlException
    * @tested
    */
   public static function isValide($url)
@@ -32,14 +32,18 @@ class UrlValidation
    * Vérifie si la syntaxe d'une URL est correcte
    *
    * @param String $url URL à tester
+   *
    * @throws KcatoesUrlException
    * @tested
    */
   public static function isSyntaxeValide($url)
   {
-    if (!preg_match('#^(http://)?([a-zA-Z0-9-]+.)?([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}(:[0-9]+)?(/[a-zA-Z0-9-]*)?(.[a-zA-Z0-9]{1,4})?#', $url))
+    if (!preg_match('#^(http://)?([a-zA-Z0-9-]+.)?([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+'
+                   .'\.[a-zA-Z]{2,4}(:[0-9]+)?(/[a-zA-Z0-9-]*)?(.[a-zA-Z0-9]{1,4})?#',
+                   $url))
     {
-      throw new KcatoesUrlException('L\'URL indiquée ne respecte pas la convention d\'écriture.');
+      throw new KcatoesUrlException('L\'URL indiquée ne respecte '.
+                                    'pas la convention d\'écriture.');
     }
   }
 
@@ -49,6 +53,7 @@ class UrlValidation
    * données de la page indiquée par l'URL
    *
    * @param String $url URL à tester
+   *
    * @throws KcatoesUrlException
    * @return Un tableau contenant les métas données de la page
    *
@@ -74,7 +79,8 @@ class UrlValidation
    * Vérifie que le serveur renvoit bien un code HTTP 200 lors de l'accès
    * à la page désignée par une URL
    *
-   * @param $meta Meta données de l'URL à tester
+   * @param array $meta Meta données de l'URL à tester
+   *
    * @throws KcatoesUrlException
    *
    * @tested
@@ -85,14 +91,16 @@ class UrlValidation
     $return = explode(' ', $meta['wrapper_data'][0]);
     if ($return[1] != 200)
     {
-      throw new KcatoesUrlException('Le serveur a renvoyé un code HTTP non valide: '.$return[1]);
+      throw new KcatoesUrlException('Le serveur a renvoyé un '.
+                                    'code HTTP non valide: '.$return[1]);
     }
   }
 
   /**
    * Vérifie que la page pointée par une URL est bien au format
    *
-   * @param $meta Meta données de l'URL à tester
+   * @param array $meta Meta données de l'URL à tester
+   *
    * @throws KcatoesUrlException
    *
    * @tested
@@ -100,14 +108,15 @@ class UrlValidation
   public static function isFormatValide($meta)
   {
     $found = false;
-    $i = 0;
-    while (!$found && $i < count($meta['wrapper_data']))
+    $index = 0;
+    while (!$found && $index < count($meta['wrapper_data']))
     {
-      $return = explode(' ', $meta['wrapper_data'][$i]);
-      $found = $return[0] == 'Content-Type:';
-      $i++;
+      $return = explode(' ', $meta['wrapper_data'][$index]);
+      $found = ($return[0] === 'Content-Type:');
+      $index++;
     }
-    if (!preg_match('#text/html#', $return[1]) && !preg_match('#text/xml#', $return[1]))
+    if (!preg_match('#text/html#', $return[1])
+        && !preg_match('#text/xml#', $return[1]))
     {
       throw new KcatoesUrlException('La page récuperée n\'est pas au format XHTML.');
     }
