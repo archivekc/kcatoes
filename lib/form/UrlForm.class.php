@@ -25,7 +25,7 @@ class UrlForm extends BaseForm
     ));
 
     $this->widgetSchema->setNameFormat('userUrl[%s]');
-    $this->widgetSchema->setLabel('url', 'Entrez l\'URL à valider :');
+    $this->widgetSchema->setLabel('url', 'Entrez l\'URL à valider');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 

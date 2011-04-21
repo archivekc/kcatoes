@@ -12,7 +12,7 @@ function toutCocher()
 }
 </script>
 
-<h1>Configuration des tests - Etape 4/5</h1>
+<h2><span>Configuration des tests - Etape <em>4</em>/5</span></h2>
 <form name="tests" method="post" action="<?php echo url_for('test/test') ?>">
   <?php echo $form ?>
   <p>

@@ -1,0 +1,13 @@
+/* point d'entrée des règles css */
+
+/* remise à zéro des styles */
+@import './reset.css';
+
+/* positionnement */
+@import './pos.css';
+
+/* couleurs */
+@import './color.css';
+
+/* typographie */
+@import './typo.css';

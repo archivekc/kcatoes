@@ -1,0 +1,848 @@
+Referentiel:
+  Referentiel_9:
+    nom: 'Référentiel Général d''Accessibilité pour les Administrations - Niveau A'
+    url: 'http://references.modernisation.gouv.fr/rgaa-accessibilite'
+    Thematique: Thematique_5
+  Referentiel_10:
+    nom: 'Référentiel Général d''Accessibilité pour les Administrations - Niveau AA'
+    url: 'http://references.modernisation.gouv.fr/rgaa-accessibilite'
+    Thematique: Thematique_5
+  Referentiel_11:
+    nom: 'Référentiel Général d''Accessibilité pour les Administrations - Niveau AAA'
+    url: 'http://references.modernisation.gouv.fr/rgaa-accessibilite'
+    Thematique: Thematique_5
+Regroupement:
+  Regroupement_27:
+    nom: 'Cadres - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_28:
+    nom: 'Couleurs - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_29:
+    nom: 'Couleurs - Niveau AA'
+    Referentiel: Referentiel_10
+  Regroupement_30:
+    nom: 'Couleurs - Niveau AAA'
+    Referentiel: Referentiel_11
+  Regroupement_31:
+    nom: 'Formulaires - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_32:
+    nom: 'Formulaires - Niveau AA'
+    Referentiel: Referentiel_10
+  Regroupement_33:
+    nom: 'Formulaires - Niveau AAA'
+    Referentiel: Referentiel_11
+  Regroupement_34:
+    nom: 'Images - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_35:
+    nom: 'Images - Niveau AA'
+    Referentiel: Referentiel_10
+  Regroupement_36:
+    nom: 'Multimédias - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_37:
+    nom: 'Multimédias - Niveau AA'
+    Referentiel: Referentiel_10
+  Regroupement_38:
+    nom: 'Multimédias - Niveau AAA'
+    Referentiel: Referentiel_11
+  Regroupement_39:
+    nom: 'Navigation - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_40:
+    nom: 'Navigation - Niveau AA'
+    Referentiel: Referentiel_10
+  Regroupement_41:
+    nom: 'Navigation - Niveau AAA'
+    Referentiel: Referentiel_11
+  Regroupement_42:
+    nom: 'Présentation - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_43:
+    nom: 'Présentation - Niveau AA'
+    Referentiel: Referentiel_10
+  Regroupement_44:
+    nom: 'Présentation - Niveau AAA'
+    Referentiel: Referentiel_11
+  Regroupement_45:
+    nom: 'Scripts - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_46:
+    nom: 'Scripts - Niveau AAA'
+    Referentiel: Referentiel_11
+  Regroupement_47:
+    nom: 'Standards - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_48:
+    nom: 'Structures - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_49:
+    nom: 'Structures - Niveau AAA'
+    Referentiel: Referentiel_11
+  Regroupement_50:
+    nom: 'Tableaux - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_51:
+    nom: 'Texte - Niveau A'
+    Referentiel: Referentiel_9
+  Regroupement_52:
+    nom: 'Texte - Niveau AA'
+    Referentiel: Referentiel_10
+  Regroupement_53:
+    nom: 'Texte - Niveau AAA'
+    Referentiel: Referentiel_11
+Test:
+  Test_1:
+    nom: 'Absence de cadres non titrés'
+    description: "Tous les cadres de la page doivent avoir un titre\n"
+    Regroupement: Regroupement_27
+  Test_2:
+    nom: 'Pertinence des titres donnés aux cadres'
+    description: "Les titres donnés aux cadres doivent correspondre à leur contenu.\r\n"
+    Regroupement: Regroupement_27
+  Test_3:
+    nom: 'Alternative à la couleur 1'
+    description: "Présence d'un autre moyen que la couleur pour identifier  un contenu auquel il est fait référence textuellement\n"
+    Regroupement: Regroupement_28
+  Test_4:
+    nom: 'Alternative à la couleur 2'
+    description: "Présence d'un autre moyen que la couleur pour identifier  un contenu auquel il est fait référence dans un élément non textuel\n"
+    Regroupement: Regroupement_28
+  Test_5:
+    nom: 'Alternative à la couleur 3'
+    description: "Présence d'un moyen de transmission de l'information autre  qu'une mise en couleur réalisée par des styles CSS\n"
+    Regroupement: Regroupement_28
+  Test_6:
+    nom: 'Alternative à la couleur 4'
+    description: "Présence d'un moyen de transmission de l'information autre  qu'une utilisation de la couleur dans les éléments non textuels\n"
+    Regroupement: Regroupement_28
+  Test_7:
+    nom: 'Valeur de contraste 1'
+    description: "Valeur du rapport de contraste du texte contenu  dans des éléments non textuels (minimum)\n"
+    Regroupement: Regroupement_29
+  Test_8:
+    nom: 'Valeur de contraste 2'
+    description: "Valeur du rapport de contraste du texte contenu dans des éléments  non textuels utilisés comme fond d'éléments HTML (minimum)\n"
+    Regroupement: Regroupement_29
+  Test_9:
+    nom: 'Valeur de contraste 3'
+    description: "Valeur du rapport de contraste du texte  contenu dans un segment de texte (minimum)\n"
+    Regroupement: Regroupement_29
+  Test_10:
+    nom: 'Valeur de contraste 4'
+    description: "Valeur du rapport de contraste du texte\n"
+    Regroupement: Regroupement_29
+  Test_11:
+    nom: 'Valeur de contraste 5'
+    description: "Valeur du rapport de contraste du texte agrandi contenu  dans des éléments non textuels utilisés comme  fond d'éléments HTML (minimum)\n"
+    Regroupement: Regroupement_29
+  Test_12:
+    nom: 'Valeur de contraste 6'
+    description: "Valeur du rapport de contraste du texte agrandi  contenu dans un segment de texte (minimum)\n"
+    Regroupement: Regroupement_29
+  Test_13:
+    nom: 'Valeur de contraste 7'
+    description: "Valeur du rapport de contraste du texte contenu  dans des éléments non textuels (améliorée)\n"
+    Regroupement: Regroupement_30
+  Test_14:
+    nom: 'Valeur de contraste 8'
+    description: "Valeur du rapport de contraste du texte contenu dans des éléments  non textuels utilisés comme fond d'éléments HTML (améliorée)\n"
+    Regroupement: Regroupement_30
+  Test_15:
+    nom: 'Valeur de contraste 9'
+    description: "Valeur du rapport de contraste du texte  contenu dans un segment de texte (améliorée)\n"
+    Regroupement: Regroupement_30
+  Test_16:
+    nom: 'Valeur de contraste 10'
+    description: "Valeur du rapport de contraste du texte agrandi  contenu dans des éléments non textuels (améliorée)\n"
+    Regroupement: Regroupement_30
+  Test_17:
+    nom: 'Valeur de contraste 11'
+    description: "Valeur du rapport de contraste du texte  agrandi contenu dans des éléments non textuels utilisés comme fond d'éléments HTML (améliorée)\n"
+    Regroupement: Regroupement_30
+  Test_18:
+    nom: 'Valeur de contraste 12'
+    description: "Valeur du rapport de contraste du texte agrandi  contenu dans un segment de texte (améliorée)\n"
+    Regroupement: Regroupement_30
+  Test_19:
+    nom: 'Indentification des erreurs de saisie'
+    description: "Possibilité d'identifier les erreurs de saisie\r\n"
+    Regroupement: Regroupement_31
+  Test_20:
+    nom: 'Indication des contraintes sur les champs'
+    description: "Présence d'information préalable sur le caractère  obligatoire de certains champs de saisie et du type/format de saisie attendue si nécessaire\r\n"
+    Regroupement: Regroupement_31
+  Test_21:
+    nom: 'Position des étiquettes'
+    description: "Positionnement correct des étiquettes par rapport aux champs dans les formulaires\r\n"
+    Regroupement: Regroupement_31
+  Test_22:
+    nom: 'Utilisation de l''élément fieldset'
+    description: "Regroupement d'éléments de formulaire via l'élément fieldset\r\n"
+    Regroupement: Regroupement_31
+  Test_23:
+    nom: 'Absence d''élément fieldset sans élément legend'
+    description: "Chaque élément fieldset doit être accompagné d'un élément legend\n"
+    Regroupement: Regroupement_31
+  Test_24:
+    nom: 'Pertinence de l''élément legend'
+    description: "Pertinence du contenu de l'élément legend dans l'élément fieldset\r\n"
+    Regroupement: Regroupement_31
+  Test_25:
+    nom: 'Utilisation de l''élément optgroup dans un élément select'
+    description: "Regroupement d'éléments option dans un élément  select via l'élément optgroup\r\n"
+    Regroupement: Regroupement_31
+  Test_26:
+    nom: 'Présence d''un attribut label sur l''élément optgroup'
+    description: "Chaque élément optgroup doit posséder son propre attribut label\n"
+    Regroupement: Regroupement_31
+  Test_27:
+    nom: 'Pertinence de l''attribut label'
+    description: "Pertinence du contenu de l'attribut label de l'élément optgroup\r\n"
+    Regroupement: Regroupement_31
+  Test_28:
+    nom: 'Absence d''élément de formulaire sans identifiant'
+    description: "Tous les éléments d'un formulaire doivent posséder un identifiant\n"
+    Regroupement: Regroupement_31
+  Test_29:
+    nom: 'Absence d''élément de formulaire sans étiquette associée'
+    description: "Tous les éléments d'un formulaire doivent avoir une étiquette associée\n"
+    Regroupement: Regroupement_31
+  Test_30:
+    nom: 'Pertinence des étiquettes'
+    description: "Pertinence des étiquettes délément de formulaire\r\n"
+    Regroupement: Regroupement_31
+  Test_31:
+    nom: 'Aide à la correction des erreurs de saisie'
+    description: "Présence d'informations ou de suggestions facilitant  la correction des erreurs de saisie\n"
+    Regroupement: Regroupement_32
+  Test_32:
+    nom: 'Traitement des données juridiques, financières et personnelles'
+    description: "Présence de mécanismes permettant de vérifier, modifier ou  confirmer les données à caractère juridique, financier, personnel\n"
+    Regroupement: Regroupement_32
+  Test_33:
+    nom: 'Vérification, modification, confirmation des données utilisateur'
+    description: "Présence de mécanismes permettant de vérifier, modifier ou  confirmer tous types de données saisie par l'utilisateur\n"
+    Regroupement: Regroupement_33
+  Test_34:
+    nom: 'Aide à la saisie des formulaire'
+    description: "Présence d'une page d'aide ou d'un mécanisme d'aide  contextuelle pour la saisie des formulaires\n"
+    Regroupement: Regroupement_33
+  Test_35:
+    nom: 'Présence de l''attribut alt'
+    description: "Toutes les images doivent avoir un texte alternatif\n"
+    Regroupement: Regroupement_34
+  Test_36:
+    nom: 'Pertinence de l''alternative textuelle 1'
+    description: "Pertinence de l'alternative textuelle aux images liens\n"
+    Regroupement: Regroupement_34
+  Test_37:
+    nom: 'Pertinence de l''alternative textuelle 2'
+    description: "Pertinence de l'alternative textuelle aux  zones cliquables ou aux boutons graphiques\n"
+    Regroupement: Regroupement_34
+  Test_38:
+    nom: 'Pertinence de l''alternative textuelle 3'
+    description: "Pertinence de l'alternative textuelle aux éléments non textuels\n"
+    Regroupement: Regroupement_34
+  Test_39:
+    nom: 'Pertinence de l''alternative textuelle 4'
+    description: "Pertinence de l'alternative textuelle vide aux éléments décoratifs\n"
+    Regroupement: Regroupement_34
+  Test_40:
+    nom: 'Longueur du contenu des alternatives textuelles'
+    description: "Les alternatives textuelles doivent être le plus concises possible\n"
+    Regroupement: Regroupement_34
+  Test_41:
+    nom: 'Existance d''une description longue'
+    description: "Existence d'une description longue pour les images le nécessitant\n"
+    Regroupement: Regroupement_34
+  Test_42:
+    nom: 'Pertinance de la description longue'
+    description: "Pertinence de la description longue pour les images le nécessitant\n"
+    Regroupement: Regroupement_34
+  Test_43:
+    nom: 'Présence de l''attribut longdsc'
+    description: "Présence de l'attribut longdesc pour établir une relation entre une image et sa description longue\n"
+    Regroupement: Regroupement_34
+  Test_44:
+    nom: 'Gestion des cas où l''alternative ne peut pas être communiquée'
+    description: "Présence d'une information de contexte et d'une  solution d'accès pour les captcha lorsque  l'alternative ne peut pas être communiquée\n"
+    Regroupement: Regroupement_34
+  Test_45:
+    nom: 'Cohérence des alternative textuelles et des étiquettes de formulaire'
+    description: "Cohérence dans l'identification des alternatives textuelles et des étiquettes de formulaires\n"
+    Regroupement: Regroupement_35
+  Test_46:
+    nom: 'Synthèse des médias non textuels'
+    description: "Accès à une information synthétique pour les contenus  sonores, visuel animé ou les médias synchronisé\n"
+    Regroupement: Regroupement_36
+  Test_47:
+    nom: 'Transcription textuelle des médias nons textuels'
+    description: "Présence de la transcription textuelle des contenus  visuels animés, sonores ou des médias synchronisés\n"
+    Regroupement: Regroupement_36
+  Test_48:
+    nom: 'Pertinence de la transcription textuelle des médias non textuels'
+    description: "Pertinence de la transcription textuelle des contenus  visuels animés, sonores ou des médias synchronisés\n"
+    Regroupement: Regroupement_36
+  Test_49:
+    nom: 'Description audio synchronisée ou transcription textuelle'
+    description: "Présence d'un description audio synchronisée  ou d'une transcription textuelle pour les  contenus visuels animés et les médias synchronisés\n"
+    Regroupement: Regroupement_36
+  Test_50:
+    nom: 'Pertinence de la description audio synchronisée ou transcription textuelle'
+    description: "Pertinence de la description audio synchronisée des  contenus visuels animés ou des médias synchronisés\n"
+    Regroupement: Regroupement_36
+  Test_51:
+    nom: 'Contrôle de l''activation de la description audio synchronisée'
+    description: "Possibilité de contrôler l'activation de la description audio synchronisée\n"
+    Regroupement: Regroupement_36
+  Test_52:
+    nom: 'Description audio synchronisée étendue'
+    description: "Présence d'une description audio synchronisée étendue  pour les contenus visuels animés ou les médias synchronisés\n"
+    Regroupement: Regroupement_38
+  Test_53:
+    nom: 'Description audio synchronisée'
+    description: "Présence d'une description audio synchronisée pour les  contenus visuels animés ou les médias synchronisés\n"
+    Regroupement: Regroupement_37
+  Test_54:
+    nom: 'Sous-titrage synchronisé non direct'
+    description: "Présence du sous-titrage synchronisé des médias  synchronisés qui ne sont pas diffusés en direct\n"
+    Regroupement: Regroupement_36
+  Test_55:
+    nom: 'Pertinance du sous-titrage synchronisé'
+    description: "Pertinence du sous-titrage synchronisé des médias synchronisés\n"
+    Regroupement: Regroupement_36
+  Test_56:
+    nom: 'Alternative aux éléments applet et object'
+    description: "Présence d'une alternative aux éléments applet et object\n"
+    Regroupement: Regroupement_36
+  Test_57:
+    nom: 'Alternative aux éléments embed'
+    description: "Présence d'une alternative aux éléments embed\n"
+    Regroupement: Regroupement_36
+  Test_58:
+    nom: 'Changements de luminosité et flashs rouges 1'
+    description: "Absence d'éléments provoquant des changements brusques de  luminosité ou des effets de flash rouge à fréquence élevée\n"
+    Regroupement: Regroupement_36
+  Test_59:
+    nom: 'Changements de luminosité et flashs rouges 2'
+    description: "Absence de code javascript provoquant des changements brusques  de luminosité ou des effets de flash rouge à fréquence élevée\n"
+    Regroupement: Regroupement_36
+  Test_60:
+    nom: 'Changements de luminosité et flashs rouges 3'
+    description: "Absence de mise en forme provoquant des changements brusques  de luminosité ou des effets de flash rouge à fréquence élevée\n"
+    Regroupement: Regroupement_36
+  Test_61:
+    nom: 'Compatibilité des éléments programmables avec les aides techniques'
+    description: ''
+    Regroupement: Regroupement_36
+  Test_62:
+    nom: 'Changements de luminosité et flashs rouges 4'
+    description: "Absence totale de changements brusques de luminosité  ou des effets flash rouge à fréquence élevée\n"
+    Regroupement: Regroupement_38
+  Test_63:
+    nom: 'Sous-titrage synchronisé direct'
+    description: "Présence du sous-titrage synchronisé des médias  synchronisés ou sonores diffusés en direct\n"
+    Regroupement: Regroupement_37
+  Test_64:
+    nom: 'Absence de l''élément blink'
+    description: ''
+    Regroupement: Regroupement_36
+  Test_65:
+    nom: 'Clignotements automatiques 1'
+    description: "Absence d'éléments provoquant des clignotements  déclenchés automatiquement ne pouvant pas être arrêtés\n"
+    Regroupement: Regroupement_36
+  Test_66:
+    nom: 'Clignotements automatiques 2'
+    description: "Absence de code javascript provoquant des clignotements  déclenchés automatiquement ne pouvant pas être arrêtés\n"
+    Regroupement: Regroupement_36
+  Test_67:
+    nom: 'Clignotements automatiques 3'
+    description: "Absence de mise en forme provoquant des clignotements  déclenchés automatiquement ne pouvant pas être arrêtés\n"
+    Regroupement: Regroupement_36
+  Test_68:
+    nom: 'Absence d''élément marquee'
+    description: ''
+    Regroupement: Regroupement_36
+  Test_69:
+    nom: 'Mouvements automatiques 1'
+    description: "Absence d'éléments affichant des mouvements déclenchés  automatiquement ne pouvant pas être arrêtés\n"
+    Regroupement: Regroupement_36
+  Test_70:
+    nom: 'Mouvements automatiques 2'
+    description: "Absence de code javascript provoquant des mouvements  déclenchés automatiquement ne pouvant pas être arrêtés\n"
+    Regroupement: Regroupement_36
+  Test_71:
+    nom: 'Mouvements automatiques 3'
+    description: "Absence de mise en forme provoquant des mouvements  déclenchés automatiquement ne pouvant pas être arrêtés\n"
+    Regroupement: Regroupement_36
+  Test_72:
+    nom: 'Indépendance du périphérique d''accès'
+    description: "Indépendance du périphérique d'accès aux éléments object, embed et applet\n"
+    Regroupement: Regroupement_36
+  Test_73:
+    nom: 'Alternative aux éléments object, applet et embed'
+    description: "Présence d'une alternative aux éléments object,  applet et embed dépendant d'un périphérique\n"
+    Regroupement: Regroupement_36
+  Test_74:
+    nom: 'Arrêt de la lecture de son'
+    description: "Absence d'éléments déclenchant la lecture de son ne pouvant pas être arrêtée\n"
+    Regroupement: Regroupement_36
+  Test_75:
+    nom: 'Absence d''élément bgsound'
+    description: ''
+    Regroupement: Regroupement_36
+  Test_76:
+    nom: 'Version en langue des signes française'
+    description: "Présence de version en langue des signes française  facilitant la compréhension des médias synchronisés\n"
+    Regroupement: Regroupement_38
+  Test_77:
+    nom: 'Pertinance de la version en langue des signes française'
+    description: ''
+    Regroupement: Regroupement_38
+  Test_78:
+    nom: 'Niveau sonore de la piste de dialogue'
+    description: "La ou les pistes de dialogue doivent être au minimum 20 décibels plus  élevées que le fond sonore ou alors celui-ci peut être désactivé\n"
+    Regroupement: Regroupement_38
+  Test_79:
+    nom: 'Couleur d''avant et d''arrière plan des blocs de texte'
+    description: "Présence d'un mécanisme pour personnaliser la couleur  d'avant plan et d'arrière plan des blocs de texte\n"
+    Regroupement: Regroupement_38
+  Test_80:
+    nom: 'Accès aux liens textuels doublant les zones clicables côté serveur'
+    description: ''
+    Regroupement: Regroupement_39
+  Test_81:
+    nom: 'Avertissement préalable 1'
+    description: "Présence d'un avertissement préalable à l'ouverture de  nouvelle fenêtre lors de l'utilisation de l'attribut  target sur les liens textuels et les formulaires\n"
+    Regroupement: Regroupement_39
+  Test_82:
+    nom: 'Avertissement préalable 2'
+    description: "Présence d'un avertissement préalable à l'ouverture de  nouvelle fenêtre lors de l'utilisation de l'attribut  target sur les images liens et les zones cliquables\n"
+    Regroupement: Regroupement_39
+  Test_83:
+    nom: 'Avertissement préalable 3'
+    description: "Présence d'un avertissement préalable à l'ouverture de  nouvelle fenêtre lors de l'utilisation de code javascript\n"
+    Regroupement: Regroupement_39
+  Test_84:
+    nom: 'Absence d''ouverture de nouvelles fenêtres sans action de l''utilisateur'
+    description: ''
+    Regroupement: Regroupement_39
+  Test_85:
+    nom: 'Absence de piège lors de la navigation clavier'
+    description: ''
+    Regroupement: Regroupement_39
+  Test_86:
+    nom: 'Rafraichissement automatique 1'
+    description: "Absence d'élément meta provoquant un rafraîchissement automatique de la page\r\n"
+    Regroupement: Regroupement_39
+  Test_87:
+    nom: 'Rafraichissement automatique 2'
+    description: "Absence de code javascript provoquant un rafraîchissement  automatique de la page ne pouvant pas être arrêté\n"
+    Regroupement: Regroupement_39
+  Test_88:
+    nom: 'Rafraichissement automatique 3'
+    description: "Absence d'éléments provoquant un rafraîchissement  automatique de la page ne pouvant pas être arrêté\n"
+    Regroupement: Regroupement_39
+  Test_89:
+    nom: 'Redirection automatique 1'
+    description: "Absence d'élément meta provoquant une redirection automatique de la page\n"
+    Regroupement: Regroupement_39
+  Test_90:
+    nom: 'Redirection automatique 2'
+    description: "Absence de code javascript provoquant une redirection  automatique de la page ne pouvant pas être arrêtée\n"
+    Regroupement: Regroupement_39
+  Test_91:
+    nom: 'Redirection automatique 3'
+    description: "Absence d'éléments provoquant une redirection  automatique de la page ne pouvant pas être arrêtée\n"
+    Regroupement: Regroupement_39
+  Test_92:
+    nom: 'Destination des liens et boutons 1'
+    description: "Possibilité d'identifier la destination  ou l'action des liens et des boutons\n"
+    Regroupement: Regroupement_39
+  Test_93:
+    nom: 'Destination des liens et boutons 2'
+    description: "Possibilité d'identifier la destination ou l'action des liens et des boutons (intitulé seul)\n"
+    Regroupement: Regroupement_41
+  Test_94:
+    nom: 'Cohérence de la destination ou de l''action des liens ayant un intitulé identique'
+    description: ''
+    Regroupement: Regroupement_39
+  Test_95:
+    nom: 'Absence de liens sans intitulé'
+    description: ''
+    Regroupement: Regroupement_39
+  Test_96:
+    nom: 'Présence d''une page contenant le plan du site'
+    description: ''
+    Regroupement: Regroupement_39
+  Test_97:
+    nom: 'Cohérence du plan du site'
+    description: ''
+    Regroupement: Regroupement_40
+  Test_98:
+    nom: 'Accès au plan depuis l''accueil'
+    description: "Présence d'un accès à la page contenant le plan du site depuis la page d'accueil\n"
+    Regroupement: Regroupement_40
+  Test_99:
+    nom: 'Présence d''un fil d''ariane'
+    description: ''
+    Regroupement: Regroupement_41
+  Test_100:
+    nom: 'Présence de menus ou de barres de navigation'
+    description: ''
+    Regroupement: Regroupement_40
+  Test_101:
+    nom: 'Cohérence de la position des menus et barres de navigation'
+    description: "Cohérence de la position des menus et barres de  navigation dans le code source de la structure HTML\n"
+    Regroupement: Regroupement_40
+  Test_102:
+    nom: 'Cohérence de la présentation des menus et barres de navigation'
+    description: ''
+    Regroupement: Regroupement_40
+  Test_103:
+    nom: 'Navigation au clavier'
+    description: "Navigation au clavier dans un ordre logique par rapport au contenu\n"
+    Regroupement: Regroupement_39
+  Test_104:
+    nom: 'Avertissement préalable 4'
+    description: "Présence d'un avertissement préalable à l'ouverture de nouvelle  fenêtre lors de l'utilisation d'éléments object ou embed\n"
+    Regroupement: Regroupement_41
+  Test_105:
+    nom: 'Format des fichiers téléchargeables'
+    description: "Présence des informations de format pour les documents en téléchargement.\n"
+    Regroupement: Regroupement_39
+  Test_106:
+    nom: 'Poid des fichiers téléchargeables'
+    description: "Présence des informations de poids pour les documents en téléchargement\n"
+    Regroupement: Regroupement_39
+  Test_107:
+    nom: 'Langue des fichiers téléchargeables'
+    description: "Présence des informations de langue pour les documents en téléchargement\n"
+    Regroupement: Regroupement_39
+  Test_108:
+    nom: 'Présence de regroupement pour les liens importants'
+    description: ''
+    Regroupement: Regroupement_39
+  Test_109:
+    nom: 'Balisage des groupes de lien'
+    description: "Présence d'un balisage permettant d'identifier les groupes de liens importants\n"
+    Regroupement: Regroupement_39
+  Test_110:
+    nom: 'Liens d''évitement et d''accès rapide'
+    description: "Présence de liens d'évitement ou d'accès rapide aux groupes de liens importants\n"
+    Regroupement: Regroupement_39
+  Test_111:
+    nom: 'Cohérence des liens d''évitement et d''accès rapide'
+    description: "Cohérence des liens d'évitement ou d'accès rapide aux groupes de liens importants\n"
+    Regroupement: Regroupement_39
+  Test_112:
+    nom: 'Ordre des liens dévitement et d''accès rapide'
+    description: "Ordre des liens d'évitement ou d'accès rapide dans le code source des pages\n"
+    Regroupement: Regroupement_40
+  Test_113:
+    nom: 'Présence d''un moteur de recherche'
+    description: ''
+    Regroupement: Regroupement_40
+  Test_114:
+    nom: 'Navigation dans un groupe de page'
+    description: "Possibilité de naviguer facilement dans un groupe de pages\n"
+    Regroupement: Regroupement_40
+  Test_115:
+    nom: 'Position courante'
+    description: "Présence d'une indication de la position courante dans la navigation\n"
+    Regroupement: Regroupement_41
+  Test_116:
+    nom: 'Génération d''information par CSS'
+    description: "Absence de génération de contenus porteur d'information via les styles CSS\n"
+    Regroupement: Regroupement_42
+  Test_117:
+    nom: 'Modification de l''information par CSS'
+    description: "Absence d'altération de la compréhension lors de la lecture  d'un bloc d'informations lorsque les styles sont désactivés\n"
+    Regroupement: Regroupement_42
+  Test_118:
+    nom: 'Lisibilité des information avec style et images désactivés'
+    description: "Lisibilité des informations affichées comme fond d'éléments via  les styles CSS lorsque les styles et/ou les images sont désactivés\n"
+    Regroupement: Regroupement_42
+  Test_119:
+    nom: 'Absence d''espaces utilisés pour séparer les lettres d''un mot'
+    description: ''
+    Regroupement: Regroupement_42
+  Test_120:
+    nom: 'Couleur de texte et couleurs de fond'
+    description: "Absence de définition d'une couleur de texte sans  définition d'une couleur de fond et inversement\n"
+    Regroupement: Regroupement_43
+  Test_121:
+    nom: 'Remplacement des éléments non textuels par CSS'
+    description: "Possibilité de remplacer les éléments non textuels par  une mise en forme effectuée grâce aux styles CSS\n"
+    Regroupement: Regroupement_43
+  Test_122:
+    nom: 'Remplacement des éléments non textuels par CSS (sans exceptions)'
+    description: "Possibilité de remplacer les éléments non textuels par une  mise en forme effectuée grâce aux styles CSS (sans exceptions)\n"
+    Regroupement: Regroupement_44
+  Test_123:
+    nom: 'Absence d''attributs ou d''éléments HTML de présentation'
+    description: ''
+    Regroupement: Regroupement_42
+  Test_124:
+    nom: 'Absence d''éléments HTML utilisés à des fins de présentation'
+    description: ''
+    Regroupement: Regroupement_42
+  Test_125:
+    nom: 'Maintien de la distinction visuelle des liens'
+    description: ''
+    Regroupement: Regroupement_42
+  Test_126:
+    nom: 'Absence de suppression de l''effet visuel au focus des éléments'
+    description: ''
+    Regroupement: Regroupement_42
+  Test_127:
+    nom: 'Absence de justification du texte'
+    description: ''
+    Regroupement: Regroupement_44
+  Test_128:
+    nom: 'Lisibilité du document en cas d''agrandissement de la taille du texte'
+    description: ''
+    Regroupement: Regroupement_43
+  Test_129:
+    nom: 'Unités de taille de caractère des éléments de formulaire'
+    description: "Absence d'unités absolues ou de pixel dans les feuilles de  styles pour la taille de caractère des éléments de formulaire\n"
+    Regroupement: Regroupement_43
+  Test_130:
+    nom: 'Affichage plein écran'
+    description: "Absence d'apparition de barre de défilement  horizontale en affichage plein écran\n"
+    Regroupement: Regroupement_44
+  Test_131:
+    nom: 'Largeur des blocs de textes'
+    description: "La largeur d'un bloc de texte doit être inférieure ou égale à 80 caractères (40 glyphes pour le Chinois, Japonais ou Coréen) ou doit  pouvoir être rédoite à 80 caractères ou moins lorsque l'utilisateur redimensionne la fenêtre du navigateur\n"
+    Regroupement: Regroupement_44
+  Test_132:
+    nom: 'Valeur de l''espace entre les lignes et entre les paragraphes'
+    description: "La valeur d'espacement entre les lignes doit être supérieure à 1,5 fois la taille du texte et la valeur d'espacement entre les paragraphes doit  être supérieur à 1,5 fois la celle entre les lignes; ou alors un mécanisme doit permettre d'agrandir ces espacements.\n"
+    Regroupement: Regroupement_44
+  Test_133:
+    nom: 'Restitution des éléments masqués dans les lecteurs d''écran'
+    description: "Restitution correcte dans les lecteurs d'écran des éléments masqués\n"
+    Regroupement: Regroupement_42
+  Test_134:
+    nom: 'Mise à jour des alternatives aux éléments non textuels dans la page'
+    description: "Lorsqu'un script met à jout un élément non textuel de la page, son  alternative doit également être mise à jour\n"
+    Regroupement: Regroupement_45
+  Test_135:
+    nom: 'Universalité du gestionnaire d''évènement onclick'
+    description: "Un élément sur lequel le gestionnaire d'évènements onclick (ou son  équivalent javascript) permet d'accéder à de l'information doit permettre d'accéder à ces mêmes informations via le gestionnaire d'évènements onkeypress ou alors un autre élément HTML doit permettre d'obtenir le même résultat sans l'utilisation de gestionnaire d'évènements\n"
+    Regroupement: Regroupement_45
+  Test_136:
+    nom: 'Universalité des gestionnaires d''évènements'
+    description: "Les éléments HTML utilisant un des gestionnaires d'évènements suivant (ou son équivalent javascript) pour accéder à de l'information doit également  utiliser le gestionnaire qui lui est associé: onmousedown - onkeydown,  onmouseup - onkeyup, onmouseover - onfocus et onmouseout - onblur; ou  alors un autre élément HTML permet d'obtenir le même résultat sans  l'utilisation de gestionnaire d'évènement  \n"
+    Regroupement: Regroupement_45
+  Test_137:
+    nom: 'Contrôle des alertes et des mises à jour'
+    description: "Possibilité de désactiver toute alerte non sollicitée  ou toute mise à jour automatique d'un contenu de la page\n"
+    Regroupement: Regroupement_46
+  Test_138:
+    nom: 'Information de l''utilisateur lors des changmenet de contexte'
+    description: "Absence de changements de contexte suite à une action de  l'utilisateur sans validation explicite ou information préalable\n"
+    Regroupement: Regroupement_45
+  Test_139:
+    nom: 'Ordre d''accès au clavier aux contenus mis à jour dynamiquement en javascript'
+    description: "Lorsque du contenu est généré par du javascript et que celui-ci dispose des attributs et éléments le rendant accessible, ce contenu doit se situer juste après l'élément ayant permis de déclencher sa génération\n"
+    Regroupement: Regroupement_45
+  Test_140:
+    nom: 'Utilisation correcte du rôle des éléments'
+    description: "Lorsqu'il en possède un, le nom de l'attribut rôle d'un élément de la page doit correspondre à son rôle dans la page\n"
+    Regroupement: Regroupement_45
+  Test_141:
+    nom: 'Alternative au code javascript 1'
+    description: "Présence d'une alternative au code javascript utilisant un gestionnaire  d'événements sans équivalent universel ou une propriété propre  à un périphérique\n"
+    Regroupement: Regroupement_45
+  Test_142:
+    nom: 'Absence de suppression du focus clavier à l''aide de code javascript'
+    description: ''
+    Regroupement: Regroupement_45
+  Test_143:
+    nom: 'Absence de limite de temps pour compléter une tâche'
+    description: ''
+    Regroupement: Regroupement_46
+  Test_144:
+    nom: 'Absence de perte d''informations lors de l''expiration des sessions authentifiées'
+    description: ''
+    Regroupement: Regroupement_46
+  Test_145:
+    nom: 'Alternative au code javascript 2'
+    description: "Présence d'une alternative au code javascript\n"
+    Regroupement: Regroupement_45
+  Test_146:
+    nom: 'Accessibilité des contenus dynamiques en javascript'
+    description: "Lorsqu'un code javascript génère ou met à jour un contenu dans la page, ce dernier doit comporter tous les attributs et éléments le rendant accessible après l'exécution du code\n"
+    Regroupement: Regroupement_45
+  Test_147:
+    nom: 'Présence de la déclaration d''utilisation d''une DTD'
+    description: "L'instruction !DOCTYPE doit être présente dans la page\n"
+    Regroupement: Regroupement_47
+  Test_148:
+    nom: 'Conformité de la position de la déclaration d''utilisation d''une DTD'
+    description: "L'instruction !DOCTYPE doit être située avant la balise html\n"
+    Regroupement: Regroupement_47
+  Test_149:
+    nom: 'Conformité syntaxique de la déclaration d''utilisation d''une DTD'
+    description: "La syntaxe de l'instruction !DOCTYPE doit  être une syntaxe validée par le W3C\n"
+    Regroupement: Regroupement_47
+  Test_150:
+    nom: 'Validité du code HTML / XHTML au regard de la DTD déclarée'
+    description: "Le code de la page doit être valide selon la DTD déclarée ou alors les  erreurs de validité ne concernent pas l'imbrication des balises dans  l'arbre du document ou l'écriture des balises et des attributs\n"
+    Regroupement: Regroupement_47
+  Test_151:
+    nom: 'Conformité à la version des spécifications W3C utilisée'
+    description: "Absence de composants obsolètes par rapport à  la version des spécifications W3C utilisée\n"
+    Regroupement: Regroupement_47
+  Test_152:
+    nom: 'Présence d''un titre dans la page'
+    description: ''
+    Regroupement: Regroupement_47
+  Test_153:
+    nom: 'Pertinence du titre de la page'
+    description: ''
+    Regroupement: Regroupement_47
+  Test_154:
+    nom: 'Présence d''une langue de traitement'
+    description: "Un élément HTML contenant un segment de texte ou un de ses éléments HTMl ascendants doit posséder un attribut lang non vide contenant le  code identifiant correctement la lange de traitement de la page\n"
+    Regroupement: Regroupement_47
+  Test_155:
+    nom: 'Présence d''au moins un titre de premier niveau (h1)'
+    description: ''
+    Regroupement: Regroupement_48
+  Test_156:
+    nom: 'Pertinence du contenu des titres de hiérarchie'
+    description: ''
+    Regroupement: Regroupement_48
+  Test_157:
+    nom: 'Absence d''interruption dans la hiérarchie des titres'
+    description: ''
+    Regroupement: Regroupement_48
+  Test_158:
+    nom: 'Présence d''une hiérarchie de titres complète'
+    description: ''
+    Regroupement: Regroupement_48
+  Test_159:
+    nom: 'Absence de simulation visuelle de liste non ordonnée'
+    description: "Une liste non ordonnée doit être regroupée dans un élément ul et ses  différentes parties dans des éléments li\n"
+    Regroupement: Regroupement_48
+  Test_160:
+    nom: 'Utilisation systématique de listes ordonnées pour les énumérations'
+    description: ''
+    Regroupement: Regroupement_48
+  Test_161:
+    nom: 'Balisage correct des listes de définitions'
+    description: "Au sein d'un élément dl, tout élément dd  doit être précédé par un élément dt\n"
+    Regroupement: Regroupement_48
+  Test_162:
+    nom: 'Balisage correct des citations'
+    description: "Une citation doit être balisée par q si c'est un citation courte ou par block-quote si c'est une citation longue\n"
+    Regroupement: Regroupement_48
+  Test_163:
+    nom: 'Balisage correct des abréviations présentes dans la page'
+    description: "Si, à la première occurence d'une abréviation, le texte ne fournit aucune indication quant à sa signification, alors elle doit être contenue dans un élément abbr doté d'un attribut titre non vide\n"
+    Regroupement: Regroupement_49
+  Test_164:
+    nom: 'Balisage correct des acronymes présents dans la page'
+    description: "Si, à la première occurence d'un acronyme, le texte ne fournit aucune indication quant à sa signification, alors il doit être contenu dans un élément acronym doté d'un attribut titre non vide\n"
+    Regroupement: Regroupement_49
+  Test_165:
+    nom: 'Pertinence de la version non abrégée de l''abréviation'
+    description: ''
+    Regroupement: Regroupement_49
+  Test_166:
+    nom: 'Pertinence de la version complète de l''acronyme'
+    description: ''
+    Regroupement: Regroupement_49
+  Test_167:
+    nom: 'Accessibilité des documents bureautiques en téléchargement'
+    description: "Un document bureautique mis en téléchargement doit être nativement  accessible ou alors disposer d'une version alternative au format html accessible\n"
+    Regroupement: Regroupement_48
+  Test_168:
+    nom: 'En-tête de lignes et de colonnes 1'
+    description: "Présence des balises th pour indiquer les en-têtes  de lignes et de colonnes dans les tableaux de données\n"
+    Regroupement: Regroupement_50
+  Test_169:
+    nom: 'En-tête de lignes et de colonnes 2'
+    description: "Présence d'une relation entre les en-têtes (th) et les cellules (td) qui  s'y rattachent dans un tableau de données simple grâce aux attributs id  et headers ou scope\n"
+    Regroupement: Regroupement_50
+  Test_170:
+    nom: 'En-tête de lignes et de colonnes 3'
+    description: "Présence d'une relation entre les en-têtes (th) et les cellules (td)  qui s'y rattachent dans un tableau de données complexe grâce aux  attributs id et headers\n"
+    Regroupement: Regroupement_50
+  Test_171:
+    nom: 'Absence des éléments propres aux tableaux de données dans les tableaux de mise en page'
+    description: ''
+    Regroupement: Regroupement_50
+  Test_172:
+    nom: 'Absence de tableaux de données ou de colonnes formatés à l''aide de texte'
+    description: "Une suite de caractères insécables ou d'espces typographiques dans un  élement pre ne doit pas être utilisée pour formater visuellement des  colonnes ou un tableau de données\n"
+    Regroupement: Regroupement_50
+  Test_173:
+    nom: 'Linéarisation correcte des tableaux de mise en page'
+    description: "La lecture linéaire du contenu du tableau (dans l'ordre du code source) doit conserver les associations logiques présentes dans son rendu affiché\n"
+    Regroupement: Regroupement_50
+  Test_174:
+    nom: 'Présence d''un titre pour les tableaux de données'
+    description: ''
+    Regroupement: Regroupement_50
+  Test_175:
+    nom: 'Présence d''un résumé pour les tableaux de données'
+    description: ''
+    Regroupement: Regroupement_50
+  Test_176:
+    nom: 'Pertinence du titre du tableau de données'
+    description: ''
+    Regroupement: Regroupement_50
+  Test_177:
+    nom: 'Pertinence du résumé du tableau de données'
+    description: ''
+    Regroupement: Regroupement_50
+  Test_178:
+    nom: 'Présence de l''indication des changements de langue dans le texte'
+    description: ''
+    Regroupement: Regroupement_52
+  Test_179:
+    nom: 'Présence de l''indication des changements de langue dans les valeurs d''attributs HTML'
+    description: ''
+    Regroupement: Regroupement_52
+  Test_180:
+    nom: 'Equivalence de l''information mise à disposition dans la version alternative'
+    description: "L'information fournie par la version alternative d'un élément applet,  embed, object ou d'un code javascript doit être équivalente à celle mise à disposition dans la version principal (y compris les informations  apportées de façon visuelle ou sonore)  \n"
+    Regroupement: Regroupement_51
+  Test_181:
+    nom: 'Compréhension des contenus'
+    description: "Présence de liens ou de définitions permettant d'avoir accès  aux informations nécessaires à la compréhension des contenus\n"
+    Regroupement: Regroupement_53
+  Test_182:
+    nom: 'Absence de syntaxes cryptiques par rapport au contenu du site'
+    description: "Si la syntaxe d'un segment de texte rend sa compréhension difficile, il doit disposer d'un alternative textuelle de compréhension aisée\n"
+    Regroupement: Regroupement_51
+  Test_183:
+    nom: 'Pronciation phonétique'
+    description: "Présence d'informations sur les mots par la mise  à disposition de leur prononciation phonétique\n"
+    Regroupement: Regroupement_51
+  Test_184:
+    nom: 'Transmission de l''information des élément non textuels'
+    description: "Présence d'un moyen de transmission de l'information autre qu'une  utilisation de la forme ou la position dans les éléments non textuels\n"
+    Regroupement: Regroupement_51
+  Test_185:
+    nom: 'Identification des éléments non textuels'
+    description: "Présence d'un autre moyen que la forme ou la position pour identifier un  contenu auquel il est fait référence dans un élément non textuel\n"
+    Regroupement: Regroupement_51
+  Test_186:
+    nom: 'Identification d''un contenu référencé textuellement'
+    description: "Présence d'un autre moyen que la forme ou la position pour  identifier un contenu auquel il est fait référence textuellement\n"
+    Regroupement: Regroupement_51
+  Test_187:
+    nom: 'Utilisation d''un style de rédaction simple et compréhensible de tous'
+    description: ''
+    Regroupement: Regroupement_53
+Thematique:
+  Thematique_5:
+    nom: Accessibilité
+    description: "L'accessibilité du web signifie que les personnes handicapées peuvent  l'utiliser. Plus spécifiquement, elle signifie que ces gens peuvent  percevoir, comprendre, naviguer, interagir avec le web, et y contribuer.  L'accessibilité du Web bénéficie également à d'autres, notamment les  personnes âgées ayant des capacités diminuées dues au vieillissement. (http://fr.wikipedia.org/wiki/Accessibilité_du_Web)\n"
