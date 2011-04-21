@@ -7,7 +7,7 @@
 <project name="kcatoes" default="build" basedir=".">
 
  <property name="rootDirForPhp" value="" />
- <property name="source" value="lib/model" />
+ <property name="source" value="lib" />
 
  <target name="clean">
   <!-- Clean up -->
