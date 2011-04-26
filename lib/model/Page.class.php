@@ -49,8 +49,15 @@ class Page extends Client
    */
   public function buildCrawler()
   {
-
-    $this->crawler = $this->createCrawlerFromContent($this->url, $this->content, 'text/html');
+    try
+    {
+      $this->crawler = $this->createCrawlerFromContent($this->url, $this->content, 'text/html');
+    }
+    catch (Exception $e)
+    {
+      $this->addLogErreur('Une erreur est survenue lors de la génération du crawler de la page');
+      throw new KcatoesCrawlerException($e->getMessage());
+    }
     $this->addLogInfo('Génération du crawler - Ok');
   }
 
@@ -64,6 +71,19 @@ class Page extends Client
     if ($this->logger instanceof sfLogger)
     {
       $this->logger->info($infoMessage);
+    }
+  }
+
+  /**
+   * Ajoute un message d'erreur au journal de log
+   *
+   * @param String $errorMessage Message à ajouter
+   */
+  private function addLogErreur($errorMessage)
+  {
+    if($this->logger instanceof sfLogger)
+    {
+      $this->logger->err($errorMessage);
     }
   }
 }

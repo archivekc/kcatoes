@@ -132,6 +132,11 @@ class Test extends BaseTest
     return $this->resultat;
   }
 
+  public function setResultat(Resultat $resultat)
+  {
+    $this->resultat = $resultat;
+  }
+
   /**
    * Méthode de rendu pour label de formulaire
    */
@@ -147,5 +152,23 @@ class Test extends BaseTest
   public function __toString()
   {
     return (string) $this->getNom();
+  }
+
+  /**
+   * Créée la liste des dépendances à exécuter avant de pouvoir exécuter ce
+   * test
+   *
+   * @return La liste des dépendance à exécuter pour ce test
+   */
+  public function getExecutionList()
+  {
+    $executeList = array();
+    if ($this->Dependance != null)
+    {
+      $executeList[] = $this->Dependance->getExecutionList();
+    }
+    $executeList[] = $this;
+
+    return $executeList;
   }
 }
