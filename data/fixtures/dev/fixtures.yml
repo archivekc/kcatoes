@@ -140,7 +140,6 @@ Test:
     description:   >
       Tous les cadres de la page doivent avoir un titre
     Regroupement:  cadreA
-    Test:
     execute_si:
       
   test12:
@@ -148,7 +147,6 @@ Test:
     description:   >
       Les titres donnés aux cadres doivent correspondre à leur contenu.
     Regroupement:  cadreA
-    Test:
     execute_si:
       
   test21:
@@ -157,7 +155,6 @@ Test:
       Présence d'un autre moyen que la couleur pour identifier 
       un contenu auquel il est fait référence textuellement
     Regroupement:  couleurA
-    Test:
     execute_si:
       
   test22:
@@ -166,7 +163,6 @@ Test:
       Présence d'un autre moyen que la couleur pour identifier 
       un contenu auquel il est fait référence dans un élément non textuel
     Regroupement:  couleurA
-    Test:
     execute_si:
       
   test23:
@@ -175,7 +171,6 @@ Test:
       Présence d'un moyen de transmission de l'information autre 
       qu'une mise en couleur réalisée par des styles CSS
     Regroupement:  couleurA
-    Test:
     execute_si:
       
   test24:
@@ -184,7 +179,6 @@ Test:
       Présence d'un moyen de transmission de l'information autre 
       qu'une utilisation de la couleur dans les éléments non textuels
     Regroupement:  couleurA
-    Test:
     execute_si:
       
   test25:
@@ -193,7 +187,6 @@ Test:
       Valeur du rapport de contraste du texte contenu 
       dans des éléments non textuels (minimum)
     Regroupement:  couleurAA
-    Test:
     execute_si:
       
   test26:
@@ -202,7 +195,6 @@ Test:
       Valeur du rapport de contraste du texte contenu dans des éléments 
       non textuels utilisés comme fond d'éléments HTML (minimum)
     Regroupement:  couleurAA
-    Test:
     execute_si:
       
   test27:
@@ -211,7 +203,6 @@ Test:
       Valeur du rapport de contraste du texte 
       contenu dans un segment de texte (minimum)
     Regroupement:  couleurAA
-    Test:
     execute_si:
       
   test28:
@@ -219,7 +210,6 @@ Test:
     description:   >
       Valeur du rapport de contraste du texte
     Regroupement:  couleurAA
-    Test:
     execute_si:
       
   test29:
@@ -229,7 +219,6 @@ Test:
        dans des éléments non textuels utilisés comme 
        fond d'éléments HTML (minimum)
     Regroupement:  couleurAA
-    Test:
     execute_si:
       
   test210:
@@ -238,7 +227,6 @@ Test:
       Valeur du rapport de contraste du texte agrandi 
       contenu dans un segment de texte (minimum)
     Regroupement:  couleurAA
-    Test:
     execute_si:
       
   test211:
@@ -247,7 +235,6 @@ Test:
       Valeur du rapport de contraste du texte contenu 
       dans des éléments non textuels (améliorée)
     Regroupement:  couleurAAA
-    Test:
     execute_si:
       
   test212:
@@ -256,7 +243,6 @@ Test:
       Valeur du rapport de contraste du texte contenu dans des éléments
        non textuels utilisés comme fond d'éléments HTML (améliorée)
     Regroupement:  couleurAAA
-    Test:
     execute_si:
       
   test213:
@@ -265,7 +251,6 @@ Test:
       Valeur du rapport de contraste du texte 
       contenu dans un segment de texte (améliorée)
     Regroupement:  couleurAAA
-    Test:
     execute_si:
       
   test214:
@@ -274,7 +259,6 @@ Test:
       Valeur du rapport de contraste du texte agrandi 
       contenu dans des éléments non textuels (améliorée)
     Regroupement:  couleurAAA
-    Test:
     execute_si:
       
   test215:
@@ -284,7 +268,6 @@ Test:
       agrandi contenu dans des éléments non textuels
       utilisés comme fond d'éléments HTML (améliorée)
     Regroupement:  couleurAAA
-    Test:
     execute_si:
       
   test216:
@@ -293,7 +276,6 @@ Test:
       Valeur du rapport de contraste du texte agrandi 
       contenu dans un segment de texte (améliorée)
     Regroupement:  couleurAAA
-    Test:
     execute_si:
       
   test31:
@@ -301,7 +283,6 @@ Test:
     description:   >
       Possibilité d'identifier les erreurs de saisie
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test32:
@@ -311,7 +292,6 @@ Test:
       obligatoire de certains champs de saisie et du type/format
       de saisie attendue si nécessaire
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test33:
@@ -320,7 +300,6 @@ Test:
       Positionnement correct des étiquettes par rapport aux champs
       dans les formulaires
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test34:
@@ -328,7 +307,6 @@ Test:
     description:   >
       Regroupement d'éléments de formulaire via l'élément fieldset
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test35:
@@ -336,7 +314,6 @@ Test:
     description:   >
       Chaque élément fieldset doit être accompagné d'un élément legend
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test36:
@@ -344,7 +321,6 @@ Test:
     description:   >
       Pertinence du contenu de l'élément legend dans l'élément fieldset
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test37:
@@ -353,7 +329,6 @@ Test:
       Regroupement d'éléments option dans un élément 
       select via l'élément optgroup
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test38:
@@ -361,7 +336,6 @@ Test:
     description:   >
       Chaque élément optgroup doit posséder son propre attribut label
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test39:
@@ -369,7 +343,6 @@ Test:
     description:   >
       Pertinence du contenu de l'attribut label de l'élément optgroup
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test310:
@@ -377,7 +350,6 @@ Test:
     description:   >
       Tous les éléments d'un formulaire doivent posséder un identifiant
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test311:
@@ -385,7 +357,6 @@ Test:
     description:   >
       Tous les éléments d'un formulaire doivent avoir une étiquette associée
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test312:
@@ -393,7 +364,6 @@ Test:
     description:   >
       Pertinence des étiquettes délément de formulaire
     Regroupement:  formulaireA
-    Test:
     execute_si:
       
   test313:
@@ -402,7 +372,6 @@ Test:
       Présence d'informations ou de suggestions facilitant 
       la correction des erreurs de saisie
     Regroupement:  formulaireAA
-    Test:
     execute_si:
       
   test314:
@@ -411,7 +380,6 @@ Test:
       Présence de mécanismes permettant de vérifier, modifier ou 
       confirmer les données à caractère juridique, financier, personnel
     Regroupement:  formulaireAA
-    Test:
     execute_si:
       
   test315:
@@ -420,7 +388,6 @@ Test:
       Présence de mécanismes permettant de vérifier, modifier ou 
       confirmer tous types de données saisie par l'utilisateur
     Regroupement:  formulaireAAA
-    Test:
     execute_si:
       
   test316:
@@ -429,7 +396,6 @@ Test:
       Présence d'une page d'aide ou d'un mécanisme d'aide 
       contextuelle pour la saisie des formulaires
     Regroupement:  formulaireAAA
-    Test:
     execute_si:
       
   test41:
@@ -437,7 +403,6 @@ Test:
     description:   >
       Toutes les images doivent avoir un texte alternatif
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test42:
@@ -445,7 +410,6 @@ Test:
     description:   >
       Pertinence de l'alternative textuelle aux images liens
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test43:
@@ -454,7 +418,6 @@ Test:
       Pertinence de l'alternative textuelle aux 
       zones cliquables ou aux boutons graphiques
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test44:
@@ -462,7 +425,6 @@ Test:
     description:   >
       Pertinence de l'alternative textuelle aux éléments non textuels
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test45:
@@ -470,7 +432,6 @@ Test:
     description:   >
       Pertinence de l'alternative textuelle vide aux éléments décoratifs
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test46:
@@ -478,7 +439,6 @@ Test:
     description:   >
       Les alternatives textuelles doivent être le plus concises possible
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test47:
@@ -486,7 +446,6 @@ Test:
     description:   >
       Existence d'une description longue pour les images le nécessitant
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test48:
@@ -494,7 +453,6 @@ Test:
     description:   >
       Pertinence de la description longue pour les images le nécessitant
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test49:
@@ -502,7 +460,6 @@ Test:
     description:   >
       Présence de l'attribut longdesc pour établir une relation entre une image et sa description longue
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test410:
@@ -512,7 +469,6 @@ Test:
       solution d'accès pour les captcha lorsque 
       l'alternative ne peut pas être communiquée
     Regroupement:  imageA
-    Test:
     execute_si:
       
   test411:
@@ -520,7 +476,6 @@ Test:
     description:   >
        Cohérence dans l'identification des alternatives textuelles et des étiquettes de formulaires
     Regroupement:  imageAA
-    Test:
     execute_si:
       
   test51:
@@ -529,7 +484,6 @@ Test:
       Accès à une information synthétique pour les contenus 
       sonores, visuel animé ou les médias synchronisé
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test52:
@@ -538,7 +492,6 @@ Test:
       Présence de la transcription textuelle des contenus 
       visuels animés, sonores ou des médias synchronisés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test53:
@@ -547,7 +500,6 @@ Test:
       Pertinence de la transcription textuelle des contenus 
       visuels animés, sonores ou des médias synchronisés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test54:
@@ -557,7 +509,6 @@ Test:
       ou d'une transcription textuelle pour les 
       contenus visuels animés et les médias synchronisés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test55:
@@ -566,7 +517,6 @@ Test:
       Pertinence de la description audio synchronisée des 
       contenus visuels animés ou des médias synchronisés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test56:
@@ -574,7 +524,6 @@ Test:
     description:   >
       Possibilité de contrôler l'activation de la description audio synchronisée
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test57:
@@ -583,7 +532,6 @@ Test:
       Présence d'une description audio synchronisée étendue 
       pour les contenus visuels animés ou les médias synchronisés
     Regroupement:  multimediaAAA
-    Test:
     execute_si:
       
   test58:
@@ -592,7 +540,6 @@ Test:
       Présence d'une description audio synchronisée pour les 
       contenus visuels animés ou les médias synchronisés
     Regroupement:  multimediaAA
-    Test:
     execute_si:
       
   test59:
@@ -601,13 +548,13 @@ Test:
       Présence du sous-titrage synchronisé des médias 
       synchronisés qui ne sont pas diffusés en direct
     Regroupement:  multimediaA
+    execute_si:
       
   test510:
     nom:           Pertinance du sous-titrage synchronisé
     description:   >
       Pertinence du sous-titrage synchronisé des médias synchronisés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test511:
@@ -615,7 +562,6 @@ Test:
     description:   >
       Présence d'une alternative aux éléments applet et object
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test512:
@@ -623,7 +569,6 @@ Test:
     description:   >
       Présence d'une alternative aux éléments embed
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test513:
@@ -632,7 +577,6 @@ Test:
       Absence d'éléments provoquant des changements brusques de 
       luminosité ou des effets de flash rouge à fréquence élevée
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test514:
@@ -641,7 +585,6 @@ Test:
       Absence de code javascript provoquant des changements brusques 
       de luminosité ou des effets de flash rouge à fréquence élevée
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test515:
@@ -650,7 +593,6 @@ Test:
       Absence de mise en forme provoquant des changements brusques 
       de luminosité ou des effets de flash rouge à fréquence élevée
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test516:
@@ -658,7 +600,6 @@ Test:
     description:   >
       
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test517:
@@ -667,7 +608,6 @@ Test:
       Absence totale de changements brusques de luminosité 
       ou des effets flash rouge à fréquence élevée
     Regroupement:  multimediaAAA
-    Test:
     execute_si:
       
   test518:
@@ -676,7 +616,6 @@ Test:
       Présence du sous-titrage synchronisé des médias 
       synchronisés ou sonores diffusés en direct
     Regroupement:  multimediaAA
-    Test:
     execute_si:
       
   test519:
@@ -684,7 +623,6 @@ Test:
     description:   >
       
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test520:
@@ -693,7 +631,6 @@ Test:
       Absence d'éléments provoquant des clignotements 
       déclenchés automatiquement ne pouvant pas être arrêtés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test521:
@@ -702,7 +639,6 @@ Test:
       Absence de code javascript provoquant des clignotements 
       déclenchés automatiquement ne pouvant pas être arrêtés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test522:
@@ -711,7 +647,6 @@ Test:
       Absence de mise en forme provoquant des clignotements 
       déclenchés automatiquement ne pouvant pas être arrêtés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test523:
@@ -719,7 +654,6 @@ Test:
     description:   >
       
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test524:
@@ -728,7 +662,6 @@ Test:
       Absence d'éléments affichant des mouvements déclenchés 
       automatiquement ne pouvant pas être arrêtés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test525:
@@ -737,7 +670,6 @@ Test:
       Absence de code javascript provoquant des mouvements 
       déclenchés automatiquement ne pouvant pas être arrêtés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test526:
@@ -746,7 +678,6 @@ Test:
       Absence de mise en forme provoquant des mouvements 
       déclenchés automatiquement ne pouvant pas être arrêtés
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test527:
@@ -754,7 +685,6 @@ Test:
     description:   >
       Indépendance du périphérique d'accès aux éléments object, embed et applet
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test528:
@@ -763,7 +693,6 @@ Test:
       Présence d'une alternative aux éléments object, 
       applet et embed dépendant d'un périphérique
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test529:
@@ -771,7 +700,6 @@ Test:
     description:   >
       Absence d'éléments déclenchant la lecture de son ne pouvant pas être arrêtée
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test530:
@@ -779,7 +707,6 @@ Test:
     description:   >
       
     Regroupement:  multimediaA
-    Test:
     execute_si:
       
   test531:
@@ -788,7 +715,6 @@ Test:
       Présence de version en langue des signes française 
       facilitant la compréhension des médias synchronisés
     Regroupement:  multimediaAAA
-    Test:
     execute_si:
       
   test532:
@@ -796,7 +722,6 @@ Test:
     description:   >
       
     Regroupement:  multimediaAAA
-    Test:
     execute_si:
       
   test533:
@@ -805,7 +730,6 @@ Test:
       La ou les pistes de dialogue doivent être au minimum 20 décibels plus 
       élevées que le fond sonore ou alors celui-ci peut être désactivé
     Regroupement:  multimediaAAA
-    Test:
     execute_si:
       
   test534:
@@ -814,7 +738,6 @@ Test:
       Présence d'un mécanisme pour personnaliser la couleur 
       d'avant plan et d'arrière plan des blocs de texte
     Regroupement:  multimediaAAA
-    Test:
     execute_si:
       
   test61:
@@ -822,7 +745,6 @@ Test:
     description:   >
       
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test62:
@@ -832,7 +754,6 @@ Test:
       nouvelle fenêtre lors de l'utilisation de l'attribut 
       target sur les liens textuels et les formulaires
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test63:
@@ -842,7 +763,6 @@ Test:
       nouvelle fenêtre lors de l'utilisation de l'attribut 
       target sur les images liens et les zones cliquables
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test64:
@@ -851,7 +771,6 @@ Test:
       Présence d'un avertissement préalable à l'ouverture de 
       nouvelle fenêtre lors de l'utilisation de code javascript
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test65:
@@ -859,7 +778,6 @@ Test:
     description:   >
       
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test66:
@@ -867,7 +785,6 @@ Test:
     description:   >
       
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test67:
@@ -875,7 +792,6 @@ Test:
     description:   >
       Absence d'élément meta provoquant un rafraîchissement automatique de la page
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test68:
@@ -884,7 +800,6 @@ Test:
       Absence de code javascript provoquant un rafraîchissement 
       automatique de la page ne pouvant pas être arrêté
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test69:
@@ -893,7 +808,6 @@ Test:
       Absence d'éléments provoquant un rafraîchissement 
       automatique de la page ne pouvant pas être arrêté
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test610:
@@ -901,7 +815,6 @@ Test:
     description:   >
       Absence d'élément meta provoquant une redirection automatique de la page
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test611:
@@ -910,7 +823,6 @@ Test:
       Absence de code javascript provoquant une redirection 
       automatique de la page ne pouvant pas être arrêtée
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test612:
@@ -919,7 +831,6 @@ Test:
       Absence d'éléments provoquant une redirection 
       automatique de la page ne pouvant pas être arrêtée
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test613:
@@ -928,7 +839,6 @@ Test:
       Possibilité d'identifier la destination 
       ou l'action des liens et des boutons
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test614:
@@ -937,7 +847,6 @@ Test:
       Possibilité d'identifier la destination ou l'action
       des liens et des boutons (intitulé seul)
     Regroupement:  navigationAAA
-    Test:
     execute_si:
       
   test615:
@@ -945,7 +854,6 @@ Test:
     description:   >
       
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test616:
@@ -953,7 +861,6 @@ Test:
     description:   >
       
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test617:
@@ -961,7 +868,6 @@ Test:
     description:   >
       
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test618:
@@ -969,7 +875,6 @@ Test:
     description:   >
       
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test619:
@@ -977,7 +882,6 @@ Test:
     description:   >
       Présence d'un accès à la page contenant le plan du site depuis la page d'accueil
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test620:
@@ -985,7 +889,6 @@ Test:
     description:   >
       
     Regroupement:  navigationAAA
-    Test:
     execute_si:
       
   test621:
@@ -993,7 +896,6 @@ Test:
     description:   >
       
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test622:
@@ -1002,7 +904,6 @@ Test:
       Cohérence de la position des menus et barres de 
       navigation dans le code source de la structure HTML
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test623:
@@ -1010,7 +911,6 @@ Test:
     description:   >
       
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test624:
@@ -1018,7 +918,6 @@ Test:
     description:   >
       Navigation au clavier dans un ordre logique par rapport au contenu
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test625:
@@ -1027,7 +926,6 @@ Test:
       Présence d'un avertissement préalable à l'ouverture de nouvelle 
       fenêtre lors de l'utilisation d'éléments object ou embed
     Regroupement:  navigationAAA
-    Test:
     execute_si:
       
   test626:
@@ -1035,7 +933,6 @@ Test:
     description:   >
       Présence des informations de format pour les documents en téléchargement.
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test627:
@@ -1043,7 +940,6 @@ Test:
     description:   >
       Présence des informations de poids pour les documents en téléchargement
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test628:
@@ -1051,7 +947,6 @@ Test:
     description:   >
       Présence des informations de langue pour les documents en téléchargement
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   tes629:
@@ -1059,7 +954,6 @@ Test:
     description:   >
       
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test630:
@@ -1067,7 +961,6 @@ Test:
     description:   >
       Présence d'un balisage permettant d'identifier les groupes de liens importants
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test631:
@@ -1075,7 +968,6 @@ Test:
     description:   >
       Présence de liens d'évitement ou d'accès rapide aux groupes de liens importants
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test632:
@@ -1083,7 +975,6 @@ Test:
     description:   >
       Cohérence des liens d'évitement ou d'accès rapide aux groupes de liens importants
     Regroupement:  navigationA
-    Test:
     execute_si:
       
   test633:
@@ -1091,7 +982,6 @@ Test:
     description:   >
       Ordre des liens d'évitement ou d'accès rapide dans le code source des pages
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test634:
@@ -1099,7 +989,6 @@ Test:
     description:   >
       
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test635:
@@ -1107,7 +996,6 @@ Test:
     description:   >
       Possibilité de naviguer facilement dans un groupe de pages
     Regroupement:  navigationAA
-    Test:
     execute_si:
       
   test636:
@@ -1115,7 +1003,6 @@ Test:
     description:   >
       Présence d'une indication de la position courante dans la navigation
     Regroupement:  navigationAAA
-    Test:
     execute_si:
       
   test71:
@@ -1123,7 +1010,6 @@ Test:
     description:   >
       Absence de génération de contenus porteur d'information via les styles CSS
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test72:
@@ -1132,7 +1018,6 @@ Test:
       Absence d'altération de la compréhension lors de la lecture 
       d'un bloc d'informations lorsque les styles sont désactivés
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test73:
@@ -1141,7 +1026,6 @@ Test:
       Lisibilité des informations affichées comme fond d'éléments via 
       les styles CSS lorsque les styles et/ou les images sont désactivés
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test74:
@@ -1149,7 +1033,6 @@ Test:
     description:   >
       
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test75:
@@ -1158,7 +1041,6 @@ Test:
       Absence de définition d'une couleur de texte sans 
       définition d'une couleur de fond et inversement
     Regroupement:  presentationAA
-    Test:
     execute_si:
       
   test76:
@@ -1167,7 +1049,6 @@ Test:
       Possibilité de remplacer les éléments non textuels par 
       une mise en forme effectuée grâce aux styles CSS
     Regroupement:  presentationAA
-    Test:
     execute_si:
       
   test77:
@@ -1176,7 +1057,6 @@ Test:
       Possibilité de remplacer les éléments non textuels par une 
       mise en forme effectuée grâce aux styles CSS (sans exceptions)
     Regroupement:  presentationAAA
-    Test:
     execute_si:
       
   test78:
@@ -1184,7 +1064,6 @@ Test:
     description:   >
       
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test79:
@@ -1192,7 +1071,6 @@ Test:
     description:   >
       
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test710:
@@ -1200,7 +1078,6 @@ Test:
     description:   >
       
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test711:
@@ -1208,7 +1085,6 @@ Test:
     description:   >
       
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test712:
@@ -1216,7 +1092,6 @@ Test:
     description:   >
       
     Regroupement:  presentationAAA
-    Test:
     execute_si:
       
   test713:
@@ -1224,7 +1099,6 @@ Test:
     description:   >
       
     Regroupement:  presentationAA
-    Test:
     execute_si:
       
   test714:
@@ -1233,7 +1107,6 @@ Test:
       Absence d'unités absolues ou de pixel dans les feuilles de 
       styles pour la taille de caractère des éléments de formulaire
     Regroupement:  presentationAA
-    Test:
     execute_si:
       
   test715:
@@ -1242,7 +1115,6 @@ Test:
       Absence d'apparition de barre de défilement 
       horizontale en affichage plein écran
     Regroupement:  presentationAAA
-    Test:
     execute_si:
       
   test716:
@@ -1253,7 +1125,6 @@ Test:
       pouvoir être rédoite à 80 caractères ou moins lorsque l'utilisateur
       redimensionne la fenêtre du navigateur
     Regroupement:  presentationAAA
-    Test:
     execute_si:
       
   test717:
@@ -1264,7 +1135,6 @@ Test:
       être supérieur à 1,5 fois la celle entre les lignes; ou alors un mécanisme
       doit permettre d'agrandir ces espacements.
     Regroupement:  presentationAAA
-    Test:
     execute_si:
       
   test718:
@@ -1272,7 +1142,6 @@ Test:
     description:   >
       Restitution correcte dans les lecteurs d'écran des éléments masqués
     Regroupement:  presentationA
-    Test:
     execute_si:
       
   test81:
@@ -1281,7 +1150,6 @@ Test:
       Lorsqu'un script met à jout un élément non textuel de la page, son 
       alternative doit également être mise à jour
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test82:
@@ -1293,7 +1161,6 @@ Test:
       onkeypress ou alors un autre élément HTML doit permettre d'obtenir le même
       résultat sans l'utilisation de gestionnaire d'évènements
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test83:
@@ -1306,7 +1173,6 @@ Test:
       alors un autre élément HTML permet d'obtenir le même résultat sans 
       l'utilisation de gestionnaire d'évènement
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test84:
@@ -1315,7 +1181,6 @@ Test:
       Possibilité de désactiver toute alerte non sollicitée 
       ou toute mise à jour automatique d'un contenu de la page
     Regroupement:  scriptAAA
-    Test:
     execute_si:
       
   test85:
@@ -1324,7 +1189,6 @@ Test:
       Absence de changements de contexte suite à une action de 
       l'utilisateur sans validation explicite ou information préalable
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test86:
@@ -1334,7 +1198,6 @@ Test:
       des attributs et éléments le rendant accessible, ce contenu doit se
       situer juste après l'élément ayant permis de déclencher sa génération
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test87:
@@ -1343,7 +1206,6 @@ Test:
       Lorsqu'il en possède un, le nom de l'attribut rôle d'un élément de la page
       doit correspondre à son rôle dans la page
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test88:
@@ -1353,7 +1215,6 @@ Test:
       d'événements sans équivalent universel ou une propriété propre 
       à un périphérique
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test89:
@@ -1361,7 +1222,6 @@ Test:
     description:   >
       
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test810:
@@ -1369,7 +1229,6 @@ Test:
     description:   >
       
     Regroupement:  scriptAAA
-    Test:
     execute_si:
       
   test811:
@@ -1377,7 +1236,6 @@ Test:
     description:   >
       
     Regroupement:  scriptAAA
-    Test:
     execute_si:
       
   test812:
@@ -1385,7 +1243,6 @@ Test:
     description:   >
       Présence d'une alternative au code javascript
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test813:
@@ -1395,7 +1252,6 @@ Test:
       ce dernier doit comporter tous les attributs et éléments le rendant
       accessible après l'exécution du code
     Regroupement:  scriptA
-    Test:
     execute_si:
       
   test91:
@@ -1403,7 +1259,6 @@ Test:
     description:   >
       L'instruction !DOCTYPE doit être présente dans la page
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test92:
@@ -1411,7 +1266,6 @@ Test:
     description:   >
       L'instruction !DOCTYPE doit être située avant la balise html
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test93:
@@ -1420,7 +1274,6 @@ Test:
       La syntaxe de l'instruction !DOCTYPE doit 
       être une syntaxe validée par le W3C
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test94:
@@ -1430,7 +1283,6 @@ Test:
       erreurs de validité ne concernent pas l'imbrication des balises dans 
       l'arbre du document ou l'écriture des balises et des attributs
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test95:
@@ -1439,7 +1291,6 @@ Test:
       Absence de composants obsolètes par rapport à 
       la version des spécifications W3C utilisée
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test96:
@@ -1447,7 +1298,6 @@ Test:
     description:   >
       
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test97:
@@ -1455,7 +1305,6 @@ Test:
     description:   >
       
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test98:
@@ -1465,7 +1314,6 @@ Test:
       HTMl ascendants doit posséder un attribut lang non vide contenant le 
       code identifiant correctement la lange de traitement de la page
     Regroupement:  standardA
-    Test:
     execute_si:
       
   test101:
@@ -1473,7 +1321,6 @@ Test:
     description:   >
       
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test102:
@@ -1481,7 +1328,6 @@ Test:
     description:   >
       
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test103:
@@ -1489,7 +1335,6 @@ Test:
     description:   >
       
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test104:
@@ -1497,7 +1342,6 @@ Test:
     description:   >
       
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test105:
@@ -1506,7 +1350,6 @@ Test:
       Une liste non ordonnée doit être regroupée dans un élément ul et ses 
       différentes parties dans des éléments li
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test106:
@@ -1514,7 +1357,6 @@ Test:
     description:   >
       
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test107:
@@ -1523,7 +1365,6 @@ Test:
       Au sein d'un élément dl, tout élément dd 
       doit être précédé par un élément dt
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test108:
@@ -1532,7 +1373,6 @@ Test:
       Une citation doit être balisée par q si c'est un citation courte ou par
       block-quote si c'est une citation longue
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test109:
@@ -1542,7 +1382,6 @@ Test:
       indication quant à sa signification, alors elle doit être contenue dans
       un élément abbr doté d'un attribut titre non vide
     Regroupement:  structureAAA
-    Test:
     execute_si:
       
   test1010:
@@ -1552,7 +1391,6 @@ Test:
       indication quant à sa signification, alors il doit être contenu dans
       un élément acronym doté d'un attribut titre non vide
     Regroupement:  structureAAA
-    Test:
     execute_si:
       
   test1011:
@@ -1560,7 +1398,6 @@ Test:
     description:   >
       
     Regroupement:  structureAAA
-    Test:
     execute_si:
       
   test1012:
@@ -1568,7 +1405,6 @@ Test:
     description:   >
       
     Regroupement:  structureAAA
-    Test:
     execute_si:
       
   test1013:
@@ -1578,7 +1414,6 @@ Test:
       accessible ou alors disposer d'une version alternative au format html
       accessible
     Regroupement:  structureA
-    Test:
     execute_si:
       
   test111:
@@ -1587,7 +1422,6 @@ Test:
       Présence des balises th pour indiquer les en-têtes 
       de lignes et de colonnes dans les tableaux de données
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test112:
@@ -1597,7 +1431,6 @@ Test:
       s'y rattachent dans un tableau de données simple grâce aux attributs id 
       et headers ou scope
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test113:
@@ -1607,7 +1440,6 @@ Test:
       qui s'y rattachent dans un tableau de données complexe grâce aux 
       attributs id et headers
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test114:
@@ -1615,7 +1447,6 @@ Test:
     description:   >
       
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test115:
@@ -1625,7 +1456,6 @@ Test:
       élement pre ne doit pas être utilisée pour formater visuellement des 
       colonnes ou un tableau de données
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test116:
@@ -1634,7 +1464,6 @@ Test:
       La lecture linéaire du contenu du tableau (dans l'ordre du code source)
       doit conserver les associations logiques présentes dans son rendu affiché
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test117:
@@ -1642,7 +1471,6 @@ Test:
     description:   >
       
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test118:
@@ -1650,7 +1478,6 @@ Test:
     description:   >
       
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test119:
@@ -1658,7 +1485,6 @@ Test:
     description:   >
       
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test1110:
@@ -1666,7 +1492,6 @@ Test:
     description:   >
       
     Regroupement:  tableauA
-    Test:
     execute_si:
       
   test121:
@@ -1674,7 +1499,6 @@ Test:
     description:   >
       
     Regroupement:  texteAA
-    Test:
     execute_si:
       
   test122:
@@ -1682,7 +1506,6 @@ Test:
     description:   >
       
     Regroupement:  texteAA
-    Test:
     execute_si:
       
   test123:
@@ -1693,7 +1516,6 @@ Test:
       mise à disposition dans la version principal (y compris les informations 
       apportées de façon visuelle ou sonore)
     Regroupement:  texteA
-    Test:
     execute_si:
       
   test124:
@@ -1702,7 +1524,6 @@ Test:
       Présence de liens ou de définitions permettant d'avoir accès 
       aux informations nécessaires à la compréhension des contenus
     Regroupement:  texteAAA
-    Test:
     execute_si:
       
   test125:
@@ -1711,7 +1532,6 @@ Test:
       Si la syntaxe d'un segment de texte rend sa compréhension difficile, il
       doit disposer d'un alternative textuelle de compréhension aisée
     Regroupement:  texteA
-    Test:
     execute_si:
       
   test126:
@@ -1720,7 +1540,6 @@ Test:
       Présence d'informations sur les mots par la mise 
       à disposition de leur prononciation phonétique
     Regroupement:  texteA
-    Test:
     execute_si:
       
   test127:
@@ -1729,7 +1548,6 @@ Test:
       Présence d'un moyen de transmission de l'information autre qu'une 
       utilisation de la forme ou la position dans les éléments non textuels
     Regroupement:  texteA
-    Test:
     execute_si:
       
   test128:
@@ -1738,7 +1556,6 @@ Test:
       Présence d'un autre moyen que la forme ou la position pour identifier un 
       contenu auquel il est fait référence dans un élément non textuel
     Regroupement:  texteA
-    Test:
     execute_si:
       
   test129:
@@ -1747,7 +1564,6 @@ Test:
       Présence d'un autre moyen que la forme ou la position pour 
       identifier un contenu auquel il est fait référence textuellement
     Regroupement:  texteA
-    Test:
     execute_si:
       
   test1210:
@@ -1755,6 +1571,5 @@ Test:
     description:   >
       
     Regroupement:  texteAAA
-    Test:
     execute_si:
       
