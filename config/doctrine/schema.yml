@@ -89,8 +89,16 @@ Test:
     nom:             { type: string(255), notnull: true, unique: true }
     description:     { type: string(1024), notnull: true }
     regroupement_id: { type: integer, notnull: true }
+    dependance_id:   { type: integer, notnull: false }
+    execute_si:      { type: integer, notnull: false }
   relations:
     Regroupement:
       local:        regroupement_id
       foreign:      id
       foreignAlias: CollectionTests
+    Test:
+      local:        dependance_id
+      foreign:      id
+      foreignAlias: Dependance
+      foreignType:  one
+
