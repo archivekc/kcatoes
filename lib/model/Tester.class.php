@@ -12,6 +12,7 @@ class Tester
   private $tests;
   private $page;
   private $logger;
+  private $toExecute = array();
 
   /**
    * Créé un testeur à partir d'une page web et d'une liste de tests
@@ -33,22 +34,66 @@ class Tester
    */
   public function executeTest()
   {
-    foreach($this->tests as $test)
+    foreach($this->toExecute as $index => $test)
     {
-      $this->addLogInfo($test->getNom().' - Lancement de l\'exécution');
-      if ($test->isExecutable())
+      $execute = true;
+      $explication = '';
+      if ($test->getDependance() != null)
       {
-        $test->execute($this->page);
+        $dependanceResult = $this->toExecute[$index-1]->getResultat()->resultatCode;
+        if ($dependanceResult === Resultat:: NON_EXEC)
+        {
+          $execute = false;
+          $explication = $test->getNom().' - Non exécutable: la dépendance '.
+                                        'directe du test n\'a pas été exécutée';
+        }
+        elseif ($dependanceResult !== $test->getExecuteSi())
+        {
+          $execute = false;
+          $explication = $test->getnom().' - Non exécutable: le résultat de sa'.
+                        'dépendance directe ne permet pas l\'exécution du test';
+        }
       }
-      if ($test->getResultat()->resultatCode != Resultat::ERREUR
-          && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
+      if ($execute)
       {
-        $this->addLogInfo($test->getnom().' - '.$test->getResultat()->getCode(true));
+        $this->addLogInfo($test->getNom().' - Lancement de l\'exécution');
+        if ($test->isExecutable())
+        {
+          $test->execute($this->page);
+        }
+        if ($test->getResultat()->resultatCode != Resultat::ERREUR
+            && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
+        {
+          $this->addLogInfo($test->getnom().' - '.$test->getResultat()->getCode(true));
+        }
+        else
+        {
+          $this->addLogErreur($test->getnom().' - '.$test->getResultat()->getCode(true));
+        }
       }
       else
       {
-        $this->addLogErreur($test->getnom().' - '.$test->getResultat()->getCode(true));
+        $resultat = new Resultat(Resultat::NON_EXEC);
+        $resultat->setExplicationErreur($explication);
+        $test->setResultat($resultat);
       }
+    }
+  }
+
+  public function createExecutionList()
+  {
+    $this->addLogInfo('Création de la liste des tests à exécuter');
+    try
+    {
+      foreach ($this->tests as $test)
+      {
+        $this->toExecute[] = $test->getExecutionList();
+      }
+    }
+    catch (Exception $e)
+    {
+      $this->addLogErreur('Erreur lors de la création de la liste des tests à exécuter');
+      throw new KcatoesTesterException($e->getMessage());
     }
   }
 
