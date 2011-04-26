@@ -4,7 +4,6 @@
   <head>
     <title>Interface d'administration - KCatoes</title>
     <link rel="shortcut icon" href="/favicon.ico" />
-    <?php use_stylesheet('admin.css') ?>
     <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
   </head>
