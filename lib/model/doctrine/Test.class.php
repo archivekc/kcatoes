@@ -161,17 +161,6 @@ class Test extends BaseTest
   }
 
   /**
-   * (non-PHPdoc)
-   * @see lib/model/doctrine/base/BaseTest::getDependance()
-   */
-  public function getDependance()
-  {
-    $dependance = Doctrine::getTable('Test')->createQuery()->whereIn('id', $this->dependance_id)->execute();
-    return $dependance[0];
-  }
-
-
-  /**
    * Créée la liste des dépendances à exécuter avant de pouvoir exécuter ce
    * test
    *
@@ -182,8 +171,8 @@ class Test extends BaseTest
     $executeList = array();
     if ($this->dependance_id != null)
     {
-      array_merge($executeList, $this->getDependance()->getExecutionList());
-      $executeList[] = $this->getDependance();
+      array_merge($executeList, $this->Dependance->getExecutionList());
+      $executeList[] = $this->Dependance;
     }
     return $executeList;
   }
