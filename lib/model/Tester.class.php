@@ -81,6 +81,12 @@ class Tester
     }
   }
 
+  /**
+   * Créée la liste des tests qui seront exécutés par l'application en se basant
+   * sur les règles de dépendance des tests sélectionnés
+   *
+   * @throws KcatoesTesterException
+   */
   public function createExecutionList()
   {
     $this->addLogInfo('Création de la liste des tests à exécuter');
