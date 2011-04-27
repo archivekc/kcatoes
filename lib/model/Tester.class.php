@@ -12,7 +12,7 @@ class Tester
   private $tests;
   private $page;
   private $logger;
-  private $toExecute = array();
+  private $toExecute;
 
   /**
    * Créé un testeur à partir d'une page web et d'une liste de tests
@@ -23,9 +23,10 @@ class Tester
    */
   public function __construct(Page $_page, $_tests, sfLogger $_logger = null)
   {
-    $this->page = $_page;
-    $this->tests = $_tests;
-    $this->logger = $_logger;
+    $this->page      = $_page;
+    $this->tests     = $_tests;
+    $this->logger    = $_logger;
+    $this->toExecute = array();
   }
 
   /**
@@ -38,7 +39,7 @@ class Tester
     {
       $execute = true;
       $explication = '';
-      if ($test->getDependance() != null)
+      if ($test->getDependanceId() != null)
       {
         $dependanceResult = $this->toExecute[$index-1]->getResultat()->resultatCode;
         if ($dependanceResult === Resultat:: NON_EXEC)
@@ -47,10 +48,10 @@ class Tester
           $explication = $test->getNom().' - Non exécutable: la dépendance '.
                                         'directe du test n\'a pas été exécutée';
         }
-        elseif ($dependanceResult !== $test->getExecuteSi())
+        elseif ($dependanceResult != $test->getExecuteSi())
         {
           $execute = false;
-          $explication = $test->getnom().' - Non exécutable: le résultat de sa'.
+          $explication = $test->getnom().' - Non exécutable: le résultat de sa '.
                         'dépendance directe ne permet pas l\'exécution du test';
         }
       }
@@ -61,21 +62,21 @@ class Tester
         {
           $test->execute($this->page);
         }
-        if ($test->getResultat()->resultatCode != Resultat::ERREUR
-            && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
-        {
-          $this->addLogInfo($test->getnom().' - '.$test->getResultat()->getCode(true));
-        }
-        else
-        {
-          $this->addLogErreur($test->getnom().' - '.$test->getResultat()->getCode(true));
-        }
       }
       else
       {
         $resultat = new Resultat(Resultat::NON_EXEC);
         $resultat->setExplicationErreur($explication);
         $test->setResultat($resultat);
+      }
+      if ($test->getResultat()->resultatCode != Resultat::ERREUR
+          && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
+      {
+        $this->addLogInfo($test->getnom().' - '.$test->getResultat()->getCode(true));
+      }
+      else
+      {
+        $this->addLogErreur($test->getnom().' - '.$test->getResultat()->getCode(true));
       }
     }
   }
@@ -87,7 +88,8 @@ class Tester
     {
       foreach ($this->tests as $test)
       {
-        $this->toExecute[] = $test->getExecutionList();
+        array_merge($this->toExecute, $test->getExecutionList());
+        $this->toExecute[] = $test;
       }
     }
     catch (Exception $e)

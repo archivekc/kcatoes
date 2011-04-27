@@ -124,7 +124,7 @@ class Test extends BaseTest
   }
 
   /**
-   * Accesseur de la variable $resultat
+   * Accesseur de la variable $this->resultat
    *
    */
   public function getResultat()
@@ -132,6 +132,12 @@ class Test extends BaseTest
     return $this->resultat;
   }
 
+  /**
+   * Seter de la variable $this->resultat
+   *
+   * @param Resultat $resultat L'objet Resultat permettant de définir la variable
+   *                           $this->resultat
+   */
   public function setResultat(Resultat $resultat)
   {
     $this->resultat = $resultat;
@@ -155,6 +161,17 @@ class Test extends BaseTest
   }
 
   /**
+   * (non-PHPdoc)
+   * @see lib/model/doctrine/base/BaseTest::getDependance()
+   */
+  public function getDependance()
+  {
+    $dependance = Doctrine::getTable('Test')->createQuery()->whereIn('id', $this->dependance_id)->execute();
+    return $dependance[0];
+  }
+
+
+  /**
    * Créée la liste des dépendances à exécuter avant de pouvoir exécuter ce
    * test
    *
@@ -163,12 +180,11 @@ class Test extends BaseTest
   public function getExecutionList()
   {
     $executeList = array();
-    if ($this->Dependance != null)
+    if ($this->dependance_id != null)
     {
-      $executeList[] = $this->Dependance->getExecutionList();
+      array_merge($executeList, $this->getDependance()->getExecutionList());
+      $executeList[] = $this->getDependance();
     }
-    $executeList[] = $this;
-
     return $executeList;
   }
 }
