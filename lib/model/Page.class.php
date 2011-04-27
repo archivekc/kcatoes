@@ -49,6 +49,7 @@ class Page extends Client
    */
   public function buildCrawler()
   {
+    $this->addLogInfo('Génération du crawler');
     try
     {
       $this->crawler = $this->createCrawlerFromContent($this->url, $this->content, 'text/html');
@@ -58,7 +59,6 @@ class Page extends Client
       $this->addLogErreur('Une erreur est survenue lors de la génération du crawler de la page');
       throw new KcatoesCrawlerException($e->getMessage());
     }
-    $this->addLogInfo('Génération du crawler - Ok');
   }
 
   /**
