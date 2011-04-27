@@ -182,11 +182,35 @@ class testActions extends sfActions
     }
 
     $page = new Page($content, $this->url, sfContext::getInstance()->getLogger());
-    $page->buildCrawler();
+    try
+    {
+      $page->buildCrawler();
+    }
+    catch (KcatoesCrawlerException $e)
+    {
+      $this->erreur = $e->getMessage();
+      $this->addLogErreur($this->erreur);
+      $this->info = 'Une erreur est survenue lors de la création du crawler de la page.';
+      $this->cheminFichierCsv = '';
+      return sfView::SUCCESS;
+    }
 
     $tester = new Tester($page,
                          $this->tests,
                          sfContext::getInstance()->getLogger());
+    try
+    {
+      $tester->createExecutionList();
+    }
+    catch (KcatoesTesterException $e)
+    {
+      $this->erreur = $e->getMessage();
+      $this->addLogErreur($this->erreur);
+      $this->info = 'Une erreur est survenue lors de la création de la liste des tests à exécuter.';
+      $this->cheminFichierCsv = '';
+      return sfView::SUCCESS;
+    }
+
     $tester->executeTest();
     $this->erreur = '';
     $this->info = 'Traitement terminé';
@@ -195,7 +219,7 @@ class testActions extends sfActions
 
   public function executeDev(sfWebRequest $request)
   {
-    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
+    $this->tests = Doctrine::getTable('Test')->createQuery()->select()->execute();
 
     foreach($this->tests as $test)
     {
@@ -207,7 +231,6 @@ class testActions extends sfActions
         '{'."\n".
         '  public function __construct()'."\n".
         '  {'."\n".
-        '    $this->explication = \'\';'."\n".
         '  }'."\n".
         "\n".
         '  public function execute(Page $page)'."\n".
