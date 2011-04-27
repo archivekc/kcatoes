@@ -97,8 +97,10 @@ Test:
       foreign:      id
       foreignAlias: CollectionTests
     Test:
-      local:        dependance_id
-      foreign:      id
-      foreignAlias: Dependance
-      foreignType:  one
+      local:       dependance_id
+      foreign:     id
+      alias:       Dependance
+      foreignType: one
+      onDelete:    CASCADE
+      onUpdate:    CASCADE
 
