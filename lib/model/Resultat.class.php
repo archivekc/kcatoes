@@ -24,8 +24,8 @@ class Resultat
    * Contructuit un résultat avec un code de résultat
    * et l'explication associée
    *
-   * @param int    $_resultatCode Code de résultat (doit correspondre à
-   *                              l'une des constantes de la classe)
+   * @param int $_resultatCode Code de résultat (doit correspondre à l'une des
+   *                           constantes de la classe)
    */
   public function __construct($_resultatCode)
   {

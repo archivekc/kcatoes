@@ -5,7 +5,7 @@
  * à passer un test ou nécessitant une vérification manuelle
  *
  * @package Kcatoes
- * @author Adrien Couet <adrien.couet@keyconsulting.fr>
+ * @author  Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 class Complement
 {
@@ -30,7 +30,7 @@ class Complement
   /**
    * Fonction d'accès aux paramètres de la classe
    *
-   * @param  String $var Le nom de la variable à récupérer
+   * @param String $var Le nom de la variable à récupérer
    *
    * @return La valeur de la variable
    */

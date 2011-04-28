@@ -81,7 +81,7 @@ class Page extends Client
    */
   private function addLogErreur($errorMessage)
   {
-    if($this->logger instanceof sfLogger)
+    if ($this->logger instanceof sfLogger)
     {
       $this->logger->err($errorMessage);
     }

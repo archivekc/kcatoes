@@ -25,7 +25,7 @@ class Test extends BaseTest
   public function getNomCourt()
   {
     $nomCourt = $this->getNom();
-    $accent = array(
+    $accent   = array(
       'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'ç' => 'c',
       'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i',
       'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o',
@@ -48,14 +48,15 @@ class Test extends BaseTest
    * Vérifie si le test est exécutable
    *
    * @return true si le test est exécutable, false sinon
+   *
    * @tested
    */
   public function isExecutable()
   {
-    if($this->hasExecutable())
+    if ($this->hasExecutable())
     {
       $className = $this->getNomCourt();
-      $class = new $className();
+      $class     = new $className();
       if ($class instanceof ASource)
       {
         return true;
@@ -67,7 +68,8 @@ class Test extends BaseTest
         return false;
       }
     }
-    else {
+    else
+    {
       $this->resultat = new Resultat(Resultat::NON_EXEC);
       $this->resultat->setExplicationErreur('Impossible de trouver l\'implémentation');
       return false;
@@ -77,6 +79,7 @@ class Test extends BaseTest
   /**
    * Vérifie la classe implémentant l'exécution du test existe
    *
+   * @return true si l'implémentation a été trouvé, false sinon
    */
   private function hasExecutable()
   {
@@ -87,11 +90,12 @@ class Test extends BaseTest
    * Exécute le test
    *
    * @param Page $page La page sur laquelle exécuter le test
+   *
    * @tested
    */
   public function execute($page)
   {
-    $className = $this->getNomCourt();
+    $className      = $this->getNomCourt();
     $implementation = new $className();
 
     try
@@ -126,6 +130,8 @@ class Test extends BaseTest
   /**
    * Accesseur de la variable $this->resultat
    *
+   * @return Le resultat du test
+   *
    */
   public function getResultat()
   {
@@ -145,6 +151,8 @@ class Test extends BaseTest
 
   /**
    * Méthode de rendu pour label de formulaire
+   *
+   * @return Le nom du test accompagné de sa description
    *
    * @tested
    */
@@ -167,6 +175,7 @@ class Test extends BaseTest
    * test
    *
    * @return La liste des dépendance à exécuter pour ce test
+   *
    * @tested
    */
   public function getExecutionList()
