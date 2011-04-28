@@ -35,7 +35,7 @@ class Tester
    */
   public function executeTest()
   {
-    foreach($this->executionList as $index => $test)
+    foreach($this->executionList as $test)
     {
       $execute = true;
       $explication = '';
