@@ -6,7 +6,7 @@
  * sont les champs erronés et, si nécessaire, si une information sur le format
  * ou le type de saisie attendu est présente.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class IndentificationDesErreursDeSaisie extends ASource

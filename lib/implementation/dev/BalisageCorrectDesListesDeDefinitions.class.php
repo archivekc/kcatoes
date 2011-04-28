@@ -5,7 +5,7 @@
  * alors le test échoue. Si c'est le cas, le tableau d'echecs contiendra la
  * liste des éléments dd n'ayant pas d'élément dt associé.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class BalisageCorrectDesListesDeDefinitions extends ASource

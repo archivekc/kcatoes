@@ -4,7 +4,7 @@
  * Vérifie que la déclaration de DOCTYPE se fait bien avant l'ouverture de la
  * balise HTML
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class ConformiteDeLaPositionDeLaDeclarationDUtilisationDUneDtd extends ASource

@@ -9,7 +9,7 @@
  * et un Echec est créé pour chaque correspondance trouvée.
  *
  * @package Kcatoes
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource

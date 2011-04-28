@@ -3,9 +3,9 @@
 use Symfony\Component\Validator\Constraints\UrlValidator;
 
 /**
+ * Formulaire de saisie de l'URL de la page à tester
  *
- * Enter description here ...
- * @author Adrien
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class UrlForm extends BaseForm

@@ -6,7 +6,7 @@
  * une information commune ajoutée à un groupe de labels ou si un groupe de champs
  * ne peut pas être formé à partir du type d'information attendu
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class UtilisationDeLElementFieldset extends ASource

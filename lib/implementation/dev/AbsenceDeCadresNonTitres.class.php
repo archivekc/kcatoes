@@ -7,7 +7,7 @@
  * echecs contiendra la liste des éléments frame et iframe de la page ne
  * respectant pas ces deux conditions.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDeCadresNonTitres extends ASource

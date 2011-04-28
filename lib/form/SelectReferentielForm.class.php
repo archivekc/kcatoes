@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Referentiel form.
+ * Formulaire de sélection de référentiel
  *
  * @package    Kcatoes
  * @subpackage form

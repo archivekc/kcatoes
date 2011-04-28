@@ -3,7 +3,7 @@
 /**
  * Vérifie la présence d'au moins un élément title dans la page
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDUnTitreDansLaPage extends ASource

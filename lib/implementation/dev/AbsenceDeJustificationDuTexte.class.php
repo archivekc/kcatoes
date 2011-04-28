@@ -3,7 +3,7 @@
 /**
  * Vérifie qu'aucun élément de la page n'utilise la propriété d'alignement justify
  *
- * @author Adrien Coeut
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDeJustificationDuTexte extends ASource

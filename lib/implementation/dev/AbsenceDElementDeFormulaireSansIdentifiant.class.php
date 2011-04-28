@@ -5,7 +5,7 @@
  * title ni un attribut id renseigné et unique.
  * Si ce compte est différent de 0, le test échoue.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 use Symfony\Component\DomCrawler\Crawler;

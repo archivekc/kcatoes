@@ -5,7 +5,7 @@
  * un testeur de vérifier que pour ceux dont un segment de texte sert d'étiquette,
  * celui ci est situé de façon à pouvoir leur être associé visuellement.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PositionDesEtiquettes extends ASource

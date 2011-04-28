@@ -6,7 +6,7 @@
  * sont identifiables par un utilisateur et, si nécessaire, que le format ou
  * le type de saisie recquis est indiqué.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class IndicationDesContraintesSurLesChamps extends ASource

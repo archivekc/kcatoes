@@ -4,7 +4,7 @@
  * Vérifie si chaque élément formulaire ayant un attribut id unique mais pas
  * d'attribut title ou un attribut title vide a un label associé.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDElementDeFormulaireSansEtiquetteAssociee extends ASource

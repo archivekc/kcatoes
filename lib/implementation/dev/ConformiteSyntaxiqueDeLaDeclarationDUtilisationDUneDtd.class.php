@@ -4,7 +4,7 @@
  * Vérifie, quand elle est présente, la conformité de la syntaxe de la déclaration
  * !DOCTYPE par rapport aux syntaxes validées par le W3C
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class ConformiteSyntaxiqueDeLaDeclarationDUtilisationDUneDtd extends ASource

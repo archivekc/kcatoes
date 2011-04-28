@@ -3,7 +3,7 @@
 /**
  * Vérifie que toutes les images de la page ont bien un attribut alt.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDeLAttributAlt extends ASource

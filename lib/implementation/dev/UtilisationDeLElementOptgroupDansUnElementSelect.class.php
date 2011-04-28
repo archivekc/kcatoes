@@ -5,7 +5,7 @@
  * Un testeur devra vérifier si les éléments option présents dans le select ne
  * nécessitent pas de faire au moins deux regroupements distincs.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class UtilisationDeLElementOptgroupDansUnElementSelect extends ASource

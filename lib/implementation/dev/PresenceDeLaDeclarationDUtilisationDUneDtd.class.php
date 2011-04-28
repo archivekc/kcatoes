@@ -3,7 +3,7 @@
 /**
  * Vérifie la présence d'une déclaration de !DOCTYPE
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDeLaDeclarationDUtilisationDUneDtd extends ASource

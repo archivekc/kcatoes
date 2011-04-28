@@ -5,7 +5,7 @@
  * testeur puisse vérifier la pertinance de la légende au vu du contenu de
  * l'élément fieldset
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PertinenceDeLElementLegend extends ASource

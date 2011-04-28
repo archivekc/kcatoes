@@ -5,7 +5,7 @@
  * Un titre doit être soit du même niveau que celui qui le précède,
  * soit un niveau en dessous, soit jusqu'à 4 niveaux au dessus.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDInterruptionDansLaHierarchieDesTitres extends ASource

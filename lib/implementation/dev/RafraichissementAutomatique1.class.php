@@ -3,7 +3,7 @@
  * Vérifie si la page ne contient pas de balise meta provoquant son
  * rafraichissement automatique.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class RafraichissementAutomatique1 extends ASource

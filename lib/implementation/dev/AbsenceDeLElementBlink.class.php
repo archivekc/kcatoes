@@ -4,7 +4,7 @@
  * Compte le nombre d'éléments blink dans la page.
  * Si ce compte est différent de 0, le test échoue.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDeLElementBlink extends ASource

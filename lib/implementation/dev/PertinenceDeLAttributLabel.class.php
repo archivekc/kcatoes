@@ -5,7 +5,7 @@
  * qu'un testeur puisse vérifier la pertinance du label au vu du contenu
  * de l'élément optgroup
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PertinenceDeLAttributLabel extends ASource

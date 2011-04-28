@@ -3,7 +3,7 @@
 /**
  * Vérifie que tous les éléments fieldset contiennent un élément legend
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDElementFieldsetSansElementLegend extends ASource

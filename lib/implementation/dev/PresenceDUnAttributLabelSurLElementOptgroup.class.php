@@ -4,7 +4,7 @@
  * Vérifie que les éléments optgroup ont tous attribut label et que celui-ci
  * n'est pas vide
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDUnAttributLabelSurLElementOptgroup extends ASource

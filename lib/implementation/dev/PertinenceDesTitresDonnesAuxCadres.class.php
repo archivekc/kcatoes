@@ -5,7 +5,7 @@
  * non vide pour permettre à un testeur de vérifier l'adéquation entre le titre
  * du cadre et son contenu.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PertinenceDesTitresDonnesAuxCadres extends ASource

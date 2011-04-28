@@ -5,7 +5,7 @@
  * soit un contenu texte pour qu'un testeur puisse vérifier que le titre/contenu
  * texte donne la fonction exacte de l'élément auquel le label se rapporte.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PertinenceDesEtiquettes extends ASource
