@@ -6,7 +6,6 @@
  * @package Kcatoes
  * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
-use Zend\Validator\File\Count;
 class Tester
 {
   private $tests;
@@ -18,39 +17,41 @@ class Tester
    * Créé un testeur à partir d'une page web et d'une liste de tests
    * qui lui seront appliqués
    *
-   * @param Page  $_page  Page sur laquelle sont exécutés les tests
-   * @param array $_tests Liste des tests à exécuter
+   * @param Page     $_page  Page sur laquelle sont exécutés les tests
+   * @param array    $_tests Liste des tests à exécuter
+   * @param sfLogger$_logger Le logger à utiliser
    */
   public function __construct(Page $_page, $_tests, sfLogger $_logger = null)
   {
-    $this->page      = $_page;
-    $this->tests     = $_tests;
-    $this->logger    = $_logger;
+    $this->page          = $_page;
+    $this->tests         = $_tests;
+    $this->logger        = $_logger;
     $this->executionList = array();
   }
 
   /**
    * Exécute les tests spécifiés lors de la création du tester
    *
+   * @tested
    */
   public function executeTest()
   {
-    foreach($this->executionList as $test)
+    foreach ($this->executionList as $test)
     {
-      $execute = true;
+      $execute     = true;
       $explication = '';
       if ($test->getDependanceId() != null)
       {
-        $dependanceName = $test->getDependance()->getNom();
+        $dependanceName   = $test->getDependance()->getNom();
         $dependanceResult = $this->executionList[$dependanceName]->getResultat()->resultatCode;
         if ($dependanceResult === Resultat:: NON_EXEC)
         {
-          $execute = false;
+          $execute     = false;
           $explication = 'La dépendance directe du test n\'a pas pu être exécutée';
         }
         elseif ($dependanceResult != $test->getExecuteSi())
         {
-          $execute = false;
+          $execute     = false;
           $explication = 'Le résultat de sa dépendance directe ne correspond pas '.
                          'à celui attendu pour pouvoir executer le test';
         }
@@ -86,6 +87,7 @@ class Tester
    * sur les règles de dépendance des tests sélectionnés
    *
    * @throws KcatoesTesterException
+   * @tested
    */
   public function createExecutionList()
   {
@@ -112,7 +114,7 @@ class Tester
    */
   private function addLogErreur($errorMessage)
   {
-    if($this->logger instanceof sfLogger)
+    if ($this->logger instanceof sfLogger)
     {
       $this->logger->err($errorMessage);
     }
@@ -125,7 +127,7 @@ class Tester
    */
   private function addLogInfo($infoMessage)
   {
-    if($this->logger instanceof sfLogger)
+    if ($this->logger instanceof sfLogger)
     {
       $this->logger->info($infoMessage);
     }
@@ -141,6 +143,7 @@ class Tester
     $fileName = 'csv\\test_'.date('dmY_Hi').'.csv';
 
     $header = array();
+
     $header['id']          = 'Id';
     $header['nom']         = 'Nom';
     $header['description'] = 'Description';
@@ -161,6 +164,7 @@ class Tester
     foreach ($this->tests as $test)
     {
       $line = array();
+
       $line['id']          = $test->getId();
       $line['nom']         = $test->getNom();
       $line['description'] = trim($test->getDescription());
@@ -195,7 +199,7 @@ class Tester
 
   /**
    * Accesseur de la variable $this->toExecute
-   * Utilisée par les tests unitaires
+   * Utilisé par les tests unitaires
    *
    */
   public function getExecutionList()
