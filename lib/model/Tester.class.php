@@ -12,7 +12,7 @@ class Tester
   private $tests;
   private $page;
   private $logger;
-  private $toExecute;
+  private $executionList;
 
   /**
    * Créé un testeur à partir d'une page web et d'une liste de tests
@@ -26,7 +26,7 @@ class Tester
     $this->page      = $_page;
     $this->tests     = $_tests;
     $this->logger    = $_logger;
-    $this->toExecute = array();
+    $this->executionList = array();
   }
 
   /**
@@ -35,24 +35,24 @@ class Tester
    */
   public function executeTest()
   {
-    foreach($this->toExecute as $index => $test)
+    foreach($this->executionList as $index => $test)
     {
       $execute = true;
       $explication = '';
       if ($test->getDependanceId() != null)
       {
-        $dependanceResult = $this->toExecute[$index-1]->getResultat()->resultatCode;
+        $dependanceName = $test->getDependance()->getNom();
+        $dependanceResult = $this->executionList[$dependanceName]->getResultat()->resultatCode;
         if ($dependanceResult === Resultat:: NON_EXEC)
         {
           $execute = false;
-          $explication = $test->getNom().' - Non exécutable: la dépendance '.
-                                        'directe du test n\'a pas été exécutée';
+          $explication = 'La dépendance directe du test n\'a pas pu être exécutée';
         }
         elseif ($dependanceResult != $test->getExecuteSi())
         {
           $execute = false;
-          $explication = $test->getnom().' - Non exécutable: le résultat de sa '.
-                        'dépendance directe ne permet pas l\'exécution du test';
+          $explication = 'Le résultat de sa dépendance directe ne correspond pas '.
+                         'à celui attendu pour pouvoir executer le test';
         }
       }
       if ($execute)
@@ -94,8 +94,8 @@ class Tester
     {
       foreach ($this->tests as $test)
       {
-        $this->toExecute += $test->getExecutionList();
-        $this->toExecute[] = $test;
+        $this->executionList += $test->getExecutionList();
+        $this->executionList += array($test->getNom() => $test);
       }
     }
     catch (Exception $e)
@@ -191,6 +191,16 @@ class Tester
 
     fclose($csv);
     return $fileName;
+  }
+
+  /**
+   * Accesseur de la variable $this->toExecute
+   * Utilisée par les tests unitaires
+   *
+   */
+  public function getExecutionList()
+  {
+    return $this->executionList;
   }
 
 }

@@ -172,7 +172,7 @@ class Test extends BaseTest
     if ($this->dependance_id != null)
     {
       $executeList += $this->Dependance->getExecutionList();
-      $executeList[] = $this->Dependance;
+      $executeList += array($this->Dependance->getNom() => $this->Dependance);
     }
     return $executeList;
   }
