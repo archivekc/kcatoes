@@ -84,6 +84,7 @@ class Resultat
    *                                 accompagné d'une description
    *
    * @return La version littérale du résultat
+   * @tested
    */
   public function getCode($withExplication = false)
   {

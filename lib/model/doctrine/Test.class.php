@@ -145,6 +145,8 @@ class Test extends BaseTest
 
   /**
    * Méthode de rendu pour label de formulaire
+   *
+   * @tested
    */
   public function getLongName()
   {
@@ -165,6 +167,7 @@ class Test extends BaseTest
    * test
    *
    * @return La liste des dépendance à exécuter pour ce test
+   * @tested
    */
   public function getExecutionList()
   {
