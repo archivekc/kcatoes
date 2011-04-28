@@ -171,7 +171,7 @@ class Test extends BaseTest
     $executeList = array();
     if ($this->dependance_id != null)
     {
-      array_merge($executeList, $this->Dependance->getExecutionList());
+      $executeList += $this->Dependance->getExecutionList();
       $executeList[] = $this->Dependance;
     }
     return $executeList;

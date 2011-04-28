@@ -94,7 +94,7 @@ class Tester
     {
       foreach ($this->tests as $test)
       {
-        array_merge($this->toExecute, $test->getExecutionList());
+        $this->toExecute += $test->getExecutionList();
         $this->toExecute[] = $test;
       }
     }
