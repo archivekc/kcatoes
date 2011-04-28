@@ -8,7 +8,7 @@ class TestEchec extends ASource
 
   public function execute(Page $page)
   {
-    $this->echecs[] = new Echec('Test de code', 'Test de XPath', 'Echoue toujours');
-    return false;
+    $this->complements[] = new Complement('Test de code', 'Test de XPath', 'Echoue toujours');
+    return Resultat::ECHEC;
   }
 }

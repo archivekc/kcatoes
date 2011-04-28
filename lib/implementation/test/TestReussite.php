@@ -8,6 +8,6 @@ class TestReussite extends ASource
 
   public function execute(Page $page)
   {
-    return true;
+    return Resultat::REUSSITE;
   }
 }

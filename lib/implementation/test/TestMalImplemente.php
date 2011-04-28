@@ -9,6 +9,6 @@ class TestMalImplemente
   public function execute(Page $page)
   {
     $this->echecs[] = new Echec('Test de code', 'Test de XPath', 'Echoue toujours');
-    return false;
+    return Resultat::ERREUR;
   }
 }
