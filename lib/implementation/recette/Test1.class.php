@@ -1,5 +1,5 @@
-﻿<?php	
-class Test3 extends ASource
+﻿<?php
+class Test1 extends ASource
 {
   public function __construct()
   {

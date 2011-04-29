@@ -55,10 +55,10 @@ Test:
     description:  >
       Ceci est un exemple de test dépendant.
     Regroupement: regroup2
-    Test:         test1
+    Dependance:   test1
     execute_si:   1
     
-   test3:
+  test3:
     nom:          Test 3
     description:  >
       Ceci est un exemple de test indépendant.
@@ -69,7 +69,7 @@ Test:
     description:  >
       Ceci est un exemple de test dépendant.
     Regroupement: regroup4
-    Test:         test3
+    Dependance:   test3
     execute_si:   0
       
   test5:
@@ -77,7 +77,7 @@ Test:
     description:  >
       Ceci est un test dépendant d'un test dépendant
     Regroupement: regroup1
-    Test:         test2
+    Dependance:   test2
     execute_si:   1
     
   test6:
@@ -101,6 +101,6 @@ Test:
   test9:
     nom:          Test 9
     description:  >
-      Ceci est un test provoquand une erreur à l'exécution
+      Ceci est un test provoquant une erreur à l'exécution
     Regroupement: regroup1
     
