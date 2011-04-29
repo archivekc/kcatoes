@@ -1,6 +1,6 @@
 <?php
 
-class Test1 extends ASource
+class TestUnitaire1 extends ASource
 {
   public function __construct()
   {

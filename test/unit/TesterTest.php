@@ -6,22 +6,22 @@ $t = new lime_test(19);
 $page = new Page('', 'http://www.keyconsulting.fr');
 
 $test1 = new Test();
-$test1->setNom('Test 1');
+$test1->setNom('Test unitaire 1');
 
 $test2 = new Test();
-$test2->setNom('Test 2');
+$test2->setNom('Test unitaire 2');
 $test2->setDependanceId(1);
 $test2->setDependance($test1);
 $test2->setExecuteSi(Resultat::ECHEC);
 
 $test3 = new Test();
-$test3->setNom('Test 3');
+$test3->setNom('Test unitaire 3');
 $test3->setDependanceId(2);
 $test3->setDependance($test2);
 $test2->setExecuteSi(Resultat::ECHEC);
 
 $test4 = new Test();
-$test4->setNom('Test 4');
+$test4->setNom('Test unitaire 4');
 
 
 $t->comment('Test independant');

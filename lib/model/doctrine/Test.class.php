@@ -113,7 +113,7 @@ class Test extends BaseTest
     {
       $this->resultat = new Resultat($res);
     }
-    elseif ($res === Resultat::ECHEC || $res === Resultat::MANUEL)
+    else if ($res === Resultat::ECHEC || $res === Resultat::MANUEL)
     {
       $this->resultat = new Resultat($res);
       $this->resultat->setComplements($implementation->getComplements());

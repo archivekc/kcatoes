@@ -49,7 +49,7 @@ class Tester
           $execute     = false;
           $explication = 'La dépendance directe du test n\'a pas pu être exécutée';
         }
-        elseif ($dependanceResult != $test->getExecuteSi())
+        else if ($dependanceResult != $test->getExecuteSi())
         {
           $execute     = false;
           $explication = 'Le résultat de sa dépendance directe ne correspond pas '.
@@ -58,9 +58,9 @@ class Tester
       }
       if ($execute)
       {
-        $this->addLogInfo($test->getNom().' - Lancement de l\'exécution');
         if ($test->isExecutable())
         {
+          $this->addLogInfo($test->getNom().' - Lancement de l\'exécution');
           $test->execute($this->page);
         }
       }
@@ -149,7 +149,6 @@ class Tester
     $header['description'] = 'Description';
     $header['resultat']    = 'Résultat';
     $header['erreurExp']   = 'Explication de l\'erreur';
-    $header['aide']        = 'Aide à l\'exécution manuelle';
     $header['source']      = 'Code source de l\'élément en échec';
     $header['xpath']       = 'XPath de de l\'élément en échec';
     $header['echecExp']    = 'Explication de l\'élément en échec';
@@ -170,7 +169,6 @@ class Tester
       $line['description'] = trim($test->getDescription());
       $line['resultat']    = $test->getResultat()->getCode();
       $line['erreurExp']   = trim($test->getResultat()->explicationErreur);
-      $line['aide']        = trim($test->getResultat()->instruction);
       $line['source']      = 'n.a.';
       $line['xpath']       = 'n.a.';
       $line['echecExp']    = 'n.a.';

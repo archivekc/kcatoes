@@ -17,7 +17,6 @@ class Resultat
 
   private $resultatCode;
   private $explicationErreur = 'n.a.';
-  private $instruction       = 'n.a.';
   private $complements       = array();
 
   /**
@@ -30,17 +29,6 @@ class Resultat
   public function __construct($_resultatCode)
   {
     $this->resultatCode = $_resultatCode;
-  }
-
-  /**
-   * Permet d'ajouter des instructions pour l'exécution manuelle
-   * du test auquel est associé le résultat
-   *
-   * @param String $_instruction Instructions pour l'exécution manuelle
-   */
-  public function setInstruction($_instruction)
-  {
-    $this->instruction = $_instruction;
   }
 
   /**
