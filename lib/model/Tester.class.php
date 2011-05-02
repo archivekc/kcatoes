@@ -60,7 +60,7 @@ class Tester
       {
         if ($test->isExecutable())
         {
-          $this->addLogInfo($test->getNom().' - Lancement de l\'exécution');
+          $this->addLogInfo('Test id '.$test->getId().' - '.$test->getNom().' - Lancement de l\'exécution');
           $test->execute($this->page);
         }
       }
@@ -73,11 +73,11 @@ class Tester
       if ($test->getResultat()->resultatCode != Resultat::ERREUR
           && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
       {
-        $this->addLogInfo($test->getnom().' - '.$test->getResultat()->getCode(true));
+        $this->addLogInfo('Test id '.$test->getId().' - '.$test->getnom().' - '.$test->getResultat()->getCode(true));
       }
       else
       {
-        $this->addLogErreur($test->getnom().' - '.$test->getResultat()->getCode(true));
+        $this->addLogErreur('Test id '.$test->getId().' - '.$test->getnom().' - '.$test->getResultat()->getCode(true));
       }
     }
   }

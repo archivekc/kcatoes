@@ -20,6 +20,11 @@ class TestForm extends BaseTestForm
       'choices' => $choices
     ));
 
+    $this->widgetSchema->setLabels(array(
+      'dependance_id' => 'Dépendance directe',
+      'execute_si'    => 'Condition d\'exécution'
+    ));
+
     $this->validatorSchema['execute_si'] = new sfValidatorChoice(array(
       'choices'  => array_keys($choices),
       'required' => false
