@@ -67,7 +67,7 @@ class KcatoesUrlValidator extends sfValidatorBase
    */
   public static function isSyntaxeValide($url)
   {
-    if (!preg_match('#^(http://)?([a-zA-Z0-9-]+.)?([a-zA-Z0-9-]+.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}(:[0-9]+)?(/[a-zA-Z0-9-]*)?(.[a-zA-Z0-9]{1,4})?#', $url))
+    if (!preg_match("((https?|ftp|gopher|telnet|file|notes|ms-help):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)", $url))
     {
       throw new KcatoesUrlException('L\'URL indiquée ne respecte pas la convention d\'écriture.');
     }
