@@ -11,7 +11,7 @@
   <body>
 	  <div id="main">
 	    <div id="header">
-	      <a href="<?php url_for('homepage')?>" id="logo">
+	      <a href="<?php echo url_for('homepage')?>" id="logo">
 	        <img alt="KCatoès" src="/img/kcatoes-128.png"/>
 	      </a>
 	      <a href="http://keyconsulting.fr" id="logoKC">
