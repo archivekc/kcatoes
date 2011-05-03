@@ -149,9 +149,9 @@ class Tester
     $header['description'] = 'Description';
     $header['resultat']    = 'Résultat';
     $header['erreurExp']   = 'Explication de l\'erreur';
-    $header['source']      = 'Code source de l\'élément en échec';
-    $header['xpath']       = 'XPath de de l\'élément en échec';
-    $header['echecExp']    = 'Explication de l\'élément en échec';
+    $header['source']      = 'Code source de l\'élément à vérifier';
+    $header['xpath']       = 'XPath de de l\'élément à vérifier';
+    $header['exp']         = 'Informations complémentaires';
 
     $csv = @fopen($fileName, "w");
     if (!$csv)
@@ -171,7 +171,7 @@ class Tester
       $line['erreurExp']   = trim($test->getResultat()->explicationErreur);
       $line['source']      = 'n.a.';
       $line['xpath']       = 'n.a.';
-      $line['echecExp']    = 'n.a.';
+      $line['exp']         = 'n.a.';
 
       $complements = $test->getResultat()->complements;
       if (empty($complements))
@@ -184,7 +184,7 @@ class Tester
         {
           $line['source']   = preg_replace('/(\r\n|\n|\r)/', '', $complement->code);
           $line['xpath']    = preg_replace('/(\r\n|\n|\r)/', '', $complement->xPath);
-          $line['echecExp'] = preg_replace('/(\r\n|\n|\r)/', '', $complement->explication);
+          $line['exp']      = preg_replace('/(\r\n|\n|\r)/', '', $complement->explication);
 
           fputcsv($csv, $line, ';', '"');
         }
