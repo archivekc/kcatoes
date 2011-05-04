@@ -27,9 +27,26 @@ class testActions extends sfActions
       {
         $formContent = $request->getParameter($this->form->getName());
         $this->getUser()->setAttribute('url', $formContent['url'], 'wizard');
-        $this->redirect('test/thematique');
+        if ($formContent['conf'] === 'wizard')
+        {
+          $this->redirect('test/thematique');
+        }
+        else
+        {
+          $this->redirect('test/import');
+        }
       }
     }
+  }
+
+  /**
+   * Contrôleur de la page d'import de fichier de configuration
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeImport(sfWebRequest $request)
+  {
+
   }
 
   /**
