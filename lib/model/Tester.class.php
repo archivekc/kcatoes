@@ -19,7 +19,7 @@ class Tester
    *
    * @param Page     $_page  Page sur laquelle sont exécutés les tests
    * @param array    $_tests Liste des tests à exécuter
-   * @param sfLogger$_logger Le logger à utiliser
+   * @param sfLogger $_logger Le logger à utiliser
    */
   public function __construct(Page $_page, $_tests, sfLogger $_logger = null)
   {
@@ -182,9 +182,9 @@ class Tester
       {
         foreach ($complements as $complement)
         {
-          $line['source']   = preg_replace('/(\r\n|\n|\r)/', '', $complement->code);
-          $line['xpath']    = preg_replace('/(\r\n|\n|\r)/', '', $complement->xPath);
-          $line['exp']      = preg_replace('/(\r\n|\n|\r)/', '', $complement->explication);
+          $line['source'] = preg_replace('/(\r\n|\n|\r)/', '', $complement->code);
+          $line['xpath']  = preg_replace('/(\r\n|\n|\r)/', '', $complement->xPath);
+          $line['exp']    = preg_replace('/(\r\n|\n|\r)/', '', $complement->explication);
 
           fputcsv($csv, $line, ';', '"');
         }
