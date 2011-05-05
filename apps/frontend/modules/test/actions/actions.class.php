@@ -46,7 +46,40 @@ class testActions extends sfActions
    */
   public function executeImport(sfWebRequest $request)
   {
+    $this->form = new ImportForm();
+    if ($request->isMethod('post'))
+    {
+      if ($this->processForm($request, $this->form))
+      {
+        $uploadedFile = $this->form->getValue('configFile');
+        $uploadedFile->save('kcatoes.yml');
 
+        $fileName = $uploadedFile->getPath().DIRECTORY_SEPARATOR.'kcatoes.yml';
+
+        $configFile = fopen($fileName, "rb");
+        if (!$configFile)
+        {
+          break;
+        }
+        $yamlConfig = fread($configFile, filesize($fileName));
+        fclose($configFile);
+
+        $parser = new sfYamlParser();
+
+        try
+        {
+          $config = $parser->parse($yamlConfig);
+        }
+        catch (InvalidArgumentException $e)
+        {
+          break;
+        }
+        print_r($config);
+
+//        move_uploaded_file($_FILES['import']['tmp_name']['configFile'], sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$_FILES['import']['name']['configFile']);
+//        $this->redirect('test/confirmation');
+      }
+    }
   }
 
   /**
@@ -291,7 +324,10 @@ class testActions extends sfActions
    */
   private function processForm(sfWebRequest $request, sfForm $form)
   {
-    $form->bind($request->getParameter($form->getName()));
+    $form->bind(
+      $request->getParameter($form->getName()),
+      $request->getFiles($form->getName())
+    );
     return $form->isValid();
   }
 
