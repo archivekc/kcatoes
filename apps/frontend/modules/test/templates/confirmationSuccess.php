@@ -1,4 +1,4 @@
-<h2><span>Configuration des tests - Etape <em>5</em>/5</span></h2>
+<h2><span>Configuration des tests - Confirmation</span></h2>
 <p>Récapitulatif de votre sélection:</p>
 <ul>
   <?php foreach ($selectedTests as $test): ?>
