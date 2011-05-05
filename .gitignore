@@ -6,4 +6,6 @@ lib/form/doctrine/base
 lib/filter/doctrine/base
 data/sql
 lib/vendor/goutte/src/vendor
-web/csv
+web/download/csv
+web/uploads/config
+web/dev
