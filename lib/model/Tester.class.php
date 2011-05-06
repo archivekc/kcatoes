@@ -11,22 +11,20 @@ class Tester
   private $tests;
   private $page;
   private $logger;
-  private $executionList;
 
   /**
    * Créé un testeur à partir d'une page web et d'une liste de tests
    * qui lui seront appliqués
    *
-   * @param Page     $_page  Page sur laquelle sont exécutés les tests
-   * @param array    $_tests Liste des tests à exécuter
+   * @param Page     $_page   Page sur laquelle sont exécutés les tests
+   * @param array    $ids     Liste des ids des tests à exécuter
    * @param sfLogger $_logger Le logger à utiliser
    */
-  public function __construct(Page $_page, $_tests, sfLogger $_logger = null)
+  public function __construct(Page $_page, $ids, sfLogger $_logger = null)
   {
-    $this->page          = $_page;
-    $this->tests         = $_tests;
-    $this->logger        = $_logger;
-    $this->executionList = array();
+    $this->page   = $_page;
+    $this->tests  = Doctrine::getTable('Test')->getCollectionFromIds($ids);
+    $this->logger = $_logger;
   }
 
   /**
@@ -36,14 +34,15 @@ class Tester
    */
   public function executeTest()
   {
-    foreach ($this->executionList as $test)
+    $executionList = $this->createExecutionList();
+    foreach ($executionList as $test)
     {
       $execute     = true;
       $explication = '';
       if ($test->getDependanceId() != null)
       {
         $dependanceName   = $test->getDependance()->getNom();
-        $dependanceResult = $this->executionList[$dependanceName]->getResultat()->resultatCode;
+        $dependanceResult = $executionList[$dependanceName]->getResultat()->resultatCode;
         if ($dependanceResult === Resultat:: NON_EXEC)
         {
           $execute     = false;
@@ -89,15 +88,16 @@ class Tester
    * @throws KcatoesTesterException
    * @tested
    */
-  public function createExecutionList()
+  private function createExecutionList()
   {
     $this->addLogInfo('Création de la liste des tests à exécuter');
+    $executionList = array();
     try
     {
       foreach ($this->tests as $test)
       {
-        $this->executionList += $test->getExecutionList();
-        $this->executionList += array($test->getNom() => $test);
+        $executionList += $test->getExecutionList();
+        $executionList += array($test->getNom() => $test);
       }
     }
     catch (Exception $e)
@@ -105,6 +105,7 @@ class Tester
       $this->addLogErreur('Erreur lors de la création de la liste des tests à exécuter');
       throw new KcatoesTesterException($e->getMessage());
     }
+    return $executionList;
   }
 
   /**

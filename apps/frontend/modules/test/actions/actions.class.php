@@ -215,7 +215,6 @@ class testActions extends sfActions
     $this->url = $this->getUser()->getAttribute('url');
 
     $listeIds = $this->getUser()->getAttribute('selectedTests');
-    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
 
     try
     {
@@ -251,12 +250,10 @@ class testActions extends sfActions
       return sfView::SUCCESS;
     }
 
-    $tester = new Tester($page,
-                         $this->tests,
-                         sfContext::getInstance()->getLogger());
+    $tester = new Tester($page, $listeIds, sfContext::getInstance()->getLogger());
     try
     {
-      $tester->createExecutionList();
+      $tester->executeTest();
     }
     catch (KcatoesTesterException $e)
     {
@@ -267,7 +264,6 @@ class testActions extends sfActions
       return sfView::SUCCESS;
     }
 
-    $tester->executeTest();
     $this->erreur = '';
     $this->info = 'Traitement terminé';
     $this->cheminFichierCsv = $tester->toCSV();
