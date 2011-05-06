@@ -56,50 +56,21 @@ class testActions extends sfActions
         $uploadedFile->save('kcatoes.yml');
 
         $fileName = $uploadedFile->getPath().DIRECTORY_SEPARATOR.'kcatoes.yml';
+
         try
         {
-          $config = sfYaml::load($fileName);
+          $config = ConfigurationFile::load($fileName);
         }
-        catch (InvalidArgumentException $e)
+        catch (KcatoesConfigurationFileException $e)
         {
-          $this->error = 'Le contenu du fichier n\'est pas une structure YAML valide';
+          $this->error = $e->getMessage();
+          $this->addLogErreur($this->error);
+          return sfView::SUCCESS;
         }
-        if (!empty($config))
-        {
-          $requiredOptions = array('Tests', 'Version');
-          $allowedVersions= array(sfConfig::get('app_version'));
-          $structureValide = true;
 
-          foreach ($requiredOptions as $option)
-          {
-            $structureValide &= array_key_exists($option, $config);
-          }
+        $this->getUser()->setAttribute('test', $config['Tests'], 'wizard');
+        $this->redirect('test/confirmation');
 
-          if ($structureValide)
-          {
-            if (in_array($config['Version'], $allowedVersions))
-            {
-              $selectedTests = array();
-              foreach ($config['Tests'] as $testName)
-              {
-                $test = Doctrine_Core::getTable('test')->findOneByNom($testName);
-                $selectedTests[] = $test->getId();
-              }
-
-              $this->getUser()->setAttribute('test', $selectedTests, 'wizard');
-              $this->redirect('test/confirmation');
-            }
-            else
-            {
-              $this->error = 'Le fichier de configuration n\'est pas compatible'
-                             .' avec cette version de KCatoès';
-            }
-          }
-          else
-          {
-            $this->error = 'La structure du fichier ne correspond pas à celle attendue';
-          }
-        }
       }
     }
   }
@@ -208,38 +179,30 @@ class testActions extends sfActions
     }
     $this->selectedTests = array();
 
-    $config    = array('Tests' => array());
-    $tableTest = Doctrine_Core::getTable('test');
+    $testsNames = array();
+    $tableTest  = Doctrine_Core::getTable('test');
 
     foreach ($testsId as $testId)
     {
-      $test = $tableTest->findOneById($testId);
-      $config['Tests'][] = $test->getNom();
+      $test                  = $tableTest->findOneById($testId);
+      $testsNames[]          = $test->getNom();
       $this->selectedTests[] = (string)$test;
     }
     sort($this->selectedTests);
     $this->testCount = count($this->selectedTests);
 
-    $config['Version'] = sfConfig::get('app_version');
-    $config['Date']    = date('Y.m.d');
-
-    $yamlConfig = sfYaml::dump($config);
-
-    $fileName = 'download'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'kcatoes.yml';
-    $configFile = fopen($fileName, "wb");
-    if (!$configFile)
+    try
     {
+      $this->downloadConfig = ConfigurationFile::create($testsNames);
+    }
+    catch (KcatoesConfigurationFileException $e)
+    {
+      $this->error = $e->getMessage();
+      $this->addLogErreur($this->error);
       $this->downloadConfig = '';
-      $this->error = 'Erreur lors de la création du fichier de configuration';
+      return sfView::SUCCESS;
     }
-    else
-    {
-      $this->error = '';
-      fwrite($configFile, $yamlConfig);
-      fclose($configFile);
-
-      $this->downloadConfig = $fileName;
-    }
+    $this->error = '';
   }
 
   /**
