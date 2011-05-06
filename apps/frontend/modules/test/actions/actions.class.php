@@ -47,6 +47,7 @@ class testActions extends sfActions
   public function executeImport(sfWebRequest $request)
   {
     $this->form = new ImportForm();
+    $this->error = '';
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->form))
@@ -55,29 +56,33 @@ class testActions extends sfActions
         $uploadedFile->save('kcatoes.yml');
 
         $fileName = $uploadedFile->getPath().DIRECTORY_SEPARATOR.'kcatoes.yml';
-
-        $configFile = fopen($fileName, "rb");
-        if (!$configFile)
-        {
-          break;
-        }
-        $yamlConfig = fread($configFile, filesize($fileName));
-        fclose($configFile);
-
-        $parser = new sfYamlParser();
-
         try
         {
-          $config = $parser->parse($yamlConfig);
+          $config = sfYaml::load($fileName);
         }
         catch (InvalidArgumentException $e)
         {
-          break;
+          $this->error = 'Le contenu du fichier n\'est pas une structure YAML valide';
         }
-        print_r($config);
+        if (!empty($config))
+        {
+          if (array_key_exists('Tests', $config))
+          {
+            $selectedTests = array();
+            foreach ($config['Tests'] as $testName)
+            {
+              $test = Doctrine_Core::getTable('test')->findOneByNom($testName);
+              $selectedTests[] = $test->getId();
+            }
 
-//        move_uploaded_file($_FILES['import']['tmp_name']['configFile'], sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$_FILES['import']['name']['configFile']);
-//        $this->redirect('test/confirmation');
+            $this->getUser()->setAttribute('test', $selectedTests, 'wizard');
+            $this->redirect('test/confirmation');
+          }
+          else
+          {
+            $this->error = 'La structure du fichier ne correspond pas à celle attendue';
+          }
+        }
       }
     }
   }
@@ -184,18 +189,36 @@ class testActions extends sfActions
       $this->getUser()->setAttribute('url', $url);
       $this->redirect('test/execute');
     }
+    $this->selectedTests = array();
+
+    $config    = array('Tests' => array());
+    $tableTest = Doctrine_Core::getTable('test');
+
+    foreach ($testsId as $testId)
+    {
+      $test = $tableTest->findOneById($testId);
+      $config['Tests'][] = $test->getNom();
+      $this->selectedTests[] = (string)$test;
+    }
+    sort($this->selectedTests);
+    $this->testCount = count($this->selectedTests);
+
+    $yamlConfig = sfYaml::dump($config);
+
+    $fileName = 'download'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'kcatoes.yml';
+    $configFile = fopen($fileName, "wb");
+    if (!$configFile)
+    {
+      $this->downloadConfig = '';
+      $this->error = 'Erreur lors de la création du fichier de configuration';
+    }
     else
     {
-      $this->selectedTests = array();
-      $tableTest = Doctrine_Core::getTable('test');
+      $this->error = '';
+      fwrite($configFile, $yamlConfig);
+      fclose($configFile);
 
-      foreach ($testsId as $testId)
-      {
-        $test = $tableTest->findOneById($testId);
-        $this->selectedTests[] = (string)$test;
-      }
-      sort($this->selectedTests);
-      $this->testCount = count($this->selectedTests);
+      $this->downloadConfig = $fileName;
     }
   }
 
