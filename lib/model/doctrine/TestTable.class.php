@@ -22,6 +22,7 @@ class TestTable extends Doctrine_Table
 
 
   /**
+   * Construit une collection de tests à partir de leurs id en base de données
    *
    * @param array $ids
    */
