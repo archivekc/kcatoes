@@ -48,18 +48,20 @@ class ConfigurationFile
    * Pour être utilisable, le fichier doit:
    *  - ne pas être vide
    *  - respecter la syntaxe YAML
-   *  - contenir les options Test et Version
+   *  - contenir les options Tests et Version
    *  - avoir un paramètre de version compatible avec celle de KCatoès
    *
    * @param String $fileName Le chemin d'accès au fichier à charger
+   * @param array  $options  Les options que doit contenir le fichier
+   *                         (autres que Tests et Version)
    *
    * @return array La configuration sous forme de tableau
    *
    * @throws KcatoesConfigurationFileException Si le fichier n'est pas utilisable
    */
-  public static function load($fileName)
+  public static function load($fileName, $options = array())
   {
-    $requiredOptions = array('Tests', 'Version');
+    $requiredOptions = array_merge(array('Tests', 'Version'), $options);
     $allowedVersions = array(sfConfig::get('app_version'));
     $structureValide = true;
 
