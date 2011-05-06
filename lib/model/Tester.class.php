@@ -140,7 +140,8 @@ class Tester
   public function toCSV()
   {
     date_default_timezone_set('Europe/Paris');
-    $fileName = 'download\\csv\\test_'.date('dmY_Hi').'.csv';
+    $fileName = 'download'.DIRECTORY_SEPARATOR.'csv'
+                .DIRECTORY_SEPARATOR.'test_'.date('dmY_Hi').'.csv';
 
     $header = array();
 
