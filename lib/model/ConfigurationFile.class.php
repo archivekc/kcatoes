@@ -108,8 +108,15 @@ class ConfigurationFile
     foreach ($config['Tests'] as $testName)
     {
       $test = Doctrine_Core::getTable('test')->findOneByNom($testName);
-
-      $selectedTests[] = $test->getId();
+      if ($test instanceof Test)
+      {
+        $selectedTests[] = $test->getId();
+      }
+      else
+      {
+        $info = 'Chargement du fichier de configuration: '.$testName.' ignoré';
+        sfContext::getInstance()->getLogger()->info($info);
+      }
     }
 
     $config['Tests'] = $selectedTests;
