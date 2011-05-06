@@ -28,11 +28,14 @@ class ConfigurationFile
 
     $yamlConfig = sfYaml::dump($config);
 
-    $fileName = 'download'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'kcatoes.yml';
+    $fileName   = 'download'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR
+                  .'kcatoes.yml';
     $configFile = fopen($fileName, "wb");
     if (!$configFile)
     {
-      throw new KcatoesConfigurationFileException('Erreur lors de la création du fichier de configuration');
+      throw new KcatoesConfigurationFileException(
+        'Erreur lors de la création du fichier de configuration'
+      );
     }
     fwrite($configFile, $yamlConfig);
     fclose($configFile);
@@ -66,11 +69,16 @@ class ConfigurationFile
     }
     catch (InvalidArgumentException $e)
     {
-      throw new KcatoesConfigurationFileException('Le contenu du fichier n\'est pas une structure YAML valide');
+      sfContext::getInstance()->getLogger()->err($e->getMessage());
+      throw new KcatoesConfigurationFileException(
+        'Le contenu du fichier n\'est pas une structure YAML valide'
+      );
     }
     if (empty($config))
     {
-      throw new KcatoesConfigurationFileException('Le fichier de configuration est vide');
+      throw new KcatoesConfigurationFileException(
+        'Le fichier de configuration est vide'
+      );
     }
 
     foreach ($requiredOptions as $option)
@@ -80,18 +88,24 @@ class ConfigurationFile
 
     if (!$structureValide)
     {
-      throw new KcatoesConfigurationFileException('La structure du fichier ne correspond pas à celle attendue');
+      throw new KcatoesConfigurationFileException(
+        'La structure du fichier ne correspond pas à celle attendue'
+      );
     }
 
     if (!in_array($config['Version'], $allowedVersions))
     {
-      throw new KcatoesConfigurationFileException('Le fichier de configuration n\'est pas compatible avec cette version de KCatoès');
+      throw new KcatoesConfigurationFileException(
+        'Le fichier de configuration n\'est pas compatible '.
+        'avec cette version de KCatoès'
+      );
     }
 
     $selectedTests = array();
     foreach ($config['Tests'] as $testName)
     {
       $test = Doctrine_Core::getTable('test')->findOneByNom($testName);
+
       $selectedTests[] = $test->getId();
     }
 
