@@ -66,17 +66,34 @@ class testActions extends sfActions
         }
         if (!empty($config))
         {
-          if (array_key_exists('Tests', $config))
-          {
-            $selectedTests = array();
-            foreach ($config['Tests'] as $testName)
-            {
-              $test = Doctrine_Core::getTable('test')->findOneByNom($testName);
-              $selectedTests[] = $test->getId();
-            }
+          $requiredOptions = array('Tests', 'Version');
+          $allowedVersions= array(sfConfig::get('app_version'));
+          $structureValide = true;
 
-            $this->getUser()->setAttribute('test', $selectedTests, 'wizard');
-            $this->redirect('test/confirmation');
+          foreach ($requiredOptions as $option)
+          {
+            $structureValide &= array_key_exists($option, $config);
+          }
+
+          if ($structureValide)
+          {
+            if (in_array($config['Version'], $allowedVersions))
+            {
+              $selectedTests = array();
+              foreach ($config['Tests'] as $testName)
+              {
+                $test = Doctrine_Core::getTable('test')->findOneByNom($testName);
+                $selectedTests[] = $test->getId();
+              }
+
+              $this->getUser()->setAttribute('test', $selectedTests, 'wizard');
+              $this->redirect('test/confirmation');
+            }
+            else
+            {
+              $this->error = 'Le fichier de configuration n\'est pas compatible'
+                             .' avec cette version de KCatoès';
+            }
           }
           else
           {
@@ -202,6 +219,9 @@ class testActions extends sfActions
     }
     sort($this->selectedTests);
     $this->testCount = count($this->selectedTests);
+
+    $config['Version'] = sfConfig::get('app_version');
+    $config['Date']    = date('Y.m.d');
 
     $yamlConfig = sfYaml::dump($config);
 
