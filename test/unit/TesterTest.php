@@ -26,7 +26,7 @@ $test4->setNom('Test unitaire 4');
 
 $t->comment('Test independant');
 
-$tester = new Tester($page, array($test1));
+$tester = new Tester($page, array($test1->getId()));
 $tester->createExecutionList();
 $executionList = array_values($tester->getExecutionList());
 
@@ -46,7 +46,7 @@ $t->is(
 
 $t->comment('Test dependant sans ses dependances');
 
-$tester = new Tester($page, array($test3));
+$tester = new Tester($page, array($test3->getId()));
 $tester->createExecutionList();
 $executionList = array_values($tester->getExecutionList());
 
@@ -81,7 +81,15 @@ $t->is(
 
 $t->comment('Test dependant avec ses dependances');
 
-$tester = new Tester($page, array($test1, $test4, $test3, $test2));
+$tester = new Tester(
+  $page,
+  array(
+    $test1->getId(),
+    $test4->getId(),
+    $test3->getId(),
+    $test2->getId()
+  )
+);
 $tester->createExecutionList();
 $executionList = array_values($tester->getExecutionList());
 
