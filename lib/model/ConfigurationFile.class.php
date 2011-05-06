@@ -64,7 +64,7 @@ class ConfigurationFile
     $structureValide = true;
 
     $parser = new sfYamlParser();
-    $input = file_get_contents($fileName);
+    $input  = file_get_contents($fileName);
 
     try
     {
