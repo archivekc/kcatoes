@@ -63,9 +63,12 @@ class ConfigurationFile
     $allowedVersions = array(sfConfig::get('app_version'));
     $structureValide = true;
 
+    $parser = new sfYamlParser();
+    $input = file_get_contents($fileName);
+
     try
     {
-      $config = sfYaml::load($fileName);
+      $config = $parser->parse($input);
     }
     catch (InvalidArgumentException $e)
     {
