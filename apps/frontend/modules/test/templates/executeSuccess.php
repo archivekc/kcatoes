@@ -1,6 +1,6 @@
 <?php use_helper('File') ?>
 
-<h1>Exécution</h1>
+<h2><span>Exécution</span></h2>
 
 <p class="erreur"><?php echo $erreur ?></p>
 <p class="info"><?php echo $info ?></p>
