@@ -223,7 +223,7 @@ class testActions extends sfActions
     }
     catch (KcatoesWrapperException $e)
     {
-      $this->info   = $kcatoes->getInfo();
+      $this->info   = 'Une erreur est survenue lors de l\'exécution des tests.';
       $this->erreur = $e->getMessage();
       $this->cheminFichierCsv = '';
       return sfView::SUCCESS;

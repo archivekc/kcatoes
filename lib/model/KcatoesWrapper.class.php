@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * Wrapper du framework KCatoès. Sert d'interface entre le framework et les
+ * outils l'utilisant.
+ *
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
+ *
+ */
 class KcatoesWrapper
 {
 
   private $logger;
   private $tester;
-  private $info;
 
   /**
    * Initialise les différents composants du framework.
@@ -36,7 +42,6 @@ class KcatoesWrapper
     {
       $erreur = 'Aucun test n\'a été sélectionné';
       $this->addLogErreur($erreur);
-      $this->info = 'Une erreur est survenue lors de l\'initialisation de KCatoès.';
       throw new KcatoesWrapperException($erreur);
     }
 
@@ -53,13 +58,11 @@ class KcatoesWrapper
       catch (KcatoesUrlReadException $e)
       {
         $this->addLogErreur($e->getMessage());
-        $this->info = 'Une erreur est survenue lors de la récupération du contenu de la page.';
         throw new KcatoesWrapperException($e->getMessage());
       }
-      catch(Zend\Http\Client\Exception\RuntimeException $e)
+      catch(RuntimeException $e)
       {
         $this->addLogErreur($e->getMessage());
-        $this->info = 'La page ne semble pas accessible.';
         throw new KcatoesWrapperException($e->getMessage());
       }
     }
@@ -67,7 +70,6 @@ class KcatoesWrapper
     {
       $erreur = 'Le contenu HTML et l\'URL sont vides ou non initialisés';
       $this->addLogErreur($erreur);
-      $this->info = 'Une erreur est survenue lors de l\'initialisation de KCatoès.';
       throw new KcatoesWrapperException($erreur);
     }
 
@@ -80,7 +82,6 @@ class KcatoesWrapper
     catch (KcatoesCrawlerException $e)
     {
       $this->addLogErreur($e->getMessage());
-      $this->info = 'Une erreur est survenue lors de la création du crawler de la page.';
       throw new KcatoesWrapperException($e->getMessage());
     }
 
@@ -108,7 +109,6 @@ class KcatoesWrapper
     catch (KcatoesTesterException $e)
     {
       $this->addLogErreur($e->getMessage());
-      $this->info = 'Une erreur est survenue lors de la création de la liste des tests à exécuter.';
       throw new KcatoesWrapperException($e->getMessage());
     }
 
@@ -119,7 +119,6 @@ class KcatoesWrapper
     catch (KcatoesWrapperException $e)
     {
       $this->addLogErreur($e->getMessage());
-      $this->info = 'Une erreur est survenue lors de la création du fichier CSV.';
       throw new KcatoesWrapperException($e->getMessage());
     }
 
@@ -155,11 +154,6 @@ class KcatoesWrapper
       throw new KcatoesUrlReadException('Erreur lors de la lecture du contenu de l\'url');
     }
     return $content;
-  }
-
-  public function getInfo()
-  {
-    return $this->info;
   }
 
   /**
