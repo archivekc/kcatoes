@@ -10,7 +10,7 @@ class ConfigurationFile
 {
   /**
    * Créé un fichier de configuration à partir d'une liste d'options. Les options
-   * sont stockées dans la liste au format:
+   * doivent être stockées dans la liste au format:
    * nom de l'option => valeur
    *
    * @param array $options Une liste d'options
