@@ -12,20 +12,17 @@ use Goutte\Client;
 class Page extends Client
 {
   private $content;
-  private $url;
   private $logger;
 
   /**
    * Construit une page à partir d'une URL
    *
    * @param String   $_content Le contenu de la page
-   * @param String   $_url     L'URL de la page (optionelle)
    * @param sfLogger $_logger  Le logger à utiliser (optionel)
    */
-  public function __construct($_content, $_url = null, sfLogger $_logger = null)
+  public function __construct($_content, sfLogger $_logger = null)
   {
     $this->content = $_content;
-    $this->url     = $_url;
     $this->logger  = $_logger;
     parent::__construct();
   }
@@ -52,7 +49,7 @@ class Page extends Client
     $this->addLogInfo('Génération du crawler');
     try
     {
-      $this->crawler = $this->createCrawlerFromContent($this->url, $this->content, 'text/html');
+      $this->crawler = $this->createCrawlerFromContent('', $this->content, 'text/html');
     }
     catch (Exception $e)
     {

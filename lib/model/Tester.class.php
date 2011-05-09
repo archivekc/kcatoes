@@ -137,6 +137,7 @@ class Tester
   /**
    * Exporte le résultat des tests au format CSV
    *
+   *@return string Le chemin d'accès au CSV généré
    */
   public function toCSV()
   {
@@ -158,7 +159,7 @@ class Tester
     $csv = @fopen($fileName, "w");
     if (!$csv)
     {
-      throw new KcatoesTecException('Impossible d\'écrire dans un fichier CSV');
+      throw new KcatoesTesterException('Impossible d\'écrire dans le fichier CSV');
     }
     fputcsv($csv, $header, ';', '"');
 
