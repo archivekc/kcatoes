@@ -206,7 +206,7 @@ class testActions extends sfActions
   }
 
   /**
-   * Contrôleur du coeur de l'application
+   * Contrôleur du framework
    *
    * @param sfWebRequest $request
    */
@@ -218,55 +218,18 @@ class testActions extends sfActions
 
     try
     {
-      $content = $this->extractUrlContent($this->url);
+      $kcatoes = new KcatoesWrapper($listeIds, '', $this->url);
+      $this->cheminFichierCsv = $kcatoes->run();
     }
-    catch (KcatoesUrlReadException $e)
+    catch (KcatoesWrapperException $e)
     {
+      $this->info   = $kcatoes->getInfo();
       $this->erreur = $e->getMessage();
-      $this->addLogErreur($this->erreur);
-      $this->info = 'Une erreur est survenue lors de la récupération du contenu de la page.';
       $this->cheminFichierCsv = '';
       return sfView::SUCCESS;
     }
-    catch(Zend\Http\Client\Exception\RuntimeException $e)
-    {
-      $this->erreur = $e->getMessage();
-      $this->info = 'La page ne semble pas accessible.';
-      $this->cheminFichierCsv = '';
-      return sfView::SUCCESS;
-    }
-
-    $page = new Page($content, $this->url, sfContext::getInstance()->getLogger());
-    try
-    {
-      $page->buildCrawler();
-    }
-    catch (KcatoesCrawlerException $e)
-    {
-      $this->erreur = $e->getMessage();
-      $this->addLogErreur($this->erreur);
-      $this->info = 'Une erreur est survenue lors de la création du crawler de la page.';
-      $this->cheminFichierCsv = '';
-      return sfView::SUCCESS;
-    }
-
-    $tester = new Tester($page, $listeIds, sfContext::getInstance()->getLogger());
-    try
-    {
-      $tester->executeTest();
-    }
-    catch (KcatoesTesterException $e)
-    {
-      $this->erreur = $e->getMessage();
-      $this->addLogErreur($this->erreur);
-      $this->info = 'Une erreur est survenue lors de la création de la liste des tests à exécuter.';
-      $this->cheminFichierCsv = '';
-      return sfView::SUCCESS;
-    }
-
+    $this->info   = 'Traitement terminé';
     $this->erreur = '';
-    $this->info = 'Traitement terminé';
-    $this->cheminFichierCsv = $tester->toCSV();
   }
 
   public function executeDev(sfWebRequest $request)
