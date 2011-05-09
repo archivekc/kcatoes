@@ -4,8 +4,8 @@
  * Wrapper du framework KCatoès. Sert d'interface entre le framework et les
  * outils l'utilisant.
  *
- * @author Adrien Couet <adrien.couet@keyconsulting.fr>
- *
+ * @package Kcatoes
+ * @author  Adrien Couet <adrien.couet@keyconsulting.fr>
  */
 class KcatoesWrapper
 {
