@@ -191,9 +191,11 @@ class testActions extends sfActions
     sort($this->selectedTests);
     $this->testCount = count($this->selectedTests);
 
+    $config['Tests'] = $testsNames;
+
     try
     {
-      $this->downloadConfig = ConfigurationFile::create($testsNames);
+      $this->downloadConfig = ConfigurationFile::create($config);
     }
     catch (KcatoesConfigurationFileException $e)
     {

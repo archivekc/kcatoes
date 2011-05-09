@@ -9,22 +9,43 @@
 class ConfigurationFile
 {
   /**
-   * Créé un fichier de configuration à partir d'une liste de noms de tests
+   * Créé un fichier de configuration à partir d'une liste d'options. Les options
+   * sont stockées dans la liste au format:
+   * nom de l'option => valeur
    *
-   * @param array $testsNames La liste des noms des tests à inclure dans le
-   *                          fichier de configuration
+   * @param array $options Une liste d'options
    *
    * @return String Le chemin d'accès au fichier de configuration créé
    *
-   * @throws KcatoesConfigurationFileException Si le fichier ne peut pas être créé
+   * @throws KcatoesConfigurationFileException
    */
-  public static function create($testsNames)
+  public static function create($options)
   {
-    $config = array(
-      'Tests'   => $testsNames,
-      'Version' => sfConfig::get('app_version'),
-      'Date'    => date('Y.m.d')
-    );
+    if (empty($options) || !is_array($options))
+    {
+      throw new KcatoesConfigurationFileException(
+        'Les options doivent être fournies sous forme de liste dont les entrées'.
+        ' sont du type: nom de l\'option => valeur'
+      );
+    }
+
+    if (!array_key_exists('Tests', $options) || empty($options['Tests']))
+    {
+      throw new KcatoesConfigurationFileException(
+        'Le fichier de configuration doit contenir une catégorie \'Tests\' et'.
+        ' celle-ci ne doit pas être vide.'
+      );
+    }
+
+    $config = array();
+
+    foreach ($options as $nom => $valeur)
+    {
+      $config[$nom] = $valeur;
+    }
+
+    $config['Version'] = sfConfig::get('app_version');
+    $config['Date']    = date('Y.m.d');
 
     $yamlConfig = sfYaml::dump($config);
 
