@@ -5,10 +5,6 @@ $t = new lime_test(17);
 
 $page = new Page('');
 
-$configuration = ProjectConfiguration::getApplicationConfiguration( 'frontend', 'test', true);
-new sfDatabaseManager($configuration);
-Doctrine_Core::loadData(sfConfig::get('sf_test_dir').'/fixtures');
-
 $test1 = Doctrine_Core::getTable('Test')->findOneByNom('Test unitaire 1');
 $test2 = Doctrine_Core::getTable('Test')->findOneByNom('Test unitaire 2');
 $test3 = Doctrine_Core::getTable('Test')->findOneByNom('Test unitaire 3');
