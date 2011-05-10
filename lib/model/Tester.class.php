@@ -88,7 +88,7 @@ class Tester
    * @throws KcatoesTesterException
    * @tested
    */
-  private function createExecutionList()
+  public function createExecutionList()
   {
     $this->addLogInfo('Création de la liste des tests à exécuter');
     $executionList = array();
@@ -199,13 +199,18 @@ class Tester
   }
 
   /**
-   * Accesseur de la variable $this->toExecute
+   * Retourne la liste des tests sélectionnés dans $this->tests
    * Utilisé par les tests unitaires
    *
    */
-  public function getExecutionList()
+  public function getTests()
   {
-    return $this->executionList;
+    $tests = array();
+    foreach ($this->tests as $test)
+    {
+      $tests[] = $test;
+    }
+    return $tests;
   }
 
 }

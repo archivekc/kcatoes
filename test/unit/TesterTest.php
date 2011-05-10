@@ -1,41 +1,30 @@
 <?php
 require_once dirname(__FILE__).'/../bootstrap/Doctrine.php';
 
-$t = new lime_test(19);
+$t = new lime_test(17);
 
-$page = new Page('', 'http://www.keyconsulting.fr');
+$page = new Page('');
 
-$test1 = new Test();
-$test1->setNom('Test unitaire 1');
+$configuration = ProjectConfiguration::getApplicationConfiguration( 'frontend', 'test', true);
+new sfDatabaseManager($configuration);
+Doctrine_Core::loadData(sfConfig::get('sf_test_dir').'/fixtures');
 
-$test2 = new Test();
-$test2->setNom('Test unitaire 2');
-$test2->setDependanceId(1);
-$test2->setDependance($test1);
-$test2->setExecuteSi(Resultat::ECHEC);
-
-$test3 = new Test();
-$test3->setNom('Test unitaire 3');
-$test3->setDependanceId(2);
-$test3->setDependance($test2);
-$test2->setExecuteSi(Resultat::ECHEC);
-
-$test4 = new Test();
-$test4->setNom('Test unitaire 4');
-
+$test1 = Doctrine_Core::getTable('Test')->findOneByNom('Test unitaire 1');
+$test2 = Doctrine_Core::getTable('Test')->findOneByNom('Test unitaire 2');
+$test3 = Doctrine_Core::getTable('Test')->findOneByNom('Test unitaire 3');
+$test4 = Doctrine_Core::getTable('Test')->findOneByNom('Test unitaire 4');
 
 $t->comment('Test independant');
 
 $tester = new Tester($page, array($test1->getId()));
-$tester->createExecutionList();
-$executionList = array_values($tester->getExecutionList());
+$executionList = array_values($tester->createExecutionList());
 
 $t->is(count($executionList), 1, 'Nombre de tests a executer');
-$t->is($executionList[0], $test1, 'Test a executer');
+$t->is($executionList[0]->getNom(), $test1->getNom(), 'Test a executer');
 
 $tester->executeTest();
-$executionList = array_values($tester->getExecutionList());
-$resultat = $executionList[0]->getResultat();
+$tests = $tester->getTests();
+$resultat = $tests[0]->getResultat();
 
 $t->is(
   $resultat->getCode(true),
@@ -47,33 +36,19 @@ $t->is(
 $t->comment('Test dependant sans ses dependances');
 
 $tester = new Tester($page, array($test3->getId()));
-$tester->createExecutionList();
-$executionList = array_values($tester->getExecutionList());
+$executionList = array_values($tester->createExecutionList());
 
 $t->is(count($executionList), 3, 'Nombre de tests a executer');
-$t->is($executionList[0], $test1, 'Test a executer');
-$t->is($executionList[1], $test2, 'Test a executer');
-$t->is($executionList[2], $test3, 'Test a executer');
+$t->is($executionList[0]->getNom(), $test1->getNom(), 'Test a executer');
+$t->is($executionList[1]->getNom(), $test2->getNom(), 'Test a executer');
+$t->is($executionList[2]->getNom(), $test3->getNom(), 'Test a executer');
 
 $tester->executeTest();
-$executionList = array_values($tester->getExecutionList());
-$resultat1 = $executionList[0]->getResultat();
-$resultat2 = $executionList[1]->getResultat();
-$resultat3 = $executionList[2]->getResultat();
+$tests = array_values($tester->getTests());
+$resultat1 = $tests[0]->getResultat();
 
 $t->is(
   $resultat1->getCode(true),
-  'Réussite',
-  'Resultat de l\'execution'
-);
-$t->is(
-  $resultat2->getCode(true),
-  'Non exécutable: Le résultat de sa dépendance directe ne correspond pas à '.
-  'celui attendu pour pouvoir executer le test',
-  'Resultat de l\'execution'
-);
-$t->is(
-  $resultat3->getCode(true),
   'Non exécutable: La dépendance directe du test n\'a pas pu être exécutée',
   'Resultat de l\'execution'
 );
@@ -90,21 +65,20 @@ $tester = new Tester(
     $test2->getId()
   )
 );
-$tester->createExecutionList();
-$executionList = array_values($tester->getExecutionList());
+$executionList = array_values($tester->createExecutionList());
 
 $t->is(count($executionList), 4, 'Nombre de tests a executer');
-$t->is($executionList[0], $test1, 'Test a executer');
-$t->is($executionList[1], $test4, 'Test a executer');
-$t->is($executionList[2], $test2, 'Test a executer');
-$t->is($executionList[3], $test3, 'Test a executer');
+$t->is($executionList[0]->getNom(), $test1->getNom(), 'Test a executer');
+$t->is($executionList[1]->getNom(), $test2->getNom(), 'Test a executer');
+$t->is($executionList[2]->getNom(), $test3->getNom(), 'Test a executer');
+$t->is($executionList[3]->getNom(), $test4->getNom(), 'Test a executer');
 
 $tester->executeTest();
-$executionList = array_values($tester->getExecutionList());
-$resultat1 = $executionList[0]->getResultat();
-$resultat2 = $executionList[1]->getResultat();
-$resultat3 = $executionList[2]->getResultat();
-$resultat4 = $executionList[3]->getResultat();
+$tests = array_values($tester->getTests());
+$resultat1 = $tests[0]->getResultat();
+$resultat2 = $tests[1]->getResultat();
+$resultat3 = $tests[2]->getResultat();
+$resultat4 = $tests[3]->getResultat();
 
 $t->is(
   $resultat1->getCode(true),
@@ -113,18 +87,18 @@ $t->is(
 );
 $t->is(
   $resultat2->getCode(true),
-  'Non exécutable: Impossible de trouver l\'implémentation',
-  'Resultat de l\'execution'
-);
-$t->is(
-  $resultat3->getCode(true),
   'Non exécutable: Le résultat de sa dépendance directe ne correspond pas à '.
   'celui attendu pour pouvoir executer le test',
   'Resultat de l\'execution'
 );
 
 $t->is(
-  $resultat4->getCode(true),
+  $resultat3->getCode(true),
   'Non exécutable: La dépendance directe du test n\'a pas pu être exécutée',
+  'Resultat de l\'execution'
+);
+$t->is(
+  $resultat4->getCode(true),
+  'Non exécutable: Impossible de trouver l\'implémentation',
   'Resultat de l\'execution'
 );

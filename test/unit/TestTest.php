@@ -3,7 +3,7 @@ require_once dirname(__FILE__).'/../bootstrap/Doctrine.php';
 
 $t = new lime_test(25);
 $test = new Test();
-$page = new Page('', 'http://www.keyconsulting.fr');
+$page = new Page('');
 
 
 $t->comment('Controle de la generation du nom court');

@@ -1,0 +1,46 @@
+
+Thematique:
+  themtest:
+    nom:         Thématique tests unitaires
+    description: |
+      Thématique pour les tests unitaires
+       
+Referentiel:
+  reftest:
+    nom:        Référentiel tests unitaires
+    url:        http://www.keyconsulting.fr
+    Thematique: themtest
+    
+Regroupement:
+  rgptest:
+    nom:         Regroupement tests unitaires
+    Referentiel: reftest
+    
+Test:
+  test1:
+    nom:           Test unitaire 1
+    description:   |
+      
+    Regroupement:  rgptest
+    
+  test2:
+    nom:           Test unitaire 2
+    description:   |
+      
+    Regroupement:  rgptest
+    Dependance:    test1
+    execute_si:    0
+    
+  test3:
+    nom:           Test unitaire 3
+    description:   |
+      
+    Regroupement:  rgptest
+    Dependance:    test2
+    execute_si:    0
+    
+  test4:
+    nom:           Test unitaire 4
+    description:   |
+      
+    Regroupement:  rgptest
