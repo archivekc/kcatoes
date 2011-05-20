@@ -9,19 +9,6 @@
 class KcatoesUrlValidator extends sfValidatorBase
 {
   /**
-   * Configures the current validator.
-   *
-   * @param array $options   An array of options
-   * @param array $messages  An array of error messages
-   *
-   * @see sfValidatorBase
-   */
-  protected function configure($options = array(), $messages = array())
-  {
-    $this->setMessage('required', 'Vous devez saisir une url');
-  }
-
-  /**
    * @see sfValidatorBase
    */
   protected function doClean($value)
