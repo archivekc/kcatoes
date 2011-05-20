@@ -19,14 +19,34 @@ class testActions extends sfActions
    */
   public function executeUrl(sfWebRequest $request)
   {
+    $this->error = '';
     $this->form = new UrlForm();
     if ($request->isMethod('post'))
     {
       $this->addLogInfo('Lancement de la validation de l\'URL');
       if ($this->processForm($request, $this->form))
       {
-        $formContent = $request->getParameter($this->form->getName());
+        $formContent = $this->form->getValues();
+        print_r($formContent);
+
+        if (!empty($formContent['htmlFile']))
+        {
+          $formContent['htmlFile']->save();
+          $fileName = $formContent['htmlFile']->getSavedName();
+        }
+        else if (empty($formContent['url']))
+        {
+          $this->error = 'Vous devez choisir une URL ou un fichier à tester.';
+          $this->addLogErreur($this->error);
+          return sfView::SUCCESS;
+        }
+        else
+        {
+          $fileName = '';
+        }
+
         $this->getUser()->setAttribute('url', $formContent['url'], 'wizard');
+        $this->getUser()->setAttribute('htmlFile', $fileName, 'wizard');
         if ($formContent['conf'] === 'wizard')
         {
           $this->redirect('test/thematique');
@@ -53,9 +73,9 @@ class testActions extends sfActions
       if ($this->processForm($request, $this->form))
       {
         $uploadedFile = $this->form->getValue('configFile');
-        $uploadedFile->save('kcatoes.yml');
+        $uploadedFile->save();
 
-        $fileName = $uploadedFile->getPath().DIRECTORY_SEPARATOR.'kcatoes.yml';
+        $fileName = $uploadedFile->getSavedName();
 
         try
         {
@@ -167,14 +187,16 @@ class testActions extends sfActions
    */
   public function executeConfirmation(sfWebRequest $request)
   {
-    $testsId = $this->getUser()->getAttribute('test', null, 'wizard');
-    $url = $this->getUser()->getAttribute('url', null, 'wizard');
+    $testsId  = $this->getUser()->getAttribute('test', null, 'wizard');
+    $url      = $this->getUser()->getAttribute('url', null, 'wizard');
+    $htmlFile = $this->getUser()->getAttribute('htmlFile', null, 'wizard');
     $valide = $request->getParameter('valide');
     if ($valide)
     {
       $this->getUser()->getAttributeHolder()->removeNamespace('wizard');
       $this->getUser()->setAttribute('selectedTests', $testsId);
       $this->getUser()->setAttribute('url', $url);
+      $this->getUser()->setAttribute('htmlFile', $htmlFile);
       $this->redirect('test/execute');
     }
     $this->selectedTests = array();
@@ -215,12 +237,14 @@ class testActions extends sfActions
   public function executeExecute(sfWebRequest $request)
   {
     $this->url = $this->getUser()->getAttribute('url');
+    $htmlFile  = $this->getUser()->getAttribute('htmlFile');
+    $listeIds  = $this->getUser()->getAttribute('selectedTests');
 
-    $listeIds = $this->getUser()->getAttribute('selectedTests');
+    $htmlContent = file_get_contents($htmlFile);
 
     try
     {
-      $kcatoes = new KcatoesWrapper($listeIds, '', $this->url);
+      $kcatoes = new KcatoesWrapper($listeIds, $htmlContent, $this->url);
       $this->cheminFichierCsv = $kcatoes->run();
     }
     catch (KcatoesWrapperException $e)

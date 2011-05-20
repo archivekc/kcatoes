@@ -1,7 +1,5 @@
 <?php
 
-use Symfony\Component\Validator\Constraints\UrlValidator;
-
 /**
  * Formulaire de saisie de l'URL de la page à tester
  *
@@ -22,8 +20,17 @@ class UrlForm extends BaseForm
     );
 
     $this->setWidgets(array(
-      'url'  => new sfWidgetFormInputText(),
-      'conf' => new sfWidgetFormChoice(
+      'url'      => new sfWidgetFormInputText(
+        array(
+          'label' => 'Entrez l\'URL à valider'
+        )
+      ),
+      'htmlFile' => new sfWidgetFormInputFile(
+        array(
+          'label' => 'Ou sélectionnez un fichier HTML à tester'
+        )
+      ),
+      'conf'     => new sfWidgetFormChoice(
         array(
           'choices'   => $confChoices,
           'expanded'  => true
@@ -32,7 +39,17 @@ class UrlForm extends BaseForm
     ));
 
     $this->setValidators(array(
-      'url'  => new KcatoesUrlValidator(),
+      'url'  => new KcatoesUrlValidator(
+        array(
+          'required' => false
+        )
+      ),
+      'htmlFile' => new sfValidatorFile(
+        array(
+          'path'     => sfConfig::get('sf_upload_dir').DIRECTORY_SEPARATOR.'html',
+          'required' => false
+        )
+      ),
       'conf' => new sfValidatorChoice(
         array(
           'choices'  => array_keys($confChoices),
@@ -45,10 +62,7 @@ class UrlForm extends BaseForm
     ));
 
     $this->widgetSchema->setNameFormat('userUrl[%s]');
-    $this->widgetSchema->setLabel('url', 'Entrez l\'URL à valider');
-
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
     parent::configure();
   }
 }
