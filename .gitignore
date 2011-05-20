@@ -9,3 +9,4 @@ lib/vendor/goutte/src/vendor
 web/download
 web/uploads/config
 web/dev
+web/uploads/html
