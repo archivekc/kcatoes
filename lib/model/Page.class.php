@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\BrowserKit\Request;
 use Goutte\Client;
 
@@ -49,7 +50,8 @@ class Page extends Client
     $this->addLogInfo('Génération du crawler');
     try
     {
-      $this->crawler = $this->createCrawlerFromContent('', $this->content, 'text/html');
+      $this->crawler = new Crawler(null, '');
+      $this->crawler->addHtmlContent($this->content);
     }
     catch (Exception $e)
     {
