@@ -362,7 +362,7 @@ Test:
   test312:
     nom:           Pertinence des étiquettes
     description:   >
-      Pertinence des étiquettes délément de formulaire
+      Pertinence des étiquettes d'élément de formulaire
     Regroupement:  formulaireA
     execute_si:
       
@@ -449,7 +449,7 @@ Test:
     execute_si:
       
   test48:
-    nom:           Pertinance de la description longue
+    nom:           Pertinence de la description longue
     description:   >
       Pertinence de la description longue pour les images le nécessitant
     Regroupement:  imageA
@@ -551,7 +551,7 @@ Test:
     execute_si:
       
   test510:
-    nom:           Pertinance du sous-titrage synchronisé
+    nom:           Pertinence du sous-titrage synchronisé
     description:   >
       Pertinence du sous-titrage synchronisé des médias synchronisés
     Regroupement:  multimediaA
@@ -718,7 +718,7 @@ Test:
     execute_si:
       
   test532:
-    nom:           Pertinance de la version en langue des signes française
+    nom:           Pertinence de la version en langue des signes française
     description:   >
       
     Regroupement:  multimediaAAA
