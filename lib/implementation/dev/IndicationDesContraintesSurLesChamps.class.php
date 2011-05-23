@@ -18,9 +18,10 @@ class IndicationDesContraintesSurLesChamps extends ASource
   public function execute(Page $page)
   {
     $reussite = true;
-    $champs = $page->crawler->filter('input[type=text], input[type=password],
-                                      input[type=file], input[type=radio],
-                                      input[type=checkbox], textarea, select');
+    $champs = $page->crawler->filter(
+      'input[type=text], input[type=password], input[type=file],
+      input[type=radio], input[type=checkbox], textarea, select'
+    );
     foreach ($champs as $champ)
     {
       $reussite = false;
