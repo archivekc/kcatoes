@@ -19,9 +19,11 @@ class AbsenceDElementDeFormulaireSansEtiquetteAssociee extends ASource
     $crawler = $page->crawler;
     $ids = array();
 
-    $formulaire = $crawler->filter('input[type=text][id], input[type=password][id],
-                              input[type=file][id], input[type=radio][id],
-                              input[type=checkbox][id], textarea[id], select[id]');
+    $formulaire = $crawler->filter(
+      'input[type=text][id], input[type=password][id],
+      input[type=file][id], input[type=radio][id],
+      input[type=checkbox][id], textarea[id], select[id]'
+    );
 
     foreach ($formulaire as $node)
     {
