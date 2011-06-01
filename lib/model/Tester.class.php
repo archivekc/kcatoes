@@ -153,7 +153,7 @@ class Tester
     $header['resultat']    = 'Résultat';
     $header['erreurExp']   = 'Explication de l\'erreur';
     $header['source']      = 'Code source de l\'élément à vérifier';
-    $header['xpath']       = 'XPath de de l\'élément à vérifier';
+    $header['xpath']       = 'XPath de l\'élément à vérifier';
     $header['exp']         = 'Informations complémentaires';
 
     $csv = @fopen($fileName, "w");
