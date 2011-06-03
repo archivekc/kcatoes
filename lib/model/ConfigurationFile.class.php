@@ -24,8 +24,8 @@ class ConfigurationFile
     if (empty($options) || !is_array($options))
     {
       throw new KcatoesConfigurationFileException(
-        'Les options doivent être fournies sous forme de liste dont les entrées'.
-        ' sont du type: nom de l\'option => valeur'
+        'Les options doivent être fournies sous forme d\'une liste dont les '.
+        'entrées sont du type: nom de l\'option => valeur'
       );
     }
 
@@ -83,7 +83,7 @@ class ConfigurationFile
   public static function load($fileName, $options = array())
   {
     $requiredOptions = array_merge(array('Tests', 'Version'), $options);
-    $allowedVersions = array(sfConfig::get('app_version'));
+    $allowedVersions = array(sfConfig::get('app_versions_compatibles'));
     $structureValide = true;
 
     $parser = new sfYamlParser();

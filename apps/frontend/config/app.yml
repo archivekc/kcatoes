@@ -1,3 +1,4 @@
 all:
   version: 0.3.0
+  versions_compatibles: 0.3.0
   date: 29/04/2011
