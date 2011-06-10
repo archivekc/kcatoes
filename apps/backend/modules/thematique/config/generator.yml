@@ -13,9 +13,15 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        description:
+          label: Description
+      list:
+        title:   Thématiques
+        display: [=nom, description]
       filter:  ~
       form:    ~
-      edit:    ~
-      new:     ~
+      edit:
+        title: Modification de <em>"%%nom%%"</em>
+      new:
+        title: Création d'une nouvelle thématique

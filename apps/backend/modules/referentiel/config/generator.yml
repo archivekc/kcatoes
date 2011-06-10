@@ -13,9 +13,17 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        thematique:
+          label: Thématique
+        url:
+          label: URL
+      list:
+        title:   Référentiels
+        display: [=nom, url, thematique]
       filter:  ~
       form:    ~
-      edit:    ~
-      new:     ~
+      edit:
+        title: Modification de <em>"%%nom%%"</em>
+      new:
+        title: Création d'un nouveau référentiel

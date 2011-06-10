@@ -13,9 +13,17 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        dependance:
+          label: Dépendance
+        execute_si:
+          label: Condition d'exécution
+      list:
+        title:   Tests
+        display: [=nom, description, regroupement, dependance, execute_si]
       filter:  ~
       form:    ~
-      edit:    ~
-      new:     ~
+      edit:
+        title: Modification de <em>"%%nom%%"</em>
+      new:
+        title: Création d'un nouveau test

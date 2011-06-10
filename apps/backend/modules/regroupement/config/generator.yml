@@ -13,9 +13,15 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        referentiel:
+          label: Référentiel
+      list:
+        title:   Regroupements
+        display: [=nom, referentiel]
       filter:  ~
       form:    ~
-      edit:    ~
-      new:     ~
+      edit:
+        title: Modification de <em>"%%nom%%"</em>
+      new:
+        title: Création d'un nouveau regroupement
