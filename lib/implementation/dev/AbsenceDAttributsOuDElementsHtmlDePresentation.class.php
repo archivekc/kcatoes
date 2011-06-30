@@ -6,7 +6,7 @@
  * background, basefont, bgcolor, border, color, link, text, vlink
  *
  * Si aucune correspondance n'est trouvée, le test est réussit. Sinon, il échoue
- * et un Echec est créé pour chaque correspondance trouvée.
+ * et un Complement est créé pour chaque correspondance trouvée.
  *
  * @package Kcatoes
  * @author Adrien Couet <adrien.couet@keyconsulting.fr>
@@ -24,8 +24,8 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends ASource
     $crawler = $page->crawler;
 
     $elements = 'basefont, blink, center, font, marquee, s, strike, tt, u';
-    $attributs  = '[align], [alink], [background], [basefont], [bgcolor], [border],
-                [color], [link], [text], [vlink]';
+    $attributs  = '[align], [alink], [background], [basefont], [bgcolor],'.
+                  '[border], [color], [link], [text], [vlink]';
 
     $nodes = $crawler->filter($elements);
     foreach ($nodes as $node)
