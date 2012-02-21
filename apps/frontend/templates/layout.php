@@ -15,7 +15,7 @@
 	        <img alt="KCatoès" src="/img/kcatoes-128.png"/>
 	      </a>
 	      <a href="http://keyconsulting.fr" id="logoKC">
-          <img alt="KCatoès" src="/img/KeyConsulting.jpg"/>
+          <img alt="KCatoès" src="/img/KC-shadow-72dpi.png"/>
         </a>
 	      <h1><strong>Kcatoès</strong> est un outil automatique d'assitance aux test d'accessiblité</h1>
 	    </div>
