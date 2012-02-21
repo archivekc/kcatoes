@@ -6,7 +6,7 @@ lib/form/doctrine/base
 lib/filter/doctrine/base
 data/sql
 lib/vendor/goutte/src/vendor
-web/download
-web/uploads/config
+web/download/config/*.yml
+web/uploads/config/*.yml
 web/dev
-web/uploads/html
+web/uploads/html/*.htm*
