@@ -14,13 +14,10 @@ class Resultat
   const NON_EXEC = 3; //Problème lié à la classe du test
                       //(classe non trouvée ou mal implémentée)
   const ERREUR   = 4; //Erreur lors de l'exécution du test
-
-  private $resultatCode;
-  private $explicationErreur = 'n.a.';
-  private $complements       = array();
+  const NA       = 5; //Lorsque le test n'est pas applicable
 
   /**
-   * Contructuit un résultat avec un code de résultat
+   * Contruit un résultat avec un code de résultat
    * et l'explication associée
    *
    * @param int $_resultatCode Code de résultat (doit correspondre à l'une des
@@ -28,81 +25,71 @@ class Resultat
    */
   public function __construct($_resultatCode)
   {
-    $this->resultatCode = $_resultatCode;
+      throw new KcatoesException('La classe Resultat n\'est pas prévue pour être instanciée');
   }
-
+  
   /**
-   * Si le résultat du test est Erreur ou Non exécutable, cette variable
-   * contient une explication de ce résultat
-   *
-   * @param string $_explicationErreur L'explication de l'erreur
+   * Permet de récupérer le libellé associé aux valeurs des constantes
+   * @param int
+   * @return string
    */
-  public function setExplicationErreur($_explicationErreur)
+  static function getLabel($code)
   {
-    $this->explicationErreur = $_explicationErreur;
+  	switch($code)
+  	{
+	    case self::ECHEC:
+	      return 'Echec';
+        break;
+	    case self::REUSSITE:
+	      return 'Réussite';
+	      break;
+	    case self::MANUEL:
+	      return 'Manuel';
+	      break;
+	    case self::NON_EXEC:
+	      return 'Non exécutable';
+	      break;
+	    case self::ERREUR:
+	      return 'Erreur d\'exécution';
+	      break;
+	    case self::NA:
+        return 'Non applicable';
+        break;
+	    default:
+	      return '';
+	      break;
+  	}
   }
-
   /**
-   * $echec contient la liste des complements correspondant aux éléments de la
-   * page ayant échoué à passer le test
-   *
-   * @param array $_complements Une liste d'objets Echec
+   * Permet de récupérer le libellé associé aux valeurs des constantes
+   * @param int
+   * @return string
    */
-  public function setComplements($_complements)
+  static function getCode($code)
   {
-    $this->complements = $_complements;
-  }
-
-  /**
-   * Fonction d'accès aux paramètres de la classe
-   *
-   * @param String $var Le nom de la variable à récupérer
-   *
-   * @return La valeur de la variable
-   */
-  public function __get($var)
-  {
-    return $this->$var;
-  }
-
-  /**
-   * Retourne le nom du résultat associé à $resultatCode
-   *
-   * @param boolean $withExplication Indique si le nom du résultat doit être
-   *                                 accompagné d'une description
-   *
-   * @return La version littérale du résultat
-   * @tested
-   */
-  public function getCode($withExplication = false)
-  {
-    $code = '';
-
-    switch ($this->resultatCode)
+    switch($code)
     {
-    case self::ECHEC:
-      $code = 'Echec';
+      case self::ECHEC:
+        return 'ECHEC';
         break;
-    case self::REUSSITE:
-      $code = 'Réussite';
+      case self::REUSSITE:
+        return 'REUSSITE';
         break;
-    case self::MANUEL:
-      $code = 'Exécution manuelle';
+      case self::MANUEL:
+        return 'MANUEL';
         break;
-    case self::NON_EXEC:
-      $code = $withExplication ?
-       'Non exécutable: '.$this->explicationErreur : 'Non exécutable';
+      case self::NON_EXEC:
+        return 'NONEXEC';
         break;
-    case self::ERREUR:
-      $code = $withExplication ?
-       'Erreur d\'exécution: '.$this->explicationErreur : 'Erreur d\'exécution';
+      case self::ERREUR:
+        return 'ERREUR';
         break;
-    default:
-      $code = '';
+      case self::NA:
+        return 'NA';
+        break;
+      default:
+        return '';
         break;
     }
-
-    return $code;
   }
-
 }

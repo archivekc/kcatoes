@@ -12,7 +12,6 @@ class KcatoesWrapper
 
   private $logger;
   private $tester;
-  private $rawcontent;
 
   /**
    * Initialise les différents composants du framework.
@@ -28,19 +27,19 @@ class KcatoesWrapper
    *
    * @throws KcatoesWrapperException
    */
-  public function __construct($testsClass, $htmlContent = null, $url = null)
+  public function __construct($testsIds, $htmlContent = null, $url = null)
   {
-//  	$this->logger = sfContext::getInstance()->getLogger();
-  	$this->logger = new sfNoLogger(new sfEventDispatcher());
+  	$this->logger = sfContext::getInstance()->getLogger();
+//  	$this->logger = new sfNoLogger(new sfEventDispatcher());
 
     $this->addLogInfo('Initialisation de KCatoès');
 
-    if (!is_array($testsClass))
+    if (!is_array($testsIds))
     {
-      $testsClass = array($testsClass);
+      $testsIds = array($testsIds);
     }
 
-    if (empty($testsClass))
+    if (empty($testsIds))
     {
       $erreur = 'Aucun test n\'a été sélectionné';
       $this->addLogErreur($erreur);
@@ -76,7 +75,6 @@ class KcatoesWrapper
     }
 
     $page = new Page($content, $this->logger);
-    $this->rawcontent = $content;
 
     try
     {
@@ -88,7 +86,7 @@ class KcatoesWrapper
       throw new KcatoesWrapperException($e->getMessage());
     }
 
-    $this->tester = new Tester($page, $testsClass, $this->logger);
+    $this->tester = new Tester($page, $testsIds, $this->logger);
 
     $this->addLogInfo('Initialisation de KCatoès réussie');
   }
@@ -128,38 +126,6 @@ class KcatoesWrapper
     $this->addLogInfo('Exécution de KCatoès réussie');
 
     return $csv;
-  }
-  
-  public function getRawContent($baseUrl=null)
-  {
-  	if (is_null($baseUrl))
-  	{
-	  	return $this->rawcontent;
-  	}
-  	else
-  	{
-  	 return preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'">', $this->rawcontent);
-  	}
-  }
-  
-  public function output($type = 'csv')
-  {
-  	$outputStr;
-  	switch (strtolower($type))
-  	{
-  		case 'csv':
-  			$outputStr = $this->tester->toCSV();
-  			break;
-  		case 'json':
-  			$outputStr = $this->tester->toJSON();
-  			break;
-      case 'html':
-        $outputStr = $this->tester->toHTML();
-        break;
-  		default:
-  			throw new KcatoesException();
-  	}
-  	return $outputStr;
   }
 
   /**
@@ -202,7 +168,6 @@ class KcatoesWrapper
     {
       $this->logger->info($infoMessage);
     }
-    echo 'INFO: '.$infoMessage."\n";
   }
 
   /**
@@ -216,6 +181,5 @@ class KcatoesWrapper
     {
       $this->logger->err($errorMessage);
     }
-    echo 'ERROR: '.$errorMessage."\n";
   }
 }

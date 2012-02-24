@@ -1,0 +1,174 @@
+/* habillage de la page */
+body {
+  font-size: 62.5%;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #343434;
+  background: #FFF;
+  padding: 0;
+  margin: 0;
+}
+h1 {
+  font-size: 2em;
+  line-height: 2;
+  border-bottom: .2em #666 solid;
+  background: #343434;
+  color: #FFF;
+  margin-bottom: .5em;
+}
+h1 img {
+  vertical-align: bottom;
+}
+
+/* popup */
+.simplemodal-container {
+  border: .1em solid #949494;
+  padding: 1em;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  font-size: 1.5em;
+  background-color: #FFF;
+}
+.simplemodal-container>div,
+.simplemodal-container>div>div,
+.simplemodal-container>div>div>div {
+	height: 100%;
+}
+
+.simplemodal-container .simplemodal-close {
+  position: absolute;
+  border: .1em solid #949494;
+  right: -.5em;
+  top: -.5em;
+  background: #FFF;     
+  z-index: 1;
+}
+.simplemodal-container .simplemodal-close img {
+  display: block;
+}
+.simplemodal-container .contenuAnnonce,
+.simplemodal-container .actualite {
+  margin-bottom: 0;
+}
+.popupContent h1 {
+  margin-top: 0;
+}
+
+.popupContent ul{
+  list-style-type: square;
+}
+
+.popupContent .screenTitle {
+  display: none;
+}
+
+img.wait {
+  display: block;
+  margin: auto;
+}
+form .waitMessage {
+  display: none;
+}
+
+.simplemodal-overlay {
+  background: #000;
+  opacity: .3 !important;
+  filter: alpha( opacity=30) !important;
+}
+
+}
+.simplemodal-container .simplemodal-close:hover,
+.simplemodal-container .simplemodal-close:focus {
+  background-color: #f58220;
+}
+
+.simplemodal-container h1 {
+  margin: -1em -1em 1em;
+  color: #FFF;
+  font-weight: bold;
+  background: #343434;
+  border: none;
+  width: auto;
+  padding: .2em 1em;
+}
+.simplemodal-container h1:after {
+  display: none;
+}
+
+.popupActions {
+  text-align: center;
+  padding: 1em 0 0;
+}
+
+.simplemodal-wrap {
+  overflow: visible !important;
+}
+
+#kcatoesRapport {
+  float: left;
+  width: 50%;
+}
+#testedPage {
+  float: right;
+  width: 50%;
+  height: 100%;
+}
+
+/* rapport */
+#kcatoesRapport {
+  width: 100%;
+}
+#kcatoesRapport,
+#kcatoesRapport td,
+#kcatoesRapport th {
+  border: 1px solid #CCC;
+  border-collapse: collapse;
+}
+#kcatoesRapport td,
+#kcatoesRapport th {
+  padding: .3em;
+}
+#kcatoesRapport th {
+  background: #343434;
+  color: #FFF;
+  font-weight: bold;
+}
+
+#kcatoesRapport .testStatus,
+#kcatoesRapport .testId,
+#kcatoesRapport .subResult {
+	font-weight: bold;
+	text-align: center;
+}
+
+/* code couleur */
+#kcatoesRapport .ECHEC .testStatus,
+#kcatoesRapport .ECHEC .testName,
+#kcatoesRapport .ECHEC.subResult {
+  color: #FFF;
+  background: #900;
+}
+#kcatoesRapport .REUSSITE .testStatus,
+#kcatoesRapport .REUSSITE .testName,
+#kcatoesRapport .REUSSITE.subResult {
+  color: #FFF;
+  background: #080;
+}
+#kcatoesRapport .MANUEL .testStatus,
+#kcatoesRapport .MANUEL .testName,
+#kcatoesRapport .MANUEL.subResult {
+  color: #000;
+  background: #12B8EA;
+}
+#kcatoesRapport .NA .testStatus,
+#kcatoesRapport .NA .testName,
+#kcatoesRapport .NA.subResult {
+  color: #000;
+  background: #999;
+}
+
+.popupContent {
+  overflow: auto;
+}

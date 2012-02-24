@@ -20,7 +20,33 @@ class TestTable extends Doctrine_Table
     return Doctrine_Core::getTable('Test');
   }
 
+  /**
+   * Construit une collection de tests à partir de leurs nom en base de données
+   *
+   * @param array $names
+   */
+  public function getCollectionFromNames($names)
+  {
+    return $this->createQuery('t')->whereIn('t.nom', $names)->execute();
+  }
 
+  /**
+   * Récupère un tableau d'id de tests à partir de leur nom
+   *
+   * @param array $names
+   */
+  public function getIdsFromNames($names)
+  {
+  	$query = $this->createQuery('t')->select('t.id')->whereIn('t.nom', $names)->fetchArray();
+  	
+  	$result = array();
+  	foreach ($query as $test) {
+  		array_push($result, $test['id']);
+  	}
+  	
+    return $result;
+  }
+  
   /**
    * Construit une collection de tests à partir de leurs id en base de données
    *

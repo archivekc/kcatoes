@@ -9,6 +9,7 @@
 class Tester
 {
   private $tests;
+  private $resTests;
   private $page;
   private $logger;
 
@@ -20,11 +21,12 @@ class Tester
    * @param array    $ids     Liste des ids des tests à exécuter
    * @param sfLogger $_logger Le logger à utiliser
    */
-  public function __construct(Page $_page, $ids, sfLogger $_logger = null)
+  public function __construct(Page $_page, $testsClass, sfLogger $_logger = null)
   {
     $this->page   = $_page;
-    $this->tests  = Doctrine::getTable('Test')->getCollectionFromIds($ids);
+    $this->tests  = $testsClass;
     $this->logger = $_logger;
+    $this->resTests = array();
   }
 
   /**
@@ -34,80 +36,15 @@ class Tester
    */
   public function executeTest()
   {
-    $executionList = $this->createExecutionList();
-    foreach ($executionList as $test)
-    {
-      $execute     = true;
-      $explication = '';
-      if ($test->getDependanceId() != null)
-      {
-        $dependanceName   = $test->getDependance()->getNom();
-        $dependanceResult = $executionList[$dependanceName]->getResultat()->resultatCode;
-        if ($dependanceResult === Resultat:: NON_EXEC)
-        {
-          $execute     = false;
-          $explication = 'La dépendance directe du test n\'a pas pu être exécutée';
-        }
-        else if ($dependanceResult != $test->getExecuteSi())
-        {
-          $execute     = false;
-          $explication = 'Le résultat de sa dépendance directe ne correspond pas '.
-                         'à celui attendu pour pouvoir executer le test';
-        }
-      }
-      if ($execute)
-      {
-        if ($test->isExecutable())
-        {
-          $this->addLogInfo('Test id '.$test->getId().' - '.$test->getNom().' - Lancement de l\'exécution');
-          $test->execute($this->page);
-        }
-      }
-      else
-      {
-        $resultat = new Resultat(Resultat::NON_EXEC);
-        $resultat->setExplicationErreur($explication);
-        $test->setResultat($resultat);
-      }
-      if ($test->getResultat()->resultatCode != Resultat::ERREUR
-          && $test->getResultat()->resultatCode != Resultat::NON_EXEC)
-      {
-        $this->addLogInfo('Test id '.$test->getId().' - '.$test->getnom().' - '.$test->getResultat()->getCode(true));
-      }
-      else
-      {
-        $this->addLogErreur('Test id '.$test->getId().' - '.$test->getnom().' - '.$test->getResultat()->getCode(true));
-      }
-    }
+  	foreach ($this->tests as $class) {
+  		$test = new $class();
+  		$test->execute($this->page);
+  		array_push($this->resTests,$test);
+  	}
+  	return;
+  	
   }
-
-  /**
-   * Créée la liste des tests qui seront exécutés par l'application en se basant
-   * sur les règles de dépendance des tests sélectionnés
-   *
-   * @throws KcatoesTesterException
-   * @tested
-   */
-  public function createExecutionList()
-  {
-    $this->addLogInfo('Création de la liste des tests à exécuter');
-    $executionList = array();
-    try
-    {
-      foreach ($this->tests as $test)
-      {
-        $executionList += $test->getExecutionList();
-        $executionList += array($test->getNom() => $test);
-      }
-    }
-    catch (Exception $e)
-    {
-      $this->addLogErreur('Erreur lors de la création de la liste des tests à exécuter');
-      throw new KcatoesTesterException($e->getMessage());
-    }
-    return $executionList;
-  }
-
+  
   /**
    * Ajoute un message d'erreur au journal de log
    *
@@ -133,71 +70,166 @@ class Tester
       $this->logger->info($infoMessage);
     }
   }
+  
 
   /**
    * Exporte le résultat des tests au format CSV
    *
-   *@return string Le chemin d'accès au CSV généré
+   *@return string correspondant au fichier CSV
    */
   public function toCSV()
   {
-    date_default_timezone_set('Europe/Paris');
-    $fileName = 'download'.DIRECTORY_SEPARATOR.'csv'
-                .DIRECTORY_SEPARATOR.'test_'.date('dmY_Hi').'.csv';
 
-    $header = array();
+    $header = array(
+      'testId'    => 'Id du test'
+      ,'nom'      => 'Nom'
+      ,'main'     => 'Statut global'
+      ,'proc'     => 'Procédure de test'
+      ,'statut'   => 'Statut'
+      ,'xpath'    => 'XPath'
+      ,'source'   => 'Code source'
+      ,'comment'  => 'Commentaire' 
+    );
+    
+    $file = fopen('php://temp', 'w');
+    fputcsv($file, $header, ';', '"');
+    
+  	foreach ($this->resTests as $test)
+  	{
+  		$testInfo = $test->getTestResults();
+  		
+  		foreach ($testInfo as $resultLine)
+  		{
+        $line = array(
+		      'testId'    => $test::testId
+		      ,'nom'      => $test::testName
+		      ,'main'     => Resultat::getLabel($test->getMainResult())
+		      ,'proc'     => $test::testProc
+		      ,'statut'   => Resultat::getLabel($resultLine['result'])
+		      ,'xpath'    => $resultLine['xpath']
+		      ,'source'   => $resultLine['source']
+		      ,'comment'  => $resultLine['comment']
+		    );
+        fputcsv($file, $line, ';', '"');
+  		} 
+  	}
+  	rewind($file);
+  	$output = stream_get_contents($file);
 
-    $header['id']          = 'Id';
-    $header['nom']         = 'Nom';
-    $header['description'] = 'Description';
-    $header['resultat']    = 'Résultat';
-    $header['erreurExp']   = 'Explication de l\'erreur';
-    $header['source']      = 'Code source de l\'élément à vérifier';
-    $header['xpath']       = 'XPath de l\'élément à vérifier';
-    $header['exp']         = 'Informations complémentaires';
+  	fclose($file);
+  	return $output;
+  }
+  
+  /**
+   * Exporte le résultat des tests au format HTML
+   *
+   *@return string correspondant au fichier HTML
+   */
+  public function toHTML()
+  {
+  	$output = '<table id="kcatoesRapport"><thead><tr>';
 
-    $csv = @fopen($fileName, "w");
-    if (!$csv)
+  	// entête
+  	$output .= '<th scope="col">Id du test</th>';
+  	$output .= '<th scope="col">Nom</th>';
+  	$output .= '<th scope="col">Statut global</th>';
+  	$output .= '<th scope="col">Procédure de test</th>';
+  	$output .= '<th scope="col">Statut</th>';
+  	$output .= '<th scope="col">Code source</th>';
+  	$output .= '<th scope="col">XPath</th>';
+  	$output .= '<th scope="col">Commentaire</th>';
+  	
+  	$output .= '</tr></thead><tbody>';
+  	
+  	// corps
+    foreach ($this->resTests as $test)
     {
-      throw new KcatoesTesterException('Impossible d\'écrire dans le fichier CSV');
-    }
-    fputcsv($csv, $header, ';', '"');
-
-    foreach ($this->tests as $test)
-    {
-      $line = array();
-
-      $line['id']          = $test->getId();
-      $line['nom']         = $test->getNom();
-      $line['description'] = trim($test->getDescription());
-      $line['resultat']    = $test->getResultat()->getCode();
-      $line['erreurExp']   = trim($test->getResultat()->explicationErreur);
-      $line['source']      = 'n.a.';
-      $line['xpath']       = 'n.a.';
-      $line['exp']         = 'n.a.';
-
-      $complements = $test->getResultat()->complements;
-      if (empty($complements))
+    	$testInfo = $test->getTestResults();
+    	$nbLigne = $rowspan = count($testInfo);
+    	if ($nbLigne <=1 )
+    	{
+    		$rowspan = '';
+    	}
+    	else
+    	{
+    		$rowspan = 'rowspan="'.$nbLigne.'"';
+    	}
+    	
+      $output .= '<tr class="'.Resultat::getCode($test->getMainResult()).'">';
+      $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
+      $output .= '<td '.$rowspan.' class="testName">'.$test::testName.'</td>';
+      $output .= '<td '.$rowspan.' class="testStatus">'.Resultat::getLabel($test->getMainResult()).'</td>';
+      $output .= '<td '.$rowspan.' class="testProc">'.$test::testProc.'</td>';
+      
+      if ($nbLigne == 0)
       {
-        fputcsv($csv, $line, ';', '"');
+      	$output .= '<td colspan="4"></td></tr>';
       }
       else
       {
-        foreach ($complements as $complement)
-        {
-          $line['source'] = preg_replace('/(\r\n|\n|\r)/', '', $complement->code);
-          $line['xpath']  = preg_replace('/(\r\n|\n|\r)/', '', $complement->xPath);
-          $line['exp']    = preg_replace('/(\r\n|\n|\r)/', '', $complement->explication);
+	      $first = true;
+	      foreach ($testInfo as $resultLine)
+	      {
+	      	if (!$first)
+	      	{
+	      		$output .= '<tr>';
+	      	}
+      		$first = false;
 
-          fputcsv($csv, $line, ';', '"');
-        }
+	      	$output .= '<td class="subResult '.Resultat::getCode($resultLine['result']).'">'.Resultat::getLabel($resultLine['result']).'</td>';
+	      	if (strlen($resultLine['source']))
+	      	{
+		      	$output .= '<td class="source"><pre>'.htmlentities($resultLine['source']).'</pre></td>';
+	      	}
+	      	else
+	      	{
+	      		$output .= '<td class=""></td>';
+	      	}
+	      	$output .= '<td class="xpath">'.$resultLine['xpath'].'</td>';
+	      	$output .= '<td class="comment">'.$resultLine['comment'].'</td>';
+	      	
+	        $output .= '</tr>';
+	      }
       }
+      
     }
-
-    fclose($csv);
-    return $fileName;
+  	
+  	$output .= '</tbody></table>';
+  	return $output;
   }
-
+  
+  /**
+   * Exporte le résultat des tests au format JSON
+   *
+   *@return string correspondant au fichier JSON
+   */
+  public function toJSON()
+  {
+  	$output = array();
+    foreach ($this->resTests as $test)
+    {
+    	$subResult = array();
+    	foreach ($test->getTestResults() as $sub)
+    	{
+    		array_push($subResult, array(
+          'statut'   => Resultat::getLabel($sub['result'])
+          ,'xpath'    => $sub['xpath']
+          ,'source'   => $sub['source']
+          ,'comment'  => $sub['comment']
+    		));
+    	}
+    	
+      array_push($output, array(
+       'testId'    => $test::testId
+       ,'nom'      => $test::testName
+       ,'main'     => $test->getMainResult()
+       ,'proc'     => $test::testProc
+       ,'results'  => Resultat::getLabel($subResult)
+      ));
+    }
+    return json_encode($output);
+  }
+  
   /**
    * Retourne la liste des tests sélectionnés dans $this->tests
    * Utilisé par les tests unitaires
