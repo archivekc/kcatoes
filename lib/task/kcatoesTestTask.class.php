@@ -75,6 +75,8 @@ EOF;
         exec('cp -R '.$tplPath.'/css '.$userTmpPath.'/css');
         exec('cp -R '.$tplPath.'/js '.$userTmpPath.'/js');
   			break;
+  		default:
+  			echo $output;
   	}
   }
 }
