@@ -22,15 +22,11 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends \ASource
   const testId = '1.1.1';
   const testProc = 'Vérifier les éléments titi, tutu, toto, tata';
 	
-  public function __construct()
+  public function execute()
   {
-  }
+    $crawler = $this->page->crawler;
 
-  public function execute(\Page $page)
-  {
-    $crawler = $page->crawler;
-
-    $elements = 'basefont, blink, center, font, marquee, s, strike, tt, u';
+    $elements = 'basefont, blink, center, font, marquee, s, strike, tt, u, p';
     $attributs  = '[align], [alink], [background], [basefont], [bgcolor],'.
                   '[border], [color], [link], [text], [vlink]';
 

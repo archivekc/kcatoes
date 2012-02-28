@@ -6,22 +6,29 @@
  * @package Kcatoes
  * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  */
-use Symfony\Component\DomCrawler\Crawler;
 abstract class ASource
 {
 	const testName = 'Le nom du test n\'est pas défini';
 	const testId = 'L\'id du test n\'est pas défini';
 	const testProc = '';
 	
+	protected $page;
+	
 	private $results = array();
-//  protected $complements = array();
+	
+	public function __construct(Page $page)
+	{
+		$this->page = $page;
+	}
 
 	protected function addResult(DOMNode $node = null, $result, $comment)
 	{
 		if (is_null($node))
 		{
       array_push($this->results, array(
-        'xpath' =>  ''
+        'node' => null
+        ,'xpath' =>  ''
+        ,'cssSelector' => ''
         ,'source' => ''
         ,'result' => $result
         ,'comment' => $comment
@@ -30,7 +37,9 @@ abstract class ASource
 		else
 		{
 			array_push($this->results, array(
-			  'xpath' =>  $this->getXPath($node)
+			  'node' => $node
+			  ,'xpath' =>  $node->getNodePath()
+			  ,'cssSelector' => $this->getCssSelector($node)
 			  ,'source' => $this->getSourceCode($node)
 			  ,'result' => $result
 			  ,'comment' => $comment
@@ -108,29 +117,59 @@ abstract class ASource
 		return Resultat::NA;
 	}
 	
+	/**
+	 * Permet de récupérer des informations de contexte sur le résultat
+	 * @param Array $itemName => $itemValue
+	 */
+	public function getResultContextInfo($result)
+	{
+		$info = array();
+		if (!is_null($result['node']))
+		{
+			$info['xpath'] = $result['xpath'];
+			$info['cssSelector'] = $result['cssSelector'];
+			$info['source'] = $result['source'];
+			$info['text'] = $result['node']->textContent;
+		}
+	}
+	
 
   /**
-   * Recréée le chemin XPath permettant d'accéder au DOMNode passé en paramètre
+   * Recréée un sélecteur CSS permettant d'accéder au DOMNode passé en paramètre
    *
    * @param DOMNode $node La node dont il faut recrééer le chemin XPath
    *
-   * @return Le chemin XPath de la node passée en paramètre
+   * @return Le sélecteur CSS de la node passée en paramètre
    *
    */
-  private  function getXPath(DOMNode $node)
+  private function getCssSelector(DOMNode $node)
   {
-  	return $node->getNodePath();
-    $domXpath = new DOMXPath($node->ownerDocument);
-    $xpath    = '';
-
-    do
-    {
-      $position = 1 + $domXpath->query('preceding-sibling::*[name()="' . $node->nodeName . '"]', $node)->length;
-      $xpath    = '/' . $node->nodeName . '[position()=' . $position . ']' . $xpath;
-      $node     = $node->parentNode;
-    } while (!$node instanceof DOMDocument);
-
-    return $xpath;
+  	$domXpath = new DOMXPath($node->ownerDocument);
+  	$cssSelector = '';
+  	$first = true;
+  	do
+  	{
+  		$id = false;
+			foreach ($node->attributes as $attrName => $attrNode)
+			{
+				if ($attrName == 'id')
+				{
+					$id = $attrNode->nodeValue;
+				}
+			}
+  		if ($id)
+  		{
+  			$cssSelector = '#'.$id.($first?'':' ').$cssSelector;
+  		} else {
+	  		$position = 1+$domXpath->query('preceding-sibling::*', $node)->length;
+  			$cssSelector = $node->nodeName.':nth-child('.$position.')'.($first?'':' ').$cssSelector;
+  		}
+  		$first = false;
+  		$node = $node->parentNode;
+  		
+  	} while ($node->nodeName != 'html' && !$node instanceof DOMDocument && !$id);
+  	
+  	return $cssSelector;
   }
 
   /**
@@ -140,13 +179,13 @@ abstract class ASource
    *
    * @return Le code HTML de la node passée en paramètre
    */
-  protected function getSourceCode(DOMNode $node)
+  private function getSourceCode(DOMNode $node)
   {
     $temp_doc  = new DOMDocument('1.0', 'UTF-8');
-    //$temp_doc->formatOutput = true;
+    $temp_doc->formatOutput = true;
     $temp_node = $temp_doc->importNode($node, true);
     $temp_doc->appendChild($temp_node);
-    return $temp_doc->saveHTML();
+    //return $temp_doc->saveHTML();
     return preg_replace('#<\?[^?]*\?>#', '', $temp_doc->saveXML());
   }
 
@@ -155,5 +194,5 @@ abstract class ASource
    *
    * @param Page $page La page sur à tester
    */
-  abstract public function execute(Page $page);
+  abstract public function execute();
 }

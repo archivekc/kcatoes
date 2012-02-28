@@ -52,29 +52,39 @@ EOF;
   	$output = $kcatoes->output($options['output']);
   	
   	// formats de sortie
-    session_start();
-  	$tplPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tpl'.DIRECTORY_SEPARATOR;
-  	$tmpPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR;
-    $userTmpPath = $tmpPath.session_id().DIRECTORY_SEPARATOR;
-    
+    $tplPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tpl'.DIRECTORY_SEPARATOR;
+  	
   	switch($options['output'])
   	{
   		case 'html':
-  			exec('mkdir '.$userTmpPath);
-
   			$tpl = file_get_contents($tplPath.'/simple.html');
   			
-  			file_put_contents($userTmpPath.'/output.html'
-  			                 ,generateRapportHtml(array(
-  			                   'table' => $output
-  			                   ,'title' => 'KCatoès - Rapport de test'
-  			                   ,'subtitle' => ($options['url']?$options['url']:'').' '.date('d/m/Y H:i')
-  	                      ), $tpl));
+  			echo generateRapportHtml(array(
+                           'table' => $output
+                           ,'title' => 'KCatoès - Rapport de test'
+                           ,'subtitle' => ($options['url']?$options['url']:'').' '.date('d/m/Y H:i')
+                          ), $tpl); 
+  			break;
+      case 'rich':
+		    session_start();
+		    $tmpPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR;
+		    $userTmpPath = $tmpPath.session_id().DIRECTORY_SEPARATOR;
+		    
+      	exec('mkdir '.$userTmpPath);
+
+        $tpl = file_get_contents($tplPath.'/rich.html');
+        
+        file_put_contents($userTmpPath.'/output.html'
+                         ,generateRapportHtml(array(
+                           'table' => $output
+                           ,'title' => 'KCatoès - Rapport de test'
+                           ,'subtitle' => ($options['url']?$options['url']:'').' '.date('d/m/Y H:i')
+                          ), $tpl));
         file_put_contents($userTmpPath.'/tested.html', $kcatoes->getRawContent($options['url']));
         exec('cp -R '.$tplPath.'/img '.$userTmpPath.'/img');
         exec('cp -R '.$tplPath.'/css '.$userTmpPath.'/css');
         exec('cp -R '.$tplPath.'/js '.$userTmpPath.'/js');
-  			break;
+        break;
   		default:
   			echo $output;
   	}

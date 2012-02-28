@@ -1,0 +1,191 @@
+/* habillage de la page */
+html, body {
+	  height: 100%;
+}
+body {
+  font-size: 62.5%;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #343434;
+  background: #FFF;
+  padding: 0;
+  margin: 0;
+}
+
+#rapportTitle {
+  font-size: 2em;
+	position: absolute;
+	top: 0;
+	height: 2.35em;
+	width: 100%;
+  line-height: 2;
+  border-bottom: .2em #666 solid;
+	
+	overflow: auto;
+  background: #343434;
+  color: #FFF;
+  margin-bottom: .5em;
+}
+#output,
+#tested,
+#resizeHandler {
+  position: absolute;
+  top: 6em;
+  bottom: 0;
+}
+#resizeHandler {
+	z-index: 1;
+  left: 50%;
+  width: 0;
+  margin: 0 -.4em;
+  padding: 0 .4em;
+  border: solid #DDD;
+  border-width: 0 .1em;
+  background: transparent url('../img/handlerBg.png') center center no-repeat;
+  cursor: e-resize;
+}
+#resizeHandler:hover {
+	background-color: #999;
+}
+.inner {
+  overflow: auto;
+  height: 100%;
+}
+#output .inner {
+  margin-right: .5em;
+}
+#tested .inner {
+  margin-left: .5em;
+}
+#output {
+  left: 0;
+  right: 50%;
+}
+#tested {
+	right: 0;
+	left: 50%;
+}
+#tested iframe {
+  width: 100%;
+  height: 100%;
+}
+
+h1 img {
+  vertical-align: bottom;
+}
+
+/* ***** */
+/* popup */
+/* ***** */
+.popup {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: #FFF;
+  border: 1px solid #CCC;
+  padding: 2em 1em 1em;
+  box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -o-box-shadow: 0 0 10px #000;
+  -webkit-box-shadow: 0 0 10px #000;
+}
+.popup .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  background: none;
+}
+
+.popupContent {
+  overflow: auto;
+  height: 100%;
+  font-size: 1.5em;
+}
+.popupContent strong {.
+	display: block;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: .5em 0 1.5em;
+}
+
+/* ******* */
+/* rapport */
+/* ******* */
+#kcatoesRapport {
+  width: 100%;
+}
+#kcatoesRapport,
+#kcatoesRapport td,
+#kcatoesRapport th {
+  border: 1px solid #CCC;
+  border-collapse: collapse;
+}
+#kcatoesRapport td,
+#kcatoesRapport th {
+  padding: .3em;
+}
+#kcatoesRapport th {
+  background: #343434;
+  color: #FFF;
+  font-weight: bold;
+}
+
+#kcatoesRapport .testStatus,
+#kcatoesRapport .testId,
+#kcatoesRapport .subResult {
+	font-weight: bold;
+	text-align: center;
+}
+
+/* code couleur */
+#kcatoesRapport .ECHEC .testStatus,
+#kcatoesRapport .ECHEC .testName,
+#kcatoesRapport .ECHEC.subResult {
+  color: #FFF;
+  background: #900;
+}
+#kcatoesRapport .REUSSITE .testStatus,
+#kcatoesRapport .REUSSITE .testName,
+#kcatoesRapport .REUSSITE.subResult {
+  color: #FFF;
+  background: #080;
+}
+#kcatoesRapport .MANUEL .testStatus,
+#kcatoesRapport .MANUEL .testName,
+#kcatoesRapport .MANUEL.subResult {
+  color: #000;
+  background: #12B8EA;
+}
+#kcatoesRapport .NA .testStatus,
+#kcatoesRapport .NA .testName,
+#kcatoesRapport .NA.subResult {
+  color: #000;
+  background: #999;
+}
+
+/* boutons */
+button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+button:hover,
+button:focus {
+	text-decoration: none;
+}
+
+
+/* bouton de situation de l'élément */
+.highlightTrigger.confirmed .hide,
+.highlightTrigger .show {
+	display: block;
+}
+.highlightTrigger.confirmed .show,
+.highlightTrigger .hide {
+  display: none;
+}
+.highlightTrigger.confirmed {
+  background: #CCC;
+}

@@ -37,8 +37,8 @@ class Tester
   public function executeTest()
   {
   	foreach ($this->tests as $class) {
-  		$test = new $class();
-  		$test->execute($this->page);
+  		$test = new $class($this->page);
+  		$test->execute();
   		array_push($this->resTests,$test);
   	}
   	return;
@@ -81,14 +81,15 @@ class Tester
   {
 
     $header = array(
-      'testId'    => 'Id du test'
-      ,'nom'      => 'Nom'
-      ,'main'     => 'Statut global'
-      ,'proc'     => 'Procédure de test'
-      ,'statut'   => 'Statut'
-      ,'xpath'    => 'XPath'
-      ,'source'   => 'Code source'
-      ,'comment'  => 'Commentaire' 
+      'testId'        => 'Id du test'
+      ,'nom'          => 'Nom'
+      ,'main'         => 'Statut global'
+      ,'proc'         => 'Procédure de test'
+      ,'statut'       => 'Statut'
+      ,'xpath'        => 'XPath'
+      ,'cssSelector'  => 'Sélecteur CSS'
+      ,'source'       => 'Code source'
+      ,'comment'      => 'Commentaire' 
     );
     
     $file = fopen('php://temp', 'w');
@@ -101,14 +102,15 @@ class Tester
   		foreach ($testInfo as $resultLine)
   		{
         $line = array(
-		      'testId'    => $test::testId
-		      ,'nom'      => $test::testName
-		      ,'main'     => Resultat::getLabel($test->getMainResult())
-		      ,'proc'     => $test::testProc
-		      ,'statut'   => Resultat::getLabel($resultLine['result'])
-		      ,'xpath'    => $resultLine['xpath']
-		      ,'source'   => $resultLine['source']
-		      ,'comment'  => $resultLine['comment']
+		      'testId'        => $test::testId
+		      ,'nom'          => $test::testName
+		      ,'main'         => Resultat::getLabel($test->getMainResult())
+		      ,'proc'         => $test::testProc
+		      ,'statut'       => Resultat::getLabel($resultLine['result'])
+		      ,'xpath'        => $resultLine['xpath']
+		      ,'cssSelector'  => $resultLine['cssSelector']
+		      ,'source'       => $resultLine['source']
+		      ,'comment'      => $resultLine['comment']
 		    );
         fputcsv($file, $line, ';', '"');
   		} 
@@ -121,13 +123,13 @@ class Tester
   }
   
   /**
-   * Exporte le résultat des tests au format HTML
+   * Exporte le résultat des tests au format HTML avec interface d'évaluation
    *
    *@return string correspondant au fichier HTML
    */
   public function toHTML()
   {
-  	$output = '<table id="kcatoesRapport"><thead><tr>';
+  	$output = '<table><thead><tr>';
 
   	// entête
   	$output .= '<th scope="col">Id du test</th>';
@@ -137,6 +139,7 @@ class Tester
   	$output .= '<th scope="col">Statut</th>';
   	$output .= '<th scope="col">Code source</th>';
   	$output .= '<th scope="col">XPath</th>';
+  	$output .= '<th scope="col">Sélecteur CSS</th>';
   	$output .= '<th scope="col">Commentaire</th>';
   	
   	$output .= '</tr></thead><tbody>';
@@ -155,11 +158,11 @@ class Tester
     		$rowspan = 'rowspan="'.$nbLigne.'"';
     	}
     	
-      $output .= '<tr class="'.Resultat::getCode($test->getMainResult()).'">';
-      $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
-      $output .= '<td '.$rowspan.' class="testName">'.$test::testName.'</td>';
-      $output .= '<td '.$rowspan.' class="testStatus">'.Resultat::getLabel($test->getMainResult()).'</td>';
-      $output .= '<td '.$rowspan.' class="testProc">'.$test::testProc.'</td>';
+      $output .= '<tr>';
+      $output .= '<th '.$rowspan.'>'.$test::testId.'</th>';
+      $output .= '<td '.$rowspan.'>'.$test::testName.'</td>';
+      $output .= '<td '.$rowspan.'>'.Resultat::getLabel($test->getMainResult()).'</td>';
+      $output .= '<td '.$rowspan.'>'.$test::testProc.'</td>';
       
       if ($nbLigne == 0)
       {
@@ -176,17 +179,18 @@ class Tester
 	      	}
       		$first = false;
 
-	      	$output .= '<td class="subResult '.Resultat::getCode($resultLine['result']).'">'.Resultat::getLabel($resultLine['result']).'</td>';
+	      	$output .= '<td>'.Resultat::getLabel($resultLine['result']).'</td>';
 	      	if (strlen($resultLine['source']))
 	      	{
-		      	$output .= '<td class="source"><pre>'.htmlentities($resultLine['source']).'</pre></td>';
+		      	$output .= '<td><pre>'.htmlentities($resultLine['source']).'</pre></td>';
 	      	}
 	      	else
 	      	{
 	      		$output .= '<td class=""></td>';
 	      	}
-	      	$output .= '<td class="xpath">'.$resultLine['xpath'].'</td>';
-	      	$output .= '<td class="comment">'.$resultLine['comment'].'</td>';
+	      	$output .= '<td>'.$resultLine['xpath'].'</td>';
+	      	$output .= '<td>'.$resultLine['cssSelector'].'</td>';
+	      	$output .= '<td>'.$resultLine['comment'].'</td>';
 	      	
 	        $output .= '</tr>';
 	      }
@@ -196,6 +200,109 @@ class Tester
   	
   	$output .= '</tbody></table>';
   	return $output;
+  }
+  
+/**
+   * Exporte le résultat des tests au format HTML
+   *
+   *@return string correspondant au fichier HTML
+   */
+  public function toRichHTML()
+  {
+  	include_once sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'geshi'.DIRECTORY_SEPARATOR.'geshi.php';
+  	
+    $output = '<table id="kcatoesRapport"><thead><tr>';
+
+    // entête
+    $output .= '<th scope="col" class="testId">Id du test</th>';
+    $output .= '<th scope="col" class="testName">Nom</th>';
+    $output .= '<th scope="col" class="testStatus">Statut global</th>';
+    $output .= '<th scope="col" class="testProc">Procédure de test</th>';
+    $output .= '<th scope="col" class="subResult">Statut</th>';
+    $output .= '<th scope="col" class="context">Contexte</th>';
+    $output .= '<th scope="col" class="comment">Commentaire</th>';
+    
+    $output .= '</tr></thead><tbody>';
+    
+    // corps
+    foreach ($this->resTests as $test)
+    {
+      $testInfo = $test->getTestResults();
+      $nbLigne = $rowspan = count($testInfo);
+      if ($nbLigne <=1 )
+      {
+        $rowspan = '';
+      }
+      else
+      {
+        $rowspan = 'rowspan="'.$nbLigne.'"';
+      }
+      
+      $output .= '<tr class="'.Resultat::getCode($test->getMainResult()).'">';
+      $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
+      $output .= '<td '.$rowspan.' class="testName">'.$test::testName.'</td>';
+      $output .= '<td '.$rowspan.' class="testStatus">'.Resultat::getLabel($test->getMainResult()).'</td>';
+      $output .= '<td '.$rowspan.' class="testProc">'.$test::testProc.'</td>';
+      
+      if ($nbLigne == 0)
+      {
+        $output .= '<td colspan="2"></td></tr>';
+      }
+      else
+      {
+        $first = true;
+        foreach ($testInfo as $resultLine)
+        {
+        	$test->getResultContextInfo($resultLine);
+          if (!$first)
+          {
+            $output .= '<tr>';
+          }
+          $first = false;
+
+          $output .= '<td class="subResult '.Resultat::getCode($resultLine['result']).'">'.Resultat::getLabel($resultLine['result']).'</td>';
+          $output .= '<td class="context">';
+          
+          $output .= '<div class="selectors">';
+          $output .= '<strong>Sélecteurs</strong>';
+          $output .= '<ul>';
+          $output .= '<li>xpath : <span class="xpath">'.$resultLine['xpath'].'</span></li>';
+          $output .= '<li>css : <span class="cssSelector">'.$resultLine['cssSelector'].'</span></li>';
+          $output .= '</ul>';
+          $output .= '</div>';
+          
+          if (strlen($resultLine['source']))
+          {
+          	$geshi = new GeSHi($resultLine['source'], 'html4strict');
+          	// conf geshi
+          	$geshi->set_header_type(GESHI_HEADER_DIV);
+          	$geshi->enable_line_numbers(GESHI_NO_LINE_NUMBERS);
+          	$geshi->enable_classes(false);
+          	$geshi->set_overall_class('htmlSource');
+          	$geshi->set_tab_width(4);
+          	$geshi->enable_keyword_links(false);
+          	
+	          $output .= '<div class="source">';
+	          $output .= '<strong>Code source</strong>';
+            $output .= $geshi->parse_code();
+            $output .= '</div>';
+          }
+          else
+          {
+            $output .= '<td class=""></td>';
+          }
+          
+          $output .= '</td>';
+          $output .= '<td class="comment">'.$resultLine['comment'].'</td>';
+          
+          $output .= '</tr>';
+        }
+      }
+      
+    }
+    
+    $output .= '</tbody></table>';
+    return $output;
   }
   
   /**

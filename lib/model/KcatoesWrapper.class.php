@@ -156,6 +156,9 @@ class KcatoesWrapper
       case 'html':
         $outputStr = $this->tester->toHTML();
         break;
+      case 'rich':
+      	$outputStr = $this->tester->toRichHTML();
+        break;
   		default:
   			throw new KcatoesException();
   	}
