@@ -2,6 +2,7 @@
 html, body {
 	  height: 100%;
 }
+
 body {
   font-size: 62.5%;
   font-family: Tahoma, Arial, sans-serif;
@@ -40,7 +41,7 @@ body {
   padding: 0 .4em;
   border: solid #DDD;
   border-width: 0 .1em;
-  background: transparent url('../img/handlerBg.png') center center no-repeat;
+  background: #CCC url('../img/handlerBg.png') center center no-repeat;
   cursor: e-resize;
 }
 #resizeHandler:hover {
@@ -103,11 +104,11 @@ h1 img {
   height: 100%;
   font-size: 1.5em;
 }
-.popupContent strong {.
+.popupContent strong {
 	display: block;
   font-weight: bold;
   text-decoration: underline;
-  margin: .5em 0 1.5em;
+  margin: 1.5em 0 .5em;
 }
 
 /* ******* */
@@ -188,4 +189,12 @@ button:focus {
 }
 .highlightTrigger.confirmed {
   background: #CCC;
+}
+
+/* procédure de test */
+.testProc ol {
+  list-style: decimal outside;
+}
+.testProc li {
+  margin-left: 2em;
 }

@@ -10,7 +10,8 @@ abstract class ASource
 {
 	const testName = 'Le nom du test n\'est pas défini';
 	const testId = 'L\'id du test n\'est pas défini';
-	const testProc = '';
+	protected $testProc = array();
+	protected $testDocLinks = array();
 	
 	protected $page;
 	
@@ -21,6 +22,12 @@ abstract class ASource
 		$this->page = $page;
 	}
 
+	/**
+	 * Permet d'ajouter une ligne de résultat au test
+	 * @param DOMNode $node
+	 * @param unknown_type $result
+	 * @param unknown_type $comment
+	 */
 	protected function addResult(DOMNode $node = null, $result, $comment)
 	{
 		if (is_null($node))
@@ -47,10 +54,51 @@ abstract class ASource
 		}
 	}
 	
+	/**
+	 * Permet de récupérer les différentes lignes de résultat
+	 */
 	public function getTestResults()
 	{
 		return $this->results;
 	}
+	
+	/**
+	 * Permet de récupérer la procédure de test
+	 * Si $flat vaut true, alors le tableau est ramené à un
+	 * tableau à une dimension
+	 *  
+	 * @param boolean $flat
+	 */
+	public function getProc($flat = false)
+	{
+		if($flat)
+		{
+			return $this->array_flatten($this->testProc);
+		}
+		else
+		{
+			return $this->testProc;
+		}
+	}
+	
+	 /**
+   * Permet de récupérer les liens des document
+   * Si $flat vaut true, alors le tableau est ramené à un
+   * tableau à une dimension
+   *  
+   * @param boolean $flat
+   */
+  public function getDocLinks($flat = false)
+  {
+  	if($flat)
+    {
+      return $this->array_flatten($this->testDocLinks);
+    }
+    else
+    {
+      return $this->testDocLinks;
+    }
+  }
 	
 	/**
 	 * Permet de renvoyer un statut global sur le test en se fondant
@@ -189,6 +237,27 @@ abstract class ASource
     return preg_replace('#<\?[^?]*\?>#', '', $temp_doc->saveXML());
   }
 
+  /**
+   * Permet d'aplatir un tableau en un tableau à une dimension 
+   * @param array $input
+   * @return array the flattened array
+   */
+	private function array_flatten(array $input) { 
+	   if (!is_array($input)) { 
+	     return FALSE; 
+	   } 
+	   $result = array(); 
+	   foreach ($input as $key => $value) { 
+	     if (is_array($value)) { 
+	       $result = array_merge($result, $this->array_flatten($value)); 
+	     } 
+	     else { 
+	       $result[$key] = $value; 
+	     } 
+	   } 
+	   return $result; 
+	 }
+  
   /**
    * Exécute le test implémenté sur une page web
    *

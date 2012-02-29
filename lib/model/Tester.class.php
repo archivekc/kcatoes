@@ -73,56 +73,6 @@ class Tester
   
 
   /**
-   * Exporte le résultat des tests au format CSV
-   *
-   *@return string correspondant au fichier CSV
-   */
-  public function toCSV()
-  {
-
-    $header = array(
-      'testId'        => 'Id du test'
-      ,'nom'          => 'Nom'
-      ,'main'         => 'Statut global'
-      ,'proc'         => 'Procédure de test'
-      ,'statut'       => 'Statut'
-      ,'xpath'        => 'XPath'
-      ,'cssSelector'  => 'Sélecteur CSS'
-      ,'source'       => 'Code source'
-      ,'comment'      => 'Commentaire' 
-    );
-    
-    $file = fopen('php://temp', 'w');
-    fputcsv($file, $header, ';', '"');
-    
-  	foreach ($this->resTests as $test)
-  	{
-  		$testInfo = $test->getTestResults();
-  		
-  		foreach ($testInfo as $resultLine)
-  		{
-        $line = array(
-		      'testId'        => $test::testId
-		      ,'nom'          => $test::testName
-		      ,'main'         => Resultat::getLabel($test->getMainResult())
-		      ,'proc'         => $test::testProc
-		      ,'statut'       => Resultat::getLabel($resultLine['result'])
-		      ,'xpath'        => $resultLine['xpath']
-		      ,'cssSelector'  => $resultLine['cssSelector']
-		      ,'source'       => $resultLine['source']
-		      ,'comment'      => $resultLine['comment']
-		    );
-        fputcsv($file, $line, ';', '"');
-  		} 
-  	}
-  	rewind($file);
-  	$output = stream_get_contents($file);
-
-  	fclose($file);
-  	return $output;
-  }
-  
-  /**
    * Exporte le résultat des tests au format HTML avec interface d'évaluation
    *
    *@return string correspondant au fichier HTML
@@ -136,6 +86,7 @@ class Tester
   	$output .= '<th scope="col">Nom</th>';
   	$output .= '<th scope="col">Statut global</th>';
   	$output .= '<th scope="col">Procédure de test</th>';
+  	$output .= '<th scope="col">Doumentation</th>';
   	$output .= '<th scope="col">Statut</th>';
   	$output .= '<th scope="col">Code source</th>';
   	$output .= '<th scope="col">XPath</th>';
@@ -162,8 +113,9 @@ class Tester
       $output .= '<th '.$rowspan.'>'.$test::testId.'</th>';
       $output .= '<td '.$rowspan.'>'.$test::testName.'</td>';
       $output .= '<td '.$rowspan.'>'.Resultat::getLabel($test->getMainResult()).'</td>';
-      $output .= '<td '.$rowspan.'>'.$test::testProc.'</td>';
-      
+      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test->getProc(), true).'</td>';
+      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test->getDocLinks(), true).'</td>';
+            
       if ($nbLigne == 0)
       {
       	$output .= '<td colspan="4"></td></tr>';
@@ -202,7 +154,29 @@ class Tester
   	return $output;
   }
   
-/**
+  /**
+   * Permet de convertir en tableau en list html
+   */
+  private function arrayToHtmlList(array $input, $ordered = false)
+  {
+  	$list = $ordered?'ol':'ul';
+  	$retString = '<'.$list.'>';
+  	foreach ($input as $item)
+  	{
+  		$retString .= '<li>';
+  		if (is_array($item)){
+  			$retString .= $this->arrayToHtmlList($item, $ordered);
+  		} else {
+  			$retString .= $item;
+  		}
+  		$retString .= '</li>';
+  	}
+  	
+  	$retString .= '</'.$list.'>';
+  	return $retString;
+  }
+  
+  /**
    * Exporte le résultat des tests au format HTML
    *
    *@return string correspondant au fichier HTML
@@ -218,6 +192,7 @@ class Tester
     $output .= '<th scope="col" class="testName">Nom</th>';
     $output .= '<th scope="col" class="testStatus">Statut global</th>';
     $output .= '<th scope="col" class="testProc">Procédure de test</th>';
+    $output .= '<th scope="col" class="testDoc">Documentation</th>';
     $output .= '<th scope="col" class="subResult">Statut</th>';
     $output .= '<th scope="col" class="context">Contexte</th>';
     $output .= '<th scope="col" class="comment">Commentaire</th>';
@@ -242,7 +217,8 @@ class Tester
       $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
       $output .= '<td '.$rowspan.' class="testName">'.$test::testName.'</td>';
       $output .= '<td '.$rowspan.' class="testStatus">'.Resultat::getLabel($test->getMainResult()).'</td>';
-      $output .= '<td '.$rowspan.' class="testProc">'.$test::testProc.'</td>';
+      $output .= '<td '.$rowspan.' class="testProc">'.$this->arrayToHtmlList($test->getProc(), true).'</td>';
+      $output .= '<td '.$rowspan.' class="testDoc">'.$this->arrayToHtmlList($test->getDocLinks(), true).'</td>';
       
       if ($nbLigne == 0)
       {
@@ -304,6 +280,57 @@ class Tester
     $output .= '</tbody></table>';
     return $output;
   }
+
+  /**
+   * Exporte le résultat des tests au format CSV
+   *
+   *@return string correspondant au fichier CSV
+   */
+  public function toCSV()
+  {
+    $header = array(
+      'testId'        => 'Id du test'
+      ,'nom'          => 'Nom'
+      ,'main'         => 'Statut global'
+      ,'proc'         => 'Procédure de test'
+      ,'doc'          => 'Documentation disponible'
+      ,'statut'       => 'Statut'
+      ,'xpath'        => 'XPath'
+      ,'cssSelector'  => 'Sélecteur CSS'
+      ,'source'       => 'Code source'
+      ,'comment'      => 'Commentaire' 
+    );
+    
+    $file = fopen('php://temp', 'w');
+    fputcsv($file, $header, ';', '"');
+    
+    foreach ($this->resTests as $test)
+    {
+      $testInfo = $test->getTestResults();
+      
+      foreach ($testInfo as $resultLine)
+      {
+        $line = array(
+          'testId'        => $test::testId
+          ,'nom'          => $test::testName
+          ,'main'         => Resultat::getLabel($test->getMainResult())
+          ,'proc'         => implode($test->getProc(true), ', ')
+          ,'doc'          => implode($test->getDocLinks(true), ', ')
+          ,'statut'       => Resultat::getLabel($resultLine['result'])
+          ,'xpath'        => $resultLine['xpath']
+          ,'cssSelector'  => $resultLine['cssSelector']
+          ,'source'       => $resultLine['source']
+          ,'comment'      => $resultLine['comment']
+        );
+        fputcsv($file, $line, ';', '"');
+      } 
+    }
+    rewind($file);
+    $output = stream_get_contents($file);
+
+    fclose($file);
+    return $output;
+  }
   
   /**
    * Exporte le résultat des tests au format JSON
@@ -329,9 +356,10 @@ class Tester
       array_push($output, array(
        'testId'    => $test::testId
        ,'nom'      => $test::testName
-       ,'main'     => $test->getMainResult()
-       ,'proc'     => $test::testProc
-       ,'results'  => Resultat::getLabel($subResult)
+       ,'main'     => Resultat::getLabel($test->getMainResult())
+       ,'proc'     => $test->getProc()
+       ,'doc'      => $test->getDocLinks()
+       ,'results'  => $subResult
       ));
     }
     return json_encode($output);

@@ -41,8 +41,10 @@ EOF;
   	$allPluginsFilename = $allPluginPath.DIRECTORY_SEPARATOR.'allPlugins.yml';
   	$allPlugins = sfYaml::load(file_get_contents($allPluginsFilename));
   	
+  	// chargement des classes utiles
   	$tests = getTestsClass($allPlugins);
   	getRequired($allPluginPath);
+  	// outil
   	
   	// initialisation et lancement des tests
   	$kcatoes = new KcatoesWrapper($tests, $options['html'], $options['url']);
@@ -50,7 +52,7 @@ EOF;
   	
   	// resultats
   	$output = $kcatoes->output($options['output']);
-  	
+
   	// formats de sortie
     $tplPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tpl'.DIRECTORY_SEPARATOR;
   	
@@ -118,7 +120,6 @@ function getRequired($allPluginPath)
               while (false !== ($entry = readdir($handle))) {
                 if ($entry != '.' && $entry != '..')
                 {
-                  echo $allPluginPath.DIRECTORY_SEPARATOR.$entryPlugin.DIRECTORY_SEPARATOR.$entry."\n";
                   require_once $allPluginPath.DIRECTORY_SEPARATOR.$entryPlugin.DIRECTORY_SEPARATOR.$entry;
                 }
               }

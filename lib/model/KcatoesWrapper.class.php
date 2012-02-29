@@ -114,20 +114,7 @@ class KcatoesWrapper
       $this->addLogErreur($e->getMessage());
       throw new KcatoesWrapperException($e->getMessage());
     }
-
-    try
-    {
-      $csv = $this->tester->toCSV();
-    }
-    catch (KcatoesWrapperException $e)
-    {
-      $this->addLogErreur($e->getMessage());
-      throw new KcatoesWrapperException($e->getMessage());
-    }
-
     $this->addLogInfo('Exécution de KCatoès réussie');
-
-    return $csv;
   }
   
   public function getRawContent($baseUrl=null)
@@ -144,7 +131,8 @@ class KcatoesWrapper
   
   public function output($type = 'csv')
   {
-  	$outputStr;
+    $this->addLogInfo('Génération de la sortie');
+    
   	switch (strtolower($type))
   	{
   		case 'csv':
