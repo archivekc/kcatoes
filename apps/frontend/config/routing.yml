@@ -4,7 +4,43 @@
 # default rules
 homepage:
   url:   /
-  param: { module: test, action: url }
+  param: { module: ihm, action: webPages }
+
+# #########
+# PAGES WEB
+# #########
+webPages:
+  url: /web-pages
+  param: {module: ihm, action: WebPages}
+
+webPage:
+  url: /web-page/:id
+  param: {module: ihm, action: WebPage}
+
+deleteWebPage:
+  url: /delete-web-page/:id
+  param: {module: ihm, action: DeleteWebPage}
+
+# #############
+# CONFIGURATION
+# #############
+testConfigs:
+  url: /test-configs
+  param: {module: ihm, action: TestConfigs}
+
+testConfig:
+  url: /test-config/:id
+  param: {module: ihm, action: TestConfig}
+
+deleteTestConfig:
+  url: /delete-test-config/:id
+  param: {module: ihm, action: DeleteTestConfig}
+
+editTestConfig:
+  url: /edit-test-config/:id
+  param: {module: ihm, action: EditTestConfig}
+
+
 
 # generic rules
 # please, remove them by adding more specific rules

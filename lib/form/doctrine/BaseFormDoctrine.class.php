@@ -3,9 +3,10 @@
 /**
  * Project form base class.
  *
- * @package    Kcatoes
+ * @package    kcatoes
  * @subpackage form
- * @author Adrien Couet <adrien.couet@keyconsulting.fr>
+ * @author     Your name here
+ * @version    SVN: $Id: sfDoctrineFormBaseTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 abstract class BaseFormDoctrine extends sfFormDoctrine
 {

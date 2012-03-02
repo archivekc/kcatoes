@@ -14,10 +14,11 @@
 	      <a href="<?php echo url_for('homepage')?>" id="logo">
 	        <img alt="KCatoès" src="/img/kcatoes-128.png"/>
 	      </a>
-	      <a href="http://keyconsulting.fr" id="logoKC">
-          <img alt="KCatoès" src="/img/KC-shadow-72dpi.png"/>
-        </a>
 	      <h1><strong>Kcatoès</strong> est un outil automatique d'assitance aux test d'accessiblité</h1>
+	      <ul id="mainMenu">
+	       <li><a href="<?php echo url_for('webPages')?>">Pages web</a></li>
+	       <li><a href="<?php echo url_for('testConfigs')?>">Configurations de test</a></li>
+	      </ul>
 	    </div>
 	    <div id="content">
 	       <div class="preDeco"></div>

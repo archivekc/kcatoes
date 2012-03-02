@@ -1,8 +1,8 @@
 #
 # Options de Doctrine
 # 
-# @date 23/12/2008
-# @author Antoine Rolland
+# @date 27/01/2012
+# @author Cyril FABBY
 # 
 detect_relations: false
 options: 
@@ -12,95 +12,57 @@ attributes:
   export: all
   validate: true 
 
-#
-# =Thematique
-# =thematique
-#
-# Une thématique est un thème sur lequel porte un ensemble de tests
-#
-# @date 23/02/2011
-# @author Adrien Couet
-#
-Thematique:
-  tableName: thematique
+# =WebPage
+# une page est défini par son url et eventuellement une description
+WebPage:
+  tableName: web_page
+  actAs:
+    - Timestampable
   columns:
     id:          { type: integer, primary: true, autoincrement: true }
-    nom:         { type: string(255), notnull: true }
-    description: { type: string(1024), notnull: true }
+    url:         { type: varchar(5000), notnull: true }
+    description: { type: varchar(5000), notnull: false }
 
-#
-# =Referentiel
-# =referentiel
-#
-# Un référentiel permet de classer les tests d'une thématique 
-# en fonction du document de référence qui a permit de les écrire
-#
-# @date 23/02/2011
-# @author Adrien Couet
-#
-Referentiel:
-  tableName: referentiel
+# =Evaluation
+# une évaluation 
+Evaluation:
+  tableName: evaluation
+  actAs:
+    - Timestampable
   columns:
-    id:            { type: integer, primary: true, autoincrement: true }
-    nom:           { type: string(255), notnull: true }
-    url:           { type: string(255), notnull: true }
-    thematique_id: { type: integer, notnull: true }
+    id:          { type: integer, primary: true, autoincrement: true }
+    web_page_id: { type: integer, notnull: true }
+    config_id:   { type: integer, notnull: true }
   relations:
-    Thematique:
-      local:        thematique_id
+    WebPage:
+      local:        web_page_id
       foreign:      id
-      foreignAlias: CollectionReferentiels
+      foreignAlias: CollectionEvals
 
-#
-# =Regroupement
-# =regroupement
-#
-# Un regroupement de contact permet d'affiner
-# le classement d'un référentiel
-#
-# @date 23/02/2011
-# @author Adrien Couet
-#
-Regroupement:
-  tableName: regroupement
+
+# =TestConfig
+# une configuration
+TestConfig:
+  tableName: test_config
+  actAs:
+    - Timestampable
+  columns:
+    id:          { type: integer, primary: true, autoincrement: true }
+    libelle:     { type: varchar(255), unique: true }
+    description: { type: varchar(5000) }
+    
+# =TestConfigDetail
+# les différents tests d'une conf 
+TestConfigDetail:
+  tableName: test_config_detail
+  actAs:
+    - Timestampable
   columns:
     id:             { type: integer, primary: true, autoincrement: true }
-    nom:            { type: string(255), notnull: true }
-    referentiel_id: { type: integer, notnull: true }
+    test_config_id: { type: integer, notnull: true }
+    class:          { type: varchar(500) }
   relations:
-    Referentiel:
-      local:        referentiel_id
-      foreign:      id
-      foreignAlias: CollectionRegroupements
-      
-#
-# =Test
-# =test
-#
-# Décrit un test
-#
-# @date 23/02/2011
-# @author Adrien Couet
-#
-Test:
-  tableName: test
-  columns:
-    id:              { type: integer, primary: true, autoincrement: true }
-    nom:             { type: string(255), notnull: true, unique: true }
-    description:     { type: string(1024), notnull: true }
-    regroupement_id: { type: integer, notnull: true }
-    dependance_id:   { type: integer, notnull: false }
-    execute_si:      { type: integer, notnull: false }
-  relations:
-    Regroupement:
-      local:        regroupement_id
+    TestConfig:
+      local:        test_config_id
       foreign:      id
       foreignAlias: CollectionTests
-    Test:
-      local:       dependance_id
-      foreign:     id
-      alias:       Dependance
-      foreignType: one
-      onDelete:    CASCADE
-      onUpdate:    CASCADE
-
