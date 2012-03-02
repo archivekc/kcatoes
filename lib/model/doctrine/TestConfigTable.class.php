@@ -7,13 +7,74 @@
  */
 class TestConfigTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object TestConfigTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('TestConfig');
+	/**
+   * Returns an instance of this class.
+   *
+   * @return object TestConfigTable
+   */
+	public static function getInstance()
+	{
+		return Doctrine_Core::getTable('TestConfig');
+	}
+    
+
+  /**
+   * Retourne la liste des configurations de test sous forme de tableau 
+   * (pour alimentation de sfWidgetFormChoice)
+   * 
+   * @return array
+   */
+  public function getAllForSelect(){
+  	$configs = Doctrine_Query::create()
+      ->select('t.libelle')
+      ->from('TestConfig t INDEXBY t.id')
+      ->orderBy('t.libelle')
+      ->fetchArray();
+      
+    $select = array();
+    foreach($configs as $conf) {
+    	$select[$conf['id']] = $conf['libelle']; 
     }
+    return $select;
+  }
+  
+  /**
+   * Retourne la liste des configurations de test sous forme de tableau 
+   * (pour alimentation de sfWidgetFormChoice)
+   * Exclut les configurations de test déjà associées à la page
+   * 
+   * @param int $page_id
+   * @return array
+   */
+  public function getAvailableForSelect($page_id){
+  	
+    sfContext::getInstance()->getLogger()->warning("getAvailableForSelect($page_id)");
+    
+  	// Configurations de test déjà liés à la page   
+  	$currConfigs = Doctrine_Core::getTable('Assoc_WebPage_TestConfig')
+  	               ->createQuery('a')
+  	               ->select('DISTINCT a.test_config_id')
+  	               ->where('a.web_page_id', $page_id)
+  	               ->fetchArray();
+    $currConfigs = Doctrine_Core::getTable('Assoc_WebPage_TestConfig')
+                          ->findByWebPageId($page_id, Doctrine_Core::HYDRATE_ARRAY);
+    $currConfigsIds = array();
+    foreach($currConfigs as $k => $c) {
+    	array_push($currConfigsIds, $c['test_config_id']);
+    }
+    
+    // Filtrage des configurations de test déjà associées à la page web 
+    $confQuery = Doctrine_Query::create()
+																->select('t.libelle')
+																->from('TestConfig t INDEXBY t.id');
+    $configs = $confQuery->whereNotIn('t.id', $currConfigsIds)
+												->orderBy('t.libelle')
+												->fetchArray();
+    $select = array();
+    foreach($configs as $conf) {
+      $select[$conf['id']] = $conf['libelle']; 
+    }
+    return $select;
+  }
+  
 }

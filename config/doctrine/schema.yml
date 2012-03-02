@@ -22,6 +22,11 @@ WebPage:
     id:          { type: integer, primary: true, autoincrement: true }
     url:         { type: varchar(5000), notnull: true }
     description: { type: varchar(5000), notnull: false }
+  relations: 
+    CollectionTestConfig: 
+      class:        TestConfig
+      foreignAlias: CollectionWebPages
+      refClass:     Assoc_WebPage_TestConfig
 
 # =Evaluation
 # une évaluation 
@@ -50,6 +55,11 @@ TestConfig:
     id:          { type: integer, primary: true, autoincrement: true }
     libelle:     { type: varchar(255), unique: true }
     description: { type: varchar(5000) }
+  relations: 
+    CollectionWebPage: 
+      class:        WebPage
+      foreignAlias: CollectionTestConfigs
+      refClass:     Assoc_WebPage_TestConfig
     
 # =TestConfigDetail
 # les différents tests d'une conf 
@@ -66,3 +76,22 @@ TestConfigDetail:
       local:        test_config_id
       foreign:      id
       foreignAlias: CollectionTests
+      
+# Association WebPage TestConfig (many to many)
+Assoc_WebPage_TestConfig:
+  tableName: assoc_web_page_test_config
+  actAs:
+    - Timestampable
+  columns:
+    #id:             { type: integer, primary: true, autoincrement: true }
+    web_page_id:    { type: integer, primary: true }
+    test_config_id: { type: integer, primary: true }
+  relations: 
+    WebPage: 
+      local: web_page_id
+      foreignAlias: Associations_WebPage_TestConfig
+    Fiche: 
+      TestConfig: test_config_id
+      foreignAlias: Associations_WebPage_TestConfig
+      
+    

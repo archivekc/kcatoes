@@ -228,7 +228,7 @@ class Tester
   		$output = '<form method="post" action="./php/historize.php" >';
   		$output .= '<div class="save">'
   		        .'<input type="submit" value="Sauvegarder" />'
-  		        .'<input type="hidden" id="filename" name="filename" value="output.html" />
+  		        .'<input type="hidden" id="filename" name="filename" value="output.html" />'
   		        .'</div>';
   	}
   	
