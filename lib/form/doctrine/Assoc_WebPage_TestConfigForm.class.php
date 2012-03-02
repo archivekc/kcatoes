@@ -32,8 +32,9 @@ class Assoc_WebPage_TestConfigForm extends BaseAssoc_WebPage_TestConfigForm
                             'required' => 'Sélection d\'une configuration obligatoire')),
     
       'web_page_id' => new sfValidatorDoctrineChoice(
-                        array('required' => true, 'model' => 'TestConfig', 'column' => 'id'),
-                        array('required' => 'Impossible d\'identifier la page associée')),
+                        array('required' => true, 'model' => 'WebPage', 'column' => 'id'),
+                        array('required' => 'Impossible d\'identifier la page associée',
+                              )),
                             
     ));
   	

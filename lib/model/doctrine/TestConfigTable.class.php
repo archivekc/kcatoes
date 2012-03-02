@@ -48,8 +48,6 @@ class TestConfigTable extends Doctrine_Table
    */
   public function getAvailableForSelect($page_id){
   	
-    sfContext::getInstance()->getLogger()->warning("getAvailableForSelect($page_id)");
-    
   	// Configurations de test déjà liés à la page   
   	$currConfigs = Doctrine_Core::getTable('Assoc_WebPage_TestConfig')
   	               ->createQuery('a')

@@ -77,7 +77,7 @@ class ihmActions extends sfActions
       if ($this->processForm($request, $this->addConfigForm))
       {
         $this->addConfigForm->save();
-        $this->redirect('ihm/WebPage?id='.$id);
+        $this->redirect('webPage', array('id' => $id));
       }
     }
   }
@@ -109,7 +109,7 @@ class ihmActions extends sfActions
       if ($this->processForm($request, $this->addTestConfigForm))
       {
         $testConfig = $this->addTestConfigForm->save();
-        $this->redirect('annuaire/recherche');
+        $this->redirect('ihm/TestConfigs');
       }
     }
 
@@ -178,6 +178,7 @@ class ihmActions extends sfActions
       $request->getParameter($form->getName()),
       $request->getFiles($form->getName())
     );
+
     return $form->isValid();
   }
 }
