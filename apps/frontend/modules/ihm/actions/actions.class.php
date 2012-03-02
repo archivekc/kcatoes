@@ -20,7 +20,12 @@ class ihmActions extends sfActions
     $this->forward('default', 'module');
   }
   
-  // gestion des pages web
+  
+  
+  /**
+   * Affichage de la liste des WebPage
+   * @param sfWebRequest $request
+   */
   public function executeWebPages(sfWebRequest $request)
   {
   	$this->addPageForm = new WebPageForm();
@@ -32,7 +37,6 @@ class ihmActions extends sfActions
         $this->redirect('ihm/WebPages');
       }
     }
-
   	
   	$table  = Doctrine_Core::getTable('WebPage');
   	$q = Doctrine_Query::create()
@@ -42,6 +46,11 @@ class ihmActions extends sfActions
   	 $this->pages = $q->fetchArray();
   	 
   }
+  
+  /**
+   * Suppression d'une WebPage
+   * @param sfWebRequest $request
+   */
   public function executeDeleteWebPage(sfWebRequest $request)
   {
   	$page = Doctrine_Core::getTable('WebPage')->findOneById($request->getParameter('id'));
@@ -49,32 +58,48 @@ class ihmActions extends sfActions
   	$this->redirect('ihm/WebPages');
   }
   
+  /**
+   * Affichae d'une WebPage 
+   * @param sfWebRequest $request
+   */
   public function executeWebPage(sfWebRequest $request)
   {
   	$id = $request->getParameter('id');
   	$this->page = Doctrine_Core::getTable('WebPage')->findOneById($id);
-  	$this->evals = Doctrine_Core::getTable('Evaluation')->findByWebPageId($this->page->getId());
   	
-  	$this->addEvalForm = new EvaluationForm();
-  	$this->addEvalForm->setDefault('web_page_id', $id);
-  	
+  	$this->configs = $this->page->getCollectionTestConfig();
+
+    $this->addConfigForm = new Assoc_WebPage_TestConfigForm();
+    $this->addConfigForm->setDefault('web_page_id', $id);
+    
     if ($request->isMethod('post'))
     {
-      if ($this->processForm($request, $this->addEvalForm))
+      if ($this->processForm($request, $this->addConfigForm))
       {
-      	//die(print_r($this->addEvalForm->getValues()));
-//      	$evaluation = new Evaluation();
-//      	$evaluation->set('web_page_id', $id);
-//      	$evaluation->set('config_id', $request->getParameter('config_id'));
-//        $evaluation->save();
-        $this->addEvalForm->save();
-//        $this->redirect('ihm/WebPage?id='.$id);
+        $this->addConfigForm->save();
+        $this->redirect('ihm/WebPage?id='.$id);
       }
     }
-  	
   }
   
-  
+  /**
+   * Suppression d'une association WebPage - TestConfig
+   * @param sfWebRequest $request
+   */
+  public function executeWebPageDeleteConfigTest(sfWebRequest $request){
+  	
+    // Récupération de l'objet Assoc_WebPage_TestConfig
+    $testAssoc = $this->getRoute()->getObject();
+    
+    // Suppression
+    $testAssoc->delete();
+          
+    // Redirection vers la fiche de la page web
+    $web_page_id = $request->getParameter('web_page_id');
+    $this->redirect('ihm/WebPage?id='.$web_page_id);
+  }
+
+
   // gestion des conf
   public function executeTestConfigs(sfWebRequest $request)
   {
@@ -84,7 +109,7 @@ class ihmActions extends sfActions
       if ($this->processForm($request, $this->addTestConfigForm))
       {
         $testConfig = $this->addTestConfigForm->save();
-        $this->redirect('ihm/TestConfigs');
+        $this->redirect('annuaire/recherche');
       }
     }
 
