@@ -18,6 +18,7 @@ class kcatoesTestTask extends sfBaseTask
       new sfCommandOption('html', null, sfCommandOption::PARAMETER_OPTIONAL, 'Code source à tester', null),
       new sfCommandOption('conf', null, sfCommandOption::PARAMETER_REQUIRED, 'Fichier de config des tests à passer', null),
       new sfCommandOption('output', null, sfCommandOption::PARAMETER_REQUIRED, 'type de sortie (html, richHtml, csv, json)', 'html'),
+      new sfCommandOption('history', null, sfCommandOption::PARAMETER_OPTIONAL, 'fonctionnalité de sauvegarde des saisies utilisateurs', null),
     ));
 
     $this->namespace        = 'kcatoes';
@@ -51,7 +52,7 @@ EOF;
   	$results = $kcatoes->run();
   	
   	// resultats
-  	$output = $kcatoes->output($options['output']);
+  	$output = $kcatoes->output($options['output'], $options['history']);
 
   	// formats de sortie
     $tplPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tpl'.DIRECTORY_SEPARATOR;
@@ -86,6 +87,10 @@ EOF;
         exec('cp -R '.$tplPath.'/img '.$userTmpPath.'/img');
         exec('cp -R '.$tplPath.'/css '.$userTmpPath.'/css');
         exec('cp -R '.$tplPath.'/js '.$userTmpPath.'/js');
+        if($options['history'])
+        {
+        	exec('cp -R '.$tplPath.'/php '.$userTmpPath.'/php');
+        }
         break;
   		default:
   			echo $output;

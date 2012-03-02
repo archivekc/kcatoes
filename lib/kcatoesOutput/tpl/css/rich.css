@@ -198,3 +198,16 @@ button:focus {
 .testProc li {
   margin-left: 2em;
 }
+
+
+/* formulaire */
+.save input {
+  border: 1px solid #555;
+  border-radius: 5px;
+  color: #FFF;
+  background: #343434 url('../img/ico/save.png') right center no-repeat;
+  padding: 1em 80px 1em .5em;
+  font-size: 2em;
+  font-weight: bold;
+  margin: .5em 1em;
+}

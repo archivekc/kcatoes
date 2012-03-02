@@ -53,6 +53,7 @@ class ihmActions extends sfActions
   {
   	$id = $request->getParameter('id');
   	$this->page = Doctrine_Core::getTable('WebPage')->findOneById($id);
+  	
   	$this->evals = Doctrine_Core::getTable('Evaluation')->findByWebPageId($this->page->getId());
   	
   	$this->addEvalForm = new EvaluationForm();

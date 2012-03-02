@@ -53,7 +53,7 @@ class Resultat
 	      return 'Erreur d\'exécution';
 	      break;
 	    case self::NA:
-        return 'Non applicable';
+        return 'N/A';
         break;
 	    default:
 	      return '';

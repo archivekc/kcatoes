@@ -22,4 +22,8 @@ class KcatoesUrlValidator extends sfValidatorBase
 
     return $value;
   }
+  
+  public function isValide($value){
+  	return !filter_var($value, FILTER_VALIDATE_URL);
+  }
 }
