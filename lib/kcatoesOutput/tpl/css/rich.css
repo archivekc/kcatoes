@@ -104,12 +104,6 @@ h1 img {
   height: 100%;
   font-size: 1.5em;
 }
-.popupContent strong {
-	display: block;
-  font-weight: bold;
-  text-decoration: underline;
-  margin: 1.5em 0 .5em;
-}
 
 /* ******* */
 /* rapport */
@@ -166,6 +160,23 @@ h1 img {
   background: #999;
 }
 
+#kcatoesRapport .ECHEC {
+    background: none repeat scroll 0 0 #990000;
+    color: #FFFFFF;
+}
+#kcatoesRapport .REUSSITE {
+    background: none repeat scroll 0 0 #008800;
+    color: #FFFFFF;
+}
+#kcatoesRapport .MANUEL {
+    background: none repeat scroll 0 0 #12B8EA;
+    color: #000000;
+}
+#kcatoesRapport .NA  {
+    background: none repeat scroll 0 0 #999999;
+    color: #000000;
+}
+
 /* boutons */
 button {
   background: none;
@@ -206,8 +217,42 @@ button:focus {
   border-radius: 5px;
   color: #FFF;
   background: #343434 url('../img/ico/save.png') right center no-repeat;
-  padding: 1em 80px 1em .5em;
+  padding: .5em 80px .5em .5em;
   font-size: 2em;
   font-weight: bold;
-  margin: .5em 1em;
+  margin: .6em 1em;
+}
+
+.ico {
+	display: inline-block;
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+
+
+.ico:hover,
+.ico:focus {
+	border-color: #DDD;
+	background: #EEE;
+}
+
+.ico.confirmed {
+	background: #343434;
+	color: #FFF;
+	border-color: #DDD;
+}
+
+textarea {
+	resize: none;
+	width: 98%;
+	margin: auto;
+}
+
+.context {width: 30em;}
+
+strong {
+	display: block;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 1.5em 0 .5em;
 }

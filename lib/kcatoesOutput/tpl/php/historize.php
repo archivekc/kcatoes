@@ -1,14 +1,33 @@
-<?php 
-  /**
-   * Génére un select html listant les différentes valeurs de résultat
-   * @param String $name le nom de la liste (génére l'attribut id est name)
-   * @param Int $value (optionnal) si fourni, alors la valeur est sélectionnée
-   *        par défaut
-   * @return String code html de la liste
-   */
+<?php
+error_reporting(E_ALL);
+
+###FIELDS###
+
+$output = file_get_contents('./output.html');
+
+  foreach ($fields['select'] as $field)
+  {
+	$value = isset($_POST[$field])?htmlentities($_POST[$field]):'';
+	$list = getResultatListe($field, $value);
+	$output = preg_replace('/<select[^>]*?id="'.$field.'.*?select>/u', $list, $output);
+  }
+  
+
+foreach ($fields['textarea'] as $field)
+{
+$value = isset($_POST[$field])?htmlentities($_POST[$field]):'';
+$textarea = '<textarea id="'.$field.'" name="'.$field.'" rows="5" cols="20">'.$value.'</textarea>';
+$output = preg_replace('/<textarea[^>]*?id="'.$field.'.*?textarea>/u', $textarea, $output);
+}
+
+$filename = './'.time().'_output.html';
+file_put_contents($filename, $output);
+header('location: '.$filename);
+
+  
   function getResultatListe($name, $value = null)
   {
-    $id = $this->computeIdForTest($name);
+    $id = $name;
     $available = array(
       'REUSSITE' => 'Réussite'
       ,'ECHEC' => 'Echec'
@@ -23,7 +42,7 @@
       {
         $selected = 'selected="selected"';
       }
-      $select .= '<option '.$selected.' value="'.$code.'">'.$value.'</option>';
+      $select .= '<option '.$selected.' value="'.$code.'">'.$label.'</option>';
     }
     $select .= '</select>';
     return $select;
