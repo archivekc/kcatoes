@@ -28,23 +28,6 @@ WebPage:
       foreignAlias: CollectionWebPages
       refClass:     Assoc_WebPage_TestConfig
 
-# =Evaluation
-# une évaluation 
-Evaluation:
-  tableName: evaluation
-  actAs:
-    - Timestampable
-  columns:
-    id:          { type: integer, primary: true, autoincrement: true }
-    web_page_id: { type: integer, notnull: true }
-    config_id:   { type: integer, notnull: true }
-  relations:
-    WebPage:
-      local:        web_page_id
-      foreign:      id
-      foreignAlias: CollectionEvals
-
-
 # =TestConfig
 # une configuration
 TestConfig:
@@ -90,8 +73,13 @@ Assoc_WebPage_TestConfig:
     WebPage: 
       local: web_page_id
       foreignAlias: Associations_WebPage_TestConfig
-    Fiche: 
-      TestConfig: test_config_id
+    TestConfig: 
+      local: test_config_id
       foreignAlias: Associations_WebPage_TestConfig
+      
+### WTF?
+###    Fiche: 
+###      TestConfig: test_config_id
+###      foreignAlias: Associations_WebPage_TestConfig
       
     
