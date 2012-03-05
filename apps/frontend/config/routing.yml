@@ -26,7 +26,6 @@ webPageDeleteConfigTest:
     web_page_id: \d+
     test_config_id: \d+ 
     sf_method: [GET]
-
     
 deleteWebPage:
   url: /delete-web-page/:id
@@ -53,6 +52,19 @@ editTestConfig:
 
 
 
+# #########
+# TESTS
+# #########
+launchTests:
+  url: /launch-tests/:web_page_id/:test_config_id
+  param: {module: ihm, action: LaunchTests }
+  class:   sfDoctrineRoute
+  options: { model: Assoc_WebPage_TestConfig, type: object }
+  requirements: 
+    web_page_id: \d+
+    test_config_id: \d+
+    sf_method: [GET]   
+    
 # generic rules
 # please, remove them by adding more specific rules
 default_index:

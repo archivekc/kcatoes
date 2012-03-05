@@ -30,8 +30,8 @@ class KcatoesWrapper
    */
   public function __construct($testsClass, $htmlContent = null, $url = null)
   {
-  	$this->logger = sfContext::getInstance()->getLogger();
-  	//$this->logger = new sfNoLogger(new sfEventDispatcher());
+//  	$this->logger = sfContext::getInstance()->getLogger();
+  	$this->logger = new sfNoLogger(new sfEventDispatcher());
 
     $this->addLogInfo('Initialisation de KCatoès');
 
@@ -191,10 +191,9 @@ class KcatoesWrapper
   {
     if ($this->logger instanceof sfLogger)
     {
-      //$this->logger->info($infoMessage);
-      $this->logger->warning($infoMessage);
+      $this->logger->info($infoMessage);
     }
-    //echo 'INFO: '.$infoMessage."\n";
+    echo 'INFO: '.$infoMessage."\n";
   }
 
   /**
@@ -208,6 +207,6 @@ class KcatoesWrapper
     {
       $this->logger->err($errorMessage);
     }
-    //echo 'ERROR: '.$errorMessage."\n";
+    echo 'ERROR: '.$errorMessage."\n";
   }
 }

@@ -4,3 +4,5 @@ all:
   date: 29/04/2011
 
   pluginpath: <?php echo sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins' ?>
+  
+  outputpath: <?php echo sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'output' ?>

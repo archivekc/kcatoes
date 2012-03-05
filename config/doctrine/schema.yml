@@ -76,10 +76,3 @@ Assoc_WebPage_TestConfig:
     TestConfig: 
       local: test_config_id
       foreignAlias: Associations_WebPage_TestConfig
-      
-### WTF?
-###    Fiche: 
-###      TestConfig: test_config_id
-###      foreignAlias: Associations_WebPage_TestConfig
-      
-    

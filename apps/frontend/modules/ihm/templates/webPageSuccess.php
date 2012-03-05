@@ -33,9 +33,15 @@
   <li>
     <?php echo $config->getLibelle(); ?> - 
     <a href="" class="url"><?php //echo $eval->getConfig()->getLibelle()?></a>
+    
+    <?php echo link_to('Lancer', 'launchTests', 
+                                        array('web_page_id' => $page->getId(), 
+                                              'test_config_id' => $config->getId())) ?>
+                                              
     <?php echo link_to('Supprimer', 'webPageDeleteConfigTest', 
                                         array('web_page_id' => $page->getId(), 
-                                              'test_config_id' => $config->getId())) ?>               
+                                              'test_config_id' => $config->getId())) ?>
+                                              
   </li>
   <?php endforeach; ?>
 </ul>

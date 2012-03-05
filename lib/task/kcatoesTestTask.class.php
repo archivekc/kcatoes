@@ -49,11 +49,14 @@ EOF;
   	// outil
   	
   	// initialisation et lancement des tests
+  	
+  	// TODO : limiter les tests à ceux choisis pour la page
+  	
   	$kcatoes = new KcatoesWrapper($tests, $options['html'], $options['url']);
   	$results = $kcatoes->run();
   	
   	// resultats
-	$fields = array();
+    $fields = array();
   	$output = $kcatoes->output($options['output'], $options['history'], $fields);
 
   	// formats de sortie

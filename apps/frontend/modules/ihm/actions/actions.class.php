@@ -167,6 +167,133 @@ class ihmActions extends sfActions
   }
   
   /**
+   * Lancement des testds liés à une page
+   * @param $request
+   * @return 
+   */
+  public function executeLaunchTests(sfWebRequest $request){
+      
+    // Récupération de l'objet Assoc_WebPage_TestConfig
+    $testAssoc = $this->getRoute()->getObject();
+
+    // Récupère la page
+    $this->page = $testAssoc->getWebPage();
+
+    // Récupère la liste des tests à lancer 
+    $this->tests = $testAssoc->getTestConfig()->getCollectionTests();
+
+    // Récupère la liste de tests disponibles
+    $this->allTests = TestsHelper::getAllTests();
+    
+    // Rangement des tests
+    $this->tab_tests = array();
+    $this->listeIds = array();
+    foreach ($this->tests as $t){
+      array_push($this->listeIds, $t->getClass());
+      array_push($this->tab_tests, array(
+        'class'      => $t->getClass(),
+        'implemente' => in_array($t->getClass(), $this->allTests)
+      ));
+    }
+
+    // Inclusion des classes
+    TestsHelper::getRequired();    
+    
+    // Exécution des tests
+    $url = $this->page->getUrl();
+    $kcatoes = new KcatoesWrapper($this->listeIds, null, $url);
+    $results = $kcatoes->run();
+    
+    // resultats
+    $options_output = 'rich';
+    $options_history = false;
+    
+    $fields = array();
+    $output = $kcatoes->output($options_output, $options_history, $fields);
+    
+    $tplPath = sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tpl'.DIRECTORY_SEPARATOR;
+    
+    // TODO : adapter / déporter
+    
+    switch($options_output)
+    {
+      case 'html':
+        $tpl = file_get_contents($tplPath.'simple.html');
+        
+        echo generateRapportHtml(array(
+                           'table' => $output
+                           ,'title' => 'KCatoès - Rapport de test'
+                           ,'subtitle' => ($url ? $url : '').' '.date('d/m/Y H:i')
+                          ), $tpl); 
+        break;
+        
+        
+      case 'rich':
+      	
+      	$session_id = session_id();
+      	$resultPath = sfConfig::get('app_outputpath').DIRECTORY_SEPARATOR.$session_id.DIRECTORY_SEPARATOR;
+      	$this->resultUrlRoot = '/output/'.$session_id.'/';
+      	
+        exec('mkdir '.$resultPath);
+        exec('chmod 777 '.$resultPath);
+
+        $tpl = file_get_contents($tplPath.'rich.html');
+        
+        file_put_contents($resultPath.'output.html'
+                         ,self::generateRapportHtml(array(
+                           'table' => $output
+                           ,'title' => 'KCatoès - Rapport de test'
+                           ,'subtitle' => ($url ? $url : '').' '.date('d/m/Y H:i')
+                          ), $tpl));
+        file_put_contents($resultPath.'tested.html', $kcatoes->getRawContent($url));
+        
+        
+        
+        exec('cp -R '.$tplPath.'img '.$resultPath.'img');
+        exec('cp -R '.$tplPath.'css '.$resultPath.'css');
+        exec('cp -R '.$tplPath.'js '.$resultPath.'js');
+        
+        sfContext::getInstance()->getLogger()->warning('cp -R '.$tplPath.'img '.$resultPath.'img');
+        sfContext::getInstance()->getLogger()->warning('cp -R '.$tplPath.'css '.$resultPath.'css');
+        sfContext::getInstance()->getLogger()->warning('cp -R '.$tplPath.'js '.$resultPath.'js');
+        
+        
+        // TODO : voir pour quoi faire
+        if($options_history)
+        {
+          $tplHistorize = file_get_contents($tplPath.'/php/historize.php');
+          file_put_contents($resultPath.'/historize.php', generateHistorize($fields, $tplHistorize));
+        }
+        break;
+        
+      default:
+        echo $output;
+    }
+    
+    
+    
+
+  }
+  
+  
+
+  /**
+   * Génération du rapport à partir des résultats et de la template
+   * @param array $data
+   * @param string $tpl
+   * @return string
+   */
+	private static function generateRapportHtml(array $data, $tpl)
+	{
+	  foreach ($data as $key => $value)
+	  {
+	      $tpl = str_replace('###'.strtoupper($key).'###', $value, $tpl);
+	  }
+	 
+	  return $tpl;
+	}
+
+  /**
    * Valide les données saisies dans un formulaire
    *
    * @param sfWebRequest $request La requête contenant les données à valider
