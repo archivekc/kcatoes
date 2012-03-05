@@ -1,7 +1,9 @@
 rgaa:
-  'rubrique1':
+  'test':
     - 'AbsenceDAttributsOuDElementsHtmlDePresentation'
-#    - 'AbsenceDeCadresNonTitres'
+    - 'AbsenceInterruptionHierarchieTitres'
+    - 'AbsenceCadreNonTitres'
+    - 'PertinenceTitresCadres'
 #  'rubrique2' :
 #    - 'AbsenceDeJustificationDuTexte'
 #    - 'AbsenceDeLElementBlink'
