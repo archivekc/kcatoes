@@ -6,6 +6,7 @@ lib/form/doctrine/base
 lib/filter/doctrine/base
 data/sql
 lib/vendor/goutte/src/vendor
+lib/vendor/symfony-1.4
 web/download/config/*.yml
 web/uploads/config/*.yml
 web/dev
