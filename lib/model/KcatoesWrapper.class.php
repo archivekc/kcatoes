@@ -129,7 +129,7 @@ class KcatoesWrapper
   	}
   }
   
-  public function output($type = 'csv', $historyUrl)
+  public function output($type = 'csv', $history = false, &$fields = array())
   {
     $this->addLogInfo('Génération de la sortie');
     
@@ -145,14 +145,7 @@ class KcatoesWrapper
         $outputStr = $this->tester->toHTML();
         break;
       case 'rich':
-      	if (is_null($historyUrl))
-      	{
-	      	$outputStr = $this->tester->toRichHTML();
-      	}
-      	else
-      	{
-      		$outputStr = $this->tester->toRichHTML(true, $historyUrl);
-      	}
+	    $outputStr = $this->tester->toRichHTML($history, $fields);
         break;
   		default:
   			throw new KcatoesException();

@@ -217,15 +217,16 @@ class Tester
    *
    *@return string correspondant au fichier HTML
    */
-  public function toRichHTML($history = false)
+  public function toRichHTML($history = false, array &$fields = array())
   {
   	include_once sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'geshi'.DIRECTORY_SEPARATOR.'geshi.php';
-  	
+	
   	$output = '';
-  	
+  	$fields['select'] = array();
+	$fields['textarea'] = array();
   	if ($history)
   	{
-  		$output = '<form method="post" action="./php/historize.php" >';
+  		$output = '<form method="post" action="./historize.php" >';
   		$output .= '<div class="save">'
   		        .'<input type="submit" value="Sauvegarder" />'
   		        .'<input type="hidden" id="filename" name="filename" value="output.html" />'
@@ -236,24 +237,18 @@ class Tester
 
     // entête
     $output .= '<th scope="col" class="testId">Id du test</th>';
-    $output .= '<th scope="col" class="testName">Nom</th>';
-    $output .= '<th scope="col" class="testStatus">Statut global</th>';
-    $output .= '<th scope="col" class="testProc">Procédure de test</th>';
-    $output .= '<th scope="col" class="testDoc">Documentation</th>';
+	$output .= '<th scope="col" class="testInfo">Informations du test</th>';
+	$output .= '<th scope="col" class="testStatus">Statut global</th>';
     $output .= '<th scope="col" class="subResult">Statut</th>';
     $output .= '<th scope="col" class="context">Contexte</th>';
-    $output .= '<th scope="col" class="comment">Commentaire</th>';
     
-    if ($history)
-    {
-      $output .= '<th scope="col" class="annotation">Annotations</th>';
-    }
     
     $output .= '</tr></thead><tbody>';
     
     // corps
     foreach ($this->resTests as $test)
     {
+	
       $testInfo = $test->getTestResults();
       $nbLigne = $rowspan = count($testInfo);
       if ($nbLigne <=1 )
@@ -265,22 +260,28 @@ class Tester
         $rowspan = 'rowspan="'.$nbLigne.'"';
       }
       
-      $output .= '<tr class="'.Resultat::getCode($test->getMainResult()).'">';
+      $output .= '<tr>';
       $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
-      $output .= '<td '.$rowspan.' class="testName">'.$test::testName.'</td>';
+      $output .= '<td '.$rowspan.' class="testInfo">';
+	  $output .= '<strong>'.$test::testName.'</strong>';
+	  $output .= '<div class="testProc"><strong>Procédure de test&nbsp;:</strong>' .$this->arrayToHtmlList($test->getProc(), true).'</div>';
+      $output .= '<div class="testDoc"><strong>Documentation&nbsp;:</strong>' .$this->arrayToHtmlList($test->getDocLinks(), true).'</div>';
+	  
+	  $output .= '</td>';
       if ($history)
       {
+		$id = 'mainResult_'.$test::testId;
         $output .= '<td '.$rowspan.' class="testStatus">'
                 .'<span class="computed">'.Resultat::getLabel($test->getMainResult()).'</span>'
-                .$this->getResultatListe('mainResult_'.$test::testId,$test->getMainResult())
+                .$this->getResultatListe($id,$test->getMainResult())
                 .'</td>';
+		$fields['select'][] = $this->computeIdForTest($id);
       }
       else
       {
 	      $output .= '<td '.$rowspan.' class="testStatus">'.Resultat::getLabel($test->getMainResult()).'</td>';
       }
-      $output .= '<td '.$rowspan.' class="testProc">'.$this->arrayToHtmlList($test->getProc(), true).'</td>';
-      $output .= '<td '.$rowspan.' class="testDoc">'.$this->arrayToHtmlList($test->getDocLinks(), true).'</td>';
+
       
       if ($nbLigne == 0)
       {
@@ -302,28 +303,21 @@ class Tester
           if ($history)
           {
           	// résultat de base + liste
-          	
+          	$id = 'subResult'.$cptLine.'_'.$test::testId;
             $output .= '<td class="subResult '.Resultat::getCode($resultLine['result']).'">'
                     .'<span class="computed">'.Resultat::getLabel($resultLine['result']).'</span>'
-                    .$this->getResultatListe('subResult'.$cptLine.'_'.$test::testId,$test->getMainResult())
-                    .'</td>';          	
+                    .$this->getResultatListe($id,$resultLine['result'])
+                    .'</td>';
+			$fields['select'][] = $this->computeIdForTest($id);
           }
           else 
           {
-          	$output .= '<td class="subResult '.Resultat::getCode($resultLine['result']).'">'.Resultat::getLabel($resultLine['result']).'</td>';
+          	$output .= '<td class="subResult">'.Resultat::getLabel($resultLine['result']).'</td>';
           }
           
-          
           $output .= '<td class="context">';
-          
-          $output .= '<div class="selectors">';
-          $output .= '<strong>Sélecteurs</strong>';
-          $output .= '<ul>';
-          $output .= '<li>xpath : <span class="xpath">'.$resultLine['xpath'].'</span></li>';
-          $output .= '<li>css : <span class="cssSelector">'.$resultLine['cssSelector'].'</span></li>';
-          $output .= '</ul>';
-          $output .= '</div>';
-          
+		  
+		  $source = '';
           if (strlen($resultLine['source']))
           {
           	$geshi = new GeSHi($resultLine['source'], 'html4strict');
@@ -335,27 +329,36 @@ class Tester
           	$geshi->set_tab_width(4);
           	$geshi->enable_keyword_links(false);
           	
-	          $output .= '<div class="source">';
-	          $output .= '<strong>Code source</strong>';
-            $output .= $geshi->parse_code();
-            $output .= '</div>';
+	        $source = '<li class="source"><strong>Source&nbsp;:</strong> <div class="value">'.$geshi->parse_code().'</div></li>';
           }
-          else
+		  
+		  $css = '';
+		  if (strlen($resultLine['cssSelector']))
           {
-            $output .= '<td class=""></td>';
-          }
-          
-          $output .= '</td>';
-          $output .= '<td class="comment">'.$resultLine['comment'].'</td>';
-          
+		    $css = '<li class="cssSelector"><strong>Sélecteur CSS&nbsp;:</strong> <div class="value"><pre>'.$resultLine['cssSelector'].'</pre></div></li>';
+		  }
+		  
+		  $comment = '';
+		  if (strlen($resultLine['comment']))
+          {
+		    $comment = '<li class="comment"><strong>Retour du test&nbsp;:</strong> <div class="value">'.$resultLine['comment'].'</div></li>';
+		  }
+		  $context = $comment.$source.$css;
+          if (strlen(trim($context))>0)
+		  {
+			$output .= '<ul>'.$context.'</ul>';
+		  }
+		  
+
           if ($history)
-			    {
-			    	$id = $this->computeIdForTest('annot'.$cptLine.'_'.$test::testId);
-			      $output .= '<td class="annotation"><textarea id="'
+		  {
+            $id = $this->computeIdForTest('annot'.$cptLine.'_'.$test::testId);
+			$output .= '<div class="annotation"><strong>Annotation&nbsp;</strong> <textarea id="'
 			              .$id.'" name="'.$id.'"'
-			              .'" cols="20" rows="5"></textarea></td>';
-			    }          
-          
+			              .' cols="20" rows="5"></textarea></div>';
+		    $fields['textarea'][] = $id;
+		  }
+          $output .= '</td>';
           $output .= '</tr>';
         }
       }
@@ -363,10 +366,11 @@ class Tester
     }
     
     $output .= '</tbody></table>';
-      if ($history)
+    if ($history)
     {
       $output .= '</form>';
     }
+	  
     return $output;
   }
 

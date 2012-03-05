@@ -34,6 +34,7 @@ EOF;
 
   protected function execute($arguments = array(), $options = array())
   {
+  session_start();
   	// définition de la zone horaire
   	date_default_timezone_set('Europe/Paris');
   	
@@ -52,7 +53,8 @@ EOF;
   	$results = $kcatoes->run();
   	
   	// resultats
-  	$output = $kcatoes->output($options['output'], $options['history']);
+	$fields = array();
+  	$output = $kcatoes->output($options['output'], $options['history'], $fields);
 
   	// formats de sortie
     $tplPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tpl'.DIRECTORY_SEPARATOR;
@@ -69,11 +71,12 @@ EOF;
                           ), $tpl); 
   			break;
       case 'rich':
-		    session_start();
+		    
 		    $tmpPath = '.'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tmp'.DIRECTORY_SEPARATOR;
 		    $userTmpPath = $tmpPath.session_id().DIRECTORY_SEPARATOR;
-		    
+				
       	exec('mkdir '.$userTmpPath);
+		exec('chmod 777 '.$userTmpPath);
 
         $tpl = file_get_contents($tplPath.'/rich.html');
         
@@ -89,7 +92,9 @@ EOF;
         exec('cp -R '.$tplPath.'/js '.$userTmpPath.'/js');
         if($options['history'])
         {
-        	exec('cp -R '.$tplPath.'/php '.$userTmpPath.'/php');
+			$tplHistorize = file_get_contents($tplPath.'/php/historize.php');
+			file_put_contents($userTmpPath.'/historize.php', generateHistorize($fields, $tplHistorize));
+
         }
         break;
   		default:
@@ -142,4 +147,23 @@ function generateRapportHtml(array $data, $tpl)
 	}
  
 	return $tpl;
+}
+
+function generateHistorize($fields, $tpl)
+{
+	$str = <<<'EOT'
+	$fields = array();
+	$fields['select'] = array();
+	$fields['textarea'] = array();
+EOT;
+
+	foreach ($fields['select'] as $field)
+	{                          
+		$str .= '$fields[\'select\'][]=\''.$field.'\';'."\n";
+	}
+	foreach ($fields['textarea'] as $field)
+	{                          
+		$str .= '$fields[\'textarea\'][]=\''.$field.'\';'."\n";
+	}
+	return str_replace('###FIELDS###', $str, $tpl);
 }
