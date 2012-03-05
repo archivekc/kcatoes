@@ -4,6 +4,7 @@ target
 lib/model/doctrine/base
 lib/form/doctrine/base
 lib/filter/doctrine/base
+lib/kcatoesOutput/tmp/*
 data/sql
 lib/vendor/goutte/src/vendor
 lib/vendor/symfony-1.4
