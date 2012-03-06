@@ -1,0 +1,6 @@
+*.sln.user
+*~
+*.bak
+*.exe
+*.dll
+target
