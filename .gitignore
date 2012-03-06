@@ -8,7 +8,8 @@ lib/kcatoesOutput/tmp/*
 data/sql
 lib/vendor/goutte/src/vendor
 lib/vendor/symfony-1.4
+web/dev
 web/download/config/*.yml
 web/uploads/config/*.yml
-web/dev
 web/uploads/html/*.htm*
+web/output/*
