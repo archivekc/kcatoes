@@ -227,7 +227,6 @@ class ihmActions extends sfActions
                           ), $tpl); 
         break;
         
-        
       case 'rich':
       	
       	$session_id = session_id();
@@ -247,17 +246,11 @@ class ihmActions extends sfActions
                           ), $tpl));
         file_put_contents($resultPath.'tested.html', $kcatoes->getRawContent($url));
         
-        
-        
-        exec('cp -R '.$tplPath.'img '.$resultPath.'img');
-        exec('cp -R '.$tplPath.'css '.$resultPath.'css');
-        exec('cp -R '.$tplPath.'js '.$resultPath.'js');
-        
-        sfContext::getInstance()->getLogger()->warning('cp -R '.$tplPath.'img '.$resultPath.'img');
-        sfContext::getInstance()->getLogger()->warning('cp -R '.$tplPath.'css '.$resultPath.'css');
-        sfContext::getInstance()->getLogger()->warning('cp -R '.$tplPath.'js '.$resultPath.'js');
-        
-        
+        // Recopie des fichiers statiques
+        TestsHelper::rcopy($tplPath.'img' , $resultPath.'img');
+        TestsHelper::rcopy($tplPath.'css' , $resultPath.'css');
+        TestsHelper::rcopy($tplPath.'js' , $resultPath.'js');
+
         // TODO : voir pour quoi faire
         if($options_history)
         {
@@ -270,13 +263,8 @@ class ihmActions extends sfActions
         echo $output;
     }
     
-    
-    
-
   }
   
-  
-
   /**
    * Génération du rapport à partir des résultats et de la template
    * @param array $data
