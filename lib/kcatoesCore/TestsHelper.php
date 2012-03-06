@@ -2,7 +2,20 @@
 
 class TestsHelper {
 
-	
+  public function __construct()
+  {
+    throw new KcatoesException('La classe TestsHelper n\'est pas prévue pour être instanciée');
+  }
+  
+  static public function getLibelle($classname)
+  {
+    if (class_exists($classname, false))
+    {
+      return $classname::testName;
+    }
+    return false;
+  }
+  
 	/**
 	 * Identifie la liste des tests disponibles et la retourne sous la forme : 
    *  array(
@@ -95,10 +108,9 @@ class TestsHelper {
 	 */
 	public static function getRequired($allPluginPath = null)
 	{
-		if ($allPluginPath === null){
-			$allPluginPath = sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins';
+		if ($allPluginPath === null) {
+      $allPluginPath = sfConfig::get('app_pluginpath');
 		}
-		
 		if ($handleAll = opendir($allPluginPath))
 		{
 			while (false !== ($entryPlugin = readdir($handleAll))) {

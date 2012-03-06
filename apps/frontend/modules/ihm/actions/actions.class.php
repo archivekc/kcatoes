@@ -125,14 +125,14 @@ class ihmActions extends sfActions
   
   public function executeTestConfig(sfWebRequest $request)
   {
-  	testUtils::getRequired();
+  	TestsHelper::getRequired();
   	$this->config = Doctrine_Core::getTable('TestConfig')->findOneById($request->getParameter('id'));
   }
   
   public function executeEditTestConfig(sfWebRequest $request)
   {
-    testUtils::getRequired();
-    $this->availableTests = testUtils::getAllTests();
+    TestsHelper::getRequired();
+    $this->availableTests = TestsHelper::getAllTests();
 
     $this->config = Doctrine_Core::getTable('TestConfig')->findOneById($request->getParameter('id'));
     

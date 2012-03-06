@@ -8,7 +8,7 @@
 	  <li>
 	    <?php $checked = (in_array($test, $sf_data->getRaw('selectedTests')))?'checked="checked"':''?>
 	    <input <?php echo $checked?> type="checkbox" name="tests[]" id="test_<?php echo $test ?>" value="<?php echo $test?>"/>
-	    <label for="test_<?php echo $test ?>"><?php echo testUtils::getLibelle($test)?></label>
+	    <label for="test_<?php echo $test ?>"><?php echo TestsHelper::getLibelle($test)?></label>
 	  </li>
 	  <?php endforeach; ?>
 	</ul>
