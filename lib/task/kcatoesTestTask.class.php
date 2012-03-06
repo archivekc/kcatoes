@@ -11,19 +11,27 @@ class kcatoesTestTask extends sfBaseTask
       // add your own options here
       new sfCommandOption('url', null, sfCommandOption::PARAMETER_OPTIONAL, 'L\'url de la page à tester', null),
       new sfCommandOption('html', null, sfCommandOption::PARAMETER_OPTIONAL, 'Code source à tester', null),
-      new sfCommandOption('conf', null, sfCommandOption::PARAMETER_REQUIRED, 'Fichier de config des tests à passer', null),
       new sfCommandOption('output', null, sfCommandOption::PARAMETER_REQUIRED, 'type de sortie (html, richHtml, csv, json)', 'html'),
       new sfCommandOption('history', null, sfCommandOption::PARAMETER_OPTIONAL, 'fonctionnalité de sauvegarde des saisies utilisateurs', null),
+      new sfCommandOption('conf', null, sfCommandOption::PARAMETER_REQUIRED, "Fichier de config des tests à passer, au format Yaml", null),
     ));
 
     $this->namespace        = 'kcatoes';
     $this->name             = 'test';
     $this->briefDescription = '';
     $this->detailedDescription = <<<EOF
-The [kcatoes:test|INFO] task does things.
-Call it with:
-
-  [php symfony kcatoes:test|INFO]
+    
+La tâche [kcatoes:test|INFO] lance les tests d'accessibilité sur une page donnée.
+La liste des tests implémentée est dans le répertoire lib/kcatoesPlugins/
+Le fichier de configuration est au format Yaml. 
+Exemple : 
++---------------------------------------------------+
+|rgaa:                                              |
+|  - AbsenceDAttributsOuDElementsHtmlDePresentation |
+|  - AbsenceInterruptionHierarchieTitres            |
+|  - AbsenceCadreNonTitres                          |
+|  - PertinenceTitresCadres                         |
++---------------------------------------------------+
 EOF;
   }
 
