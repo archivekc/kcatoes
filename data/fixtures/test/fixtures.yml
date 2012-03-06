@@ -1,0 +1,98 @@
+
+Thematique:
+  force:
+    nom:         Utilisateurs de la force
+    description: |
+       Faut expliquer ?
+       
+Referentiel:
+  clair:
+    nom:        Le coté clair de la force
+    url:        http://www.jedionline.fr
+    Thematique: force
+  
+  obscur:
+    nom:        Le coté obscur de la force
+    url:        http://www.jesuissith.fr
+    Thematique: force
+    
+Regroupement:
+  cjedi:
+    nom:         Chevalier Jedi
+    Referentiel: clair
+   
+  mjedi:
+    nom:         Maitre Jedi
+    Referentiel: clair
+    
+  csith:
+    nom:         Chevalier Sith
+    Referentiel: obscur
+    
+  ssith:
+    nom:         Seigneur Sith
+    Referentiel: obscur
+    
+Test:
+  obi:
+    nom:           Obi-Wan Kenobi
+    description:   |
+      Il était chevalier Jedi dans l'episode 1
+    automatisable: false
+    Regroupement:  cjedi
+    instruction:   |
+      Mais il est devenu maitre Jedi dans les suivants
+
+  ana:
+    nom:           Anakin Skywalker
+    description:   |
+      Il a été chevalier Jedi (si si)
+    automatisable: true
+    Regroupement:  cjedi
+    instruction:   |
+      
+
+  yoda:
+    nom:           Maitre Yoda
+    description:   |
+      Faut vraiment le présenter ?
+    automatisable: true
+    Regroupement:  mjedi
+    instruction:   |
+      "Quand 900 ans comme moi tu auras, moins en forme tu seras."
+
+  luke:
+    nom:           Luke Skywalker
+    description:   |
+      Le dernier Jedi
+    automatisable: true
+    Regroupement:  mjedi
+    instruction:   |
+      " Luke, quand je ne serai plus, le dernier des Jedi tu seras…"
+
+  maul:
+    nom:           Dark Maul
+    description:   |
+      Mr Sabreadeuxlames
+    automatisable: true
+    Regroupement:  csith
+    instruction:   |
+      Pas la peine de s'attarder sur lui
+
+  palpa:
+    nom:           Palpatine
+    description:   |
+      Aussi connu sous le nom d'Empereur
+    automatisable: true
+    Regroupement:  ssith
+    instruction:   |
+      Dire qu'il a été sénateur avant...
+
+  vador:
+    nom:           Dark Vador
+    description:   |
+      "Luke, je suis ton père"
+    automatisable: true
+    Regroupement:  ssith
+    instruction:   |
+      Une citation devenue culte

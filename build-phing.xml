@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- Antoine ROLLAND -->
+<!-- 01/03/2011 -->
+<!-- Generate package for the application -->
+
+<project name="kactoes" basedir="." default="build">
+
+  <property name="target" value="./target" />
+  <property name="php" value="" />
+
+	<property name="src-symfony" value="/home/hudson/build/src-symfony" />
+	<property name="config-env" value="/home/hudson/build/config-env" />
+
+<!--  <property name="src-symfony" value="C:\frameworks\symfony\symfony-1.2.7-kc" /> -->
+<!--  <property name="config-env" value="C:\frameworks\symfony" /> -->
+	
+	<target name="clean">
+		<delete dir="${target}" includeemptydirs="true" verbose="false" failonerror="false" />
+		<mkdir dir="${target}" />
+	</target>
+	
+	<target name="build" depends="clean">
+		
+		<exec command="git clone git://kcfichiers.paris.keyconsulting.fr/DPAEP-CNCP.git" checkreturn="true" dir="${target}" />
+		<if>
+			<isset property="tag" />
+			<then>
+				<exec command="git checkout ${tag}" dir="${target}/DPAEP-CNCP" checkreturn="true" />
+			</then>
+		</if>
+		
+		<!-- Ajout de symfony -->
+		<exec command="tar xvf ${src-symfony}/symfony.tar.gz -C ${target}/DPAEP-CNCP/lib" checkreturn="true" />
+		
+		<!-- Modification environnement et parametre -->
+		<copy file="${config-env}/ProjectConfiguration.class.php" tofile="${target}/DPAEP-CNCP/config/ProjectConfiguration.class.php" overwrite="true"/>
+		
+		<!-- Construction du modele -->
+		<exec command="${php} symfony doctrine:build-model" dir="${target}/DPAEP-CNCP" checkreturn="true" />
+		<exec command="${php} symfony doctrine:build-forms" dir="${target}/DPAEP-CNCP" checkreturn="true" />
+		<exec command="${php} symfony doctrine:build-filters" dir="${target}/DPAEP-CNCP" checkreturn="true" />
+		
+		<!-- Suppression fichier inutile -->
+		<delete dir="${target}/DPAEP-CNCP/.git" includeemptydirs="true" verbose="false" failonerror="false" />
+		<delete dir="${target}/DPAEP-CNCP/cache" includeemptydirs="true" verbose="false" failonerror="false" />
+		<delete dir="${target}/DPAEP-CNCP/test" includeemptydirs="true" verbose="false" failonerror="false" />
+<!--		<delete dir="${name}/data" includeemptydirs="true" verbose="false" failonerror="false" />-->
+		<delete>
+			<fileset dir="${target}/DPAEP-CNCP">
+				<include name=".buildpath" />
+				<include name=".project" />
+				<include name=".gitignore" />
+				<include name="config/rsync_exclude.txt" />
+				<include name="web/frontend_mig.php" />
+				<include name="web/frontend_dev.php" />
+				<include name="web/index_preprod.php" />
+				<include name="web/logCheck_dev.php" />
+				<include name="web/get-access-logs_dev.php" />
+				<include name="web/sfMinifyPlugin.php" />
+				<include name="web/sfMinifyPlugin_mig.php" />
+				<include name="web/sfMinifyPlugin_preprod.php" />
+				<include name="web/sfMinifyPlugin_recette.php" />
+				<include name="web/.htaccess" />
+				<include name="data/sql" />
+				<include name="data/rsc/reports" />
+				<include name="build-ant.xml" />
+				<include name="build-phing.xml" />
+			</fileset>
+		</delete>
+		<mkdir dir="${target}/DPAEP-CNCP/data" />
+		<move file="${target}/DPAEP-CNCP/web/.htaccess_preprod" tofile="${target}/DPAEP-CNCP/web/.htaccess" overwrite="true"/>
+		
+		<!-- Construction archive -->
+		<if>
+			<not><isset property="tag" /></not>
+			<then>
+				<property name="tag" value="current" />
+			</then>
+		</if>
+		<exec command="mv ${target}/DPAEP-CNCP ${target}/cncp-${tag}"  checkreturn="true" />
+		<delete file="${target}/livraison-cncp-${tag}.tar.gz" failonerror="false" />
+		<exec command="tar -czf ${target}/livraison-cncp-${tag}.tar.gz ${target}/cncp-${tag}" checkreturn="true" />
+	</target>
+	
+	<target name="deploy">
+		<input propertyname="tag">Tag a exporter [vx_y_z]: </input>
+		<echo message="Creation du package pour ${tag}" />
+		
+		<phingcall target="build">
+			<property name="tag" value="${tag}" />
+		</phingcall>
+	</target>
+	
+
+</project>

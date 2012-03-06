@@ -1,0 +1,88 @@
+Thematique:
+  thema1:
+    nom:         Thematique 1
+    description: >
+      Thématique de test 1, utilisée pour la recette
+
+  thema2:
+    nom:         Thematique 2
+    description: >
+      Thématique de test 2, utilisée pour la recette
+
+Referentiel:
+  ref1:
+    nom:        Référentiel 1
+    url:        http://www.keyconsulting.fr/
+    Thematique: thema1
+
+  ref2:
+    nom:        Référentiel 2
+    url:        http://www.keyconsulting.fr/
+    Thematique: thema1
+
+  ref3:
+    nom:        Référentiel 3
+    url:        http://www.keyconsulting.fr/
+    Thematique: thema2
+    
+Regroupement:
+  regroup1:
+    nom:         Regroupement 1
+    Referentiel: ref1
+    
+  regroup2:
+    nom:         Regroupement 2
+    Referentiel: ref1
+    
+  regroup3:
+    nom:         Regroupement 3
+    Referentiel: ref2
+    
+  regroup4:
+    nom:         Regroupement 4
+    Referentiel: ref3
+    
+ 
+Test: 
+  test1:
+    nom:           Test 1
+    description:   >
+      Ceci est un exemple de test non automatisable.
+    automatisable: false
+    Regroupement:  regroup1
+    instruction:   >
+      Pas d'exécution manuelle non plus.
+    
+  test2:
+    nom:           Test 2
+    description:   >
+      Ceci est un exemple de test automatisable.
+    automatisable: true
+    Regroupement:  regroup2
+    instruction:   >
+      
+  test3:
+    nom:           Test 3
+    description:   >
+      Ceci est un exemple de test automatisable et correctement implémenté.
+    automatisable: true
+    Regroupement:  regroup3
+    instruction:   >
+      
+    
+  test4:
+    nom:           Test 4
+    description:   >
+      Ceci est un exemple de test automatisable et correctement implémenté mais provoquant une erreur à l'exécution.
+    automatisable: true
+    Regroupement:  regroup4
+    instruction:   >
+      
+  test5:
+    nom:           Test 5
+    description:   >
+      Ceci est un test utilisé pour la recette
+    automatisable: false
+    Regroupement:  regroup1
+    instruction:   >
+      
