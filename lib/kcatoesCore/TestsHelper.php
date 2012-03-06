@@ -22,7 +22,7 @@ class TestsHelper {
 	 * 
 	 * @return array
 	 */	
-  public static function getAllPlugins()
+  public static function getAllTestsFromYaml()
   {
     //$allPluginPath = sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins';
     $allPluginPath = sfConfig::get('app_pluginpath');
@@ -45,7 +45,7 @@ class TestsHelper {
    *    
    * @return array
    */
-  public static function getAllTests()
+  public static function getAllTestsFromDir()
   {
     $allTests = array();
     
@@ -62,7 +62,8 @@ class TestsHelper {
             {
               if ($entry != '.' && $entry != '..')
               {
-                $allTests[] = 'Kcatoes'.DIRECTORY_SEPARATOR.$entryPlugin.DIRECTORY_SEPARATOR.str_replace('.class.php', '', $entry);
+                //$allTests[] = 'Kcatoes'.DIRECTORY_SEPARATOR.$entryPlugin.DIRECTORY_SEPARATOR.str_replace('.class.php', '', $entry);
+                $allTests[] = 'Kcatoes'.'\\'.$entryPlugin.'\\'.str_replace('.class.php', '', $entry);
               }
             }
           }
@@ -74,12 +75,12 @@ class TestsHelper {
   
   
 	/**
-	 * Récupère
+	 * Retourne une liste des classes (avec namespace) à partir du tableau de conf issu du YAML
 	 * 
 	 * @param array $testsByPluginAndRubrique
 	 * @return array
 	 */
-	public static function getTestsClass(array $testsByPluginAndRubrique)
+	public static function getTestsClassFromTab(array $testsByPluginAndRubrique)
 	{
 	  $tests = array();
 	  foreach ($testsByPluginAndRubrique as $plugin => $testsByRubrique)
@@ -88,19 +89,18 @@ class TestsHelper {
 	    {
         foreach ($listTest as $test)
 	      {
-	        //array_push($tests, 'Kcatoes\\'.$plugin.'\\'.$test);
-	        array_push($tests, 'Kcatoes'.DIRECTORY_SEPARATOR.$plugin.DIRECTORY_SEPARATOR.$test);
+	        array_push($tests, 'Kcatoes\\'.$plugin.'\\'.$test);
 	      }
 	    }
 	  }
 	  return $tests;
 	}
 	
+	
 	/**
-	 * Chargement des classes de test 
+	 * Chargement des classes de test (à partir du répertoire de plugins) 
 	 * 
-	 * @param unknown_type $allPluginPath
-	 * @return unknown_type
+	 * @param string $allPluginPath
 	 */
 	public static function getRequired($allPluginPath = null)
 	{

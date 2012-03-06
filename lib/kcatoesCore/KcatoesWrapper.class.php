@@ -196,8 +196,16 @@ class KcatoesWrapper
   	
     return $exportPath; 
   }
+
   
-  
+  /**
+   * Génération de la sortie
+   * 
+   * @param string $type
+   * @param boolean $history
+   * @param array $fields
+   * @return string
+   */
   public function output($type = 'csv', $history = false, &$fields = array())
   {
     $this->addLogInfo('Génération de la sortie');
@@ -347,6 +355,22 @@ class KcatoesWrapper
     }
     
     return $kcatoes;
+  }
+  
+  /**
+   * Charge un fichier de configuration au format YAML indiquant la liste des tests à passer 
+   * @param string $file
+   * @return array
+   */
+  public static function loadConf($file) {
+    $conf_tab = array();
+    
+    if (file_exists($file)) {
+      $conf_tab = sfYaml::load(file_get_contents($file));
+    }
+
+    // TODO : supprimer les tests inexistants ? ici ou ailleurs
+    return $conf_tab;
   }
   
   /*************************************************************************************************

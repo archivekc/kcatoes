@@ -33,13 +33,24 @@ EOF;
   	// définition de la zone horaire
   	date_default_timezone_set('Europe/Paris');
   	
+  	
     // liste des plugins et tests associés
     $allPluginPath = sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins';
   	$allPluginsFilename = $allPluginPath.DIRECTORY_SEPARATOR.'allPlugins.yml';
   	$allPlugins = sfYaml::load(file_get_contents($allPluginsFilename));
   	
-  	// chargement des classes utiles
-  	$tests = TestsHelper::getTestsClass($allPlugins);
+  	if (isset($options['conf']) && $options['conf'] != null && file_exists($options['conf']) ) {
+  		// Chargement du fichier de configuration
+  		$testList = KcatoesWrapper::loadConf($options['conf']);    
+  	} 
+  	else {
+  		// Tous les tests
+  		$testList = $allPlugins;
+  	}
+
+  	// chargement des classes (format avec namespace)
+  	$tests = TestsHelper::getTestsClassFromTab($testList);
+      
   	TestsHelper::getRequired($allPluginPath);
   	
   	// initialisation et lancement des tests

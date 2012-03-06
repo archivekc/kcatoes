@@ -37,9 +37,17 @@ class Tester
   public function executeTest()
   {
   	foreach ($this->tests as $class) {
-  		$test = new $class($this->page);
-  		$test->execute();
-  		array_push($this->resTests,$test);
+  		
+  		// Teste l'existance du test
+  		if (class_exists($class, false)){
+	  		$test = new $class($this->page);
+	  		$test->execute();
+	  		array_push($this->resTests,$test);  			
+  		}
+  		else {
+  			$this->addLogErreur("Le test '$class' n'existe pas.");
+  		}
+  		
   	}
   	return;
   	
@@ -56,6 +64,12 @@ class Tester
     {
       $this->logger->err($errorMessage);
     }
+    
+    if ($this->logger instanceof sfNoLogger)
+    {
+    	// Sortie console
+    	echo 'ERROR: '.$errorMessage."\n";
+    }
   }
 
   /**
@@ -68,6 +82,12 @@ class Tester
     if ($this->logger instanceof sfLogger)
     {
       $this->logger->info($infoMessage);
+    }
+    
+    if ($this->logger instanceof sfNoLogger)
+    {
+      // Sortie console
+      echo 'INFO: '.$infoMessage."\n";
     }
   }
   

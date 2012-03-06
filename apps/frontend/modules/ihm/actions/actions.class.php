@@ -132,7 +132,7 @@ class ihmActions extends sfActions
   public function executeEditTestConfig(sfWebRequest $request)
   {
     TestsHelper::getRequired();
-    $this->availableTests = TestsHelper::getAllTests();
+    $this->availableTests = TestsHelper::getAllTestsFromDir();
 
     $this->config = Doctrine_Core::getTable('TestConfig')->findOneById($request->getParameter('id'));
     
@@ -184,7 +184,7 @@ class ihmActions extends sfActions
     $this->tests = $testAssoc->getTestConfig()->getCollectionTests();
 
     // Récupère la liste de tests disponibles
-    $this->allTests = TestsHelper::getAllTests();
+    $this->allTests = TestsHelper::getAllTestsFromDir();
     
     // Rangement des tests
     $this->tab_tests = array();
