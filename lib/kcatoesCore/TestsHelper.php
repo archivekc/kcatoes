@@ -17,17 +17,13 @@ class TestsHelper {
    *  array(
    *    'Kcatoes\rgaa\AbsenceDAttributsOuDElementsHtmlDePresentation', 
    *    'Kcatoes\rgaa\AbsenceInterruptionHierarchieTitres', 
-   *    'Kcatoes\rgaa\AbsenceCadreNonTitres', 
-   *    'Kcatoes\rgaa\PertinenceTitresCadres' ) 
+   *    ... ) 
 	 * 
 	 * @return array
 	 */	
   public static function getAllTestsFromYaml()
   {
-    //$allPluginPath = sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins';
     $allPluginPath = sfConfig::get('app_pluginpath');
-    
-    // TODO : se passer du YAML ? ( cf. getAllTests() )
     $allPluginsFilename = $allPluginPath.DIRECTORY_SEPARATOR.'allPlugins.yml';
     $allPlugins = sfYaml::load(file_get_contents($allPluginsFilename));
 
@@ -40,8 +36,7 @@ class TestsHelper {
    *  array(
    *    'Kcatoes\rgaa\AbsenceDAttributsOuDElementsHtmlDePresentation', 
    *    'Kcatoes\rgaa\AbsenceInterruptionHierarchieTitres', 
-   *    'Kcatoes\rgaa\AbsenceCadreNonTitres', 
-   *    'Kcatoes\rgaa\PertinenceTitresCadres' )
+   *    ... )
    *    
    * @return array
    */
@@ -52,18 +47,18 @@ class TestsHelper {
     $allPluginPath = sfConfig::get('app_pluginpath');
     if ($handleAll = opendir($allPluginPath))
     {
-      while (false !== ($entryPlugin = readdir($handleAll)))
+    	// Parcours des plugins (ex: rgaa)
+      while (false !== ($plugin = readdir($handleAll)))
       {
-        if ($entryPlugin != '.' && $entryPlugin != '..' && is_dir($allPluginPath.DIRECTORY_SEPARATOR.$entryPlugin))
+        if ($plugin != '.' && $plugin != '..' && is_dir($allPluginPath.DIRECTORY_SEPARATOR.$plugin))
         {
-          if ($handle = opendir($allPluginPath.DIRECTORY_SEPARATOR.$entryPlugin))
+          if ($handle = opendir($allPluginPath.DIRECTORY_SEPARATOR.$plugin))
           {
             while (false !== ($entry = readdir($handle)))
             {
               if ($entry != '.' && $entry != '..')
               {
-                //$allTests[] = 'Kcatoes'.DIRECTORY_SEPARATOR.$entryPlugin.DIRECTORY_SEPARATOR.str_replace('.class.php', '', $entry);
-                $allTests[] = 'Kcatoes'.'\\'.$entryPlugin.'\\'.str_replace('.class.php', '', $entry);
+                $allTests[] = 'Kcatoes'.'\\'.$plugin.'\\'.str_replace('.class.php', '', $entry);
               }
             }
           }
@@ -80,17 +75,14 @@ class TestsHelper {
 	 * @param array $testsByPluginAndRubrique
 	 * @return array
 	 */
-	public static function getTestsClassFromTab(array $testsByPluginAndRubrique)
+	public static function getTestsClassFromTab(array $testsByPlugin)
 	{
 	  $tests = array();
-	  foreach ($testsByPluginAndRubrique as $plugin => $testsByRubrique)
+	  foreach ($testsByPlugin as $plugin => $testsList)
 	  {
-	    foreach ($testsByRubrique as $rubrique => $listTest)
+	    foreach ($testsList as $test)
 	    {
-        foreach ($listTest as $test)
-	      {
-	        array_push($tests, 'Kcatoes\\'.$plugin.'\\'.$test);
-	      }
+        array_push($tests, 'Kcatoes\\'.$plugin.'\\'.$test);
 	    }
 	  }
 	  return $tests;
@@ -109,14 +101,14 @@ class TestsHelper {
 		}
 		if ($handleAll = opendir($allPluginPath))
 		{
-			while (false !== ($entryPlugin = readdir($handleAll))) {
-				if ($entryPlugin != '.' && $entryPlugin != '..' && is_dir($allPluginPath.DIRECTORY_SEPARATOR.$entryPlugin)){
-					if ($handle = opendir($allPluginPath.DIRECTORY_SEPARATOR.$entryPlugin))
+			while (false !== ($plugin = readdir($handleAll))) {
+				if ($plugin != '.' && $plugin != '..' && is_dir($allPluginPath.DIRECTORY_SEPARATOR.$plugin)){
+					if ($handle = opendir($allPluginPath.DIRECTORY_SEPARATOR.$plugin))
 					{
 						while (false !== ($entry = readdir($handle))) {
 							if ($entry != '.' && $entry != '..')
 							{
-								require_once $allPluginPath.DIRECTORY_SEPARATOR.$entryPlugin.DIRECTORY_SEPARATOR.$entry;
+								require_once $allPluginPath.DIRECTORY_SEPARATOR.$plugin.DIRECTORY_SEPARATOR.$entry;
 							}
 						}
 					}

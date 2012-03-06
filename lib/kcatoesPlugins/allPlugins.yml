@@ -1,9 +1,8 @@
 rgaa:
-  'test':
-    - 'AbsenceDAttributsOuDElementsHtmlDePresentation'
-    - 'AbsenceInterruptionHierarchieTitres'
-    - 'AbsenceCadreNonTitres'
-    - 'PertinenceTitresCadres'
-#  'rubrique2' :
-#    - 'AbsenceDeJustificationDuTexte'
-#    - 'AbsenceDeLElementBlink'
+  - AbsenceDAttributsOuDElementsHtmlDePresentation
+  - AbsenceInterruptionHierarchieTitres
+  - AbsenceCadreNonTitres
+  - PertinenceTitresCadres
+#rubrique2 :
+#  - AbsenceDeJustificationDuTexte
+#  - AbsenceDeLElementBlink

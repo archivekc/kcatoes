@@ -285,7 +285,6 @@ class KcatoesWrapper
     // TODO : déporter ?
     $tplPath = sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesOutput'.DIRECTORY_SEPARATOR.'tpl'.DIRECTORY_SEPARATOR;
 
-    
     switch($options['output'])
     {
       // ***** Export HTML simple *****
