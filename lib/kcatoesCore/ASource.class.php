@@ -23,6 +23,20 @@ abstract class ASource
 	}
 
 	/**
+	 * Retourne le libellé d'un test
+	 * @param string $classname  Le nom de la classe
+	 * @return string
+	 */
+	public static function getLibelle($classname){
+    if (class_exists($classname, false))
+    {
+      return $classname::testName;
+    }
+    return false;
+	}
+	
+	
+	/**
 	 * Permet d'ajouter une ligne de résultat au test
 	 * @param DOMNode $node
 	 * @param unknown_type $result

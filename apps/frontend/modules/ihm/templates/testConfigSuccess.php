@@ -4,7 +4,7 @@
 <ul>
   <?php foreach($config->getCollectionTests() as $test):?>
   <li>
-    <?php echo TestsHelper::getLibelle($test->getClass())?>
+    <?php echo ASource::getLibelle($test->getClass()) ?>
   </li>
   <?php endforeach; ?>
 </ul>

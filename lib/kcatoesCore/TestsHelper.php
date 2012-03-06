@@ -7,14 +7,10 @@ class TestsHelper {
     throw new KcatoesException('La classe TestsHelper n\'est pas prévue pour être instanciée');
   }
   
-  static public function getLibelle($classname)
-  {
-    if (class_exists($classname, false))
-    {
-      return $classname::testName;
-    }
-    return false;
-  }
+  
+  /******************************************************************************************
+   * Fonctions d'identification des tests 
+   */
   
 	/**
 	 * Identifie la liste des tests disponibles et la retourne sous la forme : 
@@ -129,8 +125,63 @@ class TestsHelper {
 		}
 	}
 
+	/******************************************************************************************
+	 * Fonctions utiles pour la génération 
+	 */
 	
-	// copies files and non-empty directories
+	
+  /**
+   * Génération du rapport à partir des résultats et de la template
+   * @param array $data
+   * @param string $tpl
+   * @return string
+   */
+  public static function generateRapportHtml(array $data, $tpl)
+  {
+    foreach ($data as $key => $value)
+    {
+        $tpl = str_replace('###'.strtoupper($key).'###', $value, $tpl);
+    }
+    return $tpl;
+  }
+  
+  /**
+   * Génération du rapport à partir des résultats et de la template
+   * avec historisation (commentaire, etc)
+   * 
+   * @param array $data
+   * @param string $tpl
+   * @return string
+   */
+	public static function generateHistorize($fields, $tpl)
+	{
+	  $str = <<<'EOT'
+	  $fields = array();
+	  $fields['select'] = array();
+	  $fields['textarea'] = array();
+EOT;
+
+	  foreach ($fields['select'] as $field)
+	  {                          
+	    $str .= '$fields[\'select\'][]=\''.$field.'\';'."\n";
+	  }
+	  foreach ($fields['textarea'] as $field)
+	  {                          
+	    $str .= '$fields[\'textarea\'][]=\''.$field.'\';'."\n";
+	  }
+	  return str_replace('###FIELDS###', $str, $tpl);
+	}
+  
+	
+  /******************************************************************************************
+   * Fonctions utiles pour le système de fichiers 
+   */
+	
+	/**
+	 * Copie récursive de fichiers 
+	 * @param string $src  Source
+	 * @param string $dst  Destination
+	 */
 	public static function rcopy($src, $dst) {
 	  if (file_exists($dst)) self::rrmdir($dst);
 	  if (is_dir($src)) {
@@ -142,7 +193,10 @@ class TestsHelper {
 	  else if (file_exists($src)) copy($src, $dst);
 	}
 	
-	// removes files and non-empty directories
+	/**
+	 * Suppression de répertoire
+	 * @param string $dir  Le répertoire à supprimer
+	 */
 	public static function rrmdir($dir) {
 	  if (is_dir($dir)) {
 	    $files = scandir($dir);
@@ -153,5 +207,4 @@ class TestsHelper {
 	  else if (file_exists($dir)) unlink($dir);
 	} 
 
-	
 }
