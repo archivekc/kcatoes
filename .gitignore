@@ -4,6 +4,12 @@ target
 lib/model/doctrine/base
 lib/form/doctrine/base
 lib/filter/doctrine/base
+lib/kcatoesOutput/tmp/*
 data/sql
 lib/vendor/goutte/src/vendor
-web/csv
+lib/vendor/symfony-1.4
+web/dev
+web/download/config/*.yml
+web/uploads/config/*.yml
+web/uploads/html/*.htm*
+web/output/*

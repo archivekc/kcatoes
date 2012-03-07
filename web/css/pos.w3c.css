@@ -62,16 +62,16 @@ body {
 }
 
 /* éléments génériques */
-h2 {
+h1 {
   padding-top: 1em;
   margin: 0 0 .5em;
 }
-h2>span {
+h1>span {
   border-bottom: solid 2px;
   padding-right: .5em;
   position: relative;
 }
-h2>span:after {
+h1>span:after {
   content: '.';
   position: absolute;
   bottom: -.35em;
@@ -83,4 +83,48 @@ h2>span:after {
 /* ecran de saisie de l'url */
 #userUrl_url {
   width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* formulaire */
+label {
+  display: inline-block;
+  width: 10em;
+  text-align: right;
+}
+[type=checkbox]+label,
+[type=radio]+label {
+	width: auto;
 }

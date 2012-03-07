@@ -24,15 +24,15 @@ strong {
   font-weight: bold;
 }
 
-h2 {
+h1 {
   font: italic bold 1.5em Georgia, "Times new roman", sans-serif;
   text-transform: uppercase;
 }
-h2 span:after {
+h1 span:after {
   font-style: normal;
 }
 
-h2 em {
+h1 em {
 	font-size: 2em;
   font-weight: bold;
   font-style: normal; 

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'C:\frameworks\symfony\symfony-1.4.9\lib\autoload\sfCoreAutoload.class.php';
+require_once dirname(__FILE__).'/../lib/vendor/symfony-1.4/lib/autoload/sfCoreAutoload.class.php';
 
 sfCoreAutoload::register();
 

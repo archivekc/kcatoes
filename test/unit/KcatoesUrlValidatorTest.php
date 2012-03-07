@@ -65,7 +65,7 @@ try
 }
 catch(KcatoesUrlException $e)
 {
-	$t->fail('Une exception inattendue a ete recuperee');
+	$t->fail('Une exception inattendue a ete recuperee: '.$e->getMessage());
 }
 try
 {
@@ -76,7 +76,7 @@ try
 }
 catch(KcatoesUrlException $e)
 {
-  $t->fail('Une exception inattendue a ete recuperee');
+  $t->fail('Une exception inattendue a ete recuperee: '.$e->getMessage());
 }
 try
 {
@@ -87,7 +87,7 @@ try
 }
 catch(KcatoesUrlException $e)
 {
-  $t->fail('Une exception inattendue a ete recuperee');
+  $t->fail('Une exception inattendue a ete recuperee: '.$e->getMessage());
 }
 try
 {
@@ -98,7 +98,7 @@ try
 }
 catch(KcatoesUrlException $e)
 {
-  $t->fail('Une exception inattendue a ete recuperee');
+  $t->fail('Une exception inattendue a ete recuperee: '.$e->getMessage());
 }
 try
 {
@@ -109,7 +109,7 @@ try
 }
 catch(KcatoesUrlException $e)
 {
-  $t->fail('Une exception inattendue a ete recuperee');
+  $t->fail('Une exception inattendue a ete recuperee: '.$e->getMessage());
 }
 
 try{
@@ -120,7 +120,7 @@ try{
 }
 catch(KcatoesUrlException $e)
 {
-	$t->pass('L\'exception attendue a ete recuperee');
+	$t->pass('L\'exception attendue a ete recuperee: '.$e->getMessage());
 }
 try{
   $t->comment('Test de connexion sur: http://www.jesuisdeconnecte.fr');
@@ -130,7 +130,7 @@ try{
 }
 catch(KcatoesUrlException $e)
 {
-  $t->pass('L\'exception attendue a ete recuperee');
+  $t->pass('L\'exception attendue a ete recuperee: '.$e->getMessage());
 }
 try
 {
@@ -141,7 +141,7 @@ try
 }
 catch(KcatoesUrlException $e)
 {
-  $t->pass('L\'exception attendue a ete recuperee');
+  $t->pass('L\'exception attendue a ete recuperee: '.$e->getMessage());
 }
 try
 {
@@ -152,7 +152,7 @@ try
 }
 catch(KcatoesUrlException $e)
 {
-  $t->pass('L\'exception attendue a ete recuperee');
+  $t->pass('L\'exception attendue a ete recuperee: '.$e->getMessage());
 }
 try{
   $t->comment('Test de validite sur: toto');
@@ -162,5 +162,5 @@ try{
 }
 catch(KcatoesUrlException $e)
 {
-  $t->pass('L\'exception attendue a ete recuperee');
+  $t->pass('L\'exception attendue a ete recuperee: '.$e->getMessage());
 }

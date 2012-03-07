@@ -1,0 +1,281 @@
+<?php
+
+/**
+ * Classe dont devra hériter le code de chaque test automatisable
+ *
+ * @package Kcatoes
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
+ */
+abstract class ASource
+{
+	const testName = 'Le nom du test n\'est pas défini';
+	const testId = 'L\'id du test n\'est pas défini';
+	protected $testProc = array();
+	protected $testDocLinks = array();
+	
+	protected $page;
+	
+	private $results = array();
+	
+	public function __construct(Page $page)
+	{
+		$this->page = $page;
+	}
+
+	/**
+	 * Retourne le libellé d'un test
+	 * @param string $classname  Le nom de la classe
+	 * @return string
+	 */
+	public static function getLibelle($classname){
+    if (class_exists($classname, false))
+    {
+      return $classname::testName;
+    }
+    return false;
+	}
+	
+	
+	/**
+	 * Permet d'ajouter une ligne de résultat au test
+	 * @param DOMNode $node
+	 * @param unknown_type $result
+	 * @param unknown_type $comment
+	 */
+	protected function addResult(DOMNode $node = null, $result, $comment)
+	{
+		if (is_null($node))
+		{
+      array_push($this->results, array(
+        'node' => null
+        ,'xpath' =>  ''
+        ,'cssSelector' => ''
+        ,'source' => ''
+        ,'result' => $result
+        ,'comment' => $comment
+      ));
+		}
+		else
+		{
+			array_push($this->results, array(
+			  'node' => $node
+			  ,'xpath' =>  $node->getNodePath()
+			  ,'cssSelector' => $this->getCssSelector($node)
+			  ,'source' => $this->getSourceCode($node)
+			  ,'result' => $result
+			  ,'comment' => $comment
+			));
+		}
+	}
+	
+	/**
+	 * Permet de récupérer les différentes lignes de résultat
+	 */
+	public function getTestResults()
+	{
+		return $this->results;
+	}
+	
+	/**
+	 * Permet de récupérer la procédure de test
+	 * Si $flat vaut true, alors le tableau est ramené à un
+	 * tableau à une dimension
+	 *  
+	 * @param boolean $flat
+	 */
+	public function getProc($flat = false)
+	{
+		if($flat)
+		{
+			return $this->array_flatten($this->testProc);
+		}
+		else
+		{
+			return $this->testProc;
+		}
+	}
+	
+	 /**
+   * Permet de récupérer les liens des document
+   * Si $flat vaut true, alors le tableau est ramené à un
+   * tableau à une dimension
+   *  
+   * @param boolean $flat
+   */
+  public function getDocLinks($flat = false)
+  {
+  	if($flat)
+    {
+      return $this->array_flatten($this->testDocLinks);
+    }
+    else
+    {
+      return $this->testDocLinks;
+    }
+  }
+	
+	/**
+	 * Permet de renvoyer un statut global sur le test en se fondant
+	 * sur d'éventuels résultats multiple (lorsque le test doit porter
+	 * sur plusieurs éléments)
+	 * 
+	 * @throws KcatoesWrapperException
+	 */
+	public function getMainResult()
+	{
+    // si aucun résultat intermédiaire -> NA
+    // si un failed -> failed
+    // si failed = 0 :
+    //     si que des NA: -> NA
+    //     si manuel >0 -> manuel
+    //     si manuel =0 et passed >0 ->passed
+       
+		$nbECHEC = 0;
+		$nbREUSSITE = 0;
+		$nbNA = 0;
+		$nbMANUEL = 0;
+		
+		foreach($this->results as $result)
+		{
+			switch($result['result'])
+			{
+				case Resultat::ECHEC:
+					$nbECHEC++;
+					break;
+				case Resultat::REUSSITE:
+					$nbREUSSITE++;
+				  break;
+				case Resultat::NA:
+					$nbNA++;
+					break;
+				case Resultat::MANUEL:
+				  $nbMANUEL++;
+				  break;
+				default:
+					throw new KcatoesWrapperException();
+			}
+			
+			if ($nbECHEC > 0)
+			{
+				return Resultat::ECHEC;
+			}
+			else
+			{
+			  if ($nbMANUEL > 0){
+			   	return Resultat::MANUEL;
+			  }
+				if ($nbREUSSITE == 0 && $nbNA > 0)
+				{
+					return Resultat::NA;
+				}
+				if ($nbREUSSITE > 0)
+				{
+					return Resultat::REUSSITE;
+				}
+			}
+		}
+		// la boucle finissant nécessairement par un return, si on se trouve ici
+		// c'est que le test est non applicable (aucun élément n'a été testé)
+		return Resultat::NA;
+	}
+	
+	/**
+	 * Permet de récupérer des informations de contexte sur le résultat
+	 * @param Array $itemName => $itemValue
+	 */
+	public function getResultContextInfo($result)
+	{
+		$info = array();
+		if (!is_null($result['node']))
+		{
+			$info['xpath'] = $result['xpath'];
+			$info['cssSelector'] = $result['cssSelector'];
+			$info['source'] = $result['source'];
+			$info['text'] = $result['node']->textContent;
+		}
+	}
+	
+
+  /**
+   * Recréée un sélecteur CSS permettant d'accéder au DOMNode passé en paramètre
+   *
+   * @param DOMNode $node La node dont il faut recrééer le chemin XPath
+   *
+   * @return Le sélecteur CSS de la node passée en paramètre
+   *
+   */
+  private function getCssSelector(DOMNode $node)
+  {
+  	$domXpath = new DOMXPath($node->ownerDocument);
+  	$cssSelector = '';
+  	$first = true;
+  	do
+  	{
+  		$id = false;
+			foreach ($node->attributes as $attrName => $attrNode)
+			{
+				if ($attrName == 'id')
+				{
+					$id = $attrNode->nodeValue;
+				}
+			}
+  		if ($id)
+  		{
+  			$cssSelector = '#'.$id.($first?'':' ').$cssSelector;
+  		} else {
+	  		$position = 1+$domXpath->query('preceding-sibling::*', $node)->length;
+  			$cssSelector = $node->nodeName.':nth-child('.$position.')'.($first?'':' ').$cssSelector;
+  		}
+  		$first = false;
+  		$node = $node->parentNode;
+  		
+  	} while ($node->nodeName != 'html' && !$node instanceof DOMDocument && !$id);
+  	
+  	return $cssSelector;
+  }
+
+  /**
+   * Récupère le code source de la DOMNode passée en paramètre
+   *
+   * @param DOMNode $node La node dont il faut récupérer le code source
+   *
+   * @return Le code HTML de la node passée en paramètre
+   */
+  private function getSourceCode(DOMNode $node)
+  {
+    $temp_doc  = new DOMDocument('1.0', 'UTF-8');
+    $temp_doc->formatOutput = true;
+    $temp_node = $temp_doc->importNode($node, true);
+    $temp_doc->appendChild($temp_node);
+    //return $temp_doc->saveHTML();
+    return preg_replace('#<\?[^?]*\?>#', '', $temp_doc->saveXML());
+  }
+
+  /**
+   * Permet d'aplatir un tableau en un tableau à une dimension 
+   * @param array $input
+   * @return array the flattened array
+   */
+	private function array_flatten(array $input) { 
+	   if (!is_array($input)) { 
+	     return FALSE; 
+	   } 
+	   $result = array(); 
+	   foreach ($input as $key => $value) { 
+	     if (is_array($value)) { 
+	       $result = array_merge($result, $this->array_flatten($value)); 
+	     } 
+	     else { 
+	       $result[$key] = $value; 
+	     } 
+	   } 
+	   return $result; 
+	 }
+  
+  /**
+   * Exécute le test implémenté sur une page web
+   *
+   * @param Page $page La page sur à tester
+   */
+  abstract public function execute();
+}

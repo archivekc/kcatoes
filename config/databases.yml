@@ -6,6 +6,13 @@ dev:
     param:
       dsn:      mysql:host=localhost;dbname=kcatoes_dev
       username: root
+      password:
+       
+prod:
+  doctrine:
+    param:
+      dsn:      mysql:host=localhost;dbname=kcatoes_prod
+      username: root
       password: 
 
 test:

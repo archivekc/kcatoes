@@ -19,15 +19,78 @@ class testActions extends sfActions
    */
   public function executeUrl(sfWebRequest $request)
   {
+    $this->error = '';
     $this->form = new UrlForm();
     if ($request->isMethod('post'))
     {
       $this->addLogInfo('Lancement de la validation de l\'URL');
       if ($this->processForm($request, $this->form))
       {
-        $formContent = $request->getParameter($this->form->getName());
+        $formContent = $this->form->getValues();
+        print_r($formContent);
+
+        if (!empty($formContent['htmlFile']))
+        {
+          $formContent['htmlFile']->save();
+          $fileName = $formContent['htmlFile']->getSavedName();
+        }
+        else if (empty($formContent['url']))
+        {
+          $this->error = 'Vous devez choisir une URL ou un fichier à tester.';
+          $this->addLogErreur($this->error);
+          return sfView::SUCCESS;
+        }
+        else
+        {
+          $fileName = '';
+        }
+
         $this->getUser()->setAttribute('url', $formContent['url'], 'wizard');
-        $this->redirect('test/thematique');
+        $this->getUser()->setAttribute('htmlFile', $fileName, 'wizard');
+        if ($formContent['conf'] === 'wizard')
+        {
+          $this->redirect('test/thematique');
+        }
+        else
+        {
+          $this->redirect('test/import');
+        }
+      }
+    }
+  }
+
+  /**
+   * Contrôleur de la page d'import de fichier de configuration
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeImport(sfWebRequest $request)
+  {
+    $this->form = new ImportForm();
+    $this->error = '';
+    if ($request->isMethod('post'))
+    {
+      if ($this->processForm($request, $this->form))
+      {
+        $uploadedFile = $this->form->getValue('configFile');
+        $uploadedFile->save();
+
+        $fileName = $uploadedFile->getSavedName();
+
+        try
+        {
+          $config = ConfigurationFile::load($fileName);
+        }
+        catch (KcatoesConfigurationFileException $e)
+        {
+          $this->error = $e->getMessage();
+          $this->addLogErreur($this->error);
+          return sfView::SUCCESS;
+        }
+
+        $this->getUser()->setAttribute('test', $config['Tests'], 'wizard');
+        $this->redirect('test/confirmation');
+
       }
     }
   }
@@ -124,97 +187,75 @@ class testActions extends sfActions
    */
   public function executeConfirmation(sfWebRequest $request)
   {
-    $testsId = $this->getUser()->getAttribute('test', null, 'wizard');
-    $url = $this->getUser()->getAttribute('url', null, 'wizard');
+    $testsId  = $this->getUser()->getAttribute('test', null, 'wizard');
+    $url      = $this->getUser()->getAttribute('url', null, 'wizard');
+    $htmlFile = $this->getUser()->getAttribute('htmlFile', null, 'wizard');
     $valide = $request->getParameter('valide');
     if ($valide)
     {
       $this->getUser()->getAttributeHolder()->removeNamespace('wizard');
       $this->getUser()->setAttribute('selectedTests', $testsId);
       $this->getUser()->setAttribute('url', $url);
+      $this->getUser()->setAttribute('htmlFile', $htmlFile);
       $this->redirect('test/execute');
     }
-    else
-    {
-      $this->selectedTests = array();
-      $tableTest = Doctrine_Core::getTable('test');
+    $this->selectedTests = array();
 
-      foreach ($testsId as $testId)
-      {
-        $test = $tableTest->findOneById($testId);
-        $this->selectedTests[] = (string)$test;
-      }
-      sort($this->selectedTests);
-      $this->testCount = count($this->selectedTests);
+    $testsNames = array();
+    $tableTest  = Doctrine_Core::getTable('test');
+
+    foreach ($testsId as $testId)
+    {
+      $test                  = $tableTest->findOneById($testId);
+      $testsNames[]          = $test->getNom();
+      $this->selectedTests[] = (string)$test;
     }
+    sort($this->selectedTests);
+    $this->testCount = count($this->selectedTests);
+
+    $config['Tests'] = $testsNames;
+
+    try
+    {
+      $this->downloadConfig = ConfigurationFile::create($config);
+    }
+    catch (KcatoesConfigurationFileException $e)
+    {
+      $this->error = $e->getMessage();
+      $this->addLogErreur($this->error);
+      $this->downloadConfig = '';
+      return sfView::SUCCESS;
+    }
+    $this->error = '';
   }
 
   /**
-   * Contrôleur du coeur de l'application
+   * Contrôleur du framework
    *
    * @param sfWebRequest $request
    */
   public function executeExecute(sfWebRequest $request)
   {
     $this->url = $this->getUser()->getAttribute('url');
+    $htmlFile  = $this->getUser()->getAttribute('htmlFile');
+    $listeIds  = $this->getUser()->getAttribute('selectedTests');
 
-    $listeIds = $this->getUser()->getAttribute('selectedTests');
-    $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
+    $htmlContent = file_get_contents($htmlFile);
 
     try
     {
-      $content = $this->extractUrlContent($this->url);
+      $kcatoes = new KcatoesWrapper($listeIds, $htmlContent, $this->url);
+      $this->cheminFichierCsv = $kcatoes->run();
     }
-    catch (KcatoesUrlReadException $e)
+    catch (KcatoesWrapperException $e)
     {
+      $this->info   = 'Une erreur est survenue lors de l\'exécution des tests.';
       $this->erreur = $e->getMessage();
-      $this->addLogErreur($this->erreur);
-      $this->info = 'Une erreur est survenue lors de la récupération du contenu de la page.';
       $this->cheminFichierCsv = '';
       return sfView::SUCCESS;
     }
-    catch(Zend\Http\Client\Exception\RuntimeException $e)
-    {
-      $this->erreur = $e->getMessage();
-      $this->info = 'La page ne semble pas accessible.';
-      $this->cheminFichierCsv = '';
-      return sfView::SUCCESS;
-    }
-
-    $page = new Page($content, $this->url, sfContext::getInstance()->getLogger());
-    try
-    {
-      $page->buildCrawler();
-    }
-    catch (KcatoesCrawlerException $e)
-    {
-      $this->erreur = $e->getMessage();
-      $this->addLogErreur($this->erreur);
-      $this->info = 'Une erreur est survenue lors de la création du crawler de la page.';
-      $this->cheminFichierCsv = '';
-      return sfView::SUCCESS;
-    }
-
-    $tester = new Tester($page,
-                         $this->tests,
-                         sfContext::getInstance()->getLogger());
-    try
-    {
-      $tester->createExecutionList();
-    }
-    catch (KcatoesTesterException $e)
-    {
-      $this->erreur = $e->getMessage();
-      $this->addLogErreur($this->erreur);
-      $this->info = 'Une erreur est survenue lors de la création de la liste des tests à exécuter.';
-      $this->cheminFichierCsv = '';
-      return sfView::SUCCESS;
-    }
-
-    $tester->executeTest();
+    $this->info   = 'Traitement terminé';
     $this->erreur = '';
-    $this->info = 'Traitement terminé';
-    $this->cheminFichierCsv = $tester->toCSV();
   }
 
   public function executeDev(sfWebRequest $request)
@@ -274,7 +315,10 @@ class testActions extends sfActions
    */
   private function processForm(sfWebRequest $request, sfForm $form)
   {
-    $form->bind($request->getParameter($form->getName()));
+    $form->bind(
+      $request->getParameter($form->getName()),
+      $request->getFiles($form->getName())
+    );
     return $form->isValid();
   }
 
