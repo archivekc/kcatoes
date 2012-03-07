@@ -1,11 +1,9 @@
 <?php
 
 /**
- * Compte le nombre d'éléments permettant d'afficher une image et qui ne disposent
- * pas d'un attibut alt présents dans la page. Si ce compte est différent de 0,
- * le test échoue.
+ * Vérifie que toutes les images de la page ont bien un attribut alt.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDeLAttributAlt extends ASource
@@ -17,19 +15,22 @@ class PresenceDeLAttributAlt extends ASource
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $count = 0;
-    $imagesAlt = $crawler->filter('img, area, input[type=image], applet')->extract('alt');
+    $reussite = true;
+    $images = $page->crawler->filter('img, area, input[type=image], applet');
 
-    foreach($imagesAlt as $imageAlt)
+    foreach($images as $image)
     {
-      if ($imageAlt == '')
+      if (!$image->hasAttribute('alt'))
       {
-        $count++;
+        $reussite = false;
+        $this->complements[] = new Complement(
+          $this->getSourceCode($image),
+          $this->getXPath($image),
+          'Cette image ne possède pas d\'attribut alt'
+        );
       }
     }
 
-    $this->explication .= $count.' image(s) sans attribut alt';
-    return ($count == 0);
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

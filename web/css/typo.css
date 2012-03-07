@@ -1,0 +1,39 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;;
+	line-height: 1.5;
+}
+
+/* entete */
+#header h1 {
+  font-size: 2em;
+  text-align: center;
+}
+
+/* footer */
+#footer {
+  text-align: center;
+}
+
+/* erreurs */
+.error_list {
+  font-weight: bold;
+}
+
+/* elements génériques */
+strong {
+  font-weight: bold;
+}
+
+h2 {
+  font: italic bold 1.5em Georgia, "Times new roman", sans-serif;
+  text-transform: uppercase;
+}
+h2 span:after {
+  font-style: normal;
+}
+
+h2 em {
+	font-size: 2em;
+  font-weight: bold;
+  font-style: normal; 
+}

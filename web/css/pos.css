@@ -1,0 +1,5 @@
+/* régles w3c */
+@import 'pos.w3c.css';
+
+/* spécifiques ie6 */
+@import 'pos.ie6.css';

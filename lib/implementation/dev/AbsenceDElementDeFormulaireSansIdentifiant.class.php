@@ -5,7 +5,7 @@
  * title ni un attribut id renseigné et unique.
  * Si ce compte est différent de 0, le test échoue.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 use Symfony\Component\DomCrawler\Crawler;
@@ -13,46 +13,46 @@ class AbsenceDElementDeFormulaireSansIdentifiant extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
+
   public function execute(Page $page)
   {
-    $count = 0;
+    $reussite = true;
     $crawler = $page->crawler;
-    $filedId = array();
-    $nombres = array();
-    $elements = new Crawler();
-    $formulaire = $crawler->filter('input[type=text][id], input[type=password][id],
-                              input[type=file][id], input[type=radio][id],
-                              input[type=checkbox][id], textarea[id], select[id]');
+    $ids = array();
+
+    $formulaire = $crawler->filter('input[type=text], input[type=password],
+                              input[type=file], input[type=radio],
+                              input[type=checkbox], textarea, select');
+
     foreach ($formulaire as $node)
     {
       if (!$node->hasAttribute('title') || $node->getAttribute('title') == '')
       {
-        $elements->add($node);
+        if(!$node->hasAttribute('id'))
+        {
+          $this->complements[] = new Complement(
+            $this->getSourceCode($node),
+            $this->getXPath($node),
+            'Cet élément n\'a pas d\'attribut id ni d\'attribut title renseigné');
+          $reussite = false;
+        }
+        else
+        {
+          $id = $node->getAttribute('id');
+          $occurences = $crawler->filter('[id='.$id.']');
+          if (count($occurences) > 1)
+          {
+            $this->complements[] = new Complement(
+              $this->getSourceCode($node),
+              $this->getXPath($node),
+              'Cet élément n\'a pas d\'attribut title renseigné et son attribut id n\'est pas unique'
+            );
+            $reussite = false;
+          }
+        }
       }
     }
-    $ids = $elements->extract('id');
-    foreach($ids as $id)
-    {
-      if ($id == '')
-      {
-        $count++;
-      }
-      else
-      {
-        $filedId[] = $id;
-      }
-    }
-    foreach($filedId as $value)
-    {
-      $nombres[$value] = ( empty($nombres[$value]) ) ? 1 : $nombres[$value]+1;
-    }
-    foreach($nombres as $occurence)
-    {
-      $count += ($occurence > 1) ? $occurence : 0;
-    }
-    $this->explication .= $count.' élément(s) de formulaire avec un attribut id vide, absent ou non unique';
-    return ($count == 0);
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

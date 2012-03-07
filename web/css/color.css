@@ -1,0 +1,44 @@
+/*
+@cMainBg: #fff9ea;
+@cMainText: #403e3b;
+@cMainHighlightedText: #bf3100;
+
+@cSecondaryBg: #bf3100;
+@cSecondaryText: #fff9ea;
+
+@cMainHighlightedBg: #EEE8D9;
+
+@cQuote: #CCC;
+*/
+
+body {
+  background: #FFF9EA url('../img/main_bg.png') left top repeat;
+  color: #403E3B;
+}
+#main {
+	background: #FFF;
+}
+
+/* contenu */
+
+.innerContent {
+  background: #FFF9EA url('../img/text_grain.png') top left repeat;;
+}
+
+#content .preDeco {
+  background: transparent url('../img/top_hatched_shadow.png') bottom left repeat-x;
+}
+#content .postDeco {
+  background: transparent url('../img/bottom_hatched_shadow.png') top left repeat-x;
+}
+
+/* erreurs */
+.error_list {
+  color: #D00;
+}
+
+/* éléments génériques */
+strong,
+h2 {
+  color: #bf3100;
+}

@@ -1,0 +1,86 @@
+body {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+#main {
+  margin: 1em 5%;
+}
+
+/* main */
+#main {
+  border: solid 1px;
+  border-radius: .5em;
+  -moz-border-radius: .5em;
+  -o-border-radius: .5em;
+  -webkit-border-radius: .5em;
+}
+
+/*  entete */
+#header {
+  overflow: hidden;
+}
+
+#logo {
+  float: left;
+  display: inline;
+  margin: .5em;
+}
+
+#logoKC {
+  float: right;
+  display: inline;
+  margin: 3em .5em;
+}
+
+#header h1 {
+  margin: .5em;
+  margin-top: 1.85em;
+}
+
+/* contenu principal */
+#content {
+  margin: 2em -6%;
+}
+.innerContent {
+	padding: 2em 10%;
+	font-size: 1.5em;
+}
+
+#content .preDeco {
+  height: 3em;
+  margin-top: -3em;
+}
+#content .postDeco {
+  height: 3em;
+  margin-bottom: -3em;
+}
+
+/* footer */
+#footer {
+  padding: 1em;
+}
+
+/* éléments génériques */
+h2 {
+  padding-top: 1em;
+  margin: 0 0 .5em;
+}
+h2>span {
+  border-bottom: solid 2px;
+  padding-right: .5em;
+  position: relative;
+}
+h2>span:after {
+  content: '.';
+  position: absolute;
+  bottom: -.35em;
+  right: -.2em;
+  font-size: 2em;
+}
+
+
+/* ecran de saisie de l'url */
+#userUrl_url {
+  width: 50%;
+}

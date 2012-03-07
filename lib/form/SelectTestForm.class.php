@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Test form.
+ * Formulaire de sélection de test
  *
  * @package    Kcatoes
  * @subpackage form

@@ -1,34 +1,50 @@
 <?php
 
 /**
- * Compte le nombre d'éléments optGroup dont l'attribut label et absent ou vide.
- * Si ce compte est différent de 0, le test échoue.
+ * Vérifie que les éléments optgroup ont tous attribut label et que celui-ci
+ * n'est pas vide
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDUnAttributLabelSurLElementOptgroup extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
+    $reussite = true;
     $count = 0;
-    $optGroupAlts = $crawler->filter('optgroup')->extract('label');
+    $optGroups = $page->crawler->filter('optgroup');
 
-    foreach ($optGroupAlts as $optGroupAlt)
+    foreach ($optGroups as $optGroup)
     {
-      if ($optGroupAlt == '')
+      if (!$optGroup->hasAttribute('label'))
       {
-        $count++;
+        $reussite = false;
+        $this->complements[] = new Complement(
+          $this->getSourceCode($optGroup),
+          $this->getXPath($optGroup),
+          'Cet élément optgroup ne possède pas d\'attribut label'
+        );
+      }
+      else
+      {
+        $label = $optGroup->getAttribute('label');
+        if (empty($label))
+        {
+          $reussite = false;
+          $this->complements[] = new Complement(
+            $this->getSourceCode($optGroup),
+            $this->getXPath($optGroup),
+            'Cet élément optgroup a un attribut label vide'
+          );
+        }
       }
     }
 
-    $this->explication .= $count.' éléments optGroup dont l\'attribut label est absent ou vide';
-    return ($count == 0);
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

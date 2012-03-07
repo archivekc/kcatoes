@@ -3,9 +3,9 @@
 use Symfony\Component\Validator\Constraints\UrlValidator;
 
 /**
+ * Formulaire de saisie de l'URL de la page à tester
  *
- * Enter description here ...
- * @author Adrien
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class UrlForm extends BaseForm
@@ -25,7 +25,7 @@ class UrlForm extends BaseForm
     ));
 
     $this->widgetSchema->setNameFormat('userUrl[%s]');
-    $this->widgetSchema->setLabel('url', 'Entrez l\'URL à valider :');
+    $this->widgetSchema->setLabel('url', 'Entrez l\'URL à valider');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 

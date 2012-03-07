@@ -4,23 +4,28 @@
  * Compte le nombre d'élément marquee de la page.
  * Si ce compte est différent de 0, le test échoue.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDElementMarquee extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $marquees = $crawler->filter('marquee');
+    $marquees = $page->crawler->filter('marquee');
 
-    $this->explication .= count($marquees).' élément(s) marquee';
+    foreach ($marquees as $marquee)
+    {
+      $this->complements[] = new Complement(
+        $this->getSourceCode($marquee),
+        $this->getXPath($marquee),
+        'La balise marquee ne devrait pas être présente dans la page'
+      );
+    }
 
-    return count($marquees) == 0;
+    return (count($marquees) == 0) ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

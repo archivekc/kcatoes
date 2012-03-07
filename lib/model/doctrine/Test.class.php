@@ -25,7 +25,7 @@ class Test extends BaseTest
   public function getNomCourt()
   {
     $nomCourt = $this->getNom();
-    $accent = array(
+    $accent   = array(
       'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'ç' => 'c',
       'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i',
       'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o',
@@ -45,49 +45,33 @@ class Test extends BaseTest
   }
 
   /**
-   * Vérifie si le test est automatisable
-   *
-   * @return true si le test est automatisable, false sinon
-   * @tested
-   */
-  public function isAutomatisable()
-  {
-    if ($this->automatisable)
-    {
-      return true;
-    }
-    else
-    {
-      $this->resultat = new Resultat(Resultat::MANUEL, 'Ce test doit être effectué manuellement');
-      $this->resultat->setInstruction($this->instruction);
-      return false;
-    }
-  }
-
-  /**
    * Vérifie si le test est exécutable
    *
    * @return true si le test est exécutable, false sinon
+   *
    * @tested
    */
   public function isExecutable()
   {
-    if($this->hasExecutable())
+    if ($this->hasExecutable())
     {
       $className = $this->getNomCourt();
-      $class = new $className();
+      $class     = new $className();
       if ($class instanceof ASource)
       {
         return true;
       }
       else
       {
-        $this->resultat = new Resultat(Resultat::NON_EXEC, 'La classe n\'hérite pas de ASource');
+        $this->resultat = new Resultat(Resultat::NON_EXEC);
+        $this->resultat->setExplicationErreur('La classe n\'hérite pas de ASource');
         return false;
       }
     }
-    else {
-      $this->resultat = new Resultat(Resultat::NON_EXEC, 'Impossible de trouver l\'implémentation');
+    else
+    {
+      $this->resultat = new Resultat(Resultat::NON_EXEC);
+      $this->resultat->setExplicationErreur('Impossible de trouver l\'implémentation');
       return false;
     }
   }
@@ -95,6 +79,7 @@ class Test extends BaseTest
   /**
    * Vérifie la classe implémentant l'exécution du test existe
    *
+   * @return true si l'implémentation a été trouvé, false sinon
    */
   private function hasExecutable()
   {
@@ -105,11 +90,12 @@ class Test extends BaseTest
    * Exécute le test
    *
    * @param Page $page La page sur laquelle exécuter le test
+   *
    * @tested
    */
   public function execute($page)
   {
-    $className = $this->getNomCourt();
+    $className      = $this->getNomCourt();
     $implementation = new $className();
 
     try
@@ -118,22 +104,33 @@ class Test extends BaseTest
     }
     catch (KcatoesTestException $e)
     {
-      $this->resultat = new Resultat(Resultat::ERREUR, $e->getMessage());
+      $this->resultat = new Resultat(Resultat::ERREUR);
+      $this->resultat->setExplicationErreur($e->getMessage());
       return;
     }
 
-    if ($res)
+    if ($res === Resultat::REUSSITE)
     {
-      $this->resultat = new Resultat(Resultat::REUSSITE, '');
+      $this->resultat = new Resultat($res);
+    }
+    else if ($res === Resultat::ECHEC || $res === Resultat::MANUEL)
+    {
+      $this->resultat = new Resultat($res);
+      $this->resultat->setComplements($implementation->getComplements());
     }
     else
     {
-      $this->resultat = new Resultat(Resultat::ECHEC, $implementation->getExplication());
+      $this->resultat = new Resultat(Resultat::ERREUR);
+      $this->resultat->setExplicationErreur('L\'implémentation a renvoyé un code'.
+                                            ' résultat inconnu');
+      return;
     }
   }
 
   /**
-   * Accesseur de la variable $resultat
+   * Accesseur de la variable $this->resultat
+   *
+   * @return Le resultat du test
    *
    */
   public function getResultat()
@@ -142,7 +139,22 @@ class Test extends BaseTest
   }
 
   /**
+   * Seter de la variable $this->resultat
+   *
+   * @param Resultat $resultat L'objet Resultat permettant de définir la variable
+   *                           $this->resultat
+   */
+  public function setResultat(Resultat $resultat)
+  {
+    $this->resultat = $resultat;
+  }
+
+  /**
    * Méthode de rendu pour label de formulaire
+   *
+   * @return Le nom du test accompagné de sa description
+   *
+   * @tested
    */
   public function getLongName()
   {
@@ -156,5 +168,24 @@ class Test extends BaseTest
   public function __toString()
   {
     return (string) $this->getNom();
+  }
+
+  /**
+   * Créée la liste des dépendances à exécuter avant de pouvoir exécuter ce
+   * test
+   *
+   * @return La liste des dépendance à exécuter pour ce test
+   *
+   * @tested
+   */
+  public function getExecutionList()
+  {
+    $executeList = array();
+    if ($this->dependance_id != null)
+    {
+      $executeList += $this->Dependance->getExecutionList();
+      $executeList += array($this->Dependance->getNom() => $this->Dependance);
+    }
+    return $executeList;
   }
 }

@@ -1,49 +1,52 @@
 <?php
 
 /**
- * Compte le nombre d'éléments de formulaire de la page n'ayant ni un attribut
- * title ni label associé.
- * Si ce compte est différent de 0, le test échoue.
+ * Vérifie si chaque élément formulaire ayant un attribut id unique mais pas
+ * d'attribut title ou un attribut title vide a un label associé.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
-use Symfony\Component\DomCrawler\Crawler;
 class AbsenceDElementDeFormulaireSansEtiquetteAssociee extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
   {
-    $count = 0;
+    $reussite = true;
     $crawler = $page->crawler;
-    $elements = new Crawler();
+    $ids = array();
+
     $formulaire = $crawler->filter('input[type=text][id], input[type=password][id],
                               input[type=file][id], input[type=radio][id],
                               input[type=checkbox][id], textarea[id], select[id]');
+
     foreach ($formulaire as $node)
     {
-      if (!$node->hasAttribute('title') || $node->getAttribute('title') == '')
+      $id = $node->getAttribute('id');
+      if ($id !== '')
       {
-        $elements->add($node);
+        $occurences = $crawler->filter('[id='.$id.']');
+        if (count($occurences) === 1)
+        {
+          if (!$node->hasAttribute('title') || $node->getAttribute('title') == '')
+          {
+            $labels = $crawler->filter('label[for='.$id.']');
+            if (count($labels) === 0)
+            {
+              $this->complements[] = new Complement(
+                $this->getSourceCode($node),
+                $this->getXPath($node),
+                'Cet élément n\'a pas de label associé à son attribut id ni d\'attribut title renseigné'
+              );
+              $reussite = false;
+            }
+          }
+        }
       }
     }
-    $ids = $elements->each(function ($node, $i)
-    {
-      return $node->attributes->getNamedItem('id')->nodeValue;
-    });
-    foreach($ids as $id)
-    {
-      $labels = $crawler->filter('label[for='.$id.']');
-      if (count($labels) != 1)
-      {
-        $count++;
-      }
-    }
-    $this->explication .= $count.' élément(s) de formulaire sans attribut title ou sans label associé';
-    return ($count == 0);
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

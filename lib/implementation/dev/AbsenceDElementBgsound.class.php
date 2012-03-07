@@ -4,23 +4,28 @@
  * Compte le nombre d'élément bgsound de la page.
  * Si ce compte est différent de 0, le test échoue.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class AbsenceDElementBgsound extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $bgsounds = $crawler->filter('bgsound');
+    $bgsounds = $page->crawler->filter('bgsound');
 
-    $this->explication .= count($bgsounds).' élément(s) bgsound';
+    foreach ($bgsounds as $bgsound)
+    {
+      $this->complements[] = new Complement(
+        $this->getSourceCode($bgsound),
+        $this->getXPath($bgsound),
+        'La balise bgsound ne devrait pas être présente dans la page'
+      );
+    }
 
-    return count($bgsounds) == 0;
+    return (count($bgsounds) == 0) ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

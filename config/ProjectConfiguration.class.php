@@ -1,6 +1,7 @@
 <?php
 
-require_once 'C://frameworks//symfony//symfony-1.4.9//lib/autoload/sfCoreAutoload.class.php';
+require_once 'C:\frameworks\symfony\symfony-1.4.9\lib\autoload\sfCoreAutoload.class.php';
+
 sfCoreAutoload::register();
 
 /**

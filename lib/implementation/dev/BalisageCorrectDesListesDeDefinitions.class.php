@@ -2,24 +2,22 @@
 
 /**
  * Pour chaque élément dl, si le premier élément fils n'est pas un élément dt
- * alors le test échoue. Dans ce cas, il compte le nombre d'éléments dd présents
- * dans le dl avant l'appartition du premier dt.
+ * alors le test échoue. Si c'est le cas, le tableau d'echecs contiendra la
+ * liste des éléments dd n'ayant pas d'élément dt associé.
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class BalisageCorrectDesListesDeDefinitions extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La page contient ';
   }
 
   public function execute(Page $page)
   {
-    $count = 0;
-    $crawler = $page->crawler;
-    $liste = $crawler->filter('dl');
+    $reussite = true;
+    $liste = $page->crawler->filter('dl');
 
     foreach($liste as $item)
     {
@@ -31,14 +29,18 @@ class BalisageCorrectDesListesDeDefinitions extends ASource
         {
           if ($childNodes->item($i)->nodeName == 'dd')
           {
-            $count++;
+            $reussite = false;
+            $this->complements[] = new Complement(
+              $this->getSourceCode($childNodes->item($i)),
+              $this->getXPath($childNodes->item($i)),
+              'Cet élément dd n\' pas associé à un élément dt'
+            );
           }
           $i++;
         }
       }
     }
 
-    $this->explication .= $count.' éléments dd qui ne sont pas associés à un élément dt';
-    return ($count == 0);
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

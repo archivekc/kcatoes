@@ -60,7 +60,7 @@ try
 {
   $t->comment('Test de syntaxe sur: '.$urlValide);
   $t->comment('Doit passer sans lancer d\'exception');
-  UrlValidation::isSyntaxeValide($urlValide);
+  KcatoesUrlValidator::isSyntaxeValide($urlValide);
   $t->pass('Aucune exception n\'a ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -71,7 +71,7 @@ try
 {
   $t->comment('Test de connexion sur: '.$urlValide);
   $t->comment('Doit passer sans lancer d\'exception');
-  UrlValidation::isDnsValide($urlValide);
+  KcatoesUrlValidator::isDnsValide($urlValide);
   $t->pass('Aucune exception n\'a ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -82,7 +82,7 @@ try
 {
   $t->comment('Test de code HTTP sur une meta donnee contenant un code 200');
   $t->comment('Doit passer sans lancer d\'exception');
-  UrlValidation::isCodeHttpValide($metaValide);
+  KcatoesUrlValidator::isCodeHttpValide($metaValide);
   $t->pass('Aucune exception n\'a ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -93,7 +93,7 @@ try
 {
   $t->comment('Test de type de page sur une meta donnee avec un Content-type text/html');
   $t->comment('Doit passer sans lancer d\'exception');
-  UrlValidation::isFormatValide($metaValide);
+  KcatoesUrlValidator::isFormatValide($metaValide);
   $t->pass('Aucune exception n\'a ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -115,7 +115,7 @@ catch(KcatoesUrlException $e)
 try{
 	$t->comment('Test de syntaxe sur: toto');
 	$t->comment('Doit lancer une exception de type KcatoesUrlException');
-	UrlValidation::isSyntaxeValide('toto');
+	KcatoesUrlValidator::isSyntaxeValide('toto');
 	$t->fail('L\'exception attendue n\'a pas ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -125,7 +125,7 @@ catch(KcatoesUrlException $e)
 try{
   $t->comment('Test de connexion sur: http://www.jesuisdeconnecte.fr');
   $t->comment('Doit lancer une exception de type KcatoesUrlException');
-  UrlValidation::isDnsValide('http://www.jesuisdeconnecte.fr');
+  KcatoesUrlValidator::isDnsValide('http://www.jesuisdeconnecte.fr');
   $t->fail('L\'exception attendue n\'a pas ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -136,7 +136,7 @@ try
 {
   $t->comment('Test de code HTTP sur une meta donnee contenant un code 302');
   $t->comment('Doit lancer une exception de type KcatoesUrlException');
-  UrlValidation::isCodeHttpValide($metaInvalide);
+  KcatoesUrlValidator::isCodeHttpValide($metaInvalide);
   $t->fail('L\'exception attendue n\'a pas ete recuperee');
 }
 catch(KcatoesUrlException $e)
@@ -147,7 +147,7 @@ try
 {
   $t->comment('Test de type de page sur une meta donnee avec un Content-type image/jpeg');
   $t->comment('Doit lancer une exception de type KcatoesUrlException');
-  UrlValidation::isFormatValide($metaInvalide);
+  KcatoesUrlValidator::isFormatValide($metaInvalide);
   $t->fail('L\'exception attendue n\'a pas ete recuperee');
 }
 catch(KcatoesUrlException $e)

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Thematique form.
+ * Formulaire de sélection de thématique
  *
  * @package    Kcatoes
  * @subpackage form

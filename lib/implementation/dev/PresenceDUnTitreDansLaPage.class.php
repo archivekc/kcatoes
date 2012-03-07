@@ -3,21 +3,25 @@
 /**
  * Vérifie la présence d'au moins un élément title dans la page
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDUnTitreDansLaPage extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'Aucun titre n\'est présent dans la page';
   }
 
   public function execute(Page $page)
   {
-    $crawler = $page->crawler;
-    $titles = $crawler->filter('title');
+    $reussite = true;
+    $titles = $page->crawler->filter('title');
 
-    return (count($titles) > 0);
+    if (count($titles) === 0)
+    {
+      $this->complements[] = new Complement('', '', 'Aucun titre n\'est présent dans la page');
+      $reussite = false;
+    }
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

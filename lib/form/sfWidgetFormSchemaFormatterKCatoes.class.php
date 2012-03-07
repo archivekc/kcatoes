@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Formateur des formulaires de KCatoès
+ *
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
+ *
+ */
 class sfWidgetFormSchemaFormatterKCatoes extends sfWidgetFormSchemaFormatterList
 {
 

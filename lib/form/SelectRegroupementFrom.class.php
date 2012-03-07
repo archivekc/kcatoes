@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Regroupement form.
+ * Formulaire de sélection de regroupement
  *
  * @package    Kcatoes
  * @subpackage form

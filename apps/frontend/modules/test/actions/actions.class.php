@@ -156,20 +156,20 @@ class testActions extends sfActions
    */
   public function executeExecute(sfWebRequest $request)
   {
-    $this->urlDeTest = $this->getUser()->getAttribute('url');
+    $this->url = $this->getUser()->getAttribute('url');
 
     $listeIds = $this->getUser()->getAttribute('selectedTests');
     $this->tests = Doctrine::getTable('Test')->getCollectionFromIds($listeIds);
 
-    $page = new page($this->urlDeTest, sfContext::getInstance()->getLogger());
     try
     {
-      $page->buildCrawler();
+      $content = $this->extractUrlContent($this->url);
     }
-    catch (KcatoesCrawlerException $e)
+    catch (KcatoesUrlReadException $e)
     {
       $this->erreur = $e->getMessage();
-      $this->info = 'Une erreur est survenue lors de la création du crawler de la page.';
+      $this->addLogErreur($this->erreur);
+      $this->info = 'Une erreur est survenue lors de la récupération du contenu de la page.';
       $this->cheminFichierCsv = '';
       return sfView::SUCCESS;
     }
@@ -181,9 +181,36 @@ class testActions extends sfActions
       return sfView::SUCCESS;
     }
 
+    $page = new Page($content, $this->url, sfContext::getInstance()->getLogger());
+    try
+    {
+      $page->buildCrawler();
+    }
+    catch (KcatoesCrawlerException $e)
+    {
+      $this->erreur = $e->getMessage();
+      $this->addLogErreur($this->erreur);
+      $this->info = 'Une erreur est survenue lors de la création du crawler de la page.';
+      $this->cheminFichierCsv = '';
+      return sfView::SUCCESS;
+    }
+
     $tester = new Tester($page,
                          $this->tests,
                          sfContext::getInstance()->getLogger());
+    try
+    {
+      $tester->createExecutionList();
+    }
+    catch (KcatoesTesterException $e)
+    {
+      $this->erreur = $e->getMessage();
+      $this->addLogErreur($this->erreur);
+      $this->info = 'Une erreur est survenue lors de la création de la liste des tests à exécuter.';
+      $this->cheminFichierCsv = '';
+      return sfView::SUCCESS;
+    }
+
     $tester->executeTest();
     $this->erreur = '';
     $this->info = 'Traitement terminé';
@@ -192,7 +219,7 @@ class testActions extends sfActions
 
   public function executeDev(sfWebRequest $request)
   {
-    $this->tests = Doctrine::getTable('Test')->getTestAutomatisable();
+    $this->tests = Doctrine::getTable('Test')->createQuery()->select()->execute();
 
     foreach($this->tests as $test)
     {
@@ -204,7 +231,6 @@ class testActions extends sfActions
         '{'."\n".
         '  public function __construct()'."\n".
         '  {'."\n".
-        '    $this->explication = \'\';'."\n".
         '  }'."\n".
         "\n".
         '  public function execute(Page $page)'."\n".
@@ -246,9 +272,36 @@ class testActions extends sfActions
    * @param sfWebRequest $request La requête contenant les données à valider
    * @param sfForm       $form    Le fomulaire à valider
    */
-  protected function processForm(sfWebRequest $request, sfForm $form)
+  private function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()));
     return $form->isValid();
+  }
+
+  /**
+   * Extrait le contenu d'un site web sous forme de string après avoir vérifié
+   * la validité de son URL
+   *
+   * @param string $url L'url de la page
+   * @throws KcatoesUrlReadException
+   * @return string $content Le contenu de la page
+   */
+  private function extractUrlContent($url)
+  {
+    try
+    {
+      KcatoesUrlValidator::isValide($url);
+    }
+    catch(KcatoesUrlException $e)
+    {
+      $errorMessage = 'L\'URL indiquée n\'est pas valide: '.$e->getMessage();
+      throw new KcatoesUrlReadException($errorMessage);
+    }
+    $content = file_get_contents($url);
+    if ($content === false)
+    {
+      throw new KcatoesUrlReadException('Erreur lors de la lecture du contenu de l\'url');
+    }
+    return $content;
   }
 }

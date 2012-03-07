@@ -1,14 +1,13 @@
 <?php
 
-class Echec extends ASource
+class TestUnitaire1 extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'Echoue toujours';
   }
 
   public function execute(Page $page)
   {
-    return false;
+    return Resultat::REUSSITE;
   }
 }

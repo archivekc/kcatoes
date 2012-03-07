@@ -4,18 +4,18 @@
  * Vérifie, quand elle est présente, la conformité de la syntaxe de la déclaration
  * !DOCTYPE par rapport aux syntaxes validées par le W3C
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class ConformiteSyntaxiqueDeLaDeclarationDUtilisationDUneDtd extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'La déclaration de DOCTYPE n\'a pas été faite selon une syntaxe validée par le W3C';
   }
 
   public function execute(Page $page)
   {
+    $reussite = true;
     $url = $page->url;
     $lines = file($url);
     $i = 0;
@@ -25,7 +25,7 @@ class ConformiteSyntaxiqueDeLaDeclarationDUtilisationDUneDtd extends ASource
     {
       if (preg_match('#<!DOCTYPE.*#', $lines[$i]))
       {
-        $doctype = preg_replace('#\s#', ' ', $lines[$i]);
+        $doctype = trim($lines[$i]);
         $foundDoctype = true;
       }
       $i++;
@@ -33,8 +33,7 @@ class ConformiteSyntaxiqueDeLaDeclarationDUtilisationDUneDtd extends ASource
 
     if (!$foundDoctype)
     {
-      $this->explication = 'Aucune déclaration de DOCTYPE n\'est présente dans la page';
-      return false;
+      throw new KcatoesTestException('Aucune déclaration de DOCTYPE n\'est présente dans la page');
     }
     $knownDoctypes = array('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">',
                            '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">',
@@ -44,6 +43,16 @@ class ConformiteSyntaxiqueDeLaDeclarationDUtilisationDUneDtd extends ASource
                            '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">',
                            '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">',
                            '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN" "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">');
-    return (array_search($doctype, $knownDoctypes) >= 0)? true:false;
+
+    if (!in_array($doctype, $knownDoctypes))
+    {
+      $this->complements[] = new Complement(
+        $doctype,
+        '',
+        'La déclaration de DOCTYPE n\'a pas été faite selon une syntaxe validée par le W3C'
+      );
+      $reussite = false;
+    }
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

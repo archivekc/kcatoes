@@ -3,18 +3,18 @@
 /**
  * Vérifie la présence d'une déclaration de !DOCTYPE
  *
- * @author Adrien Couet
+ * @author Adrien Couet <adrien.couet@keyconsulting.fr>
  *
  */
 class PresenceDeLaDeclarationDUtilisationDUneDtd extends ASource
 {
   public function __construct()
   {
-    $this->explication = 'Aucune déclaration de DOCTYPE n\'est présente dans la page';
   }
 
   public function execute(Page $page)
   {
+    $reussite = true;
     $url = $page->url;
     $lines = file($url);
     $i = 0;
@@ -30,6 +30,11 @@ class PresenceDeLaDeclarationDUtilisationDUneDtd extends ASource
       $i++;
     }
 
-    return $foundDoctype;
+    if (!$foundDoctype)
+    {
+      $this->complements[] = new Complement('', '', 'Aucune déclaration de DOCTYPE n\'est présente dans la page');
+      $reussite = false;
+    }
+    return $reussite ? Resultat::REUSSITE : Resultat::ECHEC;
   }
 }

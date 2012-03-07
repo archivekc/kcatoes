@@ -7,23 +7,26 @@ use Goutte\Client;
  * Wrapper de Goutte pour KCatoes
  *
  * @package Kcatoes
- * @author Antoine Rolland <antoine.rolland@keyconsulting.fr>
+ * @author  Antoine Rolland <antoine.rolland@keyconsulting.fr>
  */
 class Page extends Client
 {
+  private $content;
   private $url;
   private $logger;
 
   /**
    * Construit une page à partir d'une URL
    *
-   * @param String   $_url    L'URL de la page
-   * @param sfLogger $_logger Le logger à utiliser (optionel)
+   * @param String   $_content Le contenu de la page
+   * @param String   $_url     L'URL de la page (optionelle)
+   * @param sfLogger $_logger  Le logger à utiliser (optionel)
    */
-  public function __construct($_url, sfLogger $_logger = null)
+  public function __construct($_content, $_url = null, sfLogger $_logger = null)
   {
-    $this->url = $_url;
-    $this->logger = $_logger;
+    $this->content = $_content;
+    $this->url     = $_url;
+    $this->logger  = $_logger;
     parent::__construct();
   }
 
@@ -31,6 +34,7 @@ class Page extends Client
    * Fonction d'accès aux paramètres de la classe
    *
    * @param  String $var Le nom de la variable à récupérer
+   *
    * @return La valeur de la variable
    */
   public function __get($var)
@@ -39,36 +43,21 @@ class Page extends Client
   }
 
   /**
-   * Vérifie la validité de l'url de la page puis génère son crawler
+   * Génère le crawler de la page à partir de son contenu
    *
    * @date 25/02/2011
    */
   public function buildCrawler()
   {
+    $this->addLogInfo('Génération du crawler');
     try
     {
-      KcatoesUrlValidator::isValide($this->url);
+      $this->crawler = $this->createCrawlerFromContent($this->url, $this->content, 'text/html');
     }
-    catch(KcatoesUrlException $e)
+    catch (Exception $e)
     {
-      $errorMessage = 'L\'URL indiquée n\'est pas valide: '.$e->getMessage();
-      $this->addLogErreur($errorMessage);
-      throw new KcatoesCrawlerException($errorMessage);
-    }
-    $this->request('GET', $this->url);
-    $this->addLogInfo('Génération du crawler - Ok');
-  }
-
-  /**
-   * Ajoute un message d'erreur au journal de log
-   *
-   * @param String $errorMessage Message à ajouter
-   */
-  private function addLogErreur($errorMessage)
-  {
-    if($this->logger instanceof sfLogger)
-    {
-      $this->logger->err($errorMessage);
+      $this->addLogErreur('Une erreur est survenue lors de la génération du crawler de la page');
+      throw new KcatoesCrawlerException($e->getMessage());
     }
   }
 
@@ -79,9 +68,22 @@ class Page extends Client
    */
   private function addLogInfo($infoMessage)
   {
-    if($this->logger instanceof sfLogger)
+    if ($this->logger instanceof sfLogger)
     {
       $this->logger->info($infoMessage);
+    }
+  }
+
+  /**
+   * Ajoute un message d'erreur au journal de log
+   *
+   * @param String $errorMessage Message à ajouter
+   */
+  private function addLogErreur($errorMessage)
+  {
+    if ($this->logger instanceof sfLogger)
+    {
+      $this->logger->err($errorMessage);
     }
   }
 }
