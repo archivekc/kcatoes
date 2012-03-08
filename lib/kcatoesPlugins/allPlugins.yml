@@ -10,6 +10,7 @@ rgaa:
   - AbsenceElementFormulaireSansIdentifiant
   - AbsenceElementFormulaireSansEtiquetteAssociee
   - PrésenceAttributAlt
+  - AbsenceElementBlink
 
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
