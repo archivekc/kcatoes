@@ -171,7 +171,6 @@ class KcatoesWrapper
 								      		//'-'.$page->getUrl().
 								      		'-'.$testConfig->getId().
 								      		//'-'.$testConfig->getLibelle().
-      		                '-'.$dateStr.
 								      		$DS;
       	}
       	else {
