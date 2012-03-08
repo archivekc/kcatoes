@@ -13,6 +13,7 @@ rgaa:
   - AbsenceElementBlink
   - AbsenceElementMarquee
   - AbsenceElementBgsound
+  - AbsenceElementMetaRefresh
 
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte

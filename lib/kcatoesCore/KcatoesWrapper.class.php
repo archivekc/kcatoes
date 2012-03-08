@@ -84,7 +84,7 @@ class KcatoesWrapper
       throw new KcatoesWrapperException($erreur);
     }
 
-    $page = new Page($content, $this->logger);
+    $page = new Page($content, $this->logger, $url);
     $this->rawcontent = $content;
 
     try
