@@ -15,27 +15,27 @@ class PertinenceTitresCadres extends \ASource
     'H64' => 'http://www.w3.org/TR/WCAG20-TECHS/H64.html'  
   );
 	
-  public function execute()
-  {
-    $crawler = $this->page->crawler;
-
-    $elements = 'frame, iframe';
-
-    $nodes = $crawler->filter($elements);
-    
-    $nbNode = 0;
-    foreach ($nodes as $node)
-    {
-		$title = $node->getAttribute('title');
-		if (strlen(trim($title)) > 0) {
-			$nbNode++;
-			$this->addResult($node, \Resultat::MANUEL, 'L\'attribut title est-il pertinent ? : '.$title);
+	public function execute()
+	{
+		$crawler = $this->page->crawler;
+		
+		$elements = 'frame, iframe';
+		
+		$nodes = $crawler->filter($elements);
+		
+		$nbNode = 0;
+		foreach ($nodes as $node)
+		{
+			$title = $node->getAttribute('title');
+			if (strlen(trim($title)) > 0) {
+				$nbNode++;
+				$this->addResult($node, \Resultat::MANUEL, 'L\'attribut title est-il pertinent ? : '.$title);
+			}
 		}
-    }
-
-    if ($nbNode == 0)
-    {
-	    $this->addResult(null, \Resultat::NA, 'Aucune frame ou iframe avec attribut title non vide dans le document');
-    }
-  }
+		
+		if ($nbNode == 0)
+		{
+			$this->addResult(null, \Resultat::NA, 'Aucune frame ou iframe avec attribut title non vide dans le document');
+		}
+	}
 }

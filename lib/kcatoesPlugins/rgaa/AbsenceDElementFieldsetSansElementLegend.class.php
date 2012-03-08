@@ -1,7 +1,7 @@
 <?php
 namespace Kcatoes\rgaa;
 
-use sfContext;
+
 
 class AbsenceDElementFieldsetSansElementLegend extends \ASource
 {
@@ -27,6 +27,7 @@ class AbsenceDElementFieldsetSansElementLegend extends \ASource
     if (count($nodes) == 0)
     {
       $this->addResult(null, \Resultat::NA, 'Aucun fieldset dans le document');
+      return;
     }
     
     // Parcours des fieldset
@@ -42,7 +43,7 @@ class AbsenceDElementFieldsetSansElementLegend extends \ASource
     	if ($found) { 
     		$this->addResult($node, \Resultat::REUSSITE, 'L\'élément contient un élément legend'); 
     	}
-    	else        { 
+    	else{ 
     		$this->addResult($node, \Resultat::ECHEC, 'L\'élément ne contient pas d\'élément legend');
     	}
     }

@@ -4,6 +4,7 @@ rgaa:
   - AbsenceCadreNonTitres
   - PertinenceTitresCadres
   - AbsenceDElementFieldsetSansElementLegend
+  - PertinenceLegendFieldset
 
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
