@@ -5,6 +5,7 @@ rgaa:
   - PertinenceTitresCadres
   - AbsenceDElementFieldsetSansElementLegend
   - PertinenceLegendFieldset
+  - PresenceAttributLabelElementOptgroup
 
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
