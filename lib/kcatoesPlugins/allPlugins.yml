@@ -15,6 +15,7 @@ rgaa:
   - AbsenceElementBgsound
   - AbsenceElementMetaRefresh
   - AbsenceElementMetaRedirect
+  - AbsenceLiensSansIntitule
   
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
