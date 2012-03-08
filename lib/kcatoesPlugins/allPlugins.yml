@@ -3,6 +3,8 @@ rgaa:
   - AbsenceInterruptionHierarchieTitres
   - AbsenceCadreNonTitres
   - PertinenceTitresCadres
+  - AbsenceDElementFieldsetSansElementLegend
+
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
 #  - AbsenceDeLElementBlink

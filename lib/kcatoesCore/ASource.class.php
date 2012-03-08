@@ -155,7 +155,7 @@ abstract class ASource
 					throw new KcatoesWrapperException();
 			}
 		}
-			
+		
 		if ($nbECHEC > 0)
 		{
 			return Resultat::ECHEC;
@@ -174,6 +174,7 @@ abstract class ASource
 				return Resultat::REUSSITE;
 			}
 		}
+		
 		// la boucle finissant nécessairement par un return, si on se trouve ici
 		// c'est que le test est non applicable (aucun élément n'a été testé)
 		return Resultat::NA;

@@ -22,15 +22,14 @@ class AbsenceCadreNonTitres extends \ASource
 
     $nodes = $crawler->filter($elements);
     
-    $nbPb = 0;
     foreach ($nodes as $node)
     {
-		$title = $node->getAttribute('title');
-		if (strlen(trim($title)) == 0) {
-			$this->addResult($node, \Resultat::ECHEC, 'L\'ément n\'a pas d\'attribut title ou alors celui-ci est vide');
-		} else {
-			$this->addResult($node, \Resultat::REUSSITE, 'L\'ément a un attribut title non vide : '.$title);
-		}
+			$title = $node->getAttribute('title');
+			if (strlen(trim($title)) == 0) {
+				$this->addResult($node, \Resultat::ECHEC, 'L\'élément n\'a pas d\'attribut title ou alors celui-ci est vide');
+			} else {
+				$this->addResult($node, \Resultat::REUSSITE, 'L\'élément a un attribut title non vide : '.$title);
+			}
     }
 
     if (count($nodes) == 0)
