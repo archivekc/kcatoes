@@ -5,11 +5,12 @@ namespace Kcatoes\rgaa;
 
 class PresenceAttributLabelElementOptgroup extends \ASource
 {
-  const testName = 'Présence d’un attribut label sur l’élément optgroup';
+	
+  const testName = 'Présence d\'un attribut label sur l\'élément optgroup';
   const testId = '3.8';
   protected $testProc = array(
-    'Si l’élément mentionné dans le champ d’application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
-    'Si l’élément possède un attribut label, le test est validé, sinon le test est invalidé.');
+    'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
+    'Si l\'élément possède un attribut label, le test est validé, sinon le test est invalidé.');
   protected $testDocLinks = array(
     'H85' => 'http://www.w3.org/TR/WCAG20-TECHS/H85.html'  
   );
