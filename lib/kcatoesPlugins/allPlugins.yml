@@ -11,6 +11,7 @@ rgaa:
   - AbsenceElementFormulaireSansEtiquetteAssociee
   - PrésenceAttributAlt
   - AbsenceElementBlink
+  - AbsenceElementMarquee
 
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
