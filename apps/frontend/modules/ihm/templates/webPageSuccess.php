@@ -1,4 +1,4 @@
-<h1><span>Page&nbsp;: <?php echo $page->getUrl() ?></span></h1>
+<h1>Page&nbsp;: <strong><?php echo $page->getUrl() ?></strong></h1>
 <p class="description">
   <?php echo $page->getDescription()?>
 </p>
@@ -7,18 +7,22 @@
       // *** Formulaire d'ajout de configuration de test
 ?>
 
-<form method="post" action="<?php echo url_for('webPage', array('id'=>$page->getId()))?>">
-  <div>
-    <?php $addConfigForm->renderGlobalErrors() ?>
+<form method="post" action="<?php echo url_for('webPage', array('id'=>$page->getId()))?>" class="highlight">
+  <h2>Ajout d'une configuration de test</h2>
+  <div class="fields">
+    <?php if ($addConfigForm->hasGlobalErrors()):?>
+    <div>
+      <?php $addConfigForm->renderGlobalErrors() ?>
+    </div>
+    <?php endif ?>
+	  <div>
+	    <?php echo $addConfigForm->renderHiddenFields()?>
+	    <?php echo $addConfigForm['test_config_id']->renderError()?>
+	    <?php echo $addConfigForm['test_config_id']->renderLabel()?>&nbsp;:
+	    <?php echo $addConfigForm['test_config_id']->render()?>
+	  </div>
   </div>
-  <div>
-    <?php echo $addConfigForm->renderHiddenFields()?>
-  </div>
-  <div>
-    <?php echo $addConfigForm['test_config_id']->renderError()?>
-    <?php echo $addConfigForm['test_config_id']->renderLabel()?>&nbsp;:
-    <?php echo $addConfigForm['test_config_id']->render()?>
-
+  <div class="submit">
     <input type="submit" value="Ajouter"/>
   </div>
 </form>
@@ -28,25 +32,28 @@
 ?>
 
 <?php  if (count($configs)): ?>
-<ul>
+<ul class="accessList">
   <?php foreach($configs as $config):?>
   <li>
-    <?php echo $config->getLibelle(); ?> - 
-    <a href="" class="url"><?php //echo $eval->getConfig()->getLibelle()?></a>
+    <span class="item"><?php echo $config->getLibelle(); ?></span> 
     
     <?php echo link_to('Lancer', 'launchTests', 
-                                        array('web_page_id' => $page->getId(), 
-                                              'test_config_id' => $config->getId())) ?>
+                        array('web_page_id' => $page->getId()
+                              ,'test_config_id' => $config->getId())
+                        ,array('class'=>'ico lancer'
+                              ,'title'=>'Lancer l\'évaluation avec la configuration '.$config->getLibelle()
+                              )) ?>
                                               
     <?php echo link_to('Supprimer', 'webPageDeleteConfigTest', 
-                                        array('web_page_id' => $page->getId(), 
-                                              'test_config_id' => $config->getId())) ?>
+                        array('web_page_id' => $page->getId() 
+                              ,'test_config_id' => $config->getId())
+                        ,array('class'=>'ico supprimer')) ?>
                                               
   </li>
   <?php endforeach; ?>
 </ul>
 <?php else: ?>
-  Aucune évaluation trouvée
+  <p class="zeroFound">Aucune évaluation trouvée</p>
 <?php endif; ?>
 
 

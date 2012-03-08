@@ -40,10 +40,10 @@ class ihmActions extends sfActions
   	
   	$table  = Doctrine_Core::getTable('WebPage');
   	$q = Doctrine_Query::create()
-  	 ->from('WebPage')
+  	 ->from('WebPage p')
   	 ->orderBy('updated_at DESC');
   	 
-  	 $this->pages = $q->fetchArray();
+  	 $this->pages = $q->execute();
   	 
   }
   
@@ -119,7 +119,7 @@ class ihmActions extends sfActions
      ->leftJoin('c.CollectionTests')
      ->orderBy('c.updated_at DESC');
      
-     $this->configs = $q->fetchArray();
+     $this->configs = $q->execute();
      
   }
   
@@ -216,6 +216,16 @@ class ihmActions extends sfActions
     
   }
 
+  
+  /**
+   * Page crédit
+   */
+  public function executeCredits()
+  {
+  	
+  }
+  
+  
   /**
    * Valide les données saisies dans un formulaire
    *

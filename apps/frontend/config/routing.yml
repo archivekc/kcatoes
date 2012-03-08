@@ -50,8 +50,13 @@ editTestConfig:
   url: /edit-test-config/:id
   param: {module: ihm, action: EditTestConfig}
 
-
-
+# #######
+# CREDITS
+# #######
+credits:
+  url: /credits
+  param: {module: ihm, action: credits}
+  
 # #########
 # TESTS
 # #########

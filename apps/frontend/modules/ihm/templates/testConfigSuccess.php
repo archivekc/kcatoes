@@ -1,5 +1,7 @@
-<h1><span>Configurations de test: <?php echo $config->getLibelle() ?></span></h1>
+<h1>Configurations de test: <strong><?php echo $config->getLibelle() ?></strong></h1>
+<div>
 <a href="<?php echo url_for('editTestConfig', array('id'=>$config['id']))?>">Modifier</a>
+</div>
 <?php if (count($config->getCollectionTests())): ?>
 <ul>
   <?php foreach($config->getCollectionTests() as $test):?>
@@ -9,5 +11,5 @@
   <?php endforeach; ?>
 </ul>
 <?php  else: ?>
-	Aucun test n'est renseigné
+	<p class="zeroFound">Aucun test n'est renseigné</p>
 <?php  endif; ?>

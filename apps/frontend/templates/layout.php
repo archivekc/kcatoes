@@ -1,37 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <?php include_http_metas() ?>
-    <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
+    <?php //include_javascripts() ?>
     <?php include_stylesheets() ?>
-    <?php include_javascripts() ?>
+    
   </head>
   <body>
-	  <div id="main">
-	    <div id="header">
-	      <a href="<?php echo url_for('homepage')?>" id="logo">
-	        <img alt="KCatoès" src="/img/kcatoes-128.png"/>
-	      </a>
-	      <h1><strong>Kcatoès</strong> est un outil automatique d'assitance aux test d'accessiblité</h1>
-	      <ul id="mainMenu">
-	       <li><a href="<?php echo url_for('webPages')?>">Pages web</a></li>
-	       <li><a href="<?php echo url_for('testConfigs')?>">Configurations de test</a></li>
-	      </ul>
-	    </div>
-	    <div id="content">
-	       <div class="preDeco"></div>
-	       <div class="innerContent">
-    	     <?php echo $sf_content ?>
-    	   </div>
-    	   <div class="postDeco"></div>
+    <div id="wrap">
+      <div id="head">
+        <h1 id="headLogo">
+          <img id="KCatoesLogo" src="/img/kcatoes-128.png" alt="K Catoès"/>
+        </h1>
+        <p id="teaser"><strong>KCatoès</strong> est un outil automatique d'assistance aux tests d'accessibilité</p>
       </div>
-      <div id="footer">
-		    Version <?php echo sfConfig::get('app_version') ?> -
-		    <?php echo sfConfig::get('app_date') ?> -
-		    Key Consulting
+      <div id="aside">
+        <ul id="menu">
+          <li><a href="<?php echo url_for('webPages')?>">Pages web</a></li>
+          <li><a href="<?php echo url_for('testConfigs')?>">Configurations de test</a></li>
+          <li><a href="<?php echo url_for('credits')?>">Crédits</a></li>
+        </ul>
       </div>
-	  </div>
+      <div id="main">
+        <div id="page">
+          <?php echo $sf_content ?>
+        </div>
+        <p id="copyright">
+		        Version <?php echo sfConfig::get('app_version') ?> -
+		        <?php echo sfConfig::get('app_date') ?>
+		    </p>
+      </div>
+    </div>
   </body>
 </html>
