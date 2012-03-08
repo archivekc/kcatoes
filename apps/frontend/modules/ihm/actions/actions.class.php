@@ -72,6 +72,8 @@ class ihmActions extends sfActions
     $this->addConfigForm = new Assoc_WebPage_TestConfigForm();
     $this->addConfigForm->setDefault('web_page_id', $id);
     
+    $this->outputDir = sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'output';
+    
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->addConfigForm))

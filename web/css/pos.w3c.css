@@ -148,7 +148,7 @@ body {
 /* listes */
 #page ul {
   list-style: square outside;
-  margin-left: 1.6em;
+  margin: 1em 0 1em 1.6em;
 }
 #page ol {
   list-style: decimal outside;
