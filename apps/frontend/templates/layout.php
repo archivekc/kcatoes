@@ -12,7 +12,9 @@
     <div id="wrap">
       <div id="head">
         <h1 id="headLogo">
-          <img id="KCatoesLogo" src="/img/kcatoes-128.png" alt="K Catoès"/>
+          <a id="KCatoesLogo" href="<?php echo url_for('homepage') ?>" title="page d'accueil">
+            <img src="/img/kcatoes-128.png" alt="K Catoès"/>
+          </a>
         </h1>
         <p id="teaser"><strong>KCatoès</strong> est un outil automatique d'assistance aux tests d'accessibilité</p>
       </div>
