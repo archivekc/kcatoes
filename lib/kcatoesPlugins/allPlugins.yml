@@ -12,6 +12,7 @@ rgaa:
   - PrésenceAttributAlt
   - AbsenceElementBlink
   - AbsenceElementMarquee
+  - AbsenceElementBgsound
 
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
