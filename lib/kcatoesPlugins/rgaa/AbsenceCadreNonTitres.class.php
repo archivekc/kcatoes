@@ -34,7 +34,7 @@ class AbsenceCadreNonTitres extends \ASource
 
     if (count($nodes) == 0)
     {
-	    $this->addResult(null, \Resultat::NA, 'Aucune frame pu iframe dans le document');
+	    $this->addResult(null, \Resultat::NA, 'Aucune frame ou iframe dans le document');
     }
   }
 }
