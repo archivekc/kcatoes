@@ -9,6 +9,7 @@ rgaa:
   - PertinenceAttributLabelElementOptgroup
   - AbsenceElementFormulaireSansIdentifiant
   - AbsenceElementFormulaireSansEtiquetteAssociee
+  - PrésenceAttributAlt
 
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
