@@ -102,7 +102,6 @@ class KcatoesWrapper
 
     // Pour fixer l'heure, utilisée dans le chemin de l'export
     date_default_timezone_set('Europe/Paris');
-    $this->now = time();
     
     $this->addLogInfo('Initialisation de KCatoès réussie');
   }
@@ -148,7 +147,7 @@ class KcatoesWrapper
    * Indique le chemin où stocker le résultat (sortie HTML riche)
    * @return unknown_type
    */
-  public function getExportPath($type='absolute', $sep='fs', $page=null, $testConfig=null){
+  public static function getExportPath($type='absolute', $sep='fs', $page=null, $testConfig=null){
   	
   	// Type de séparateur
     switch ($sep) {
@@ -161,41 +160,9 @@ class KcatoesWrapper
   		case 'absolute': $exportPath = sfConfig::get('app_outputpath').$DS; break;
   		case 'relative': $exportPath = '';                                  break;
   	}
-    
-  	$dateStr = date('Ymd.His', $this->now);
-  	
-  	// Mode d'exécution : action symfony (web) / tâche symfony (cli)
-    switch ($this->mode) {
-    	
-    	// ID de la page - ID de la configuration de test
-      case 'action' : 
-      	if (is_object($page) && is_object($testConfig)) {
-      		$exportPath .= $page->getId().
-								      		//'-'.$page->getUrl().
-								      		'-'.$testConfig->getId().
-								      		//'-'.$testConfig->getLibelle().
-								      		$DS;
-      	}
-      	else {
-      		$exportPath .= session_id().
-      		               '-'.$dateStr.
-      		               $DS;
-      	}
-        break;
-        
-      // ID de session
-      case 'task' :
-      	$exportPath .= session_id().
-      	               '-'.$dateStr.
-      	               $DS; 
-        break;
-        
-      default : 
-      	$exportPath .= session_id().
-								       '-'.$dateStr.
-								       $DS; 
-    }
-  	
+
+		$exportPath .= $page->getId().'-'.$testConfig->getId().$DS;
+
     return $exportPath; 
   }
 
@@ -330,7 +297,7 @@ class KcatoesWrapper
     	case 'file':
     		
     		// Identificaiton du chemin 
-    		$exportPath = $kcatoes->getExportPath('absolute', 'fs', $page, $testConfig);
+    		$exportPath = self::getExportPath('absolute', 'fs', $page, $testConfig);
     		
     		// Création du répertoire de destination
         exec('mkdir '    .$exportPath);

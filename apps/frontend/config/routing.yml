@@ -27,6 +27,16 @@ webPageDeleteConfigTest:
     test_config_id: \d+ 
     sf_method: [GET]
     
+webPageDeleteResult:
+  url: /web-page/:web_page_id/delete-result/:test_config_id
+  param: {module: ihm, action: WebPageDeleteResult}
+  class:   sfDoctrineRoute
+  options: { model: Assoc_WebPage_TestConfig, type: object }
+  requirements: 
+    web_page_id: \d+
+    test_config_id: \d+ 
+    sf_method: [GET]
+  
 deleteWebPage:
   url: /delete-web-page/:id
   param: {module: ihm, action: DeleteWebPage}

@@ -100,6 +100,26 @@ class ihmActions extends sfActions
     $web_page_id = $request->getParameter('web_page_id');
     $this->redirect('ihm/WebPage?id='.$web_page_id);
   }
+  
+  /**
+   * Suppression d'une association WebPage - TestConfig
+   * @param sfWebRequest $request
+   */
+  public function executeWebPageDeleteResult(sfWebRequest $request){
+  	
+    // Récupération de l'objet Assoc_WebPage_TestConfig
+    $testAssoc = $this->getRoute()->getObject();
+    
+    $webPage    = $testAssoc->getWebPage();
+    $testConfig = $testAssoc->getTestConfig();
+
+    // Suppression du résultat
+    $exportPath = KcatoesWrapper::getExportPath('absolute', 'fs', $webPage, $testConfig);    
+    TestsHelper::rrmdir($exportPath);
+    
+    // Redirection vers la fiche de la page web
+    $this->redirect('ihm/WebPage?id='.$webPage->getId());
+  }
 
 
   // gestion des conf
@@ -214,7 +234,7 @@ class ihmActions extends sfActions
     $kcatoes = KcatoesWrapper::execute($this->listeIds, $options, 'action', $this->page, $this->testConfig);
     
     $this->resultUrlRoot = '/output/'.
-                           $kcatoes->getExportPath('relative', 'web', $this->page, $this->testConfig);
+                           KcatoesWrapper::getExportPath('relative', 'web', $this->page, $this->testConfig);
     
   }
 

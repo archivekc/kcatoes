@@ -99,6 +99,9 @@
         </li>
         <?php endif ?>
       </ul>
+      <?php echo link_to('Supprimer les résultats', 'webPageDeleteResult', 
+                          array('web_page_id' => $page->getId() 
+                                ,'test_config_id' => $config->getId()) ) ?>
     <?php endif ?>
                        
   </li>
