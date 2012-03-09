@@ -106,27 +106,6 @@ class ihmActions extends sfActions
     // Redirection vers la fiche de la page web
     $this->redirect('ihm/WebPage?id='.$webPage->getId());
   }
-  
-  /**
-   * Suppression d'une association WebPage - TestConfig
-   * @param sfWebRequest $request
-   */
-  public function executeWebPageDeleteResult(sfWebRequest $request){
-  	
-    // Récupération de l'objet Assoc_WebPage_TestConfig
-    $testAssoc = $this->getRoute()->getObject();
-    
-    $webPage    = $testAssoc->getWebPage();
-    $testConfig = $testAssoc->getTestConfig();
-
-    // Suppression du résultat
-    $exportPath = KcatoesWrapper::getExportPath('absolute', 'fs', $webPage, $testConfig);    
-    TestsHelper::rrmdir($exportPath);
-    
-    // Redirection vers la fiche de la page web
-    $this->redirect('ihm/WebPage?id='.$webPage->getId());
-  }
-
 
   // gestion des conf
   public function executeTestConfigs(sfWebRequest $request)
