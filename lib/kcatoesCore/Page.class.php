@@ -61,7 +61,25 @@ class Page extends Client
       throw new KcatoesCrawlerException($e->getMessage());
     }
   }
-
+  
+  /**
+   * Cherche la déclaration !DOCTYPE dans la page et la retourne
+   * @return string | null
+   */
+  public function getDoctype(){
+    $doctype = null;
+    
+    $matches = array();
+    $pattern = '/(<!DOCTYPE[^>]*>)/i';
+    preg_match($pattern, $this->content, $matches);
+    
+    if (isset($matches[1]) && $matches[1] != '') {
+      $doctype = $matches[1];
+    }
+    
+    return $doctype;
+  }
+  
   /**
    * Ajoute un message d'information au journal de log
    *
