@@ -7,6 +7,13 @@ date_default_timezone_set('Europe/Paris');
 $output = file_get_contents('./output.html');
 $autosave = isset($_GET['autosave'])?true:false;
 
+$value = isset($_POST['score'])?htmlentities($_POST['score']):'';
+$input = '<input type="hidden" id="score" name="score" type="text" readonly="readonly" value="'.$value.'"/>';
+$span = '<span class="scoreValue">'.$value.'</span>';
+
+$output = preg_replace('/<input[^>]*?id="score".*?\/>/u', $input, $output);
+$output = preg_replace('/<span[^>]*?class="scoreValue".*?span>/u', $span, $output);
+
 foreach ($fields['select'] as $field)
 {
 	$value = isset($_POST[$field])?htmlentities($_POST[$field]):'';

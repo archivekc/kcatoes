@@ -13,6 +13,7 @@ class KcatoesWrapper
   private $logger;
   private $tester;
   private $rawcontent;
+  private $executed = false;
 
   /**
    * Initialise les différents composants du framework.
@@ -100,6 +101,7 @@ class KcatoesWrapper
     $this->tester = new Tester($page, $testsClass, $this->logger);
 
     // Pour fixer l'heure, utilisée dans le chemin de l'export
+    date_default_timezone_set('Europe/Paris');
     $this->now = time();
     
     $this->addLogInfo('Initialisation de KCatoès réussie');
@@ -127,6 +129,7 @@ class KcatoesWrapper
       throw new KcatoesWrapperException($e->getMessage());
     }
     $this->addLogInfo('Exécution de KCatoès réussie');
+    $this->executed = true;
   }
   
   public function getRawContent($baseUrl=null)
@@ -308,6 +311,7 @@ class KcatoesWrapper
     if (isset($tpl)){
 			$rapport = TestsHelper::generateRapportHtml(array(
 				'table'     => $output,
+			  'score'     => $kcatoes->getScore()*100,
 				'title'     => 'KCatoès - Rapport de test',
 				'subtitle'  => ($options['url'] ? $options['url'] : '').' '.date('d/m/Y H:i')), 
 				$tpl);
@@ -353,6 +357,33 @@ class KcatoesWrapper
     }
     
     return $kcatoes;
+  }
+  
+  
+  public function getScore()
+  {
+  	if ($this->executed)
+  	{
+  		$nbEchec = 0;
+  		$nbReussite = 0;
+  		foreach ($this->tester->getResTests() as $test)
+  		{
+        switch($test->getMainResult())
+        {
+        	case Resultat::ECHEC:
+        		 $nbEchec++;
+        	   break;
+        	case Resultat::REUSSITE:
+        		$nbReussite++;
+        		break;
+        }
+  		}
+  		return $nbReussite / ($nbEchec + $nbReussite);
+  	}
+  	else
+  	{
+  		throw new KcatoesException('Les test n\'ont pas été exécutés');
+  	}
   }
   
   /**
