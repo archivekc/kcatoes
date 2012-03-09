@@ -93,12 +93,18 @@ class ihmActions extends sfActions
     // Récupération de l'objet Assoc_WebPage_TestConfig
     $testAssoc = $this->getRoute()->getObject();
     
-    // Suppression
+    $webPage    = $testAssoc->getWebPage();
+    $testConfig = $testAssoc->getTestConfig();
+    
+    // Suppression du résultat associé
+    $exportPath = KcatoesWrapper::getExportPath('absolute', 'fs', $webPage, $testConfig);
+    TestsHelper::rrmdir($exportPath);
+    
+    // Suppression de l'association
     $testAssoc->delete();
           
     // Redirection vers la fiche de la page web
-    $web_page_id = $request->getParameter('web_page_id');
-    $this->redirect('ihm/WebPage?id='.$web_page_id);
+    $this->redirect('ihm/WebPage?id='.$webPage->getId());
   }
   
   /**
