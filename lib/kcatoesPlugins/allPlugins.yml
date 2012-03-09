@@ -19,6 +19,7 @@ rgaa:
   - PresenceDeclarationUtilisationDTD
   - ConformitePositionDeclarationUtilisationDTD
   - ConformiteSyntaxiqueDeclarationUtilisationDTD
+  - PresenceTitre
   
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
