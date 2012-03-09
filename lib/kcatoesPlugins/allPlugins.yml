@@ -17,6 +17,7 @@ rgaa:
   - AbsenceElementMetaRedirect
   - AbsenceLiensSansIntitule
   - PresenceDeclarationUtilisationDTD
+  - ConformitePositionDeclarationUtilisationDTD
   
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
