@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceElementMarquee extends \ASource
 {
   
-  const testName = 'Absence d\'élément marquee';
+  const testName = 'A - Absence d\'élément marquee';
   const testId = '5.23';
   protected $testProc = array(
     'Si l\'élément marquee est absent, le test est validé, sinon le test est invalidé.' 

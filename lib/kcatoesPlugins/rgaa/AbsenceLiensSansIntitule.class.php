@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceLiensSansIntitule extends \ASource
 {
   
-  const testName = 'Absence de liens sans intitulé';
+  const testName = 'A - Absence de liens sans intitulé';
   const testId = '6.16';
   protected $testProc = array(
     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 

@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class ConformiteSyntaxiqueDeclarationUtilisationDTD extends \ASource
 {
   
-  const testName = 'Conformité syntaxique de la déclaration d\'utilisation d\'une DTD';
+  const testName = 'A - Conformité syntaxique de la déclaration d\'utilisation d\'une DTD';
   const testId = '9.3';
   protected $testProc = array(
     'Si l\'instruction mentionnée dans le champ d\'application est présente dans la page, poursuivre le test, sinon le test est non applicable.',

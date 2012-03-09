@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceElementFormulaireSansEtiquetteAssociee extends \ASource
 {
   
-  const testName = 'Absence d\'élément de formulaire sans étiquette associée';
+  const testName = 'A - Absence d\'élément de formulaire sans étiquette associée';
   const testId = '3.11';
   protected $testProc = array(
     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 

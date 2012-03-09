@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceElementBlink extends \ASource
 {
 	
-  const testName = 'Absence de l\'élément blink';
+  const testName = 'A - Absence de l\'élément blink';
   const testId = '5.19';
   protected $testProc = array(
     'Si l\'élément blink est absent, le test est validé, sinon le test est invalidé.' 

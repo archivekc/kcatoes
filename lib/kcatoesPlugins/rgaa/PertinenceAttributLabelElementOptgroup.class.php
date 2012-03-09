@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class PertinenceAttributLabelElementOptgroup extends \ASource
 {
 	
-  const testName = 'Pertinence du contenu de l\'attribut label de l\'élément optgroup';
+  const testName = 'A - Pertinence du contenu de l\'attribut label de l\'élément optgroup';
   const testId = '3.9';
   protected $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 

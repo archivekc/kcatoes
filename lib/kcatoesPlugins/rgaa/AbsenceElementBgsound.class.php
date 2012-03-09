@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceElementBgsound extends \ASource
 {
   
-  const testName = 'Absence d\'élément bgsound';
+  const testName = 'A - Absence d\'élément bgsound';
   const testId = '5.30';
   protected $testProc = array(
     'Si l\'élément bgsound est absent ou qu\'il diffuse un son dont la durée est inférieure ou égale à 3 secondes, le test est validé, sinon le test est invalidé.'

@@ -6,7 +6,7 @@ use sfContext;
 class ConformitePositionDeclarationUtilisationDTD extends \ASource
 {
   
-  const testName = 'Conformité de la position de la déclaration d\'utilisation d\'une DTD';
+  const testName = 'A - Conformité de la position de la déclaration d\'utilisation d\'une DTD';
   const testId = '9.2';
   protected $testProc = array(
     'Si l\'instruction mentionnée dans le champ d\'application est présente dans la page, poursuivre le test, sinon le test est non applicable.', 

@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceElementMetaRefresh extends \ASource
 {
   
-  const testName = 'Absence d\'élément meta provoquant un rafraîchissement automatique de la page';
+  const testName = 'A - Absence d\'élément meta provoquant un rafraîchissement automatique de la page';
   const testId = '6.7';
   protected $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 

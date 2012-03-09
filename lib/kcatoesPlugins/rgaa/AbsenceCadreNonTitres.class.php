@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceCadreNonTitres extends \ASource
 {
 	
-  const testName = 'Absence de cadres non titré';
+  const testName = 'A - Absence de cadres non titré';
   const testId = '1.1';
   protected $testProc = array('Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.'
 	,'Si l\'élément contient un attribut title non vide, le test est validé sinon le test est invalidé');

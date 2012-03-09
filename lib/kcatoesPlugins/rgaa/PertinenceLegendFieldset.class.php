@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class PertinenceLegendFieldset extends \ASource
 {
 	
-  const testName = 'Pertinence du contenu de l\'élément legend dans l\'élément fieldset';
+  const testName = 'A - Pertinence du contenu de l\'élément legend dans l\'élément fieldset';
   const testId = '3.6';
   protected $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 

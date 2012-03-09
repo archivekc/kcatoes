@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceDElementFieldsetSansElementLegend extends \ASource
 {
   
-  const testName = 'Absence d\'élément fieldset sans élément legend';
+  const testName = 'A - Absence d\'élément fieldset sans élément legend';
   const testId = '3.5';
   protected $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.',

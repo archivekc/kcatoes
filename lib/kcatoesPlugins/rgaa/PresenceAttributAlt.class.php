@@ -7,7 +7,7 @@ namespace Kcatoes\rgaa;
 class PresenceAttributAlt extends \ASource
 {
 	
-  const testName = 'Présence de l\'attribut alt';
+  const testName = 'A - Présence de l\'attribut alt';
   const testId = '4.1';
   protected $testProc = array(
     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.',

@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceInterruptionHierarchieTitres extends \ASource
 {
 
-	const testName = 'Absence d\'interruption dans la hiérarchie dess titres';
+	const testName = 'A - Absence d\'interruption dans la hiérarchie dess titres';
 	const testId = '10.3';
 	protected $testProc = array(
 			'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.'

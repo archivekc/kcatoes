@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class PertinenceTitresCadres extends \ASource
 {
 	
-  const testName = 'Pertinence des titres donnés aux cadres';
+  const testName = 'A - Pertinence des titres donnés aux cadres';
   const testId = '1.2';
   protected $testProc = array('Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.'
 							,'Si l\'élément contient un attribut title non vide, poursuivre le test, sinon le test est non applicable.'
