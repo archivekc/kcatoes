@@ -14,17 +14,19 @@ class Page extends Client
 {
   private $content;
   private $logger;
-
+  private $url;
+  
   /**
    * Construit une page à partir d'une URL
    *
    * @param String   $_content Le contenu de la page
    * @param sfLogger $_logger  Le logger à utiliser (optionel)
    */
-  public function __construct($_content, sfLogger $_logger = null)
+  public function __construct($_content, sfLogger $_logger = null, $_url=null)
   {
     $this->content = $_content;
     $this->logger  = $_logger;
+    $this->url     = $_url;
     parent::__construct();
   }
 
@@ -59,7 +61,25 @@ class Page extends Client
       throw new KcatoesCrawlerException($e->getMessage());
     }
   }
-
+  
+  /**
+   * Cherche la déclaration !DOCTYPE dans la page et la retourne
+   * @return string | null
+   */
+  public function getDoctype(){
+    $doctype = null;
+    
+    $matches = array();
+    $pattern = '/(<!DOCTYPE[^>]*>)/i';
+    preg_match($pattern, $this->content, $matches);
+    
+    if (isset($matches[1]) && $matches[1] != '') {
+      $doctype = $matches[1];
+    }
+    
+    return $doctype;
+  }
+  
   /**
    * Ajoute un message d'information au journal de log
    *

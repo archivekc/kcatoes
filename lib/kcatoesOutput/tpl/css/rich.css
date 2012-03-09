@@ -75,6 +75,23 @@ h1 img {
 }
 
 /* ***** */
+/* score */
+/* ***** */
+.score {
+  float: right;
+  display: inline;
+  padding-right: 1em;
+}
+.score input {
+    background: none;
+    color: inherit;
+    border: none;
+    font-size: 1.5em;
+    text-align: right;
+    width: 2em;
+}
+
+/* ***** */
 /* popup */
 /* ***** */
 .popup {

@@ -3,6 +3,27 @@ rgaa:
   - AbsenceInterruptionHierarchieTitres
   - AbsenceCadreNonTitres
   - PertinenceTitresCadres
+  - AbsenceDElementFieldsetSansElementLegend
+  - PertinenceLegendFieldset
+  - PresenceAttributLabelElementOptgroup
+  - PertinenceAttributLabelElementOptgroup
+  - AbsenceElementFormulaireSansIdentifiant
+  - AbsenceElementFormulaireSansEtiquetteAssociee
+  - PrésenceAttributAlt
+  - AbsenceElementBlink
+  - AbsenceElementMarquee
+  - AbsenceElementBgsound
+  - AbsenceElementMetaRefresh
+  - AbsenceElementMetaRedirect
+  - AbsenceLiensSansIntitule
+  - PresenceDeclarationUtilisationDTD
+  - ConformitePositionDeclarationUtilisationDTD
+  - ConformiteSyntaxiqueDeclarationUtilisationDTD
+  - PresenceTitre
+  - PertinenceTitre
+  - PresenceTitreHierarchiePremierNiveau
+  - PertinenceContenuTitresHierarchie
+  
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
 #  - AbsenceDeLElementBlink

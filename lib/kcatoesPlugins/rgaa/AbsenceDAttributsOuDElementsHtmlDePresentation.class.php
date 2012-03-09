@@ -18,7 +18,7 @@ namespace Kcatoes\rgaa;
 class AbsenceDAttributsOuDElementsHtmlDePresentation extends \ASource
 {
 	
-  const testName = 'Absence d\'attribut ou d\'élément HTML de présentation';
+  const testName = 'A - Absence d\'attribut ou d\'élément HTML de présentation';
   const testId = '7.8';
   protected $testProc = array('Si aucun des éléments mentionnés dans le champ d\'application n\'est présent dans la page, le test est validé, sinon le test est invalidé.');
   protected $testDocLinks = array(

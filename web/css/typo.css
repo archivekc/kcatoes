@@ -1,39 +1,58 @@
-body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;;
-	line-height: 1.5;
-}
-
-/* entete */
-#header h1 {
-  font-size: 2em;
-  text-align: center;
-}
-
-/* footer */
-#footer {
-  text-align: center;
-}
-
 /* erreurs */
 .error_list {
   font-weight: bold;
 }
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+#teaser {
+  font-style: italic;
+  font-family: georgia, garamound, serif;
+}
 
-/* elements génériques */
-strong {
+#menu li span,
+#menu li a{
+  font-weight: bold;
+  text-decoration: none;
+}
+.download a {
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+
+.highlight {
+  font-weight: bold;
+}
+#copyright {
+  text-align: center;
+}
+
+#page h1 {
+  font-family: georgia, garamound, serif;
+  font-style: italic;
+}
+
+#page h2 {
+  letter-spacing: 0.2em;
+}
+#page h3 {
   font-weight: bold;
 }
 
-h1 {
-  font: italic bold 1.5em Georgia, "Times new roman", sans-serif;
-  text-transform: uppercase;
+#page strong {font-weight: bold; }
+#page em {font-style: italic; }
+
+#page a {
+  font-weight: bold;
+  text-decoration: none;
 }
-h1 span:after {
-  font-style: normal;
+#page a:visited {
+  font-style: italic;
 }
 
-h1 em {
-	font-size: 2em;
-  font-weight: bold;
-  font-style: normal; 
+#page code {
+  font-family : "Courier New", Courier, monospace;
 }
+
+

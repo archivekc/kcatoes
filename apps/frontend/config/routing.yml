@@ -26,7 +26,7 @@ webPageDeleteConfigTest:
     web_page_id: \d+
     test_config_id: \d+ 
     sf_method: [GET]
-    
+  
 deleteWebPage:
   url: /delete-web-page/:id
   param: {module: ihm, action: DeleteWebPage}
@@ -50,8 +50,13 @@ editTestConfig:
   url: /edit-test-config/:id
   param: {module: ihm, action: EditTestConfig}
 
-
-
+# #######
+# CREDITS
+# #######
+credits:
+  url: /credits
+  param: {module: ihm, action: credits}
+  
 # #########
 # TESTS
 # #########

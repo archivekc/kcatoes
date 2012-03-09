@@ -154,26 +154,27 @@ abstract class ASource
 				default:
 					throw new KcatoesWrapperException();
 			}
-			
-			if ($nbECHEC > 0)
+		}
+		
+		if ($nbECHEC > 0)
+		{
+			return Resultat::ECHEC;
+		}
+		else
+		{
+		  if ($nbMANUEL > 0){
+		   	return Resultat::MANUEL;
+		  }
+			if ($nbREUSSITE == 0 && $nbNA > 0)
 			{
-				return Resultat::ECHEC;
+				return Resultat::NA;
 			}
-			else
+			if ($nbREUSSITE > 0)
 			{
-			  if ($nbMANUEL > 0){
-			   	return Resultat::MANUEL;
-			  }
-				if ($nbREUSSITE == 0 && $nbNA > 0)
-				{
-					return Resultat::NA;
-				}
-				if ($nbREUSSITE > 0)
-				{
-					return Resultat::REUSSITE;
-				}
+				return Resultat::REUSSITE;
 			}
 		}
+		
 		// la boucle finissant nécessairement par un return, si on se trouve ici
 		// c'est que le test est non applicable (aucun élément n'a été testé)
 		return Resultat::NA;

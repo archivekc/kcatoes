@@ -16,17 +16,25 @@
 <blink>Coucou je blink !</blink>
 
 <form id="contact" method="post" action="traitement_formulaire.php">
-  <fieldset><legend>Vos coordonnées</legend>
+  <fieldset>
+    <legend>Vos coordonnées</legend>
     <p><label for="nom">Nom :</label><input type="text" id="nom" name="nom" tabindex="1" /></p>
     <p><label for="email">Email :</label><input type="text" id="email" name="email" tabindex="2" /></p>
   </fieldset>
 
-  <fieldset><legend>Votre message :</legend>
+  <fieldset>
+    <legend>Votre message :</legend>
     <p><label for="totot">toto :</label><input type="text" id="objet" name="objet" tabindex="3" /></p>
     <p><input type="text" id="objet" name="objet" tabindex="3" /></p>
     <p><input type="text" name="objet" tabindex="3" /></p>
     <p><label for="totot">titi :</label><input type="text" id="totot" name="toto" title="" tabindex="3" /></p>
     <p><label for="message">Message :</label><textarea id="message" name="message" tabindex="4" cols="30" rows="8"></textarea></p>
+  </fieldset>
+
+  <fieldset>
+    <!-- <legend>Pouêt :</legend> -->
+    <p><label for="pouet">pouet :</label><input type="text" id="pouet" name="pouet" tabindex="3" /></p>
+    <p><label for="pouet">pouet :</label><input type="text" title="ceci est un pouêt" id="pouet2" name="pouet" tabindex="3" /></p>
   </fieldset>
   
   <select>
@@ -48,7 +56,7 @@
 </form>
 
 <marquee>
-Toutes les possibilités de la balise MARQUEE
+  Toutes les possibilités de la balise MARQUEE
 </marquee>
 
 <h1>Titre super important</h1>
@@ -84,4 +92,34 @@ Toutes les possibilités de la balise MARQUEE
   <frame title="" />
   <frame />
 </frameset>
+
+<input type="image" src="plop" />
+<input type="image" src="plop2" alt="image bidon" />
+
+
+<BGSOUND id="leSon1" src="leSon1.wav" loop="2"        volume="-200" balance="+10000" />
+<BGSOUND id="leSon2" src="leSon2.wav" loop="-1"       volume="-200" balance="+10000" />
+<BGSOUND id="leSon3" src="leSon3.wav" loop="Infinite" volume="-200" balance="+10000" />
+
+<a name="toto1"></a>
+<a id="toto2"></a>
+<a></a>
+
+<a name="myname" href="#myname"></a>
+<a id="myid" href="#myid"></a>
+
+<a href="toto1">plop</a>
+<a href="toto2"><img src="bidon" alt="bidon" /></a>
+<a href="toto2"><img src="bidon" /></a>
+<a href="toto2">
+  <p>
+    pouêt
+  </p>
+</a>
+
+<a href="toto5"><span>m'enfin <b>!</b></span></a>
+
+
+
+
 </html>

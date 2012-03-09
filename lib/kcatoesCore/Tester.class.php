@@ -53,6 +53,11 @@ class Tester
   	
   }
   
+  public function getResTests()
+  {
+  	return $this->resTests;
+  }
+  
   /**
    * Ajoute un message d'erreur au journal de log
    *
@@ -91,7 +96,24 @@ class Tester
     }
   }
   
-
+  public function getScore()
+  {
+      $nbEchec = 0;
+      $nbReussite = 0;
+      foreach ($this->resTests as $test)
+      {
+        switch($test->getMainResult())
+        {
+          case Resultat::ECHEC:
+             $nbEchec++;
+             break;
+          case Resultat::REUSSITE:
+            $nbReussite++;
+            break;
+        }
+      }
+      return ceil($nbReussite / ($nbEchec + $nbReussite)*100);
+  }
   /**
    * Exporte le résultat des tests au format HTML avec interface d'évaluation
    *
@@ -243,13 +265,14 @@ class Tester
 	
   	$output = '';
   	$fields['select'] = array();
-	$fields['textarea'] = array();
+	  $fields['textarea'] = array();
   	if ($history)
   	{
   		$output = '<form method="post" action="./historize.php" >';
   		$output .= '<div class="save">'
   		        .'<input type="submit" value="Sauvegarder" />'
   		        .'<input type="hidden" id="filename" name="filename" value="output.html" />'
+  		        .'<input type="hidden" id="score" name="score" type="text" readonly="readonly" value="'.$this->getScore().'"/>'
   		        .'</div>';
   	}
   	
@@ -257,8 +280,8 @@ class Tester
 
     // entête
     $output .= '<th scope="col" class="testId">Id du test</th>';
-	$output .= '<th scope="col" class="testInfo">Informations du test</th>';
-	$output .= '<th scope="col" class="testStatus">Statut global</th>';
+	  $output .= '<th scope="col" class="testInfo">Informations du test</th>';
+	  $output .= '<th scope="col" class="testStatus">Statut global</th>';
     $output .= '<th scope="col" class="subResult">Statut</th>';
     $output .= '<th scope="col" class="context">Contexte</th>';
     

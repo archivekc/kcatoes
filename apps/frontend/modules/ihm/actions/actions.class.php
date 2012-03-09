@@ -40,10 +40,10 @@ class ihmActions extends sfActions
   	
   	$table  = Doctrine_Core::getTable('WebPage');
   	$q = Doctrine_Query::create()
-  	 ->from('WebPage')
+  	 ->from('WebPage p')
   	 ->orderBy('updated_at DESC');
   	 
-  	 $this->pages = $q->fetchArray();
+  	 $this->pages = $q->execute();
   	 
   }
   
@@ -72,6 +72,8 @@ class ihmActions extends sfActions
     $this->addConfigForm = new Assoc_WebPage_TestConfigForm();
     $this->addConfigForm->setDefault('web_page_id', $id);
     
+    $this->outputDir = sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'output';
+    
     if ($request->isMethod('post'))
     {
       if ($this->processForm($request, $this->addConfigForm))
@@ -91,14 +93,19 @@ class ihmActions extends sfActions
     // Récupération de l'objet Assoc_WebPage_TestConfig
     $testAssoc = $this->getRoute()->getObject();
     
-    // Suppression
+    $webPage    = $testAssoc->getWebPage();
+    $testConfig = $testAssoc->getTestConfig();
+    
+    // Suppression du résultat associé
+    $exportPath = KcatoesWrapper::getExportPath('absolute', 'fs', $webPage, $testConfig);
+    TestsHelper::rrmdir($exportPath);
+    
+    // Suppression de l'association
     $testAssoc->delete();
           
     // Redirection vers la fiche de la page web
-    $web_page_id = $request->getParameter('web_page_id');
-    $this->redirect('ihm/WebPage?id='.$web_page_id);
+    $this->redirect('ihm/WebPage?id='.$webPage->getId());
   }
-
 
   // gestion des conf
   public function executeTestConfigs(sfWebRequest $request)
@@ -119,7 +126,7 @@ class ihmActions extends sfActions
      ->leftJoin('c.CollectionTests')
      ->orderBy('c.updated_at DESC');
      
-     $this->configs = $q->fetchArray();
+     $this->configs = $q->execute();
      
   }
   
@@ -212,10 +219,20 @@ class ihmActions extends sfActions
     $kcatoes = KcatoesWrapper::execute($this->listeIds, $options, 'action', $this->page, $this->testConfig);
     
     $this->resultUrlRoot = '/output/'.
-                           $kcatoes->getExportPath('relative', 'web', $this->page, $this->testConfig);
+                           KcatoesWrapper::getExportPath('relative', 'web', $this->page, $this->testConfig);
     
   }
 
+  
+  /**
+   * Page crédit
+   */
+  public function executeCredits()
+  {
+  	
+  }
+  
+  
   /**
    * Valide les données saisies dans un formulaire
    *

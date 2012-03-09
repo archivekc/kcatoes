@@ -6,7 +6,7 @@ namespace Kcatoes\rgaa;
 class AbsenceCadreNonTitres extends \ASource
 {
 	
-  const testName = 'Absence de cadres non titré';
+  const testName = 'A - Absence de cadres non titré';
   const testId = '1.1';
   protected $testProc = array('Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.'
 	,'Si l\'élément contient un attribut title non vide, le test est validé sinon le test est invalidé');
@@ -22,20 +22,19 @@ class AbsenceCadreNonTitres extends \ASource
 
     $nodes = $crawler->filter($elements);
     
-    $nbPb = 0;
     foreach ($nodes as $node)
     {
-		$title = $node->getAttribute('title');
-		if (strlen(trim($title)) == 0) {
-			$this->addResult($node, \Resultat::ECHEC, 'L\'ément n\'a pas d\'attribut title ou alors celui-ci est vide');
-		} else {
-			$this->addResult($node, \Resultat::REUSSITE, 'L\'ément a un attribut title non vide : '.$title);
-		}
+			$title = $node->getAttribute('title');
+			if (strlen(trim($title)) == 0) {
+				$this->addResult($node, \Resultat::ECHEC, 'L\'élément n\'a pas d\'attribut title ou alors celui-ci est vide');
+			} else {
+				$this->addResult($node, \Resultat::REUSSITE, 'L\'élément a un attribut title non vide : '.$title);
+			}
     }
 
     if (count($nodes) == 0)
     {
-	    $this->addResult(null, \Resultat::NA, 'Aucune frame pu iframe dans le document');
+	    $this->addResult(null, \Resultat::NA, 'Aucune frame ou iframe dans le document');
     }
   }
 }

@@ -13,6 +13,7 @@ class KcatoesWrapper
   private $logger;
   private $tester;
   private $rawcontent;
+  private $executed = false;
 
   /**
    * Initialise les différents composants du framework.
@@ -84,7 +85,7 @@ class KcatoesWrapper
       throw new KcatoesWrapperException($erreur);
     }
 
-    $page = new Page($content, $this->logger);
+    $page = new Page($content, $this->logger, $url);
     $this->rawcontent = $content;
 
     try
@@ -100,7 +101,7 @@ class KcatoesWrapper
     $this->tester = new Tester($page, $testsClass, $this->logger);
 
     // Pour fixer l'heure, utilisée dans le chemin de l'export
-    $this->now = time();
+    date_default_timezone_set('Europe/Paris');
     
     $this->addLogInfo('Initialisation de KCatoès réussie');
   }
@@ -127,6 +128,7 @@ class KcatoesWrapper
       throw new KcatoesWrapperException($e->getMessage());
     }
     $this->addLogInfo('Exécution de KCatoès réussie');
+    $this->executed = true;
   }
   
   public function getRawContent($baseUrl=null)
@@ -145,7 +147,7 @@ class KcatoesWrapper
    * Indique le chemin où stocker le résultat (sortie HTML riche)
    * @return unknown_type
    */
-  public function getExportPath($type='absolute', $sep='fs', $page=null, $testConfig=null){
+  public static function getExportPath($type='absolute', $sep='fs', $page=null, $testConfig=null){
   	
   	// Type de séparateur
     switch ($sep) {
@@ -158,42 +160,9 @@ class KcatoesWrapper
   		case 'absolute': $exportPath = sfConfig::get('app_outputpath').$DS; break;
   		case 'relative': $exportPath = '';                                  break;
   	}
-    
-  	$dateStr = date('Ymd.His', $this->now);
-  	
-  	// Mode d'exécution : action symfony (web) / tâche symfony (cli)
-    switch ($this->mode) {
-    	
-    	// ID de la page - ID de la configuration de test
-      case 'action' : 
-      	if (is_object($page) && is_object($testConfig)) {
-      		$exportPath .= $page->getId().
-								      		//'-'.$page->getUrl().
-								      		'-'.$testConfig->getId().
-								      		//'-'.$testConfig->getLibelle().
-      		                '-'.$dateStr.
-								      		$DS;
-      	}
-      	else {
-      		$exportPath .= session_id().
-      		               '-'.$dateStr.
-      		               $DS;
-      	}
-        break;
-        
-      // ID de session
-      case 'task' :
-      	$exportPath .= session_id().
-      	               '-'.$dateStr.
-      	               $DS; 
-        break;
-        
-      default : 
-      	$exportPath .= session_id().
-								       '-'.$dateStr.
-								       $DS; 
-    }
-  	
+
+		$exportPath .= $page->getId().'-'.$testConfig->getId().$DS;
+
     return $exportPath; 
   }
 
@@ -309,6 +278,7 @@ class KcatoesWrapper
     if (isset($tpl)){
 			$rapport = TestsHelper::generateRapportHtml(array(
 				'table'     => $output,
+			  'score'     => $kcatoes->getScore()*100,
 				'title'     => 'KCatoès - Rapport de test',
 				'subtitle'  => ($options['url'] ? $options['url'] : '').' '.date('d/m/Y H:i')), 
 				$tpl);
@@ -327,7 +297,7 @@ class KcatoesWrapper
     	case 'file':
     		
     		// Identificaiton du chemin 
-    		$exportPath = $kcatoes->getExportPath('absolute', 'fs', $page, $testConfig);
+    		$exportPath = self::getExportPath('absolute', 'fs', $page, $testConfig);
     		
     		// Création du répertoire de destination
         exec('mkdir '    .$exportPath);
@@ -354,6 +324,33 @@ class KcatoesWrapper
     }
     
     return $kcatoes;
+  }
+  
+  
+  public function getScore()
+  {
+  	if ($this->executed)
+  	{
+  		$nbEchec = 0;
+  		$nbReussite = 0;
+  		foreach ($this->tester->getResTests() as $test)
+  		{
+        switch($test->getMainResult())
+        {
+        	case Resultat::ECHEC:
+        		 $nbEchec++;
+        	   break;
+        	case Resultat::REUSSITE:
+        		$nbReussite++;
+        		break;
+        }
+  		}
+  		return $nbReussite / ($nbEchec + $nbReussite);
+  	}
+  	else
+  	{
+  		throw new KcatoesException('Les test n\'ont pas été exécutés');
+  	}
   }
   
   /**

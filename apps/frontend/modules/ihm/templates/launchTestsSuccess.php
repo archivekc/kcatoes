@@ -1,17 +1,14 @@
-<h1>Lancement des tests</h1>
+<h1>Lancement des tests sur <strong><?php echo $page->getUrl(); ?></strong></h1>
 
-<h2>Page testée : <?php echo $page->getUrl(); ?></h2>
-<p>
-<?php echo $page->getDescription(); ?>
+<p class="description">
+  <?php echo $page->getDescription(); ?> 
 </p>
 
-<br />
-
-<h2>Liste des tests à passer : </h2>
+<h2>Liste des tests passés : </h2>
 <ul>
   <?php foreach ($tab_tests as $test): ?>
     <li>
-      <?php echo $test['class'] ?>
+      <?php echo $test['class']::testName ?>
       <?php if (! $test['implemente']) : ?>
         (non implémenté)
       <?php endif; ?>
@@ -19,12 +16,7 @@
   <?php endforeach;?>
 </ul>
 
-<br />
- 
-<ul>
-  <li><a href="<?php echo $resultUrlRoot ?>output.html" target="_blank"> Voir les résultats </a></li>
-  <li><a href="<?php echo $resultUrlRoot ?>tested.html" target="_blank"> Voir la page testée </a></li>
-</ul>
+<a href="<?php echo $resultUrlRoot ?>output.html" target="_blank"> Voir les résultats </a>
 
 
 
