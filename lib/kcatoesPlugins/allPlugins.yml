@@ -20,7 +20,8 @@ rgaa:
   - ConformitePositionDeclarationUtilisationDTD
   - ConformiteSyntaxiqueDeclarationUtilisationDTD
   - PresenceTitre
-  - PertinenceTitre 
+  - PertinenceTitre
+  - PresenceTitreHierarchiePremierNiveau
   
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
