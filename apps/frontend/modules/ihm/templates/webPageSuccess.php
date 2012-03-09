@@ -39,14 +39,14 @@
   <li>
     <span class="item"><?php echo $config->getLibelle(); ?></span> 
     <span class="actions">
-    <?php if(!$isTested):?>
+    <?php /* if(!$isTested): */?>
 	    <?php echo link_to('Lancer', 'launchTests', 
 	                        array('web_page_id' => $page->getId()
 	                              ,'test_config_id' => $config->getId())
 	                        ,array('class'=>'ico lancer'
 	                              ,'title'=>'Lancer l\'évaluation avec la configuration '.$config->getLibelle()
 	                              )) ?>
-	  <?php endif ?>
+	  <?php /* endif */ ?>
                                               
     <?php echo link_to('Supprimer', 'webPageDeleteConfigTest', 
                         array('web_page_id' => $page->getId() 
