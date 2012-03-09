@@ -18,6 +18,7 @@ rgaa:
   - AbsenceLiensSansIntitule
   - PresenceDeclarationUtilisationDTD
   - ConformitePositionDeclarationUtilisationDTD
+  - ConformiteSyntaxiqueDeclarationUtilisationDTD
   
 #rubrique2 :
 #  - AbsenceDeJustificationDuTexte
