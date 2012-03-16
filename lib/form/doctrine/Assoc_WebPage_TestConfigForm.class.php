@@ -10,6 +10,8 @@
  */
 class Assoc_WebPage_TestConfigForm extends BaseAssoc_WebPage_TestConfigForm
 {
+	private $nbConfigs;
+	
   public function configure()
   {
   	unset(
@@ -18,6 +20,7 @@ class Assoc_WebPage_TestConfigForm extends BaseAssoc_WebPage_TestConfigForm
   	);
   	
   	$testConfigs = Doctrine_Core::getTable('TestConfig')->getAllForSelect();
+  	$this->nbConfigs = count($testConfigs);
   	                                                         
   	$this->setWidgets(array(
       'test_config_id'  => new sfWidgetFormChoice(array('choices'   => $testConfigs)),
@@ -55,10 +58,15 @@ class Assoc_WebPage_TestConfigForm extends BaseAssoc_WebPage_TestConfigForm
   		// Met à jour la liste 
       $testConfigs = Doctrine_Core::getTable('TestConfig')->getAvailableForSelect($default);
   		$this->widgetSchema['test_config_id'] = new sfWidgetFormChoice(array( 'choices'   => $testConfigs));
+  		$this->nbConfigs = count($testConfigs);
   	}
   	parent::setDefault($name, $default);
   	return $this;
   }
-  	
+
+  public function getNbConfigs()
+  {
+  	return $this->nbConfigs;
+  }
 
 }

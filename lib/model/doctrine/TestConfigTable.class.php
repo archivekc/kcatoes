@@ -28,6 +28,7 @@ class TestConfigTable extends Doctrine_Table
   	$configs = Doctrine_Query::create()
       ->select('t.libelle')
       ->from('TestConfig t INDEXBY t.id')
+      ->innerJoin('t.CollectionTests')
       ->orderBy('t.libelle')
       ->fetchArray();
       
@@ -49,11 +50,11 @@ class TestConfigTable extends Doctrine_Table
   public function getAvailableForSelect($page_id){
   	
   	// Configurations de test déjà liés à la page   
-  	$currConfigs = Doctrine_Core::getTable('Assoc_WebPage_TestConfig')
+  	/*$currConfigs = Doctrine_Core::getTable('Assoc_WebPage_TestConfig')
   	               ->createQuery('a')
   	               ->select('DISTINCT a.test_config_id')
   	               ->where('a.web_page_id', $page_id)
-  	               ->fetchArray();
+  	               ->fetchArray();*/
     $currConfigs = Doctrine_Core::getTable('Assoc_WebPage_TestConfig')
                           ->findByWebPageId($page_id, Doctrine_Core::HYDRATE_ARRAY);
     $currConfigsIds = array();
@@ -64,7 +65,8 @@ class TestConfigTable extends Doctrine_Table
     // Filtrage des configurations de test déjà associées à la page web 
     $confQuery = Doctrine_Query::create()
 																->select('t.libelle')
-																->from('TestConfig t INDEXBY t.id');
+																->from('TestConfig t INDEXBY t.id')
+																->innerJoin('t.CollectionTests');
     $configs = $confQuery->whereNotIn('t.id', $currConfigsIds)
 												->orderBy('t.libelle')
 												->fetchArray();
