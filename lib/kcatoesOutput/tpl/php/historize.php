@@ -8,7 +8,7 @@ $output = file_get_contents('./output.html');
 $autosave = isset($_GET['autosave'])?true:false;
 
 $value = isset($_POST['score'])?htmlentities($_POST['score']):'';
-$input = '<input type="hidden" id="score" name="score" type="text" readonly="readonly" value="'.$value.'"/>';
+$input = '<input type="hidden" id="score" name="score" readonly="readonly" value="'.$value.'"/>';
 $span = '<span class="scoreValue">'.$value.'</span>';
 
 $output = preg_replace('/<input[^>]*?id="score".*?\/>/u', $input, $output);

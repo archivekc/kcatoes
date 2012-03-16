@@ -12,6 +12,7 @@ abstract class ASource
 	const testId = 'L\'id du test n\'est pas défini';
 	protected $testProc = array();
 	protected $testDocLinks = array();
+	protected $testGroups = array();
 	
 	protected $page;
 	
@@ -74,6 +75,16 @@ abstract class ASource
 	public function getTestResults()
 	{
 		return $this->results;
+	}
+	
+	/**
+	 * Permet de récupérer les différents groupes
+	 * 
+	 * @return array
+	 */
+	public function getGroups()
+	{
+		return $this->testGroups;
 	}
 	
 	/**

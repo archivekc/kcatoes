@@ -24,7 +24,12 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends \ASource
   protected $testDocLinks = array(
     'G140' => 'http://www.w3.org/TR/WCAG20-TECHS/G140.html'  
   );
-	
+
+  protected $testGroups = array(
+    'niveau' => 'A'
+    ,'profil test' => 'Ergonome'
+  );
+  
   public function execute()
   {
     $crawler = $this->page->crawler;

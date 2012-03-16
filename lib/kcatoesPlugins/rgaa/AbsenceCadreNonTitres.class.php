@@ -13,6 +13,11 @@ class AbsenceCadreNonTitres extends \ASource
   protected $testDocLinks = array(
     'H64' => 'http://www.w3.org/TR/WCAG20-TECHS/H64.html'  
   );
+  
+  protected $testGroups = array(
+    'niveau' => 'A'
+    ,'profil test' => 'Rédacteur'
+  );
 	
   public function execute()
   {

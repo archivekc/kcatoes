@@ -345,6 +345,10 @@ class KcatoesWrapper
         		break;
         }
   		}
+  		if ($nbEchec + $nbReussite == 0)
+  		{
+  			return 'N/A';
+  		}
   		return $nbReussite / ($nbEchec + $nbReussite);
   	}
   	else

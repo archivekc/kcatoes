@@ -112,6 +112,9 @@ class Tester
             break;
         }
       }
+      if ($nbEchec + $nbReussite == 0){
+      	return 'N/A';
+      }
       return ceil($nbReussite / ($nbEchec + $nbReussite)*100);
   }
   /**
@@ -201,20 +204,30 @@ class Tester
    */
   private function arrayToHtmlList(array $input, $ordered = false)
   {
-  	$list = $ordered?'ol':'ul';
-  	$retString = '<'.$list.'>';
-  	foreach ($input as $item)
+  	$retString = '';
+  	if (count($input))
   	{
-  		$retString .= '<li>';
-  		if (is_array($item)){
-  			$retString .= $this->arrayToHtmlList($item, $ordered);
-  		} else {
-  			$retString .= $item;
-  		}
-  		$retString .= '</li>';
+	  	$list = $ordered?'ol':'ul';
+	  	$retString = '<'.$list.'>';
+	  	foreach ($input as $key => $item)
+	  	{
+	  		$retString .= '<li>';
+	  		if (is_array($item)){
+	  			$retString .= $this->arrayToHtmlList($item, $ordered);
+	  		} else {
+	  			if (is_numeric($key))
+	  			{
+		  			$retString .= $item;
+	  			}
+	  			else {
+            $retString .= '<span class="key">'.$key.'</span>&nbsp;: <span class="value">'.$item.'</span>';
+	  			}
+	  		}
+	  		$retString .= '</li>';
+	  	}
+	  	
+	  	$retString .= '</'.$list.'>';
   	}
-  	
-  	$retString .= '</'.$list.'>';
   	return $retString;
   }
   
@@ -269,17 +282,18 @@ class Tester
   	if ($history)
   	{
   		$output = '<form method="post" action="./historize.php" >';
-  		$output .= '<div class="save">'
+  		$output .= '<span class="save">'
   		        .'<input type="submit" value="Sauvegarder" />'
   		        .'<input type="hidden" id="filename" name="filename" value="output.html" />'
-  		        .'<input type="hidden" id="score" name="score" type="text" readonly="readonly" value="'.$this->getScore().'"/>'
-  		        .'</div>';
+  		        .'<input type="hidden" id="score" name="score" readonly="readonly" value="'.$this->getScore().'"/>'
+  		        .'</span>';
   	}
   	
     $output .= '<table id="kcatoesRapport"><thead><tr>';
 
     // entête
     $output .= '<th scope="col" class="testId">Id du test</th>';
+    $output .= '<th scope="col" class="groups">Regroupement</th>';
 	  $output .= '<th scope="col" class="testInfo">Informations du test</th>';
 	  $output .= '<th scope="col" class="testStatus">Statut global</th>';
     $output .= '<th scope="col" class="subResult">Statut</th>';
@@ -305,6 +319,7 @@ class Tester
       
       $output .= '<tr>';
       $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
+      $output .= '<td '.$rowspan.' class="groups">'.$this->arrayToHtmlList($test->getGroups()).'</td>';
       $output .= '<td '.$rowspan.' class="testInfo">';
 	  $output .= '<strong>'.$test::testName.'</strong>';
 	  $output .= '<div class="testProc"><strong>Procédure de test&nbsp;:</strong>' .$this->arrayToHtmlList($test->getProc(), true).'</div>';
