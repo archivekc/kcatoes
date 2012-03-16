@@ -1,18 +1,17 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
-# default rules
 homepage:
   url:   /
-  param: { module: ihm, action: webPages }
+  param: { module: ihm, action: index }
+
+aide:
+  url:  /aide
+  param: { module: ihm, action: aide }
 
 # #########
 # PAGES WEB
 # #########
-webPages:
-  url: /web-pages
-  param: {module: ihm, action: WebPages}
-
 webPage:
   url: /web-page/:id
   param: {module: ihm, action: WebPage}
@@ -34,10 +33,6 @@ deleteWebPage:
 # #############
 # CONFIGURATION
 # #############
-testConfigs:
-  url: /test-configs
-  param: {module: ihm, action: TestConfigs}
-
 testConfig:
   url: /test-config/:id
   param: {module: ihm, action: TestConfig}

@@ -17,36 +17,54 @@ class ihmActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->forward('default', 'module');
-  }
-  
-  
-  
-  /**
-   * Affichage de la liste des WebPage
-   * @param sfWebRequest $request
-   */
-  public function executeWebPages(sfWebRequest $request)
-  {
-  	$this->addPageForm = new WebPageForm();
+  	// Pages web
+    $this->addPageForm = new WebPageForm();
+    
+    // Configs de test
+    $this->addTestConfigForm = new TestConfigForm();
+    
+    
     if ($request->isMethod('post'))
     {
+    	// Pages web
       if ($this->processForm($request, $this->addPageForm))
       {
-	    	$page = $this->addPageForm->save();
-        $this->redirect('ihm/WebPages');
+        $page = $this->addPageForm->save();
+        $this->redirect('ihm/index');
       }
+      
+      // Configs de test
+      if ($this->processForm($request, $this->addTestConfigForm))
+      {
+        $testConfig = $this->addTestConfigForm->save();
+        $this->redirect('ihm/index');
+      }
+      
     }
-  	
-  	$table  = Doctrine_Core::getTable('WebPage');
-  	$q = Doctrine_Query::create()
-  	 ->from('WebPage p')
-  	 ->orderBy('updated_at DESC');
-  	 
-  	 $this->pages = $q->execute();
-  	 
+    
+    // Pages web
+    $table  = Doctrine_Core::getTable('WebPage');
+    $q = Doctrine_Query::create()
+     ->from('WebPage p')
+     ->leftJoin('p.CollectionTestConfig')
+     ->orderBy('updated_at DESC');
+     
+    $this->pages = $q->execute();
+    
+     
+    // Configs de test
+    $table  = Doctrine_Core::getTable('TestConfig');
+    $q = Doctrine_Query::create()
+     ->from('TestConfig c')
+     ->leftJoin('c.CollectionTests')
+     ->leftJoin('c.CollectionWebPage')
+     ->orderBy('c.updated_at DESC');
+     
+     $this->configs = $q->execute();     
   }
   
+  
+   
   /**
    * Suppression d'une WebPage
    * @param sfWebRequest $request
@@ -55,7 +73,7 @@ class ihmActions extends sfActions
   {
   	$page = Doctrine_Core::getTable('WebPage')->findOneById($request->getParameter('id'));
   	$page->delete();
-  	$this->redirect('ihm/WebPages');
+  	$this->redirect('ihm/index');
   }
   
   /**
@@ -107,29 +125,7 @@ class ihmActions extends sfActions
     $this->redirect('ihm/WebPage?id='.$webPage->getId());
   }
 
-  // gestion des conf
-  public function executeTestConfigs(sfWebRequest $request)
-  {
-    $this->addTestConfigForm = new TestConfigForm();
-    if ($request->isMethod('post'))
-    {
-      if ($this->processForm($request, $this->addTestConfigForm))
-      {
-        $testConfig = $this->addTestConfigForm->save();
-        $this->redirect('ihm/TestConfigs');
-      }
-    }
-
-    $table  = Doctrine_Core::getTable('TestConfig');
-    $q = Doctrine_Query::create()
-     ->from('TestConfig c')
-     ->leftJoin('c.CollectionTests')
-     ->orderBy('c.updated_at DESC');
-     
-     $this->configs = $q->execute();
-     
-  }
-  
+ 
   public function executeTestConfig(sfWebRequest $request)
   {
   	TestsHelper::getRequired();
@@ -155,7 +151,7 @@ class ihmActions extends sfActions
         	$collection->add($item);
         	$this->config->save();
         }
-        $this->redirect('ihm/TestConfigs');
+        $this->redirect('ihm/index');
     }
     
 
@@ -170,7 +166,7 @@ class ihmActions extends sfActions
   {
     $config = Doctrine_Core::getTable('TestConfig')->findOneById($request->getParameter('id'));
     $config->delete();
-    $this->redirect('ihm/TestConfigs');
+    $this->redirect('ihm/index');
   }
   
   /**
@@ -230,6 +226,13 @@ class ihmActions extends sfActions
   public function executeCredits()
   {
   	
+  }
+  /**
+   * Page aide
+   */
+  public function executeAide()
+  {
+    
   }
   
   
