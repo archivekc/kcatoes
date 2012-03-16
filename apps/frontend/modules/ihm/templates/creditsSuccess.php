@@ -15,3 +15,7 @@
     </a>
   </li>
 </ul>
+
+<h2>Éléments graphiques</h2>
+<p>Le logo a été créé par Cyril Fabby</p>
+<p>La plupart des icones de l'interface sont issues du site <a href="http://www.famfamfam.com/lab/icons/silk/">FAMFAMFAM</a></p> 
