@@ -5,10 +5,11 @@
   </div>
 	<ul class="listTests">
 	  <?php foreach($availableTests as $test):?>
+	  <?php $testName = str_replace('\\','.' ,$test) ?>
 	  <li>
 	    <?php $checked = (in_array($test, $sf_data->getRaw('selectedTests')))?'checked="checked"':''?>
-	    <input <?php echo $checked?> type="checkbox" name="tests[]" id="test_<?php echo $test ?>" value="<?php echo $test?>"/>
-	    <label for="test_<?php echo $test ?>"><?php echo ASource::getLibelle($test); ?></label>
+	    <input <?php echo $checked?> type="checkbox" name="tests[]" id="test_<?php echo $testName ?>" value="<?php echo $test ?>"/>
+	    <label for="test_<?php echo $testName ?>"><?php echo ASource::getLibelle($test); ?></label>
 	  </li>
 	  <?php endforeach; ?>
 	</ul>

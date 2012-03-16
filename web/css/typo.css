@@ -8,6 +8,7 @@ body {
 #teaser {
   font-style: italic;
   font-family: georgia, garamound, serif;
+  letter-spacing: .1em;
 }
 
 #menu li span,
@@ -34,7 +35,7 @@ body {
 }
 
 #page h2 {
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
 }
 #page h3 {
   font-weight: bold;

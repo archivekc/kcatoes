@@ -1,6 +1,6 @@
 <h1>Configurations de test: <strong><?php echo $config->getLibelle() ?></strong></h1>
 <div>
-<a href="<?php echo url_for('editTestConfig', array('id'=>$config['id']))?>">Modifier</a>
+<a class="ico modifier" href="<?php echo url_for('editTestConfig', array('id'=>$config['id']))?>">Modifier</a>
 </div>
 <?php if (count($config->getCollectionTests())): ?>
 <ul>

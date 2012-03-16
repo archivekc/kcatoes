@@ -41,7 +41,6 @@ body {
   margin: .8em 0 .8em 12em;
   padding-bottom: .3em;
   border-bottom: .1em solid;
-  letter-spacing: .1em;
 }
 
 /* bandeau */
@@ -93,6 +92,7 @@ body {
   padding: 1em;
   line-height: 1.5;
   font-size: 1.2em;
+  overflow: hidden;
 }
 
 #page p {
@@ -178,20 +178,37 @@ body {
   margin: .8em 1em;
 }
 
+/* définitions */
+dt {
+  float: left;
+  clear: left;
+  width: 14em;
+  font-weight: bold;
+  text-align: right;
+  margin-right: -14em;
+}
+dd {
+	display: block;
+  padding-left: 15em;
+  float: left;
+}
+
+dl {
+  overflow: hidden;
+}
+
 /* autres */
 #page abbr {
   border-bottom: 1px dashed;
 }
 
-/* formaulaire */
+/* formulaire */
 form {
   margin: 1em 0; 
   overflow: hidden;
 }
 form label {
   display: inline-block;
-  width: 10em;
-  text-align: right;
   vertical-align: top;
 }
 input[type=radio]+label,
@@ -205,44 +222,27 @@ form textarea {
   vertical-align: top;
 }
 input[type=text], select, textarea {
-  display: inline-block;
+  display: block;
   width: 30em;
   /*resize: none;*/
 }
-form .fields {
-  width: 50em;
-}
-form .fields,
-form .submit {
-	float: left;
-}
-form .submit button,
+
 form input[type=submit] {
-  display: table-cell;
-  vertical-align: middle;
   font-size: 2em;
-  font-weight: bold;
   text-align: center;
   background: #343434;
   color: #FFF;
   border-radius: 10px;
   border: none;
   -moz-box-shadow: 3px 3px 5px #666;
-}
-
-form .submit button {
-  height: 5em;
-  width: 5em;
+  float: right;
 }
 
 form input[type=submit]:hover,
-form input[type=submit]:focus,
-form .submit button:hover,
-form .submit button:focus {
+form input[type=submit]:focus {
   background: #646464;
 }
-form input[type=submit]:active,
-form .submit button:active {
+form input[type=submit]:active {
   position: relative;
   top: 2px;
   left: 2px;
@@ -259,26 +259,18 @@ form .submit button:active {
 }
 #page a.ico {
   display: inline-block;
-  width: 1em;
-  height: 1em;
-  padding: .2em;
+  min-height: 1em;
+  padding: .2em .2em .2em 2em;
   border: .1em solid #CCC ;
   border-radius: 3px;
-  text-indent: 1000em;
   vertical-align: text-bottom;
   margin-left: .5em;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background-position: 2px center !important;
+  background-repeat: no-repeat !important;
 }
 #page a.ico:hover,
 #page a.ico:focus {
   border-color: #999;
-}
-#page a.ico.supprimer {
-  background-image: url('../img/ico/bin_closed.png');
-}
-#page a.ico.lancer {
-  background-image: url('../img/ico/kcatoes.png');
 }
 
 /* aucun élément */
@@ -288,13 +280,35 @@ form .submit button:active {
 	text-align: center;
 }
 
-/* page: web-pages */
+/* descriptions */
 #page .description {
-  width: 40em;
   border: 1px solid #DDD;
   margin-left: 2em;
   padding: 1em;
 }
+
+/* Layouts */
+.twoParts {
+  overflow-y: hidden;
+}
+.twoParts .part {
+  display: inline-block;
+  width: 48%;
+  float: left;
+  padding-right: 1%;
+}
+.twoParts .part+.part {
+  float: right;
+  padding-left: 1%;
+}
+.part+.part {
+  border-left: 2px ridge;
+}
+
+
+/* *********** */
+/* SPECIFIQUES */
+/* *********** */
 
 /* page: edit list test */
 .listTests {

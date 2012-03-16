@@ -16,11 +16,7 @@
   <?php endforeach;?>
 </ul>
 
-<a href="<?php echo $resultUrlRoot ?>output.html" target="_blank"> Voir les résultats </a>
-
-
-
-                                              
-
-
-
+<ul>
+  <li><a href="<?php echo $resultUrlRoot ?>output.html" target="_blank"> Voir les résultats </a></li>
+  <li><a href="<?php echo url_for('webPage', array('id'=>$page->getId()))?>">Retour à l'écran précédent</a></li>
+</ul>

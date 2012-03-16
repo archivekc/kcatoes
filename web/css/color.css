@@ -92,6 +92,18 @@ body {
   box-shadow: 3px 3px 15px #FFF;
 }
 
+/* icones */
+#page a.ico.supprimer {
+  background-image: url('../img/ico/bin_closed.png');
+}
+#page a.ico.lancer {
+  background-image: url('../img/ico/kcatoes.png');
+}
+
+#page a.ico.modifier {
+  background-image: url('../img/ico/pencil.png');
+}
+
 .highlight {
   background: #F0F0F0;
   border: 1px solid #DDD;
@@ -158,4 +170,7 @@ body {
   border-color: #CCC;
 }
 
-
+/* Layouts */
+.part+.part {
+  border-color: #FFF;
+}

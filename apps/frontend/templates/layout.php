@@ -4,7 +4,7 @@
     <?php include_http_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
-    <?php //include_javascripts() ?>
+    <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
     
   </head>
@@ -20,8 +20,8 @@
       </div>
       <div id="aside">
         <ul id="menu">
-          <li><a href="<?php echo url_for('webPages')?>">Pages web</a></li>
-          <li><a href="<?php echo url_for('testConfigs')?>">Configurations de test</a></li>
+          <li><a href="<?php echo url_for('homepage')?>">Accueil</a></li>
+          <li><a href="<?php echo url_for('aide')?>">Aide</a></li>
           <li><a href="<?php echo url_for('credits')?>">Crédits</a></li>
         </ul>
       </div>

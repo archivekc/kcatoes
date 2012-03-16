@@ -11,3 +11,6 @@
 
 /* typographie */
 @import './typo.css';
+
+/* composants */
+@import './components.css';
