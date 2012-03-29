@@ -7,7 +7,7 @@
  * @subpackage page
  * @author     cfabby
  */
-class pageActions extends sfActions
+class pageActions extends kcatoesActions
 {
 	public function executeIndex(sfWebRequest $request)
 	{
