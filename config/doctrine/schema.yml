@@ -22,9 +22,8 @@ WebPage:
     id:          { type: integer, primary: true, autoincrement: true }
     url:         { type: varchar(5000), notnull: true, unique: true }
     doctype:     { type: varchar(500), notnull: false }
-    basesrc:     { type: clob, notnull: false }
     description: { type: varchar(5000), notnull: false }
-
+    
 # =Test
 # liste des tests associés à une page
 Test:

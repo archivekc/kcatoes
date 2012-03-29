@@ -171,6 +171,18 @@ body {
   border-color: #CCC;
 }
 
+/* messages */
+.info {
+  color: #0C0
+}
+.warning{
+  color: #F80
+}
+.error{
+  color: #D00
+}
+
+
 /* Layouts */
 .part+.part {
   border-color: #FFF;

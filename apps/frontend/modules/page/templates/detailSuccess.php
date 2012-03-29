@@ -1,3 +1,4 @@
+<?php use_helper('Partial') ?>
 <h1>Page&nbsp;: <strong><?php echo $page->getUrl()?></strong></h1>
 <?php if (strlen($page->getDescription()) > 0):?>
   <p class="description">
@@ -7,14 +8,12 @@
 <div class="twoParts">
   <div class="part">
     <h2>Extractions</h2>
-    <?php $nbExtracts = count($page->getCollectionExtracts())?>
-    <?php if ($nbExtracts == 0):?>
-    <p class="zeroFound">Aucune extraction</p>
-    <?php else:?>
-      liste des extractions
-    <?php endif ?>
+    <?php include_partial('extractionList', array('page' => $page )) ?>
   </div>
   <div class="part">
     <h2>Tests</h2>
+    <?php include_partial('testsForm', array(   'page'      => $page
+                                              , 'testsForm' => $testsForm
+                                              , 'allTests'  => $allTests)) ?>
   </div>
 </div>
