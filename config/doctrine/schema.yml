@@ -23,7 +23,7 @@ WebPage:
     url:         { type: varchar(5000), notnull: true, unique: true }
     doctype:     { type: varchar(500), notnull: false }
     description: { type: varchar(5000), notnull: false }
-    
+
 # =Test
 # liste des tests associés à une page
 Test:
@@ -37,6 +37,7 @@ Test:
       local:        web_page_id
       foreign:      id
       foreignAlias: CollectionTests
+      onDelete:     CASCADE
 
 
 # =WebPageExtract
@@ -55,7 +56,8 @@ WebPageExtract:
       local:        web_page_id
       foreign:      id
       foreignAlias: CollectionExtracts
-#      onDelete:     CASCADE
+      onDelete:     CASCADE
+      
       
 # =TestResult
 # Résultat des tests passés sur les différentes extractions
