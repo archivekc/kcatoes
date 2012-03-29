@@ -1,34 +1,35 @@
-/* erreurs */
-.error_list {
-  font-weight: bold;
-}
 body {
   font-family: Helvetica, Arial, sans-serif;
 }
-#teaser {
-  font-style: italic;
-  font-family: georgia, garamound, serif;
-  letter-spacing: .1em;
-}
 
+/* menu */
 #menu li span,
 #menu li a{
   font-weight: bold;
   text-decoration: none;
 }
-.download a {
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-}
 
-.highlight {
-  font-weight: bold;
+#teaser {
+  font-style: italic;
+  font-family: georgia, garamound, serif;
+  letter-spacing: .1em;
 }
 #copyright {
   text-align: center;
 }
 
+
+.highlight {
+  font-weight: bold;
+}
+
+
+/* tableaux */
+caption {
+  font-style: italic;
+}
+
+/* titres */
 #page h1 {
   font-family: georgia, garamound, serif;
   font-style: italic;
@@ -41,9 +42,12 @@ body {
   font-weight: bold;
 }
 
-#page strong {font-weight: bold; }
-#page em {font-style: italic; }
+/* erreurs */
+.error_list {
+  font-weight: bold;
+}
 
+/* liens */
 #page a {
   font-weight: bold;
   text-decoration: none;
@@ -51,6 +55,11 @@ body {
 #page a:visited {
   font-style: italic;
 }
+
+/* autres éléments */
+#page strong {font-weight: bold; }
+#page em {font-style: italic; }
+
 
 #page code {
   font-family : "Courier New", Courier, monospace;

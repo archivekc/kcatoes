@@ -15,6 +15,8 @@ class WebPageForm extends BaseWebPageForm
 		unset(
 		  $this['created_at']
 		  ,$this['updated_at']
+		  ,$this['doctype']
+		  ,$this['baseSrc']
 	  );
 	}
 	

@@ -20,14 +20,72 @@ WebPage:
     - Timestampable
   columns:
     id:          { type: integer, primary: true, autoincrement: true }
-    url:         { type: varchar(5000), notnull: true }
+    url:         { type: varchar(5000), notnull: true, unique: true }
+    doctype:     { type: varchar(500), notnull: false }
+    basesrc:     { type: clob, notnull: false }
     description: { type: varchar(5000), notnull: false }
-  relations: 
-    CollectionTestConfig: 
-      class:        TestConfig
-      foreignAlias: CollectionWebPages
-      refClass:     Assoc_WebPage_TestConfig
 
+# =Test
+# liste des tests associés à une page
+Test:
+  tableName: test
+  columns:
+    id:             { type: integer, primary: true, autoincrement: true }
+    web_page_id:    { type: integer, notnull: true }
+    class:          { type: varchar(500) }
+  relations: 
+    WebPage: 
+      local:        web_page_id
+      foreign:      id
+      foreignAlias: CollectionTests
+
+
+# =WebPageExtract
+# Différentes extractions d'une url (avec/sans JS, avec/sans CSS, avec/sans images) 
+WebPageExtract:
+  tableName: web_page_extract
+  actAs:
+    - Timestampable
+  columns:
+    id:             { type: integer, primary: true, autoincrement: true }
+    web_page_id:    { type: integer, notnull: true }
+    src:            { type: clob, notnull: true }
+    type:           { type: varchar(500), notnull: true }
+  relations:
+    WebPage:
+      local:        web_page_id
+      foreign:      id
+      foreignAlias: CollectionExtracts
+#      onDelete:     CASCADE
+      
+# =TestResult
+# Résultat des tests passés sur les différentes extractions
+TestResult:
+  tableName: test_result
+  columns:
+    id:                     { type: integer, primary: true, autoincrement: true }
+    web_page_extract_id:    { type: integer, notnull: true }
+    class:                  { type: varchar(500) }
+  relations:
+    WebPageExtract:
+      local:        web_page_extract_id
+      foreign:      id
+      foreignAlias: CollectionResults 
+
+# =TestResultLine
+# Une ligne de résultat (constituant du resultat global)
+TestResultLine:
+  tableName: test_result_line
+  columns:
+    id:                     { type: integer, primary: true, autoincrement: true }
+    test_result_id:         { type: integer, notnull: true }
+    result_line:            { type: clob, notnull: true }    
+  relations:
+    TestResult:
+      local: test_result_id
+      foreign: id
+      foreignAlias: CollectionLines
+      
 # =TestConfig
 # une configuration
 TestConfig:
@@ -38,11 +96,6 @@ TestConfig:
     id:          { type: integer, primary: true, autoincrement: true }
     libelle:     { type: varchar(255), unique: true }
     description: { type: varchar(5000) }
-  relations: 
-    CollectionWebPage: 
-      class:        WebPage
-      foreignAlias: CollectionTestConfigs
-      refClass:     Assoc_WebPage_TestConfig
     
 # =TestConfigDetail
 # les différents tests d'une conf 
@@ -59,20 +112,3 @@ TestConfigDetail:
       local:        test_config_id
       foreign:      id
       foreignAlias: CollectionTests
-      
-# Association WebPage TestConfig (many to many)
-Assoc_WebPage_TestConfig:
-  tableName: assoc_web_page_test_config
-  actAs:
-    - Timestampable
-  columns:
-    #id:             { type: integer, primary: true, autoincrement: true }
-    web_page_id:    { type: integer, primary: true }
-    test_config_id: { type: integer, primary: true }
-  relations: 
-    WebPage: 
-      local: web_page_id
-      foreignAlias: Associations_WebPage_TestConfig
-    TestConfig: 
-      local: test_config_id
-      foreignAlias: Associations_WebPage_TestConfig

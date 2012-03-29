@@ -4,9 +4,10 @@
 dev:
   doctrine:
     param:
-      dsn:      mysql:host=localhost;dbname=kcatoes_dev
-      username: root
-      password:
+#      dsn:      mysql:host=localhost;dbname=kcatoes_dev
+      dsn:      pgsql:host=localhost;dbname=kcatoes_dev
+      username: kcatoes
+      password: kcatoes
        
 prod:
   doctrine:

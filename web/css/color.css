@@ -99,11 +99,12 @@ body {
 #page a.ico.lancer {
   background-image: url('../img/ico/kcatoes.png');
 }
-
 #page a.ico.modifier {
   background-image: url('../img/ico/pencil.png');
 }
-
+#page a.ico.detail {
+  background-image: url('../img/ico/magnifier.png');
+}
 .highlight {
   background: #F0F0F0;
   border: 1px solid #DDD;

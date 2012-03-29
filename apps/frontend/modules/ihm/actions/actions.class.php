@@ -8,7 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class ihmActions extends sfActions
+class ihmActions extends kcatoesActions
 {
  /**
   * Executes index action
@@ -23,14 +23,25 @@ class ihmActions extends sfActions
     // Configs de test
     $this->addTestConfigForm = new TestConfigForm();
     
-    
     if ($request->isMethod('post'))
     {
     	// Pages web
       if ($this->processForm($request, $this->addPageForm))
       {
-        $page = $this->addPageForm->save();
-        $this->redirect('ihm/index');
+
+				if ($page = $this->addPageForm->save()){
+					$url = $this->addPageForm->getValue('url');
+					$src = file_get_contents($url);
+					
+					$extract = new WebPageExtract();
+					$extract->setWebPage($page);
+					$extract->setSrc($src);
+					$extract->setType('base');
+					
+					$extract->save();
+				};
+				
+				$this->redirect('ihm/index');
       }
       
       // Configs de test
@@ -47,6 +58,7 @@ class ihmActions extends sfActions
     $q = Doctrine_Query::create()
      ->from('WebPage p')
      ->leftJoin('p.CollectionTestConfig')
+     ->leftJoin('p.CollectionExtracts')
      ->orderBy('updated_at DESC');
      
     $this->pages = $q->execute();
@@ -219,36 +231,18 @@ class ihmActions extends sfActions
     
   }
 
-  
-  /**
-   * Page crédit
-   */
-  public function executeCredits()
+
+/**
+ * wizard d'extraction du code source de la page
+ */
+  public function executeExtractWizard(sfWebRequest $request)
   {
-  	
-  }
-  /**
-   * Page aide
-   */
-  public function executeAide()
-  {
+    $id = $request->getParameter('web_page_id');
+    $this->page = Doctrine_Core::getTable('WebPage')->findOneById($id);
+    $this->extracts = $this->page->getCollectionExtracts();
     
   }
   
   
-  /**
-   * Valide les données saisies dans un formulaire
-   *
-   * @param sfWebRequest $request La requête contenant les données à valider
-   * @param sfForm       $form    Le fomulaire à valider
-   */
-  private function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind(
-      $request->getParameter($form->getName()),
-      $request->getFiles($form->getName())
-    );
 
-    return $form->isValid();
-  }
 }

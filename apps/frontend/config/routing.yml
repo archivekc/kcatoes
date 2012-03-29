@@ -3,19 +3,48 @@
 
 homepage:
   url:   /
-  param: { module: ihm, action: index }
+  param: { module: page, action: index }
 
-aide:
-  url:  /aide
-  param: { module: ihm, action: aide }
 
-# #########
+# ######### 
 # PAGES WEB
 # #########
-webPage:
-  url: /web-page/:id
-  param: {module: ihm, action: WebPage}
-  
+pageIndex:
+  url:      /pages
+  param:    { module: page, action: index }
+
+pageDetail:
+  url:      /page/voir/:id
+  param:    { module: page, action: detail }
+  class:    sfDoctrineRoute
+  options:  { model: WebPage, type: object }
+  requirements: 
+    id:     \d+
+
+pageEdit:
+  url:      /page/modifier/:id
+  param:    { module: page, action: edit }
+  class:    sfDoctrineRoute
+  options:  { model: WebPage, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [GET, POST]
+
+pageDelete:
+  url:      /page/supprimer/:id
+  param:    { module: page, action: delete }
+  class:    sfDoctrineRoute
+  options:  { model: WebPage, type: object }
+  requirements: 
+    id:     \d+
+
+
+
+
+webPageExtracts:
+  url: /assistant-extraction/:web_page_id
+  param: {module: ihm, action: ExtractWizard}
+ 
 webPageDeleteConfigTest: 
   url:     /web-page/:web_page_id/delete-config-test/:test_config_id
   param:   { module: ihm, action: WebPageDeleteConfigTest }
@@ -29,6 +58,18 @@ webPageDeleteConfigTest:
 deleteWebPage:
   url: /delete-web-page/:id
   param: {module: ihm, action: DeleteWebPage}
+
+
+# #################
+# PAGES EDITORIALES
+# #################
+aide:
+  url:  /aide
+  param: { module: editorial, action: aide }
+
+credits:
+  url: /credits
+  param: {module: editorial, action: credits}
 
 # #############
 # CONFIGURATION
@@ -45,12 +86,6 @@ editTestConfig:
   url: /edit-test-config/:id
   param: {module: ihm, action: EditTestConfig}
 
-# #######
-# CREDITS
-# #######
-credits:
-  url: /credits
-  param: {module: ihm, action: credits}
   
 # #########
 # TESTS

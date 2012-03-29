@@ -202,6 +202,27 @@ dl {
   border-bottom: 1px dashed;
 }
 
+/* tableaux */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid;
+  border-color: #999;
+}
+th, td {
+  padding: .3em;
+} 
+table thead th {
+  background: #343434;
+  color: #FFF;
+  font-weight: bold;
+}
+caption {
+  font-size: 1.5em;
+}
+
 /* formulaire */
 form {
   margin: 1em 0; 
@@ -214,9 +235,6 @@ form label {
 input[type=radio]+label,
 input[type=checkbox]+label {
   width: auto;
-}
-form .error_list {
-  padding-left: 10em;
 }
 form textarea {
   vertical-align: top;

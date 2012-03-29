@@ -38,8 +38,11 @@
 		    <?php echo link_to($page->getUrl(), 'webPage',
 		                        array('id'=>$page->getId())
 		                        ,array('class' => 'item'))?>
-		    <?php $count = count($page->getCollectionTestConfig())?>
-		    [<?php echo $count?> configuration(s)] 
+		    <?php $countConfig = count($page->getCollectionTestConfig())?>
+		    [<?php echo $countConfig?> configuration(s)]
+		    
+		    <?php $countExtract = count($page->getCollectionExtracts())?>
+        [<?php echo $countExtract?> Extraction(s)]  
 		    <?php // actions ?>
 		    <?php if($count== 0):?>
 		      <span class="actions">
