@@ -6,7 +6,8 @@
 <ul>
   <?php foreach($config->getCollectionTests() as $test):?>
   <li>
-    <?php echo ASource::getLibelle($test->getClass()) ?>
+    <?php $t_class = $test->getClass() ?>
+    <?php echo $t_class::getLibelle() ?>
   </li>
   <?php endforeach; ?>
 </ul>

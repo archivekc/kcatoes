@@ -69,17 +69,22 @@ class pageActions extends kcatoesActions
     $this->pages = $q->execute();
 	}
 
-	public function executeDetail(sfWebRequest $request)
-	{
+  /**
+   * Détail d'une page web
+   * @param sfWebRequest $request
+   */
+  public function executeDetail(sfWebRequest $request)
+  {
     $this->page = $this->getRoute()->getObject();
-
-    $this->allTests = TestsHelper::getAllTestsFromDir();
-
-    // Formulaire listant les tests disponibles
+    $this->allTests = TestsHelper::getAllTestsById();
     $this->testsForm = new WebPageTestsForm($this->page);
-    
 	}
 	
+
+  /**
+   * Modification d'une page web
+   * @param sfWebRequest $request
+   */
   public function executeEdit(sfWebRequest $request)
   {
     $this->page = $this->getRoute()->getObject();
@@ -157,7 +162,7 @@ class pageActions extends kcatoesActions
 
   /**
    * Lancement des tests sur une extraction donnée
-   * @param $request
+   * @param sfWebRequest $request
    */
   public function executeExecuteTests(sfWebRequest $request)
   {
@@ -221,12 +226,14 @@ class pageActions extends kcatoesActions
   
   /**
    * Affichage des résultats d'un test
-   * @param $request
+   * @param sfWebRequest $request
    */
   public function executeResultatTests(sfWebRequest $request)
   {
     $this->extraction = $this->getRoute()->getObject();
     $this->page       = $this->extraction->getWebPage();
+    
+    TestsHelper::getRequired();
   }
   
 }

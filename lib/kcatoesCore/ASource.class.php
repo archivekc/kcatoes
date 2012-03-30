@@ -23,17 +23,24 @@ abstract class ASource
 		$this->page = $page;
 	}
 
-	/**
-	 * Retourne le libellé d'un test
-	 * @param string $classname  Le nom de la classe
-	 * @return string
-	 */
-	public static function getLibelle($classname){
-    if (class_exists($classname, false))
-    {
-      return $classname::testName;
-    }
-    return false;
+  /**
+   * Retourne le libellé d'un test
+   * @param string $classname  Le nom de la classe
+   * @return string
+   */
+  public static function getLibelle(){
+    $myself = get_called_class();
+    return $myself::testName;
+	}
+	
+  /**
+   * Retourne l'id et le libellé d'un test
+   * @param string $classname  Le nom de la classe
+   * @return string
+   */
+  public static function getIdLibelle(){
+    $myself = get_called_class();
+    return $myself::testId.' - '.$myself::testName;
 	}
 	
 	

@@ -178,7 +178,7 @@ body {
   margin: .8em 1em;
 }
 
-/* définitions */
+/* dï¿½finitions */
 dt {
   float: left;
   clear: left;
@@ -266,7 +266,7 @@ form input[type=submit]:active {
   left: 2px;
 }
 
-/* listes d'accès */
+/* listes d'accï¿½s */
 .accessList .item {
   font-size: 1.5em;
 }
@@ -291,7 +291,7 @@ form input[type=submit]:active {
   border-color: #999;
 }
 
-/* aucun élément */
+/* aucun ï¿½lï¿½ment */
 .zeroFound {
 	font-size: 2em;
 	font-style: italic;
@@ -322,6 +322,14 @@ form input[type=submit]:active {
 .part+.part {
   border-left: 2px ridge;
 }
+
+.twoParts .smallpart {
+  width: 33%;
+}
+.twoParts .bigpart {
+  width: 63%;
+}
+
 
 
 /* *********** */

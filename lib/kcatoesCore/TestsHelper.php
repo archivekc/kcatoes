@@ -42,6 +42,8 @@ class TestsHelper {
    */
   public static function getAllTestsFromDir()
   {
+    self::getRequired();
+    
     $allTests = array();
     
     $allPluginPath = sfConfig::get('app_pluginpath');
@@ -68,6 +70,25 @@ class TestsHelper {
     return $allTests;
   }
   
+  /**
+   * Retourne tous les tests ordonnés par Id
+   * @return unknown_type
+   */
+  public static function getAllTestsById() 
+  {
+    $allTests = self::getAllTestsFromDir();
+    $testsById = array();
+    
+    foreach($allTests as $test) 
+    {
+      $testsById[$test::testId] = $test;
+    }
+    
+    // tri
+    uksort($testsById, array('TestsHelper', "sortByTestIdFromId"));
+    
+    return $testsById;
+  }
   
 	/**
 	 * Retourne une liste des classes (avec namespace) à partir du tableau de conf issu du YAML
@@ -199,4 +220,54 @@ EOT;
 	  else if (file_exists($dir)) unlink($dir);
 	} 
 
+	
+  /******************************************************************************************
+   * Fonctions de callback pour tri 
+   */
+	
+	
+  /**
+   * Fonction de callback pour tri des champs par ID de test
+   * @param unknown_type $class_a
+   * @param unknown_type $class_b
+   * @return unknown_type
+   */
+  public static function sortByTestIdFromClass($class_a, $class_b)
+  {
+    $id_a = $class_a::testId;
+    $id_b = $class_b::testId;
+
+    return self::sortByTestIdFromId($id_a, $id_b);
+  }
+  
+  /**
+   * Fonction de callback pour tri par ID de test
+   * @param string $a
+   * @param string $b
+   * @return int
+   */
+  public static function sortByTestIdFromId($id_a, $id_b)
+  {
+    $ver_a = explode('.', $id_a);
+    $ver_b = explode('.', $id_b);
+
+    $a1 = intval($ver_a[0]);
+    $a2 = intval($ver_a[1]);
+    
+    $b1 = intval($ver_b[0]);
+    $b2 = intval($ver_b[1]);
+    
+    // Comparaison des numéros de version principaux
+    if ($a1 < $b1) { return -1; }
+    if ($a1 > $b1) { return  1; }
+    
+    // Comparaison des numéros de sous-version
+    if ($a2 > $b2) { return  1; }
+    if ($a2 < $b2) { return -1; }
+    
+    // Egalité
+    return 0;
+  }
+  
+  
 }

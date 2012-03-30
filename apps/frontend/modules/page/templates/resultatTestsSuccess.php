@@ -3,7 +3,8 @@
 <?php foreach($extraction->getCollectionResults() as $result): ?>
   <li>
     <span class="testClass">
-      <?php echo $result->getClass() ?>
+      <?php $t_class = $result->getClass() ?>
+      <?php echo $t_class::getIdLibelle() ?>
     </span>
     <span class="testResult">
       <?php echo Resultat::getLabel($result->getResult()) ?>
