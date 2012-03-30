@@ -213,9 +213,29 @@ class pageActions extends kcatoesActions
       {
         // Nouvelle ligne de résultat
         $rLine = new TestResultLine();
+        
         $rLine->setTestResult($result);
+        
         $rLine->setResult($res['result']);
-        $rLine->setResultLine('TODO');
+        $rLine->setComment($res['comment']);
+        $rLine->setXpath($res['xpath']);
+        $rLine->setCssSelector($res['cssSelector']);
+        $rLine->setSource($res['source']);
+        
+        /* 
+         * TODO : voir si besoin de stocker le node
+         * 
+         * Options disponibles :
+         *  JSON_HEX_QUOT         JSON_HEX_TAG
+         *  JSON_HEX_AMP          JSON_HEX_APOS
+         *  JSON_NUMERIC_CHECK    JSON_BIGINT_AS_STRING
+         *  JSON_PRETTY_PRINT     JSON_UNESCAPED_SLASHES
+         *  JSON_FORCE_OBJECT     JSON_UNESCAPED_UNICODE
+         *  
+         */
+        $json_encode_options = 0; 
+        $rLine->setResultLine(json_encode(array('node' => $res['node'])), $json_encode_options);
+
         $rLine->save();
       }
     }
@@ -234,6 +254,24 @@ class pageActions extends kcatoesActions
     $this->page       = $this->extraction->getWebPage();
     
     TestsHelper::getRequired();
+  }
+  
+  /**
+   * Affichage des résultats d'un test
+   * Interface riche
+   * @param sfWebRequest $request
+   */
+  public function executeResultatTestsRiche(sfWebRequest $request)
+  {
+    $this->extraction = $this->getRoute()->getObject();
+    $this->page       = $this->extraction->getWebPage();
+    
+    TestsHelper::getRequired();
+    
+    $fields = array();
+    //$output = $kcatoes->output($options['output'], $options['history'], $fields);
+    
+    
   }
   
 }

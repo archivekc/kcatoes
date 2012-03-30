@@ -66,7 +66,7 @@ TestResult:
     id:                     { type: integer, primary: true, autoincrement: true }
     web_page_extract_id:    { type: integer, notnull: true }
     class:                  { type: varchar(500) }
-    result:                  { type: integer, notnull: true }    
+    result:                 { type: integer, notnull: true }    
   relations:
     WebPageExtract:
       local:        web_page_extract_id
@@ -81,8 +81,12 @@ TestResultLine:
   columns:
     id:                     { type: integer, primary: true, autoincrement: true }
     test_result_id:         { type: integer, notnull: true }
-    result:                  { type: integer, notnull: true }    
-    result_line:            { type: clob, notnull: true }    
+    result:                 { type: integer, notnull: true }    
+    comment:                { type: varchar(500) }
+    xpath:                  { type: varchar(500) }
+    css_selector:           { type: varchar(500) }
+    source:                 { type: clob }    
+    result_line:            { type: clob }    
   relations:
     TestResult:
       local: test_result_id

@@ -30,7 +30,7 @@
     <div class="testResult">
       Résultat : 
       <span class="testResultValue">
-        <?php echo Resultat::getLabel($result->getResult()) ?>
+        <?php echo Resultat::getLabel($result->getResult()) ?>        
       </span>
     </div>
     
@@ -42,10 +42,20 @@
             <span class="testResult">
               <?php echo Resultat::getLabel($line->getResult()) ?>
             </span>
+        
+            <div>
+              Commentaire : <?php echo $line->getComment() ?><br />
+              XPath : <?php echo $line->getXpath() ?><br />
+              CSS selector : <?php echo $line->getCssSelector() ?><br />
+              Source : <pre><?php echo $line->getSource() ?></pre>
+
+            </div>
+            
           </li>
         <?php endforeach;?>
       </ul>
     </div>
+    
     
   </li>
 <?php endforeach; ?>

@@ -45,7 +45,14 @@ pageExecuteTests:
   options:  { model: WebPageExtract, type: object }
   requirements: 
     id:     \d+
-    #sf_method: [GET, POST]
+    
+pageResultatTestsRiche:
+  url:      /page/tests/resultat/riche/:id
+  param:    { module: page, action: resultatTestsRiche }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
     
 pageResultatTests:
   url:      /page/tests/resultat/:id
@@ -54,7 +61,6 @@ pageResultatTests:
   options:  { model: WebPageExtract, type: object }
   requirements: 
     id:     \d+
-    #sf_method: [GET, POST]
         
 pageTests:
   url:      /page/tests/:id
