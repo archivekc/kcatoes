@@ -43,8 +43,7 @@ abstract class ASource
    * @return string
    */
   public static function getLibelle(){
-    $myself = get_called_class();
-    return $myself::testName;
+    return static::testName;
 	}
 	
   /**
@@ -53,8 +52,7 @@ abstract class ASource
    * @return string
    */
   public static function getIdLibelle(){
-    $myself = get_called_class();
-    return $myself::testId.' - '.$myself::testName;
+    return static::testId.' - '.static::testName;
 	}
 	
 	
@@ -105,8 +103,7 @@ abstract class ASource
 	 */
 	public static function getGroups()
 	{
-	  //$myself = get_called_class();
-    return self::$testGroups;
+    return static::$testGroups;
 	}
 	
 	/**
@@ -115,13 +112,10 @@ abstract class ASource
 	 */
 	public static function getGroup($key)
 	{
-    $myself = get_called_class();
- 
-    if (isset($myself::$testGroups[$key])) 
+    if (isset(static::$testGroups[$key])) 
     {
-      return $myself::$testGroups[$key];
+      return static::$testGroups[$key];
     }
-    
     return null;
 	}
 	
@@ -134,14 +128,13 @@ abstract class ASource
 	 */
 	public static function getProc($flat = false)
 	{
-	  $myself = get_called_class();
 		if($flat)
 		{
-			return self::array_flatten($myself::$testProc);
+			return self::array_flatten(static::$testProc);
 		}
 		else
 		{
-			return $myself::$testProc;
+			return static::$testProc;
 		}
 	}
 	
@@ -154,14 +147,13 @@ abstract class ASource
    */
   public static function getDocLinks($flat = false)
   {
-    $myself = get_called_class();
   	if($flat)
     {
-      return self::array_flatten($myself::$testDocLinks);
+      return self::array_flatten(static::$testDocLinks);
     }
     else
     {
-      return $myself::$testDocLinks;
+      return static::$testDocLinks;
     }
   }
 	
