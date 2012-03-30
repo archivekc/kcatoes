@@ -358,6 +358,16 @@ class KcatoesWrapper
   }
   
   /**
+   * Retourne le résultat des tests
+   * @return array
+   */
+  public function getResTests()
+  {
+    return $this->tester->getResTests();
+  }
+  
+  
+  /**
    * Charge un fichier de configuration au format YAML indiquant la liste des tests à passer 
    * @param string $file
    * @return array

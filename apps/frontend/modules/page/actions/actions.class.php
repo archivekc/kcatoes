@@ -154,4 +154,79 @@ class pageActions extends kcatoesActions
     
   	$this->redirect('pageDetail', $this->page);
   }
+
+  /**
+   * Lancement des tests sur une extraction donnée
+   * @param $request
+   */
+  public function executeExecuteTests(sfWebRequest $request)
+  {
+    $this->extraction = $this->getRoute()->getObject();
+    $this->page       = $this->extraction->getWebPage();
+    
+    $tests = $this->page->getCollectionTests(); 
+    $testsClasses = array();
+    foreach($tests as $t)
+    {
+      array_push($testsClasses, $t->getClass());
+    }
+    
+    // TODO : voir pour réutilisation de KcatoesWrapper::execute()
+    // TODO : améliorer factorisation
+    
+    // Inclusion des classes
+    TestsHelper::getRequired();
+    
+    // Instanciation du wrapper
+    $kcatoes = new KcatoesWrapper($testsClasses, $this->extraction->getSrc());
+    
+    // Lance les tests
+    $results  = $kcatoes->run();
+    $this->resTests = $kcatoes->getResTests();
+
+    $htmlLog = '';
+
+    foreach($this->resTests as $resTest)
+    {      
+      // Suppression des résultats précédents
+      // TODO : optimisation
+      $resPrec = $this->extraction->getCollectionResults();
+      foreach($resPrec as $r)
+      {
+        $r->delete();
+      }
+      
+      // Nouvel enregistrement pour le résultat global
+      $result = new TestResult();
+      $result->setWebPageExtractId($this->extraction->getId());
+      $result->setClass(get_class($resTest));
+      $result->setResult($resTest->getMainResult());
+      $result->save();
+      
+      // Parcours du détail des résultats
+      foreach($resTest->getTestResults() as $res)
+      {
+        // Nouvelle ligne de résultat
+        $rLine = new TestResultLine();
+        $rLine->setTestResult($result);
+        $rLine->setResult($res['result']);
+        $rLine->setResultLine('TODO');
+        $rLine->save();
+      }
+    }
+    
+    // Vers les résultats
+    $this->redirect('pageResultatTests', $this->extraction);
+  }
+  
+  /**
+   * Affichage des résultats d'un test
+   * @param $request
+   */
+  public function executeResultatTests(sfWebRequest $request)
+  {
+    $this->extraction = $this->getRoute()->getObject();
+    $this->page       = $this->extraction->getWebPage();
+  }
+  
 }

@@ -38,6 +38,24 @@ pageDelete:
   requirements: 
     id:     \d+
 
+pageExecuteTests:
+  url:      /page/tests/execute/:id
+  param:    { module: page, action: executeTests }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
+    #sf_method: [GET, POST]
+    
+pageResultatTests:
+  url:      /page/tests/resultat/:id
+  param:    { module: page, action: resultatTests }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
+    #sf_method: [GET, POST]
+        
 pageTests:
   url:      /page/tests/:id
   param:    { module: page, action: tests }

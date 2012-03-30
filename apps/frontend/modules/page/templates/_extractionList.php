@@ -6,6 +6,8 @@
     <?php foreach($page->getCollectionExtracts() as $extract): ?>
       <li>
         <?php echo $extract->getType() ?>
+        
+        <?php echo link_to('Lancer les tests', 'pageExecuteTests', array('id' => $extract->getId())) ?>
       </li>
     <?php endforeach; ?>
     </ul>

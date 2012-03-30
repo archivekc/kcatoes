@@ -58,7 +58,6 @@ WebPageExtract:
       foreignAlias: CollectionExtracts
       onDelete:     CASCADE
       
-      
 # =TestResult
 # Résultat des tests passés sur les différentes extractions
 TestResult:
@@ -67,11 +66,13 @@ TestResult:
     id:                     { type: integer, primary: true, autoincrement: true }
     web_page_extract_id:    { type: integer, notnull: true }
     class:                  { type: varchar(500) }
+    result:                  { type: integer, notnull: true }    
   relations:
     WebPageExtract:
       local:        web_page_extract_id
       foreign:      id
-      foreignAlias: CollectionResults 
+      foreignAlias: CollectionResults
+      onDelete:     CASCADE 
 
 # =TestResultLine
 # Une ligne de résultat (constituant du resultat global)
@@ -80,12 +81,14 @@ TestResultLine:
   columns:
     id:                     { type: integer, primary: true, autoincrement: true }
     test_result_id:         { type: integer, notnull: true }
+    result:                  { type: integer, notnull: true }    
     result_line:            { type: clob, notnull: true }    
   relations:
     TestResult:
       local: test_result_id
       foreign: id
       foreignAlias: CollectionLines
+      onDelete:     CASCADE
       
 # =TestConfig
 # une configuration

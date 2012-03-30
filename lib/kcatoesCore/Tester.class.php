@@ -53,6 +53,10 @@ class Tester
   	
   }
   
+  /**
+   * Retourne le résultat des tests
+   * @return array
+   */
   public function getResTests()
   {
   	return $this->resTests;
@@ -117,6 +121,7 @@ class Tester
       }
       return ceil($nbReussite / ($nbEchec + $nbReussite)*100);
   }
+  
   /**
    * Exporte le résultat des tests au format HTML avec interface d'évaluation
    *
