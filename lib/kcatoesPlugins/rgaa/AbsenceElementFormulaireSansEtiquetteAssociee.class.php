@@ -6,14 +6,14 @@ namespace Kcatoes\rgaa;
 class AbsenceElementFormulaireSansEtiquetteAssociee extends \ASource
 {
   
-  const testName = 'A - Absence d\'élément de formulaire sans étiquette associée';
+  const testName = 'Absence d\'élément de formulaire sans étiquette associée';
   const testId = '3.11';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
     'Si l\'élément n\'a pas d\'attribut title dont la valeur donne la fonction exacte de l\'élément, poursuivre le test, sinon le test est non applicable.', 
     'Si un élément label est présent et possède un attribut for dont le contenu est égal à celui de l\'attribut id de l\'élément mentionné dans le champ d\'application, le test est validé, sinon le test est invalidé.' 
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'G82'  => 'http://www.w3.org/TR/WCAG20-TECHS/G82.html', 
     'G131' => 'http://www.w3.org/TR/WCAG20-TECHS/G131.html', 
     'H44'  => 'http://www.w3.org/TR/WCAG20-TECHS/H44.html', 
@@ -23,7 +23,10 @@ class AbsenceElementFormulaireSansEtiquetteAssociee extends \ASource
     'F82'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F82.html', 
     'F86'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F86.html'
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

@@ -2,24 +2,51 @@
 <ul>
 <?php foreach($extraction->getCollectionResults() as $result): ?>
   <li>
-    <span class="testClass">
+    <div class="testClass">
       <?php $t_class = $result->getClass() ?>
       <?php echo $t_class::getIdLibelle() ?>
-    </span>
-    <span class="testResult">
-      <?php echo Resultat::getLabel($result->getResult()) ?>
-    </span>
+    </div>
     
-    
-    <ul>
-      <?php foreach($result->getCollectionLines() as $line): ?>
-        <li> line : 
-          <span class="testResult">
-            <?php echo Resultat::getLabel($line->getResult()) ?>
-          </span>
+    Procédure : 
+    <ul class="testProc">
+      <?php $proc = $t_class::getProc() ?>
+      <?php foreach ($proc as $p): ?>
+        <li>
+          <?php echo $p ?>
         </li>
-      <?php endforeach;?>
+      <?php endforeach; ?>
     </ul>
+    
+    Références :
+    <ul class="testDocLinks">
+      <?php $docs = $t_class::getDocLinks() ?>
+      <?php foreach ($docs as $ref => $doc): ?>
+        <li>
+          <?php echo link_to($ref, $doc); ?>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+    
+    <div class="testResult">
+      Résultat : 
+      <span class="testResultValue">
+        <?php echo Resultat::getLabel($result->getResult()) ?>
+      </span>
+    </div>
+    
+    <div class="testResultDetail">
+      Détail : 
+      <ul>
+        <?php foreach($result->getCollectionLines() as $line): ?>
+          <li> 
+            <span class="testResult">
+              <?php echo Resultat::getLabel($line->getResult()) ?>
+            </span>
+          </li>
+        <?php endforeach;?>
+      </ul>
+    </div>
+    
   </li>
 <?php endforeach; ?>
 </ul>

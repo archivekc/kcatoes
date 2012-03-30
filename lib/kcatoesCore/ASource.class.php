@@ -8,15 +8,29 @@
  */
 abstract class ASource
 {
+  // Libellé du test
 	const testName = 'Le nom du test n\'est pas défini';
-	const testId = 'L\'id du test n\'est pas défini';
-	protected $testProc = array();
-	protected $testDocLinks = array();
-	protected $testGroups = array();
 	
+	// ID du test
+	const testId = 'L\'id du test n\'est pas défini';
+	
+	// Procédure
+	protected static $testProc = array();
+	
+	// Documents de référence
+	protected static $testDocLinks = array();
+	
+	// Regroupements
+	protected static $testGroups = array();
+	
+	
+	// Page testée
 	protected $page;
 	
+	// Résultats du test
 	private $results = array();
+	
+	
 	
 	public function __construct(Page $page)
 	{
@@ -89,9 +103,26 @@ abstract class ASource
 	 * 
 	 * @return array
 	 */
-	public function getGroups()
+	public static function getGroups()
 	{
-		return $this->testGroups;
+	  //$myself = get_called_class();
+    return self::$testGroups;
+	}
+	
+	/**
+	 * Récupère un Groupe
+	 * @return mixed
+	 */
+	public static function getGroup($key)
+	{
+    $myself = get_called_class();
+ 
+    if (isset($myself::$testGroups[$key])) 
+    {
+      return $myself::$testGroups[$key];
+    }
+    
+    return null;
 	}
 	
 	/**
@@ -101,15 +132,16 @@ abstract class ASource
 	 *  
 	 * @param boolean $flat
 	 */
-	public function getProc($flat = false)
+	public static function getProc($flat = false)
 	{
+	  $myself = get_called_class();
 		if($flat)
 		{
-			return $this->array_flatten($this->testProc);
+			return self::array_flatten($myself::$testProc);
 		}
 		else
 		{
-			return $this->testProc;
+			return $myself::$testProc;
 		}
 	}
 	
@@ -120,15 +152,16 @@ abstract class ASource
    *  
    * @param boolean $flat
    */
-  public function getDocLinks($flat = false)
+  public static function getDocLinks($flat = false)
   {
+    $myself = get_called_class();
   	if($flat)
     {
-      return $this->array_flatten($this->testDocLinks);
+      return self::array_flatten($myself::$testDocLinks);
     }
     else
     {
-      return $this->testDocLinks;
+      return $myself::$testDocLinks;
     }
   }
 	
@@ -275,14 +308,14 @@ abstract class ASource
    * @param array $input
    * @return array the flattened array
    */
-	private function array_flatten(array $input) { 
+	private static function array_flatten(array $input) { 
 	   if (!is_array($input)) { 
 	     return FALSE; 
 	   } 
 	   $result = array(); 
 	   foreach ($input as $key => $value) { 
 	     if (is_array($value)) { 
-	       $result = array_merge($result, $this->array_flatten($value)); 
+	       $result = array_merge($result, self::array_flatten($value)); 
 	     } 
 	     else { 
 	       $result[$key] = $value; 

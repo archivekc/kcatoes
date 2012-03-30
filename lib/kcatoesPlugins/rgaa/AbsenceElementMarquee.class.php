@@ -6,16 +6,19 @@ namespace Kcatoes\rgaa;
 class AbsenceElementMarquee extends \ASource
 {
   
-  const testName = 'A - Absence d\'élément marquee';
+  const testName = 'Absence d\'élément marquee';
   const testId = '5.23';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'élément marquee est absent, le test est validé, sinon le test est invalidé.' 
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'G186' => 'http://www.w3.org/TR/WCAG20-TECHS/G186.html',
     'F16'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F16.html'
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

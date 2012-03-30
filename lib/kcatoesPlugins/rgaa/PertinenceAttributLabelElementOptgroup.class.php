@@ -6,15 +6,18 @@ namespace Kcatoes\rgaa;
 class PertinenceAttributLabelElementOptgroup extends \ASource
 {
 	
-  const testName = 'A - Pertinence du contenu de l\'attribut label de l\'élément optgroup';
+  const testName = 'Pertinence du contenu de l\'attribut label de l\'élément optgroup';
   const testId = '3.9';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
     'Si le contenu de l\'attribut label donne les informations nécessaires pour identifier simplement le contenu de l\'élément optgroup, le test est validé, sinon le test est invalidé.');
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'H85' => 'http://www.w3.org/TR/WCAG20-TECHS/H85.html'  
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

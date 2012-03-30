@@ -18,14 +18,16 @@ namespace Kcatoes\rgaa;
 class AbsenceDAttributsOuDElementsHtmlDePresentation extends \ASource
 {
 	
-  const testName = 'A - Absence d\'attribut ou d\'élément HTML de présentation';
+  const testName = 'Absence d\'attribut ou d\'élément HTML de présentation';
   const testId = '7.8';
-  protected $testProc = array('Si aucun des éléments mentionnés dans le champ d\'application n\'est présent dans la page, le test est validé, sinon le test est invalidé.');
-  protected $testDocLinks = array(
+  protected static $testProc = array(
+    'Si aucun des éléments mentionnés dans le champ d\'application n\'est présent dans la page, le test est validé, sinon le test est invalidé.'
+  );
+  protected static $testDocLinks = array(
     'G140' => 'http://www.w3.org/TR/WCAG20-TECHS/G140.html'  
   );
 
-  protected $testGroups = array(
+  protected static $testGroups = array(
     'niveau' => 'A'
     ,'profil test' => 'Ergonome'
   );

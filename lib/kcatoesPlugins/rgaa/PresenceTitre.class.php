@@ -6,16 +6,19 @@ namespace Kcatoes\rgaa;
 class PresenceTitre extends \ASource
 {
   
-  const testName = 'A - Présence d\'un titre dans la page';
+  const testName = 'Présence d\'un titre dans la page';
   const testId = '9.6';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, le test est validé, sinon le test est invalidé.' 
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'G88' => 'http://www.w3.org/TR/WCAG20-TECHS/G88.html',
     'H25' => 'http://www.w3.org/TR/WCAG20-TECHS/H25.html'
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

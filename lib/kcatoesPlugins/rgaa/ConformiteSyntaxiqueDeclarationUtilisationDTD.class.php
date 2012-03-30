@@ -6,16 +6,19 @@ namespace Kcatoes\rgaa;
 class ConformiteSyntaxiqueDeclarationUtilisationDTD extends \ASource
 {
   
-  const testName = 'A - Conformité syntaxique de la déclaration d\'utilisation d\'une DTD';
+  const testName = 'Conformité syntaxique de la déclaration d\'utilisation d\'une DTD';
   const testId = '9.3';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'instruction mentionnée dans le champ d\'application est présente dans la page, poursuivre le test, sinon le test est non applicable.',
     'Si l\'instruction est déclarée selon une syntaxe validée par le W3C (voir la liste des DTD recommandées, recommended list of DTDs ), le test est validé, sinon le test est invalidé.' 
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'H74' => 'http://www.w3.org/TR/WCAG20-TECHS/H74.html'
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

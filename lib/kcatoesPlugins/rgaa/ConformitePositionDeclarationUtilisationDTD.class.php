@@ -6,16 +6,19 @@ use sfContext;
 class ConformitePositionDeclarationUtilisationDTD extends \ASource
 {
   
-  const testName = 'A - Conformité de la position de la déclaration d\'utilisation d\'une DTD';
+  const testName = 'Conformité de la position de la déclaration d\'utilisation d\'une DTD';
   const testId = '9.2';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'instruction mentionnée dans le champ d\'application est présente dans la page, poursuivre le test, sinon le test est non applicable.', 
     'Si l\'instruction est située avant la balise html, le test est validé, sinon le test est invalidé.' 
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'G192' => 'http://www.w3.org/TR/WCAG20-TECHS/G192.html'
   );
   
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

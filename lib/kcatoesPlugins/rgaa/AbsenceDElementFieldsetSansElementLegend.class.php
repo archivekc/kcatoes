@@ -6,14 +6,18 @@ namespace Kcatoes\rgaa;
 class AbsenceDElementFieldsetSansElementLegend extends \ASource
 {
   
-  const testName = 'A - Absence d\'élément fieldset sans élément legend';
+  const testName = 'Absence d\'élément fieldset sans élément legend';
   const testId = '3.5';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.',
     'Si l\'élément contient un élément legend, le test est validé, sinon le test est invalidé.'
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'H71' => 'http://www.w3.org/TR/WCAG20-TECHS/H71.html'  
+  );
+  
+  protected static $testGroups = array(
+    'niveau' => 'A'
   );
   
   public function execute()

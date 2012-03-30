@@ -34,7 +34,7 @@ class WebPageTestsForm extends BaseWebPageForm
       $this->validatorSchema[$testClass] = new sfValidatorPass(array('required' => false));
       
       // TODO : autre label ?
-      $this->widgetSchema->setLabel($testClass, $testClass::getIdLibelle());
+      $this->widgetSchema->setLabel($testClass, $testClass::getIdLibelle().' ('.$testClass::getGroup('niveau').')');
     }
     
     $this->widgetSchema->setNameFormat('webPageTests[%s]');

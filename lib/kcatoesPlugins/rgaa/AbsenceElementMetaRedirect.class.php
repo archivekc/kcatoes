@@ -6,22 +6,25 @@ namespace Kcatoes\rgaa;
 class AbsenceElementMetaRedirect extends \ASource
 {
   
-  const testName = 'A - Absence d\'élément meta provoquant une redirection automatique de la page';
+  const testName = 'Absence d\'élément meta provoquant une redirection automatique de la page';
   const testId = '6.10';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
     'Si l\'attribut content est présent sur l\'élément, poursuivre le test, sinon le test est non applicable.', 
     'Si l\'attribut content a comme valeur un entier supérieur ou égal à 0 et inférieure à 72000, poursuivre le test, sinon le test est non applicable.', 
     'Si la limite de temps avant le rafraichissement ne pourrait être supprimée sans changer fondamentalement l\'information ou les fonctionnalités du contenu, poursuivre le test, sinon le test est non applicable.', 
     'Si l\'attribut content a une deuxième valeur url contenant une URL égale à celle de la ressource courante ou que la limite de temps préalable à la redirection ne pourrait être supprimée sans changer fondamentalement l\'information ou les fonctionnalités du contenu, le test est validé, sinon le test est invalidé.'
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'H76'  => 'http://www.w3.org/TR/WCAG20-TECHS/H76.html',
     'SVR1' => 'http://www.w3.org/TR/WCAG20-TECHS/SVR1.html',
     'F40'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F40.html',
     'F41'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F41.html'
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

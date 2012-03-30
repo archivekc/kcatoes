@@ -6,9 +6,9 @@ namespace Kcatoes\rgaa;
 class AbsenceLiensSansIntitule extends \ASource
 {
   
-  const testName = 'A - Absence de liens sans intitulé';
+  const testName = 'Absence de liens sans intitulé';
   const testId = '6.16';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
     'Si l\'élément n\'est pas un élément a ayant un attribut name ou id, dépourvu d\'attribut href ou ayant un attribut href dont la valeur est égale au caractère # suivi du contenu de l\'attribut name ou id, poursuivre le test, sinon le test est non applicable.', 
     'Si un intitulé peut être obtenu à partir d\'un des cas suivants :', 
@@ -16,11 +16,14 @@ class AbsenceLiensSansIntitule extends \ASource
         'des alternatives textuelles des éléments graphiques contenus dans l\'élément', 
     'le test est validé, sinon le test est invalidé.'
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'G91' => 'http://www.w3.org/TR/WCAG20-TECHS/G91.html', 
     'H30' => 'http://www.w3.org/TR/WCAG20-TECHS/H30.html' 
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

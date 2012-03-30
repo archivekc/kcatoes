@@ -6,17 +6,20 @@ namespace Kcatoes\rgaa;
 class AbsenceElementFormulaireSansIdentifiant extends \ASource
 {
   
-  const testName = 'A - Absence d\'élément de formulaire sans identifiant';
+  const testName = 'Absence d\'élément de formulaire sans identifiant';
   const testId = '3.10';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.',
     'Si l\'élément n\'a pas d\'attribut title dont la valeur donne la fonction exacte de l\'élément, poursuivre le test, sinon le test est non applicable.',
     'Si l\'élément a un attribut id non vide et unique dans la page, test est validé, sinon le test est invalidé.' 
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'H44' => 'http://www.w3.org/TR/WCAG20-TECHS/H44.html'  
   );
-  
+
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {

@@ -163,8 +163,8 @@ class Tester
       $output .= '<th '.$rowspan.'>'.$test::testId.'</th>';
       $output .= '<td '.$rowspan.'>'.$test::testName.'</td>';
       $output .= '<td '.$rowspan.'>'.Resultat::getLabel($test->getMainResult()).'</td>';
-      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test->getProc(), true).'</td>';
-      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test->getDocLinks(), true).'</td>';
+      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test::getProc(), true).'</td>';
+      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test::getDocLinks(), true).'</td>';
             
       if ($nbLigne == 0)
       {
@@ -327,8 +327,8 @@ class Tester
       $output .= '<td '.$rowspan.' class="groups">'.$this->arrayToHtmlList($test->getGroups()).'</td>';
       $output .= '<td '.$rowspan.' class="testInfo">';
 	  $output .= '<strong>'.$test::testName.'</strong>';
-	  $output .= '<div class="testProc"><strong>Procédure de test&nbsp;:</strong>' .$this->arrayToHtmlList($test->getProc(), true).'</div>';
-      $output .= '<div class="testDoc"><strong>Documentation&nbsp;:</strong>' .$this->arrayToHtmlList($test->getDocLinks(), true).'</div>';
+	  $output .= '<div class="testProc"><strong>Procédure de test&nbsp;:</strong>' .$this->arrayToHtmlList($test::getProc(), true).'</div>';
+      $output .= '<div class="testDoc"><strong>Documentation&nbsp;:</strong>' .$this->arrayToHtmlList($test::getDocLinks(), true).'</div>';
 	  
 	  $output .= '</td>';
       if ($history)
@@ -470,8 +470,8 @@ class Tester
           'testId'        => $test::testId
           ,'nom'          => $test::testName
           ,'main'         => Resultat::getLabel($test->getMainResult())
-          ,'proc'         => implode($test->getProc(true), ', ')
-          ,'doc'          => implode($test->getDocLinks(true), ', ')
+          ,'proc'         => implode($test::getProc(true), ', ')
+          ,'doc'          => implode($test::getDocLinks(true), ', ')
           ,'statut'       => Resultat::getLabel($resultLine['result'])
           ,'xpath'        => $resultLine['xpath']
           ,'cssSelector'  => $resultLine['cssSelector']
@@ -513,8 +513,8 @@ class Tester
        'testId'    => $test::testId
        ,'nom'      => $test::testName
        ,'main'     => Resultat::getLabel($test->getMainResult())
-       ,'proc'     => $test->getProc()
-       ,'doc'      => $test->getDocLinks()
+       ,'proc'     => $test::getProc()
+       ,'doc'      => $test::getDocLinks()
        ,'results'  => $subResult
       ));
     }

@@ -6,15 +6,18 @@ namespace Kcatoes\rgaa;
 class PresenceDeclarationUtilisationDTD extends \ASource
 {
   
-  const testName = 'A - Présence de la déclaration d\'utilisation d\'une DTD';
+  const testName = 'Présence de la déclaration d\'utilisation d\'une DTD';
   const testId = '9.1';
-  protected $testProc = array(
+  protected static $testProc = array(
     'Si l\'instruction mentionnée dans le champ d\'application est présente dans la page, le test est validé, sinon le test est invalidé.' 
   );
-  protected $testDocLinks = array(
+  protected static $testDocLinks = array(
     'G134' => 'http://www.w3.org/TR/WCAG20-TECHS/G134.html'
   );
   
+  protected static $testGroups = array(
+    'niveau' => 'A'
+  );
   
   public function execute()
   {
