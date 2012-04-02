@@ -32,4 +32,13 @@
     </div>
       
     <input type="submit" value="Enregistrer" />
+    
+    <a id="check_all" href="#">Sélectionner tout</a>
   </form>
+  
+  <script type="text/javascript">
+    $('#check_all').toggle(
+          function(){$('input[type=checkbox]').attr('checked', true);} 
+        , function(){$('input[type=checkbox]').attr('checked', false);}
+    );
+  </script>
