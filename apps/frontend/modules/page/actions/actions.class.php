@@ -306,17 +306,7 @@ class pageActions extends kcatoesActions
     }
     */
     
-    $output .= '<table id="kcatoesRapport"><thead><tr>';
 
-    // entête
-    $output .= '<th scope="col" class="testId">Id du test</th>';
-    $output .= '<th scope="col" class="groups">Regroupement</th>';
-    $output .= '<th scope="col" class="testInfo">Informations du test</th>';
-    $output .= '<th scope="col" class="testStatus">Statut global</th>';
-    $output .= '<th scope="col" class="subResult">Statut</th>';
-    $output .= '<th scope="col" class="context">Contexte</th>';
-    
-    $output .= '</tr></thead><tbody>';
     
     // corps
     //foreach ($this->resTests as $test)
@@ -444,8 +434,7 @@ class pageActions extends kcatoesActions
       }
       
     } // fin parcours des résultats
-    
-    $output .= '</tbody></table>';
+
     /*
     if ($history) { $output .= '</form>'; }
     */

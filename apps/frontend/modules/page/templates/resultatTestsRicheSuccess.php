@@ -21,13 +21,30 @@
     </h1>
     <div id="output">
       <div class="inner">
-        <?php echo $sf_data->getRaw('output') ?>
+      
+        <table id="kcatoesRapport"><thead><tr>
+          <th scope="col" class="testId">Id du test</th>
+          <th scope="col" class="groups">Regroupement</th>
+          <th scope="col" class="testInfo">Informations du test</th>
+          <th scope="col" class="testStatus">Statut global</th>
+          <th scope="col" class="subResult">Statut</th>
+          <th scope="col" class="context">Contexte</th>
+        </tr></thead><tbody>
+    
+          <?php echo $sf_data->getRaw('output') ?>
+        
+        </tbody></table>
+        
       </div>
     </div>
     <div id="resizeHandler"></div>
     <div id="tested">
       <div class="inner">
-      <!-- TODO : inclusion du contenu -->
+        <?php
+        /*
+        <iframe src="<?php echo $page->getUrl() ?>" name="testedPage"></iframe>
+         */ 
+        ?>
         <iframe src="<?php echo url_for('pageSource', $extraction) ?>" name="testedPage"></iframe>
        </div>
     </div>
