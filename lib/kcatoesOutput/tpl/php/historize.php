@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 
 ###FIELDS###
-date_default_timezone_set('Europe/Paris');
 
 $output = file_get_contents('./output.html');
 $autosave = isset($_GET['autosave'])?true:false;

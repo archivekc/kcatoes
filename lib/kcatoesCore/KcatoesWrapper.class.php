@@ -100,9 +100,6 @@ class KcatoesWrapper
 
     $this->tester = new Tester($page, $testsClass, $this->logger);
 
-    // Pour fixer l'heure, utilisée dans le chemin de l'export
-    date_default_timezone_set('Europe/Paris');
-    
     $this->addLogInfo('Initialisation de KCatoès réussie');
   }
 

@@ -20,7 +20,6 @@ class pageActions extends kcatoesActions
       // Pages web
       if ($this->processForm($request, $this->addPageForm))
       {
-
 		    // sauvegarde de la page et de l'extraction de base
         if ($page = $this->addPageForm->save()){
           

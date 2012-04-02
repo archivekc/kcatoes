@@ -38,8 +38,6 @@ EOF;
   protected function execute($arguments = array(), $options = array())
   {
     session_start();
-  	// définition de la zone horaire
-  	date_default_timezone_set('Europe/Paris');
   	 	
     // liste des plugins et tests associés
   	$allPlugins = TestsHelper::getAllTestsFromYaml();
