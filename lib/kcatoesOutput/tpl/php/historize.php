@@ -16,6 +16,7 @@ $output = preg_replace('/<span[^>]*?class="scoreValue".*?span>/u', $span, $outpu
 foreach ($fields['select'] as $field)
 {
 	$value = isset($_POST[$field])?htmlentities($_POST[$field]):'';
+	// TODO : utiliser Tester::getResultatListe ?
 	$list = getResultatListe($field, $value);
 	$output = preg_replace('/<select[^>]*?id="'.$field.'.*?select>/u', $list, $output);
 }
@@ -40,7 +41,7 @@ else
 	header('location: '.$filename);	
 }
 
-  
+// TODO : utiliser Tester::getResultatListe ?
 function getResultatListe($name, $value = null)
 {
   $id = $name;
@@ -63,8 +64,4 @@ function getResultatListe($name, $value = null)
   $select .= '</select>';
   return $select;
 }
-  
-function computeIdForTest($value)
-{
-  return 'test_'.preg_replace('#[^a-zA-z0-9-_]#', '_', $value);
-}
+

@@ -293,6 +293,19 @@ class pageActions extends kcatoesActions
 
     $this->results = $this->extraction->getCollectionResults();
 
+    // 
+    $this->history = true;
+    
+    // Champs pour formulaire d'historisation
+    $cptLine = -1;
+    foreach($this->results as $result)
+    {
+      $cptLine++;
+      $test = $result->getClass();
+      $fields['select'][]   = Tester::computeIdForTest('mainResult_'.$test::testId);
+      $fields['select'][]   = Tester::computeIdForTest('subResult'.$cptLine.'_'.$test::testId);
+      $fields['textarea'][] = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId);
+    }
   }
 
 

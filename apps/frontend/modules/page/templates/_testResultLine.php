@@ -1,13 +1,25 @@
+<?php /* Déséchappement */ ?>
+<?php $rowspan = $sf_data->getRaw('rowspan') ?>
+<?php $result  = $sf_data->getRaw('result') ?>
+
   <tr>
-    <th <?php echo $sf_data->getRaw('rowspan') ?> class="testId"><?php echo $test::testId ?></th>
-    <td <?php echo $sf_data->getRaw('rowspan') ?> class="groups"><?php echo Tester::arrayToHtmlList($test::getGroups()) ?></td>
-    <td <?php echo $sf_data->getRaw('rowspan') ?> class="testInfo">
+    <th <?php echo $rowspan ?> class="testId"><?php echo $test::testId ?></th>
+    <td <?php echo $rowspan ?> class="groups"><?php echo Tester::arrayToHtmlList($test::getGroups()) ?></td>
+    <td <?php echo $rowspan ?> class="testInfo">
       <strong><?php echo $test::testName ?></strong>
       <div class="testProc"><strong>Procédure de test&nbsp;:</strong><?php echo Tester::arrayToHtmlList($test::getProc(), true) ?></div>
       <div class="testDoc"><strong>Documentation&nbsp;:</strong><?php echo Tester::arrayToHtmlList($test::getDocLinks(), true) ?></div>
     </td>
       
-    <td <?php echo $sf_data->getRaw('rowspan') ?> class="testStatus"><?php echo Resultat::getLabel($result->getResult()) ?></td>
+    <?php if ($history): ?>
+      <?php $id = 'mainResult_'.$test::testId ?>
+      <td <?php echo $rowspan ?> class="testStatus">
+        <span class="computed"><?php echo Resultat::getLabel($result->getResult()) ?></span>
+        <?php echo Tester::getResultatListe($id, $result->getResult()) ?>
+      </td>
+    <?php else: ?>
+      <td <?php echo $rowspan ?> class="testStatus"><?php echo Resultat::getLabel($result->getResult()) ?></td>
+    <?php endif ?>
       
     <?php if ($nbLigne == 0): ?>
     
@@ -18,7 +30,7 @@
       <?php $first = true ?>
       <?php $cptLine = -1 ?>
       
-      <?php foreach ($sf_data->getRaw('result')->getCollectionLines() as $resultLine): ?>
+      <?php foreach ($result->getCollectionLines() as $resultLine): ?>
       
         <?php $cptLine++ ?>
         <?php if (!$first): ?>
@@ -27,7 +39,16 @@
         
         <?php $first = false ?>
         
-        <td class="subResult"><?php echo Resultat::getLabel($resultLine->getResult()) ?></td>
+        <?php if ($history): ?>
+          <?php /* résultat de base + liste */ ?>
+          <?php $id = 'subResult'.$cptLine.'_'.$test::testId ?>
+          <td class="subResult <?php echo Resultat::getCode($resultLine->getResult()) ?>">
+            <span class="computed"><?php echo Resultat::getLabel($resultLine->getResult()) ?></span>
+            <?php echo Tester::getResultatListe($id, $resultLine->getResult()) ?>
+          </td>
+        <?php else: ?>
+          <td class="subResult"><?php echo Resultat::getLabel($resultLine->getResult()) ?></td>
+        <?php endif ?>
 
         <td class="context">
         
@@ -65,10 +86,16 @@
           <?php endif ?>
           
           <?php $context = $comment.$source.$css; ?>
-          
           <?php if (strlen(trim($context)) > 0): ?>
             <ul><?php echo $context ?></ul>
           <?php endif ?>
+          
+          <?php if ($history): ?>
+            <?php $id = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId)?>
+            <div class="annotation"><strong>Annotation&nbsp;</strong>
+              <textarea id="<?php echo $id ?>" name="<?php echo $id ?>" cols="20" rows="5"></textarea>
+            </div>
+          <?php endif; ?>
            
         </td>
         </tr>

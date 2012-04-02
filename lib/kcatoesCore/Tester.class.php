@@ -243,9 +243,9 @@ class Tester
    *        par défaut
    * @return String code html de la liste
    */
-  private function getResultatListe($name, $value = null)
+  public static function getResultatListe($name, $value = null)
   {
-    $id = $this->computeIdForTest($name);
+    $id = self::computeIdForTest($name);
     $available = array(
        Resultat::REUSSITE
       ,Resultat::ECHEC
@@ -266,7 +266,7 @@ class Tester
     return $select;
   }
   
-  private function computeIdForTest($value)
+  public static function computeIdForTest($value)
   {
   	return 'test_'.preg_replace('#[^a-zA-z0-9-_]#', '_', $value);
   }
@@ -304,7 +304,6 @@ class Tester
     $output .= '<th scope="col" class="subResult">Statut</th>';
     $output .= '<th scope="col" class="context">Contexte</th>';
     
-    
     $output .= '</tr></thead><tbody>';
     
     // corps
@@ -336,9 +335,9 @@ class Tester
 		    $id = 'mainResult_'.$test::testId;
         $output .= '<td '.$rowspan.' class="testStatus">'
                 .'<span class="computed">'.Resultat::getLabel($test->getMainResult()).'</span>'
-                .$this->getResultatListe($id,$test->getMainResult())
+                .self::getResultatListe($id,$test->getMainResult())
                 .'</td>';
-		    $fields['select'][] = $this->computeIdForTest($id);
+		    $fields['select'][] = self::computeIdForTest($id);
       }
       else
       {
@@ -369,9 +368,9 @@ class Tester
           	$id = 'subResult'.$cptLine.'_'.$test::testId;
             $output .= '<td class="subResult '.Resultat::getCode($resultLine['result']).'">'
                     .'<span class="computed">'.Resultat::getLabel($resultLine['result']).'</span>'
-                    .$this->getResultatListe($id,$resultLine['result'])
+                    .self::getResultatListe($id,$resultLine['result'])
                     .'</td>';
-            $fields['select'][] = $this->computeIdForTest($id);
+            $fields['select'][] = self::computeIdForTest($id);
           }
           else 
           {
@@ -415,7 +414,7 @@ class Tester
 
           if ($history)
     		  {
-            $id = $this->computeIdForTest('annot'.$cptLine.'_'.$test::testId);
+            $id = self::computeIdForTest('annot'.$cptLine.'_'.$test::testId);
       			$output .= '<div class="annotation"><strong>Annotation&nbsp;</strong> <textarea id="'
       			              .$id.'" name="'.$id.'"'
       			              .' cols="20" rows="5"></textarea></div>';
