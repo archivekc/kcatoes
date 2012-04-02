@@ -163,8 +163,8 @@ class Tester
       $output .= '<th '.$rowspan.'>'.$test::testId.'</th>';
       $output .= '<td '.$rowspan.'>'.$test::testName.'</td>';
       $output .= '<td '.$rowspan.'>'.Resultat::getLabel($test->getMainResult()).'</td>';
-      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test::getProc(), true).'</td>';
-      $output .= '<td '.$rowspan.'>'.$this->arrayToHtmlList($test::getDocLinks(), true).'</td>';
+      $output .= '<td '.$rowspan.'>'.self::arrayToHtmlList($test::getProc(), true).'</td>';
+      $output .= '<td '.$rowspan.'>'.self::arrayToHtmlList($test::getDocLinks(), true).'</td>';
             
       if ($nbLigne == 0)
       {
@@ -207,33 +207,33 @@ class Tester
   /**
    * Permet de convertir en tableau en list html
    */
-  private function arrayToHtmlList(array $input, $ordered = false)
+  public static function arrayToHtmlList(array $input, $ordered = false)
   {
-  	$retString = '';
-  	if (count($input))
-  	{
-	  	$list = $ordered?'ol':'ul';
-	  	$retString = '<'.$list.'>';
-	  	foreach ($input as $key => $item)
-	  	{
-	  		$retString .= '<li>';
-	  		if (is_array($item)){
-	  			$retString .= $this->arrayToHtmlList($item, $ordered);
-	  		} else {
-	  			if (is_numeric($key))
-	  			{
-		  			$retString .= $item;
-	  			}
-	  			else {
+    $retString = '';
+    if (count($input))
+    {
+      $list = $ordered?'ol':'ul';
+      $retString = '<'.$list.'>';
+      foreach ($input as $key => $item)
+      {
+        $retString .= '<li>';
+        if (is_array($item)){
+          $retString .= self::arrayToHtmlList($item, $ordered);
+        } else {
+          if (is_numeric($key))
+          {
+            $retString .= $item;
+          }
+          else {
             $retString .= '<span class="key">'.$key.'</span>&nbsp;: <span class="value">'.$item.'</span>';
-	  			}
-	  		}
-	  		$retString .= '</li>';
-	  	}
-	  	
-	  	$retString .= '</'.$list.'>';
-  	}
-  	return $retString;
+          }
+        }
+        $retString .= '</li>';
+      }
+      
+      $retString .= '</'.$list.'>';
+    }
+    return $retString;
   }
   
   /**
@@ -245,25 +245,25 @@ class Tester
    */
   private function getResultatListe($name, $value = null)
   {
-  	$id = $this->computeIdForTest($name);
-  	$available = array(
-  	 Resultat::REUSSITE
-  	 ,Resultat::ECHEC
-  	 ,Resultat::NA
-  	 ,Resultat::MANUEL
-  	);
-  	$select = '<select id="'.$id.'" name="'.$id.'">';
-  	foreach($available as $state)
-  	{
-  		$selected = '';
-  		if ($value == $state)
-  		{
-  			$selected = 'selected="selected"';
-  		}
-  		$select .= '<option '.$selected.' value="'.Resultat::getCode($state).'">'.Resultat::getLabel($state).'</option>';
-  	}
-  	$select .= '</select>';
-  	return $select;
+    $id = $this->computeIdForTest($name);
+    $available = array(
+       Resultat::REUSSITE
+      ,Resultat::ECHEC
+      ,Resultat::NA
+      ,Resultat::MANUEL
+    );
+    $select = '<select id="'.$id.'" name="'.$id.'">';
+    foreach($available as $state)
+    {
+      $selected = '';
+      if ($value == $state)
+      {
+        $selected = 'selected="selected"';
+      }
+      $select .= '<option '.$selected.' value="'.Resultat::getCode($state).'">'.Resultat::getLabel($state).'</option>';
+    }
+    $select .= '</select>';
+    return $select;
   }
   
   private function computeIdForTest($value)
@@ -324,21 +324,21 @@ class Tester
       
       $output .= '<tr>';
       $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
-      $output .= '<td '.$rowspan.' class="groups">'.$this->arrayToHtmlList($test->getGroups()).'</td>';
+      $output .= '<td '.$rowspan.' class="groups">'.self::arrayToHtmlList($test::getGroups()).'</td>';
       $output .= '<td '.$rowspan.' class="testInfo">';
-	  $output .= '<strong>'.$test::testName.'</strong>';
-	  $output .= '<div class="testProc"><strong>Procédure de test&nbsp;:</strong>' .$this->arrayToHtmlList($test::getProc(), true).'</div>';
-      $output .= '<div class="testDoc"><strong>Documentation&nbsp;:</strong>' .$this->arrayToHtmlList($test::getDocLinks(), true).'</div>';
+  	  $output .= '<strong>'.$test::testName.'</strong>';
+  	  $output .= '<div class="testProc"><strong>Procédure de test&nbsp;:</strong>' .self::arrayToHtmlList($test::getProc(), true).'</div>';
+      $output .= '<div class="testDoc"><strong>Documentation&nbsp;:</strong>' .self::arrayToHtmlList($test::getDocLinks(), true).'</div>';
 	  
-	  $output .= '</td>';
+      $output .= '</td>';
       if ($history)
       {
-		$id = 'mainResult_'.$test::testId;
+		    $id = 'mainResult_'.$test::testId;
         $output .= '<td '.$rowspan.' class="testStatus">'
                 .'<span class="computed">'.Resultat::getLabel($test->getMainResult()).'</span>'
                 .$this->getResultatListe($id,$test->getMainResult())
                 .'</td>';
-		$fields['select'][] = $this->computeIdForTest($id);
+		    $fields['select'][] = $this->computeIdForTest($id);
       }
       else
       {
@@ -371,7 +371,7 @@ class Tester
                     .'<span class="computed">'.Resultat::getLabel($resultLine['result']).'</span>'
                     .$this->getResultatListe($id,$resultLine['result'])
                     .'</td>';
-			$fields['select'][] = $this->computeIdForTest($id);
+            $fields['select'][] = $this->computeIdForTest($id);
           }
           else 
           {
@@ -380,7 +380,7 @@ class Tester
           
           $output .= '<td class="context">';
 		  
-		  $source = '';
+    		  $source = '';
           if (strlen($resultLine['source']))
           {
           	$geshi = new GeSHi($resultLine['source'], 'html4strict');
@@ -392,35 +392,35 @@ class Tester
           	$geshi->set_tab_width(4);
           	$geshi->enable_keyword_links(false);
           	
-	        $source = '<li class="source"><strong>Source&nbsp;:</strong> <div class="value">'.$geshi->parse_code().'</div></li>';
+  	        $source = '<li class="source"><strong>Source&nbsp;:</strong> <div class="value">'.$geshi->parse_code().'</div></li>';
           }
 		  
-		  $css = '';
-		  if (strlen($resultLine['cssSelector']))
+    		  $css = '';
+    		  if (strlen($resultLine['cssSelector']))
           {
-		    $css = '<li class="cssSelector"><strong>Sélecteur CSS&nbsp;:</strong> <div class="value"><pre>'.$resultLine['cssSelector'].'</pre></div></li>';
-		  }
+    		    $css = '<li class="cssSelector"><strong>Sélecteur CSS&nbsp;:</strong> <div class="value"><pre>'.$resultLine['cssSelector'].'</pre></div></li>';
+    		  }
 		  
-		  $comment = '';
-		  if (strlen($resultLine['comment']))
-          {
-		    $comment = '<li class="comment"><strong>Retour du test&nbsp;:</strong> <div class="value">'.$resultLine['comment'].'</div></li>';
-		  }
-		  $context = $comment.$source.$css;
-          if (strlen(trim($context))>0)
-		  {
-			$output .= '<ul>'.$context.'</ul>';
-		  }
+    		  $comment = '';
+    		  if (strlen($resultLine['comment']))
+              {
+    		    $comment = '<li class="comment"><strong>Retour du test&nbsp;:</strong> <div class="value">'.$resultLine['comment'].'</div></li>';
+    		  }
+    		  $context = $comment.$source.$css;
+              if (strlen(trim($context))>0)
+    		  {
+    			$output .= '<ul>'.$context.'</ul>';
+    		  }
 		  
 
           if ($history)
-		  {
+    		  {
             $id = $this->computeIdForTest('annot'.$cptLine.'_'.$test::testId);
-			$output .= '<div class="annotation"><strong>Annotation&nbsp;</strong> <textarea id="'
-			              .$id.'" name="'.$id.'"'
-			              .' cols="20" rows="5"></textarea></div>';
-		    $fields['textarea'][] = $id;
-		  }
+      			$output .= '<div class="annotation"><strong>Annotation&nbsp;</strong> <textarea id="'
+      			              .$id.'" name="'.$id.'"'
+      			              .' cols="20" rows="5"></textarea></div>';
+    		    $fields['textarea'][] = $id;
+    		  }
           $output .= '</td>';
           $output .= '</tr>';
         }

@@ -25,7 +25,7 @@ class pageActions extends kcatoesActions
         if ($page = $this->addPageForm->save()){
           
 	        $url = $this->addPageForm->getValue('url');
-
+	        
 	        // récupérer la source
 	        $src = file_get_contents($url);
 	        
@@ -177,6 +177,7 @@ class pageActions extends kcatoesActions
       array_push($testsClasses, $t->getClass());
     }
     
+    // TODO : gérer le cas d'erreur où aucun test n'est lié
     // TODO : voir pour réutilisation de KcatoesWrapper::execute()
     // TODO : améliorer factorisation
     
@@ -221,28 +222,23 @@ class pageActions extends kcatoesActions
         $rLine->setComment($res['comment']);
         $rLine->setXpath($res['xpath']);
         $rLine->setCssSelector($res['cssSelector']);
+        
+        // TODO : debug encodage caractères
         $rLine->setSource($res['source']);
         
-        /* 
-         * TODO : voir si besoin de stocker le node
-         * 
-         * Options disponibles :
-         *  JSON_HEX_QUOT         JSON_HEX_TAG
-         *  JSON_HEX_AMP          JSON_HEX_APOS
-         *  JSON_NUMERIC_CHECK    JSON_BIGINT_AS_STRING
-         *  JSON_PRETTY_PRINT     JSON_UNESCAPED_SLASHES
-         *  JSON_FORCE_OBJECT     JSON_UNESCAPED_UNICODE
-         *  
-         */
-        $json_encode_options = 0; 
-        $rLine->setResultLine(json_encode(array('node' => $res['node'])), $json_encode_options);
+        if (is_object($res['node'])) {
+          $rLine->setTextContent($res['node']->textContent);
+        }
 
         $rLine->save();
       }
     }
     
     // Vers les résultats
-    $this->redirect('pageResultatTests', $this->extraction);
+    //$this->redirect('pageResultatTests', $this->extraction);
+    //$this->redirect('pageResultatTestsRiche', $this->extraction);
+    $this->redirect('pageDetail', $this->page);
+    
   }
   
   /**
@@ -257,6 +253,20 @@ class pageActions extends kcatoesActions
     TestsHelper::getRequired();
   }
   
+
+  /**
+   * Affichage de la page originale 
+   * @param $request
+   */
+  public function executeSource(sfWebRequest $request)
+  {
+    $this->extraction = $this->getRoute()->getObject();
+    
+    // TODO : images / CSS / JS ?
+    $this->source = $this->extraction->getSrc(); 
+  }
+  
+  
   /**
    * Affichage des résultats d'un test
    * Interface riche
@@ -268,10 +278,182 @@ class pageActions extends kcatoesActions
     $this->page       = $this->extraction->getWebPage();
     
     TestsHelper::getRequired();
+
+    $this->title    = 'KCatoès - Rapport de test';
+    $this->subtitle = $this->page->getUrl(); // TODO : date du test
+    
+    $this->output = '';
+    
+    $this->score = ''; // TODO { was: $kcatoes->getScore()*100;) }
     
     $fields = array();
-    //$output = $kcatoes->output($options['output'], $options['history'], $fields);
     
+    // Reprise de Tester::toRichHTML() /////////////////////////////////////////////////////////////////
+    // TODO : factoriser
+
+    $output = '';
+    $fields['select'] = array();
+    $fields['textarea'] = array();
+    
+    /*
+    if ($history)
+    {
+      $output = '<form method="post" action="./historize.php" >';
+      $output .= '<span class="save">'
+              .'<input type="submit" value="Sauvegarder" />'
+              .'<input type="hidden" id="filename" name="filename" value="output.html" />'
+              .'<input type="hidden" id="score" name="score" readonly="readonly" value="'.$this->getScore().'"/>'
+              .'</span>';
+    }
+    */
+    
+    $output .= '<table id="kcatoesRapport"><thead><tr>';
+
+    // entête
+    $output .= '<th scope="col" class="testId">Id du test</th>';
+    $output .= '<th scope="col" class="groups">Regroupement</th>';
+    $output .= '<th scope="col" class="testInfo">Informations du test</th>';
+    $output .= '<th scope="col" class="testStatus">Statut global</th>';
+    $output .= '<th scope="col" class="subResult">Statut</th>';
+    $output .= '<th scope="col" class="context">Contexte</th>';
+    
+    $output .= '</tr></thead><tbody>';
+    
+    // corps
+    //foreach ($this->resTests as $test)
+    foreach($this->extraction->getCollectionResults() as $result)
+    {
+      $test = $result->getClass();
+      
+      $nbLigne = count($result->getCollectionLines());
+
+      $rowspan = ($nbLigne <=1 ) ? '' : 'rowspan="'.$nbLigne.'"'; 
+      
+      $output .= '<tr>';
+      $output .= '<th '.$rowspan.' class="testId">'.$test::testId.'</th>';
+      $output .= '<td '.$rowspan.' class="groups">'.Tester::arrayToHtmlList($test::getGroups()).'</td>';
+      $output .= '<td '.$rowspan.' class="testInfo">';
+        $output .= '<strong>'.$test::testName.'</strong>';
+        $output .= '<div class="testProc"><strong>Procédure de test&nbsp;:</strong>' .Tester::arrayToHtmlList($test::getProc(), true).'</div>';
+        $output .= '<div class="testDoc"><strong>Documentation&nbsp;:</strong>' .Tester::arrayToHtmlList($test::getDocLinks(), true).'</div>';
+      $output .= '</td>';
+      /*
+      if ($history)
+      {
+        $id = 'mainResult_'.$test::testId;
+        $output .= '<td '.$rowspan.' class="testStatus">'
+                .'<span class="computed">'.Resultat::getLabel($test->getMainResult()).'</span>'
+                .$this->getResultatListe($id,$test->getMainResult())
+                .'</td>';
+        $fields['select'][] = $this->computeIdForTest($id);
+      }
+      else
+      {
+      */
+        $output .= '<td '.$rowspan.' class="testStatus">'.Resultat::getLabel($result->getResult()).'</td>';
+      /*
+      }
+      */
+
+      if ($nbLigne == 0)
+      {
+        $output .= '<td colspan="2"></td></tr>';
+      }
+      else
+      {
+        $first = true;
+        $cptLine = -1;
+        foreach ($result->getCollectionLines() as $resultLine)
+        {
+          $cptLine++;
+          
+          if (!$first)
+          {
+            $output .= '<tr>';
+          }
+          $first = false;
+          /*
+          if ($history)
+          {
+            // résultat de base + liste
+            $id = 'subResult'.$cptLine.'_'.$test::testId;
+            $output .= '<td class="subResult '.Resultat::getCode($resultLine['result']).'">'
+                    .'<span class="computed">'.Resultat::getLabel($resultLine['result']).'</span>'
+                    .$this->getResultatListe($id,$resultLine['result'])
+                    .'</td>';
+            $fields['select'][] = $this->computeIdForTest($id);
+          }
+          else 
+          {
+           */
+            $output .= '<td class="subResult">'.Resultat::getLabel($resultLine->getResult()).'</td>';
+          /*
+          }
+           */
+          
+          $output .= '<td class="context">';
+      
+          $source = '';
+          if (strlen($resultLine->getSource()))
+          {
+            $geshi = new GeSHi($resultLine->getSource(), 'html4strict');
+            // conf geshi
+            $geshi->set_header_type(GESHI_HEADER_DIV);
+            $geshi->enable_line_numbers(GESHI_NO_LINE_NUMBERS);
+            $geshi->enable_classes(false);
+            $geshi->set_overall_class('htmlSource');
+            $geshi->set_tab_width(4);
+            $geshi->enable_keyword_links(false);
+            
+            $source = '<li class="source"><strong>Source&nbsp;:</strong> '.
+                        '<div class="value">'.$geshi->parse_code().'</div></li>';
+          }
+      
+          $css = '';
+          if (strlen($resultLine->getCssSelector()))
+          {
+            $css = '<li class="cssSelector"><strong>Sélecteur CSS&nbsp;:</strong> '.
+                     '<div class="value"><pre>'.$resultLine->getCssSelector().'</pre></div></li>';
+          }
+      
+          $comment = '';
+          if (strlen($resultLine->getComment()))
+          {
+            $comment = '<li class="comment"><strong>Retour du test&nbsp;:</strong> '.
+                         '<div class="value">'.$resultLine->getComment().'</div></li>';
+          }
+          $context = $comment.$source.$css;
+          if (strlen(trim($context))>0)
+          {
+            $output .= '<ul>'.$context.'</ul>';
+          }
+      
+          /*
+          if ($history)
+          {
+            $id = $this->computeIdForTest('annot'.$cptLine.'_'.$test::testId);
+            $output .= '<div class="annotation"><strong>Annotation&nbsp;</strong> <textarea id="'
+                        .$id.'" name="'.$id.'"'
+                        .' cols="20" rows="5"></textarea></div>';
+            $fields['textarea'][] = $id;
+          }
+          */
+          $output .= '</td>';
+          $output .= '</tr>';
+          
+        } // fin parcours des lignes de résultat
+      }
+      
+    } // fin parcours des résultats
+    
+    $output .= '</tbody></table>';
+    /*
+    if ($history) { $output .= '</form>'; }
+    */
+    
+    // /Reprise de Tester::toRichHTML() /////////////////////////////////////////////////////////////////
+        
+    $this->output = $output;
     
   }
 

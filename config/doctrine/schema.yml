@@ -81,12 +81,12 @@ TestResultLine:
   columns:
     id:                     { type: integer, primary: true, autoincrement: true }
     test_result_id:         { type: integer, notnull: true }
-    result:                 { type: integer, notnull: true }    
+    result:                 { type: integer, notnull: true }   
     comment:                { type: varchar(500) }
     xpath:                  { type: varchar(500) }
     css_selector:           { type: varchar(500) }
-    source:                 { type: clob }    
-    result_line:            { type: clob }    
+    source:                 { type: clob }
+    text_content:           { type: clob }
   relations:
     TestResult:
       local: test_result_id

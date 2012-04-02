@@ -71,6 +71,14 @@ pageTests:
     id:     \d+
     sf_method: [GET, POST]
 
+pageSource:
+  url:      /page/source/:id
+  param:    { module: page, action: source }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
+
 webPageExtracts:
   url: /assistant-extraction/:web_page_id
   param: {module: ihm, action: ExtractWizard}
