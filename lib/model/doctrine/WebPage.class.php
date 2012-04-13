@@ -18,7 +18,8 @@ class WebPage extends BaseWebPage
    * @param string $class La classe du test
    * @return boolean
    */
-  public function hasTest($class){
+  public function hasTest($class)
+  {
     $found = false;
     $pageTests = $this->getCollectionTests();
     foreach($pageTests as $test)
@@ -28,6 +29,38 @@ class WebPage extends BaseWebPage
       }
     }
     return false;
+  }
+  
+  /**
+   * Récupère l'extraction de base
+   * $return WebPageExtract
+   */
+  public function getBaseExtract()
+  {
+  	$extracts = $this->getCollectionExtracts();
+  	foreach ($extracts as $extract)
+  	{
+  		if ($extract->getType() == 'base')
+  		{
+  			return $extract;
+  		}
+  	}
+  }
+  
+  /**
+   * Récupère l'extraction de base
+   * $return WebPageExtract
+   */
+  public function getNoJsExtract()
+  {
+    $extracts = $this->getCollectionExtracts();
+    foreach ($extracts as $extract)
+    {
+      if ($extract->getType() == 'noJs')
+      {
+        return $extract;
+      }
+    }
   }
   
   

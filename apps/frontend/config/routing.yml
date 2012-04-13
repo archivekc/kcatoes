@@ -79,9 +79,13 @@ pageSource:
   requirements: 
     id:     \d+
 
-webPageExtracts:
-  url: /assistant-extraction/:web_page_id
-  param: {module: ihm, action: ExtractWizard}
+pageExtracts:
+  url: /assistant-extraction/:id
+  param:    { module: page, action: extractWizard }
+  class:    sfDoctrineRoute
+  options:  { model: WebPage, type: object }
+  requirements: 
+    id:     \d+
  
 webPageDeleteConfigTest: 
   url:     /web-page/:web_page_id/delete-config-test/:test_config_id

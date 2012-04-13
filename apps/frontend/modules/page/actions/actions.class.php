@@ -41,16 +41,28 @@ class pageActions extends kcatoesActions
 	      
 	        if (isset($matches[1]) && $matches[1] != '') {
 	          $doctype = $matches[1];
+	          $src = str_replace($doctype, '', $src);
 	        }
         	
         	$page->setDoctype($doctype);
         	
+          $baseUrl      = $page->getUrl();
+          $src = preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'"/>', $src);
+
           // Enregistrement des sources de base
           $baseExtract = new WebPageExtract();
           $baseExtract->setWebPage($page);
           $baseExtract->setSrc($src);
           $baseExtract->setType('base');
           $baseExtract->save();          
+          
+          // enregistrement des sources sans JS
+          $noJsSrc = ExtractHelper::removeJS($src);
+          $noJsExtract = new WebPageExtract();
+          $noJsExtract->setWebPage($page);
+          $noJsExtract->setSrc($noJsSrc);
+          $noJsExtract->setType('noJs');
+          $noJsExtract->save();    
           
         };
         
@@ -79,6 +91,18 @@ class pageActions extends kcatoesActions
     $this->allTests = TestsHelper::getAllTestsById();
     $this->testsForm = new WebPageTestsForm($this->page);
 	}
+	
+	/**
+	 * wizard d'extraction du code source de la page
+	 */
+  public function executeExtractWizard(sfWebRequest $request)
+  {
+    $this->page = $this->getRoute()->getObject();
+    
+    $this->baseExtract = $this->page->getBaseExtract()->getSrc();
+    $this->noJsExtract = $this->page->getNoJsExtract()->getSrc();
+    
+  }
 	
 
   /**
@@ -258,11 +282,11 @@ class pageActions extends kcatoesActions
   public function executeSource(sfWebRequest $request)
   {
     $this->extraction = $this->getRoute()->getObject();
-    
-    $this->source = $this->extraction->getSrc();
-    $baseUrl      = $this->extraction->getWebPage()->getUrl();
-    
-    $this->source = preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'">', $this->source);
+    $doctype = $this->extraction->getWebPage()->getDoctype();
+    if (is_null($doctype)){
+    	$doctype = '';
+    }
+    $this->source = $doctype.$this->extraction->getSrc();
   }
   
   /**
