@@ -105,6 +105,9 @@ body {
 #page a.ico.detail {
   background-image: url('../img/ico/magnifier.png');
 }
+#page a.ico.extraire {
+  background-image: url('../img/ico/arrow_up.png');
+}
 .highlight {
   background: #F0F0F0;
   border: 1px solid #DDD;
@@ -155,12 +158,6 @@ body {
   box-shadow: 3px 3px 5px #CCC;
   
 }
-#page .imgLink img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  
-}
 
 #page code {
   color : #000;
@@ -173,17 +170,39 @@ body {
 
 /* messages */
 .info {
-  color: #0C0
+  color: #000;
+  background: #55CCFF;
 }
 .warning{
-  color: #F80
+  color: #000;
+  background: #FF9600;
 }
 .error{
-  color: #D00
+  color: #FFF;
+  background: #A00;
+}
+.success{
+  color: #000;
+  background: #94D091;
+}
+.msg {
+  -moz-box-shadow: 3px 3px 5px #CCC;
+  -webkit-box-shadow: 3px 3px 5px #CCC;
+  box-shadow: 3px 3px 5px #CCC;
+  border-color: #FFF;
 }
 
 
 /* Layouts */
 .part+.part {
   border-color: #FFF;
+}
+
+/* désactivation des ombres sur les images */
+#page .imgLink img,
+#page .msg img {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  
 }

@@ -330,6 +330,17 @@ form input[type=submit]:active {
   width: 63%;
 }
 
+/* messages */
+.msg {
+	border: .1em solid;
+	padding: .5em .5em .5em 2em;
+	min-height: 1.5em;
+	margin: 1em auto;
+}
+.msg img {
+	vertical-align: text-bottom;
+	margin-left: -20px;
+}
 
 
 /* *********** */
