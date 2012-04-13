@@ -4,9 +4,7 @@
     <div class="fields">
     
       <?php if ($sf_user->hasFlash('webPageTestsMsg')): ?>
-        <div class="info">
-          <?php echo $sf_user->getFlash('webPageTestsMsg') ?>
-        </div>
+        <?php echo userMsg($sf_user->getFlash('webPageTestsMsg'), 'success') ?>
       <?php endif; ?>
     
       <?php if ($testsForm->hasGlobalErrors()):?>
@@ -22,6 +20,7 @@
         <?php foreach($allTests as $testClass): ?>
           <li> 
             <?php echo $testsForm[$testClass]->renderError() ?>
+            <?php //echo var_dump($testsForm[$testClass])?>
             <?php echo $testsForm[$testClass]->render() ?>
             <?php 
               echo $testsForm[$testClass]->renderLabel() 
