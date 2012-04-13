@@ -26,7 +26,7 @@ class WebPageTestsForm extends BaseWebPageForm
     // Parcours des tests disponibles
     foreach($allTests as $testClass) {
       // Coche la case si le test est déjà lié à la page
-      $checked = (!$this->isNew() && $this->getObject()->hasTest($testClass)) ? true : false;
+      $checked = (!$this->isNew() && $this->getObject()->hasTest($testClass)) ? 'checked' : '';
       
       $this->widgetSchema[$testClass]    = new sfWidgetFormInputCheckbox(array(), array('checked' => $checked));
 
