@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Scenario form.
+ *
+ * @package    kcatoes
+ * @subpackage form
+ * @author     Key Consulting
+ * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class ScenarioForm extends BaseScenarioForm
+{
+  public function setup(){
+    parent::setup();
+    unset(
+      $this['created_at']
+      ,$this['updated_at']
+    );
+  }
+	
+  public function configure()
+  {
+    $this->setWidgets(array(
+     'nom' => new sfWidgetFormInputText()
+    ));
+    
+    $this->setValidator('nom', new sfValidatorString(array('required' => true)));
+    
+    $this->widgetSchema->setNameFormat('scenario[%s]');
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    parent::configure();
+  }
+}

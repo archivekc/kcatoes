@@ -3,7 +3,7 @@
 
 homepage:
   url:   /
-  param: { module: page, action: index }
+  param: { module: editorial, action: homepage }
 
 
 # ######### 
@@ -86,6 +86,17 @@ pageExtracts:
   options:  { model: WebPage, type: object }
   requirements: 
     id:     \d+
+    sf_method: [GET, POST]
+
+pageExtractSrc:
+  url: /assistant-extraction/source/:id
+  param:    { module: page, action: extractSrc }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements:
+    id: \d+
+    sf_method: [GET]
+  
  
 webPageDeleteConfigTest: 
   url:     /web-page/:web_page_id/delete-config-test/:test_config_id
@@ -100,6 +111,56 @@ webPageDeleteConfigTest:
 deleteWebPage:
   url: /delete-web-page/:id
   param: {module: ihm, action: DeleteWebPage}
+
+# ########
+# SCENARIO
+# ########
+scenarioIndex:
+  url:      /scenarii
+  param:    { module: scenario, action: index }
+
+scenarioDetail:
+  url:      /scenario/voir/:id
+  param:    { module: scenario, action: detail }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [GET, POST]
+
+scenarioEdit:
+  url:      /scenario/modifier/:id
+  param:    { module: scenario, action: edit }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [GET, POST]
+
+scenarioDelete:
+  url:      /scenario/supprimer/:id
+  param:    { module: scenario, action: delete }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements: 
+    id:     \d+
+
+scenarioPageEdit:
+  url:      /scenario/modifier-page/:id
+  param:    { module: scenario, action: pageEdit }
+  class:    sfDoctrineRoute
+  options:  { model: ScenarioPage, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [GET, POST]
+
+scenarioPageDelete:
+  url:      /scenario/supprimer-page/:id
+  param:    { module: scenario, action: pageDelete }
+  class:    sfDoctrineRoute
+  options:  { model: ScenarioPage, type: object }
+  requirements: 
+    id:     \d+
 
 
 # #################

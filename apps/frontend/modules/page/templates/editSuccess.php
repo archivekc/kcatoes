@@ -2,7 +2,7 @@
     <form method="post" action="<?php echo url_for('pageEdit'
                                                     ,array('id'=>$page->getId()))?>"
           class="highlight">
-      <h2>Ajout d'une page web</h2>
+      <h2>Modification d'une page web</h2>
       <div>
         <div class="fields">
           <?php if ($editPageForm->hasGlobalErrors()):?>
@@ -16,12 +16,12 @@
           <div>
             <?php echo $editPageForm['url']->renderError()?>
             <?php echo $editPageForm['url']->renderLabel()?>&nbsp;:
-            <?php echo $editPageForm['url']->render(array('readonly'=>'readonly'))?><br/>
+            <?php echo $editPageForm['url']->render(array('readonly'=>'readonly'))?>
           </div>
           <div>
             <?php echo $editPageForm['description']->renderError()?>
             <?php echo $editPageForm['description']->renderLabel()?>&nbsp;:
-            <?php echo $editPageForm['description']->render()?><br/>
+            <?php echo $editPageForm['description']->render()?>
           </div>
         </div>
         <div class="submit">

@@ -12,6 +12,7 @@ attributes:
   export: all
   validate: true 
 
+
 # =WebPage
 # une page est défini par son url et eventuellement une description
 WebPage:
@@ -23,7 +24,7 @@ WebPage:
     url:         { type: varchar(5000), notnull: true, unique: true }
     doctype:     { type: varchar(500), notnull: false }
     description: { type: varchar(5000), notnull: false }
-
+  
 # =Test
 # liste des tests associés à une page
 Test:
@@ -120,3 +121,65 @@ TestConfigDetail:
       local:        test_config_id
       foreign:      id
       foreignAlias: CollectionTests
+
+      
+# =Scenario
+# Un scenario est défini par un nom auquel on associe une liste de page
+Scenario:
+  tableName: scenario
+  actAs:
+    - Timestampable
+  columns:
+    id:          { type: integer, primary: true, autoincrement: true }
+    nom:         { type: varchar(500), notnull: true }
+
+# =ScenarioPage
+# Liste pages associées à un scenario
+ScenarioPage:
+  tableName: scenario_page
+  actAs:
+    - Timestampable
+  columns:
+    id:          { type: integer, primary: true, autoincrement: true }
+    nom:        { type: varchar(500), notnull: true }
+    scenario_id: { type: integer, notnull: false }
+    web_page_id: { type: integer, notnull: false }
+    required:    { type: boolean, default: false }
+  relations: 
+    Scenario:
+      local:        scenario_id
+      foreign:      id
+      foreignAlias: ScenarioPages
+    WebPage:
+      local:        web_page_id
+      foreign:      id
+      foreignAlias: WebPage
+      onDelete:     CASCADE
+
+# =ScenarioTemplate
+# Un template de scenario
+#ScenarioTemplate:
+#  tableName: scenario_template
+#  actAs:
+#    - TimeStampable
+#  columns:
+#    id:          { type: integer, primary: true, autoincrement: true }
+#    name:        { type: varchar(500), notnull: true }
+
+# =ScenarioTemplatePage
+# Un template de scenario
+#ScenarioTemplatePage:
+#  tableName: scenario_template_page
+#  actAs:
+#    - TimeStampable
+#  columns:
+#    id:          { type: integer, primary: true, autoincrement: true }
+#    scenario_template_id: { type: integer, primary: true, autoincrement: true }
+#    name:        { type: varchar(500), notnull: true }
+#    required:    { type: boolean, default: false }
+#  relations: 
+#    ScenarioTemplate: 
+#      local:        scenario_template_id
+#      foreign:      id
+#      foreignAlias: CollectionPages
+      

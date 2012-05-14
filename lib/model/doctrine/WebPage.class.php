@@ -45,6 +45,7 @@ class WebPage extends BaseWebPage
   			return $extract;
   		}
   	}
+  	return false;
   }
   
   /**
@@ -56,12 +57,29 @@ class WebPage extends BaseWebPage
     $extracts = $this->getCollectionExtracts();
     foreach ($extracts as $extract)
     {
-      if ($extract->getType() == 'noJs')
+      if ($extract->getType() == 'Sans JavaScript')
       {
         return $extract;
       }
     }
+    return false;
   }
   
+  /**
+   * Récupère l'extraction de base
+   * $return WebPageExtract
+   */
+  public function getJsExtract()
+  {
+    $extracts = $this->getCollectionExtracts();
+    foreach ($extracts as $extract)
+    {
+      if ($extract->getType() == 'Avec JavaScript')
+      {
+        return $extract;
+      }
+    }
+    return false;
+  }
   
 }

@@ -1,4 +1,4 @@
-    <h1>Pages web</h1>
+  <h1>Pages web</h1>
     <form method="post" action="<?php echo url_for('page/index')?>" class="highlight <?php echo !$addPageForm->hasErrors()?'quickAddForm':'' ?>">
       <h2>Ajout d'une page web</h2>
       <div>
@@ -14,12 +14,12 @@
           <div>
             <?php echo $addPageForm['url']->renderError()?>
             <?php echo $addPageForm['url']->renderLabel()?>&nbsp;:
-            <?php echo $addPageForm['url']->render()?><br/>
+            <?php echo $addPageForm['url']->render()?>
           </div>
           <div>
             <?php echo $addPageForm['description']->renderError()?>
             <?php echo $addPageForm['description']->renderLabel()?>&nbsp;:
-            <?php echo $addPageForm['description']->render()?><br/>
+            <?php echo $addPageForm['description']->render()?>
           </div>
         </div>
         <div class="submit">
@@ -38,11 +38,11 @@
       <caption>Liste des pages web</caption>
       <thead>
         <tr>
-          <th scope="row"><abbr lang="en" title="Unified Ressource Locator">URL</abbr></th>
-          <th scope="row">Description</th>
-          <th scope="row">Extractions</th>
-          <th scope="row">Tests</th>
-          <th scope="row">Actions</th>
+          <th scope="col"><abbr lang="en" title="Unified Ressource Locator">URL</abbr></th>
+          <th scope="col">Description</th>
+          <th scope="col">Extractions</th>
+          <th scope="col">Tests</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>

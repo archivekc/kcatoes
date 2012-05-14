@@ -225,7 +225,8 @@ caption {
 
 /* formulaire */
 form {
-  margin: 1em 0; 
+  margin: 1em 0;
+  padding: 1em;
   overflow: hidden;
 }
 form label {
@@ -342,6 +343,47 @@ form input[type=submit]:active {
 	margin-left: -20px;
 }
 
+/* onglets */
+#page .tabHeads {
+  list-style-position: inside;
+  margin: 1em 0 1em 1.2em;
+}
+#page .js.tabHeads {
+  margin: 0 1em;
+  border-bottom: .2em solid;
+}
+
+.tabHeads>li a {
+      display: block;
+      padding: .5em 1em;    
+}
+#page .js.tabHeads>li a {
+      border: solid;
+      border-width: .1em .1em 0;
+      border-radius: .3em .3em 0 0;   
+}
+
+.js.tabHeads>li {
+    display: inline-block;
+    margin: 0 0 -2px 1em;
+}
+
+.tab {
+  margin: 1em;
+  border: solid;
+  border-width: 1px;
+  padding: 1em;
+}
+
+.js.tab {
+  margin-top: 0;
+  display: none;
+  border-width: 0 1px 1px;
+}
+.js.tab.current{
+    display: inherit;
+}
+
 
 /* *********** */
 /* SPECIFIQUES */
@@ -361,4 +403,21 @@ form input[type=submit]:active {
 .sponsor li {
   margin: 1em;
   float: left;
+}
+
+/* page extract wizard */
+.extract iframe {
+  width: 100%;
+  height: 50em;
+  border: dotted .1em;
+}
+.extract .iframeContent {
+  position: relative;
+}
+.extract .iframeContent .iframeMask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }

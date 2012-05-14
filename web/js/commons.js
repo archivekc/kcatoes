@@ -17,6 +17,7 @@ $(function(){
 		}
 		
 		handleQuickAddForm(parent);
+		handleTabs(parent);
 	};
 	
 	initScreen();
@@ -49,3 +50,42 @@ var makeCollapsable = function(collapser, collapsable){
 		return false;
 	});
 };
+
+///////////// //
+//les onglets //
+///////////// //
+var handleTabs = function(parent){
+	if (!parent){
+		parent = $('body');
+	}
+	
+	$('.tabHeads', parent).each(function(){
+		$(this).addClass('js');
+		$('a', this).each(function(index, elem){
+			
+			$(this).click(function(){
+				var previousCurrentTab = $(this).closest('.tabHeads').find('.current');
+				if (previousCurrentTab.length){
+					var previousTab = $('#'+previousCurrentTab[0].href.split('#')[1]);
+					$(previousCurrentTab).add(previousTab).removeClass('current');
+				}
+				
+				$('#'+this.href.split('#')[1]).add(this).addClass('current');
+			});
+
+			// activation du premier onglet par défaut
+			if (index==0){
+				$(this).click();
+			}
+			
+		});
+	});
+	$('.tab', parent).each(function(){
+		$(this).addClass('js');
+		$('.skipLink', this).text('Retour au sommaire');
+	});
+	
+	// vérification de l'ancre
+	$('.tabHeads a[href='+window.location.hash+']').click();
+};
+

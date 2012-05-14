@@ -9,6 +9,11 @@
  */
 class pageActions extends kcatoesActions
 {
+	public function preExecute()
+	{
+		$_SERVER['rubrique'] = 'page';
+	}
+	
 	public function executeIndex(sfWebRequest $request)
 	{
     // formulaire d'ajout d'une pages web
@@ -57,11 +62,11 @@ class pageActions extends kcatoesActions
           $baseExtract->save();          
           
           // enregistrement des sources sans JS
-          $noJsSrc = ExtractHelper::removeJS($src);
+          $noJsSrc = $this->_fix_latin(ExtractHelper::removeJS($src));
           $noJsExtract = new WebPageExtract();
           $noJsExtract->setWebPage($page);
           $noJsExtract->setSrc($noJsSrc);
-          $noJsExtract->setType('noJs');
+          $noJsExtract->setType('Sans JavaScript');
           $noJsExtract->save();    
           
         };
@@ -99,11 +104,59 @@ class pageActions extends kcatoesActions
   {
     $this->page = $this->getRoute()->getObject();
     
-    $this->baseExtract = $this->page->getBaseExtract()->getSrc();
-    $this->noJsExtract = $this->page->getNoJsExtract()->getSrc();
+    $this->extracts = $this->page->getCollectionExtracts();
     
+    $addExtract = new WebPageExtract();
+    $addExtract->setWebPageId($this->page->getId());
+    
+    
+    // soumission
+    if ($request->isMethod('post'))
+    {
+    	$this->addExtractForm = new addExtractForm();
+    	if ($this->processForm($request, $this->addExtractForm))
+      {
+      	$extract;
+      	if ($extract = $this->page->getJsExtract())
+      	{
+      		die($this->addExtractForm->getValue('src'));
+      		$extract->setSrc = $this->addExtractForm->getValue('src');
+      	}
+      	else
+      	{
+	      	$extract = $this->addExtractForm->getObject();
+      		$extract->setType('Avec JavaScript');
+      		$extract->setSrc($this->addExtractForm->getValue('src'));
+      		$extract->setWebPageId($this->page->getId());
+      	}
+      	$extract->save();
+      	$this->redirect('pageExtracts' ,array('id'=>$this->page->getId()));
+      }
+    } else {
+	    $this->addExtractForm = new addExtractForm($addExtract);
+    }  
+  }
+  
+  /**
+   * Ajout d'une extraction pour une page web
+   * @param $request
+   */
+  public function executeAddExtract(sfWebrequest $request)
+  {
+  	
   }
 	
+  /**
+   * 
+   */
+  public function executeExtractSrc(sfWebRequest $request)
+  {
+  	$extract = $this->getRoute()->getObject();
+  	$this->doctype = $extract->getWebPage()->getDoctype();
+  	$this->src = $extract->getSrc();
+  	
+  	$this->setLayout(false);
+  }
 
   /**
    * Modification d'une page web
@@ -277,6 +330,7 @@ class pageActions extends kcatoesActions
 
   /**
    * Affichage de la page originale 
+   * TODO CFA: remove et remplacer l'utilisation par executeExtractSrc
    * @param $request
    */
   public function executeSource(sfWebRequest $request)

@@ -1,6 +1,7 @@
 <?php
 class kcatoesActions extends sfActions
 {
+	
   /**
    * Valide les données saisies dans un formulaire
    *

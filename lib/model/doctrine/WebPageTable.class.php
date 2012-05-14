@@ -16,4 +16,23 @@ class WebPageTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('WebPage');
     }
+    
+    public static function getListUrl($withEmpty = true)
+    {
+      $q = Doctrine_Query::create()
+       ->select('p.url')
+	     ->from('WebPage p')
+	     ->orderBy('p.url ASC');
+      $res =  $q->fetchArray();
+      
+      $array = array();
+      if ($withEmpty)
+      {
+      	$array[null] = null;
+      }
+      foreach($res as $line){
+      	$array[$line['id']] = $line['url'];
+      }
+      return $array;
+    }
 }

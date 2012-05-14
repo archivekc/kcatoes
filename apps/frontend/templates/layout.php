@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<?php $rubrique = $_SERVER['rubrique'] ?> <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <?php include_http_metas() ?>
     <?php include_title() ?>
@@ -20,9 +20,41 @@
       </div>
       <div id="aside">
         <ul id="menu">
-          <li><a href="<?php echo url_for('homepage')?>">Accueil</a></li>
-          <li><a href="<?php echo url_for('aide')?>">Aide</a></li>
-          <li><a href="<?php echo url_for('credits')?>">Crédits</a></li>
+          <li>
+            <?php if ($rubrique == 'homepage'):?>
+              <span>Accueil</span>
+            <?php else: ?>
+	            <a href="<?php echo url_for('homepage')?>">Accueil</a>
+            <?php endif ?>
+          </li>
+          <li>
+            <?php if ($rubrique == 'page'):?>
+              <span>Page</span>
+            <?php else: ?>
+	            <a href="<?php echo url_for('pageIndex')?>">Pages web</a>
+            <?php endif ?>
+          </li>
+          <li>
+            <?php if ($rubrique == 'scenarii'):?>
+              <span>Scenarii</span>
+            <?php else: ?>
+              <a href="<?php echo url_for('scenarioIndex')?>">Scenarii</a>
+            <?php endif ?>
+          </li>
+          <li>
+            <?php if ($rubrique == 'aide'):?>
+              <span>Aide</span>
+            <?php else: ?>
+              <a href="<?php echo url_for('aide')?>">Aide</a>
+            <?php endif ?>
+          </li>
+          <li>
+            <?php if ($rubrique == 'credit'):?>
+              <span>Crédits</span>
+            <?php else: ?>
+              <a href="<?php echo url_for('credits')?>">Crédits</a>
+            <?php endif ?>
+          </li>
         </ul>
       </div>
       <div id="main">

@@ -93,6 +93,21 @@ body {
 }
 
 /* icones */
+#page a.ico {
+  transition-property: background;
+  transition-duration: .2s;
+  transition-timing-function: ease;
+  -moz-transition-property: background;
+  -moz-transition-duration: .2s;
+  -moz-transition-timing-function: ease;
+  -webkit-transition-property: background;
+  -webkit-transition-duration: .2s;
+  -webkit-transition-timing-function: ease;
+  -o-transition-property: background;
+  -o-transition-duration: .2s;
+  -o-transition-timing-function: ease;
+}
+
 #page a.ico.supprimer {
   background-image: url('../img/ico/bin_closed.png');
 }
@@ -107,6 +122,9 @@ body {
 }
 #page a.ico.extraire {
   background-image: url('../img/ico/arrow_up.png');
+}
+#page a.ico.addPage {
+  background-image: url('../img/ico/page_add.png');
 }
 .highlight {
   background: #F0F0F0;
@@ -206,3 +224,30 @@ body {
   box-shadow: none;
   
 }
+
+/* onglets */
+.tabHeads {
+  list-style: square;
+}
+#page .js.tabHeads{
+  list-style: none;
+  border-color: #DDD;
+}
+#page .js.tabHeads>li  a {
+  border-color: #DDD;
+  background: transparent;
+}
+
+#page .js.tabHeads  a.current{
+    background: #F0F0F0;
+}
+.tab {
+  border-color: #DDD;
+}
+
+.js.tab{
+  background: #F0F0F0;
+  position: relative;
+  z-index: 1;
+}
+
