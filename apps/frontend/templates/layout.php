@@ -49,6 +49,13 @@
             <?php endif ?>
           </li>
           <li>
+            <?php if ($rubrique == 'environnementR'):?>
+              <span>Environnement recommandé</span>
+            <?php else: ?>
+              <a href="<?php echo url_for('environnementR')?>">Environnement recommandé</a>
+            <?php endif ?>
+          </li>
+          <li>
             <?php if ($rubrique == 'credit'):?>
               <span>Crédits</span>
             <?php else: ?>

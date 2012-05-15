@@ -31,4 +31,12 @@ class editorialActions extends kcatoesActions
   {
     $_SERVER['rubrique'] = 'aide';
   }
+  
+  /**
+   * Page d'environnement recommandé
+   */
+  public function executeEnvironnementR()
+  {
+  	$_SERVER['rubrique'] = 'environnementR';
+  }
 }

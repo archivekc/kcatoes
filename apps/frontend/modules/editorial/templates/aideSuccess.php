@@ -23,3 +23,7 @@
   <li>Un lien vers la dernière version du rapport d'évaluation.</li>
   <li>Un lien vers la dernière sauvegarde automatique (si elle existe) du rapport d'évaluation.</li>
 </ul>
+<h2>Page scenarii</h2>
+<p>L'écran des scenarii permet de définir des groupes de pages web sur lesquelles seront passés les tests.</p>
+<p>Ce regroupement permet alors d'obtenir les indicateurs, rapports, etc. agrégés pour cet ensemble.</p>
+
