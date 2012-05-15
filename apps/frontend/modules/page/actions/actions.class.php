@@ -117,10 +117,10 @@ class pageActions extends kcatoesActions
     	if ($this->processForm($request, $this->addExtractForm))
       {
       	$extract;
-      	if ($extract = $this->page->getJsExtract())
+      	if (gettype($extract = $this->page->getJsExtract()) == 'object')
       	{
-      		die($this->addExtractForm->getValue('src'));
-      		$extract->setSrc = $this->addExtractForm->getValue('src');
+      		$this->addExtractForm->getValue('src');
+      		$extract->setSrc($this->addExtractForm->getValue('src'));
       	}
       	else
       	{
