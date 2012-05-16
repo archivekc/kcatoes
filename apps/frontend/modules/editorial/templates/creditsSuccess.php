@@ -7,7 +7,7 @@
   <li>Julien Tardot</li>
 </ul>
 
-<h2>Le développement de KCatoès est sponsorisé par&nbsp;:</h2>
+<h2>Les amis du KCatoès (sponsors)&nbsp;:</h2>
 <ul class="sponsor">
   <li>
     <a class="imgLink" href="http://www.keyconsulting.fr">
