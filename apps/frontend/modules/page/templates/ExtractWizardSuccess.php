@@ -1,4 +1,4 @@
-<?php use_helper('ihm')?>
+<?php use_helper('Ihm')?>
 <h1>Gestion des extractions</h1>
 <ul class="tabHeads" id="extracts">
 <?php foreach($extracts as $extract):?>

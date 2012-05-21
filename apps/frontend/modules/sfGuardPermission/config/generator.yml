@@ -1,0 +1,52 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           sfGuardPermission
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              sfGuardPermission
+    plural:                sfGuardPermissions
+    route_prefix:          sf_guard_permission
+    with_doctrine_route:   true
+    css:                   false
+
+    config:
+      actions:
+        _edit:  
+          label: Modifier
+          params: 
+            class: ico modifier
+        _delete:
+          label: Supprimer
+          params:
+            class: "ico supprimer"
+            confirm: '"%%username%%" va être supprimé\n. Continuer ?'
+        _new:       {label:Créer}
+
+      fields:
+        name: {label: Nom du rôle}
+        description: {label: Description}
+        created_at: {label: Créé le, date_format: FF/MM/y (H:mm) }
+        updated_at: {label: Mis à jour le, date_format: FF/MM/y (H:mm)}
+        users_list: {label: Utilisateurs}
+        groups_list: {label: Profils}
+
+      list:
+        title:   Liste des utilisateurs
+#        display: [=name, description, created_at, updated_at]
+        max_per_page: 15
+        layout: tabular
+        batch_actions: {}
+
+      filter:          
+#        display:         [name, description]
+
+      form:
+#        display: [name, description, users_list, permissions_list]
+
+      edit:
+        title: Modifier le rôle "<strong>%%name%%</strong>"
+
+      new:
+        title: Nouveau rôle

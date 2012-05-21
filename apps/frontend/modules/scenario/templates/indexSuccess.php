@@ -10,8 +10,6 @@
           <?php endif ?>
           <div>
             <?php echo $addScenarioForm->renderHiddenFields()?>
-          </div>
-          <div>
             <?php echo $addScenarioForm['nom']->renderError()?>
             <?php echo $addScenarioForm['nom']->renderLabel()?>&nbsp;:
             <?php echo $addScenarioForm['nom']->render()?>

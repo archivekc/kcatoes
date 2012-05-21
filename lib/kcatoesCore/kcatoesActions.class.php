@@ -17,4 +17,12 @@ class kcatoesActions extends sfActions
 
     return $form->isValid();
   }
+
+  public function postExecute()
+  {
+/*    if (isset($_GET['raw']))
+    {
+      die('raw!!');
+    }*/
+  }
 }

@@ -66,6 +66,18 @@ body {
   color: #FFF;
 }
 
+#logoutBtn a {
+  background-color: #9DD63B;
+  color: #343434;
+  text-align: center;
+}
+
+#menu #logoutBtn a:hover,
+#menu #logoutBtn a:focus {
+  background-color: #A00;
+  color: #FFF;
+}
+
 .download a {
   background: #9DD63B;
   color: #333;
@@ -93,7 +105,9 @@ body {
 }
 
 /* icones */
+#page .pagination .paginateLinks a,
 #page a.ico {
+  background-color: #FFF;
   transition-property: background;
   transition-duration: .2s;
   transition-timing-function: ease;
@@ -126,6 +140,23 @@ body {
 #page a.ico.addPage {
   background-image: url('../img/ico/page_add.png');
 }
+#page a.ico.addUser {
+  background-image: url('../img/ico/user_add.png');
+}
+#page a.ico.addProfil {
+  background-image: url('../img/ico/vcard_add.png');
+}
+#page a.ico.liste {
+  background-image: url('../img/ico/application_view_columns.png');
+}
+#page a.ico.effacer {
+  background-image: url('../img/ico/tool_eraser.png');
+}
+#page a.ico.addRole {
+  background-image: url('../img/ico/shield_add.png');
+}
+
+.sf_admin_form fieldset,
 .highlight {
   background: #F0F0F0;
   border: 1px solid #DDD;
@@ -176,6 +207,12 @@ body {
   box-shadow: 3px 3px 5px #CCC;
   
 }
+#page .pagination .paginateLinks a img,
+#page .sf_admin_list th img {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 
 #page code {
   color : #000;
@@ -223,6 +260,22 @@ body {
   -webkit-box-shadow: none;
   box-shadow: none;
   
+}
+
+/* tableaux */
+table, th, td {
+  border-color: #999;
+}
+table thead th {
+  background: #343434;
+  color: #FFF;
+}
+#page table thead th a {
+  color: #FFF;
+}
+#page table thead th a:hover,
+#page table thead th a:focus {
+  color: #000;
 }
 
 /* onglets */

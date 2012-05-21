@@ -5,6 +5,36 @@ homepage:
   url:   /
   param: { module: editorial, action: homepage }
 
+# ################
+# AUTHENTIFICATION
+# ################
+
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
+
+# ##########################
+# ADMINISTRATION UTILISATEUR
+# ##########################
+sf_guard_user:
+  url: /administrations/utilisateurs
+  param: {module: sfGuardUser, action: index}
+
+sf_guard_group:
+  url: /administrations/profils
+  param: {module: sfGuardGroup, action: index}
+
+sf_guard_permission:
+  url: /administrations/roles
+  param: {module: sfGuardPermission, action: index}
 
 # ######### 
 # PAGES WEB
@@ -215,3 +245,5 @@ default_index:
 
 default:
   url:   /:module/:action/*
+
+

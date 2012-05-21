@@ -28,6 +28,17 @@ body {
 caption {
   font-style: italic;
 }
+table thead th {
+  font-weight: bold;
+}
+
+/* pagination */
+.pagination .paginateLinks {
+  text-align: right;
+}
+.pagination .paginateResume {
+  text-align: left;
+}
 
 /* titres */
 #page h1 {

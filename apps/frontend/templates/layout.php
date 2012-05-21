@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php $rubrique = $_SERVER['rubrique'] ?> <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<?php $rubrique = isset($_SERVER['rubrique'])?$_SERVER['rubrique']:'' ?> <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <?php include_http_metas() ?>
     <?php include_title() ?>
@@ -20,6 +20,7 @@
       </div>
       <div id="aside">
         <ul id="menu">
+          <?php if($sf_user->isAuthenticated()): ?>
           <li>
             <?php if ($rubrique == 'homepage'):?>
               <span>Accueil</span>
@@ -29,7 +30,7 @@
           </li>
           <li>
             <?php if ($rubrique == 'page'):?>
-              <span>Page</span>
+              <span>Pages web</span>
             <?php else: ?>
 	            <a href="<?php echo url_for('pageIndex')?>">Pages web</a>
             <?php endif ?>
@@ -62,16 +63,33 @@
               <a href="<?php echo url_for('credits')?>">Crédits</a>
             <?php endif ?>
           </li>
+          <li>
+            <a href="<?php echo url_for('sf_guard_user')?>">Gestion des utilisateurs</a>
+          </li>
+          <li>
+            <a href="<?php echo url_for('sf_guard_group')?>">Gestion des profils</a>
+          </li>
+          <li>
+            <a href="<?php echo url_for('sf_guard_permission')?>">Gestion des rôles</a>
+          </li>
+          <li id="logoutBtn">
+              <a href="<?php echo url_for('sf_guard_signout')?>">Déconnexion</a>
+          </li>
+          <?php endif ?>
+          <li>
+            <p id="copyright">
+              Version <?php echo sfConfig::get('app_version') ?> -
+              <?php echo sfConfig::get('app_date') ?>
+            </p>
+          </li>
         </ul>
+
+
       </div>
       <div id="main">
         <div id="page">
           <?php echo $sf_content ?>
         </div>
-        <p id="copyright">
-		        Version <?php echo sfConfig::get('app_version') ?> -
-		        <?php echo sfConfig::get('app_date') ?>
-		    </p>
       </div>
     </div>
   </body>

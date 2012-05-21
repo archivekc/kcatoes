@@ -1,0 +1,62 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           sfGuardUser
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              utilisateur
+    plural:                utilisateurs
+    route_prefix:          sf_guard_user
+    with_doctrine_route:   true
+    css: false
+
+    config:
+      actions:
+        _edit:  
+          label: Modifier
+          params: 
+            class: ico modifier
+        _delete:
+          label: Supprimer
+          params:
+            class: "ico supprimer"
+            confirm: '"%%username%%" va être supprimé\n. Continuer ?'
+        _new: {label:Créer}
+
+      fields:
+        first_name: {label: Prénom}
+        last_name: {label: Nom}
+        username: {label: Nom utilisateur}
+        email_address: {label: Mél}
+        created_at: {label: Créé le, date_format: FF/MM/y (H:mm) }
+        last_login: {label: Dernière connexion le, date_format: FF/MM/y (H:mm) }
+        updated_at: {label: Mis à jour le, date_format: FF/MM/y (H:mm)}
+        password: {label: Mot de passe}
+        password_again: { label: Mot de passe (encore) }
+        is_active: {label: Utilisareur actif}
+        is_super_admin: {label: Super administrateur}
+        groups_list: {label: Profils}
+        permissions_list: {label: Rôles}
+
+      list:
+        title:   Liste des utilisateurs
+        display: [=username, last_name, first_name, created_at, updated_at]
+        max_per_page: 15
+        layout: tabular
+        batch_actions: {}
+
+      filter:          
+        display:         [username, last_name, first_name]
+
+      form:
+        class: sfGuardUserAdminForm
+        display:
+          "User":                   [first_name, last_name, email_address, username, password, password_again]
+          "Permissions and groups": [is_active, is_super_admin, groups_list, permissions_list]
+
+      edit:
+        title: Modifier l'utilisateur "<strong>%%username%% (%%last_name%% %%first_name%%)</strong>"
+
+      new:
+        title: Nouvel utilisateur

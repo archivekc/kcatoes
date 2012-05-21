@@ -17,6 +17,9 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfDoctrinePlugin');
     $this->autoloadGoutte();
 //    $this->autoloadTest();
+    $this->enablePlugins('sfDoctrineGuardPlugin');
+
+    $this->dispatcher->connect('form.post_configure', array($this, 'listenToFormPostConfigure'));
   }
 
   /**
@@ -35,5 +38,33 @@ class ProjectConfiguration extends sfProjectConfiguration
   private function autoloadTest()
   {
     require_once sfConfig::get('sf_data_dir').'/implementation/autoload.php';
+  }
+
+
+
+  /**
+   * Listens to the command.post_command event.
+   *
+   * @param sfEvent An sfEvent instance
+   * @static
+   */
+  static function listenToFormPostConfigure(sfEvent $event)
+  {
+    sfProjectConfiguration::getActive()->loadHelpers('I18N');
+
+    $form = $event->getSubject();
+    $widgetSchema = $form->getWidgetSchema();
+    foreach ($form->getValidatorSchema()->getFields() as $fieldName => $validator)
+    {
+      if (isset($widgetSchema[$fieldName]))
+      {
+        $label = $widgetSchema[$fieldName]->getLabel() ? $widgetSchema[$fieldName]->getLabel()
+            : sfInflector::humanize($fieldName);
+        $label = __($label);
+        $asterisk = $validator->getOption('required') ? '&nbsp;*' : null;
+        $widgetSchema[$fieldName]->setLabel($label . $asterisk . '&nbsp;:');
+      }
+
+    }
   }
 }

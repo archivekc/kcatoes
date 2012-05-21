@@ -75,6 +75,10 @@ body {
   margin: .5em 0;
 }
 
+#menu #logoutBtn {
+  margin-top: 2em;
+}
+
 #main {
   margin: 0 1em;
   padding: 0 0 0 21em;
@@ -167,11 +171,21 @@ body {
 }
 
 /* block mis en valeur */
+.sf_admin_form fieldset,
 .highlight {
   padding: 1em;
   margin: 1em;
   border: 1px solid;
 }
+
+.sf_admin_form fieldset,
+.sf_admin_form>div {
+  display: inline-block;
+  vertical-align: top;
+  width: 35em;
+}
+
+
 
 /* ligne de copyright */
 #copyright {
@@ -209,18 +223,61 @@ table {
 }
 table, th, td {
   border: 1px solid;
-  border-color: #999;
 }
 th, td {
   padding: .3em;
 } 
 table thead th {
-  background: #343434;
-  color: #FFF;
   font-weight: bold;
 }
 caption {
   font-size: 1.5em;
+}
+
+/* pagination */
+.pagination>div {
+  display: inline-block;
+  vertical-align: top;
+  margin: 1em auto;
+}
+
+.pagination .paginateLinks {
+  width: 69%;
+}
+.pagination .paginateResume {
+  width: 29%;
+}
+
+.pagination .paginateLinks a:first-child {
+  margin-left: 0;
+}
+body #page .pagination .paginateLinks a {
+  padding: .2em;
+}
+body #page .pagination .paginateLinks .paginateGoPage {
+  border-color: transparent;
+}
+.pagination .paginateLinks a {
+  margin: 0 .5em;
+}
+.pagination .paginateLinks .paginateCurrent {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2;
+  border-radius: 1em;
+  background: #343434;
+  color: #FFF;
+
+  font-weight: bold;
+  text-align: center;
+  vertical-align: text-bottom;
+
+}
+
+/* admin */
+.sf_admin_actions {
+  margin: 1em auto;
 }
 
 /* formulaire */
@@ -240,7 +297,7 @@ input[type=checkbox]+label {
 form textarea {
   vertical-align: top;
 }
-input[type=text], select, textarea {
+input[type=text], input[type=password], select, textarea {
   display: block;
   width: 30em;
   /*resize: none;*/
@@ -255,6 +312,7 @@ form input[type=submit] {
   border: none;
   -moz-box-shadow: 3px 3px 5px #666;
   float: right;
+  margin-left: 1em;
 }
 
 form input[type=submit]:hover,
@@ -276,6 +334,7 @@ form input[type=submit]:active {
 #page .actions {
   margin-left: 1em;
 }
+#page .pagination .paginateLinks a,
 #page a.ico {
   display: inline-block;
   min-height: 1em;
@@ -287,6 +346,8 @@ form input[type=submit]:active {
   background-position: 2px center !important;
   background-repeat: no-repeat !important;
 }
+#page .pagination .paginateLinks a:hover,
+#page .pagination .paginateLinks a:focus,
 #page a.ico:hover,
 #page a.ico:focus {
   border-color: #999;
