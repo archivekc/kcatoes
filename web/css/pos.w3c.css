@@ -185,7 +185,20 @@ body {
   width: 35em;
 }
 
-
+.sf_admin_filter .sf_admin_text {
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+}
+.sf_admin_text input[type=text] {
+    width: 15em !important;
+}
+.sf_admin_filter .effacer,
+.sf_admin_filter input[type=submit] {
+  float: right;
+  clear: right;
+  margin: 0  0 1em;
+}
 
 /* ligne de copyright */
 #copyright {

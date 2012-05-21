@@ -34,16 +34,16 @@ generator:
 
       list:
         title:   Liste des utilisateurs
-#        display: [=name, description, created_at, updated_at]
+        display: [=name, description, created_at, updated_at]
         max_per_page: 15
         layout: tabular
         batch_actions: {}
 
       filter:          
-#        display:         [name, description]
+        display:         [name, description]
 
       form:
-#        display: [name, description, users_list, permissions_list]
+        display: [name, description, users_list, groups_list]
 
       edit:
         title: Modifier le rôle "<strong>%%name%%</strong>"
