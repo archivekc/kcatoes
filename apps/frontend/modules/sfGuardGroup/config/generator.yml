@@ -38,6 +38,12 @@ generator:
         max_per_page: 15
         layout: tabular
         batch_actions: {}
+        object_actions:
+          _edit: ~
+          _delete: ~
+          assoc_test:
+            label: Associer les tests
+            action: assocTest
 
       filter:          
         display:         [name, description]
