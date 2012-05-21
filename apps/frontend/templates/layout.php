@@ -64,6 +64,9 @@
             <?php endif ?>
           </li>
           <li>
+            <strong>Administration</strong>
+          </li>
+          <li>
             <a href="<?php echo url_for('sf_guard_user')?>">Gestion des utilisateurs</a>
           </li>
           <li>

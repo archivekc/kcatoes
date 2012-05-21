@@ -10,7 +10,22 @@
  */
 class ScenarioTemplateForm extends BaseScenarioTemplateForm
 {
+	public function setup()
+	{
+		parent::setup();
+		unset($this['created_at'],$this['updated_at']);
+	}
+	
   public function configure()
   {
+    $this->setWidgets(array(
+     'nom' => new sfWidgetFormInputText()
+    ));
+    
+    $this->setValidator('nom', new sfValidatorString(array('required' => true)));
+    
+    $this->widgetSchema->setNameFormat('scenarioTemplate[%s]');
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    parent::configure();
   }
 }

@@ -47,21 +47,47 @@ class scenarioActions extends kcatoesActions
     $this->scenario = $this->getRoute()->getObject();
     $this->addPageForm = new ScenarioPageForm();
     
+    $this->setAsTemplateForm = new ScenarioTemplateForm();
+    
     $this->pages = $this->scenario->getScenarioPages();
     
     // soumission
     if ($request->isMethod('post'))
     {
-      // Pages web
-      if ($this->processForm($request, $this->addPageForm))
-      {
-        $page = $this->addPageForm->save();
-        $page->setScenario($this->scenario);
-        $page->save();
-        $this->redirect('scenarioDetail', $this->scenario);
-      }
+    	$parameters = $request->getParameterHolder(); 
+    	if ($parameters->get('scenarioPage', false))
+    	{
+    		// soumission d'une page web
+	      if ($this->processForm($request, $this->addPageForm))
+	      {
+	        $page = $this->addPageForm->save();
+	        $page->setScenario($this->scenario);
+	        $page->save();
+	        $this->redirect('scenarioDetail', $this->scenario);
+	      }
+    	}
+    	if ($parameters->get('scenarioTemplate', false))
+    	{
+        // soumission d'un modele
+        if ($this->processForm($request, $this->setAsTemplateForm))
+        {
+        	  $scenarioTemplate = $this->setAsTemplateForm->save();
+        	  foreach($this->scenario->getScenarioPages() as $page){
+        	  	$templatePage = new scenarioTemplatePage();
+        	  	$templatePage->setNom($page->getNom());
+        	  	$templatePage->setRequired($page->getRequired());
+        	  	$templatePage->setScenarioTemplateId($scenarioTemplate->getId());
+        	  	$templatePage->save();
+        	  }
+//          $page = $this->addPageForm->save();
+//          $page->setScenario($this->scenario);
+//          $page->save();
+          $this->redirect('scenarioDetail', $this->scenario);
+        }
+    	}
     }
   }
+  
   
   /**
    * Modification d'un scenario

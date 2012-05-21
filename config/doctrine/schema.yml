@@ -40,6 +40,21 @@ Test:
       foreignAlias: CollectionTests
       onDelete:     CASCADE
 
+# =ProfilTest
+# liste des tests associés à un profil
+ProfilTest:
+  tableName: profil_test
+  columns:
+    id:             { type: integer, primary: true, autoincrement: true }
+    profil_id:    { type: integer, notnull: true }
+    class:          { type: varchar(500) }
+  relations: 
+    sfGuardGroup: 
+      local:        profil_id
+      foreign:      id
+      foreignAlias: CollectionTests
+      onDelete:     CASCADE
+
 
 # =WebPageExtract
 # Différentes extractions d'une url (avec/sans JS, avec/sans CSS, avec/sans images) 
@@ -158,28 +173,28 @@ ScenarioPage:
 
 # =ScenarioTemplate
 # Un template de scenario
-#ScenarioTemplate:
-#  tableName: scenario_template
-#  actAs:
-#    - TimeStampable
-#  columns:
-#    id:          { type: integer, primary: true, autoincrement: true }
-#    name:        { type: varchar(500), notnull: true }
+ScenarioTemplate:
+  tableName: scenario_template
+  actAs:
+    - TimeStampable
+  columns:
+    id:          { type: integer, primary: true, autoincrement: true }
+    nom:        { type: varchar(500), notnull: true }
 
 # =ScenarioTemplatePage
 # Un template de scenario
-#ScenarioTemplatePage:
-#  tableName: scenario_template_page
-#  actAs:
-#    - TimeStampable
-#  columns:
-#    id:          { type: integer, primary: true, autoincrement: true }
-#    scenario_template_id: { type: integer, primary: true, autoincrement: true }
-#    name:        { type: varchar(500), notnull: true }
-#    required:    { type: boolean, default: false }
-#  relations: 
-#    ScenarioTemplate: 
-#      local:        scenario_template_id
-#      foreign:      id
-#      foreignAlias: CollectionPages
+ScenarioTemplatePage:
+  tableName: scenario_template_page
+  actAs:
+    - TimeStampable
+  columns:
+    id:          { type: integer, primary: true, autoincrement: true }
+    scenario_template_id: { type: integer, primary: true, autoincrement: true }
+    nom:        { type: varchar(500), notnull: true }
+    required:    { type: boolean, default: false }
+  relations: 
+    ScenarioTemplate: 
+      local:        scenario_template_id
+      foreign:      id
+      foreignAlias: CollectionPages
       
