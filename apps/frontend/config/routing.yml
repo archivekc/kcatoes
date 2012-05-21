@@ -28,9 +28,20 @@ sf_guard_user:
   url: /administrations/utilisateurs
   param: {module: sfGuardUser, action: index}
 
+  
+
 sf_guard_group:
   url: /administrations/profils
   param: {module: sfGuardGroup, action: index}
+
+sf_guard_group_assoc_test:
+  url: /administration/profils/tests/:id
+  param: {module: sfGuardGroup, action: assocTest}
+  class:    sfDoctrineRoute
+  options:  { model: sfGuardGroup, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [GET, POST]
 
 sf_guard_permission:
   url: /administrations/roles
