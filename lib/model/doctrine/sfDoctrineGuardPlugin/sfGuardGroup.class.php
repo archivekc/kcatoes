@@ -12,4 +12,21 @@
  */
 class sfGuardGroup extends PluginsfGuardGroup
 {
+  /**
+   * Indique si un test est lié à la page
+   * @param string $class La classe du test
+   * @return boolean
+   */
+  public function hasTest($class)
+  {
+    $found = false;
+    $pageTests = $this->getCollectionTests();
+    foreach($pageTests as $test)
+    {
+      if ($test->getClass() == $class) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

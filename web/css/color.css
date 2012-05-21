@@ -155,6 +155,9 @@ body {
 #page a.ico.addRole {
   background-image: url('../img/ico/shield_add.png');
 }
+#page a.ico.associer {
+  background-image: url('../img/ico/attach.png');
+}
 
 .sf_admin_form fieldset,
 .highlight {
