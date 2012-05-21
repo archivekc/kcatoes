@@ -15,12 +15,12 @@
           </div>
           <div>
             <?php echo $editPageForm['url']->renderError()?>
-            <?php echo $editPageForm['url']->renderLabel()?>&nbsp;:
+            <?php echo $editPageForm['url']->renderLabel()?>
             <?php echo $editPageForm['url']->render(array('readonly'=>'readonly'))?>
           </div>
           <div>
             <?php echo $editPageForm['description']->renderError()?>
-            <?php echo $editPageForm['description']->renderLabel()?>&nbsp;:
+            <?php echo $editPageForm['description']->renderLabel()?>
             <?php echo $editPageForm['description']->render()?>
           </div>
         </div>

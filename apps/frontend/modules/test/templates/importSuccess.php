@@ -4,7 +4,7 @@
   <p class="error_list"><?php echo $error?></p>
   <?php echo $form['configFile']->renderError()?>
   <p>
-    <?php echo $form['configFile']->renderLabel()?>&nbsp;:<br/>
+    <?php echo $form['configFile']->renderLabel()?>
     <?php echo $form['configFile']->render()?>
   </p>
   <p><input type="submit" value="Suivant" /></p>

@@ -11,7 +11,7 @@
           <div>
             <?php echo $addScenarioForm->renderHiddenFields()?>
             <?php echo $addScenarioForm['nom']->renderError()?>
-            <?php echo $addScenarioForm['nom']->renderLabel()?>&nbsp;:
+            <?php echo $addScenarioForm['nom']->renderLabel()?>
             <?php echo $addScenarioForm['nom']->render()?>
           </div>
         </div>

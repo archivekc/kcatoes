@@ -13,17 +13,17 @@
           </div>
           <div>
             <?php echo $editPageForm['nom']->renderError()?>
-            <?php echo $editPageForm['nom']->renderLabel()?>&nbsp;:
+            <?php echo $editPageForm['nom']->renderLabel()?>
             <?php echo $editPageForm['nom']->render()?>
           </div>
           <div>
             <?php echo $editPageForm['required']->renderError()?>
-            <?php echo $editPageForm['required']->renderLabel()?>&nbsp;:
+            <?php echo $editPageForm['required']->renderLabel()?>
             <?php echo $editPageForm['required']->render()?>
           </div>
           <div>
             <?php echo $editPageForm['web_page_id']->renderError()?>
-            <?php echo $editPageForm['web_page_id']->renderLabel()?>&nbsp;:
+            <?php echo $editPageForm['web_page_id']->renderLabel()?>
             <?php echo $editPageForm['web_page_id']->render()?>
           </div>
         </div>

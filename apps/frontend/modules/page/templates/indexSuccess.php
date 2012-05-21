@@ -13,12 +13,12 @@
           </div>
           <div>
             <?php echo $addPageForm['url']->renderError()?>
-            <?php echo $addPageForm['url']->renderLabel()?>&nbsp;:
+            <?php echo $addPageForm['url']->renderLabel()?>
             <?php echo $addPageForm['url']->render()?>
           </div>
           <div>
             <?php echo $addPageForm['description']->renderError()?>
-            <?php echo $addPageForm['description']->renderLabel()?>&nbsp;:
+            <?php echo $addPageForm['description']->renderLabel()?>
             <?php echo $addPageForm['description']->render()?>
           </div>
         </div>

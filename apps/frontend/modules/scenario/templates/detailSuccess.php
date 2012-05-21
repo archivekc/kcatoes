@@ -13,17 +13,17 @@
           </div>
           <div>
             <?php echo $addPageForm['nom']->renderError()?>
-            <?php echo $addPageForm['nom']->renderLabel()?>&nbsp;:
+            <?php echo $addPageForm['nom']->renderLabel()?>
             <?php echo $addPageForm['nom']->render()?>
           </div>
           <div>
             <?php echo $addPageForm['required']->renderError()?>
-            <?php echo $addPageForm['required']->renderLabel()?>&nbsp;:
+            <?php echo $addPageForm['required']->renderLabel()?>
             <?php echo $addPageForm['required']->render()?>
           </div>
           <div>
             <?php echo $addPageForm['web_page_id']->renderError()?>
-            <?php echo $addPageForm['web_page_id']->renderLabel()?>&nbsp;:
+            <?php echo $addPageForm['web_page_id']->renderLabel()?>
             <?php echo $addPageForm['web_page_id']->render()?>
           </div>
         </div>
@@ -38,7 +38,18 @@
       <p class="zeroFound">
         Aucune page trouvée
       </p>
-  <?php else:?> 
+  <?php else:?>
+  <form method="post" action="<?php echo url_for('scenarioDetail', array('id'=>$scenario->getId()))?>">
+    <div>
+      <input type="hidden" name="templateId" value="<?php echo $scenario->getId() ?>"/>
+      <?php echo $setAsTemplateForm['nom']->renderError()?>
+      <?php echo $setAsTemplateForm['nom']->renderLabel()?>
+      <?php echo $setAsTemplateForm['nom']->render()?>
+    </div>
+    <div class="submit">
+      <input type="submit" value="Définir un modèle à partir de ce scénario"/>
+    </div>
+  </form>
   <table summary="Pages du scénario">
     <caption>Pages du scenario</caption>
     <thead>

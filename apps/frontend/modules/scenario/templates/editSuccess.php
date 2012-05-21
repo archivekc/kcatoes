@@ -15,7 +15,7 @@
           </div>
           <div>
             <?php echo $editScenarioForm['nom']->renderError()?>
-            <?php echo $editScenarioForm['nom']->renderLabel()?>&nbsp;:
+            <?php echo $editScenarioForm['nom']->renderLabel()?>
             <?php echo $editScenarioForm['nom']->render()?>
           </div>
         </div>
