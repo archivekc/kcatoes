@@ -17,6 +17,7 @@ class AbsenceCadreNonTitres extends \ASource
   
   protected static $testGroups = array(
     'niveau' => 'A'
+    ,'thematique' => 'Cadres'
     ,'profil test' => 'Rédacteur'
   );
 	

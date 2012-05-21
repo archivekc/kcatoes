@@ -16,8 +16,21 @@
         <?php echo $testsForm->renderHiddenFields()?>
       </div>
       
-      <ul>
+     
+      <?php $currentThematique = '';?>
+        <?php $first = true; ?>
+        
         <?php foreach($allTests as $testClass): ?>
+          <?php if ($currentThematique != $testClass::getThematique()):?>
+            <?php $currentThematique = $testClass::getThematique() ?>
+            <?php if (!$first):?>
+            </ul>
+            <?php endif ?>
+            <h2><?php echo $testClass::getThematique()?></h2>    
+            <ul>
+            <?php $first = false ?>
+          
+          <?php endif ?>
           <li> 
             <?php echo $testsForm[$testClass]->renderError() ?>
             <?php //echo var_dump($testsForm[$testClass])?>
@@ -27,7 +40,7 @@
               ?>
           </li>    
         <?php endforeach; ?>
-      </ul>
+      
     </div>
       
     <input type="submit" value="Enregistrer" />
