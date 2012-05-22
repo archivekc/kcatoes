@@ -1,3 +1,5 @@
+<?php include_component('editorial', 'menuDisplay')?>
+
 <h1>Environnement recommandé</h1>
 
 <h2>Navigateurs</h2>

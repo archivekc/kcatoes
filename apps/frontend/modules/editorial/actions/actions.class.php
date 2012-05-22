@@ -9,19 +9,23 @@
  */
 class editorialActions extends kcatoesActions
 {
+	public function executeIndex()
+	{
+	}
 	/**
-	 * Page d'accueil
+	 * Page vue d'ensemble
 	 */
-	public function executeHomepage()
+	public function executeOverview()
 	{
 	}
 	
-  /**
-   * Page crédit
-   */
-  public function executeCredits()
-  {
-  }
+	/**
+	 * Page à propos
+	 */
+	public function executeAbout()
+	{
+	}
+	
   /**
    * Page aide
    */

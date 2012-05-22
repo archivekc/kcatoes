@@ -3,11 +3,16 @@ body {
 }
 
 /* menu */
-#menu li span,
-#menu li a,
+.menu li span,
+.menu li a,
 .actionButton {
   font-weight: bold;
   text-decoration: none;
+}
+
+#mainMenu strong {
+	text-align: center;
+	font-style: italic;
 }
 
 #teaser {

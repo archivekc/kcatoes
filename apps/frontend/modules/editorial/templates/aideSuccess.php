@@ -1,3 +1,5 @@
+<?php include_component('editorial', 'menuDisplay')?>
+
 <h1>Aide de KCatoès</h1>
 
 <h2>Utilisation</h2>

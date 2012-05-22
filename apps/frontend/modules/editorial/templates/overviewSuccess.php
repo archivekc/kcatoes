@@ -1,3 +1,4 @@
+<?php include_component('editorial', 'menuDisplay')?>
 <h1>KCatoès</h1>
 <div class="twoParts">
   <div class="part">

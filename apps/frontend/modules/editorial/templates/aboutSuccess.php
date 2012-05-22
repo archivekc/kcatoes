@@ -1,3 +1,7 @@
+<?php include_component('editorial', 'menuDisplay')?>
+<h1>À propos de KCatoès</h1>
+<p>Vous utilisez la version <?php echo sfConfig::get('app_version') ?> (publiée le <?php echo sfConfig::get('app_date') ?>)</p>
+
 <h1>Crédits</h1>
 <h2>KCatoès est développé par:&nbsp;</h2>
 <ul>

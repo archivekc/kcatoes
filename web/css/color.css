@@ -25,20 +25,20 @@ body {
 }
 
 #aside>*{
-  background: #FFF;
-  border-color: #CCC #9DD63B;
+  background-color: #FFF;
+  background-image: url('../img/tpl/leftShadow.png'), url('../img/tpl/rightShadow.png');
+  background-position: left top, right top;
+  background-repeat: repeat-y;
+  border-color: #FF9 #9DD63B;
   -moz-box-shadow: 0 0 10px #333;
   -webkit-box-shadow: 0 0 10px #333;
   box-shadow: 0 0 10px #333;
 }
 
-#menu {
-
-}
-#menu li span,
-#menu li a,
+.menu li span,
+.menu li a,
 .actionButton{
-  border-color: #DDD;
+  border-color: #CCC;
   border-radius: 5px;
   color: #000;
   transition-property: background, box-shadow;
@@ -53,16 +53,17 @@ body {
   -o-transition-property: background, box-shadow;
   -o-transition-duration: .2s;
   -o-transition-timing-function: ease;
+  background: #FFF;
 }
-#menu li a:hover,
-#menu li a:focus {
+.menu li a:hover,
+.menu li a:focus {
   background: #DDD;
-  border-color: #CCC;
+  border-color: #BBB;
   -moz-box-shadow: 3px 3px 5px #DDD;
   -webkit-box-shadow: 3px 3px 5px #DDD;
   box-shadow: 3px 3px 5px #DDD;
 }
-#menu li span {
+.menu li span {
   background: #343434;
   color: #FFF;
 }

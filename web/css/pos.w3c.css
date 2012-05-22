@@ -47,7 +47,6 @@ body {
 #aside { /* 210 px */
   display: inline;
   float: left;
-
   margin: 0 2em 1em;
 
 }
@@ -57,21 +56,19 @@ body {
   padding: 6em 1em 1em;
   border: 5px solid;
   border: solid;
-  border-width: 0 5px 0px 5px;
+  border-width: 0 5px 0;
   border-radius: 0 0 5px 5px;
 }
 #aside>*+* {
 	padding: 1em;
 	margin-top: 1em;
 	border-radius: 5px;
+	border-width: 1px 5px;
 }
 
 /* menu */
-#menu {
-
-}
-#menu li span,
-#menu li a,
+.menu li span,
+.menu li a,
 .actionButton {
   font-size: 1.3em;
   padding: .5em;
@@ -80,8 +77,14 @@ body {
   margin: .5em 0;
 }
 
-#menu #logoutBtn {
+.menu #logoutBtn {
   margin-top: 2em;
+}
+
+#mainMenu strong {
+  font-size: 1.8em;
+  margin-top: 1em;
+  display: block;
 }
 
 #main {
