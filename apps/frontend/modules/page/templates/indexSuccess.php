@@ -17,6 +17,11 @@
             <?php echo $addPageForm['url']->render()?>
           </div>
           <div>
+            <?php echo $addPageForm['src']->renderError()?>
+            <?php echo $addPageForm['src']->renderLabel()?>
+            <?php echo $addPageForm['src']->render()?>
+          </div>
+          <div>
             <?php echo $addPageForm['description']->renderError()?>
             <?php echo $addPageForm['description']->renderLabel()?>
             <?php echo $addPageForm['description']->render()?>

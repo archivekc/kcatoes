@@ -3,7 +3,7 @@
 
 homepage:
   url:   /
-  param: { module: editorial, action: homepage }
+  param: { module: editorial, action: overview }
 
 # ################
 # AUTHENTIFICATION
@@ -24,11 +24,13 @@ sf_guard_password:
 # ##########################
 # ADMINISTRATION UTILISATEUR
 # ##########################
+connexion:
+  url: /connexion
+  param: { module: sfGuardAuth, action: signin}
+
 sf_guard_user:
   url: /administrations/utilisateurs
   param: {module: sfGuardUser, action: index}
-
-  
 
 sf_guard_group:
   url: /administrations/profils
@@ -207,6 +209,13 @@ scenarioPageDelete:
 # #################
 # PAGES EDITORIALES
 # #################
+editorial:
+  url: /documentation
+  param: { module: editorial, action: index }
+overview:
+  url: /vue-d-ensemble
+  param: { module: editorial, action: overview }
+
 aide:
   url:  /aide
   param: { module: editorial, action: aide }
@@ -218,6 +227,10 @@ credits:
 environnementR:
   url: /environnement-recommande
   param: {module: editorial, action: environnementR}
+
+about:
+  url: /a-propos
+  param: {module: editorial, action: about}
 
 # #############
 # CONFIGURATION

@@ -26,9 +26,12 @@ class WebPageForm extends BaseWebPageForm
   	 'url' => new sfWidgetFormInputText()
   	 ,'description' => new sfWidgetFormTextarea()
   	 ,'id' => new sfWidgetFormInputHidden()
+  	 ,'src' => new sfWidgetFormTextarea()
     ));
     
     $this->setValidator('url', new KcatoesUrlValidator());
+    $this->setValidator('src', new sfValidatorPass(array('required' => false)));
+    $this->widgetSchema->setLabels(array('src' => 'Code source'));
     
     $this->widgetSchema->setNameFormat('webPages[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

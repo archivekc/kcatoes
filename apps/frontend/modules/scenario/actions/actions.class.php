@@ -23,8 +23,23 @@ class scenarioActions extends kcatoesActions
       // Pages web
       if ($this->processForm($request, $this->addScenarioForm))
       {
-      	$this->addScenarioForm->save();
-        $this->redirect('scenario/index');
+      	$scenario = $this->addScenarioForm->save();
+      	$tplId = trim($this->addScenarioForm->getValue('template'));
+      	
+      	if ( $tplId != '')
+      	{
+      		$tpl = Doctrine::getTable('ScenarioTemplate')->findOneById($tplId);
+      		$pages = $tpl->getCollectionPages();
+      		foreach ($pages as $page)
+      		{
+      			$scenarioPage = new ScenarioPage();
+      			$scenarioPage->setScenarioId($scenario->getId());
+      			$scenarioPage->setNom($page->getNom());
+      			$scenarioPage->setRequired($page->getRequired());
+      			$scenarioPage->save();
+      		}
+      	}
+        //$this->redirect('scenario/index');
       }
     }
     // Scenarii

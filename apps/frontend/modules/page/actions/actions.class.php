@@ -30,7 +30,14 @@ class pageActions extends kcatoesActions
 	        $url = $this->addPageForm->getValue('url');
 	        
 	        // récupérer la source
-	        $src = file_get_contents($url);
+	        if (trim($this->addPageForm->getValue('src')) != '' )
+	        {
+            $src = $this->addPageForm->getValue('src');
+	        }
+	        else
+	        {
+		        $src = file_get_contents($url);
+	        }
 	        
 	        // encodage UTF-8
 	        //$src = $this->_convert($src);

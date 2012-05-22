@@ -31,15 +31,6 @@ abstract class ASource
 	private $results = array();
 	
 	
-	static public function getThematique()
-	{
-		if (isset(static::$testGroups) && isset(static::$testGroups['thematique']))
-		{
-			return static::$testGroups['thematique'];
-		} else {
-			return 'Aucune thématique définie';
-		}
-	}
 	public function __construct(Page $page)
 	{
 		$this->page = $page;

@@ -21,12 +21,14 @@
         <?php $first = true; ?>
         
         <?php foreach($allTests as $testClass): ?>
-          <?php if ($currentThematique != $testClass::getThematique()):?>
-            <?php $currentThematique = $testClass::getThematique() ?>
+          <?php $testThematique = $testClass::getGroup('thematique') ?>
+          <?php if (is_null($testThematique)){$testThematique = 'Aucune thématique définie';}?>
+          <?php if ($currentThematique != $testThematique):?>
+            <?php $currentThematique = $testThematique ?>
             <?php if (!$first):?>
             </ul>
             <?php endif ?>
-            <h2><?php echo $testClass::getThematique()?></h2>    
+            <h2><?php echo $testThematique?></h2>    
             <ul>
             <?php $first = false ?>
           
@@ -40,7 +42,7 @@
               ?>
           </li>    
         <?php endforeach; ?>
-      
+      </ul>
     </div>
       
     <input type="submit" value="Enregistrer" />
