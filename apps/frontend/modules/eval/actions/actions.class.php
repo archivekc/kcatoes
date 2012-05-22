@@ -20,26 +20,12 @@ class evalActions extends kcatoesActions
     $this->extraction = $this->getRoute()->getObject();
     $this->page       = $this->extraction->getWebPage();
     
+    
     // Inclusion des classes de test
     TestsHelper::getRequired();
   }
   
 
-  /**
-   * Affichage de la page originale 
-   * TODO CFA: remove et remplacer l'utilisation par executeExtractSrc
-   * @param $request
-   */
-  public function executeSource(sfWebRequest $request)
-  {
-    $this->extraction = $this->getRoute()->getObject();
-    $doctype = $this->extraction->getWebPage()->getDoctype();
-    if (is_null($doctype)){
-    	$doctype = '';
-    }
-    $this->source = $doctype.$this->extraction->getSrc();
-  }
-  
   /**
    * Affichage des résultats d'un test
    * Interface riche

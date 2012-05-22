@@ -41,8 +41,8 @@ $(function(){
 		
 		
 		
-		var triggerPopup = $('<a title="Voir les détails" class="ico show" href="javascript:void(0)"><img src="./img/ico/loupe64.png" alt="Voir" /></a>');
-		var triggerRepere = $('<a title="Situer dans la page" class="ico locate" href="javascript:void(0)"><img src="./img/ico/reperer64.png" alt="Repérer" /></a>');
+		var triggerPopup = $('<a title="Voir les détails" class="ico show" href="javascript:void(0)"><img src="/kcatoesOutput/img/ico/loupe64.png" alt="Voir" /></a>');
+		var triggerRepere = $('<a title="Situer dans la page" class="ico locate" href="javascript:void(0)"><img src="/kcatoesOutput/img/ico/reperer64.png" alt="Repérer" /></a>');
 		
 		if (css.length){
 			var selector = $('.value', css).text();

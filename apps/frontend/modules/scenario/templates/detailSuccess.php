@@ -79,7 +79,7 @@
 		      ?>
 		      <?php if(strlen($page->getWebPage()->getUrl()) > 0):?>
 	          <?php echo link_to('Détail de la page', 'pageDetail'
-	                         ,array('id'=>$page->getId())
+	                         ,array('id'=>$page->getWebPage()->getId())
 	                         ,array('class'=> 'ico detail'
 	                         ,'title'=> 'Voir la page '.$page->getNom())) 
 	          ?>

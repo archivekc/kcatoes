@@ -70,17 +70,30 @@ abstract class ASource
         ,'xpath' =>  ''
         ,'cssSelector' => ''
         ,'source' => ''
+        ,'prettySource' => ''
         ,'result' => $result
         ,'comment' => $comment
       ));
 		}
 		else
 		{
+			$srcCode = $this->getSourceCode($node);
+			
+      $geshi = new GeSHi($srcCode, 'html4strict');
+      // conf geshi
+      $geshi->set_header_type(GESHI_HEADER_DIV);
+      $geshi->enable_line_numbers(GESHI_NO_LINE_NUMBERS);
+      $geshi->enable_classes(false);
+      $geshi->set_overall_class('htmlSource');
+      $geshi->set_tab_width(4);
+      $geshi->enable_keyword_links(false);
+      
 			array_push($this->results, array(
 			  'node' => $node
 			  ,'xpath' =>  $node->getNodePath()
 			  ,'cssSelector' => $this->getCssSelector($node)
-			  ,'source' => $this->getSourceCode($node)
+			  ,'source' => $srcCode
+			  ,'prettySource' => $geshi->parse_code()
 			  ,'result' => $result
 			  ,'comment' => $comment
 			));

@@ -89,22 +89,6 @@ pageExecuteTests:
   requirements: 
     id:     \d+
     
-pageResultatTestsRiche:
-  url:      /page/tests/resultat/riche/:id
-  param:    { module: page, action: resultatTestsRiche }
-  class:    sfDoctrineRoute
-  options:  { model: WebPageExtract, type: object }
-  requirements: 
-    id:     \d+
-    
-pageResultatTests:
-  url:      /page/tests/resultat/:id
-  param:    { module: page, action: resultatTests }
-  class:    sfDoctrineRoute
-  options:  { model: WebPageExtract, type: object }
-  requirements: 
-    id:     \d+
-        
 pageTests:
   url:      /page/tests/:id
   param:    { module: page, action: tests }
@@ -154,6 +138,25 @@ webPageDeleteConfigTest:
 deleteWebPage:
   url: /delete-web-page/:id
   param: {module: ihm, action: DeleteWebPage}
+
+# ##########
+# EVALUATION
+# ##########
+pageResultatTestsRiche:
+  url:      /page/tests/resultat/riche/:id
+  param:    { module: eval, action: resultatTestsRiche }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
+    
+pageResultatTests:
+  url:      /page/tests/resultat/:id
+  param:    { module: eval, action: resultatTests }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
 
 # ########
 # SCENARIO

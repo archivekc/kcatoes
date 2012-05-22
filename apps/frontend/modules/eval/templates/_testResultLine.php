@@ -63,17 +63,17 @@
           <?php $source = '' ?>
           <?php if (strlen($resultLine->getSource())): ?>
             <?php 
-              $geshi = new GeSHi($resultLine->getSource(), 'html4strict');
+              /*$geshi = new GeSHi($resultLine->getSource(), 'html4strict');
               // conf geshi
               $geshi->set_header_type(GESHI_HEADER_DIV);
               $geshi->enable_line_numbers(GESHI_NO_LINE_NUMBERS);
               $geshi->enable_classes(false);
               $geshi->set_overall_class('htmlSource');
               $geshi->set_tab_width(4);
-              $geshi->enable_keyword_links(false);
+              $geshi->enable_keyword_links(false);*/
               
               $source = '<li class="source"><strong>Source&nbsp;:</strong> '.
-                          '<div class="value">'.$geshi->parse_code().'</div></li>';
+                          '<div class="value">'.$resultLine->getPrettySource().'</div></li>';
             ?>              
           <?php endif ?>
           

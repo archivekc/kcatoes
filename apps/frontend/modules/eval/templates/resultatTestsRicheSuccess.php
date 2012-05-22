@@ -11,7 +11,7 @@
   </head>
   <body>
     <h1 id="rapportTitle">
-      <img alt="" src="./kcatoesOutput/img/kcatoes.png"/>
+      <img alt="" src="/kcatoesOutput/img/kcatoes.png"/>
       <?php echo $title ?>
       <?php echo $subtitle ?>
       <span class="score">Score&nbsp;<span class="scoreValue"><?php echo $score ?></span>%</span>

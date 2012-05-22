@@ -23,7 +23,3 @@ rgaa:
   - PertinenceTitre
   - PresenceTitreHierarchiePremierNiveau
   - PertinenceContenuTitresHierarchie
-  
-#rubrique2 :
-#  - AbsenceDeJustificationDuTexte
-#  - AbsenceDeLElementBlink

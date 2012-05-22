@@ -36,7 +36,7 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements = 'basefont, blink, center, font, marquee, s, strike, tt, u, p';
+    $elements = 'basefont, blink, center, font, marquee, s, strike, tt, u';
     $attributs  = '[align], [alink], [background], [basefont], [bgcolor],'.
                   '[border], [color], [link], [text], [vlink]';
 

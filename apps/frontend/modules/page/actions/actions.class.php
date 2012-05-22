@@ -144,15 +144,6 @@ class pageActions extends kcatoesActions
   }
   
   /**
-   * Ajout d'une extraction pour une page web
-   * @param $request
-   */
-  public function executeAddExtract(sfWebrequest $request)
-  {
-  	
-  }
-	
-  /**
    * 
    */
   public function executeExtractSrc(sfWebRequest $request)
@@ -164,6 +155,20 @@ class pageActions extends kcatoesActions
   	$this->setLayout(false);
   }
 
+  /**
+   * Affichage de la page originale 
+   * @param $request
+   */
+  public function executeSource(sfWebRequest $request)
+  {
+    $this->extraction = $this->getRoute()->getObject();
+    $doctype = $this->extraction->getWebPage()->getDoctype();
+    if (is_null($doctype)){
+      $doctype = '';
+    }
+    $this->source = $doctype.$this->extraction->getSrc();
+  }
+  
   /**
    * Modification d'une page web
    * @param sfWebRequest $request
@@ -306,6 +311,7 @@ class pageActions extends kcatoesActions
         $rLine->setXpath($res['xpath']);
         $rLine->setCssSelector($res['cssSelector']);
         $rLine->setSource($res['source']);
+        $rLine->setPrettySource($res['prettySource']);
         if (is_object($res['node'])) {
           $rLine->setTextContent($res['node']->textContent);
         }
