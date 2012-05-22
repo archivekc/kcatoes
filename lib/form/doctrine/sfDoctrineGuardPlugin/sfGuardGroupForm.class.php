@@ -12,5 +12,16 @@ class sfGuardGroupForm extends PluginsfGuardGroupForm
 {
   public function configure()
   {
+  	parent::configure();
+    $this->widgetSchema['users_list'] = new sfWidgetFormDoctrineChoice(array(
+        'model' => 'sfGuardUser'
+        ,'multiple' => true
+        ,'expanded' => true
+      ));
+    $this->widgetSchema['permissions_list'] = new sfWidgetFormDoctrineChoice(array(
+        'model' => 'sfGuardPermission'
+        ,'multiple' => true
+        ,'expanded' => true
+      ));
   }
 }

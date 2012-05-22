@@ -29,8 +29,8 @@ generator:
         description: {label: Description}
         created_at: {label: Créé le, date_format: FF/MM/y (H:mm) }
         updated_at: {label: Mis à jour le, date_format: FF/MM/y (H:mm)}
-        users_list: {label: Utilisateurs}
-        groups_list: {label: Profils}
+        users_list: {label: Utilisateurs }
+        groups_list: {label: Profils }
 
       list:
         title:   Liste des utilisateurs
