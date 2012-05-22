@@ -20,6 +20,11 @@
       </div>
       <div id="aside">
         <ul id="menu">
+          <?php /* 
+          <li>
+	           <?php include_component('composants', 'menuDisplay')?>
+	        </li> */
+	        ?>
           <?php if($sf_user->isAuthenticated()): ?>
           <li>
             <?php if ($rubrique == 'homepage'):?>

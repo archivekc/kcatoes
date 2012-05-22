@@ -10,7 +10,6 @@ class scenarioActions extends kcatoesActions
 {
   public function preExecute()
   {
-    $_SERVER['rubrique'] = 'scenarii';
   }
 	
   public function executeIndex(sfWebRequest $request)

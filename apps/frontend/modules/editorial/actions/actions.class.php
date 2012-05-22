@@ -14,7 +14,6 @@ class editorialActions extends kcatoesActions
 	 */
 	public function executeHomepage()
 	{
-		$_SERVER['rubrique'] = 'homepage';
 	}
 	
   /**
@@ -22,14 +21,12 @@ class editorialActions extends kcatoesActions
    */
   public function executeCredits()
   {
-    $_SERVER['rubrique'] = 'credit';
   }
   /**
    * Page aide
    */
   public function executeAide()
   {
-    $_SERVER['rubrique'] = 'aide';
   }
   
   /**
@@ -37,6 +34,5 @@ class editorialActions extends kcatoesActions
    */
   public function executeEnvironnementR()
   {
-  	$_SERVER['rubrique'] = 'environnementR';
   }
 }

@@ -6,7 +6,6 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 {
 	public function preExecute()
 	{
-		$_SERVER['rubrique'] = '';
 	}
   public function executeNewAction()
   {

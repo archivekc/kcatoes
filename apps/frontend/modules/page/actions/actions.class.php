@@ -11,7 +11,6 @@ class pageActions extends kcatoesActions
 {
 	public function preExecute()
 	{
-		$_SERVER['rubrique'] = 'page';
 	}
 	
 	public function executeIndex(sfWebRequest $request)

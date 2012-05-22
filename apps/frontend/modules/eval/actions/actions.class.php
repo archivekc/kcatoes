@@ -10,7 +10,6 @@ class evalActions extends kcatoesActions
 {
   public function preExecute()
   {
-    $_SERVER['rubrique'] = 'eval';
   }
  /**
    * Affichage des résultats d'un test
