@@ -20,11 +20,18 @@ class ScenarioForm extends BaseScenarioForm
 	
   public function configure()
   {
-    $this->setWidgets(array(
-     'nom' => new sfWidgetFormInputText()
-    ));
+    $this->widgetSchema['nom'] = new sfWidgetFormInputText();
+    $this->widgetSchema['template'] = new sfWidgetFormDoctrineChoice(array(
+        'model' => 'scenarioTemplate'
+        ,'add_empty' => true
+        ,'order_by' => array('nom', 'asc')
+        ,'multiple' => false        
+      ));
     
-    $this->setValidator('nom', new sfValidatorString(array('required' => true)));
+    $this->validatorSchema['nom'] = new sfValidatorString(array('required' => true));
+    $this->validatorSchema['template'] = new sfValidatorPass(array('required' => false));
+    
+    $this->widgetSchema->setLabels(array('template' => 'Utiliser un modèle de scénario'));
     
     $this->widgetSchema->setNameFormat('scenario[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

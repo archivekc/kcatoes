@@ -12,5 +12,10 @@
  */
 class ScenarioTemplate extends BaseScenarioTemplate
 {
-
+  public function __toString()
+  {
+  	$nbPages = count($this->getCollectionPages());
+  	$plural = ($nbPages>1)?'s':'';
+  	return $this->getNom().' &ndash; '.$nbPages.' page'.$plural;
+  }
 }

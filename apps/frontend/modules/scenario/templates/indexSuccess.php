@@ -14,6 +14,11 @@
             <?php echo $addScenarioForm['nom']->renderLabel()?>
             <?php echo $addScenarioForm['nom']->render()?>
           </div>
+          <div>
+            <?php echo $addScenarioForm['template']->renderError()?>
+            <?php echo $addScenarioForm['template']->renderLabel()?>
+            <?php echo $addScenarioForm['template']->render()?>
+          </div>
         </div>
         <div class="submit">
           <input type="submit" value="Ajouter"/>
