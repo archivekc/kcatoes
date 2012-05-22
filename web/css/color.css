@@ -25,18 +25,19 @@ body {
 }
 
 #aside>*{
-  border-colro: transparent;
-}
-
-#menu {
   background: #FFF;
   border-color: #CCC #9DD63B;
   -moz-box-shadow: 0 0 10px #333;
   -webkit-box-shadow: 0 0 10px #333;
   box-shadow: 0 0 10px #333;
 }
+
+#menu {
+
+}
 #menu li span,
-#menu li a{
+#menu li a,
+.actionButton{
   border-color: #DDD;
   border-radius: 5px;
   color: #000;
@@ -72,8 +73,8 @@ body {
   text-align: center;
 }
 
-#menu #logoutBtn a:hover,
-#menu #logoutBtn a:focus {
+#logoutBtn a:hover,
+#logoutBtn a:focus {
   background-color: #A00;
   color: #FFF;
 }
