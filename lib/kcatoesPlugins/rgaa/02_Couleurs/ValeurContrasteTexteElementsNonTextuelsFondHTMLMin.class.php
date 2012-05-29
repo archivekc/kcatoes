@@ -1,7 +1,7 @@
 <?php
 namespace Kcatoes\rgaa;
 
-
+// FIXME : test à implémenter
 
 class ValeurContrasteTexteElementsNonTextuelsFondHTMLMin extends \ASource
 {
