@@ -9,8 +9,10 @@ class PertinenceContenuTitresHierarchie extends \ASource
   const testName = 'Pertinence du contenu des titres de hiérarchie';
   const testId = '10.2';
   protected static $testProc = array(
-    'Si l’un des éléments mentionnés dans le champ d’application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
-    'Si le contenu de l’élément permet d’identifier l’information qu’il précède, le test est validé, sinon le test est invalidé.' 
+    'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     poursuivre le test, sinon le test est non applicable.', 
+    'Si le contenu de l\'élément permet d\'identifier l\'information qu\'il précède, 
+     le test est validé, sinon le test est invalidé.' 
   );
   protected static $testDocLinks = array(
     'G130' => 'http://www.w3.org/TR/WCAG20-TECHS/G130.html',

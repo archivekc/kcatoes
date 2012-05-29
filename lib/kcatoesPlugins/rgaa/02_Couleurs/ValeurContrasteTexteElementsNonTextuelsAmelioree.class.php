@@ -9,10 +9,10 @@ class ValeurContrasteTexteElementsNonTextuelsAmelioree extends \ASource
   const testName = 'Valeur du rapport de contraste du texte contenu dans des éléments non textuels (améliorée)';
   const testId = '2.11';
   protected static $testProc = array(
-     'Si l’un des éléments mentionnés dans le champ d’application est présent ou utilisé dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent ou utilisé dans la page, 
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l’élément permet d’afficher du texte qui apporte de l’information, n’est pas un logo ou un texte 
-      faisant parti d’un logo et qu’aucun mécanisme permettant d’afficher l’élément avec un rapport de contraste suffisant n’est présent, poursuivre le test, sinon le test est non applicable.'
+    ,'Si l\'élément permet d\'afficher du texte qui apporte de l\'information, n\'est pas un logo ou un texte 
+      faisant parti d\'un logo et qu\'aucun mécanisme permettant d\'afficher l\'élément avec un rapport de contraste suffisant n\'est présent, poursuivre le test, sinon le test est non applicable.'
     ,'Si la taille finale du texte affichée est inférieure à 150% ou 120% gras de la taille du texte par 
       défaut spécifiée par les styles de la page, ou, en son absence, de la taille fixée couramment par un navigateur, poursuivre le test, sinon le test est non applicable.'
     ,'Si la couleur du texte et celle de son arrière plan ont été définies par la charte graphique du service 
@@ -35,7 +35,7 @@ class ValeurContrasteTexteElementsNonTextuelsAmelioree extends \ASource
     $crawler = $this->page->crawler;
 
     /*
-      Champ d’application
+      Champ d'application
       
       Tout élément :
       

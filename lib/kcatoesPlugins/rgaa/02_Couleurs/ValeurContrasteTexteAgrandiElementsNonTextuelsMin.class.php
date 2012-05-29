@@ -9,10 +9,10 @@ class ValeurContrasteTexteAgrandiElementsNonTextuelsMin extends \ASource
   const testName = 'Valeur du rapport de contraste du texte agrandi contenu dans des éléments non textuels (minimum)';
   const testId = '2.8';
   protected static $testProc = array(
-     'Si l’un des éléments mentionnés dans le champ d’application est présent ou utilisé dans la page, poursuivre le test, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent ou utilisé dans la page, poursuivre le test, 
       sinon le test est non applicable.'
-    ,'Si l’élément permet d’afficher du texte qui apporte de l’information, n’est pas un logo ou un texte faisant parti d’un 
-      logo et qu’aucun mécanisme permettant d’afficher l’élément avec un rapport de contraste suffisant n’est présent, 
+    ,'Si l\'élément permet d\'afficher du texte qui apporte de l\'information, n\'est pas un logo ou un texte faisant parti d\'un 
+      logo et qu\'aucun mécanisme permettant d\'afficher l\'élément avec un rapport de contraste suffisant n\'est présent, 
       poursuivre le test, sinon le test est non applicable.'
     ,'Si la taille finale du texte affichée est supérieure ou égale à 150% ou 120% gras de la taille du texte par défaut 
       spécifiée par les styles de la page, ou, en son absence, de la taille fixée couramment par un navigateur, poursuivre le 
@@ -37,7 +37,7 @@ class ValeurContrasteTexteAgrandiElementsNonTextuelsMin extends \ASource
     $crawler = $this->page->crawler;
 
     /*
-      Champ d’application
+      Champ d'application
       
       Tout élément :
       
