@@ -29,11 +29,11 @@ connexion:
   param: { module: sfGuardAuth, action: signin}
 
 sf_guard_user:
-  url: /administrations/utilisateurs
+  url: /administration/utilisateurs
   param: {module: sfGuardUser, action: index}
 
 sf_guard_group:
-  url: /administrations/profils
+  url: /administration/profils
   param: {module: sfGuardGroup, action: index}
 
 sf_guard_group_assoc_test:
@@ -46,7 +46,7 @@ sf_guard_group_assoc_test:
     sf_method: [GET, POST]
 
 sf_guard_permission:
-  url: /administrations/roles
+  url: /administration/roles
   param: {module: sfGuardPermission, action: index}
 
 # ######### 
