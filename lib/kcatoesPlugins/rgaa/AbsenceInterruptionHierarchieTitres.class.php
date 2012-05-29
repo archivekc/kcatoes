@@ -16,8 +16,9 @@ class AbsenceInterruptionHierarchieTitres extends \ASource
 	);
 
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Structure'
+    ,'profils'    => array('Rédacteur', 'Contributeur', 'Développeur', 'Intégrateur')
   );
   
 	public function execute()

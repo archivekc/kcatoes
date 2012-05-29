@@ -16,9 +16,9 @@ class AbsenceCadreNonTitres extends \ASource
   );
   
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Cadres'
-    ,'profil test' => 'Rédacteur'
+    ,'profils'    => array('Développeur', 'Intégrateur')    
   );
 	
   public function execute()

@@ -23,8 +23,9 @@ class AbsenceElementMetaRedirect extends \ASource
   );
 
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Navigation'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
   public function execute()

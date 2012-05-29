@@ -20,8 +20,9 @@ class PresenceAttributAlt extends \ASource
   );
   
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Images'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
   public function execute()

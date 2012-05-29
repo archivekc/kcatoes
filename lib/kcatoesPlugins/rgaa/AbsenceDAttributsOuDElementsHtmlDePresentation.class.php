@@ -28,9 +28,9 @@ class AbsenceDAttributsOuDElementsHtmlDePresentation extends \ASource
   );
 
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Présentation'
-    ,'profil test' => 'Ergonome'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
   public function execute()

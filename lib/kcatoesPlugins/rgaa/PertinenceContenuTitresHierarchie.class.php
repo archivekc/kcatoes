@@ -18,8 +18,9 @@ class PertinenceContenuTitresHierarchie extends \ASource
   );
 
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Structure'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
   public function execute()

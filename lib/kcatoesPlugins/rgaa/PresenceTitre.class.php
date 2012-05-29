@@ -17,8 +17,9 @@ class PresenceTitre extends \ASource
   );
 
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Standards'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
   public function execute()

@@ -17,8 +17,9 @@ class AbsenceElementMarquee extends \ASource
   );
 
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Multimédia'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
   public function execute()

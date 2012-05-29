@@ -17,8 +17,9 @@ class PertinenceTitresCadres extends \ASource
   );
 
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Cadres'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
 	public function execute()

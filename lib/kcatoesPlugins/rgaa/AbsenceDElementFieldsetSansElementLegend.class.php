@@ -17,8 +17,9 @@ class AbsenceDElementFieldsetSansElementLegend extends \ASource
   );
   
   protected static $testGroups = array(
-    'niveau' => 'A'
+     'niveau'     => 'A'
     ,'thematique' => 'Formulaires'
+    ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
   public function execute()
