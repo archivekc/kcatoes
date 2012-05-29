@@ -3,7 +3,7 @@
 
 homepage:
   url:   /
-  param: { module: editorial, action: overview }
+  param: { module: page, action: index }
 
 # ################
 # AUTHENTIFICATION
@@ -208,6 +208,15 @@ scenarioPageDelete:
   requirements: 
     id:     \d+
 
+scenarioActions:
+  url:      /scenario/action/:id
+  param:    { module: scenario, action: actions }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements:
+    action: \w+ 
+    id:     \d+
+    sf_method: [POST]
 
 # #################
 # PAGES EDITORIALES

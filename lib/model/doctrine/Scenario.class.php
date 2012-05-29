@@ -13,4 +13,17 @@
 class Scenario extends BaseScenario
 {
 
+	public function getScenarioPagesInfo()
+	{
+    $pageInfo = Doctrine_Query::create()
+      ->select('sp.required, sp.nom, wp.url, e.type, t.class as tests')
+      //->from('Scenario s')
+      ->from('ScenarioPage sp')
+      ->leftJoin('sp.WebPage wp, wp.CollectionExtracts e, e.CollectionResults t')
+      ->where('sp.scenario_id = ?', $this->getId())
+      ->execute();
+    
+		return $pageInfo;
+	}
+	
 }

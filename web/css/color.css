@@ -170,8 +170,9 @@ body {
   box-shadow: 3px 3px 5px #CCC;
 }
 #page {
-  background: #FFF;
-  border-color: #CCC;
+  /*background: #FFF;
+  border-color: #CCC;*/
+  border: none;
 }
 
 
@@ -281,6 +282,9 @@ table thead th {
 #page table thead th a:hover,
 #page table thead th a:focus {
   color: #000;
+}
+#page table tr {
+  background: #FFF;
 }
 
 /* onglets */

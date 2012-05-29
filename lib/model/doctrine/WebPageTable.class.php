@@ -20,7 +20,7 @@ class WebPageTable extends Doctrine_Table
     public static function getListUrl($withEmpty = true)
     {
       $q = Doctrine_Query::create()
-       ->select('p.url')
+       ->select('p.url, p.description')
 	     ->from('WebPage p')
 	     ->orderBy('p.url ASC');
       $res =  $q->fetchArray();
@@ -31,7 +31,12 @@ class WebPageTable extends Doctrine_Table
       	$array[null] = null;
       }
       foreach($res as $line){
-      	$array[$line['id']] = $line['url'];
+      	$label = $line['url'];
+      	if ($line['description'])
+      	{
+      		$label .= ' &ndash; '.$line['description'];
+      	}
+      	$array[$line['id']] = $label;
       }
       return $array;
     }

@@ -63,7 +63,7 @@ class scenarioActions extends kcatoesActions
     
     $this->setAsTemplateForm = new ScenarioTemplateForm();
     
-    $this->pages = $this->scenario->getScenarioPages();
+    $this->pages = $this->scenario->getScenarioPagesInfo();
     
     // soumission
     if ($request->isMethod('post'))
@@ -155,12 +155,15 @@ class scenarioActions extends kcatoesActions
     $this->redirect('scenario/index');
   }
   
-  public function executePageDelete(sfWebRequest $request)
+  /**
+   * Suppression d'un type de page du scenario
+   * @param sfWebRequest $request
+   */
+  public function executeActions(sfWebRequest $request)
   {
-  	$page = $this->getRoute()->getObject();
-  	$scenario = $page->getScenario();
-  	$page->delete();
-  	$this->redirect('scenarioDetail', $scenario);
+  	//$this->scenario = Doctrine::getTable('scenario')->findOneById($request->getParameter('id'));
+  	$this->scenario = $this->getRoute()->getObject();
+  	$this->scenarioAction = $request->getParameterHolder()->get('scenarioAction', 'Action non existante');
   }
 
 }
