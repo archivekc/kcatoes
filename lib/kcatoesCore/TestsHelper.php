@@ -47,26 +47,46 @@ class TestsHelper {
     $allTests = array();
     
     $allPluginPath = sfConfig::get('app_pluginpath');
+    
     if ($handleAll = opendir($allPluginPath))
     {
-    	// Parcours des plugins (ex: rgaa)
+      // Parcours des plugins (ex: rgaa)
       while (false !== ($plugin = readdir($handleAll)))
       {
         if ($plugin != '.' && $plugin != '..' && is_dir($allPluginPath.DIRECTORY_SEPARATOR.$plugin))
         {
-          if ($handle = opendir($allPluginPath.DIRECTORY_SEPARATOR.$plugin))
+          self::getTestsFromDir($allTests, $allPluginPath.DIRECTORY_SEPARATOR.$plugin, $plugin);
+        }
+      }
+    }
+    
+    return $allTests;
+  }
+  
+  /**
+   * Recherche les tests disponibles dans un répertoire (récursivement)
+   * @param string $dir
+   * @return array
+   */
+  private static function getTestsFromDir(&$allTests, $dir, $plugin='') {
+          
+    if ($handle = opendir($dir))
+    {
+      while (false !== ($entry = readdir($handle)))
+      {
+        if ($entry != '.' && $entry != '..')
+        {
+          if (is_dir($dir.DIRECTORY_SEPARATOR.$entry))
           {
-            while (false !== ($entry = readdir($handle)))
-            {
-              if ($entry != '.' && $entry != '..')
-              {
-                $allTests[] = 'Kcatoes'.'\\'.$plugin.'\\'.str_replace('.class.php', '', $entry);
-              }
-            }
+            self::getTestsFromDir($allTests, $dir.DIRECTORY_SEPARATOR.$entry, $plugin);
+          }
+          else {
+            $allTests[] = 'Kcatoes'.'\\'.$plugin.'\\'.str_replace('.class.php', '', $entry);
           }
         }
       }
     }
+    
     return $allTests;
   }
   
@@ -124,18 +144,31 @@ class TestsHelper {
 		{
 			while (false !== ($plugin = readdir($handleAll))) {
 				if ($plugin != '.' && $plugin != '..' && is_dir($allPluginPath.DIRECTORY_SEPARATOR.$plugin)){
-					if ($handle = opendir($allPluginPath.DIRECTORY_SEPARATOR.$plugin))
-					{
-						while (false !== ($entry = readdir($handle))) {
-							if ($entry != '.' && $entry != '..')
-							{
-								require_once $allPluginPath.DIRECTORY_SEPARATOR.$plugin.DIRECTORY_SEPARATOR.$entry;
-							}
-						}
-					}
+				  self::getRequiredDir($allPluginPath.DIRECTORY_SEPARATOR.$plugin);
 				}
 			}
 		}
+	}
+	
+	private static function getRequiredDir($dir = null){
+	  if ($handle = opendir($dir))
+	  {
+	    while (false !== ($entry = readdir($handle)))
+	    {
+        if ($entry != '.' && $entry != '..')
+        {
+          if (is_dir($dir.DIRECTORY_SEPARATOR.$entry))
+          {
+            // Répertoire -> récursion
+            self::getRequiredDir($dir.DIRECTORY_SEPARATOR.$entry);
+          }
+          else {
+            // Inclusion de la classe
+            require_once $dir.DIRECTORY_SEPARATOR.$entry;
+          }
+        }
+	    }
+	  }
 	}
 
 	/******************************************************************************************
