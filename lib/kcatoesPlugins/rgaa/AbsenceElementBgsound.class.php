@@ -18,6 +18,7 @@ class AbsenceElementBgsound extends \ASource
 
   protected static $testGroups = array(
     'niveau' => 'A'
+    ,'thematique' => 'Multimédia'
   );
   
   public function execute()

@@ -18,6 +18,7 @@ class PresenceTitre extends \ASource
 
   protected static $testGroups = array(
     'niveau' => 'A'
+    ,'thematique' => 'Standards'
   );
   
   public function execute()

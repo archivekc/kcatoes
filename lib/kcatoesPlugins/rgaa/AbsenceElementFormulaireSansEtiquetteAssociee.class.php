@@ -26,6 +26,7 @@ class AbsenceElementFormulaireSansEtiquetteAssociee extends \ASource
 
   protected static $testGroups = array(
     'niveau' => 'A'
+    ,'thematique' => 'Formulaires'
   );
   
   public function execute()

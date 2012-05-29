@@ -21,6 +21,7 @@ class AbsenceElementMetaRefresh extends \ASource
 
   protected static $testGroups = array(
     'niveau' => 'A'
+    ,'thematique' => 'Navigation'
   );
   
   public function execute()
