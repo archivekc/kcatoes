@@ -68,4 +68,73 @@ class evalActions extends kcatoesActions
       $fields['textarea'][] = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId);
     }
   }
+  
+  /**
+   * Passage des tests
+   * Enter description here ...
+   * @param sfWebRequest $request
+   */
+  public function executeExecuteTests(sfWebRequest $request)
+  {
+  	$extractIds = $this->getUser()->getFlash('extractIds', null);
+    if (!is_array($extractIds))
+    {
+    	throw new KcatoesTesterException();
+    }
+    $extracts = Doctrine::getTable('WebPageExtract')->findByDql('id in ?',array($extractIds));
+
+    // Inclusion des classes de test
+    TestsHelper::getRequired();
+    $allTests = TestsHelper::getAllTestsFromDir();
+    
+    foreach($extracts as $extract)
+    {
+    	// Instanciation du wrapper
+      $kcatoes = new KcatoesWrapper($allTests, $extract->getSrc());
+      
+      // Lance les tests
+	    $results  = $kcatoes->run();
+	    $this->resTests = $kcatoes->getResTests();
+	    
+	    // Sauvegarde en base
+	    foreach($this->resTests as $resTest)
+	    {      
+	      // Suppression des résultats précédents
+	      // TODO : optimisation
+	      $resPrec = $extract->getCollectionResults();
+	      foreach($resPrec as $r)
+	      {
+	        $r->delete();
+	      }
+	      
+	      // Nouvel enregistrement pour le résultat global
+	      $result = new TestResult();
+	      $result->setWebPageExtractId($extract->getId());
+	      $result->setClass(get_class($resTest));
+	      $result->setResult($resTest->getMainResult());
+	      $result->save();
+	      
+	      // Parcours du détail des résultats
+	      foreach($resTest->getTestResults() as $res)
+	      {
+	        // Nouvelle ligne de résultat
+	        $rLine = new TestResultLine();
+	        
+	        $rLine->setTestResult($result);
+	        
+	        $rLine->setResult($res['result']);
+	        $rLine->setComment($res['comment']);
+	        $rLine->setXpath($res['xpath']);
+	        $rLine->setCssSelector($res['cssSelector']);
+	        $rLine->setSource($res['source']);
+	        $rLine->setPrettySource($res['prettySource']);
+	        if (is_object($res['node'])) {
+	          $rLine->setTextContent($res['node']->textContent);
+	        }
+	        $rLine->save();
+	      }
+	    }
+    }
+  	
+  }
 }

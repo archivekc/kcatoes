@@ -21,6 +21,7 @@ class Scenario extends BaseScenario
       ->from('ScenarioPage sp')
       ->leftJoin('sp.WebPage wp, wp.CollectionExtracts e, e.CollectionResults t')
       ->where('sp.scenario_id = ?', $this->getId())
+      ->orderBy('sp.created_at ASC, e.type ASC')
       ->execute();
     
 		return $pageInfo;

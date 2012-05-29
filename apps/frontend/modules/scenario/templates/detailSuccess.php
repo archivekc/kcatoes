@@ -84,7 +84,7 @@
 			               <input type="checkbox" name="extracts[]" id="extr_<?php echo $extract->getId()?>" checked="checked" value="<?php echo $extract->getId()?>"/>
 			               <label for="extr_<?php echo $extract->getId()?>">
 			                 <span class="type"><?php echo $extract->getType()?></span>
-			                 &mdash;
+			                 &ndash;
 			                 <span class="nbTest"><?php echo $testPassed ?> test(s) passé(s)</span>
 			               </label>
 			            </li>

@@ -1,3 +1,3 @@
 <?php
-echo $scenarioAction;
+echo $actionTitle;
 ?>

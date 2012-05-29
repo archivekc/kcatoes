@@ -20,9 +20,16 @@ class kcatoesActions extends sfActions
 
   public function postExecute()
   {
-/*    if (isset($_GET['raw']))
+    if ($redirectTo = $this->getUser()->getFlash('redirectTo', false))
     {
-      die('raw!!');
-    }*/
+    	if ($params = $this->getUser()->getFlash('redirectParams', false))
+    	{
+        $this->redirect($redirectTo, $params);
+    	}
+    	else
+    	{
+	    	$this->redirect($redirectTo);
+    	}
+    }
   }
 }
