@@ -32,8 +32,6 @@ class CompatibiliteElementsProgrammablesAidesTechniques extends \ASource
   
   public function execute()
   {
-    $crawler = $this->page->crawler;
-
     /*
       Champ d'application
       
@@ -43,25 +41,19 @@ class CompatibiliteElementsProgrammablesAidesTechniques extends \ASource
           applet
           embed
      */
-    $elements   = '';
-
-    $nodes = $crawler->filter($elements);
-
+    
     /*
+      $crawler = $this->page->crawler;
+      $elements = '';
+      $nodes = $crawler->filter($elements);
+
       $this->addResult($node, \Resultat::ECHEC, '');
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      $this->addResult(null, \Resultat::MANUEL, '');
       
-      foreach ($nodes as $node)
-      {
-      }
-
-      if (count($nodes) == 0)
-      {
-      }
      */
+      
      $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
 
   }

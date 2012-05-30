@@ -27,33 +27,25 @@ class AbsenceAlterationComprehensionStylesDesactives extends \ASource
   
   public function execute()
   {
-    $crawler = $this->page->crawler;
-
     /*
       Champ d'application
       
       Tout bloc d'informations (mot, groupe de mots, phrase, bloc de texte), contenu ou non dans un élément HTML, 
       ou généré via du code javascript ou des feuilles de styles.
      */
-    $elements   = '';
-
-    $nodes = $crawler->filter($elements);
-
+    
     /*
+      $crawler = $this->page->crawler;
+      $elements = '';
+      $nodes = $crawler->filter($elements);
+
       $this->addResult($node, \Resultat::ECHEC, '');
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      $this->addResult(null, \Resultat::MANUEL, '');
       
-      foreach ($nodes as $node)
-      {
-      }
-
-      if (count($nodes) == 0)
-      {
-      }
      */
+      
      $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
 
   }
