@@ -189,6 +189,7 @@ abstract class ASource
 		$nbREUSSITE = 0;
 		$nbNA = 0;
 		$nbMANUEL = 0;
+		$nbNonExec = 0;
 		
 		foreach($this->results as $result)
 		{
@@ -206,6 +207,9 @@ abstract class ASource
 				case Resultat::MANUEL:
 				  $nbMANUEL++;
 				  break;
+				case Resultat::NON_EXEC:
+				  $nbNonExec++;
+				  break;
 				default:
 					throw new KcatoesWrapperException();
 			}
@@ -217,6 +221,9 @@ abstract class ASource
 		}
 		else
 		{
+		  if ($nbNonExec > 0){
+		   	return Resultat::NON_EXEC;		    
+		  }
 		  if ($nbMANUEL > 0){
 		   	return Resultat::MANUEL;
 		  }

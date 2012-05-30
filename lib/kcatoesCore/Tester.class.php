@@ -260,6 +260,11 @@ class Tester
       {
         $selected = 'selected="selected"';
       }
+      // Cas particulier : Passe les non-exécutables en MANUEL
+      if ($value == Resultat::NON_EXEC && $state == Resultat::MANUEL)
+      {
+        $selected = 'selected="selected"';
+      }
       $select .= '<option '.$selected.' value="'.Resultat::getCode($state).'">'.Resultat::getLabel($state).'</option>';
     }
     $select .= '</select>';
