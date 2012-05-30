@@ -1,0 +1,20 @@
+sfGuardUser:
+  User_test:
+    first_name:     Thierry
+    last_name:      Est
+    email_address:  thierry.est@keyconsulting.fr
+    username:       test
+    password:       test
+    is_super_admin: false
+    Groups:         [Group_test]
+
+sfGuardGroup:
+  Group_test:
+    name:           Testeur
+    description:    Testeur
+    Permissions:    [Permission_test]
+
+sfGuardPermission:
+  Permission_test:
+    name:           test
+    description:    test

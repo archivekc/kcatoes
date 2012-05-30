@@ -1,0 +1,34 @@
+sfGuardGroup:
+    
+  Group_redac:
+    name:           Rédacteur
+    description:    
+    Permissions:    [Permission_test]
+    
+  Group_contrib:
+    name:           Contributeur
+    description:    
+    Permissions:    [Permission_test]
+    
+  Group_dev:
+    name:           Développeur
+    description:    
+    Permissions:    [Permission_test]
+    
+  Group_integ:
+    name:           Intégrateur
+    description:    
+    Permissions:    [Permission_test]
+    
+  Group_graph:
+    name:           Graphiste
+    description:    
+    Permissions:    [Permission_test]
+    
+  Group_ergo:
+    name:           Ergonome
+    description:    
+    Permissions:    [Permission_test]
+
+
+
