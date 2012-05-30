@@ -3,25 +3,27 @@ namespace Kcatoes\rgaa;
 
 // FIXME : test à implémenter
 
-class CoherencePlanSite extends \ASource
+class AbsenceDefinitionCouleurTexteFond extends \ASource
 {
   
-  const testName = 'Cohérence du plan du site';
-  const testId = '6.18';
+  const testName = 'Absence de définition d\'une couleur de texte sans définition d\'une couleur de fond et inversement';
+  const testId = '7.5';
   protected static $testProc = array(
-     'Si la page mentionnée dans le champ d\'application est présente dans le site, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si, sur cette page, les liens exposant la structure générale du site renvoient 
-      bien vers les pages indiquées par l\'intitulé des liens, le test est validé, 
+    ,'Si l\'élément est utilisé pour définir une couleur de texte ou une couleur de fond 
+      (éventuellement via une image de fond), poursuivre le test, sinon le test est non applicable.'
+    ,'Si l\'élément html sur lequel a été définie une couleur de fond a aussi une couleur 
+      de texte définie (directement ou par héritage css), ou inversement, le test est validé, 
       sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
-     'G63'  => 'http://www.w3.org/TR/WCAG20-TECHS/G63'
+     'F24'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F24'
   );
 
   protected static $testGroups = array(
      'niveau'     => 'AA'
-    ,'thematique' => 'Navigation'
+    ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
@@ -32,7 +34,14 @@ class CoherencePlanSite extends \ASource
     /*
       Champ d'application
       
-      Toute page récapitulant l'architecture générale du site sous forme de liens hypertextes.
+      Toute propriété CSS :
+      
+          background
+          background-color
+          font
+          color
+          list
+          list-style-image
      */
     $elements   = '';
 

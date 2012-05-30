@@ -3,25 +3,23 @@ namespace Kcatoes\rgaa;
 
 // FIXME : test à implémenter
 
-class CoherencePlanSite extends \ASource
+class LisibiliteDocumentAgrandissement extends \ASource
 {
   
-  const testName = 'Cohérence du plan du site';
-  const testId = '6.18';
+  const testName = 'Lisibilité du document en cas d\'agrandissement de la taille du texte';
+  const testId = '7.13';
   protected static $testProc = array(
-     'Si la page mentionnée dans le champ d\'application est présente dans le site, 
-      poursuivre le test, sinon le test est non applicable.'
-    ,'Si, sur cette page, les liens exposant la structure générale du site renvoient 
-      bien vers les pages indiquées par l\'intitulé des liens, le test est validé, 
-      sinon le test est invalidé.'
+     'Si lorsque l\'utilisateur n\'a pas modifié la taille du texte par défaut de son navigateur, 
+      le document reste lisible sans perte d\'information avec la taille du texte augmentée à 200%, 
+      le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
-     'G63'  => 'http://www.w3.org/TR/WCAG20-TECHS/G63'
+     'F69'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F69'
   );
 
   protected static $testGroups = array(
      'niveau'     => 'AA'
-    ,'thematique' => 'Navigation'
+    ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
@@ -32,7 +30,7 @@ class CoherencePlanSite extends \ASource
     /*
       Champ d'application
       
-      Toute page récapitulant l'architecture générale du site sous forme de liens hypertextes.
+      Tout le document.
      */
     $elements   = '';
 

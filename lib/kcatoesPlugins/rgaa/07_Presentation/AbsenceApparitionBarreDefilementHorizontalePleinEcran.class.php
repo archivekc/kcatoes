@@ -3,25 +3,27 @@ namespace Kcatoes\rgaa;
 
 // FIXME : test à implémenter
 
-class CoherencePlanSite extends \ASource
+class AbsenceApparitionBarreDefilementHorizontalePleinEcran extends \ASource
 {
   
-  const testName = 'Cohérence du plan du site';
-  const testId = '6.18';
+  const testName = 'Absence d\'apparition de barre de défilement horizontale en affichage plein écran';
+  const testId = '7.15';
   protected static $testProc = array(
-     'Si la page mentionnée dans le champ d\'application est présente dans le site, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si, sur cette page, les liens exposant la structure générale du site renvoient 
-      bien vers les pages indiquées par l\'intitulé des liens, le test est validé, 
-      sinon le test est invalidé.'
+    ,'Si en affichage plein écran une barre de défilement horizontale apparaît, 
+      poursuivre le test, sinon le test est non applicable.'
+    ,'Si un mécanisme permettant de changer la mise en forme permet d\'afficher le contenu 
+      sans barre de défilement, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
-     'G63'  => 'http://www.w3.org/TR/WCAG20-TECHS/G63'
+     'C24' => 'http://www.w3.org/TR/WCAG20-TECHS/C24'
+    ,'C26' => 'http://www.w3.org/TR/WCAG20-TECHS/C26'
   );
 
   protected static $testGroups = array(
-     'niveau'     => 'AA'
-    ,'thematique' => 'Navigation'
+     'niveau'     => 'AAA'
+    ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
   
@@ -32,7 +34,7 @@ class CoherencePlanSite extends \ASource
     /*
       Champ d'application
       
-      Toute page récapitulant l'architecture générale du site sous forme de liens hypertextes.
+      Tout élément constituant visuellement un bloc de texte.
      */
     $elements   = '';
 
