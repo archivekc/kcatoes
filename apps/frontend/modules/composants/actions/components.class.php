@@ -5,8 +5,5 @@ class composantsComponents extends sfComponents
     {
     	$this->mName = $request->getParameter('module');
     	$this->aName = $request->getParameter('action');
-    	
-    	//$this->actionName = $this->getActionName();
-    	$this->toto = 'tata';
     }
 }
