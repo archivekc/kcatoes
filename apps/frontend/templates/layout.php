@@ -43,7 +43,7 @@
 		            <a href="<?php echo url_for('editorial')?>">Documentation</a>
 		          </li>
 	          </ul>
-	          <?php if($sf_user->isAuthenticated()): ?>
+	          <?php if($sf_user->isAuthenticated() && $sf_user->hasCredential('admin')): ?>
 		        <strong>Administration</strong>
 		        <ul class="menu">
 		          <li>

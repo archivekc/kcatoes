@@ -1,1 +1,1 @@
-tata
+Vous n'avez pas l'autorisation nécessaire pour accéder à cette rubrique.
