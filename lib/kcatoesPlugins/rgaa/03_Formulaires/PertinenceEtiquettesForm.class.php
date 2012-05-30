@@ -11,10 +11,12 @@ class PertinenceEtiquettesForm extends \ASource
   protected static $testProc = array(
      'Si l\'élément mentionné dans le champ d\'application est présent dans la page, 
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si un segment de texte récupérable dans une des situations suivantes :
-        contenu dans l\'élément label
-        contenu dans un attribut title sur l\'élément label
-      donne la fonction exacte de l\'élément de formulaire auquel il se rapporte, 
+    ,'Si un segment de texte récupérable dans une des situations suivantes :'
+    ,array(
+       'contenu dans l\'élément label'
+      ,'contenu dans un attribut title sur l\'élément label'
+    )
+    ,'donne la fonction exacte de l\'élément de formulaire auquel il se rapporte, 
       le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

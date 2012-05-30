@@ -13,13 +13,13 @@ class PresencePageAideOuMecanismeContextuel extends \ASource
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément permet de saisir des données, poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'utilisateur à la possibilité d\'obtenir une aide contextuelle propre à chacun des champs de 
-      saisie par au moins un des mécanismes suivant :
-        présence d\'une page d\'aide
-        présence d\'un assistant de saisie
-        présence d\'un correcteur orthographique ou de suggestions lors de la saisie
-        présence si nécessaire d\'informations ou d\'exemples sur les formats ou les types de saisie requise.
-        présence d\'indication en début de formulaire et utilisation d\'un marqueur distinctif avant chaque élément
-      le test est validé, sinon le test est invalidé.'
+      saisie par au moins un des mécanismes suivant :'
+    ,array('présence d\'une page d\'aide'
+          ,'présence d\'un assistant de saisie'
+          ,'présence d\'un correcteur orthographique ou de suggestions lors de la saisie'
+          ,'présence si nécessaire d\'informations ou d\'exemples sur les formats ou les types de saisie requise.'
+          ,'présence d\'indication en début de formulaire et utilisation d\'un marqueur distinctif avant chaque élément')
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G71'  => 'http://www.w3.org/TR/WCAG20-TECHS/G71'

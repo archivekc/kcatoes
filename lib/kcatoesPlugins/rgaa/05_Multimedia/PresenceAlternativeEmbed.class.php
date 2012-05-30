@@ -20,10 +20,12 @@ class PresenceAlternativeEmbed extends \ASource
     ,'Si le contenu n\'est pas consulté dans un environnement informatique maitrisé 
       permettant la restitution des contenus affichés au travers de l\'élément embed, 
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si une alternative à l\'élément embed est disponible dans un des cas suivants :
-        dans une balise noembed
-        en dehors de l\'élément embed, par le biais d\'un élément a, area ou directement dans le contenu de la page
-      le test est validé, sinon le test est invalidé.'
+    ,'Si une alternative à l\'élément embed est disponible dans un des cas suivants :'
+    ,array(
+       'dans une balise noembed'
+      ,'en dehors de l\'élément embed, par le biais d\'un élément a, area ou directement dans le contenu de la page'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G69'  => 'http://www.w3.org/TR/WCAG20-TECHS/G69'

@@ -13,13 +13,13 @@ class PresenceInformationCaractereObligatoireEtFormat extends \ASource
      poursuivre le test, sinon le test est non applicable. Si l\'élément est soumis à un contrôle 
      de saisie avant d\'être traité, poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'utilisateur est averti du caractère obligatoire de l\'élément et si nécessaire du 
-      format ou du type de saisie requis par au moins un des mécanismes suivant :
-        indication en début de formulaire et identification des champs par un marqueur distinctif 
-      situé avant chaque élément de formulaire dans l\'ordre du code source (ou après pour input 
-      type="checkbox", input type="radio") au sein d\'une balise label associée à l\'élément,
-        indication avant chaque élément de formulaire dans l\'ordre du code source (ou après pour 
-      input type="checkbox", input type="radio") au sein d\'une balise label associée à l\'élément
-      le test est validé, sinon le test est invalidé.'
+      format ou du type de saisie requis par au moins un des mécanismes suivant :'
+    , array( 'indication en début de formulaire et identification des champs par un marqueur distinctif 
+              situé avant chaque élément de formulaire dans l\'ordre du code source (ou après pour input 
+              type="checkbox", input type="radio") au sein d\'une balise label associée à l\'élément,'
+            ,'indication avant chaque élément de formulaire dans l\'ordre du code source (ou après pour 
+              input type="checkbox", input type="radio") au sein d\'une balise label associée à l\'élément')
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G83'  => 'http://www.w3.org/TR/WCAG20-TECHS/G83'

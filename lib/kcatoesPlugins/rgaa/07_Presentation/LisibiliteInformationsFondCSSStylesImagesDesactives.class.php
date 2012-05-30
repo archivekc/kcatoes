@@ -13,11 +13,13 @@ class LisibiliteInformationsFondCSSStylesImagesDesactives extends \ASource
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'image de fond de l\'élément apporte de l\'information, poursuivre le test, 
       sinon le test est non applicable.'
-    ,'Si l\'information apportée par l\'image de fond est lisible lorsque :
-        les styles sont désactivés
-        les images sont désactivées
-        les styles et les images sont désactivés
-      le test est validé, sinon le test est invalidé.'
+    ,'Si l\'information apportée par l\'image de fond est lisible lorsque :'
+    ,array(
+       'les styles sont désactivés'
+      ,'les images sont désactivées'
+      ,'les styles et les images sont désactivés'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'F3'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F3'

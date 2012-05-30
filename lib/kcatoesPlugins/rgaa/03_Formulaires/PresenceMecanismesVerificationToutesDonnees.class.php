@@ -12,12 +12,14 @@ class PresenceMecanismesVerificationToutesDonnees extends \ASource
      'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément permet de saisir des données, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'utilisateur a au moins une des possibilités suivantes :
-        modifier ou annuler les données ou actions après leur saisie
-        vérifier et corriger les données avant validation définitive
-        répondre à une demande explicite de confirmation avant validation (étape supplémentaire ou champ supplémentaire)
-        récupérer les données quand il s\'agit d\'une action de suppression (sauf demande explicite de confirmation avant validation)      
-      le test est validé, sinon le test est invalidé.'
+    ,'Si l\'utilisateur a au moins une des possibilités suivantes :'
+    ,array(
+       'modifier ou annuler les données ou actions après leur saisie'
+      ,'vérifier et corriger les données avant validation définitive'
+      ,'répondre à une demande explicite de confirmation avant validation (étape supplémentaire ou champ supplémentaire)'
+      ,'récupérer les données quand il s\'agit d\'une action de suppression (sauf demande explicite de confirmation avant validation)'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G98'  => 'http://www.w3.org/TR/WCAG20-TECHS/G98'

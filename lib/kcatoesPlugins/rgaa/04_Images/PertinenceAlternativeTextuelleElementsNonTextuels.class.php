@@ -19,13 +19,15 @@ class PertinenceAlternativeTextuelleElementsNonTextuels extends \ASource
       pas parti d\'un test qui deviendrait inutile si l\'alternative textuelle était présente, 
       poursuivre le test, sinon le test est non applicable.'
     ,'Si la totalité de l\'information véhiculée par l\'élément est retranscrite par au moins 
-      une des solutions suivantes :
-        le contenu de l\'attribut alt
-        le contenu alternatif avant la fermeture de l\'élément dans le cas de l\'élément object
-        le contenu alternatif dans l\'élément noembed dans le cas de l\'élément embed
-        le contenu de l\'attribut alt d\'une des images d\'un groupe d\'images formant un tout
-        le contenu textuel qui précède ou suit immédiatement l\'élément
-      ou juste une partie de celle-ci lorsqu\'elle est retranscrite en totalité par le contenu 
+      une des solutions suivantes :'
+    ,array(
+       'le contenu de l\'attribut alt'
+      ,'le contenu alternatif avant la fermeture de l\'élément dans le cas de l\'élément object'
+      ,'le contenu alternatif dans l\'élément noembed dans le cas de l\'élément embed'
+      ,'le contenu de l\'attribut alt d\'une des images d\'un groupe d\'images formant un tout'
+      ,'le contenu textuel qui précède ou suit immédiatement l\'élément'
+    )
+    ,'ou juste une partie de celle-ci lorsqu\'elle est retranscrite en totalité par le contenu 
       servant de description longue associé à l\'élément, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

@@ -13,13 +13,15 @@ class AbsenceJavascriptRafraichissementPasArrete extends \ASource
     ,'Si le code javascript provoque un rafraîchissement automatique de la page, poursuivre le test, sinon le test est non applicable.'
     ,'Si le rafraîchissement automatique ne pourrait être supprimée sans changer fondamentalement 
       l\'information ou les fonctionnalités du contenu, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'utilisateur à le contrôle du rafraîchissement par au moins un des mécanismes suivants :
-        possibilité d\'arrêter et de reprendre le rafraîchissement
-        possibilité d\'ajuster librement la durée de rafraîchissement à un minimum de dix fois la durée initialement prévu
-        possibilité d\'étendre, par une action simple, la durée de rafraîchissement pendant une période 
-          d\'au minimum vingt secondes au préalable à l\'exécution du rafraîchissement
-        le délai de rafraîchissement est supérieur à vingt heures
-      le test est validé, sinon le test est invalidé.'
+    ,'Si l\'utilisateur à le contrôle du rafraîchissement par au moins un des mécanismes suivants :'
+    ,array(
+       'possibilité d\'arrêter et de reprendre le rafraîchissement'
+      ,'possibilité d\'ajuster librement la durée de rafraîchissement à un minimum de dix fois la durée initialement prévu'
+      ,'possibilité d\'étendre, par une action simple, la durée de rafraîchissement pendant une période 
+        d\'au minimum vingt secondes au préalable à l\'exécution du rafraîchissement'
+      ,'le délai de rafraîchissement est supérieur à vingt heures'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'F61'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F61'

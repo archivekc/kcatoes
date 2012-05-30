@@ -17,13 +17,15 @@ class PresenceAvertissementOuvertureFenetreTargetLiens extends \ASource
     ,'Si l\'élément n\'a pas pour unique enfant un élément img, poursuivre le test sinon le test 
       est non applicable.'
     ,'Si un avertissement signalant l\'ouverture dans une nouvelle fenêtre se trouve dans le 
-      contenu de l\'élément seul ou dans le contenu seul additionné à un contenu récupérable dans au moins un des contextes suivants  :
-        contenu de son élément html parent si il s\'agit d\'un élément p ou li
-        contenu du titre de hiérarchie (hx) précédent l\'élément
-        contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)
-        contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)
-        contenu de l\'attribut title de l\'élément si celui-ci est plus grand que le contenu de l\'élément seul
-      le test est validé, sinon le test est invalidé.'
+      contenu de l\'élément seul ou dans le contenu seul additionné à un contenu récupérable dans au moins un des contextes suivants  :'
+    ,array(
+       'contenu de son élément html parent si il s\'agit d\'un élément p ou li'
+      ,'contenu du titre de hiérarchie (hx) précédent l\'élément'
+      ,'contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)'
+      ,'contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)'
+      ,'contenu de l\'attribut title de l\'élément si celui-ci est plus grand que le contenu de l\'élément seul'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'H33'  => 'http://www.w3.org/TR/WCAG20-TECHS/H33'

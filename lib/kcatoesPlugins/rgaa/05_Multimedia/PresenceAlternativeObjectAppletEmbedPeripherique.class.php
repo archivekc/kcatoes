@@ -14,10 +14,12 @@ class PresenceAlternativeObjectAppletEmbedPeripherique extends \ASource
     ,'Si l\'élément est nécessaire pour avoir accès à l\'information, poursuivre le test, 
       sinon le test est non applicable.'
     ,'Si l\'information mise à disposition par l\'élément ne peut pas être obtenue à l\'aide 
-      d\'un périphérique de pointage, tel que la souris, et par un au moins une des solutions suivantes :
-        raccourci clavier
-        navigation au clavier au sein de l\'interface d\'élément en élément
-      poursuivre le test, sinon le test est non applicable.'
+      d\'un périphérique de pointage, tel que la souris, et par un au moins une des solutions suivantes :'
+    ,array(
+       'raccourci clavier'
+      ,'navigation au clavier au sein de l\'interface d\'élément en élément'
+    )
+    ,'poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément a une alternative permettant d\'avoir accès à une information équivalente quelque 
     soit le périphérique utilisé dans ou depuis la page, le test est validé, sinon le test est invalidé.'
   );

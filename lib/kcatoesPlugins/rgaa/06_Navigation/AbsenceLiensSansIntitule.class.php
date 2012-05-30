@@ -10,10 +10,13 @@ class AbsenceLiensSansIntitule extends \ASource
   const testId = '6.16';
   protected static $testProc = array(
     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, poursuivre le test, sinon le test est non applicable.', 
-    'Si l\'élément n\'est pas un élément a ayant un attribut name ou id, dépourvu d\'attribut href ou ayant un attribut href dont la valeur est égale au caractère # suivi du contenu de l\'attribut name ou id, poursuivre le test, sinon le test est non applicable.', 
-    'Si un intitulé peut être obtenu à partir d\'un des cas suivants :', 
-        'du contenu textuel de l\'élément', 
-        'des alternatives textuelles des éléments graphiques contenus dans l\'élément', 
+    'Si l\'élément n\'est pas un élément a ayant un attribut name ou id, dépourvu d\'attribut href ou ayant un attribut href dont la valeur est 
+     égale au caractère # suivi du contenu de l\'attribut name ou id, poursuivre le test, sinon le test est non applicable.', 
+    'Si un intitulé peut être obtenu à partir d\'un des cas suivants :',
+    array(
+      'du contenu textuel de l\'élément', 
+      'des alternatives textuelles des éléments graphiques contenus dans l\'élément', 
+    ),
     'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

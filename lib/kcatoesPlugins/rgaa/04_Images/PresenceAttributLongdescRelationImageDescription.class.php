@@ -16,10 +16,12 @@ class PresenceAttributLongdescRelationImageDescription extends \ASource
     ,'Si le contenu immédiatement adjacent à l\'élément ne contient pas un lien permettant 
       d\'avoir accès à la description longue de l\'élément, poursuivre le test, 
       sinon le test est non applicable.'
-    ,'Si l\'élément possède au moins un des mécanismes suivants :
-        attribut longdesc
-        attribut alt
-      poursuivre le test, sinon le test est non applicable.'
+    ,'Si l\'élément possède au moins un des mécanismes suivants :'
+    ,array(
+       'attribut longdesc'
+      ,'attribut alt'
+    )
+    ,'poursuivre le test, sinon le test est non applicable.'
     ,'Si le contenu de l\'attribut longdesc ou de l\'attribut alt permet de localiser 
       la description longue, le test est validé, sinon le test invalidé.'
   );

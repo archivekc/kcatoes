@@ -13,13 +13,15 @@ class AbsenceJavascriptRedirectionPasArretee extends \ASource
     ,'Si le code javascript provoque une redirection automatique, poursuivre le test, sinon le test est non applicable.'
     ,'Si la redirection automatique ne pourrait être supprimée sans changer fondamentalement 
       l\'information ou les fonctionnalités du contenu, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'utilisateur à le contrôle de la redirection automatique par au moins un des mécanismes suivants :
-        possibilité d\'arrêter la redirection
-        possibilité d\'ajuster librement la durée préalable à la redirection à un minimum de dix fois la durée initialement prévu
-        possibilité d\'étendre, par une action simple, la durée préalable à la redirection pendant une période 
-          d\'au minimum vingt secondes au préalable à l\'exécution de la redirection
-        le délai préalable à la redirection est supérieur à vingt heures
-      le test est validé, sinon le test est invalidé.'
+    ,'Si l\'utilisateur à le contrôle de la redirection automatique par au moins un des mécanismes suivants :'
+    ,array(
+       'possibilité d\'arrêter la redirection'
+      ,'possibilité d\'ajuster librement la durée préalable à la redirection à un minimum de dix fois la durée initialement prévu'
+      ,'possibilité d\'étendre, par une action simple, la durée préalable à la redirection pendant une période 
+        d\'au minimum vingt secondes au préalable à l\'exécution de la redirection'
+      ,'le délai préalable à la redirection est supérieur à vingt heures'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'SCR1' => 'http://www.w3.org/TR/WCAG20-TECHS/SCR1'

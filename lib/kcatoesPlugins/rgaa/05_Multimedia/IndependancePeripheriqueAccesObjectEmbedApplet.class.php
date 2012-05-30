@@ -12,10 +12,12 @@ class IndependancePeripheriqueAccesObjectEmbedApplet extends \ASource
      'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'interface de l\'élément ne peut pas être utilisée par un périphérique de pointage 
-      tel que la souris et par au moins une de ces deux techniques :
-        raccourci clavier
-        navigation au clavier au sein de l\'interface d\'élément en élément
-      poursuivre le test, sinon le test est non applicable.'
+      tel que la souris et par au moins une de ces deux techniques :'
+    ,array(
+       'raccourci clavier'
+      ,'navigation au clavier au sein de l\'interface d\'élément en élément'
+    )
+    ,'poursuivre le test, sinon le test est non applicable.'
     ,'Si une alternative accessible à l\'ensemble des informations présentes dans l\'élément 
       est disponible dans la page, le test est validé, sinon le test est invalidé.'
   );

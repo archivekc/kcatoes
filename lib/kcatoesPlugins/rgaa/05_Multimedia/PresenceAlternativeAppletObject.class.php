@@ -19,11 +19,13 @@ class PresenceAlternativeAppletObject extends \ASource
     ,'Si le contenu n\'est pas consulté dans un environnement informatique maitrisé permettant la 
       restitution des contenus affichés au travers des éléments object ou applet, poursuivre le test, 
       sinon le test est non applicable.'
-    ,'Si une alternative à l\'élément est disponible dans un des cas suivants :
-        entre la balise ouvrante et la balise fermante de l\'élément
-        dans le contenu de l\'attribut alt pour l\'élément applet
-        en dehors de l\'élément, par le biais d\'un élément a , area ou directement dans le contenu de la page
-      le test est validé, sinon le test est invalidé.'
+    ,'Si une alternative à l\'élément est disponible dans un des cas suivants :'
+    ,array(
+       'entre la balise ouvrante et la balise fermante de l\'élément'
+      ,'dans le contenu de l\'attribut alt pour l\'élément applet'
+      ,'en dehors de l\'élément, par le biais d\'un élément a , area ou directement dans le contenu de la page'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G58'  => 'http://www.w3.org/TR/WCAG20-TECHS/G58'

@@ -13,14 +13,16 @@ class PresenceAvertissementOuvertureFenetreJs extends \ASource
     ,'Si le code javascript déclenche l\'ouverture dans une nouvelle fenêtre, poursuivre le test, sinon le test est non applicable.'
     ,'Si le contenu de l\'élément sur lequel est appliqué le code javascript ne signale pas l\'ouverture 
       dans une nouvelle fenêtre, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le contenu de l\'élément faisant office d\'intitulé, récupéré dans un des contextes suivants :
-        contenu textuel de l\'élément + contenu de son élément html parent si il s\'agit d\'un élément p ou li
-        contenu textuel de l\'élément + contenu du titre de hiérarchie (hx) précédent l\'élément
-        contenu textuel de l\'élément + contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)
-        contenu textuel de l\'élément + contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)
-        contenu de l\'attribut title sur l\'élément
-        contenu de l\'attribut alt pour images liens ou les zones cliquables
-      signale l\'ouverture dans une nouvelle fenêtre, le test est validé, sinon le test est invalidé.'
+    ,'Si le contenu de l\'élément faisant office d\'intitulé, récupéré dans un des contextes suivants :'
+    ,array(
+       'contenu textuel de l\'élément + contenu de son élément html parent si il s\'agit d\'un élément p ou li'
+      ,'contenu textuel de l\'élément + contenu du titre de hiérarchie (hx) précédent l\'élément'
+      ,'contenu textuel de l\'élément + contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)'
+      ,'contenu textuel de l\'élément + contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)'
+      ,'contenu de l\'attribut title sur l\'élément'
+      ,'contenu de l\'attribut alt pour images liens ou les zones cliquables'
+    )
+    ,'signale l\'ouverture dans une nouvelle fenêtre, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'H33'   => 'http://www.w3.org/TR/WCAG20-TECHS/H33'

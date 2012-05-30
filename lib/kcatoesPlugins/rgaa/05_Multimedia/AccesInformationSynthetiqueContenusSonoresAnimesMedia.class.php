@@ -16,13 +16,15 @@ class AccesInformationSynthetiqueContenusSonoresAnimesMedia extends \ASource
     ,'Si l\'élément apporte une information, poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément est identifiable par un nom usuel ou fonctionnel, un titre, une description 
       synthétique des contenus, du processus ou des actions possibles mis à disposition 
-      par au moins une des solutions suivantes :
-        le contenu de l\'attribut alt
-        le contenu alternatif avant la fermeture de l\'élément dans le cas de l\'élément object
-        le contenu alternatif dans l\'élément noembed dans le cas de l\'élément embed
-        le contenu de l\'attribut alt d\'une des images d\'un groupe d\'images formant un tout
-        le contenu textuel qui précède ou suit immédiatement l\'élément
-      le test est validé, sinon le test est invalidé.'
+      par au moins une des solutions suivantes :'
+    ,array(
+       'le contenu de l\'attribut alt'
+      ,'le contenu alternatif avant la fermeture de l\'élément dans le cas de l\'élément object'
+      ,'le contenu alternatif dans l\'élément noembed dans le cas de l\'élément embed'
+      ,'le contenu de l\'attribut alt d\'une des images d\'un groupe d\'images formant un tout'
+      ,'le contenu textuel qui précède ou suit immédiatement l\'élément'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G68'  => 'http://www.w3.org/TR/WCAG20-TECHS/G68' 

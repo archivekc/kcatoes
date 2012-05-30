@@ -14,12 +14,14 @@ class AbsenceJavascriptClignotementsAutoPasArretes extends \ASource
       poursuivre le test, sinon le test est non applicable.'
     ,'Si le clignotements n\'apporte en lui même aucune information ou qu\'il s\'agit d\'une fonctionnalité qu\'il 
       serait possible à reproduire sans clignotement, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'utilisateur à le contrôle des clignotements par au moins un des mécanismes suivants :
-        possibilité d\'arrêter et de reprendre le clignotement
-        la durée du clignotement est inférieure ou égale à 5 secondes
-        possibilité de masquer et de réafficher le contenu clignotant
-        possibilité d\'afficher la totalité du contenu clignotant sans clignotements
-      le test est validé, sinon le test est invalidé.'
+    ,'Si l\'utilisateur à le contrôle des clignotements par au moins un des mécanismes suivants :'
+    ,array(
+       'possibilité d\'arrêter et de reprendre le clignotement'
+      ,'la durée du clignotement est inférieure ou égale à 5 secondes'
+      ,'possibilité de masquer et de réafficher le contenu clignotant'
+      ,'possibilité d\'afficher la totalité du contenu clignotant sans clignotements'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G11'   => 'http://www.w3.org/TR/WCAG20-TECHS/G11' 

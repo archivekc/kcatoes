@@ -16,12 +16,14 @@ class PresenceAvertissementOuvertureFenetreTargetImagesZones extends \ASource
       sinon le test est non applicable.'
     ,'Si l\'élément a un attribut alt, poursuivre le test sinon le test est non applicable.'
     ,'Si le contenu de l\'élément alt seul ou le contenu seul additionné à un contenu récupérable 
-      dans au moins un des contextes suivants :
-        contenu de son élément html parent si il s\'agit d\'un élément p ou li
-        contenu du titre de hiérarchie (hx) précédent l\'élément
-        contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)
-        contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)
-      contient un avertissement signalant l\'ouverture dans une nouvelle fenêtre, le test est validé, 
+      dans au moins un des contextes suivants :'
+    ,array(
+       'contenu de son élément html parent si il s\'agit d\'un élément p ou li'
+      ,'contenu du titre de hiérarchie (hx) précédent l\'élément'
+      ,'contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)'
+      ,'contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)'
+    )
+    ,'contient un avertissement signalant l\'ouverture dans une nouvelle fenêtre, le test est validé, 
       sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

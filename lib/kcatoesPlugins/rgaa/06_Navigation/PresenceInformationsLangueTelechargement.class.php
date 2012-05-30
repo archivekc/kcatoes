@@ -15,13 +15,15 @@ class PresenceInformationsLangueTelechargement extends \ASource
     ,'Si la langue du document est différente de la langue de l\'intitulé de l\'élément déclenchant le 
       téléchargement, poursuivre le test, sinon le test est non applicable.'
     ,'Si la langue du document est indiquée dans le libellé de l\'élément déclenchant le téléchargement 
-      ou le libellé seul additionné à un contenu récupérable par au moins un des contextes suivants :
-        contenu de son élément html parent si il s\'agit d\'un élément p ou li
-        contenu du titre de hiérarchie (hx) précédent l\'élément
-        contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)
-        contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)
-        contenu de l\'attribut title de l\'élément
-      le test est validé, sinon il est invalidé.'
+      ou le libellé seul additionné à un contenu récupérable par au moins un des contextes suivants :'
+    ,array(
+       'contenu de son élément html parent si il s\'agit d\'un élément p ou li'
+      ,'contenu du titre de hiérarchie (hx) précédent l\'élément'
+      ,'contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)'
+      ,'contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)'
+      ,'contenu de l\'attribut title de l\'élément'
+    )
+    ,'le test est validé, sinon il est invalidé.'
   );
   protected static $testDocLinks = array(
      'H33'  => 'http://www.w3.org/TR/WCAG20-TECHS/H33'

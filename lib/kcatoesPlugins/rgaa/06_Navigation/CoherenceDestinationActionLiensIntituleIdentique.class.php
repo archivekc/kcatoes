@@ -14,12 +14,14 @@ class CoherenceDestinationActionLiensIntituleIdentique extends \ASource
     ,'Si les éléments ont le même intitulé et pointent sur une destination ou entrainent une action 
       différente, poursuivre le test, sinon le test est non applicable.'
     ,'Si les éléments ont un intitulé identique lorsque l\'on leur additionne un contenu récupérable 
-      dans au moins un des contextes suivants :
-        contenu de leur élément html parent si il s\'agit d\'un élément p ou li
-        contenu du titre de hiérarchie (hx) précédent les éléments
-        contenu de l\'entête (th) qui leur est rattaché si l\'élément est dans une cellule de tableau (td)
-        contenu des éléments de listes parents des éléments dans une liste arborescente (ul,ol,dl)
-      qui pointent sur une destination ou entrainent une action différente, poursuivre le test, sinon le test est non applicable.'
+      dans au moins un des contextes suivants :'
+    ,array(
+       'contenu de leur élément html parent si il s\'agit d\'un élément p ou li'
+      ,'contenu du titre de hiérarchie (hx) précédent les éléments'
+      ,'contenu de l\'entête (th) qui leur est rattaché si l\'élément est dans une cellule de tableau (td)'
+      ,'contenu des éléments de listes parents des éléments dans une liste arborescente (ul,ol,dl)'
+    )
+    ,'qui pointent sur une destination ou entrainent une action différente, poursuivre le test, sinon le test est non applicable.'
     ,'Si les éléments ont un attribut title dont le contenu est différent les uns des autres, 
       qu\'il est plus long que l\'intitulé du lien lui-même et que sa lecture seule permet de comprendre 
       l\'action ou d\'identifier la destination du lien, le test est validé, sinon le test est invalidé.'

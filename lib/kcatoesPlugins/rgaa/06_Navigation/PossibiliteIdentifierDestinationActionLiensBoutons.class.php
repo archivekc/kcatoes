@@ -14,13 +14,15 @@ class PossibiliteIdentifierDestinationActionLiensBoutons extends \ASource
     ,'Si la lecture de l\'intitulé du lien seul en dehors de son contexte permet à une personne 
       n\'ayant aucun handicap de comprendre l\'action ou d\'identifier la destination du lien, poursuivre le test, sinon le test est non applicable'
     ,'Si la lecture de l\'intitulé du lien seul permet de comprendre l\'action ou d\'identifier la 
-      destination du lien ou que de l\'intitulé seul additionné aux contenus récupérables dans au moins un des contextes suivants :
-        contenu de son élément html parent si il s\'agit d\'un élément p ou li
-        contenu du titre de hiérarchie (hx) précédent l\'élément
-        contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)
-        contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)
-        contenu de l\'attribut title de l\'élément si celui si est plus long que l\'intitulé du lien lui même
-      permet de comprendre l\'action ou d\'identifier la destination du lien, le test est validé, sinon le test est invalidé.'
+      destination du lien ou que de l\'intitulé seul additionné aux contenus récupérables dans au moins un des contextes suivants :'
+    ,array(
+       'contenu de son élément html parent si il s\'agit d\'un élément p ou li'
+      ,'contenu du titre de hiérarchie (hx) précédent l\'élément'
+      ,'contenu de l\'entête (th) qui lui est rattaché si l\'élément est dans une cellule de tableau (td)'
+      ,'contenu des éléments de listes parents de l\'élément dans une liste arborescente (ul,ol,dl)'
+      ,'contenu de l\'attribut title de l\'élément si celui si est plus long que l\'intitulé du lien lui même'
+    )
+    ,'permet de comprendre l\'action ou d\'identifier la destination du lien, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G91' => 'http://www.w3.org/TR/WCAG20-TECHS/G91'

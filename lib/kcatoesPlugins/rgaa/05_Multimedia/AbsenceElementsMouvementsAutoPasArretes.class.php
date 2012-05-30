@@ -15,12 +15,14 @@ class AbsenceElementsMouvementsAutoPasArretes extends \ASource
       poursuivre le test, sinon le test est non applicable.'
     ,'Si le mouvement n\'apporte en lui même aucune information ou qu\'il s\'agit d\'une fonctionnalité 
       qu\'il serait possible de reproduire sans mouvement, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'utilisateur à le contrôle des mouvements par au moins un des mécanismes suivants :
-        possibilité d\'arrêter et de reprendre le mouvement
-        la durée du mouvement est inférieure ou égale à 5 secondes
-        possibilité de masquer et de réafficher le contenu mouvant
-        possibilité d\'afficher la totalité du contenu mouvant sans mouvement
-      le test est validé, sinon le test est invalidé.'
+    ,'Si l\'utilisateur à le contrôle des mouvements par au moins un des mécanismes suivants :'
+    ,array(
+       'possibilité d\'arrêter et de reprendre le mouvement'
+      ,'la durée du mouvement est inférieure ou égale à 5 secondes'
+      ,'possibilité de masquer et de réafficher le contenu mouvant'
+      ,'possibilité d\'afficher la totalité du contenu mouvant sans mouvement'
+    )
+    ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
      'G4'   => 'http://www.w3.org/TR/WCAG20-TECHS/G4' 
