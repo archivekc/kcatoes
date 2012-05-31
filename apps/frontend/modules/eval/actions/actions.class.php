@@ -136,5 +136,7 @@ class evalActions extends kcatoesActions
 	    }
     }
   	
+    $this->getUser()->setFlash('testsMsg', 'Tests exécutés');
+    
   }
 }

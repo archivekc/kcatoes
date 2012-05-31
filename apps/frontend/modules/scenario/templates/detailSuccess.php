@@ -40,6 +40,7 @@
         Aucune page trouvée
       </p>
   <?php else:?>
+
   <form method="post" action="<?php echo url_for('scenarioDetail', array('id'=>$scenario->getId()))?>">
     <div>
       <input type="hidden" name="templateId" value="<?php echo $scenario->getId() ?>"/>
@@ -51,7 +52,13 @@
       <input type="submit" value="Définir un modèle à partir de ce scénario"/>
     </div>
   </form>
+
   <h2>Pages du scenario</h2>
+
+  <?php if ($sf_user->hasFlash('testsMsg')): ?>
+    <?php echo userMsg($sf_user->getFlash('testsMsg'), 'success') ?> 
+  <?php endif; ?>
+  
   <form method="post" action="<?php echo url_for('scenarioActions', array('id'=>$scenario->getId()))?>">
     <ul class="scenarioPages highlight">
     <?php foreach($pages as $page): ?>

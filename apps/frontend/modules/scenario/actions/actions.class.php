@@ -96,6 +96,7 @@ class scenarioActions extends kcatoesActions
 //          $page = $this->addPageForm->save();
 //          $page->setScenario($this->scenario);
 //          $page->save();
+
           $this->redirect('scenarioDetail', $this->scenario);
         }
     	}
@@ -194,16 +195,23 @@ class scenarioActions extends kcatoesActions
   		case 'rapport_simple':
   			$this->actionTitle = 'Rapport simple';
   			break;
+  			
   		case 'rapport_detaille':
   			$this->actionTitle = 'Rapport détaillé';
   			break;
+  			
   		case 'execute_test':
   			$this->actionTitle = 'Tests';
   			$this->getUser()->setFlash('extractIds', $extractIds);
-  			//$this->getUser()->setFlash('redirectTo', 'scenarioDetail');
-  			//$this->getUser()->setFlash('redirectParam', array('id'=>$scenario->getId()));
+  			
+  			// Programme la redirection
+  			// false en 2eme paramètre pour éviter une double redirection
+  			$this->getUser()->setFlash('redirectTo', 'scenarioDetail'                      , false);
+  			$this->getUser()->setFlash('redirectParams', array('id' => $scenario->getId()) , false);
+  			
   			$this->forward('eval', 'executeTests');
   			break;
+  			
   		default:
   			$this->actionTitle = 'Action non prévue';
   			

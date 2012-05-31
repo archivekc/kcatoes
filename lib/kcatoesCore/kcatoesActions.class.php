@@ -20,6 +20,12 @@ class kcatoesActions extends sfActions
 
   public function postExecute()
   {
+    /*
+     * Les variables flash 'redirectTo' et 'redirectParams' doivent être valuées 
+     * avec false en 2ème paramètre : setflash('redirectX', false)
+     * Sinon, la redirection est effectuée deux fois, ce qui perturbe l'utilisation
+     * de variables flash ailleurs. 
+     */
     if ($redirectTo = $this->getUser()->getFlash('redirectTo', false))
     {
     	if ($params = $this->getUser()->getFlash('redirectParams', false))

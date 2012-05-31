@@ -22,7 +22,8 @@ class ScenarioTemplateForm extends BaseScenarioTemplateForm
      'nom' => new sfWidgetFormInputText()
     ));
     
-    $this->setValidator('nom', new sfValidatorString(array('required' => true)));
+    $this->setValidator('nom', new sfValidatorString(array('required' => true),
+                                                     array('required' => 'Un nom de template est obligatoire')));
     
     $this->widgetSchema->setNameFormat('scenarioTemplate[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
