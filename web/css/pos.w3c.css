@@ -77,9 +77,15 @@ body {
   margin: .5em 0;
 }
 
-.menu #logoutBtn {
+
+#logoutBtn {
   margin-top: 2em;
 }
+
+#logoutBtn #connectedUser {
+  text-align:center;
+}
+
 
 #mainMenu strong {
   font-size: 1.8em;
@@ -380,7 +386,7 @@ form input[type=submit]:active {
   border-color: #999;
 }
 
-/* aucun élément */
+/* aucun ï¿½lï¿½ment */
 .zeroFound {
 	font-size: 2em;
 	font-style: italic;
@@ -535,3 +541,4 @@ form input[type=submit]:active {
 #page .scenarioPages .description {
   margin: 0;
 }
+
