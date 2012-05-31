@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
-	<buildpathentry kind="src" path="lib/vendor/symfony-1.4"/>
+	<buildpathentry kind="src" path="lib"/>
+	<buildpathentry kind="src" path="plugins"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 </buildpath>
