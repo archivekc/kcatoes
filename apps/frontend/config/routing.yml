@@ -198,10 +198,24 @@ scenarioActions:
   param:    { module: scenario, action: actions }
   class:    sfDoctrineRoute
   options:  { model: Scenario, type: object }
-  requirements:
-    action: \w+ 
+  requirements: 
     id:     \d+
     sf_method: [POST]
+
+# ######################
+# RESULTATS (Génériques)
+# ######################
+
+resultatScenario:
+  url:      /rapport/scenario/:id/:mode
+  param:    { module: rapport, action: rapportScenario }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements:
+    id:     \d+
+    mode:   \w+
+    sf_method: [GET, POST]
+
 
 # #################
 # PAGES EDITORIALES

@@ -12,5 +12,80 @@
  */
 class WebPageExtract extends BaseWebPageExtract
 {
-
+  
+  /**
+   * Retourne les résultats des tests sur l'extraction courante 
+   * @param $tests       Liste des classes de test à prendre en compte
+   * @return Doctrine_Collection
+   */
+  public function getResults($tests=array())
+  {
+    
+    $query = Doctrine_Core::getTable('TestResult')->createQuery('r')
+                ->where('r.web_page_extract_id = ?', $this->getId())
+                ->orderBy('r.num_categorie, r.num_test');
+    
+    $results = $query->execute();
+    
+    return $results;
+    
+  }
+  
+  /**
+   * Retourne les comptabilisation des résultats des tests
+   * 
+   * @param Doctrine_Collection $results Le rapport fourni par $this->getResults()
+   * @return array
+   */
+  public function getRapport($results=null)
+  {
+    // *** Initialisation du rapport
+    $base_rapport = array(
+      Resultat::getLabel(Resultat::ECHEC)    => 0,
+      Resultat::getLabel(Resultat::REUSSITE) => 0,
+      Resultat::getLabel(Resultat::MANUEL)   => 0,
+      Resultat::getLabel(Resultat::NON_EXEC) => 0,
+    
+      Resultat::getLabel(Resultat::ERREUR)   => 0,
+      Resultat::getLabel(Resultat::NA)       => 0,
+      
+      'total'            => 0,
+    );
+    
+    $rapport = array(
+      'total'       => $base_rapport,
+      'thematiques' => array()
+    );
+       
+    $thematiques = TestsHelper::getAllThematiques();
+    foreach ($thematiques as $thematique)
+    {
+      $rapport['thematiques'][$thematique] = $base_rapport;
+    }
+    
+    // *** Récupération des résultats si pas fournis
+    if ($results == null)
+    {
+      $results = $this->getResults();
+    }
+    
+    // *** Comptabilisation des résultats
+    foreach($results as $testResult)
+    {
+      $result = $testResult->getResult();
+      $test   = $testResult->getClass();
+      
+      $thematique = $test::getGroup('thematique');
+      
+      // Incrémentation
+      $rapport['total'][Resultat::getLabel($result)]++;
+      $rapport['total']['total']++;
+       
+      $rapport['thematiques'][$thematique][Resultat::getLabel($result)]++;
+      $rapport['thematiques'][$thematique]['total']++;
+    }
+    
+    return $rapport;
+  }
+  
 }

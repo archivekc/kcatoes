@@ -129,6 +129,43 @@ class TestsHelper {
 	  return $tests;
 	}
 	
+	/**
+	 * Retourne un tableau des catégories de test
+	 * @return unknown_type
+	 */
+	public static function getAllThematiques()
+	{
+	  $allTests       = self::getAllTestsFromDir();
+	  
+	  $thematiques_array = array();
+	  $thematiques_hash  = array();
+
+	  $hasNull = false;
+	  
+	  // Parcours des tests
+    foreach($allTests as $test)
+    {
+      $thematique = $test::getGroup('thematique');
+      
+      if (is_null($thematique))
+      {
+        $hasNull = true;
+      }
+      
+      if (! isset($thematiques_hash[$thematique]))
+      {
+        $thematiques_hash[$thematique] = true;
+        array_push($thematiques_array, $thematique);
+      }
+    }
+    
+    if ($hasNull)
+    {
+      array_push($thematiques_array, 'autres');
+    }
+    
+    return $thematiques_array;
+	}
 	
 	/**
 	 * Chargement des classes de test (à partir du répertoire de plugins) 

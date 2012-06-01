@@ -179,7 +179,7 @@ class scenarioActions extends kcatoesActions
   }
   
   /**
-   * Suppression d'un type de page du scenario
+   * Actions
    * @param sfWebRequest $request
    */
   public function executeActions(sfWebRequest $request)
@@ -189,20 +189,22 @@ class scenarioActions extends kcatoesActions
   	$scenarioAction = $request->getParameterHolder()->get('scenarioAction');
   	$extractIds = $request->getParameterHolder()->get('extracts');
   	
-  	
+    $this->getUser()->setFlash('extractIds', $extractIds);
+    
   	switch($scenarioAction)
   	{
   		case 'rapport_simple':
-  			$this->actionTitle = 'Rapport simple';
+  			$this->redirect('resultatScenario', array( 'id'   => $scenario->getId(), 
+  			                                           'mode' => 'simple'));
   			break;
   			
   		case 'rapport_detaille':
-  			$this->actionTitle = 'Rapport détaillé';
+  			$this->redirect('resultatScenario', array( 'id'   => $scenario->getId(), 
+  			                                           'mode' => 'riche'));
   			break;
   			
   		case 'execute_test':
   			$this->actionTitle = 'Tests';
-  			$this->getUser()->setFlash('extractIds', $extractIds);
   			
   			// Programme la redirection
   			// false en 2eme paramètre pour éviter une double redirection
