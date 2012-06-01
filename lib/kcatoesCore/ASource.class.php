@@ -54,6 +54,25 @@ abstract class ASource
     return static::testId.' - '.static::testName;
 	}
 	
+
+	/**
+	 * Retourne le premier chiffre de l'ID du test
+	 * @return int
+	 */
+	public static function getNumeroCategorie()
+	{
+	  return strtok(static::testId, '.'); 
+	}
+	
+	/**
+	 * Retourne le second chiffre de l'ID du test
+	 * @return int
+	 */
+	public static function getNumeroTest()
+	{
+	  strtok(static::testId, '.');
+	  return strtok('.');
+	}
 	
 	/**
 	 * Permet d'ajouter une ligne de résultat au test

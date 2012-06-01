@@ -24,6 +24,7 @@ WebPage:
     url:         { type: varchar(5000), notnull: true, unique: true }
     doctype:     { type: varchar(500), notnull: false }
     description: { type: varchar(5000), notnull: false }
+     
   
 # =Test
 # liste des tests associés à une page
@@ -81,6 +82,8 @@ TestResult:
   columns:
     id:                     { type: integer, primary: true, autoincrement: true }
     web_page_extract_id:    { type: integer, notnull: true }
+    num_categorie:          { type: integer, notnull: true } # 1er  numéro du test
+    num_test:               { type: integer, notnull: true } # 2eme numéro du test
     class:                  { type: varchar(500) }
     result:                 { type: integer, notnull: true }    
   relations:
@@ -148,7 +151,8 @@ Scenario:
   columns:
     id:          { type: integer, primary: true, autoincrement: true }
     nom:         { type: varchar(500), notnull: true }
-
+      
+      
 # =ScenarioPage
 # Liste pages associées à un scenario
 ScenarioPage:
@@ -169,7 +173,7 @@ ScenarioPage:
     WebPage:
       local:        web_page_id
       foreign:      id
-      foreignAlias: WebPage
+      foreignAlias: ScenarioPages
       onDelete:     CASCADE
 
 # =ScenarioTemplate

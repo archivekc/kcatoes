@@ -111,6 +111,8 @@ class evalActions extends kcatoesActions
 	      $result = new TestResult();
 	      $result->setWebPageExtractId($extract->getId());
 	      $result->setClass(get_class($resTest));
+	      $result->setNumCategorie($resTest::getNumeroCategorie());
+	      $result->setNumTest($resTest::getNumeroTest());
 	      $result->setResult($resTest->getMainResult());
 	      $result->save();
 	      
