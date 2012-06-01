@@ -15,5 +15,14 @@ class sfGuardFormSignin extends BasesfGuardFormSignin
    */
   public function configure()
   {
+    parent::configure();
+    
+    
+    // Configuration des messages
+    $this->getValidator('username')->setMessage('required', 'Obligatoire');
+    $this->getValidator('password')->setMessage('required', 'Obligatoire');
+    $this->getValidatorSchema()->getPostValidator()->setMessage('invalid', 'Le nom et/ou le mot de passe est invalide.');
+    
   }
+  
 }
