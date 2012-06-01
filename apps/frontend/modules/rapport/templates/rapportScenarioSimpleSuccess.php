@@ -2,9 +2,6 @@
  
 <h1>rapport scénario simple</h1> 
 
-
-<?php print_r($extractIds_raw) ?>
-
 <div>
   <?php foreach($scenario->getScenarioPages() as $scenarioPage): ?>
   
