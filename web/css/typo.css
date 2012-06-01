@@ -82,4 +82,7 @@ table thead th {
   font-family : "Courier New", Courier, monospace;
 }
 
-
+/* scenarios */
+#page .scenarioPages .url {
+  font-weight: bold;
+}
