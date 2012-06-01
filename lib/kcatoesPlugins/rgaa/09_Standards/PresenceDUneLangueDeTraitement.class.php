@@ -1,0 +1,30 @@
+<?php
+namespace Kcatoes\rgaa;
+
+// FIXME : test à implémenter
+
+class PresenceDUneLangueDeTraitement extends \ASource
+{
+  const testName = 'Présence d’une langue de traitement';
+  const testId = '9.8';
+  protected static $testProc = array(
+    'Si un segment de texte est présent dans la page, poursuivre le test, sinon le test est non applicable.',
+    'Si l’élément HTML contenant le segment de texte ou qu’un de ses éléments HTML ascendants
+    possède un attribut lang non vide (ou xml:lang pour du XML ou du XHTML 1.1), contenant le code identifiant
+    correctement la langue de traitement de la page, le test est validé, sinon le test est invalidé.'
+  );
+  protected static $testDocLinks = array(
+  'H57' => 'http://www.w3.org/TR/WCAG20-TECHS/H57'
+  );
+
+  protected static $testGroups = array(
+     'niveau'     => 'A'
+    ,'thematique' => 'Standards'
+    ,'profils'    => array('Développeur', 'Intégrateur')
+  );
+
+  public function execute()
+  {
+    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  }
+}
