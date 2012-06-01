@@ -22,8 +22,8 @@
     
       <?php foreach($results as $result): ?>
       
-        <?php $test = $result->getClass() ?>
-        <?php $nbLigne = count($result->getCollectionLines()) ?>
+        <?php $test = $result['class'] ?>
+        <?php $nbLigne = count($result['CollectionLines']) ?>
         <?php $rowspan = ($nbLigne <=1 ) ? '' : 'rowspan="'.$nbLigne.'"' ?>
             
         <?php include_partial('testResultLine', array(

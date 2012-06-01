@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /**
  * WebPageExtract
@@ -12,8 +12,22 @@
  */
 class WebPageExtract extends BaseWebPageExtract
 {
-  
-  /**
+
+    public function getResultsInfo(){
+    $resultsInfo = Doctrine_Query::create()
+      ->select('tr.class, tr.result, trl.result, trl.comment, trl.xpath, trl.css_selector, trl.source, trl.prettySource')
+      ->from('TestResult tr')
+      ->innerJoin('tr.CollectionLines trl')
+      //->leftJoin('sp.WebPage wp, wp.CollectionExtracts e, e.CollectionResults t')
+      ->where('tr.web_page_extract_id = ?', $this->getId())
+      //->orderBy('tr.id ASC')
+      ->execute();
+    
+      //die(var_dump($resultsInfo));
+    return $resultsInfo;
+  }
+
+    /**
    * Retourne les résultats des tests sur l'extraction courante 
    * @param $tests       Liste des classes de test à prendre en compte
    * @return Doctrine_Collection
@@ -87,5 +101,4 @@ class WebPageExtract extends BaseWebPageExtract
     
     return $rapport;
   }
-  
 }

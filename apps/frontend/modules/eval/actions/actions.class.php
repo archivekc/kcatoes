@@ -52,7 +52,7 @@ class evalActions extends kcatoesActions
     $fields['select'] = array();
     $fields['textarea'] = array();
 
-    $this->results = $this->extraction->getCollectionResults();
+    $this->results = $this->extraction->getResultsInfo();
 
     // 
     $this->history = true;
@@ -76,13 +76,14 @@ class evalActions extends kcatoesActions
    */
   public function executeExecuteTests(sfWebRequest $request)
   {
+  	set_time_limit(0);
+  	
   	$extractIds = $this->getUser()->getFlash('extractIds', null);
     if (!is_array($extractIds))
     {
     	throw new KcatoesTesterException();
     }
     $extracts = Doctrine::getTable('WebPageExtract')->findByDql('id in ?',array($extractIds));
-
     // Inclusion des classes de test
     TestsHelper::getRequired();
     $allTests = TestsHelper::getAllTestsFromDir();

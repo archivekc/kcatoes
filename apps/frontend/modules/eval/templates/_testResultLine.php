@@ -14,11 +14,11 @@
     <?php if ($history): ?>
       <?php $id = 'mainResult_'.$test::testId ?>
       <td <?php echo $rowspan ?> class="testStatus">
-        <span class="computed"><?php echo Resultat::getLabel($result->getResult()) ?></span>
+        <span class="computed"><?php echo Resultat::getLabel($result['result']) ?></span>
         <?php echo Tester::getResultatListe($id, $result->getResult()) ?>
       </td>
     <?php else: ?>
-      <td <?php echo $rowspan ?> class="testStatus"><?php echo Resultat::getLabel($result->getResult()) ?></td>
+      <td <?php echo $rowspan ?> class="testStatus"><?php echo Resultat::getLabel($result['result']) ?></td>
     <?php endif ?>
       
     <?php if ($nbLigne == 0): ?>
@@ -30,7 +30,7 @@
       <?php $first = true ?>
       <?php $cptLine = -1 ?>
       
-      <?php foreach ($result->getCollectionLines() as $resultLine): ?>
+      <?php foreach ($result['CollectionLines'] as $resultLine): ?>
       
         <?php $cptLine++ ?>
         <?php if (!$first): ?>
@@ -42,12 +42,12 @@
         <?php if ($history): ?>
           <?php /* résultat de base + liste */ ?>
           <?php $id = 'subResult'.$cptLine.'_'.$test::testId ?>
-          <td class="subResult <?php echo Resultat::getCode($resultLine->getResult()) ?>">
-            <span class="computed"><?php echo Resultat::getLabel($resultLine->getResult()) ?></span>
-            <?php echo Tester::getResultatListe($id, $resultLine->getResult()) ?>
+          <td class="subResult <?php echo Resultat::getCode($resultLine['result']) ?>">
+            <span class="computed"><?php echo Resultat::getLabel($resultLine['result']) ?></span>
+            <?php echo Tester::getResultatListe($id, $resultLine['result']) ?>
           </td>
         <?php else: ?>
-          <td class="subResult"><?php echo Resultat::getLabel($resultLine->getResult()) ?></td>
+          <td class="subResult"><?php echo Resultat::getLabel($resultLine['result']) ?></td>
         <?php endif ?>
 
         <td class="context">
@@ -56,12 +56,12 @@
           <?php if (strlen($resultLine->getComment())): ?>
             <?php 
               $comment = '<li class="comment"><strong>Retour du test&nbsp;:</strong> '.
-                           '<div class="value">'.$resultLine->getComment().'</div></li>';
+                           '<div class="value">'.$resultLine['comment'].'</div></li>';
             ?>
           <?php endif ?>
           
           <?php $source = '' ?>
-          <?php if (strlen($resultLine->getSource())): ?>
+          <?php if (strlen($resultLine['source'])): ?>
             <?php 
               /*$geshi = new GeSHi($resultLine->getSource(), 'html4strict');
               // conf geshi
@@ -73,15 +73,15 @@
               $geshi->enable_keyword_links(false);*/
               
               $source = '<li class="source"><strong>Source&nbsp;:</strong> '.
-                          '<div class="value">'.$resultLine->getPrettySource().'</div></li>';
+                          '<div class="value">'.$resultLine['prettySource'].'</div></li>';
             ?>              
           <?php endif ?>
           
           <?php $css = '' ?>
-          <?php if (strlen($resultLine->getCssSelector())): ?>
+          <?php if (strlen($resultLine['css_selector'])): ?>
             <?php 
               $css = '<li class="cssSelector"><strong>Sélecteur CSS&nbsp;:</strong> '.
-                       '<div class="value"><pre>'.$resultLine->getCssSelector().'</pre></div></li>';
+                       '<div class="value"><pre>'.$resultLine['css_selector'].'</pre></div></li>';
             ?>
           <?php endif ?>
           
