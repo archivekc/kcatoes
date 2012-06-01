@@ -152,21 +152,7 @@ class scenarioActions extends kcatoesActions
   	$this->getRoute()->getObject()->delete();
   	$this->redirect('scenarioDetail', array('id' => $request->getParameter('scenarioId')));
   }
-  /*
-  //
-  pageDelete
-  ////
-  pageDelete
-  ////
-  pageDelete
-  ////
-  pageDelete
-  ////
-  pageDelete
-  ////
-  pageDelete
-  //
-  */
+
   
   /**
    * Suppression d'un scenario
