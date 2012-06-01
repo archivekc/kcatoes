@@ -119,9 +119,11 @@
 	                    &ndash;
 	                    <span class="nbTest"><?php echo $testPassed ?> test(s) passé(s)</span>
 	                  </label>
-	                  <?php echo link_to('Voir les résultats (riche)', 'pageResultatTestsRiche', 
+	                  <?php if ($testPassed>0):?>
+	                  <?php echo link_to('Fiche d\'évaluation', 'pageResultatTestsRiche', 
                               array('id' => $extract->getId()), 
                               array('popup'=>true)) ?>
+                    <?php endif ?>
 	               </li>
 	             <?php endforeach ?>
 	             </ul>
