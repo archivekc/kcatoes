@@ -182,7 +182,7 @@ body {
 
 
 #page h3 {
-  color: #3F7F00;
+  /*color: #3F7F00;*/
 }
 
 #page strong {
@@ -207,18 +207,6 @@ body {
   cursor: help;
 }
 
-#page img {
-  -moz-box-shadow: 3px 3px 5px #CCC;
-  -webkit-box-shadow: 3px 3px 5px #CCC;
-  box-shadow: 3px 3px 5px #CCC;
-  
-}
-#page .pagination .paginateLinks a img,
-#page .sf_admin_list th img {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
 
 #page code {
   color : #000;
@@ -253,6 +241,10 @@ body {
   border-color: #FFF;
 }
 
+/* descriptions */
+#page .description {
+  background: #FFF;
+}
 
 /* Layouts */
 .part+.part {

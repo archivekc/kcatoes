@@ -145,6 +145,28 @@ class scenarioActions extends kcatoesActions
     }
   }
   
+  
+  public function executePageDelete(sfWebRequest $request)
+  {
+  	$this->getRoute()->getObject()->delete();
+  	$this->redirect('scenarioDetail', array('id' => $request->getParameter('scenarioId')));
+  }
+  /*
+  //
+  pageDelete
+  ////
+  pageDelete
+  ////
+  pageDelete
+  ////
+  pageDelete
+  ////
+  pageDelete
+  ////
+  pageDelete
+  //
+  */
+  
   /**
    * Suppression d'un scenario
    * @param sfWebRequest $request

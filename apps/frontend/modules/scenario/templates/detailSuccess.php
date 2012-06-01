@@ -51,77 +51,87 @@
       <input type="submit" value="Définir un modèle à partir de ce scénario"/>
     </div>
   </form>
+  <h2>Pages du scenario</h2>
   <form method="post" action="<?php echo url_for('scenarioActions', array('id'=>$scenario->getId()))?>">
-	  <table summary="Pages du scénario">
-	    <caption>Pages du scenario</caption>
-	    <thead>
-	      <tr>
-	        <th scope="col">Type de page</th>
-	        <th scope="col">Url</th>
-	        <th scope="col">Extractions</th>
-	        <th scope="col">Obligatoire</th>
-	        <th scope="col">Actions</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-		    <?php foreach($pages as $page): ?>
-		    <?php 
-		     $hasWebpage = count($page->getWebPage())>0;
-		     ?>
-		    <tr>
-		      <td><?php echo $page->getNom() ?></td>
-		      <?php if ($hasWebpage):?>
-		      <td><?php echo $page->getWebPage()->getUrl() ?></td>
-		      <td>
-		         <?php $extracts = $page->getWebPage()->getCollectionExtracts()?>
-		         <?php if (count($extracts)>0):?>
-		           <ul class="scenarioPageExtractList">
-			         <?php foreach ($extracts as $extract):?>
-			           <?php
-			             $testPassed = count($extract->getCollectionResults());
-			           ?>
-			            <li class="extract <?php echo $testPassed?'':'nbTest0'?>">
-			               <input type="checkbox" name="extracts[]" id="extr_<?php echo $extract->getId()?>" checked="checked" value="<?php echo $extract->getId()?>"/>
-			               <label for="extr_<?php echo $extract->getId()?>">
-			                 <span class="type"><?php echo $extract->getType()?></span>
-			                 &ndash;
-			                 <span class="nbTest"><?php echo $testPassed ?> test(s) passé(s)</span>
-			               </label>
-			            </li>
-			         <?php endforeach ?>
-			         </ul>
-		         <?php endif ?>
-		      </td>
-		      <?php else: ?>
-		      <td></td>
-		      <td></td>
-		      <?php endif ?>
-		      
-		      <td><?php echo $page->getRequired()?'oui':'non' ?></td>
-		      <td>
-		        <?php echo link_to('Modifier', 'scenarioPageEdit'
-		                       ,array('id'=>$page->getId())
-		                       ,array('class'=> 'ico modifier'
-		                       ,'title'=> 'Modifier la page '.$page->getNom())) 
-		        ?>
-			      <?php echo link_to('Supprimer', 'scenarioPageDelete'
-			                     ,array('id'=>$page->getId())
-			                     ,array('class'=> 'ico supprimer'
-			                     ,'title'=> 'Supprimer le type de page '.$page->getNom())) 
-			      ?>
-			      <?php if($hasWebpage):?>
-		          <?php echo link_to('Détail de la page', 'pageDetail'
-		                         ,array('id'=>$page->getWebPage()->getId())
-		                         ,array('class'=> 'ico detail'
-		                         ,'title'=> 'Voir la page '.$page->getNom())) 
-		          ?>
-	          <?php endif; ?>
-		      </td>
-		    </tr>
-		    <?php endforeach;?>
-	    
-	    </tbody>
-	  </table>
+    <ul class="scenarioPages highlight">
+    <?php foreach($pages as $page): ?>
+      <?php 
+        $hasWebpage = count($page->getWebPage())>0;
+      ?>
+      <li>
+        <div class="headPage">
+	        <h3>
+	          <?php if ($page->getRequired()):?>
+	            <?php echo image_tag('/img/ico/asterisk_orange.png',array(
+	                    'title' => 'Page obligatoire'
+	                    ,'alt' => 'Obligatoire'
+	                    ,'class' => 'required')) ?>
+	          <?php endif ?>
+	          <?php echo $page->getNom() ?>
+	        </h3>
+	        <div class="actions">
+	           <?php echo link_to('Modifier', 'scenarioPageEdit'
+	                           ,array('id'=>$page->getId())
+	                           ,array('class'=> 'ico modifier'
+	                           ,'title'=> 'Modifier la page '.$page->getNom())) 
+	            ?>
+	            <?php echo link_to('Supprimer', 'scenarioPageDelete'
+	                           ,array('id'=>$page->getId(), 'scenarioId'=>$scenario->getId())
+	                           ,array('class'=> 'ico supprimer'
+	                           ,'title'=> 'Supprimer le type de page '.$page->getNom())) 
+	            ?>
+	        </div>
+        </div>
+        <?php if ($hasWebpage):?>
+        <div class="twoParts">
+        
+	        <div class="summaryPage part smallpart">
+	          <div class="url"><?php echo $page->getWebPage()->getUrl() ?></div>
+	          <div class="description"><?php echo $page->getWebPage()->getDescription() ?></div>
+	        </div>
+	        
+	        <?php $extracts = $page->getWebPage()->getCollectionExtracts()?>
+	        <?php if (count($extracts)>0):?>
+	          <div class="scenarioPageExtractList part bigpart">
+	            <div class="actions">
+		            <?php echo link_to('Gérer les extractions', 'pageExtracts'
+		                              ,array('id'=>$page->getWebPage()->getId())
+		                              ,array('class'=> 'ico extraire'
+		                                    ,'title'=> 'Gérer les extractions de la page '.$page->getWebPage()->getUrl())) 
+		            ?>
+		          </div>
+	            <ul>
+	            <?php foreach ($extracts as $extract):?>
+	              <?php
+	                $testPassed = count($extract->getCollectionResults());
+	              ?>
+	               <li class="extract <?php echo $testPassed?'':'nbTest0'?>">
+	                  <input type="checkbox" name="extracts[]" id="extr_<?php echo $extract->getId()?>" checked="checked" value="<?php echo $extract->getId()?>"/>
+	                  <label for="extr_<?php echo $extract->getId()?>">
+	                    <span class="type"><?php echo $extract->getType()?></span>
+	                    &ndash;
+	                    <span class="nbTest"><?php echo $testPassed ?> test(s) passé(s)</span>
+	                  </label>
+	                  <?php echo link_to('Voir les résultats (riche)', 'pageResultatTestsRiche', 
+                              array('id' => $extract->getId()), 
+                              array('popup'=>true)) ?>
+	               </li>
+	             <?php endforeach ?>
+	             </ul>
+	           </div>
+	          <?php endif ?>
+          </div>
+        <?php else: ?>
+          <?php if ($page->getRequired()):?>
+            <?php echo userMsg('Aucune page associée. Celle-ci est obligatoire', 'warning')?>
+          <?php else: ?>
+            <p>Aucune page associée</p>
+          <?php endif;?>
+        <?php endif ?>
+      </li>
+    <?php endforeach ?>
+    </ul>
+    <h2>Actions sur le scenario</h2>
 	  <?php echo userMsg('Les actions ci-dessous seront faites sur les extractions sélectionnées.', 'info')?>
 	  <div class="submit">
 	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>

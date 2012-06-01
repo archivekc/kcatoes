@@ -365,7 +365,7 @@ form input[type=submit]:active {
 #page a.ico {
   display: inline-block;
   min-height: 1em;
-  padding: .2em .2em .2em 2em;
+  padding: .2em .5em .2em 2em;
   border: .1em solid #CCC ;
   border-radius: 3px;
   vertical-align: text-bottom;
@@ -380,7 +380,7 @@ form input[type=submit]:active {
   border-color: #999;
 }
 
-/* aucun ï¿½lï¿½ment */
+/* aucun élément */
 .zeroFound {
 	font-size: 2em;
 	font-style: italic;
@@ -402,7 +402,7 @@ form input[type=submit]:active {
   display: inline-block;
   width: 48%;
   float: left;
-  padding-right: 1%;
+  /*padding-right: 1%;*/
 }
 .twoParts .part+.part {
   float: right;
@@ -413,10 +413,10 @@ form input[type=submit]:active {
 }
 
 .twoParts .smallpart {
-  width: 33%;
+  width: 34%;
 }
 .twoParts .bigpart {
-  width: 63%;
+  width: 64%;
 }
 
 /* messages */
@@ -511,7 +511,27 @@ form input[type=submit]:active {
 }
 
 /* scenarios */
-#page .scenarioPageExtractList {
+#page .scenarioPageExtractList ul,
+#page .scenarioPages {
   list-style: none;
+  margin: 0;
+}
+
+.scenarioPages .headPage {
+  margin: 1em 0 .5em;
+  border-bottom: .1em solid;
+  overflow: hidden;
+}
+#page .scenarioPages .headPage h3 {
+  display: inline;
+  margin: 0;
+}
+#page .scenarioPages .headPage .required {
+	vertical-align: text-bottom;
+}
+#page .scenarioPages .actions {
+	float: right;
+}
+#page .scenarioPages .description {
   margin: 0;
 }

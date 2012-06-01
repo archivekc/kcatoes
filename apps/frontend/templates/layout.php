@@ -55,8 +55,8 @@
 		          <li>
 		            <a href="<?php echo url_for('sf_guard_permission')?>">Gestion des rôles</a>
 		          </li>
-		          <?php endif ?>
-		        </ul>
+  	        </ul>
+	          <?php endif ?>
             <p id="copyright">
               Version <?php echo sfConfig::get('app_version') ?> -
               <?php echo sfConfig::get('app_date') ?>
