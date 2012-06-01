@@ -32,7 +32,7 @@ class PresenceInformationsLangueTelechargement extends \ASource
   protected static $testGroups = array(
      'niveau'     => 'A'
     ,'thematique' => 'Navigation'
-    ,'profils'    => array('Développeur ', 'Intégrateur', 'Rédacteur', 'Contributeur')
+    ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
   
   public function execute()
