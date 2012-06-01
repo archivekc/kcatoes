@@ -43,23 +43,16 @@ class pageActions extends kcatoesActions
 	        //$src = $this->_convert($src);
 	        $src = $this->_fix_latin($src);
 	        
-	        // recupérer le doctype
+	        // Récupération du DOCTYPE
 	        $doctype = null;
-	      
 	        $matches = array();
 	        $pattern = '/(<!DOCTYPE[^>]*>)/i';
 	        preg_match($pattern, $src, $matches);
-	      
 	        if (isset($matches[1]) && $matches[1] != '') {
 	          $doctype = $matches[1];
-	          $src = str_replace($doctype, '', $src);
 	        }
-        	
         	$page->setDoctype($doctype);
         	
-          $baseUrl      = $page->getUrl();
-          $src = preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'"/>', $src);
-
           // Enregistrement des sources de base
           $baseExtract = new WebPageExtract();
           $baseExtract->setWebPage($page);
@@ -162,11 +155,13 @@ class pageActions extends kcatoesActions
   public function executeSource(sfWebRequest $request)
   {
     $this->extraction = $this->getRoute()->getObject();
-    $doctype = $this->extraction->getWebPage()->getDoctype();
-    if (is_null($doctype)){
-      $doctype = '';
-    }
-    $this->source = $doctype.$this->extraction->getSrc();
+    
+    $baseUrl = $this->extraction->getWebPage()->getUrl();
+    
+    // Ajout de <base ... /> pour affichage dans une iframe
+    $this->source = preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'"/>', 
+                                 $this->extraction->getSrc());
+    
   }
   
   /**
