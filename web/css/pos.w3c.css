@@ -185,7 +185,7 @@ body {
   margin: .8em 1em;
 }
 
-/* d�finitions */
+/* définitions */
 dt {
   float: left;
   clear: left;
@@ -300,7 +300,7 @@ form input[type=submit],
   margin: 1em auto;
 }
 
-/* listes d'acc�s */
+/* listes d'accès */
 .accessList .item {
   font-size: 1.5em;
 }
@@ -311,7 +311,7 @@ form input[type=submit],
 }
 
 
-/* aucun �l�ment */
+/* aucun élément */
 .zeroFound {
 	font-size: 2em;
 	font-style: italic;
