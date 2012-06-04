@@ -1,8 +1,7 @@
-    <h1>Modification du scenario</h1>
-    <form method="post" action="<?php echo url_for('scenarioEdit'
+    <form method="post" id="editScenarioForm" action="<?php echo url_for('scenarioEdit'
                                                   ,array('id'=>$scenario->getId()))?>"
-          class="highlight">
-      <h2>Modification d'un scenario de page web</h2>
+          class="block">
+      <h1>Modification d'un scenario de page web</h1>
       <div>
         <div class="fields">
           <?php if ($editScenarioForm->hasGlobalErrors()):?>
@@ -18,9 +17,10 @@
             <?php echo $editScenarioForm['nom']->renderLabel()?>
             <?php echo $editScenarioForm['nom']->render()?>
           </div>
-        </div>
-        <div class="submit">
-          <input type="submit" value="Modifier"/>
+          <div class="submit">
+            <input type="submit" value="Modifier"/>
+          </div>
         </div>
       </div>
     </form>
+

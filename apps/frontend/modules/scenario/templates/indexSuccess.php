@@ -1,5 +1,8 @@
+  <div class="block" id="scenarioIndex">
     <h1>Scenarii</h1>
-    <form method="post" action="<?php echo url_for('scenario/index')?>" class="highlight <?php echo !$addScenarioForm->hasErrors()?'quickAddForm':'' ?>">
+
+  <span>Ajout d'un scenario de page web</span>
+  <form method="post" id="addScenarioForm" action="<?php echo url_for('scenario/index')?>" class="block <?php echo !$addScenarioForm->hasErrors()?'quickAddForm':'' ?>">
       <h2>Ajout d'un scenario de page web</h2>
       <div>
         <div class="fields">
@@ -19,56 +22,44 @@
             <?php echo $addScenarioForm['template']->renderLabel()?>
             <?php echo $addScenarioForm['template']->render()?>
           </div>
-        </div>
-        <div class="submit">
-          <input type="submit" value="Ajouter"/>
+          <div class="submit">
+            <input type="submit" value="Ajouter"/>
+          </div>
         </div>
       </div>
     </form>
-    
+
+
     <?php $nbScenario = count($scenarii)?>
     <?php if($nbScenario == 0):?>
       <p class="zeroFound">
         Aucun scenario trouvé
       </p>
     <?php else: ?>
-    <table summary="Liste des scenarii de pages web">
-      <caption>Liste des scenarii de pages web</caption>
-      <thead>
-        <tr>
-          <th scope="col">Nom</th>
-          <th scope="col">Nombre de types de page</th>
-          <th scope="col">Nombre de pages renseignées</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
+    <ul class="listItem">
       <?php foreach($scenarii as $scenario):?>
-        <tr>
-          <td><?php echo $scenario->getNom()?></td>
-          <td><?php echo count($scenario->getScenarioPages())?></td>
-          <td></td>
-          <td>
-              <?php echo link_to('Modifier', 'scenarioEdit'
-                                  ,array('id'=>$scenario->getId())
-                                  ,array('class'=> 'ico modifier'
-                                        ,'title'=> 'Modifier les informations du scenario '.$scenario['nom'])) 
-              ?>
-              <?php echo link_to('Détails', 'scenarioDetail'
-                                  ,array('id'=>$scenario->getId())
-                                  ,array('class'=> 'ico detail'
-                                        ,'title'=> 'Voir le détails du scenario '.$scenario['nom'])) 
-               ?>
-
-
-              <?php echo link_to('Supprimer', 'scenarioDelete'
-                                  ,array('id'=>$scenario->getId())
-                                  ,array('class'=> 'ico supprimer'
-                                        ,'title'=> 'Supprimer le scenario '.$scenario['nom'])) 
-               ?>
-          </td>
-        </tr>
-      <?php endforeach ?>  
-      </tbody>
-    </table>
+        <li class="highlight">
+          <h2>
+            <?php echo $scenario->getNom()?>
+            &mdash; <?php echo count($scenario->getScenarioPages())?> page(s)
+          </h2>
+          <?php echo link_to('Détails', 'scenarioDetail'
+                              ,array('id'=>$scenario->getId())
+                              ,array('class'=> 'ico detail'
+                                    ,'title'=> 'Voir le détails du scenario '.$scenario['nom'])) 
+           ?>
+          <?php echo link_to('Modifier', 'scenarioEdit'
+                              ,array('id'=>$scenario->getId())
+                              ,array('class'=> 'ico modifier popupScreen'
+                                    ,'title'=> 'Modifier les informations du scenario '.$scenario['nom'])) 
+          ?>
+          <?php echo link_to('Supprimer', 'scenarioDelete'
+                              ,array('id'=>$scenario->getId())
+                              ,array('class'=> 'ico supprimer'
+                                    ,'title'=> 'Supprimer le scenario '.$scenario['nom'])) 
+           ?>
+        </li>
+    <?php endforeach ?>
+    </ul>
     <?php endif ?>
+  </div>

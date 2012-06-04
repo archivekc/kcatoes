@@ -18,8 +18,20 @@ class kcatoesActions extends sfActions
     return $form->isValid();
   }
 
+
+  public function preExecute()
+  {
+
+  }
   public function postExecute()
   {
+    /*
+     * Pas de layout pour les appels ajax
+     */
+   /* if ($this->getRequest()->isXmlHttpRequest())
+    {
+     //$this->setLayout(false);
+    }*/
     /*
      * Les variables flash 'redirectTo' et 'redirectParams' doivent être valuées 
      * avec false en 2ème paramètre : setflash('redirectX', false)

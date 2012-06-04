@@ -1,70 +1,57 @@
-body, html {
+body, html, #wrap, #aside {
   height: 100%;
-}
-
-/* grandes zones */
-#wrap {
-  min-height: 100%;
-  overflow: hidden;
 }
 body {
   font-size: 62.5%;
 }
 
-#wrap {
-  min-width: 60em;
-}
-
-/* en tete */
-#head {
-  border-top: 5px solid;
-  border-bottom: 2px solid;
+#aside {
+  float: left;
+  width: 14em;
+  padding: 0 .5em;
+  background-image: url('../img/tpl/leftShadow.png');/*, url('../img/tpl/rightShadow.png');*/
+  background-position: left top;/*, right top;*/
+  background-repeat: repeat-y;
+  border-color: #FF9 #9DD63B;
+  -moz-box-shadow: 0 0 10px #333;
+  -webkit-box-shadow: 0 0 10px #333;
+  box-shadow: 0 0 10px #333;
+  background: rgba(255, 255, 255, 0.5);
+  margin-top: -3.7em;
   position: relative;
   z-index: 1;
 }
 
-#headLogo {
-  display: inline-block;
-  float: left;
-  height: 12.8em;
-  width: 19.3em;
-  margin: 0 -24em -10em 4.7em;
+#KCatoesLogo img {
+  margin: auto;
+  display: block;
 }
-#headLogo img {
-  height: 12.8em;
+
+#head {
+  position: relative;
+  z-index: 0;
+  height: 3em;
+  padding-left: 16em;
+  border-top: .5em solid;
+  border-bottom: .2em solid;
 }
+
+
+/* grandes zones */
+#wrap {
+  overflow: auto;
+  min-width: 78em;
+}
+
   
 #teaser {
-  font-size: 2em;
+  font-size: 1.6em;
   font-style: italic;
   display: block;
-  margin: .8em 0 .8em 12em;
-  padding-bottom: .3em;
-  border-bottom: .1em solid;
+  margin: .4em 0;
+  background: #343434;
 }
 
-/* bandeau */
-#aside { /* 210 px */
-  display: inline;
-  float: left;
-  margin: 0 2em 1em;
-
-}
-
-#aside>*{
-  width: 15em;
-  padding: 6em 1em 1em;
-  border: 5px solid;
-  border: solid;
-  border-width: 0 5px 0;
-  border-radius: 0 0 5px 5px;
-}
-#aside>*+* {
-	padding: 1em;
-	margin-top: 1em;
-	border-radius: 5px;
-	border-width: 1px 5px;
-}
 
 /* menu */
 .menu li span,
@@ -95,7 +82,7 @@ body {
 
 #main {
   margin: 0 1em;
-  padding: 0 0 0 21em;
+  /*padding: 0 0 0 21em;*/
 }
 #main>*{
   max-width: 85.5em;
@@ -116,24 +103,11 @@ body {
 #page p {
   margin: 1em 0;
 }
-#page p:first-child {
-  margin-top: 0;
-}
+
 
 /* titres */
-#page h1 {
-  font-size: 2.5em;
-  border-bottom: .1em solid;
-  padding-bottom: .0em;
-  margin: .5em 0 .5em;
-  display: inline-block;
-}
-#page h1:first-child,
-#page h2:first-child{
-	margin-top: 0;
-}
 
-#page h2 {
+/*#page h2 {
   font-size: 1.6em;
   margin: 1em;
 }
@@ -141,7 +115,7 @@ body {
 #page h3 {
   font-weight: bold;
   margin: 1em 0 1em 1.6em;
-}
+}*/
 
 /* liens*/
 #page a {
@@ -164,10 +138,7 @@ body {
 
 
 /* listes */
-#page ul {
-  list-style: square outside;
-  margin: 1em 0 1em 1.6em;
-}
+
 #page ol {
   list-style: decimal outside;
   margin-left: 1.6em;
@@ -184,13 +155,8 @@ body {
   margin: 1em;
 }
 
-/* block mis en valeur */
-.sf_admin_form fieldset,
-.highlight {
-  padding: 1em;
-  margin: 1em;
-  border: 1px solid;
-}
+
+
 
 .sf_admin_form fieldset,
 .sf_admin_form>div {
@@ -243,23 +209,7 @@ dl {
   border-bottom: 1px dashed;
 }
 
-/* tableaux */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-table, th, td {
-  border: 1px solid;
-}
-th, td {
-  padding: .3em;
-} 
-table thead th {
-  font-weight: bold;
-}
-caption {
-  font-size: 1.5em;
-}
+
 
 /* pagination */
 .pagination>div {
@@ -307,7 +257,7 @@ body #page .pagination .paginateLinks .paginateGoPage {
   margin: 1em auto;
 }
 
-/* formulaire */
+/* formulaire *//*
 form {
   margin: 1em 0;
   padding: 1em;
@@ -327,9 +277,9 @@ form textarea {
 input[type=text], input[type=password], select, textarea {
   display: block;
   width: 30em;
-  /*resize: none;*/
-}
-
+  
+}*/
+/*
 form input[type=submit],
 .submit button {
   font-size: 2em;
@@ -343,16 +293,8 @@ form input[type=submit],
   margin-left: 1em;
   cursor: pointer;
 }
+*/
 
-form input[type=submit]:hover,
-form input[type=submit]:focus {
-  background: #646464;
-}
-form input[type=submit]:active {
-  position: relative;
-  top: 2px;
-  left: 2px;
-}
 
 .submit {
   margin: 1em auto;
@@ -367,24 +309,7 @@ form input[type=submit]:active {
 #page .actions {
   margin-left: 1em;
 }
-#page .pagination .paginateLinks a,
-#page a.ico {
-  display: inline-block;
-  min-height: 1em;
-  padding: .2em .5em .2em 2em;
-  border: .1em solid #CCC ;
-  border-radius: 3px;
-  vertical-align: text-bottom;
-  margin-left: .5em;
-  background-position: 2px center !important;
-  background-repeat: no-repeat !important;
-}
-#page .pagination .paginateLinks a:hover,
-#page .pagination .paginateLinks a:focus,
-#page a.ico:hover,
-#page a.ico:focus {
-  border-color: #999;
-}
+
 
 /* aucun �l�ment */
 .zeroFound {
@@ -542,3 +467,53 @@ form input[type=submit]:active {
   margin: 0;
 }
 
+
+/* layouts */
+#scenarioDetail .topAction {
+  overflow: hidden;
+}
+#scenarioDetail #addScenarioPage {
+  float: left;
+}
+#scenarioDetail #setAsTemplateScenarioForm {
+  float: right;
+  width: 25em;
+}
+
+/* formulaires */
+#addScenarioForm .fields>div,
+#editScenarioForm .fields>div {
+  padding-left: 16em;
+}
+#addScenarioForm .fields>div label,
+#editScenarioForm .fields>div label{
+  margin-left: -16em;
+  width: 15em;
+}
+#addScenarioForm .fields .submit,
+#editScenarioForm .fields .submit {
+  padding-left: 15.4em;
+}
+
+/* blocks */
+#connexionBlock {
+  width: 30em;
+  margin: 5em auto;
+}
+#connexionBlock input[type=text],
+#connexionBlock input[type=password] {
+  width: 15em;
+}
+
+/* popup */
+.popup#addScenarioForm,
+.popup#editScenarioForm,
+.popup#scenarioAddPageForm {
+  width: 50em;
+  margin-left: -25em;
+}
+
+/* pages */
+#scenarioIndex {
+  width: 50em;
+}

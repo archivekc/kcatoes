@@ -3,7 +3,7 @@
 
 homepage:
   url:   /
-  param: { module: page, action: index }
+  param: { module: editorial, action: overview }
 
 # ################
 # AUTHENTIFICATION

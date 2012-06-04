@@ -46,7 +46,7 @@ table thead th {
   text-align: left;
 }
 
-/* titres */
+/* titres *//*
 #page h1 {
   font-family: georgia, garamound, serif;
   font-style: italic;
@@ -57,7 +57,7 @@ table thead th {
 }
 #page h3 {
   font-weight: bold;
-}
+}*/
 
 /* erreurs */
 .error_list {

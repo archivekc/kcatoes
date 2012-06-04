@@ -1,4 +1,5 @@
 /* general */
+/*
 button.trigger {
   font: inherit;
   font-size: 1em;
@@ -11,20 +12,262 @@ button.trigger>* {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
-
+*/
 /* collapser */
 .collapsable.collapse-closed {
 	height: 0;
-	overflow: hidden; 
+	overflow: hidden;
+  display: none;
 }
 .collapsable.collapse-opened {
   height: auto;
   overflow: visible; 
 }
-
+.collapser{
+  cursor: pointer;
+}
 .collapser.collapse-closed {
-  background: transparent url('../img/ico/plus.png') left center no-repeat;
+  background: transparent url('../img/ico/add.png') left center no-repeat;
 }
 .collapser.collapse-opened {
-  background: transparent url('../img/ico/minus.png') left center no-repeat;
+  background: transparent url('../img/ico/cross.png') left center no-repeat;
+}
+
+/* blocks */
+.block {
+  position: relative;
+  padding: 1em;
+  margin-top: 1em;
+  border: .5em solid;
+  border-radius: .5em;
+  border-width: .1em .5em;
+
+  background-color: #FFF;
+  background-image: url('../img/tpl/leftShadow.png'), url('../img/tpl/rightShadow.png');
+  background-position: left top, right top;
+  background-repeat: repeat-y;
+  border-color: #FF9 #9DD63B;
+  -moz-box-shadow: 0 0 10px #333;
+  -webkit-box-shadow: 0 0 10px #333;
+  box-shadow: 0 0 10px #333;
+}
+.block>h1,
+.block>h2,
+.block>h3,
+.block>strong,
+.block .title {
+  display: block;
+  font-family: georgia, garamound, serif;
+  font-style: italic;
+  font-size: 2em;
+  margin: .5em -.5em;
+  padding: 0 .5em;
+  border-bottom: .05em solid #DDD;
+  margin-top: .5em;
+}
+.block>h1:first-child,
+.block>h2:first-child,
+.block>h3:first-child,
+.block>strong:first-child,
+.block .title:first-child {
+  margin-top: -.5em;
+}
+
+
+/* icones, liens et boutons */
+.pagination .paginateLinks a,
+.ico,
+input[type=submit],
+button {
+
+  display: inline-block;
+  min-height: 1em;
+  padding: .2em .5em;
+
+  border: .1em solid #CCC ;
+  border-radius: 3px;
+  vertical-align: text-bottom;
+  margin-left: .5em;
+
+  background-position: 2px center !important;
+  background-repeat: no-repeat !important;
+
+  font-weight: bold;
+
+  cursor: pointer;
+  background-color: #FFF;
+  transition-property: background;
+  transition-duration: .2s;
+  transition-timing-function: ease;
+  -moz-transition-property: background;
+  -moz-transition-duration: .2s;
+  -moz-transition-timing-function: ease;
+  -webkit-transition-property: background;
+  -webkit-transition-duration: .2s;
+  -webkit-transition-timing-function: ease;
+  -o-transition-property: background;
+  -o-transition-duration: .2s;
+  -o-transition-timing-function: ease;
+}
+.pagination .paginateLinks a,
+.ico {
+  padding-left: 2em;
+}
+
+a:hover,
+a:focus,
+input[type=submit]:hover,
+input[type=submit]:focus,
+button:hover,
+button:focus {
+  background-color: #9DD63B !important;/*#DDD;*/
+}
+input[type=submit]:active,
+button:active,
+ico:acitve {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+.pagination .paginateLinks a:hover,
+.pagination .paginateLinks a:focus,
+.ico:hover,
+.ico:focus,
+input:hover,
+input:focus,
+button:hover,
+button:focus
+ {
+  border-color: #DDD;
+  -moz-box-shadow: 0 0 .5em #FFC;
+  -webkit-box-shadow: 0 0 .5em #FFC;
+  box-shadow: 0 0 .5em #FFC;
+}
+
+
+/* formulaires */
+form .fields>div {
+  margin: 1em auto;
+  padding-left: 11em;
+}
+form .fields>div label{
+  margin-left: -11em;
+  display: inline-block;
+  width: 10em;
+  text-align: right;
+}
+form .fields .submit{
+  padding-left: 10.4em;
+}
+input, select, textarea, button {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  border: .1em solid #DDD;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #9DD63B;
+}
+
+
+
+/* tableaux */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid;
+}
+th, td {
+  padding: .3em;
+} 
+table thead th {
+  font-weight: bold;
+  background: #343434;
+  color: #FFF;
+}
+caption {
+  font-size: 1.5em;
+}
+/* tableaux */
+table, th, td {
+  border-color: #999;
+}
+
+table thead th a {
+  color: #FFF;
+}
+table thead th a:hover,
+table thead th a:focus {
+  color: #000;
+}
+table tr {
+  background: #FFF;
+}
+
+
+/* block mis en valeur */
+.sf_admin_form fieldset,
+.highlight {
+  padding: .5em;
+  margin: .5em -.5em;
+  -moz-box-shadow: 3px 3px 5px #CCC;
+  -webkit-box-shadow: 3px 3px 5px #CCC;
+  box-shadow: 3px 2px 5px #CCC;
+  border-radius: .5em;
+  border: .1em solid #EEE;
+}
+.sf_admin_form fieldset:hover,
+.highlight:hover {
+  background-color: rgba(128,128,128,.1);
+}
+
+/* listes d'items */
+.listItem {
+  margin: 1em auto;
+}
+.listItem h2 {
+  display: inline-block;
+  width: 20em;
+}
+.listItem li>* {
+  vertical-align: middle;
+}
+
+/* popup */
+.popupWrap {
+  position: fixed;
+  line-height: 1.5;
+  font-size: 1.2em;
+  height: 100%;
+  width: 100%;
+  padding:0; margin: 0;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.2);
+}
+.popupOverlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  padding:0; margin: 0;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,.2); 
+}
+.popup {
+  position: absolute;
+  width: 80%;
+  top: 10%;
+  max-height: 80%;
+  left: 50%;
+  margin-left: -40%;
+}
+.popup .collapser {
+  float: right;
+  margin: -.5em -.5em 0 0;
 }

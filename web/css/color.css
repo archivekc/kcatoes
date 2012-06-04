@@ -23,9 +23,9 @@ body {
 #head strong {
   color: #9DD63B;
 }
-
+/*
 #aside>*{
-  background-color: #FFF;
+  background-color: #999;
   background-image: url('../img/tpl/leftShadow.png'), url('../img/tpl/rightShadow.png');
   background-position: left top, right top;
   background-repeat: repeat-y;
@@ -34,7 +34,7 @@ body {
   -webkit-box-shadow: 0 0 10px #333;
   box-shadow: 0 0 10px #333;
 }
-
+*/
 .menu li span,
 .menu li a,
 .actionButton{
@@ -106,7 +106,7 @@ body {
   box-shadow: 3px 3px 15px #FFF;
 }
 
-/* icones */
+/* icones *//*
 #page .pagination .paginateLinks a,
 #page a.ico {
   background-color: #FFF;
@@ -122,7 +122,7 @@ body {
   -o-transition-property: background;
   -o-transition-duration: .2s;
   -o-transition-timing-function: ease;
-}
+}*/
 
 #page a.ico.supprimer {
   background-image: url('../img/ico/bin_closed.png');
@@ -161,14 +161,6 @@ body {
   background-image: url('../img/ico/attach.png');
 }
 
-.sf_admin_form fieldset,
-.highlight {
-  background: #F0F0F0;
-  border: 1px solid #DDD;
-  -moz-box-shadow: 3px 3px 5px #CCC;
-  -webkit-box-shadow: 3px 3px 5px #CCC;
-  box-shadow: 3px 3px 5px #CCC;
-}
 #page {
   /*background: #FFF;
   border-color: #CCC;*/
@@ -195,12 +187,12 @@ body {
 #page a {
   color: #000;
   border-bottom-color: #999;
-}
+}/*
 #page a:hover,
 #page a:focus {
   background: #DDD;
 }
-
+*/
 
 #page abbr {
   border-bottom-color: #CCC;

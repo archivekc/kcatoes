@@ -5,8 +5,8 @@ $(function(){
 		}
 		
 		$('.quickAddForm', parent).each(function(){
-			collapser = $('h2', this);
-			collapsable = $('>div', this);
+			collapser = $(this).prev();
+			collapsable = $(this);
 			makeCollapsable(collapser, collapsable);
 		});
 	};
@@ -18,37 +18,75 @@ $(function(){
 		
 		handleQuickAddForm(parent);
 		handleTabs(parent);
+		handlePopupScreen(parent);
+//		handleNav();
 	};
 	
 	initScreen();
 });
 
-var makeCollapsable = function(collapser, collapsable){
-	var trigger = $('<button class="trigger"/>');
+var makeCollapsable = function(collapser, collapsable, userOptions){
+	var option = {
+		style: 'popup'
+	}
+
+	var trigger = $('<button class="ico"/>');
 	$(collapser).before(trigger);
 	$(trigger).append(collapser);
 	
 	$(trigger).addClass('collapser collapse-closed');
 	$(collapsable).addClass('collapsable collapse-closed');
-	
-	$(trigger).click(function(){
-		if ($(this).is('.collapse-opened')){
-			$(collapsable).animate({
-				height: 0
-			}, 'fast'
-			,function(){
-				$(collapsable).add(trigger).removeClass('collapse-opened').addClass('collapse-closed');
-			});
-		} else {
-			$(collapsable).animate({
-				height: 'auto'
-			}, 'fast'
-			,function(){
-				$(collapsable).add(trigger).removeClass('collapse-closed').addClass('collapse-opened');
-			});
+
+	var show = function(){
+		switch(option.style){
+			case 'popup':
+				var popupWrap = $('<div class="popupWrap"/>');
+				var popupOverlay = $('<div class="popupOverlay"/>');
+				$(popupWrap).append(popupOverlay);
+				$(popupWrap).append(collapsable);
+				$(collapsable).addClass('popup');
+				$('#wrap').prepend(popupWrap);
+				var closeTrigger = $(trigger).clone(true).text('Fermer');
+				$(collapsable).prepend(closeTrigger);
+
+				collapsable.popupWrap = popupWrap;
+				collapsable.popupOverlay = popupOverlay;
+				collapsable.closeTrigger = closeTrigger;
+
+				break;
+			default:
+				$(collapsable).show();
+				break;
 		}
-		return false;
+	};
+
+	var hide = function(){
+		switch(option.style){
+			case 'popup':
+				/*$(collapsable).detach();*/
+				$(collapsable.popupWrap).remove();
+				$(collapsable.popupOverlay).remove();
+				$(collapsable.closeTrigger).remove();
+				break;
+			default:
+				$(collapsable).hide();
+				break;
+		}
+	}
+	
+	$(trigger).click(function(e){
+		e.preventDefault();
+		if ($(this).is('.collapse-opened')){
+			hide();
+			$(collapsable).add(trigger).removeClass('collapse-opened').addClass('collapse-closed');
+		} else {
+			$(collapsable).add(trigger).removeClass('collapse-closed').addClass('collapse-opened');
+			show();
+		}
 	});
+	delete trigger;
+	delete collapsable;
+	delete collapser;
 };
 
 ///////////// //
@@ -89,3 +127,56 @@ var handleTabs = function(parent){
 	$('.tabHeads a[href='+window.location.hash+']').click();
 };
 
+var handlePopupScreen = function(parent){
+	if (!parent){
+		parent = $('body');
+	}
+	$('.popupScreen', parent).click(function(e){
+      e.preventDefault();
+      $.ajax({
+      	type: 'get'
+      	,url: this.href
+      	,type: 'html'
+      	,success: function(data){
+      		var collapsable = $(data);
+			var popupWrap = $('<div class="popupWrap"/>');
+			var popupOverlay = $('<div class="popupOverlay"/>');
+			$(popupWrap).append(popupOverlay);
+			$(popupWrap).append(collapsable);
+			$(collapsable).addClass('popup');
+			$('#wrap').prepend(popupWrap);
+			var closeTrigger = $('<button class="collapse-opened collapser ico">Fermer</button>');
+
+			$(collapsable).prepend(closeTrigger);
+
+			collapsable.popupWrap = popupWrap;
+			collapsable.popupOverlay = popupOverlay;
+			collapsable.closeTrigger = closeTrigger;
+
+			$(closeTrigger).click(function(){
+				$(collapsable.popupWrap).remove();
+				$(collapsable.popupOverlay).remove();
+				$(collapsable.closeTrigger).remove();
+			});
+      	}
+      });
+	});
+}
+
+// ///////////// //
+// la navigation //
+// ///////////// //
+var handleNav = function(){
+	$('#mainMenu a').not('[href$=connexion],[href$=logout]').click(function(e){
+      e.preventDefault();
+      $.ajax({
+      	type: 'get'
+      	,url: this.href
+      	,type: 'html'
+      	,success: function(data){
+      		$('#page').html(data);
+      		console.log('loaded');
+      	}
+      });
+	});
+}
