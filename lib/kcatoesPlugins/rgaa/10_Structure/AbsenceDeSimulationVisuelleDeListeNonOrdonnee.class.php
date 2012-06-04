@@ -28,6 +28,8 @@ class AbsenceDeSimulationVisuelleDeListeNonOrdonnee extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier que si des éléments de
+    texte sont mis en forme visuellement par un marqueur de liste, ces derniers
+    sont regroupés dans un élément ul et qu’ils sont placés dans des éléments li.');
   }
 }
