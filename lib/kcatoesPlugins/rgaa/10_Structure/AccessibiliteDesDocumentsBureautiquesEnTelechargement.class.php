@@ -30,6 +30,21 @@ class AccessibiliteDesDocumentsBureautiquesEnTelechargement extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  	$crawler = $this->page->crawler;
+
+    $elements   = 'a, area, object, embed, applet';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si l’élément
+        pointe vers un document bureautique, celui-ci est disponible sous forme
+        native et en html');
+      }
+    }
   }
 }
