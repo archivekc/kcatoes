@@ -10,12 +10,12 @@
     <script type="text/javascript">
     var GLOBAL = {
       loginUrl: '<?php echo url_for('sf_guard_signin') ?>'
-    }
+    };
     </script>
-    
   </head>
   <body>
-  <div id="wrap">
+  
+    <div id="wrap">
       <div id="head">
         <p id="teaser"><strong>KCatoès</strong> est un outil automatique d'assistance aux tests d'accessibilité</p>
       </div>
