@@ -28,7 +28,7 @@ class MiseAJourDesAlternativesAuxElementsNonTextuels extends \ASource
   {
   	$crawler = $this->page->crawler;
 
-    $elements   = 'applet, object';
+    $elements   = 'applet, object, embed';
 
     $nodes = $crawler->filter($elements);
 
