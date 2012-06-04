@@ -26,6 +26,7 @@ class BalisageCorrectDesCitations extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier en cas de citation qu\'elle
+     soit correctement balisée');
   }
 }
