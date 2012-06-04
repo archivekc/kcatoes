@@ -214,7 +214,7 @@ button:focus {
 }
 
 
-/* bouton de situation de l'élément */
+/* bouton de situation de l'Ã©lÃ©ment */
 .highlightTrigger.confirmed .hide,
 .highlightTrigger .show {
 	display: block;
@@ -227,7 +227,7 @@ button:focus {
   background: #CCC;
 }
 
-/* procédure de test */
+/* procÃ©dure de test */
 .testProc ol {
   list-style: decimal outside;
 }

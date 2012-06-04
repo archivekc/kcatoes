@@ -73,7 +73,7 @@ table thead th {
   font-style: italic;
 }
 
-/* autres éléments */
+/* autres Ã©lÃ©ments */
 #page strong {font-weight: bold; }
 #page em {font-style: italic; }
 
@@ -84,5 +84,11 @@ table thead th {
 
 /* scenarios */
 #page .scenarioPages .url {
+  font-weight: bold;
+}
+
+/* rapports */
+ul.rapport span.count ,
+ul.rapport span.score {
   font-weight: bold;
 }
