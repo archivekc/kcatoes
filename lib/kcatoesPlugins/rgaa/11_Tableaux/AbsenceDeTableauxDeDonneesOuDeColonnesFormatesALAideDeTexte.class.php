@@ -24,6 +24,21 @@ class AbsenceDeTableauxDeDonneesOuDeColonnesFormatesALAideDeTexte extends \ASour
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  	$crawler = $this->page->crawler;
+
+    $elements   = 'table, pre';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de tableau de mise en page');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément n’est
+         pas utilisé afin de formater visuellement des colonnes ou un tableau de
+          données');
+      }
+    }
   }
 }
