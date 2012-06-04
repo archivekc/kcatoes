@@ -23,7 +23,7 @@ class ScenarioTemplateForm extends BaseScenarioTemplateForm
     ));
     
     $this->setValidator('nom', new sfValidatorString(array('required' => true),
-                                                     array('required' => 'Un nom de template est obligatoire')));
+                                                     array('required' => 'Le nom du modèle est obligatoire')));
     
     $this->widgetSchema->setNameFormat('scenarioTemplate[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
