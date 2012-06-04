@@ -51,7 +51,7 @@ class BalisageCorrectDesAbreviationsPresentesDansLaPage extends \ASource
     else {
       foreach($nodes as $node) {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'utilisateur
-        a accès un version non abrégée du texte');
+        a accès une version non abrégée du texte');
       }
     }
   }

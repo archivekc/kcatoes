@@ -36,6 +36,21 @@ class BalisageCorrectDesAcronymesPresentsDansLaPage extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = '[acronym]';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::MANUEL, 'Vérifier qne le texte ne
+       contiendrait pas d\'acronymes non définis');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'utilisateur
+        a accès un version complète du segment de texte');
+      }
+    }
   }
 }
