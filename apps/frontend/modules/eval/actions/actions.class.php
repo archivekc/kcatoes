@@ -52,7 +52,7 @@ class evalActions extends kcatoesActions
     $fields['select'] = array();
     $fields['textarea'] = array();
 
-    $this->results = $this->extraction->getResultsInfo();
+    $this->results = $this->extraction->getCollectionResults();
 
     // 
     $this->history = true;
@@ -78,6 +78,7 @@ class evalActions extends kcatoesActions
   {
   	set_time_limit(0);
   	
+	set_time_limit(0);
   	$extractIds = $this->getUser()->getFlash('extractIds', null);
     if (!is_array($extractIds))
     {
