@@ -40,11 +40,9 @@ class PresenceDUnMoyenDeTransmissionDeLInformationAutreQuUneUtilisationDeLaForme
       $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
-      foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si l’élément
-        affiche des zones dont leur forme ou leur position donne de l’information,
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si les éléments
+        affichent des zones dont leur forme ou leur position donne de l’information,
         celle-ci est accessible par un autre moyen');
-      }
     }
   }
 }
