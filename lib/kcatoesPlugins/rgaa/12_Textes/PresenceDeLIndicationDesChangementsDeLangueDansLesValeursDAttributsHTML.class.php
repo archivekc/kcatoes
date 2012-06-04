@@ -33,6 +33,7 @@ class PresenceDeLIndicationDesChangementsDeLangueDansLesValeursDAttributsHTML ex
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  	 $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'indication
+       de changement de langue ou son absence correspond bien au langage utilisé');
   }
 }
