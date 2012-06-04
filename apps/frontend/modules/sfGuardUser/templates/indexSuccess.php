@@ -1,9 +1,8 @@
 <?php use_helper('I18N', 'Date') ?>
 <?php include_partial('sfGuardUser/assets') ?>
 
-<div id="sf_admin_container">
+<div id="sf_admin_container" class="block">
   <h1><?php echo __('Liste des utilisateurs', array(), 'messages') ?></h1>
-
   <?php include_partial('sfGuardUser/flashes') ?>
     <?php include_partial('sfGuardUser/list_actions', array('helper' => $helper)) ?>
 

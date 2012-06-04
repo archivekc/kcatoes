@@ -1,4 +1,6 @@
+<div class="addAction">
 <?php echo link_to('Créer'
     				, '@'.$helper->getUrlForAction('new')
-    				, array('class'=>'ico addProfil' ));
+    				, array('class'=>'ico addProfil popupScreen' ));
 ?>
+</div>

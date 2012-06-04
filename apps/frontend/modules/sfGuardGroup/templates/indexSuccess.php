@@ -1,7 +1,7 @@
 <?php use_helper('I18N', 'Date') ?>
 <?php include_partial('sfGuardGroup/assets') ?>
 
-<div id="sf_admin_container">
+<div id="sf_admin_container" class="block">
   <h1><?php echo __('Liste des profils', array(), 'messages') ?></h1>
 
   <?php include_partial('sfGuardGroup/flashes') ?>

@@ -3,7 +3,7 @@
 echo link_to('Modifier'
 			,$helper->getUrlForAction('edit')
 			,$sfGuardPermission
-			,array('class' => 'ico modifier')
+			,array('class' => 'ico modifier popupScreen')
 	)
 ?>
 <?php

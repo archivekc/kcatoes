@@ -3,6 +3,9 @@
 /* remise à zéro des styles */
 @import './reset.css';
 
+/* composants */
+@import './components.css';
+
 /* positionnement */
 @import './pos.css';
 
@@ -11,6 +14,3 @@
 
 /* typographie */
 @import './typo.css';
-
-/* composants */
-@import './components.css';

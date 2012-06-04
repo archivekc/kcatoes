@@ -69,9 +69,15 @@ button.trigger>* {
 .block>h2:first-child,
 .block>h3:first-child,
 .block>strong:first-child,
-.block .title:first-child {
+.block .title:first-child,
+.popup button.collapser+h1,
+.popup button.collapser+h2,
+.popup button.collapser+h3,
+.popup button.collapser+strong,
+.popup button.collapser+.title {
   margin-top: -.5em;
 }
+
 
 
 /* icones, liens et boutons */
@@ -86,13 +92,14 @@ button {
 
   border: .1em solid #CCC ;
   border-radius: 3px;
-  vertical-align: text-bottom;
+  vertical-align: baseline;
   margin-left: .5em;
 
   background-position: 2px center !important;
   background-repeat: no-repeat !important;
 
   font-weight: bold;
+  text-decoration: none;
 
   cursor: pointer;
   background-color: #FFF;
@@ -147,15 +154,21 @@ button:focus
 
 
 /* formulaires */
-form .fields>div {
+form .fields>div,
+.sf_admin_form .sf_admin_form_row {
   margin: 1em auto;
   padding-left: 11em;
 }
-form .fields>div label{
+form .fields>div label,
+.sf_admin_form .sf_admin_form_row label {
   margin-left: -11em;
   display: inline-block;
   width: 10em;
   text-align: right;
+  vertical-align: top;
+}
+.sf_admin_form .sf_admin_form_row .content {
+  display: inline;
 }
 form .fields .submit{
   padding-left: 10.4em;
@@ -169,6 +182,11 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: #9DD63B;
+}
+#wrap [type=checkbox]+label,
+#wrap [type=radio]+label {
+  margin-left: 0;
+  width: auto;
 }
 
 
@@ -218,11 +236,20 @@ table tr {
   -webkit-box-shadow: 3px 3px 5px #CCC;
   box-shadow: 3px 2px 5px #CCC;
   border-radius: .5em;
-  border: .1em solid #EEE;
+  border: .1em solid #DDD;
+}
+.sf_admin_form fieldset {
+  margin: 0 1em;
+}
+.sf_admin_form fieldset h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  border-bottom: .1em solid; 
 }
 .sf_admin_form fieldset:hover,
 .highlight:hover {
   background-color: rgba(128,128,128,.1);
+  border-color: #EEE;
 }
 
 /* listes d'items */
@@ -231,7 +258,7 @@ table tr {
 }
 .listItem h2 {
   display: inline-block;
-  width: 20em;
+  width: 27.5em;
 }
 .listItem li>* {
   vertical-align: middle;
@@ -264,6 +291,7 @@ table tr {
   width: 80%;
   top: 10%;
   max-height: 80%;
+  overflow: auto;
   left: 50%;
   margin-left: -40%;
 }
