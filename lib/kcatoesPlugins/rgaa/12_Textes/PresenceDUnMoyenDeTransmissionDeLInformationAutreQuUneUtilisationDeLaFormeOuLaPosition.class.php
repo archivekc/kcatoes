@@ -29,6 +29,22 @@ class PresenceDUnMoyenDeTransmissionDeLInformationAutreQuUneUtilisationDeLaForme
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+
+    $crawler = $this->page->crawler;
+
+    $elements   = 'img, input[type=image], applet, object, embed';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si l’élément
+        affiche des zones dont leur forme ou leur position donne de l’information,
+        celle-ci est accessible par un autre moyen');
+      }
+    }
   }
 }
