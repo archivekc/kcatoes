@@ -28,6 +28,20 @@ class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \AS
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  $crawler = $this->page->crawler;
+
+    $elements   = 'table';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de tableau de données');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier si les segments de
+        textes sont contenus dans un élément th');
+      }
+    }
   }
 }
