@@ -26,6 +26,22 @@ class AbsenceDesElementsPropresAuxTableauxDeDonneesDansLesTableauxDeMiseEnPage e
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'table';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de tableau de mise en page');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément ne
+        possède pas d’attribut summary ou possède un attribut summary vide
+        (summary=""), et qu’il ne contient aucun des éléments ou attributs suivants :
+        th, caption, thead, tfoot, colgroup, scope, headers, axis');
+      }
+    }
   }
 }
