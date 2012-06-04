@@ -40,7 +40,7 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesSimple
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que Si les cellules
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que les cellules
          d’en-tête de lignes (th) ont un attribut scope ayant comme valeur row
          ou si les cellules d’en-tête de colonnes (th) ont un attribut scope ayant
          comme valeur col ou si les cellules d’en-tête (th) ont un attribut id
