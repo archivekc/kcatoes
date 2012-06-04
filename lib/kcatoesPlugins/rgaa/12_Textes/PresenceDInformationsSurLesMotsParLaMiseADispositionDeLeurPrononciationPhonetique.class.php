@@ -30,6 +30,8 @@ class PresenceDInformationsSurLesMotsParLaMiseADispositionDeLeurPrononciationPho
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult($node, \Resultat::MANUEL, 'Vérifier que les éléments de texte
+    difficiles à prononcer aient une pronociation phonétique à proximité, soit
+    dans le texte lui-même ou par le biais d\'un lien');
   }
 }
