@@ -33,6 +33,22 @@ class PresenceDIndicationDesChangementsDeLangueDansLeTexte extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'lang';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'absence de
+      traitement de langue soit justifiée.');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'indication
+        de changement de langue correspond bien au langage utilisé dans le texte
+        balisé concerné');
+      }
+    }
   }
 }
