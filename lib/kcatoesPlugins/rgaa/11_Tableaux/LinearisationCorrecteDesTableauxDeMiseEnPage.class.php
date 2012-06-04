@@ -25,7 +25,7 @@ class LinearisationCorrecteDesTableauxDeMiseEnPage extends \ASource
 
   public function execute()
   {
-  $crawler = $this->page->crawler;
+    $crawler = $this->page->crawler;
 
     $elements   = 'table';
 
