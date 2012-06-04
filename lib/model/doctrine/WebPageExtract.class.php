@@ -55,15 +55,17 @@ class WebPageExtract extends BaseWebPageExtract
   {
     // *** Initialisation du rapport
     $base_rapport = array(
-      Resultat::getLabel(Resultat::ECHEC)    => 0,
-      Resultat::getLabel(Resultat::REUSSITE) => 0,
-      Resultat::getLabel(Resultat::MANUEL)   => 0,
-      Resultat::getLabel(Resultat::NON_EXEC) => 0,
-    
-      Resultat::getLabel(Resultat::ERREUR)   => 0,
-      Resultat::getLabel(Resultat::NA)       => 0,
-      
-      'total'            => 0,
+      'total'             => 0,
+      'applicables'       => 0,
+      'resultat'          => array(
+          Resultat::getLabel(Resultat::ECHEC)    => 0,
+          Resultat::getLabel(Resultat::REUSSITE) => 0,
+          Resultat::getLabel(Resultat::MANUEL)   => 0,
+          Resultat::getLabel(Resultat::NON_EXEC) => 0,
+        
+          Resultat::getLabel(Resultat::ERREUR)   => 0,
+          Resultat::getLabel(Resultat::NA)       => 0,
+      )
     );
     
     $rapport = array(
@@ -92,11 +94,49 @@ class WebPageExtract extends BaseWebPageExtract
       $thematique = $test::getGroup('thematique');
       
       // Incrémentation
-      $rapport['total'][Resultat::getLabel($result)]++;
-      $rapport['total']['total']++;
+      $rapport['total']['total']++;                     // Total
+      $rapport['total']['resultat'][Resultat::getLabel($result)]++; // Par résultat
        
-      $rapport['thematiques'][$thematique][Resultat::getLabel($result)]++;
-      $rapport['thematiques'][$thematique]['total']++;
+      $rapport['thematiques'][$thematique]['resultat'][Resultat::getLabel($result)]++; // Par thématique - par résultat
+      $rapport['thematiques'][$thematique]['total']++;                     // Par thématique - total
+      
+      // Comptabilisation des tests applicables
+      if ( $result != Resultat::ERREUR && 
+           $result != Resultat::NA     && 
+           $result != Resultat::NON_EXEC )
+      {
+        $rapport['total']['applicables']++;                    // Total applicables
+        $rapport['thematiques'][$thematique]['applicables']++; // Total applicables par thématique
+      }
+    }
+    
+    // *** Calcul du score
+
+    // Score global
+    if ($rapport['total']['applicables'] > 0)
+    {
+      $rapport['total']['score'] = 100 
+                                   * $rapport['total']['resultat'][Resultat::getLabel(Resultat::REUSSITE)] 
+                                   / $rapport['total']['applicables'];
+    }
+    else 
+    {
+      $rapport['total']['score'] = '-';
+    }
+    
+    // Score par thématique
+    foreach($rapport['thematiques'] as $thematique => $rapportThematique)
+    {
+      if($rapport['thematiques'][$thematique]['applicables'] > 0)
+      {
+        $rapport['thematiques'][$thematique]['score'] = 100 
+                                     * $rapport['thematiques'][$thematique]['resultat'][Resultat::getLabel(Resultat::REUSSITE)] 
+                                     / $rapport['thematiques'][$thematique]['applicables'];
+      }
+      else 
+      {
+        $rapport['thematiques'][$thematique]['score'] = '-';
+      }
     }
     
     return $rapport;
