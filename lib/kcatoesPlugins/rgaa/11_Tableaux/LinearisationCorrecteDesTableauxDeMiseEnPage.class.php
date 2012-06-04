@@ -25,6 +25,22 @@ class LinearisationCorrecteDesTableauxDeMiseEnPage extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  $crawler = $this->page->crawler;
+
+    $elements   = 'table';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de tableau de mise en page');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la lecture
+        linéaire du contenu du tableau (cellule après cellule, dans l’ordre du
+        code source) conserve les associations logiques présentes dans son
+        rendu affiché');
+      }
+    }
   }
 }

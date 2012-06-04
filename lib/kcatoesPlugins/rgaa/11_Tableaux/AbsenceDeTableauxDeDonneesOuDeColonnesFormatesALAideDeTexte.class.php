@@ -31,7 +31,7 @@ class AbsenceDeTableauxDeDonneesOuDeColonnesFormatesALAideDeTexte extends \ASour
     $nodes = $crawler->filter($elements);
 
     if (count($nodes) == 0) {
-      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de tableau de mise en page');
+      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas d\'element pre');
     }
     else {
       foreach($nodes as $node) {
