@@ -35,6 +35,19 @@ class UniversaliteDesGestionnairesEvenements extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  $crawler = $this->page->crawler;
+
+    $elements   = 'applet, object, img, input[type=text], input[type=checkbox], input[type=file], input[type=radio], input[type=password], select, textarea';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas d\'élément ayant des attributs de gestion d\'évènements');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier');
+      }
+    }
   }
 }
