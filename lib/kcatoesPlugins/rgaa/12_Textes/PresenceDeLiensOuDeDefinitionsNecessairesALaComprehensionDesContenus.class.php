@@ -30,6 +30,7 @@ class PresenceDeLiensOuDeDefinitionsNecessairesALaComprehensionDesContenus exten
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'information est
+    compréhensible au travers du contexte ou de définitions.');
   }
 }
