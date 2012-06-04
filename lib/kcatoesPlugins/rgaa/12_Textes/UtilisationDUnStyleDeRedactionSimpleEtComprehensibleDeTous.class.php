@@ -40,6 +40,8 @@ class UtilisationDUnStyleDeRedactionSimpleEtComprehensibleDeTous
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier que les contenus ou les
+    versions additionnelles sont compréhensibles pour un niveau scolaire de 3ème
+     ou au plus au premier cycle de l\'enseignement secondaire');
   }
 }
