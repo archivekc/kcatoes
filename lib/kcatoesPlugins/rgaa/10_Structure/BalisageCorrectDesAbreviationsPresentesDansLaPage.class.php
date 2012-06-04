@@ -37,6 +37,22 @@ class BalisageCorrectDesAbreviationsPresentesDansLaPage extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+
+    $crawler = $this->page->crawler;
+
+    $elements   = '[abbr]';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::MANUEL, 'Vérifier qne le texte ne
+       contiendrait pas d\'abbréviations non définies');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'utilisateur
+        a accès un version non abrégée du texte');
+      }
+    }
   }
 }
