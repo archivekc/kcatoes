@@ -36,7 +36,12 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 	
 	$(trigger).addClass('collapser collapse-closed');
 	$(collapsable).addClass('collapsable collapse-closed');
-
+	
+	var handleKey = function(e){
+		if (e.keyCode == 27 ){  // escape key
+			$(trigger).click();
+		}
+	};
 	var show = function(){
 		switch(option.style){
 			case 'popup':
@@ -53,6 +58,8 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 				collapsable.popupOverlay = popupOverlay;
 				collapsable.closeTrigger = closeTrigger;
 
+				$(document).bind('keyup', handleKey);
+
 				break;
 			default:
 				$(collapsable).show();
@@ -66,6 +73,7 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 				$(collapsable.popupWrap).remove();
 				$(collapsable.popupOverlay).remove();
 				$(collapsable.closeTrigger).remove();
+				$(document).unbind('keyup', handleKey);
 				break;
 			default:
 				$(collapsable).hide();
@@ -194,7 +202,16 @@ var popup = function(content){
 		$(content.closeTrigger).remove();
 		
 		$(content).trigger('popuphide');
+		$(document).unbind('keyup', handleKey);
 	});
 	$(content).trigger('popupshow');
+	
+	var handleKey = function(e){
+		if (e.keyCode == 27 ){  // escape key
+			$(closeTrigger).click();
+		}
+	};
+	$(document).bind('keyup', handleKey);
+	
 	return content;
 }
