@@ -23,6 +23,18 @@ class AbsenceDeComposantsObsoletesParRapportAuxSpecificationsW3C extends \ASourc
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'applet, basefont, blackface, blockquote, center, dir, embed,
+    font, i, isindex, layer, menu, noembed, s, shadow, strike, u,[alink], [align],
+     [background], [border], [color], [compact], [face], [height], [language], [link],
+     [name], [noshade], [nowrap], [size], [start], [text], li[type], li[value],
+     [version], [vlink], [width]';
+
+    $nodes = $crawler->filter($elements);
+
+    foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier l\'utilisation de cette balise');
+    }
   }
 }
