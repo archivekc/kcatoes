@@ -29,6 +29,20 @@ class PresenceAutreMoyenQueFormeOuPositionPourIdentifierContenuAuquelEstFaitRefe
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'img, input[type=image], applet, object, embed';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si le texte
+        mentionne une forme ou une position et fait référence à un contenu de la
+        page ou du site, ce dernier est identifiable par un autre moyen que la
+        forme ou la position');
+    }
   }
 }
