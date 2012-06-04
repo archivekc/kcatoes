@@ -29,6 +29,24 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesSimple
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'table';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de tableau de données');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que Si les cellules
+         d’en-tête de lignes (th) ont un attribut scope ayant comme valeur row
+         ou si les cellules d’en-tête de colonnes (th) ont un attribut scope ayant
+         comme valeur col ou si les cellules d’en-tête (th) ont un attribut id
+         non vide, et que les cellules (td) qui s’y rattachent ont un attribut
+         headers contenant la valeur de ces attributs id');
+      }
+    }
   }
 }
