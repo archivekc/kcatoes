@@ -32,7 +32,7 @@ class PresenceDUnMoyenDeTransmissionDeLInformationAutreQuUneUtilisationDeLaForme
 
     $crawler = $this->page->crawler;
 
-    $elements   = 'img, input[type=image], applet, object, embed';
+    $elements = 'img, input[type=image], applet, object, embed';
 
     $nodes = $crawler->filter($elements);
 
@@ -40,7 +40,7 @@ class PresenceDUnMoyenDeTransmissionDeLInformationAutreQuUneUtilisationDeLaForme
       $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si les éléments
+        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que si les éléments
         affichent des zones dont leur forme ou leur position donne de l’information,
         celle-ci est accessible par un autre moyen');
     }

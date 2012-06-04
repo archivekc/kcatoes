@@ -35,7 +35,7 @@ class PresenceDIndicationDesChangementsDeLangueDansLeTexte extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements   = 'lang';
+    $elements = 'lang';
 
     $nodes = $crawler->filter($elements);
 
@@ -44,11 +44,9 @@ class PresenceDIndicationDesChangementsDeLangueDansLeTexte extends \ASource
       traitement de langue soit justifiée.');
     }
     else {
-      foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'indication
+        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'indication
         de changement de langue correspond bien au langage utilisé dans le texte
         balisé concerné');
-      }
     }
   }
 }

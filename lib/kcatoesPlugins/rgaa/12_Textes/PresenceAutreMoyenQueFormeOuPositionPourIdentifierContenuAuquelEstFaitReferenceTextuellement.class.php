@@ -39,7 +39,7 @@ class PresenceAutreMoyenQueFormeOuPositionPourIdentifierContenuAuquelEstFaitRefe
       $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si le texte
+        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que si le texte
         mentionne une forme ou une position et fait référence à un contenu de la
         page ou du site, ce dernier est identifiable par un autre moyen que la
         forme ou la position');
