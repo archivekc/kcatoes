@@ -56,7 +56,8 @@
           <?php echo link_to('Supprimer', 'scenarioDelete'
                               ,array('id'=>$scenario->getId())
                               ,array('class'=> 'ico supprimer'
-                                    ,'title'=> 'Supprimer le scenario '.$scenario['nom'])) 
+                                    ,'title'=> 'Supprimer le scenario '.$scenario['nom']
+                                    ,'confirm'=>'Êtes-vous sûr ?')) 
            ?>
         </li>
     <?php endforeach ?>
