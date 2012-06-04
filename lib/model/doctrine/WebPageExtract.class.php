@@ -27,22 +27,33 @@ class WebPageExtract extends BaseWebPageExtract
     return $resultsInfo;
   }
 
-    /**
+  /**
    * Retourne les résultats des tests sur l'extraction courante 
    * @param $tests       Liste des classes de test à prendre en compte
    * @return Doctrine_Collection
    */
   public function getResults($tests=array())
   {
-    
     $query = Doctrine_Core::getTable('TestResult')->createQuery('r')
                 ->where('r.web_page_extract_id = ?', $this->getId())
                 ->orderBy('r.num_categorie, r.num_test');
     
     $results = $query->execute();
-    
     return $results;
+  }
+
+  /**
+   * Retourne l'extraction associée à tous ses résultats sous forme de collection 
+   * @return Doctrine_Collection
+   */
+  public function getResultsForUpdate()
+  {
+    $query = Doctrine_Core::getTable('TestResult')->createQuery('r')
+                ->leftJoin('r.CollectionLines')
+                ->where('r.web_page_extract_id = ?', $this->getId());
     
+    $results = $query->execute();
+    return $results;
   }
   
   /**

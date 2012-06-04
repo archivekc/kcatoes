@@ -12,10 +12,11 @@
     </td>
       
     <?php if ($history): ?>
-      <?php $id = 'mainResult_'.$test::testId ?>
+      <?php $id   = 'mainResult_'.$test::testId ?>
+      <?php $name = 'mainResult_'.$result['id'] ?>
       <td <?php echo $rowspan ?> class="testStatus">
         <span class="computed"><?php echo Resultat::getLabel($result['result']) ?></span>
-        <?php echo Tester::getResultatListe($id, $result->getResult()) ?>
+        <?php echo Tester::getResultatListe($id, $result['result'], $name) ?>
       </td>
     <?php else: ?>
       <td <?php echo $rowspan ?> class="testStatus"><?php echo Resultat::getLabel($result['result']) ?></td>
@@ -41,10 +42,11 @@
         
         <?php if ($history): ?>
           <?php /* résultat de base + liste */ ?>
-          <?php $id = 'subResult'.$cptLine.'_'.$test::testId ?>
+          <?php $id   = 'subResult'.$cptLine.'_'.$test::testId ?>
+          <?php $name = 'subResult_'.$resultLine['id'] ?>
           <td class="subResult <?php echo Resultat::getCode($resultLine['result']) ?>">
             <span class="computed"><?php echo Resultat::getLabel($resultLine['result']) ?></span>
-            <?php echo Tester::getResultatListe($id, $resultLine['result']) ?>
+            <?php echo Tester::getResultatListe($id, $resultLine['result'], $name) ?>
           </td>
         <?php else: ?>
           <td class="subResult"><?php echo Resultat::getLabel($resultLine['result']) ?></td>
@@ -53,7 +55,7 @@
         <td class="context">
         
           <?php $comment = '' ?>
-          <?php if (strlen($resultLine->getComment())): ?>
+          <?php if (strlen($resultLine['comment'])): ?>
             <?php 
               $comment = '<li class="comment"><strong>Retour du test&nbsp;:</strong> '.
                            '<div class="value">'.$resultLine['comment'].'</div></li>';
@@ -91,9 +93,10 @@
           <?php endif ?>
           
           <?php if ($history): ?>
-            <?php $id = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId)?>
+            <?php $id   = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId) ?>
+            <?php $name = ('annot_'.$resultLine['id']) ?>
             <div class="annotation"><strong>Annotation&nbsp;</strong>
-              <textarea id="<?php echo $id ?>" name="<?php echo $id ?>" cols="20" rows="5"></textarea>
+              <textarea id="<?php echo $id ?>" name="<?php echo $name ?>" cols="20" rows="5"><?php echo $resultLine['annotation'] ?></textarea>
             </div>
           <?php endif; ?>
            

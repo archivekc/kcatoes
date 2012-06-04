@@ -20,7 +20,6 @@ class evalActions extends kcatoesActions
     $this->extraction = $this->getRoute()->getObject();
     $this->page       = $this->extraction->getWebPage();
     
-    
     // Inclusion des classes de test
     TestsHelper::getRequired();
   }
@@ -71,7 +70,7 @@ class evalActions extends kcatoesActions
   
   /**
    * Passage des tests
-   * Enter description here ...
+   * 
    * @param sfWebRequest $request
    */
   public function executeExecuteTests(sfWebRequest $request)
@@ -142,5 +141,56 @@ class evalActions extends kcatoesActions
   	
     $this->getUser()->setFlash('testsMsg', 'Tests exécutés');
     
+  }
+
+  /**
+   * Sauvegarde des résultats après édition manuelle
+   * 
+   * @param sfWebRequest $request
+   */
+  public function executeSauvegardeResultat(sfWebRequest $request)
+  {
+    $this->extraction = $this->getRoute()->getObject();
+    
+    // *** Récupération des résultats *actuels* associés à l'extraction
+    $results = $this->extraction->getResultsForUpdate();
+    
+    // Parcours des résultats de test
+    foreach($results as $result)
+    {
+      // Réupération du résultat envoyé
+      $newTestResult = $request->getParameter('mainResult_'.$result->getId(), 'ERREUR');
+      
+      // Enregistrement
+      $result->setResult(Resultat::getValue($newTestResult));
+      
+      // Parcours des lignes de résultats de test
+      $collectionLines = $result->getCollectionLines(); 
+      foreach ($collectionLines  as $resultLine)
+      {
+        // Réupération du sous-résultat envoyé
+        $newTestSubResult = $request->getParameter('subResult_'.$resultLine->getId(), 'ERREUR');
+        
+        // Réupération de l'annotation envoyée
+        $newTestAnnot = $request->getParameter('annot_'.$resultLine->getId(), '');
+        
+        // Enregistrement  
+        $resultLine->setResult(Resultat::getValue($newTestSubResult));
+        $resultLine->setAnnotation($newTestAnnot);
+      } 
+    }
+    
+    // Sauvegarde en base
+    try
+    {
+      $results->save();
+      $this->getUser()->setFlash('success', 'Résultats enregistrés');
+    }
+    catch(Exception $e) 
+    {
+      $this->getUser()->setFlash('error', 'Erreur lors de l\'enregistrement');      
+    }
+    
+    $this->redirect('pageResultatTestsRiche', $this->extraction);
   }
 }

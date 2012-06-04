@@ -238,21 +238,26 @@ class Tester
   
   /**
    * Génére un select html listant les différentes valeurs de résultat
-   * @param String $name le nom de la liste (génére l'attribut id est name)
+   * @param String $id l'identifiant de la liste
    * @param Int $value (optionnal) si fourni, alors la valeur est sélectionnée
    *        par défaut
+   * @param String $name le nom de la liste (identique à id si non fourni)
    * @return String code html de la liste
    */
-  public static function getResultatListe($name, $value = null)
+  public static function getResultatListe($id, $value = null, $name=null)
   {
-    $id = self::computeIdForTest($name);
+    $id = self::computeIdForTest($id);
+    if ($name == null)
+    {
+      $name = $id;
+    }
     $available = array(
        Resultat::REUSSITE
       ,Resultat::ECHEC
       ,Resultat::NA
       ,Resultat::MANUEL
     );
-    $select = '<select id="'.$id.'" name="'.$id.'">';
+    $select = '<select id="'.$id.'" name="'.$name.'">';
     foreach($available as $state)
     {
       $selected = '';

@@ -104,6 +104,7 @@ TestResultLine:
     comment:                { type: varchar(500) }
     xpath:                  { type: varchar(500) }
     css_selector:           { type: varchar(500) }
+    annotation:             { type: varchar(500) }
     source:                 { type: clob }
     prettySource:           { type: clob }
     text_content:           { type: clob }
