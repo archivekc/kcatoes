@@ -36,11 +36,11 @@
         Aucun scenario trouvé
       </p>
     <?php else: ?>
-    <ul class="listItem">
+    <ul class="listItem" id="scenarioList">
       <?php foreach($scenarii as $scenario):?>
         <li class="highlight">
           <h2>
-            <?php echo $scenario->getNom()?>
+            <span class="nom"><?php echo $scenario->getNom()?></span>
             &mdash; <?php echo count($scenario->getScenarioPages())?> page(s)
           </h2>
           <?php echo link_to('Détails', 'scenarioDetail'
@@ -56,7 +56,8 @@
           <?php echo link_to('Supprimer', 'scenarioDelete'
                               ,array('id'=>$scenario->getId())
                               ,array('class'=> 'ico supprimer'
-                                    ,'title'=> 'Supprimer le scenario '.$scenario['nom'])) 
+                                    ,'title'=> 'Supprimer le scenario '.$scenario['nom']
+                                    ,'confirm'=>'Êtes-vous sûr ?')) 
            ?>
         </li>
     <?php endforeach ?>

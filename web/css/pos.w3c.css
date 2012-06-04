@@ -118,10 +118,10 @@ body {
 }*/
 
 /* liens*/
-#page a {
+a {
   border-bottom: 1px solid;
 }
-#page a.imgLink {
+a.imgLink {
   border: none;
 }
 .download a {
@@ -185,7 +185,7 @@ body {
   margin: .8em 1em;
 }
 
-/* dÃ©finitions */
+/* définitions */
 dt {
   float: left;
   clear: left;
@@ -300,7 +300,7 @@ form input[type=submit],
   margin: 1em auto;
 }
 
-/* listes d'accÃ¨s */
+/* listes d'accès */
 .accessList .item {
   font-size: 1.5em;
 }
@@ -311,7 +311,7 @@ form input[type=submit],
 }
 
 
-/* aucun Ã©lÃ©ment */
+/* aucun élément */
 .zeroFound {
 	font-size: 2em;
 	font-style: italic;
@@ -408,6 +408,11 @@ form input[type=submit],
 /* SPECIFIQUES */
 /* *********** */
 
+.addAction {
+  text-align: right;
+  margin: 1em 0;
+}
+
 /* page: edit list test */
 .listTests {
   padding: 1em;
@@ -478,6 +483,28 @@ form input[type=submit],
 #scenarioDetail #setAsTemplateScenarioForm {
   float: right;
   width: 25em;
+  margin: 0;
+}
+#scenarioDetailActions {
+  margin: 2em 0 0;
+}
+#scenarioDetailActions .submit {
+  text-align: center;
+}
+
+#scenarioDetail .scenarioPages .type,
+#scenarioDetail .scenarioPages .nbTest {
+  display: inline-block;
+}
+#scenarioDetail .scenarioPages .type {
+  width: 12em;
+}
+#scenarioDetail .scenarioPages .nbTest {
+	width: 10em;
+	border: dotted #CCC;
+	padding: 0 .5em;
+	margin: 0 .5em;
+	border-width: 0 1px;
 }
 
 /* formulaires */
@@ -494,6 +521,14 @@ form input[type=submit],
 #editScenarioForm .fields .submit {
   padding-left: 15.4em;
 }
+#addPageForm input[type=text],
+#addPageForm textarea,
+#editPageForm input[type=text],
+#editPageForm textarea {
+  width: 50em;
+}
+
+
 
 /* blocks */
 #connexionBlock {
@@ -508,9 +543,28 @@ form input[type=submit],
 /* popup */
 .popup#addScenarioForm,
 .popup#editScenarioForm,
-.popup#scenarioAddPageForm {
+.popup#scenarioAddPageForm,
+.popup#scenarioEditPageForm,
+.popup.addEditGroup  {
   width: 50em;
   margin-left: -25em;
+}
+
+.popup.addEditUser,
+.popup#addPageForm,
+.popup#editPageForm {
+  width: 80em;
+  margin-left: -40em;
+}
+.popup#addPageForm,
+.popup#editPageForm {
+  width: 66em;
+  margin-left: -33em;
+}
+
+.popup.popupscreenError {
+  width: 40em;
+  margin-left: -20em;
 }
 
 /* pages */
@@ -533,10 +587,16 @@ ul.rapport span.count ,
 ul.rapport span.score {
   text-align:right;
 }
-
 ul.rapport span.count {
   width : 3.5em;
 }
 ul.rapport span.score {
   width : 4.5em;
 }
+
+/* items de list */
+.scenarioPages .url,
+#scenarioList .nom {
+  font-size: 1.5em;
+}
+ 

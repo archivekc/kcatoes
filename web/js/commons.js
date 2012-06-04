@@ -28,7 +28,7 @@ $(function(){
 var makeCollapsable = function(collapser, collapsable, userOptions){
 	var option = {
 		style: 'popup'
-	}
+	};
 
 	var trigger = $('<button class="ico"/>');
 	$(collapser).before(trigger);
@@ -36,7 +36,12 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 	
 	$(trigger).addClass('collapser collapse-closed');
 	$(collapsable).addClass('collapsable collapse-closed');
-
+	
+	var handleKey = function(e){
+		if (e.keyCode == 27 ){  // escape key
+			$(trigger).click();
+		}
+	};
 	var show = function(){
 		switch(option.style){
 			case 'popup':
@@ -53,6 +58,8 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 				collapsable.popupOverlay = popupOverlay;
 				collapsable.closeTrigger = closeTrigger;
 
+				$(document).bind('keyup', handleKey);
+
 				break;
 			default:
 				$(collapsable).show();
@@ -63,10 +70,10 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 	var hide = function(){
 		switch(option.style){
 			case 'popup':
-				/*$(collapsable).detach();*/
 				$(collapsable.popupWrap).remove();
 				$(collapsable.popupOverlay).remove();
 				$(collapsable.closeTrigger).remove();
+				$(document).unbind('keyup', handleKey);
 				break;
 			default:
 				$(collapsable).hide();
@@ -137,28 +144,17 @@ var handlePopupScreen = function(parent){
       	type: 'get'
       	,url: this.href
       	,type: 'html'
-      	,success: function(data){
-      		var collapsable = $(data);
-			var popupWrap = $('<div class="popupWrap"/>');
-			var popupOverlay = $('<div class="popupOverlay"/>');
-			$(popupWrap).append(popupOverlay);
-			$(popupWrap).append(collapsable);
-			$(collapsable).addClass('popup');
-			$('#wrap').prepend(popupWrap);
-			var closeTrigger = $('<button class="collapse-opened collapser ico">Fermer</button>');
-
-			$(collapsable).prepend(closeTrigger);
-
-			collapsable.popupWrap = popupWrap;
-			collapsable.popupOverlay = popupOverlay;
-			collapsable.closeTrigger = closeTrigger;
-
-			$(closeTrigger).click(function(){
-				$(collapsable.popupWrap).remove();
-				$(collapsable.popupOverlay).remove();
-				$(collapsable.closeTrigger).remove();
-			});
-      	}
+      	,success: popup
+      	,error: function(errObj, errType, errTxt){
+    	  	switch(errObj.status){
+    	  		case 401:
+    	  			var msg = "Permission non accordée. Si votre session a expirée, vous devez vous reconnecter !";
+    	  			var link = '<a href="'+GLOBAL.loginUrl+'" class="ico connexion">Accéder au formulaire de connexion</a>';
+    	  			var content = $('<div class="block popupscreenError"><h1>Erreur</h1><p>'+msg+'</p>'+link+'</div>');
+    	  			break;
+    	  	}
+    	  	popup(content);
+	    }
       });
 	});
 }
@@ -179,4 +175,43 @@ var handleNav = function(){
       	}
       });
 	});
+};
+
+// ///// //
+// Popup //
+///// //
+var popup = function(content){
+	content = $(content);
+	var popupWrap = $('<div class="popupWrap"/>');
+	var popupOverlay = $('<div class="popupOverlay"/>');
+	$(popupWrap).append(popupOverlay);
+	$(popupWrap).append(content);
+	$(content).addClass('popup');
+	$('#wrap').prepend(popupWrap);
+	var closeTrigger = $('<button class="collapse-opened collapser ico">Fermer</button>');
+
+	$(content).prepend(closeTrigger);
+
+	content.popupWrap = popupWrap;
+	content.popupOverlay = popupOverlay;
+	content.closeTrigger = closeTrigger;
+
+	$(closeTrigger).click(function(){
+		$(content.popupWrap).remove();
+		$(content.popupOverlay).remove();
+		$(content.closeTrigger).remove();
+		
+		$(content).trigger('popuphide');
+		$(document).unbind('keyup', handleKey);
+	});
+	$(content).trigger('popupshow');
+	
+	var handleKey = function(e){
+		if (e.keyCode == 27 ){  // escape key
+			$(closeTrigger).click();
+		}
+	};
+	$(document).bind('keyup', handleKey);
+	
+	return content;
 }

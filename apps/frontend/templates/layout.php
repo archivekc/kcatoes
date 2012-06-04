@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head>
     <?php include_http_metas() ?>
     <?php include_title() ?>
@@ -7,8 +7,14 @@
     <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
     
+    <script type="text/javascript">
+    var GLOBAL = {
+      loginUrl: '<?php echo url_for('sf_guard_signin') ?>'
+    };
+    </script>
   </head>
   <body>
+  
     <div id="wrap">
       <div id="head">
         <p id="teaser"><strong>KCatoès</strong> est un outil automatique d'assistance aux tests d'accessibilité</p>

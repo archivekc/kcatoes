@@ -1,6 +1,5 @@
-<h1>Modifier la page &nbsp;: <strong><?php echo $page->getNom()?></strong></h1>
-    <form method="post" action="<?php echo url_for('scenarioPageEdit', array('id'=>$page->getId()))?>" class="highlight">
-      <h2>Modification d'une page</h2>
+    <form id="scenarioEditPageForm"  method="post" action="<?php echo url_for('scenarioPageEdit', array('id'=>$page->getId()))?>" class="block">
+			<h1>Modifier la page&nbsp;: <strong><?php echo $page->getNom()?></strong></h1>
       <div>
         <div class="fields">
           <?php if ($editPageForm->hasGlobalErrors()):?>
@@ -26,9 +25,9 @@
             <?php echo $editPageForm['web_page_id']->renderLabel()?>
             <?php echo $editPageForm['web_page_id']->render()?>
           </div>
-        </div>
-        <div class="submit">
-          <input type="submit" value="Modifier"/>
+	        <div class="submit">
+	          <input type="submit" value="Modifier"/>
+	        </div>
         </div>
       </div>
     </form>

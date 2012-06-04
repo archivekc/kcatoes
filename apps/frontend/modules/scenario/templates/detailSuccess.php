@@ -53,8 +53,6 @@
         <?php echo $setAsTemplateForm['nom']->renderError()?>
         <?php echo $setAsTemplateForm['nom']->renderLabel()?>
         <?php echo $setAsTemplateForm['nom']->render()?>
-      </div>
-      <div class="submit">
         <input type="submit" value="Définir"/>
       </div>
     </form>
@@ -85,7 +83,7 @@
   	        <div class="actions">
   	           <?php echo link_to('Modifier', 'scenarioPageEdit'
   	                           ,array('id'=>$page->getId())
-  	                           ,array('class'=> 'ico modifier'
+  	                           ,array('class'=> 'ico modifier popupScreen'
   	                           ,'title'=> 'Modifier la page '.$page->getNom())) 
   	            ?>
   	            <?php echo link_to('Supprimer', 'scenarioPageDelete'
@@ -124,7 +122,6 @@
   	                  <input type="checkbox" name="extracts[]" id="extr_<?php echo $extract->getId()?>" checked="checked" value="<?php echo $extract->getId()?>"/>
   	                  <label for="extr_<?php echo $extract->getId()?>">
   	                    <span class="type"><?php echo $extract->getType()?></span>
-  	                    &ndash;
   	                    <span class="nbTest"><?php echo $testPassed ?> test(s) passé(s)</span>
   	                  </label>
   	                  <?php if ($testPassed>0):?>
@@ -148,15 +145,20 @@
         </li>
       <?php endforeach ?>
       </ul>
-      <h2 class="title">Actions sur le scenario</h2>
-  	  <?php echo userMsg('Les actions ci-dessous seront faites sur les extractions sélectionnées.', 'info')?>
-  	  <div class="submit">
-  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
-  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
-  	    <button type="submit" name="scenarioAction" value="execute_test">Lancer les tests</button>
+      
+      <div id="scenarioDetailActions">
+	      <h2 class="title">Actions sur le scenario</h2>
+	      <div class="highlight">
+		  	  <?php echo userMsg('Les actions ci-dessous seront faites sur les extractions sélectionnées.', 'info')?>
+		  	  <div class="submit">
+		  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
+		  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
+		  	    <button type="submit" name="scenarioAction" value="execute_test">Lancer les tests</button>
+		  	  </div>
+		  	</div>
   	  </div>
     </form>
     <?php endif ?>
 
-  <a class="ico liste" href="<?php echo url_for('scenarioIndex')?>">Liste des scenarii</a>
+  <a class="ico liste" href="<?php echo url_for('scenarioIndex')?>">Retour à la liste des scenarii</a>
 </div>

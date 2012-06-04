@@ -1,6 +1,8 @@
+<div class="block">
   <h1>Pages web</h1>
-    <form method="post" action="<?php echo url_for('page/index')?>" class="highlight <?php echo !$addPageForm->hasErrors()?'quickAddForm':'' ?>">
-      <h2>Ajout d'une page web</h2>
+    <span>Ajout d'une page web</span>
+    <form method="post" id="addPageForm" action="<?php echo url_for('page/index')?>" class="block <?php echo !$addPageForm->hasErrors()?'quickAddForm':'' ?>">
+	    <h2>Ajout d'une page web</h2>
       <div>
         <div class="fields">
           <?php if ($addPageForm->hasGlobalErrors()):?>
@@ -26,9 +28,9 @@
             <?php echo $addPageForm['description']->renderLabel()?>
             <?php echo $addPageForm['description']->render()?>
           </div>
-        </div>
-        <div class="submit">
-          <input type="submit" value="Ajouter"/>
+	        <div class="submit">
+	          <input type="submit" value="Ajouter"/>
+	        </div>
         </div>
       </div>
     </form>
@@ -60,7 +62,7 @@
           <td>
               <?php echo link_to('Modifier', 'pageEdit'
                                   ,array('id'=>$page->getId())
-                                  ,array('class'=> 'ico modifier'
+                                  ,array('class'=> 'ico modifier popupScreen'
                                         ,'title'=> 'Modifier les informations de la page '.$page['url'])) 
                ?>
               <?php echo link_to('Détails', 'pageDetail'
@@ -73,7 +75,8 @@
 	            <?php echo link_to('Supprimer', 'pageDelete'
 	                                ,array('id'=>$page->getId())
 	                                ,array('class'=> 'ico supprimer'
-	                                      ,'title'=> 'Supprimer la page '.$page['url'])) 
+	                                      ,'title'=> 'Supprimer la page '.$page['url']
+	                                      ,'confirm'=>'Êtes-vous sûr ?')) 
 	             ?>
           </td>
         </tr>
@@ -81,3 +84,4 @@
       </tbody>
     </table>
     <?php endif ?>
+  </div>

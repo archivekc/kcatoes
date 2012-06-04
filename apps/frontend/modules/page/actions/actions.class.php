@@ -9,10 +9,8 @@
  */
 class pageActions extends kcatoesActions
 {
-	public function preExecute()
-	{
-	}
-	
+
+
 	public function executeIndex(sfWebRequest $request)
 	{
     // formulaire d'ajout d'une pages web

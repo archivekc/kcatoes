@@ -1,8 +1,7 @@
-    <h1>Modification de la page&nbsp;: <strong><?php echo $page->getUrl()?></strong></h1>
-    <form method="post" action="<?php echo url_for('pageEdit'
+    <form method="post"  id="editPageForm" class="block" action="<?php echo url_for('pageEdit'
                                                     ,array('id'=>$page->getId()))?>"
           class="highlight">
-      <h2>Modification d'une page web</h2>
+      <h1>Modification de la page&nbsp;: <strong><?php echo $page->getUrl()?></strong></h1>
       <div>
         <div class="fields">
           <?php if ($editPageForm->hasGlobalErrors()):?>
@@ -23,9 +22,9 @@
             <?php echo $editPageForm['description']->renderLabel()?>
             <?php echo $editPageForm['description']->render()?>
           </div>
-        </div>
-        <div class="submit">
-          <input type="submit" value="Modifier"/>
+	        <div class="submit">
+	          <input type="submit" value="Modifier"/>
+	        </div>
         </div>
       </div>
     </form>
