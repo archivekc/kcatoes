@@ -36,7 +36,7 @@ class PresenceDUnTitrePourLesTableauxDeDonnees extends \ASource
     else {
       foreach($nodes as $node) {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier qu\'est présent un
-        élément caption'');
+        élément caption');
       }
     }
   }

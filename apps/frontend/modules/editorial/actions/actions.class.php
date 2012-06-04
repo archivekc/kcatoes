@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * actions pour les pages éditoriales.
