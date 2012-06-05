@@ -29,6 +29,8 @@ class AbsenceDePerteInformationsAExpirationDesSessionsAuthentifiees extends \ASo
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier que les données saisies
+    par l’utilisateur avant l’expiration ou la fermeture non sollicité de la
+    session sont conservées après que celui-ci se soit ré-authentifié');
   }
 }
