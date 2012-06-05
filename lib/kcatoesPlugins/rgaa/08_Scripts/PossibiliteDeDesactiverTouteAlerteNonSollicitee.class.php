@@ -38,7 +38,7 @@ class PossibiliteDeDesactiverTouteAlerteNonSollicitee extends \ASource
     $nodes = $crawler->filter($elements);
 
     if (count($nodes) == 0) {
-       $this->addResult(null, \Resultat::MANUEL, 'Test non applicable');
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si le javascript
