@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class AbsenceGenerationInformationCSS extends \ASource
 {
-  
+
   const testName = 'Absence de génération de contenus porteurs d\'information via les styles CSS';
   const testId = '7.1';
   protected static $testProc = array(
@@ -23,29 +23,10 @@ class AbsenceGenerationInformationCSS extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout élément sur lequel est appliqué des styles CSS appliqué dans la page via l'attribut style, 
-      une feuille de styles interne, une feuille de styles externe ou du code javascript.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+    $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la propriété CSS
+    content génère un contenu qui n’est pas porteur d’information');
   }
 }
