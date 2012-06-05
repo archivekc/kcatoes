@@ -33,6 +33,18 @@ class PresenceDUneAlternativeAuCodeJavascript extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  	$crawler = $this->page->crawler;
+
+    $elements   = 'applet';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier qu\'il y a une
+        alternative au code javascript si il permet d\'accéder des informations');
+    }
   }
 }
