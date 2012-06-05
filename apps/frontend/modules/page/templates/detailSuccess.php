@@ -17,7 +17,6 @@
     <?php include_partial('extractionList', array('page' => $page )) ?>
   </div>
   <div class="part bigpart">
-    <h2>Tests</h2>
     <?php include_partial('testsForm', array(   'page'      => $page
                                               , 'testsForm' => $testsForm
                                               , 'allTests'  => $allTests)) ?>
