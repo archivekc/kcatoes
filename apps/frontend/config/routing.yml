@@ -135,6 +135,15 @@ pageResultatTestsRiche:
   requirements: 
     id:     \d+
     
+sauvegardeResultat:
+  url:      /page/tests/resultat/save/:id
+  param:    { module: eval, action: sauvegardeResultat }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [POST]
+    
 pageResultatTests:
   url:      /page/tests/resultat/:id
   param:    { module: eval, action: resultatTests }

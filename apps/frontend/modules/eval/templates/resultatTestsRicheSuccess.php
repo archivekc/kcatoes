@@ -18,8 +18,9 @@
     </h1>
     <div id="output">
       <div class="inner">
-        <?php include_partial('testsResults', array('results' => $results,
-                                                    'history' => $history)) ?>
+        <?php include_partial('testsResults', array('extraction' => $extraction,
+                                                    'results'    => $results,
+                                                    'history'    => $history)) ?>
       </div>
     </div>
     <div id="resizeHandler"></div>

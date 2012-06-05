@@ -61,7 +61,7 @@ class Resultat
   	}
   }
   /**
-   * Permet de récupérer le libellé associé aux valeurs des constantes
+   * Permet de récupérer le code associé aux valeurs des constantes
    * @param int
    * @return string
    */
@@ -90,6 +90,26 @@ class Resultat
       default:
         return '';
         break;
+    }
+  }
+  
+  /**
+   * Permet de récupérer la valeur de la constante associée au code
+   * @param string
+   * @return int
+   */
+  static function getValue($code)
+  {
+    switch($code)
+    {
+      case 'ECHEC':    return self::ECHEC;    break;
+      case 'REUSSITE': return self::REUSSITE; break;
+      case 'MANUEL':   return self::MANUEL;   break;
+      case 'NON_EXEC': return self::NONEXEC;  break;
+      case 'ERREUR':   return self::ERREUR;   break;
+      case 'NA':       return self::NA;       break;
+      
+      default:         return self::NONEXEC;  break;
     }
   }
 }

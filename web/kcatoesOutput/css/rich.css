@@ -281,3 +281,12 @@ strong {
   text-decoration: underline;
   margin: 1.5em 0 .5em;
 }
+
+.saveMessage {
+  display: inline-block;
+  float: right;
+  font-size: 1.1em;
+  margin: 3em 10em 0 0;
+}
+
+/* FIXME : mettre à jour dans lib/kcatoesoutput */
