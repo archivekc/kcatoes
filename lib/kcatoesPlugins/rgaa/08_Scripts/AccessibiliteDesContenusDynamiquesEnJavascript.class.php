@@ -27,6 +27,20 @@ class AccessibiliteDesContenusDynamiquesEnJavascript extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'applet';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le code généré
+        ou mis à jour comporte tous les attributs et éléments le rendant
+        accessible notamment par l’utilisation des fonctions DOM lorsque cela
+        est possible');
+    }
   }
 }
