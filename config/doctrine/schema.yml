@@ -203,4 +203,19 @@ ScenarioTemplatePage:
       local:        scenario_template_id
       foreign:      id
       foreignAlias: CollectionPages
-      
+      onDelete:     CASCADE
+
+# =UserTest
+# Liste des tests associés à l'utilisateur (pour visualisation)
+UserTest:
+  tableName: user_test
+  columns:
+    id:             { type: integer, primary: true, autoincrement: true }
+    user_id:        { type: integer, primary: true, autoincrement: true }
+    class:          { type: varchar(500) }
+  relations:
+    sfGuardUser:
+      local: user_id
+      foreign: id
+      foreignAlias: CollectionTests
+      onDelete: CASCADE

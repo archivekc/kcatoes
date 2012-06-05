@@ -12,4 +12,49 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+	/**
+	 * Récupère les tests associés aux profils de l'utilisateur
+	 */
+	public function getProfilTest()
+	{
+    $profilTest = Doctrine_Query::create()
+      ->select('pt.class, p.name')
+      ->from('ProfilTest pt')
+      ->innerJoin('pt.sfGuardGroup p')
+      ->whereIn('p.name', $this->getGroupNames())
+      ->execute();
+    
+    $testAndProfils = array();
+    foreach ($profilTest as $test){
+	    if (!isset($testAndProfils[$test->getClass()]))
+	    {
+	      $testAndProfils[$test->getClass()] = array();
+	    }
+	    array_push($testAndProfils[$test->getClass()], $test->getSfGuardGroup()->getName());
+    }
+    return $testAndProfils;
+      
+	}
+	
+	/**
+	 * Récupère les test associés spécifiquement à l'utilisateur
+	 */
+	public function getUserTest()
+	{
+		$tests = $this->getCollectionTests();
+		$userTest = array();
+		foreach($tests as $test){
+			array_push($userTest, $test->getClass());
+		};
+		
+		return $userTest;
+	}
+	
+	public function getProfilAndUserTest()
+	{
+		$profil = array_keys($this->getProfilTest());
+		$user = $this->getUserTest();
+		
+		return array_merge($user, $profil);
+	}
 }

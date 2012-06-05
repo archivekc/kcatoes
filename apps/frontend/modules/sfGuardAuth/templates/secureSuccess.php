@@ -1,1 +1,1 @@
-Vous n'avez pas l'autorisation nécessaire pour accéder à cette rubrique.
+<div class="block unauthorized">Vous n'avez pas l'autorisation nécessaire pour accéder à cette rubrique.</div>

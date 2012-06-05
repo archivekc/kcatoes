@@ -1,3 +1,6 @@
 all:
   is_secure: true
   credentials: admin
+
+userTest:
+  credentials: __manageOwnProfil

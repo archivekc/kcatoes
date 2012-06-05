@@ -1,8 +1,8 @@
 <?php use_helper('Ihm')?>
-<h1>Profil&nbsp;:<strong><?php echo $profil->getName()?></strong></h1>
 
 <form method="post" action="<?php echo url_for('@sf_guard_group_assoc_test?id='.$profil->getId())?>" 
-        class="highlight">
+        class="block">
+		<h1>Profil&nbsp;:<strong><?php echo $profil->getName()?></strong></h1>
 
     <div class="fields">
     

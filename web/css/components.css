@@ -273,6 +273,19 @@ table tr {
   vertical-align: middle;
 }
 
+/* tag */
+ul.tags {
+  float: right;
+}
+ul.tags li.tag {
+  display: inline-block;
+  padding: 0 .5em;
+  border-radius: .5em;
+  background: #BF3100;
+  color: #EEE;
+  font-weight: bold;
+}
+
 /* popup */
 .popupWrap {
   position: fixed;

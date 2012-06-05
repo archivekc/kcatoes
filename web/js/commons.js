@@ -7,7 +7,7 @@ $(function(){
 		$('.quickAddForm', parent).each(function(){
 			collapser = $(this).prev();
 			collapsable = $(this);
-			makeCollapsable(collapser, collapsable);
+			makeCollapsable(collapser, collapsable, {style: 'popup'});
 		});
 	};
 	
@@ -41,7 +41,7 @@ $(function(){
 
 var makeCollapsable = function(collapser, collapsable, userOptions){
 	var option = {
-		style: 'popup'
+		style: 'showhide'
 	};
 	
 	$.extend(option, userOptions);
@@ -104,7 +104,7 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 				$(collapsable).hide();
 				break;
 		}
-	}
+	};
 	
 	$(trigger).click(function(e){
 		e.preventDefault();
@@ -243,4 +243,4 @@ var popup = function(content){
 	$(document).bind('keyup', handleKey);
 	
 	return content;
-}
+};

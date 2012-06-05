@@ -15,6 +15,7 @@ class sfGuardGroupActions extends autoSfGuardGroupActions
   {
   	$this->profil = $this->getRoute()->getObject();
   	$this->allTests = TestsHelper::getAllTestsById();
+  	//var_dump($this->allTests);die();
   	
   	// Formulaire listant les tests disponibles
     $this->testsForm = new ProfilTestForm($this->profil);
