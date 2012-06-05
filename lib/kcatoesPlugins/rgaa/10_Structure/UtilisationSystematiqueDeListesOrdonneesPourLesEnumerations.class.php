@@ -27,6 +27,20 @@ class UtilisationSystematiqueDeListesOrdonneesPourLesEnumerations extends \ASour
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'li, ol';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'La balise ol et li sont-elles
+        correctement organisées?');
+      }
+    }
   }
 }
