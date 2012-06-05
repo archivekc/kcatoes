@@ -38,8 +38,7 @@ class PossibiliteDeDesactiverTouteAlerteNonSollicitee extends \ASource
     $nodes = $crawler->filter($elements);
 
     if (count($nodes) == 0) {
-       $this->addResult(null, \Resultat::MANUEL, 'Vérifier qne le texte ne
-       contiendrait pas d\'acronymes non définis');
+       $this->addResult(null, \Resultat::MANUEL, 'Test non applicable');
     }
     else {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si le javascript
