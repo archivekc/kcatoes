@@ -31,6 +31,20 @@ class PossibiliteDeDesactiverTouteAlerteNonSollicitee extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'applet';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::MANUEL, 'Vérifier qne le texte ne
+       contiendrait pas d\'acronymes non définis');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si le javascript
+         permet de lancer une alerte ou une mise à jour, elle doit pouvoir être
+         désactivée sur demande');
+    }
   }
 }
