@@ -29,6 +29,20 @@ class PertinenceDeLaVersionNonAbregeeDeLAbreviation extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'abbr';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'La version complète de
+         l\'abréviation est-elle pertinente?');
+      }
+    }
   }
 }
