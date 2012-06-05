@@ -1,7 +1,7 @@
   <div class="block" id="scenarioIndex">
-    <h1>Scenarii</h1>
+    <h1>Scenarios</h1>
 
-  <span>Ajout d'un scenario de page web</span>
+  <span>Ajout d'un scénario de page web</span>
   <form method="post" id="addScenarioForm" action="<?php echo url_for('scenario/index')?>" class="block <?php echo !$addScenarioForm->hasErrors()?'quickAddForm':'' ?>">
       <h2>Ajout d'un scenario de page web</h2>
       <div>
@@ -33,7 +33,7 @@
     <?php $nbScenario = count($scenarii)?>
     <?php if($nbScenario == 0):?>
       <p class="zeroFound">
-        Aucun scenario trouvé
+        Aucun scénario trouvé
       </p>
     <?php else: ?>
     <ul class="listItem" id="scenarioList">
@@ -46,17 +46,17 @@
           <?php echo link_to('Détails', 'scenarioDetail'
                               ,array('id'=>$scenario->getId())
                               ,array('class'=> 'ico detail'
-                                    ,'title'=> 'Voir le détails du scenario '.$scenario['nom'])) 
+                                    ,'title'=> 'Voir le détails du scénario '.$scenario['nom'])) 
            ?>
           <?php echo link_to('Modifier', 'scenarioEdit'
                               ,array('id'=>$scenario->getId())
                               ,array('class'=> 'ico modifier popupScreen'
-                                    ,'title'=> 'Modifier les informations du scenario '.$scenario['nom'])) 
+                                    ,'title'=> 'Modifier les informations du scénario '.$scenario['nom'])) 
           ?>
           <?php echo link_to('Supprimer', 'scenarioDelete'
                               ,array('id'=>$scenario->getId())
                               ,array('class'=> 'ico supprimer'
-                                    ,'title'=> 'Supprimer le scenario '.$scenario['nom']
+                                    ,'title'=> 'Supprimer le scénario '.$scenario['nom']
                                     ,'confirm'=>'Êtes-vous sûr ?')) 
            ?>
         </li>

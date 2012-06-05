@@ -8,9 +8,7 @@
  */
 class scenarioActions extends kcatoesActions
 {
-  public function preExecute()
-  {
-  }
+
 	
   public function executeIndex(sfWebRequest $request)
   {
@@ -42,7 +40,7 @@ class scenarioActions extends kcatoesActions
         //$this->redirect('scenario/index');
       }
     }
-    // Scenarii
+    // Scenarios
     $q = Doctrine_Query::create()
      ->from('Scenario s')
      ->leftJoin('s.ScenarioPages')
@@ -50,7 +48,34 @@ class scenarioActions extends kcatoesActions
      
     $this->scenarii = $q->execute();
   }
+
   
+  /**
+   * Page des modèles de scenario
+   * Enter description here ...
+   * @param $request
+   */
+  public function executeTemplateIndex($request)
+  {
+    // Scenarios modeles
+    $q = Doctrine_Query::create()
+     ->select('s.id, s.nom, st.nom, st.required')
+     ->from('ScenarioTemplate s')
+     ->leftJoin('s.CollectionPages st')
+     ->orderBy('updated_at DESC');
+     
+    $this->scenarioTemplates = $q->fetchArray();
+  }
+  
+  /**
+   * Suppression d'un  modele scenario
+   * @param sfWebRequest $request
+   */
+  public function executeTemplateDelete(sfWebRequest $request)
+  {
+    $this->getRoute()->getObject()->delete();
+    $this->redirect('scenario/templateIndex');
+  }
   
   /**
    * Détail d'un scenario

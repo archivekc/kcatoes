@@ -1,9 +1,9 @@
 <?php use_helper('Ihm')?>
 <div class="block" id="scenarioDetail">
-  <h1>Scenario&nbsp;: <strong><?php echo $scenario->getNom()?></strong></h1>
+  <h1>Scénario&nbsp;: <strong><?php echo $scenario->getNom()?></strong></h1>
   <div class="topAction">
     <div id="addScenarioPage">
-      <h2>Ajout d'un type de page</h2>
+      <span>Ajout d'un type de page</span>
       <form method="post" id="scenarioAddPageForm" action="<?php echo url_for('scenarioDetail', array('id'=>$scenario->getId()))?>" class="block <?php echo !$addPageForm->hasErrors()?'quickAddForm':'' ?>">
         <h2>Ajout d'un type de page</h2>
         <div>

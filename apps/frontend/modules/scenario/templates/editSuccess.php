@@ -1,7 +1,7 @@
     <form method="post" id="editScenarioForm" action="<?php echo url_for('scenarioEdit'
                                                   ,array('id'=>$scenario->getId()))?>"
           class="block">
-      <h1>Modification d'un scenario de page web</h1>
+      <h1>Modification d'un scénario de page web</h1>
       <div>
         <div class="fields">
           <?php if ($editScenarioForm->hasGlobalErrors()):?>
