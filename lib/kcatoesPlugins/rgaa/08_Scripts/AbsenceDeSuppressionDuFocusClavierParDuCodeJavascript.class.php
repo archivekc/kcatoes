@@ -23,6 +23,19 @@ class AbsenceDeSuppressionDuFocusClavierParDuCodeJavascript extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'applet';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le code javascript n’est pas
+         utilisé pour supprimer automatiquement le focus lorsqu’un élément le
+         reçoit.');
+    }
   }
 }
