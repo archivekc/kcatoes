@@ -28,6 +28,9 @@ class AbsenceDeLimiteDeTempsPourCompleterUneTache extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult(null, \Resultat::MANUEL, 'En cas de tâche limitée dans le
+     temps à accomplir dans la page, vérifier qu\'elle doit impérativement être
+     accomplie en temps réel ou si la limite de temps ne peut être supprimée
+     sans changer fondamentalement l’information ou les fonctionnalités du contenu ');
   }
 }
