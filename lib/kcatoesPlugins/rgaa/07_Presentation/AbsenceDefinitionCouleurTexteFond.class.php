@@ -5,16 +5,16 @@ namespace Kcatoes\rgaa;
 
 class AbsenceDefinitionCouleurTexteFond extends \ASource
 {
-  
+
   const testName = 'Absence de définition d\'une couleur de texte sans définition d\'une couleur de fond et inversement';
   const testId = '7.5';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément est utilisé pour définir une couleur de texte ou une couleur de fond 
+    ,'Si l\'élément est utilisé pour définir une couleur de texte ou une couleur de fond
       (éventuellement via une image de fond), poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément html sur lequel a été définie une couleur de fond a aussi une couleur 
-      de texte définie (directement ou par héritage css), ou inversement, le test est validé, 
+    ,'Si l\'élément html sur lequel a été définie une couleur de fond a aussi une couleur
+      de texte définie (directement ou par héritage css), ou inversement, le test est validé,
       sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -26,35 +26,21 @@ class AbsenceDefinitionCouleurTexteFond extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Toute propriété CSS :
-      
-          background
-          background-color
-          font
-          color
-          list
-          list-style-image
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements   = '[background],[background-color],[font],[color],[list],[list-style-image]';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier qu\'une couleur de
+        texte est définie si le fond l\'est aussi et inversement');
+    }
   }
 }

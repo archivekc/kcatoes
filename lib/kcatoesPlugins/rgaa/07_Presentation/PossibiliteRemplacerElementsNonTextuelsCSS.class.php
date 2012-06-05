@@ -5,21 +5,21 @@ namespace Kcatoes\rgaa;
 
 class PossibiliteRemplacerElementsNonTextuelsCSS extends \ASource
 {
-  
+
   const testName = 'Possibilité de remplacer les éléments non textuels par une mise en forme effectuée grâce aux styles CSS';
   const testId = '7.6';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément contient du texte, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément a été défini par la charte graphique du service de communication publique 
-      en ligne, et que cette définition est ultérieure à publication du RGAA, poursuivre le test, 
+    ,'Si l\'élément a été défini par la charte graphique du service de communication publique
+      en ligne, et que cette définition est ultérieure à publication du RGAA, poursuivre le test,
       sinon le test est non applicable.'
-    ,'Si l\'élément n\'est pas un logotype ou purement décoratif, poursuivre le test, sinon le 
+    ,'Si l\'élément n\'est pas un logotype ou purement décoratif, poursuivre le test, sinon le
       test est non applicable.'
-    ,'Si la page ne comporte aucun mécanisme de remplacer les éléments non textuels par une 
+    ,'Si la page ne comporte aucun mécanisme de remplacer les éléments non textuels par une
       mise en forme effectuée grâce aux styles CSS, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément utilise une mise en forme ou un effet visuel ne pouvant pas être reproduit 
+    ,'Si l\'élément utilise une mise en forme ou un effet visuel ne pouvant pas être reproduit
       de façon similaire par des styles CSS, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -31,34 +31,22 @@ class PossibiliteRemplacerElementsNonTextuelsCSS extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout élément :
-      
-          img
-          object
-          embed
-          applet
-          input de type image
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements   = 'img, applet, embed, object, input[type=image]';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément
+        utilise une mise en forme ou un effet visuel ne pouvant pas être
+        reproduit de façon similaire par des styles CSS');
+    }
   }
 }

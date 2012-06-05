@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class AbsenceEspacesSeparerLettresMot extends \ASource
 {
-  
+
   const testName = 'Absence d\'espaces utilisés pour séparer les lettres d\'un mot';
   const testId = '7.4';
   protected static $testProc = array(
@@ -22,28 +22,11 @@ class AbsenceEspacesSeparerLettresMot extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout espace typographique ou élément vide utilisé pour simuler une espace.
-     */
-     
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+    $this->addResult($node, \Resultat::MANUEL, 'Vérifier que tout espace
+    typographique ou élément vide utilisé pour simuler une espace n’est pas
+    utilisé afin séparer visuellement les lettres composant un même mot');
   }
 }
