@@ -28,6 +28,19 @@ class PresenceDUneHierarchieDeTitresComplete extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+  	$crawler = $this->page->crawler;
+
+    $elements   = 'h1, h2, h3, h4, h5, h6';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Le contenu est-il bien structuré?');
+      }
+    }
   }
 }
