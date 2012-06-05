@@ -29,6 +29,10 @@ class PresenceDuneAlternativeAuCodeJavascriptUtilisantUnGestionnaireEvenements e
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult(null, \Resultat::MANUEL, 'l’information disponible grâce au
+     javascript utilisant un gestionnaire d’événements sans équivalent universel
+     ou une propriété propre à un périphérique a une alternative accessible
+     permettant d’avoir accès à une information équivalente situé dans la page
+     ou atteignable depuis la page');
   }
 }
