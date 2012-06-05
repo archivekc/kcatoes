@@ -5,11 +5,11 @@ namespace Kcatoes\rgaa;
 
 class AbsenceElementsHtmlPresentation extends \ASource
 {
-  
+
   const testName = 'Absence d\'éléments HTML utilisés à des fins de présentation';
   const testId = '7.9';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément n\'est pas utilisé uniquement à des fins de présentation, le test est validé, sinon le test est invalidé.'
   );
@@ -23,47 +23,26 @@ class AbsenceElementsHtmlPresentation extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout élément :
-      
-          a         abbr       acronym address area
-          bdo       blockquote button
-          caption   cite       code
-          dd        dfn        dir     dl      dt
-          em
-          fieldset  form
-          h1 à h6
-          input     ins
-          kbd
-          label     legend     li
-          menu
-          ol
-          pre ou suite d'espaces insécables
-          q
-          samp      select     strong  sub     sup
-          th
-          var
-          ul
-     */
-    
-    /*
       $crawler = $this->page->crawler;
-      $elements = '';
+
+      $elements = 'a, abbr, acronym, address, area, bdo, blockquote, button,
+      caption, cite, code, dd, dfn, dir, dl, dt, em, fieldset, form, h1, h2, h3,
+      h4, h5, h6, input, ins, kbd, label, legend, li, menu, ol, pre, q, samp,
+      select, strong, sub, sup, th, var, ul';
+
       $nodes = $crawler->filter($elements);
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+      }
+      else {
+        foreach($nodes as $node){
+          $this->addesult($node, \Resultat::MANUEL, 'Vérifier que l’élément n’est
+          pas utilisé uniquement à des fins de présentation');
+        }
+     }
   }
 }

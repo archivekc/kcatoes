@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class AbsenceJustificationTexte extends \ASource
 {
-  
+
   const testName = 'Absence de justification du texte';
   const testId = '7.12';
   protected static $testProc = array(
@@ -24,28 +24,10 @@ class AbsenceJustificationTexte extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout élément constituant visuellement un bloc de texte.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::MANUEL, 'Vérifier que le texte n\'est pas
+      justifié');
   }
 }

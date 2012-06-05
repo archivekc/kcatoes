@@ -5,17 +5,17 @@ namespace Kcatoes\rgaa;
 
 class ValeurEspaceLignesParagraphes extends \ASource
 {
-  
+
   const testName = 'Valeur de l\'espace entre les lignes et entre les paragraphes';
   const testId = '7.17';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément est utilisé pour définir l\'espacement entre les lignes ou entre les paragraphes, 
+    ,'Si l\'élément est utilisé pour définir l\'espacement entre les lignes ou entre les paragraphes,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si la valeur de l\'espacement entre les lignes définis est supérieure à 1,5 fois la taille 
-      du texte et que la valeur de l\'espacement entre les paragraphes est supérieure à 1,5 fois la 
-      taille de l\'espacement entre les lignes ou qu\'un mécanisme permettant d\'agrandir l\'espacement 
+    ,'Si la valeur de l\'espacement entre les lignes définis est supérieure à 1,5 fois la taille
+      du texte et que la valeur de l\'espacement entre les paragraphes est supérieure à 1,5 fois la
+      taille de l\'espacement entre les lignes ou qu\'un mécanisme permettant d\'agrandir l\'espacement
       entre les lignes et entre les paragraphes est présent, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -28,30 +28,21 @@ class ValeurEspaceLignesParagraphes extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Toutes propriétés CSS :
-      
-          line-height
-          padding
-          margin
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements   = '[line-height], [padding], [margin]';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier l\'espace entre les
+        lignes et entre les paragraphes');
+    }
   }
 }

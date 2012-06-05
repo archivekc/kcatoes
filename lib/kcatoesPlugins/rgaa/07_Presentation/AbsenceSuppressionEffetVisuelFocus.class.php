@@ -5,13 +5,13 @@ namespace Kcatoes\rgaa;
 
 class AbsenceSuppressionEffetVisuelFocus extends \ASource
 {
-  
+
   const testName = 'Absence de suppression de l\'effet visuel au focus des éléments';
   const testId = '7.11';
   protected static $testProc = array(
-     'Si l\'une des propriétés mentionnées dans le champ d\'application est utilisée dans la page, 
+     'Si l\'une des propriétés mentionnées dans le champ d\'application est utilisée dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si cette propriété n\'est pas utilisée pour supprimer l\'effet visuel rendu lorsqu\'un élément 
+    ,'Si cette propriété n\'est pas utilisée pour supprimer l\'effet visuel rendu lorsqu\'un élément
       reçoit le focus, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -25,33 +25,22 @@ class AbsenceSuppressionEffetVisuelFocus extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Toute propriété CSS :
-      
-          outline
-          outline-color
-          outline-style
-          outline-width
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements   = '[outline], [outline-color], [outline-style], [outline-width]';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que cette propriété
+        n’est pas utilisée pour supprimer l’effet visuel rendu lorsqu’un élément
+        reçoit le focus');
+    }
   }
 }

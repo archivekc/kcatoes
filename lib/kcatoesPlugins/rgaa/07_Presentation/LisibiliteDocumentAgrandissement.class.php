@@ -5,12 +5,12 @@ namespace Kcatoes\rgaa;
 
 class LisibiliteDocumentAgrandissement extends \ASource
 {
-  
+
   const testName = 'Lisibilité du document en cas d\'agrandissement de la taille du texte';
   const testId = '7.13';
   protected static $testProc = array(
-     'Si lorsque l\'utilisateur n\'a pas modifié la taille du texte par défaut de son navigateur, 
-      le document reste lisible sans perte d\'information avec la taille du texte augmentée à 200%, 
+     'Si lorsque l\'utilisateur n\'a pas modifié la taille du texte par défaut de son navigateur,
+      le document reste lisible sans perte d\'information avec la taille du texte augmentée à 200%,
       le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -22,28 +22,10 @@ class LisibiliteDocumentAgrandissement extends \ASource
     ,'thematique' => 'Présentation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout le document.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::MANUEL, 'Vérifier que le document reste lisible sans
+      perte d’information avec la taille du texte augmentée à 200%');
   }
 }
