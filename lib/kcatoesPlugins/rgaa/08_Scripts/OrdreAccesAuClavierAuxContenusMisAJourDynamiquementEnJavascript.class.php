@@ -31,6 +31,19 @@ class OrdreAccesAuClavierAuxContenusMisAJourDynamiquementEnJavascript extends \A
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'applet';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que si du contenu
+        a été mis à jour ou généré, celui-ci est accessible juste après l’élément
+        ayant permis de déclencher la mise à jour ou la génération de ce dernier');
+    }
   }
 }
