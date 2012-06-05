@@ -30,6 +30,7 @@ class UtilisationCorrecteDuRoleDesElements extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier l\'utilisation correcte
+    des éléments HTML de la page permettant de déclencher une action');
   }
 }
