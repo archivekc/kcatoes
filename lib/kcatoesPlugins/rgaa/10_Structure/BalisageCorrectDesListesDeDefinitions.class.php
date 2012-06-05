@@ -25,6 +25,20 @@ class BalisageCorrectDesListesDeDefinitions extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::NA, 'Test non implémenté');
+    $crawler = $this->page->crawler;
+
+    $elements   = 'dl, dt, dd';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que chaque élément
+        dd est précédé, de façon immédiatement ou non, d’un élément dt');
+      }
+    }
   }
 }
