@@ -47,7 +47,7 @@ class Resultat
 	      return 'Manuel';
 	      break;
 	    case self::NON_EXEC:
-	      return 'Non exécutable';
+	      return 'Non Implémenté';
 	      break;
 	    case self::ERREUR:
 	      return 'Erreur d\'exécution';
