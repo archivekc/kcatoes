@@ -2,7 +2,7 @@
 <div class="block" id="scenarioDetail">
   <h1>Scénario&nbsp;: <strong><?php echo $scenario->getNom()?></strong></h1>
   <div class="topAction">
-    <div id="addScenarioPage">
+  <?php if ($sf_user->hasCredential('gestion scenario')):?>
       <span>Ajout d'un type de page</span>
       <form method="post" id="scenarioAddPageForm" action="<?php echo url_for('scenarioDetail', array('id'=>$scenario->getId()))?>" class="block <?php echo !$addPageForm->hasErrors()?'quickAddForm':'' ?>">
         <h2>Ajout d'un type de page</h2>
@@ -37,15 +37,16 @@
           </div>
         </div>
       </form>
-    </div>
 
+    <?php endif ?>
+    
     <?php $nbPages = count($pages) ?>
     <?php if ($nbPages == 0): ?>
         <p class="zeroFound">
           Aucune page trouvée
         </p>
     <?php else:?>
-
+    <?php if ($sf_user->hasCredential('gestion scenario')):?>
     <form method="post" id="setAsTemplateScenarioForm" class="highlight" action="<?php echo url_for('scenarioDetail', array('id'=>$scenario->getId()))?>">
       <h2>Définir un modèle à partir de ce scénario</h2>
       <div>
@@ -56,6 +57,7 @@
         <input type="submit" value="Définir"/>
       </div>
     </form>
+    <?php endif?>
   </div>
     <h2>Pages du scenario</h2>
 
@@ -63,7 +65,7 @@
       <?php echo userMsg($sf_user->getFlash('testsMsg'), 'success') ?> 
     <?php endif; ?>
     
-    <form method="post" action="<?php echo url_for('scenarioActions', array('id'=>$scenario->getId()))?>">
+    <form method="post" target="KCATOES_ACTIONS" action="<?php echo url_for('scenarioActions', array('id'=>$scenario->getId()))?>">
       <ul class="scenarioPages">
       <?php foreach($pages as $page): ?>
         <?php 
@@ -80,6 +82,7 @@
   	          <?php endif ?>
   	          <?php echo $page->getNom() ?>
   	        </h3>
+  	        <?php if ($sf_user->hasCredential('gestion scenario')):?>
   	        <div class="actions">
   	           <?php echo link_to('Modifier', 'scenarioPageEdit'
   	                           ,array('id'=>$page->getId())
@@ -92,6 +95,7 @@
   	                           ,'title'=> 'Supprimer le type de page '.$page->getNom())) 
   	            ?>
   	        </div>
+  	        <?php endif ?>
           </div>
           <?php if ($hasWebpage):?>
           <div class="twoParts">
@@ -151,9 +155,16 @@
 	      <div class="highlight">
 		  	  <?php echo userMsg('Les actions ci-dessous seront faites sur les extractions sélectionnées.', 'info')?>
 		  	  <div class="submit">
+		  	  <!--[if !IE]> -->
 		  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
 		  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
 		  	    <button type="submit" name="scenarioAction" value="execute_test">Lancer les tests</button>
+		  	  <!-- <![endif]-->
+          <!--[if IE]> 
+            <input type="submit" name="scenarioAction" value="rapport_detaille"/>
+            <input type="submit" name="scenarioAction" value="rapport_simple"/>
+            <input type="submit" name="scenarioAction" value="execute_test"/>
+          <![endif]-->
 		  	  </div>
 		  	</div>
   	  </div>

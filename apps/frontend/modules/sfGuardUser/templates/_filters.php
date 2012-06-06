@@ -6,7 +6,7 @@
     <?php echo $form->renderGlobalErrors() ?>
   <?php endif; ?>
 
-  <form class="highlight quickAddForm" action="<?php echo url_for('sf_guard_user_collection', array('action' => 'filter')) ?>" method="post">
+  <form class="block quickAddForm" action="<?php echo url_for('sf_guard_user_collection', array('action' => 'filter')) ?>" method="post">
     <h2>Filtres</h2>
     <div>
         <?php echo $form->renderHiddenFields() ?>

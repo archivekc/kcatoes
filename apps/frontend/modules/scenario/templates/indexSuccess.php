@@ -1,6 +1,6 @@
   <div class="block" id="scenarioIndex">
     <h1>Scenarios</h1>
-
+  <?php if ($sf_user->hasCredential('gestion scenario')):?>
   <span>Ajout d'un scénario de page web</span>
   <form method="post" id="addScenarioForm" action="<?php echo url_for('scenario/index')?>" class="block <?php echo !$addScenarioForm->hasErrors()?'quickAddForm':'' ?>">
       <h2>Ajout d'un scenario de page web</h2>
@@ -28,6 +28,7 @@
         </div>
       </div>
     </form>
+    <?php endif ?>
 
 
     <?php $nbScenario = count($scenarii)?>
@@ -48,17 +49,19 @@
                               ,array('class'=> 'ico detail'
                                     ,'title'=> 'Voir le détails du scénario '.$scenario['nom'])) 
            ?>
-          <?php echo link_to('Modifier', 'scenarioEdit'
-                              ,array('id'=>$scenario->getId())
-                              ,array('class'=> 'ico modifier popupScreen'
-                                    ,'title'=> 'Modifier les informations du scénario '.$scenario['nom'])) 
-          ?>
-          <?php echo link_to('Supprimer', 'scenarioDelete'
-                              ,array('id'=>$scenario->getId())
-                              ,array('class'=> 'ico supprimer'
-                                    ,'title'=> 'Supprimer le scénario '.$scenario['nom']
-                                    ,'confirm'=>'Êtes-vous sûr ?')) 
-           ?>
+           <?php if ($sf_user->hasCredential('gestion scenario')):?>
+	          <?php echo link_to('Modifier', 'scenarioEdit'
+	                              ,array('id'=>$scenario->getId())
+	                              ,array('class'=> 'ico modifier popupScreen'
+	                                    ,'title'=> 'Modifier les informations du scénario '.$scenario['nom'])) 
+	          ?>
+	          <?php echo link_to('Supprimer', 'scenarioDelete'
+	                              ,array('id'=>$scenario->getId())
+	                              ,array('class'=> 'ico supprimer'
+	                                    ,'title'=> 'Supprimer le scénario '.$scenario['nom']
+	                                    ,'confirm'=>'Êtes-vous sûr ?')) 
+	           ?>
+	         <?php endif ?>
         </li>
     <?php endforeach ?>
     </ul>

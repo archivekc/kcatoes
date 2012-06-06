@@ -18,3 +18,7 @@ sfGuardPermission:
   Permission_test:
     name:           test
     description:    test
+
+  Manage_scenario:
+    name:           gestion scenario
+    description:    Permet de créer et de modifier les scénarios ainsi que les modèles de scénario
