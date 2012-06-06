@@ -31,18 +31,18 @@ class RestitutionCorrecteLecteursEcranElementsMasques extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements   = '[display:none], [visibility:hidden]';
+    //$elements   = '[display:none], [visibility:hidden]';
 
-    $nodes = $crawler->filter($elements);
+    //$nodes = $crawler->filter($elements);
 
-    if (count($nodes) == 0) {
+    //if (count($nodes) == 0) {
        $this->addResult(null, \Resultat::NA, 'Test non applicable');
-    }
-    else {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément n’a
-        pas vocation à être restitué par les lecteurs d’écran ou que sa
+    //}
+    //else {
+        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que les éléments cachés n’ont
+        pas vocation à être restitués par les lecteurs d’écran ou que leur
         restitution devient possible moyennant une interaction de l’utilisateur
         avec un élément dans la page');
-    }
+    //}
   }
 }

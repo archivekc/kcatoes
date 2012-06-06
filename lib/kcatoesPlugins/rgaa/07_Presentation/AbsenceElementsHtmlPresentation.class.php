@@ -40,7 +40,7 @@ class AbsenceElementsHtmlPresentation extends \ASource
       }
       else {
         foreach($nodes as $node){
-          $this->addesult($node, \Resultat::MANUEL, 'Vérifier que l’élément n’est
+          $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément n’est
           pas utilisé uniquement à des fins de présentation');
         }
      }
