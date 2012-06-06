@@ -7,6 +7,7 @@
 <ul>
   <li>Adrien Couet</li>
   <li>Cyril Fabby</li>
+  <li>Geoffroy Guéritot</li>
   <li>Antoine Rolland</li>
   <li>Julien Tardot</li>
 </ul>
