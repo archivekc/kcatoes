@@ -5,12 +5,12 @@ namespace Kcatoes\rgaa;
 
 class AbsenceOuvertureFenetreSansActionUtilisateur extends \ASource
 {
-  
+
   const testName = 'Absence d\'ouverture de nouvelles fenêtres sans action de l\'utilisateur';
   const testId = '6.5';
   protected static $testProc = array(
      'Si du code javascript est utilisé dans la page, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le code javascript ne déclenche pas, sans intervention de l\'utilisateur, 
+    ,'Si le code javascript ne déclenche pas, sans intervention de l\'utilisateur,
       l\'ouverture d\'une nouvelle fenêtre, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -26,28 +26,22 @@ class AbsenceOuvertureFenetreSansActionUtilisateur extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout code javascript utilisé dans la page.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements = 'applet';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le code
+        javascript ne déclenche pas, sans intervention de l’utilisateur,
+        l’ouverture d’une nouvelle fenêtre');
+    }
   }
 }
