@@ -192,7 +192,7 @@ ScenarioTemplate:
 ScenarioTemplatePage:
   tableName: scenario_template_page
   actAs:
-    - TimeStampable
+    - Timestampable
   columns:
     id:          { type: integer, primary: true, autoincrement: true }
     scenario_template_id: { type: integer, primary: true, autoincrement: true }
