@@ -72,10 +72,28 @@ class evalActions extends kcatoesActions
 	      $fields['select'][]   = Tester::computeIdForTest('mainResult_'.$test::testId);
 	      $fields['select'][]   = Tester::computeIdForTest('subResult'.$cptLine.'_'.$test::testId);
 	      $fields['textarea'][] = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId);
-	      array_push($subResult, $result);
+	      $subResult[$test::testId] = $result; 
     	}
     }
-    $this->results = $subResult;
+    /*
+    $subResult = array_flip($subResult);
+    natcasesort($subResult);
+    $subResult = array_flip($subResult);*/
+
+    $subSubResult = array();
+    $keys = array_keys($subResult);
+    natsort($keys);
+    foreach($keys as $key)
+    {
+      array_push($subSubResult, $subResult[$key]);    	
+    }
+    
+//    ksort($subResult);
+//    $subResult = array_values($subResult);
+//    
+    
+    
+    $this->results = $subSubResult;
   }
   
   /**
@@ -87,7 +105,6 @@ class evalActions extends kcatoesActions
   {
   	set_time_limit(0);
   	
-	set_time_limit(0);
   	$extractIds = $this->getUser()->getFlash('extractIds', null);
     if (!is_array($extractIds))
     {

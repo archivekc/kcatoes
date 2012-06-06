@@ -1,5 +1,8 @@
-body, html, #wrap, #aside {
+body, html {
   height: 100%;
+}
+#wrap, #aside {
+  min-height: 100%;
 }
 body {
   font-size: 62.5%;
@@ -20,6 +23,7 @@ body {
   margin-top: -3.7em;
   position: relative;
   z-index: 3;
+  border-radius: 0 0 .5em;
 }
 
 #KCatoesLogo img {
@@ -565,6 +569,11 @@ form input[type=submit],
 	border-width: 0 1px;
 }
 
+#saveUserTest {
+  margin-top: 2em;
+}
+
+
 /* formulaires */
 #addScenarioForm .fields>div,
 #editScenarioForm .fields>div {
@@ -603,7 +612,8 @@ form input[type=submit],
 .popup#editScenarioForm,
 .popup#scenarioAddPageForm,
 .popup#scenarioEditPageForm,
-.popup.addEditGroup  {
+.popup.addEditGroup,
+.popup.addEditPermission   {
   width: 50em;
   margin-left: -25em;
 }
@@ -669,4 +679,11 @@ ul.rapport span.score {
 }
 .templatePage>li>.required {
   margin-left: -20px;
+}
+
+
+/* tags */
+.tags .tag.perso {
+  background: #767676;
+  color: #FFF;
 }

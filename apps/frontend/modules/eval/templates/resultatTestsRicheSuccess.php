@@ -10,11 +10,22 @@
     <script type="text/javascript" src="/kcatoesOutput/js/rich.js"></script>
   </head>
   <body>
+		<?php if ($history): ?>
+		  <form method="post" action="<?php echo url_for('sauvegardeResultat', $extraction) ?>" >
+
+		<?php endif ?>
     <h1 id="rapportTitle">
       <img alt="" src="/kcatoesOutput/img/kcatoes.png"/>
       <?php echo $title ?>
       <?php echo $subtitle ?>
-      <span class="score">Score&nbsp;<span class="scoreValue"><?php echo $score ?></span>%</span>
+      <!-- <span class="score">Score&nbsp;<span class="scoreValue"><?php echo $score ?></span>%</span>  -->
+      <?php if ($history): ?>
+			    <span class="save">
+			      <input type="submit" value="Sauvegarder" />
+			      <input type="hidden" id="filename" name="filename" value="output.html" />
+			      <input type="hidden" id="score" name="score" readonly="readonly" value="'.$this->getScore().'"/>
+			    </span>
+			<?php endif ?>
     </h1>
     <div id="output">
       <div class="inner">
@@ -29,5 +40,8 @@
         <iframe src="<?php echo url_for('pageSource', $extraction) ?>" name="testedPage"></iframe>
        </div>
     </div>
+	<?php if ($history): ?>
+	  </form>
+	<?php endif ?>
   </body>
 </html>  

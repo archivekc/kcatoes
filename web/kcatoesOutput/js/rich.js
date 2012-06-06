@@ -1,12 +1,13 @@
 $(function(){
 	// sauvegarde automatique toutes les minutes
+	/*
 	window.setInterval(function(){
 		var form = $('form')[0];
 		$.post(form.action+'?autosave=;)', $(form).serialize());
-	}, 60000);
+	}, 60000);*/
 	
 	// MAJ du score
-	$('.testStatus select').change(function(){
+	/*$('.testStatus select').change(function(){
 		var nbEchec = 0;
 		var nbReussite = 0;
 		$('.testStatus select').each(function(){
@@ -25,14 +26,23 @@ $(function(){
 		}
 		$('#score').val(score);
 		$('.scoreValue').text(score);
-	});
+	});*/
 	
 	
 	// groupage des lignes
-	handleGroups();
+	//handleGroups();
+	
+	// show hide sub results
+	$('#kcatoesRapport .elemsResult').each(function(){
+		var nbLine = $('>li', this).length;
+		var openTrigger = $('<span>Voir les résultats par élément ('+nbLine+')</span>');
+		$(this).before(openTrigger);
+		collapser = $(this).prev();
+		makeCollapsable(collapser, this);
+	});
 	
 	// Mise en forme des éléments de contexte
-	$('tbody tr .context').each(function(){
+	$('#kcatoesRapport .context').each(function(){
 		var that = this; 
 		var css = $('.cssSelector', this).detach();
 		var source = $('.source', this).detach();
@@ -88,8 +98,9 @@ $(function(){
 	
 	// affichage des liens de documentation
 	$('.testDoc li').each(function(){
-		var url = $(this).text();
-		var link = '<a href="'+url+'" target="_blank">'+url+'</a>';
+		var urlParts = $(this).text().split(': ');
+		
+		var link = '<a href="'+urlParts[1]+'" target="_blank">'+urlParts[0]+'</a>';
 		
 		$(this).html(link);
 	});
@@ -97,7 +108,7 @@ $(function(){
 	// code couleur des valeurs de résulat
 	var checkColorCode = function(){
 		var value = $(this).val();
-		$(this).closest('td').removeClass('ECHEC NA REUSSITE MANUEL').addClass(value);
+		$(this).closest('div').removeClass('ECHEC NA REUSSITE MANUEL').addClass(value);
 	};
 	$('select').change(checkColorCode).each(function(){checkColorCode.call(this);});
 	
@@ -407,3 +418,88 @@ var handleGroups = function(){
 	});
 };
 
+
+
+
+
+var makeCollapsable = function(collapser, collapsable, userOptions){
+	var option = {
+		style: 'showhide'
+	};
+	
+	$.extend(option, userOptions);
+
+	var trigger = $('<button class="ico"/>');
+	$(collapser).before(trigger);
+	$(trigger).append(collapser);
+	
+	$(trigger).addClass('collapser collapse-closed');
+	$(collapsable).addClass('collapsable collapse-closed');
+	
+	var handleKey = function(e){
+		if (e.keyCode == 27 ){  // escape key
+			$(trigger).click();
+		}
+	};
+	var show = function(){
+		switch(option.style){
+			case 'popup':
+				var popupWrap = $('<div class="popupWrap"/>');
+				var popupOverlay = $('<div class="popupOverlay"/>');
+				$(popupWrap).append(popupOverlay);
+				$(popupWrap).append(collapsable);
+				$(collapsable).addClass('popup');
+				$('#wrap').prepend(popupWrap);
+				var closeTrigger = $(trigger).clone(true).text('Fermer');
+				$(collapsable).prepend(closeTrigger);
+
+				collapsable.popupWrap = popupWrap;
+				collapsable.popupOverlay = popupOverlay;
+				collapsable.closeTrigger = closeTrigger;
+
+				$(document).bind('keyup', handleKey);
+
+				break;
+			case 'dropdown':
+				/*$(collapsable).parent().css('margin-bottom', '-'+$(collapsable).outerHeight()+'px' );
+				$(collapsable).show();*/
+				$(collapsable).parent().css({
+					'position': 'absolute'
+					,'width': '100%'
+				});
+				$(collapsable).show();
+				break;
+			default:
+				$(collapsable).show();
+				break;
+		}
+	};
+
+	var hide = function(){
+		switch(option.style){
+			case 'popup':
+				$(collapsable.popupWrap).remove();
+				$(collapsable.popupOverlay).remove();
+				$(collapsable.closeTrigger).remove();
+				$(document).unbind('keyup', handleKey);
+				break;
+			default:
+				$(collapsable).hide();
+				break;
+		}
+	};
+	
+	$(trigger).click(function(e){
+		e.preventDefault();
+		if ($(this).is('.collapse-opened')){
+			hide();
+			$(collapsable).add(trigger).removeClass('collapse-opened').addClass('collapse-closed');
+		} else {
+			$(collapsable).add(trigger).removeClass('collapse-closed').addClass('collapse-opened');
+			show();
+		}
+	});
+	delete trigger;
+	delete collapsable;
+	delete collapser;
+};
