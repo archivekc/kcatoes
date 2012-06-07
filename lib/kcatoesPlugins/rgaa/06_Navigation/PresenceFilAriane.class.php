@@ -1,11 +1,9 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceFilAriane extends \ASource
 {
-  
+
   const testName = 'Présence d\'un fil d\'ariane';
   const testId = '6.20';
   protected static $testProc = array(
@@ -20,28 +18,10 @@ class PresenceFilAriane extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Toute succession ou liste d'éléments a permettant de naviguer dans l'arborescence amenant à la page en cours de consultation.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::MANUEL, 'Valider la présence d\'un fil
+     d\'Ariane');
   }
 }

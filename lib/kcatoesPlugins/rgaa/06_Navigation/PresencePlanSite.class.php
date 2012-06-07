@@ -1,11 +1,9 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresencePlanSite extends \ASource
 {
-  
+
   const testName = 'Présence d\'une page contenant le plan du site';
   const testId = '6.17';
   protected static $testProc = array(
@@ -22,28 +20,11 @@ class PresencePlanSite extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Toute page récapitulant l'architecture générale du site sous forme de liens hypertextes.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::MANUEL, 'Vérifier qu\'une page avec un
+      plan du site existe à moins qu\'elle ne soit remplacée par un moteur de
+      recherche ou un menu de navigation');
   }
 }

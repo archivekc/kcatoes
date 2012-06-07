@@ -5,14 +5,14 @@ namespace Kcatoes\rgaa;
 
 class PresenceInformationsFormatTelechargement extends \ASource
 {
-  
+
   const testName = 'Présence des informations de format pour les documents en téléchargement';
   const testId = '6.26';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent ou utilisé dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent ou utilisé dans la page,
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément provoque le téléchargement d\'un document, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le format du document est indiqué dans le libellé de l\'élément déclenchant le téléchargement 
+    ,'Si le format du document est indiqué dans le libellé de l\'élément déclenchant le téléchargement
       ou le libellé seul additionné à un contenu récupérable par au moins un des contextes suivants :'
     ,array(
        'contenu de son élément html parent si il s\'agit d\'un élément p ou li'
@@ -32,33 +32,24 @@ class PresenceInformationsFormatTelechargement extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout élément :
-      
-          a
-          area
-      
-      ou tout code javascript utilisé dans la page.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements   = 'a, area';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node) {
+        $this->addResult($node, \Resultat::MANUEL, 'Si cet élément provoque
+        provoque le téléchargement d’un document, qu\'on puisse savoir quel en
+        est le format' );
+      }
+    }
   }
 }

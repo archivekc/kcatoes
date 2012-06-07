@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceMenusBarresNavigation extends \ASource
 {
-  
+
   const testName = 'Présence de menus ou de barres de navigation';
   const testId = '6.21';
   protected static $testProc = array(
@@ -21,28 +21,10 @@ class PresenceMenusBarresNavigation extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout groupe d'éléments permettant la navigation dans le site ou dans une page.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::MANUEL, 'Des menus ou des barres de
+      navigation sont-ils présents?');
   }
 }
