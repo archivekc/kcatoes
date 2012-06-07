@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PossibiliteNaviguerFacilementGroupePages extends \ASource
 {
-  
+
   const testName = 'Possibilité de naviguer facilement dans un groupe de pages';
   const testId = '6.35';
   protected static $testProc = array(
@@ -23,28 +23,10 @@ class PossibiliteNaviguerFacilementGroupePages extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Groupe de pages.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::MANUEL, 'S\'assurer que des liens lient
+      les pages d\'un même groupe');
   }
 }

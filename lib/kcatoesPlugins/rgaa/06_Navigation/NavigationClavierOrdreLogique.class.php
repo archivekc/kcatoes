@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class NavigationClavierOrdreLogique extends \ASource
 {
-  
+
   const testName = 'Navigation au clavier dans un ordre logique par rapport au contenu';
   const testId = '6.24';
   protected static $testProc = array(
@@ -23,37 +23,21 @@ class NavigationClavierOrdreLogique extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
     /*
-      Champ d'application
-      
-      Tout élément :
-      
-          a avec un attribut href
-          area
-          button
-          input
-          object
-          embed
-          select
-          textarea
-          élément avec attribut tabindex spécifié
-     */
-    
-    /*
       $crawler = $this->page->crawler;
-      $elements = '';
+      $elements = 'a[href], button, input, object, embed, select, textarea, [tabindex]';
       $nodes = $crawler->filter($elements);
 
       $this->addResult($node, \Resultat::ECHEC, '');
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
+
      $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
 
   }

@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceMoteurRecherche extends \ASource
 {
-  
+
   const testName = 'Présence d\'un moteur de recherche';
   const testId = '6.34';
   protected static $testProc = array(
@@ -21,23 +21,11 @@ class PresenceMoteurRecherche extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::MANUEL, 'Vérifier qu\'un moteur de
+      recherche existe à moins qu\'il ne soit remplacé par une page avec un
+      plan du site et un menu de navigation');
   }
 }

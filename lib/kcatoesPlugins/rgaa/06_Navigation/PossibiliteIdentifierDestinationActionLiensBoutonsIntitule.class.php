@@ -42,7 +42,7 @@ class PossibiliteIdentifierDestinationActionLiensBoutonsIntitule extends \ASourc
     else {
     	foreach ($nodes as $node ){
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la destination
-        du lien est facilement identifiable');
+        du lien est facilement identifiable par son intitulé');
     	}
     }
   }

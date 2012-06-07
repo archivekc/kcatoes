@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceIndicationPositionCouranteNavigation extends \ASource
 {
-  
+
   const testName = 'Présence d\'une indication de la position courante dans la navigation';
   const testId = '6.36';
   protected static $testProc = array(
@@ -21,28 +21,10 @@ class PresenceIndicationPositionCouranteNavigation extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Toute barre de navigation.
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-
+     $this->addResult(null, \Resultat::NON_EXEC, 'S\'assurer que la présente page
+     a une mise en forme diffétence dans la barre de navigation.');
   }
 }
