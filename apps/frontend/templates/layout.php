@@ -18,13 +18,16 @@
     <div id="wrap">
       <div id="head">
         <p id="teaser"><strong>KCatoès</strong> est un outil automatique d'assistance aux tests d'accessibilité</p>
+        <?php include_partial('global/userZone', array())?>
       </div>
 
       <div id="aside">
           <a id="KCatoesLogo" href="<?php echo url_for('homepage') ?>" title="page d'accueil">
             <img src="/img/kcatoes-128.png" alt="K Catoès"/>
           </a>
+          
           <div id="mainMenu">
+            <strong>Menu</strong>
 		        <ul class="menu">
 		          <?php /* 
 		          <li>
@@ -41,8 +44,11 @@
 			            <a href="<?php echo url_for('pageIndex')?>">Pages web</a>
 		          </li>
 		          <li>
-		              <a href="<?php echo url_for('scenarioIndex')?>">Scenarii</a>
+		              <a href="<?php echo url_for('scenarioIndex')?>">Scénarios</a>
 		          </li>
+              <li>
+                  <a href="<?php echo url_for('scenarioTemplateIndex')?>">Modèles de scénario</a>
+              </li>
 		          <?php endif ?>
 		          <li>
 		            <a href="<?php echo url_for('editorial')?>">Documentation</a>
@@ -69,20 +75,6 @@
               <?php echo sfConfig::get('app_date') ?>
             </p>
 		      </div>
-          
-		      <?php if($sf_user->isAuthenticated()): ?>
-          <div id="logoutBtn">
-            <div id="connectedUser">
-              <?php echo $sf_user->getName(); ?>
-              <ul id="userGroups">
-                <?php foreach($sf_user->getGroups() as $group): ?>
-                  <li><?php echo $group->getName(); ?></li> 
-                <?php endforeach; ?>
-              </ul>
-            </div>
-            <a class="actionButton" href="<?php echo url_for('sf_guard_signout')?>">Déconnexion</a>
-          </div>
-          <?php endif ?>
           
       </div>
 

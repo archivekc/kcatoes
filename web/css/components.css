@@ -38,6 +38,7 @@ button.trigger>* {
   position: relative;
   padding: 1em;
   margin-top: 1em;
+  margin-bottom: 1em;
   border: .5em solid;
   border-radius: .5em;
   border-width: .1em .5em;
@@ -78,6 +79,9 @@ button.trigger>* {
   margin-top: -.5em;
 }
 
+.block.unauthorized {
+  border-color: #A00;
+}
 
 
 /* icones, liens et boutons */
@@ -183,6 +187,11 @@ select:focus,
 textarea:focus {
   border-color: #9DD63B;
 }
+
+label {
+	cursor: pointer;
+}
+
 #wrap [type=checkbox]+label,
 #wrap [type=radio]+label {
   margin-left: 0;
@@ -264,6 +273,19 @@ table tr {
   vertical-align: middle;
 }
 
+/* tag */
+ul.tags {
+  float: right;
+}
+ul.tags li.tag {
+  display: inline-block;
+  padding: 0 .5em;
+  border-radius: .5em;
+  background: #BF3100;
+  color: #EEE;
+  font-weight: bold;
+}
+
 /* popup */
 .popupWrap {
   position: fixed;
@@ -284,7 +306,10 @@ table tr {
   padding:0; margin: 0;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,.2); 
+  background: #000; 
+  opacity: .5;
+  filter: alpha(opacity=50);
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 }
 .popup {
   position: absolute;

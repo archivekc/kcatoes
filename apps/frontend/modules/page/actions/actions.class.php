@@ -59,7 +59,7 @@ class pageActions extends kcatoesActions
           $baseExtract->save();          
           
           // enregistrement des sources sans JS
-          $noJsSrc = $this->_fix_latin(ExtractHelper::removeJS($src));
+          $noJsSrc = $this->_fix_latin(ExtractHelper::removeJS($src, $doctype));
           $noJsExtract = new WebPageExtract();
           $noJsExtract->setWebPage($page);
           $noJsExtract->setSrc($noJsSrc);
@@ -140,8 +140,10 @@ class pageActions extends kcatoesActions
   public function executeExtractSrc(sfWebRequest $request)
   {
   	$extract = $this->getRoute()->getObject();
-  	$this->doctype = $extract->getWebPage()->getDoctype();
+  	$baseUrl = $extract->getWebPage()->getUrl();
   	$this->src = $extract->getSrc();
+  	
+  	$this->src = preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'"></base>', $this->src);
   	
   	$this->setLayout(false);
   }

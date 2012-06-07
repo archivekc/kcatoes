@@ -44,9 +44,11 @@ class PossibiliteRemplacerElementsNonTextuelsCSS extends \ASource
        $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
+    	foreach($nodes as $node){
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément
         utilise une mise en forme ou un effet visuel ne pouvant pas être
         reproduit de façon similaire par des styles CSS');
+    	}
     }
   }
 }

@@ -209,6 +209,7 @@ abstract class ASource
 		$nbNA = 0;
 		$nbMANUEL = 0;
 		$nbNonExec = 0;
+		$error = false;
 		
 		foreach($this->results as $result)
 		{
@@ -229,32 +230,43 @@ abstract class ASource
 				case Resultat::NON_EXEC:
 				  $nbNonExec++;
 				  break;
+				case Resultat::ERREUR:
+					$error = true;
+					break;
 				default:
 					throw new KcatoesWrapperException();
 			}
 		}
 		
-		if ($nbECHEC > 0)
+		if($error)
 		{
-			return Resultat::ECHEC;
+			return Resultat::ERREUR;
 		}
 		else
 		{
-		  if ($nbNonExec > 0){
-		   	return Resultat::NON_EXEC;		    
-		  }
-		  if ($nbMANUEL > 0){
-		   	return Resultat::MANUEL;
-		  }
-			if ($nbREUSSITE == 0 && $nbNA > 0)
+			if ($nbECHEC > 0)
 			{
-				return Resultat::NA;
+				return Resultat::ECHEC;
 			}
-			if ($nbREUSSITE > 0)
+			else
 			{
-				return Resultat::REUSSITE;
+			  if ($nbNonExec > 0){
+			   	return Resultat::NON_EXEC;		    
+			  }
+			  if ($nbMANUEL > 0){
+			   	return Resultat::MANUEL;
+			  }
+				if ($nbREUSSITE == 0 && $nbNA > 0)
+				{
+					return Resultat::NA;
+				}
+				if ($nbREUSSITE > 0)
+				{
+					return Resultat::REUSSITE;
+				}
 			}
-		}
+		} 
+		
 		
 		// la boucle finissant nécessairement par un return, si on se trouve ici
 		// c'est que le test est non applicable (aucun élément n'a été testé)
@@ -354,6 +366,17 @@ abstract class ASource
 	   return $result; 
 	 }
   
+	 public function executeTest()
+	 {
+	 	try
+	 	{
+	 		$this->execute();
+	 	} catch(Exception $e) {
+	 		  $comment = $e->getCode()."\n<br/>".$e->getMessage()."\n<br/>".$e->getFile()."\n<br/>".$e->getLine();
+	 	   $this->addResult(null, Resultat::ERREUR, $comment);
+	 	}
+	 }
+	 
   /**
    * Exécute le test implémenté sur une page web
    *

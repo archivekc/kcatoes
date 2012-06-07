@@ -1,6 +1,6 @@
   <form method="post" action="<?php echo url_for('pageTests',array('id'=>$page->getId()))?>" 
-        class="highlight">
-
+        class="block testForm">
+    <h2>Tests</h2>
     <div class="fields">
     
       <?php if ($sf_user->hasFlash('webPageTestsMsg')): ?>

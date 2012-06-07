@@ -25,7 +25,7 @@ class AbsenceEspacesSeparerLettresMot extends \ASource
 
   public function execute()
   {
-    $this->addResult($node, \Resultat::MANUEL, 'Vérifier que tout espace
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier que tout espace
     typographique ou élément vide utilisé pour simuler une espace n’est pas
     utilisé afin séparer visuellement les lettres composant un même mot');
   }

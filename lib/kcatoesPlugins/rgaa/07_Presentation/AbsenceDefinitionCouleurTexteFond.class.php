@@ -39,8 +39,11 @@ class AbsenceDefinitionCouleurTexteFond extends \ASource
        $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
+      foreach($nodes as $node)
+      {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier qu\'une couleur de
         texte est définie si le fond l\'est aussi et inversement');
+      }
     }
   }
 }

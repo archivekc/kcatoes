@@ -63,6 +63,16 @@ body {
   -webkit-box-shadow: 3px 3px 5px #DDD;
   box-shadow: 3px 3px 5px #DDD;
 }
+
+#userZone .menu li a:hover,
+#userZone .menu li a:focus {
+  background: #DDD;
+  border-color: #BBB;
+  -moz-box-shadow: 3px 3px 5px #BAEF51;
+  -webkit-box-shadow: 3px 3px 5px #BAEF51;
+  box-shadow: 3px 3px 5px #BAEF51;
+}
+
 .menu li span {
   background: #343434;
   color: #FFF;

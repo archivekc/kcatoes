@@ -1,5 +1,25 @@
 <?php
 
+    /**
+     *
+     * @custom error function to throw exception
+     *
+     * @param int $errno The error number
+     *
+     * @param string $errmsg The error message
+     *
+     */
+    function custom_handler($errno, $errmsg, $errfile, $errline) 
+    { 
+    	 //die('error!!!');
+        //throw new Exception('This Error Happened '.$errno.': '. $errmsg);
+        echo "<p>$errno</p><p>$errmsg</p><p>$errfile</p><p>$errline</p><br/><br/><br/>";        
+
+        throw new Exception("<p>$errno</p><p>$errmsg</p><p>$errfile</p><p>$errline</p><br/><br/><br/>");
+        return true;
+    }
+
+
 /**
  * Gestionnaire de tests de KCatoes
  *
@@ -36,12 +56,16 @@ class Tester
    */
   public function executeTest()
   {
+  	set_time_limit(0);
+    set_error_handler('custom_handler', E_ALL); 
+
+
   	foreach ($this->tests as $class) {
   		
   		// Teste l'existance du test
   		if (class_exists($class, false)){
 	  		$test = new $class($this->page);
-	  		$test->execute();
+	  		$test->executeTest();
 	  		array_push($this->resTests,$test);  			
   		}
   		else {
@@ -49,6 +73,7 @@ class Tester
   		}
   		
   	}
+  	restore_error_handler();
   	return;
   	
   }
@@ -218,11 +243,11 @@ class Tester
       {
         $retString .= '<li>';
         if (is_array($item)){
-          $retString .= self::arrayToHtmlList($item, $ordered);
+          $retString .= '<span class="key">'.$key.'</span>&nbsp;:'.self::arrayToHtmlList($item, $ordered);
         } else {
           if (is_numeric($key))
           {
-            $retString .= $item;
+            $retString .= '<span class="key"></span>&nbsp;&nbsp;'.$item;
           }
           else {
             $retString .= '<span class="key">'.$key.'</span>&nbsp;: <span class="value">'.$item.'</span>';
@@ -256,8 +281,9 @@ class Tester
       ,Resultat::ECHEC
       ,Resultat::NA
       ,Resultat::MANUEL
+      ,Resultat::ERREUR
     );
-    $select = '<select id="'.$id.'" name="'.$name.'">';
+    $select = '<select id="'.$id.'" name="'.$name.'"><option></option>';
     foreach($available as $state)
     {
       $selected = '';

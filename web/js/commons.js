@@ -7,8 +7,21 @@ $(function(){
 		$('.quickAddForm', parent).each(function(){
 			collapser = $(this).prev();
 			collapsable = $(this);
-			makeCollapsable(collapser, collapsable);
+			makeCollapsable(collapser, collapsable, {style: 'popup'});
 		});
+	};
+	
+	var handleDropdownUserMenu = function(parent){
+		if (!parent){
+			parent = $('body');
+		}
+		var collapser = $('#userZone>strong>span', parent);
+		var collapsable = $('#userZone>.sub>ul', parent);
+		if (collapser.length>0){
+			makeCollapsable(collapser, collapsable, {
+				style: 'dropdown'
+			});
+		}
 	};
 	
 	var initScreen = function(parent){
@@ -19,6 +32,7 @@ $(function(){
 		handleQuickAddForm(parent);
 		handleTabs(parent);
 		handlePopupScreen(parent);
+		handleDropdownUserMenu(parent)
 //		handleNav();
 	};
 	
@@ -27,8 +41,10 @@ $(function(){
 
 var makeCollapsable = function(collapser, collapsable, userOptions){
 	var option = {
-		style: 'popup'
+		style: 'showhide'
 	};
+	
+	$.extend(option, userOptions);
 
 	var trigger = $('<button class="ico"/>');
 	$(collapser).before(trigger);
@@ -61,6 +77,15 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 				$(document).bind('keyup', handleKey);
 
 				break;
+			case 'dropdown':
+				/*$(collapsable).parent().css('margin-bottom', '-'+$(collapsable).outerHeight()+'px' );
+				$(collapsable).show();*/
+				$(collapsable).parent().css({
+					'position': 'absolute'
+					,'width': '100%'
+				});
+				$(collapsable).show();
+				break;
 			default:
 				$(collapsable).show();
 				break;
@@ -79,7 +104,7 @@ var makeCollapsable = function(collapser, collapsable, userOptions){
 				$(collapsable).hide();
 				break;
 		}
-	}
+	};
 	
 	$(trigger).click(function(e){
 		e.preventDefault();
@@ -139,12 +164,13 @@ var handlePopupScreen = function(parent){
 		parent = $('body');
 	}
 	$('.popupScreen', parent).click(function(e){
-      e.preventDefault();
+		console.log()
       $.ajax({
       	type: 'get'
       	,url: this.href
-      	,type: 'html'
-      	,success: popup
+      	,success: function(data){
+    	  popup(data);
+      	}
       	,error: function(errObj, errType, errTxt){
     	  	switch(errObj.status){
     	  		case 401:
@@ -152,12 +178,15 @@ var handlePopupScreen = function(parent){
     	  			var link = '<a href="'+GLOBAL.loginUrl+'" class="ico connexion">Accéder au formulaire de connexion</a>';
     	  			var content = $('<div class="block popupscreenError"><h1>Erreur</h1><p>'+msg+'</p>'+link+'</div>');
     	  			break;
+    	  		default:
+    	  			console.log(arguments);
     	  	}
     	  	popup(content);
 	    }
       });
+      e.preventDefault();
 	});
-}
+};
 
 // ///////////// //
 // la navigation //
@@ -214,4 +243,4 @@ var popup = function(content){
 	$(document).bind('keyup', handleKey);
 	
 	return content;
-}
+};

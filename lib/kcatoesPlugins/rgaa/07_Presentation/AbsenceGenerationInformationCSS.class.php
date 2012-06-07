@@ -26,7 +26,7 @@ class AbsenceGenerationInformationCSS extends \ASource
 
   public function execute()
   {
-    $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la propriété CSS
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier que la propriété CSS
     content génère un contenu qui n’est pas porteur d’information');
   }
 }

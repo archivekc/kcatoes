@@ -58,14 +58,42 @@ class evalActions extends kcatoesActions
     
     // Champs pour formulaire d'historisation
     $cptLine = -1;
+    
+    $userTest = $this->getUser()->getGuardUser()->getProfilAndUserTest();
+    
+    $subResult = array();
+    
     foreach($this->results as $result)
     {
-      $cptLine++;
-      $test = $result->getClass();
-      $fields['select'][]   = Tester::computeIdForTest('mainResult_'.$test::testId);
-      $fields['select'][]   = Tester::computeIdForTest('subResult'.$cptLine.'_'.$test::testId);
-      $fields['textarea'][] = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId);
+    	if (in_array($result->getClass(), $userTest))
+    	{
+	      $cptLine++;
+	      $test = $result->getClass();
+	      $fields['select'][]   = Tester::computeIdForTest('mainResult_'.$test::testId);
+	      $fields['select'][]   = Tester::computeIdForTest('subResult'.$cptLine.'_'.$test::testId);
+	      $fields['textarea'][] = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId);
+	      $subResult[$test::testId] = $result; 
+    	}
     }
+    /*
+    $subResult = array_flip($subResult);
+    natcasesort($subResult);
+    $subResult = array_flip($subResult);*/
+
+    $subSubResult = array();
+    $keys = array_keys($subResult);
+    natsort($keys);
+    foreach($keys as $key)
+    {
+      array_push($subSubResult, $subResult[$key]);    	
+    }
+    
+//    ksort($subResult);
+//    $subResult = array_values($subResult);
+//    
+    
+    
+    $this->results = $subSubResult;
   }
   
   /**
@@ -77,7 +105,6 @@ class evalActions extends kcatoesActions
   {
   	set_time_limit(0);
   	
-	set_time_limit(0);
   	$extractIds = $this->getUser()->getFlash('extractIds', null);
     if (!is_array($extractIds))
     {

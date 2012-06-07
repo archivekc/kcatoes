@@ -21,8 +21,8 @@ class kcatoesActions extends sfActions
 
   public function preExecute()
   {
-
   }
+  
   public function postExecute()
   {
     /*

@@ -30,7 +30,7 @@ class EquivalenceDeLInformationMiseADispositionDansLaVersionAlternative extends 
 
   public function execute()
   {
-    $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'information est
+    $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'information est
     équivalente entre les différentes versions de la page');
   }
 }

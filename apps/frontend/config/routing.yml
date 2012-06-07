@@ -47,7 +47,11 @@ sf_guard_group_assoc_test:
 
 sf_guard_permission:
   url: /administration/roles
-  param: {module: sfGuardPermission, action: index}
+  param: {module: sfGuardPermission, action: index }
+  
+userTest:
+  url: /mon-profil/tests/
+  param: {module: sfGuardUser, action: userTest }
 
 # ######### 
 # PAGES WEB
@@ -156,8 +160,20 @@ pageResultatTests:
 # SCENARIO
 # ########
 scenarioIndex:
-  url:      /scenarii
+  url:      /scenarios
   param:    { module: scenario, action: index }
+
+scenarioTemplateIndex:
+  url:      /modeles-de-scenarios
+  param:    { module: scenario, action: templateIndex }
+
+scenarioTemplateDelete:
+  url:      /scenario/supprimer-modele-de-scenario/:id
+  param:    { module: scenario, action: templateDelete }
+  class:    sfDoctrineRoute
+  options:  { model: ScenarioTemplate, type: object }
+  requirements: 
+    id:     \d+
 
 scenarioDetail:
   url:      /scenario/voir/:id

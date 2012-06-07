@@ -27,7 +27,7 @@ class AbsenceDeSyntaxesCryptiquesParRapportAuContenuDeVotreSite extends \ASource
 
   public function execute()
   {
-   $this->addResult($node, \Resultat::MANUEL, 'Vérifier que du texte cryptique peut
+   $this->addResult(null, \Resultat::MANUEL, 'Vérifier que du texte cryptique peut
    être compris au travers d\'un attribut title ou un segment de texte adjacent.');
   }
 }
