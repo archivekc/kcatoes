@@ -5,15 +5,15 @@ namespace Kcatoes\rgaa;
 
 class PossibiliteIdentifierDestinationActionLiensBoutons extends \ASource
 {
-  
+
   const testName = 'Possibilité d\'identifier la destination ou l\'action des liens et des boutons';
   const testId = '6.13';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si la lecture de l\'intitulé du lien seul en dehors de son contexte permet à une personne 
+    ,'Si la lecture de l\'intitulé du lien seul en dehors de son contexte permet à une personne
       n\'ayant aucun handicap de comprendre l\'action ou d\'identifier la destination du lien, poursuivre le test, sinon le test est non applicable'
-    ,'Si la lecture de l\'intitulé du lien seul permet de comprendre l\'action ou d\'identifier la 
+    ,'Si la lecture de l\'intitulé du lien seul permet de comprendre l\'action ou d\'identifier la
       destination du lien ou que de l\'intitulé seul additionné aux contenus récupérables dans au moins un des contextes suivants :'
     ,array(
        'contenu de son élément html parent si il s\'agit d\'un élément p ou li'
@@ -36,36 +36,24 @@ class PossibiliteIdentifierDestinationActionLiensBoutons extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout élément :
-      
-          a
-          area
-          button
-          input type="image"
-          input type="submit"
-          input type="button"
-          input type="reset"
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements = 'a, area, button, input[type=image], input[type=submit],
+    input[type=button], input[type=reset]';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach ($nodes as $node ){
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la destination
+        du lien est facilement identifiable par son environnement');
+      }
+    }
   }
 }

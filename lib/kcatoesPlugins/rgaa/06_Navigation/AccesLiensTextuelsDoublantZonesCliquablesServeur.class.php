@@ -5,17 +5,17 @@ namespace Kcatoes\rgaa;
 
 class AccesLiensTextuelsDoublantZonesCliquablesServeur extends \ASource
 {
-  
+
   const testName = 'Accès aux liens textuels doublant les zones cliquables côté serveur';
   const testId = '6.1';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément possède un attribut ismap ou est utilisé comme image avec zones cliquables 
+    ,'Si l\'élément possède un attribut ismap ou est utilisé comme image avec zones cliquables
       côté serveur, poursuivre le test, sinon le test est non applicable.'
-    ,'Si chaque zone cliquable de l\'élément est doublée d\'un lien textuel permettant d\'accéder 
+    ,'Si chaque zone cliquable de l\'élément est doublée d\'un lien textuel permettant d\'accéder
       à la même destination, poursuivre le test, sinon le test est non applicable.'
-    ,'Si les liens, regroupés ou non dans la page, sont accessibles directement après l\'élément, 
+    ,'Si les liens, regroupés ou non dans la page, sont accessibles directement après l\'élément,
       le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -27,31 +27,21 @@ class AccesLiensTextuelsDoublantZonesCliquablesServeur extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
-    /*
-      Champ d'application
-      
-      Tout élément :
-      
-          img
-          input type="image"
-     */
-    
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $crawler = $this->page->crawler;
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-      
-     */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+    $elements = 'img, [input type="image"]';
 
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l’élément est
+        doublé d\'un lien situé juste après');
+    }
   }
 }
