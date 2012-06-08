@@ -32,8 +32,9 @@ $(function(){
 		handleQuickAddForm(parent);
 		handleTabs(parent);
 		handlePopupScreen(parent);
-		handleDropdownUserMenu(parent)
+		handleDropdownUserMenu(parent);
 //		handleNav();
+		handleTestExecution(parent);
 	};
 	
 	initScreen();
@@ -209,7 +210,7 @@ var handleNav = function(){
 // ///// //
 // Popup //
 ///// //
-var popup = function(content){
+var popup = function(content, closeCallback){
 	content = $(content);
 	var popupWrap = $('<div class="popupWrap"/>');
 	var popupOverlay = $('<div class="popupOverlay"/>');
@@ -232,6 +233,10 @@ var popup = function(content){
 		
 		$(content).trigger('popuphide');
 		$(document).unbind('keyup', handleKey);
+		if (closeCallback !== undefined)
+		{
+		  closeCallback();
+		}
 	});
 	$(content).trigger('popupshow');
 	
@@ -243,4 +248,104 @@ var popup = function(content){
 	$(document).bind('keyup', handleKey);
 	
 	return content;
+};
+
+// /////////////////// //
+// Lancement des tests //
+// /////////////////// //
+
+// Capture du lancement des tests
+var handleTestExecution = function(parent)
+{
+  if (!parent){
+    parent = $('body');
+  }
+  $('#execute_test', parent).click(function(){ 
+    //console.log('execute_test click !');
+    
+    // Désactive le bouton pour empêcher la soumission du formulaire
+    $(this).attr('disabled', true);
+    launchTests(parent); 
+    return false;
+  });
+};
+
+// Lancement asynchrone des tests
+var launchTests = function(parent)
+{
+  console.log('Lancement des tests');
+  console.log('Parent : ' + parent);
+  
+  /*
+  stopped  = false;
+  pourcent = 0;
+   */
+  var pourcent = 0;
+  var nb_tests_txt = '';
+  
+  var running = true;
+  
+  popup_content = '<div class="block popupscreemRunning"> '+
+      '<p><span id="nb_tests">'+nb_tests_txt+'</span> test(s) réalisé(s)</p>'
+    + '<p>Exécution en cours... <span id="pourcent">'+pourcent+'</span>%</p>'
+    + '<div id="progressbar"></div>'; 
+    + '</div>'; 
+  
+  popup(popup_content, function(){
+    // Réactive le bouton de soumission du formulaire
+    $('#execute_test', parent).attr('disabled', false);
+    running = false;
+  });
+  
+  $("#progressbar").progressbar({ value: pourcent });
+  
+  var request = function(index){
+    if (index === undefined) { index = 0; }
+    
+    jQuery.ajax({
+  
+      type: "POST", async: true,
+      
+      // FIXME : sans le frontend_dev.php (configurer l'environnement par défaut ?)
+      url: "/frontend_dev.php/scenario/launch?ajax=1&index=" + index,
+      
+      data: jQuery("form").serialize(),
+      dataType: "json",
+      success: function(result){
+        
+        console.log(result);
+        
+        // Mise à jour des compteurs
+        nb_tests_txt = result.executes + ' / ' + result.total;
+        $('#nb_tests').html(nb_tests_txt);
+        
+        if (result.total > 0)
+        {
+          pourcent = Math.round(100*result.executes/result.total);
+        }
+        $('#pourcent').html(pourcent);
+        
+        $("#progressbar").progressbar({ value: pourcent });
+        
+        if (result.executes < result.total && running == true)
+        {
+          // Il reste des tests à exécuter, on continue
+          request(result.executes);
+        }
+        else 
+        {
+          // Exécution des tests finie ou interrompue
+          running == false;
+          // Recharge la page pour mettre à jour les chiffres
+          window.location.reload();
+        }
+      }
+    })
+    
+  };
+
+  request();
+  
+  return false;
+  
 };

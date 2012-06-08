@@ -105,6 +105,8 @@ class evalActions extends kcatoesActions
   {
   	set_time_limit(0);
   	
+  	// FIXME : à priori, ils sont déjà en paramètres de la requête
+  	// donc pas besoin de passer par variable flash (peut-être pas dans tous les cas ?)
   	$extractIds = $this->getUser()->getFlash('extractIds', null);
     if (!is_array($extractIds))
     {
@@ -126,7 +128,7 @@ class evalActions extends kcatoesActions
 	    
 	    // Sauvegarde en base
 	    foreach($this->resTests as $resTest)
-	    {      
+	    {
 	      // Suppression des résultats précédents
 	      // TODO : optimisation
 	      $resPrec = $extract->getCollectionResults();

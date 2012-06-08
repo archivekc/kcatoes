@@ -247,7 +247,7 @@ a.imgLink {
   margin: .8em 1em;
 }
 
-/* définitions */
+/* dï¿½finitions */
 dt {
   float: left;
   clear: left;
@@ -362,7 +362,7 @@ form input[type=submit],
   margin: 1em auto;
 }
 
-/* listes d'accès */
+/* listes d'accï¿½s */
 .accessList .item {
   font-size: 1.5em;
 }
@@ -373,7 +373,7 @@ form input[type=submit],
 }
 
 
-/* aucun élément */
+/* aucun ï¿½lï¿½ment */
 .zeroFound {
 	font-size: 2em;
 	font-style: italic;
@@ -633,6 +633,14 @@ form input[type=submit],
 .popup.popupscreenError {
   width: 40em;
   margin-left: -20em;
+}
+
+.popup.popupscreemRunning{
+  width: 25em;
+  margin-left: -20em;
+}
+.popup.popupscreemRunning p{
+  margin-left : 2em;
 }
 
 /* pages */
