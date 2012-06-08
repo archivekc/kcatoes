@@ -52,9 +52,6 @@ class PertinenceAlternativeTextuelleImagesLiens extends \ASource
 	        $this->addResult($node, \Resultat::ECHEC, 'L\'élément ne possède pas d\'attribut alt ou celui-ci est vide');
 	      }
     	}
-    	else{
-    		$this->addResult(null, \Resultat::NA, 'Non applicable');
-    	}
     }
 
     if (count($nodes) == 0) {
