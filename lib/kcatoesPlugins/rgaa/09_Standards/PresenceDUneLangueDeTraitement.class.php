@@ -27,7 +27,7 @@ class PresenceDUneLangueDeTraitement extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements   = 'lang';
+    $elements   = '[lang]';
 
     $nodes = $crawler->filter($elements);
 
