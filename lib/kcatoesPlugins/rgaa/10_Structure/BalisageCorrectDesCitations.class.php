@@ -26,7 +26,26 @@ class BalisageCorrectDesCitations extends \ASource
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::MANUEL, 'Vérifier en cas de citation qu\'elle
-     soit correctement balisée');
+  	$crawler = $this->page->crawler;
+
+    $elements   = 'q, blockquote';
+
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Vérifier qu\'aucune citation n\'est
+       présente dans la page');
+    }
+    else {
+      foreach($nodes as $node) {
+      	if($node->nodeName == 'q'){
+          $this->addResult($node, \Resultat::MANUEL, 'Vérifier qu\'il s\'agit bien
+          d\'une citation courte');
+      	}else{
+      		$this->addResult($node, \Resultat::MANUEL, 'Vérifier qu\'il s\'agit bien
+          d\'une citation longue');
+      	}
+      }
+    }
   }
 }
