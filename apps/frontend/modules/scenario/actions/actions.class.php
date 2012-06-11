@@ -260,39 +260,31 @@ class scenarioActions extends kcatoesActions
         {
           $this->actionTitle = 'Tests';
           
-          $extracts = implode(',', $extractIds);
           $scenarioId = $scenario->getId();
+          $extracts = implode(',', $extractIds);
+
+          $symfony  = sfConfig::get('sf_root_dir').DIRECTORY_SEPARATOR.'symfony';
+          $taskName = 'kcatoes:test-scenario';
+          $args     = '--scenario='.$scenarioId.' --extracts='.$extracts;
           
-          $args = 'sId='.$scenarioId.' eIds='.$extracts;
-          $scriptPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'test.php';
+          $command  = 'php'.' '.$symfony.' '.$taskName.' '.$args;
           
-          $outPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenarioId;
-          
+          //$outPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenarioId;
           
           if (substr(php_uname(), 0, 7) == "Windows"){
             // see: http://de2.php.net/manual/en/function.exec.php#35731
-            //var_dump("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath);die();
-            //pclose(popen("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath, "r"));
-    
-            //var_dump("/B start  start php \"tests\" \"" . $scriptPath .'" >> "'.$outPath.'"');die();
+            
             $WshShell = new COM("WScript.Shell");
-            $oExec = $WshShell->Run("cmd /C php \"" . $scriptPath .'" '.$args.' > "'.$outPath.'"  ', 0, false);
-            //popen(pclose("cmd php \"" . $scriptPath .'" '.$args.' > "'.$outPath.'"  '),'r');
-      
+            $oExec = $WshShell->Run('cmd /C '.$command, 0, false);
+            
+            //pclose(popen('start "tests" "' . $command . '"', "r")); 
           }
           else
           {
             exec($scriptPath . " " . $args . ' >'.$outPath.'&');   
           } 
-          
-          //pclose(popen("start \"bla\" \"" . $exe . "\" " . escapeshellarg($args), "r")); 
-          //exec('php '.$scriptPath.' '.$args.' >'.$outPath.'&');
-          
+                   
           $this->redirect('scenarioDetail', $scenario);
-      
-      
-      
-      
           
         }
       break;
