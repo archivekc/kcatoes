@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class BalisageCorrectDesAbreviationsPresentesDansLaPage extends \ASource
 {
   const testName = 'Balisage correct des abréviations présentes dans la page';
@@ -37,10 +35,9 @@ class BalisageCorrectDesAbreviationsPresentesDansLaPage extends \ASource
 
   public function execute()
   {
-
     $crawler = $this->page->crawler;
 
-    $elements   = '[abbr]';
+    $elements   = 'abbr';
 
     $nodes = $crawler->filter($elements);
 
@@ -50,8 +47,13 @@ class BalisageCorrectDesAbreviationsPresentesDansLaPage extends \ASource
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'utilisateur
-        a accès une version non abrégée du texte');
+      	if(strlen($node->getAttribute('title')) > 0 ){
+          $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la première
+          occurrence de cette abréviation a été définie');
+      	}else{
+      		$this->addResult($node, \Resultat::ECHEC, 'Cette abréviation n\'a pas
+          de titre.');
+      	}
       }
     }
   }
