@@ -283,13 +283,12 @@ var handleTestExecution = function(parent)
     parent = $('body');
   }
   $('#execute_test', parent).click(function(){ 
-    //console.log('execute_test click !');
-    
     // Désactive le bouton pour empêcher la soumission du formulaire
     $(this).attr('disabled', true);
     launchTests(parent); 
     return false;
   });
+
 };
 
 // Lancement asynchrone des tests
@@ -316,13 +315,19 @@ var launchTests = function(parent)
   
   $("#progressbar").progressbar({ value: pourcent });
   
+  var form = $('form'); 
+  var formData = form.serializeArray();
+  formData.push({ name:"scenarioAction", value:"execute_test" });
+  formData.push({ name:"ajax",           value:1     });
+  
+  
   var request = function(index){
     if (index === undefined) { index = 0; }
     
-    jQuery.ajax({
-      type: "POST", async: true,
-      url: GLOBAL.launchTestsUrl + "?ajax=1&index=" + index,
-      data: jQuery("form").serialize(),
+    $.ajax({
+      type: "POST",
+      url: form.attr('action') + '?index=' + index,
+      data: formData,
       dataType: "json",
       success: function(result){
         

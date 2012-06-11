@@ -249,13 +249,9 @@ class scenarioActions extends kcatoesActions
   		case 'execute_test':
 		
         $ajax = $request->getParameter('ajax');
-        if ($ajax)
+        if ($ajax)  // Requête AJAX
         {
-          // Requête AJAX
-          
-          // Retourne l'état actuel de l'exécution (FIXME)
-          echo json_encode(array('executes'=>1, 'total'=>10));
-          return sfView::NONE;
+          $this->forward('eval', 'executionTests');
         }
         else 
         {
@@ -272,7 +268,7 @@ class scenarioActions extends kcatoesActions
       $this->actionTitle = 'Tests';
       	
       $extracts = implode(',', $extractIds);
-      $scenarioId =$scenario->getId();
+      $scenarioId = $scenario->getId();
       
       $args = 'sId='.$scenarioId.' eIds='.$extracts;
       $scriptPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'test.php';
@@ -283,7 +279,13 @@ class scenarioActions extends kcatoesActions
       if (substr(php_uname(), 0, 7) == "Windows"){
         // see: http://de2.php.net/manual/en/function.exec.php#35731
         //var_dump("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath);die();
-        pclose(popen("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath, "r"));   
+        //pclose(popen("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath, "r"));
+
+        //var_dump("/B start  start php \"tests\" \"" . $scriptPath .'" >> "'.$outPath.'"');die();
+        $WshShell = new COM("WScript.Shell");
+        $oExec = $WshShell->Run("cmd /C php \"" . $scriptPath .'" '.$args.' > "'.$outPath.'"  ', 0, false);
+        //popen(pclose("cmd php \"" . $scriptPath .'" '.$args.' > "'.$outPath.'"  '),'r');
+  
       }
       else
       {

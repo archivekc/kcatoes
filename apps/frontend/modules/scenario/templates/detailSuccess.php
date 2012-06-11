@@ -159,14 +159,14 @@
 		  	  <!--[if !IE]> -->
 		  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
 		  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
-		  	    <button type="submit" name="scenarioAction" value="execute_test" id="execute_test">Lancer les tests</button>
-		  	    <button type="submit" name="scenarioAction" value="execute_test2">Lancer les tests 2</button>
+		  	    <button type="submit" name="scenarioAction" value="execute_test" id="execute_test">Lancer les tests (AJAX)</button>
+		  	    <button type="submit" name="scenarioAction" value="execute_test">Lancer les tests (sans JS)</button>
 		  	  <!-- <![endif]-->
           <!--[if IE]> 
             <input type="submit" name="scenarioAction" value="rapport_detaille"/>
             <input type="submit" name="scenarioAction" value="rapport_simple"/>
             <input type="submit" name="scenarioAction" value="execute_test" id="execute_test"/>
-            <input type="submit" name="scenarioAction" value="execute_test2"/>
+            <input type="submit" name="scenarioAction" value="execute_test"/>
           <![endif]-->
           	<?php else:?>
           	<iframe id="avancementScenario" src="<?php echo url_for('scenarioAvancement', array('id'=>$scenario->getId()))?>">
