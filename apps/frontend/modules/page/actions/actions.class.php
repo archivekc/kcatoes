@@ -286,34 +286,10 @@ class pageActions extends kcatoesActions
         $r->delete();
       }
       
-      // Nouvel enregistrement pour le résultat global
+      // Enregistrement des résultats
       $result = new TestResult();
-      $result->setWebPageExtractId($this->extraction->getId());
-      $result->setClass(get_class($resTest));
-      $result->setNumCategorie($resTest::getNumeroCategorie());
-      $result->setNumTest($resTest::getNumeroTest());
-      $result->setResult($resTest->getMainResult());
-      $result->save();
+      $result->saveResult($this->extraction, $resTest);
       
-      // Parcours du détail des résultats
-      foreach($resTest->getTestResults() as $res)
-      {
-        // Nouvelle ligne de résultat
-        $rLine = new TestResultLine();
-        
-        $rLine->setTestResult($result);
-        
-        $rLine->setResult($res['result']);
-        $rLine->setComment($res['comment']);
-        $rLine->setXpath($res['xpath']);
-        $rLine->setCssSelector($res['cssSelector']);
-        $rLine->setSource($res['source']);
-        $rLine->setPrettySource($res['prettySource']);
-        if (is_object($res['node'])) {
-          $rLine->setTextContent($res['node']->textContent);
-        }
-        $rLine->save();
-      }
     }
     
     // Vers les résultats

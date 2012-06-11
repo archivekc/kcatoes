@@ -156,12 +156,6 @@ pageResultatTests:
   requirements: 
     id:     \d+
 
-executionTests:
-  url:      /tests/execute
-  param:    { module: eval, action: executionTests }
-  requirements:
-    sf_method: [POST]
-
 # ########
 # SCENARIO
 # ########

@@ -88,56 +88,8 @@ class evalActions extends kcatoesActions
     
     $this->results = $subSubResult;
   }
-  
-  /**
-   * Passage des tests sur une page 
-   * FIXME : obsolète ?
-   * 
-   * @param sfWebRequest $request
-   */
-  public function executeExecuteTests(sfWebRequest $request)
-  {
-  	set_time_limit(0);
-  	
-  	// FIXME : à priori, ils sont déjà en paramètres de la requête
-  	// donc pas besoin de passer par variable flash (peut-être pas dans tous les cas ?)
-  	$extractIds = $this->getUser()->getFlash('extractIds', null);
-    if (!is_array($extractIds))
-    {
-    	throw new KcatoesTesterException();
-    }
-    $extracts = Doctrine::getTable('WebPageExtract')->findByDql('id in ?',array($extractIds));
-    // Inclusion des classes de test
-    TestsHelper::getRequired();
-    $allTests = TestsHelper::getAllTestsFromDir();
-    
-    foreach($extracts as $extract)
-    {
-    	// Instanciation du wrapper
-      $kcatoes = new KcatoesWrapper($allTests, $extract->getSrc());
-      
-      // Lance les tests
-	    $results  = $kcatoes->run();
-	    $this->resTests = $kcatoes->getResTests();
-	    
-	    // Sauvegarde en base
-	    foreach($this->resTests as $resTest)
-	    {
-        // Suppression des résultats précédents
-        // TODO : historisation
-        $resPrec = $extract->getCollectionResults();
-        $resPrec->delete();
-	      
-        // Nouvel enregistrement pour le résultat global
-        $result = new TestResult();
-        $result->saveResult($extract, $resTest);
-	    }
-    }
-  	
-    $this->getUser()->setFlash('testsMsg', 'Tests exécutés');
-    
-  }
 
+  
   /**
    * Exécution d'un tir de tests sur un scénario
    * @param sfWebRequest $request
