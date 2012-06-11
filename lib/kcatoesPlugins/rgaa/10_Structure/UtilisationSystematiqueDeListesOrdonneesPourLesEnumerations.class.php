@@ -29,7 +29,7 @@ class UtilisationSystematiqueDeListesOrdonneesPourLesEnumerations extends \ASour
   {
     $crawler = $this->page->crawler;
 
-    $elements   = 'li, ol';
+    $elements   = 'li';
 
     $nodes = $crawler->filter($elements);
 
@@ -38,8 +38,13 @@ class UtilisationSystematiqueDeListesOrdonneesPourLesEnumerations extends \ASour
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'La balise ol et li sont-elles
-        correctement organisées?');
+      	$parent = $node->parentNode;
+      	if($parent->nodeName == 'ol')
+          $this->addResult($node, \Resultat::REUSSITE, 'La balise li est bien
+          contenue dans un élément ol');
+        else
+          $this->addResult($node, \Resultat::ECHEC, 'Cet élément li n\'est pas
+          dans une liste ordonnée');
       }
     }
   }
