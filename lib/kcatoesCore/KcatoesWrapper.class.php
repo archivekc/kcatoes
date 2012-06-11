@@ -30,9 +30,10 @@ class KcatoesWrapper
    * 
    * @throws KcatoesWrapperException
    */
-  public function __construct($testsClass, $htmlContent = null, $url = null, $mode='action')
+  public function __construct($testsClass, $htmlContent = null, $url = null, $mode='action', $silent=false)
   {
   	$this->mode = $mode;
+  	$this->silent = $silent;
   	switch ($this->mode) {
   		case 'action' : 
         $this->logger = sfContext::getInstance()->getLogger();
@@ -395,7 +396,7 @@ class KcatoesWrapper
     {
       $this->logger->info($infoMessage);
     }
-    if ($this->mode == 'task') {
+    if ($this->mode == 'task' && !$this->silent) {
       echo 'INFO: '.$infoMessage."\n";
     }
   }
@@ -411,7 +412,7 @@ class KcatoesWrapper
     {
       $this->logger->err($errorMessage);
     }
-    if ($this->mode == 'task') {
+    if ($this->mode == 'task' && !$this->silent) {
       echo 'ERROR: '.$errorMessage."\n";
     }
   }
