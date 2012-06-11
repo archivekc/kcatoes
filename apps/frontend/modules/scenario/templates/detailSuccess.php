@@ -65,7 +65,7 @@
       <?php echo userMsg($sf_user->getFlash('testsMsg'), 'success') ?> 
     <?php endif; ?>
     
-    <form method="post" target="KCATOES_ACTIONS" action="<?php echo url_for('scenarioActions', array('id'=>$scenario->getId()))?>">
+    <form method="post" action="<?php echo url_for('scenarioActions', array('id'=>$scenario->getId()))?>">
       <ul class="scenarioPages">
       <?php foreach($pages as $page): ?>
         <?php 
@@ -153,18 +153,25 @@
       <div id="scenarioDetailActions">
 	      <h2 class="title">Actions sur le scenario</h2>
 	      <div class="highlight">
+	      	<?php if (!$pendingTesting):?>
 		  	  <?php echo userMsg('Les actions ci-dessous seront faites sur les extractions sélectionnées.', 'info')?>
 		  	  <div class="submit">
 		  	  <!--[if !IE]> -->
 		  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
 		  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
 		  	    <button type="submit" name="scenarioAction" value="execute_test" id="execute_test">Lancer les tests</button>
+		  	    <button type="submit" name="scenarioAction" value="execute_test2">Lancer les tests 2</button>
 		  	  <!-- <![endif]-->
           <!--[if IE]> 
             <input type="submit" name="scenarioAction" value="rapport_detaille"/>
             <input type="submit" name="scenarioAction" value="rapport_simple"/>
             <input type="submit" name="scenarioAction" value="execute_test" id="execute_test"/>
+            <input type="submit" name="scenarioAction" value="execute_test2"/>
           <![endif]-->
+          	<?php else:?>
+          	<iframe id="avancementScenario" src="<?php echo url_for('scenarioAvancement', array('id'=>$scenario->getId()))?>">
+          	</iframe>
+          	<?php endif?>
 		  	  </div>
 		  	</div>
   	  </div>

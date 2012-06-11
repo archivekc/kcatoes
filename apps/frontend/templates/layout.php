@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head>
     <?php include_http_metas() ?>
+    
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_javascripts() ?>
@@ -14,7 +15,6 @@
     </script>
   </head>
   <body>
-  
     <div id="wrap">
       <div id="head">
         <p id="teaser"><strong>KCatoès</strong> est un outil automatique d'assistance aux tests d'accessibilité</p>

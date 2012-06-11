@@ -90,6 +90,24 @@ class scenarioActions extends kcatoesActions
     
     $this->pages = $this->scenario->getScenarioPagesInfo();
     
+    
+    $testOut = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$this->scenario->getId();
+    $testDone = $testOut.'DONE';
+    
+    clearstatcache($testOut);
+    clearstatcache($testDone);
+    
+    if (file_exists($testOut) && file_exists($testDone))
+    {
+    	unlink($testOut);
+    	unlink($testDone);
+    }
+    
+    clearstatcache($testOut);
+    clearstatcache($testDone);
+    
+    $this->pendingTesting = file_exists($testOut);
+    
     // soumission
     if ($request->isMethod('post'))
     {
@@ -127,7 +145,21 @@ class scenarioActions extends kcatoesActions
     	}
     }
   }
-  
+
+  public function executeAvancement(sfWebRequest $request)
+  {
+  	$scenario = $this->getRoute()->getObject();
+  	$testOut = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenario->getId();
+  	$testDone = $testOut.'DONE';
+  	
+  	if (!file_exists($testDone))
+  	{
+  		$this->getResponse()->addHttpMeta('refresh','1', false);
+  	}
+  	
+  	$this->count = strlen(file_get_contents($testOut));
+
+  }
   
   /**
    * Modification d'un scenario
@@ -215,28 +247,55 @@ class scenarioActions extends kcatoesActions
   			break;
   			
   		case 'execute_test':
-  			$this->actionTitle = 'Tests';
-  			
-  	    $ajax = $request->getParameter('ajax');
-        if ($ajax)
-        {
-          // Requête AJAX
-
-          // Retourne l'état actuel de l'exécution (FIXME)
-          echo json_encode(array('executes'=>1, 'total'=>10));
-          return sfView::NONE;
-        }
-        else 
-        {
-    			// Programme la redirection
-    			// false en 2eme paramètre pour éviter une double redirection
-    			$this->getUser()->setFlash('redirectTo', 'scenarioDetail'                      , false);
-    			$this->getUser()->setFlash('redirectParams', array('id' => $scenario->getId()) , false);
-    			
-    			$this->forward('eval', 'executeTests');
-        }
-  			break;
-  			
+		
+	  	    $ajax = $request->getParameter('ajax');
+	        if ($ajax)
+	        {
+	          // Requête AJAX
+	
+	          // Retourne l'état actuel de l'exécution (FIXME)
+	          echo json_encode(array('executes'=>1, 'total'=>10));
+	          return sfView::NONE;
+	        }
+	        else 
+	        {
+	    			// Programme la redirection
+	    			// false en 2eme paramètre pour éviter une double redirection
+	    			$this->getUser()->setFlash('redirectTo', 'scenarioDetail'                      , false);
+	    			$this->getUser()->setFlash('redirectParams', array('id' => $scenario->getId()) , false);
+	    			
+	    			$this->forward('eval', 'executeTests');
+	        }
+	  			break;
+	  		
+		case 'execute_test2':
+			$this->actionTitle = 'Tests';
+				
+			$extracts = implode(',', $extractIds);
+			$scenarioId =$scenario->getId();
+			
+      $args = 'sId='.$scenarioId.' eIds='.$extracts;
+      $scriptPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'test.php';
+      
+			$outPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenarioId;
+			
+			
+			
+			if (substr(php_uname(), 0, 7) == "Windows"){
+				// see: http://de2.php.net/manual/en/function.exec.php#35731
+				//var_dump("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath);die();
+        pclose(popen("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath, "r"));   
+      }
+      else
+      {
+        exec($scriptPath . " " . $args . ' >'.$outPath.'&');   
+      } 
+			
+			//pclose(popen("start \"bla\" \"" . $exe . "\" " . escapeshellarg($args), "r")); 
+			//exec('php '.$scriptPath.' '.$args.' >'.$outPath.'&');
+		
+			$this->redirect('scenarioDetail', $scenario);
+			break;
   		default:
   			$this->actionTitle = 'Action non prévue';
   	}
@@ -353,7 +412,17 @@ class scenarioActions extends kcatoesActions
     return sfView::NONE;
   }
   
-  	
-  
+  public function executeTest(sfWebRequest $request)
+  {
 
+  }
+  
+  public function executeAction(sfWebRequest $request){
+  	echo exec('php '.dirname(__FILE__).'/test.php >'.dirname(__FILE__).'/../templates/testViewSuccess.php&');
+  }
+
+  public function executeTestView(sfWebRequest $request){
+  	$this->refresh = 2;
+  	$this->getResponse()->addHttpMeta('refresh','1', false);
+  }
 }

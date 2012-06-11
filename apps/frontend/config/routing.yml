@@ -184,6 +184,15 @@ scenarioDetail:
     id:     \d+
     sf_method: [GET, POST]
 
+scenarioAvancement:
+  url:      /scenario/avancement/:id
+  param:    { module: scenario, action: avancement }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [GET]
+
 scenarioEdit:
   url:      /scenario/modifier/:id
   param:    { module: scenario, action: edit }

@@ -75,11 +75,8 @@ class evalActions extends kcatoesActions
 	      $subResult[$test::testId] = $result; 
     	}
     }
-    /*
-    $subResult = array_flip($subResult);
-    natcasesort($subResult);
-    $subResult = array_flip($subResult);*/
-
+    
+    // tri par id de test (ordre naturel)
     $subSubResult = array();
     $keys = array_keys($subResult);
     natsort($keys);
@@ -87,10 +84,6 @@ class evalActions extends kcatoesActions
     {
       array_push($subSubResult, $subResult[$key]);    	
     }
-    
-//    ksort($subResult);
-//    $subResult = array_values($subResult);
-//    
     
     
     $this->results = $subSubResult;

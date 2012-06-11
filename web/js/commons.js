@@ -1,4 +1,4 @@
-$(function(){
+﻿$(function(){
 	var handleQuickAddForm = function(parent){
 		if (!parent){
 			parent = $('body');
@@ -220,7 +220,7 @@ var popup = function(content, closeCallback){
 	$('#wrap').prepend(popupWrap);
 	var closeTrigger = $('<button class="collapse-opened collapser ico">Fermer</button>');
 
-	$(content).prepend(closeTrigger);
+	$(content).append(closeTrigger);
 
 	content.popupWrap = popupWrap;
 	content.popupOverlay = popupOverlay;
@@ -233,11 +233,14 @@ var popup = function(content, closeCallback){
 		
 		$(content).trigger('popuphide');
 		$(document).unbind('keyup', handleKey);
-		if (closeCallback !== undefined)
+		if (typeof closeCallback == 'function')
 		{
 		  closeCallback();
 		}
 	});
+	
+	$(':focusable', content)[0].focus();
+	
 	$(content).trigger('popupshow');
 	
 	var handleKey = function(e){
@@ -250,11 +253,30 @@ var popup = function(content, closeCallback){
 	return content;
 };
 
+
+// ////////////// //
+// jQuery extends //
+// ////////////// //
+$.extend($.expr[':'], {
+	focusable: function(element) {
+		var nodeName = element.nodeName.toLowerCase(),
+			tabIndex = $.attr(element, 'tabindex');
+		return (/input|select|textarea|button|object/.test(nodeName)
+			? !element.disabled
+			: 'a' == nodeName || 'area' == nodeName
+				? element.href || !isNaN(tabIndex)
+				: !isNaN(tabIndex))
+			// the element and all of its ancestors must be visible
+			// the browser may report that the area is hidden
+			&& !$(element)['area' == nodeName ? 'parents' : 'closest'](':hidden').length;
+	}
+});
 // /////////////////// //
 // Lancement des tests //
 // /////////////////// //
 
 // Capture du lancement des tests
+
 var handleTestExecution = function(parent)
 {
   if (!parent){
