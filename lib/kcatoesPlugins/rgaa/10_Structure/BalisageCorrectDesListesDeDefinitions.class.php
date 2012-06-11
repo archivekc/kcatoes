@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class BalisageCorrectDesListesDeDefinitions extends \ASource
 {
   const testName = 'Balisage correct des listes de définitions';

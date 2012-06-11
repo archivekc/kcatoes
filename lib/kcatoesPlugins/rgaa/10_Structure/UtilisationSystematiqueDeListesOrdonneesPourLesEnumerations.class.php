@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class UtilisationSystematiqueDeListesOrdonneesPourLesEnumerations extends \ASource
 {
   const testName = 'Utilisation systématique de listes ordonnées pour les énumérations';
