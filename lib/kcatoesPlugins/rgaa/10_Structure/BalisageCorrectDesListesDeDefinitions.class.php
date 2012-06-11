@@ -27,7 +27,7 @@ class BalisageCorrectDesListesDeDefinitions extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements   = 'dl, dt, dd';
+    $elements   = 'dd';
 
     $nodes = $crawler->filter($elements);
 
@@ -36,9 +36,43 @@ class BalisageCorrectDesListesDeDefinitions extends \ASource
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que chaque élément
-        dd est précédé, de façon immédiatement ou non, d’un élément dt');
-      }
+      	$bFound = false;
+        $tmpNode = $node;
+
+        $parent = $node->parentNode;
+        if($parent->nodeName == 'dl'){
+	        //On passe les aînés en revue pour vérifier le balisage
+	        do{
+	          $sibling = $tmpNode->previousSibling;
+
+	          if($sibling != null){
+		          //Cet aîné est-il celui qu'on cherche ?
+		          if($sibling->nodeName == 'dt'){
+		            $bFound = true;
+		          }
+
+		          //Ce cas détermine le balisage incorrect des définitions
+		          if($sibling->nodeName == 'dd'){
+		            break;
+		          }
+	          }
+
+	          //On remonte d'un cran
+	          $tmpNode = $sibling;
+	        }while ($bFound == false && $tmpNode != null);
+
+	        if($bFound){
+	          $this->addResult($node, \Resultat::REUSSITE, 'Cet élément dd est bien
+	          précédé d\'un élément dt.');
+	        }else{
+	          $this->addResult($node, \Resultat::ECHEC, 'Cet élément dd n\'est pas
+	          précédé d\'un élément dt.');
+	        }
+        }else{
+        $this->addResult($node, \Resultat::ECHEC, 'Cet élément dd n\'est pas
+            contenu dans un élément dl.');
+        }
+	    }
     }
   }
 }
