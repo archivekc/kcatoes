@@ -321,8 +321,9 @@ ul.tags li.tag {
   margin-left: -40%;
 }
 .popup .collapser {
-  float: right;
-  margin: -.5em -.5em 0 0;
+  position: relative;
+  left: 50%;
+  margin: 0.5em 0 0 -3em;
 }
 
 
