@@ -90,7 +90,8 @@ class evalActions extends kcatoesActions
   }
   
   /**
-   * Passage des tests
+   * Passage des tests sur une page 
+   * FIXME : obsolète ?
    * 
    * @param sfWebRequest $request
    */
@@ -122,48 +123,109 @@ class evalActions extends kcatoesActions
 	    // Sauvegarde en base
 	    foreach($this->resTests as $resTest)
 	    {
-	      // Suppression des résultats précédents
-	      // TODO : optimisation
-	      $resPrec = $extract->getCollectionResults();
-	      foreach($resPrec as $r)
-	      {
-	        $r->delete();
-	      }
+        // Suppression des résultats précédents
+        // TODO : historisation
+        $resPrec = $extract->getCollectionResults();
+        $resPrec->delete();
 	      
-	      // Nouvel enregistrement pour le résultat global
-	      $result = new TestResult();
-	      $result->setWebPageExtractId($extract->getId());
-	      $result->setClass(get_class($resTest));
-	      $result->setNumCategorie($resTest::getNumeroCategorie());
-	      $result->setNumTest($resTest::getNumeroTest());
-	      $result->setResult($resTest->getMainResult());
-	      $result->save();
-	      
-	      // Parcours du détail des résultats
-	      foreach($resTest->getTestResults() as $res)
-	      {
-	        // Nouvelle ligne de résultat
-	        $rLine = new TestResultLine();
-	        
-	        $rLine->setTestResult($result);
-	        
-	        $rLine->setResult($res['result']);
-	        $rLine->setComment($res['comment']);
-	        $rLine->setXpath($res['xpath']);
-	        $rLine->setCssSelector($res['cssSelector']);
-	        $rLine->setSource($res['source']);
-	        $rLine->setPrettySource($res['prettySource']);
-	        if (is_object($res['node'])) {
-	          $rLine->setTextContent($res['node']->textContent);
-	        }
-	        $rLine->save();
-	      }
+        // Nouvel enregistrement pour le résultat global
+        $result = new TestResult();
+        $result->saveResult($extract, $resTest);
 	    }
     }
   	
     $this->getUser()->setFlash('testsMsg', 'Tests exécutés');
     
   }
+
+  /**
+   * Exécution d'un tir de tests sur un scénario
+   * @param sfWebRequest $request
+   * @return unknown_type
+   */
+  public function executeExecutionTests(sfWebRequest $request)
+  {
+    // Temps maximal d'exécution de l'action (en µs)
+    // TODO : paramétrable en conf
+    $TIME_MAX   = 2 * 1000000; 
+    
+    // Temps total d'exécution de l'action (en µs)
+    $timeTotal = 0;
+    
+    // Inclusion des classes de test
+    TestsHelper::getRequired();
+    
+    // Extractions à prendre en compte
+    $extractIds = $request->getParameterHolder()->get('extracts');
+    
+    $extracts = Doctrine::getTable('WebPageExtract')->findByDql('id in ?', array($extractIds));
+    
+    $extractionsTotal = count($extractIds); 
+
+    // Récupération de tous les tests
+    $allTests = TestsHelper::getAllTestsFromDir();
+    $testsTotal = count($allTests);
+    
+    $total = $testsTotal * $extractionsTotal;
+    
+    // Index courant
+    $currentIndex    = $request->getParameterHolder()->get('index');    
+
+        
+    // Exécution des tests, tant qu'il en reste et qu'on n'a pas dépassé le temps imparti
+    while ($timeTotal < $TIME_MAX && $currentIndex < $total)
+    {
+      $timeStart = microtime(true);
+      
+      // Mise à jour des index
+      $extractionIndex = floor($currentIndex / $testsTotal);
+      $testsIndex      = $currentIndex % $testsTotal;
+      
+      // TODO : à faire dans un try{} (il faut impérativement capturer toutes les erreurs pour retourner toujours la sortie en JSON)
+      
+      // Instanciation du wrapper
+      $extract = $extracts[$extractionIndex];
+      $test = $allTests[$testsIndex];
+      $kcatoes = new KcatoesWrapper(array($test), $extract->getSrc());
+
+      // Suppression des résultats précédents
+      // TODO : historisation
+      if ($testsIndex == 0)
+      {
+        $resPrec = $extract->getCollectionResults();
+        $resPrec->delete();
+      }
+      
+      // Lancement du prochain test
+      // TODO : à faire dans un try{} (il faut impérativement capturer toutes les erreurs pour retourner toujours la sortie en JSON)
+      // TODO : factoriser (intégrer à quelque chose dans /lib/, KCatoesWrapper ou autre)
+      $results  = $kcatoes->run();
+      $this->resTests = $kcatoes->getResTests();
+
+      // Sauvegarde en base
+      foreach($this->resTests as $resTest)
+      {
+        // Nouvel enregistrement pour le résultat global
+        $result = new TestResult();
+        $result->saveResult($extract, $resTest);
+      }
+      
+      // Calcul du temps d'exécution
+      $timeEnd = microtime(true);
+      $timeTotal += ($timeEnd - $timeStart) * 1000000;
+      
+      // Mise à jour du compteur
+      $currentIndex++;
+      
+      unset($kcatoes);
+    }
+    
+    // Retour du résultats
+    echo json_encode(array('executes'=>$currentIndex, 'total'=>$total));
+    
+    return sfView::NONE;
+  }
+
 
   /**
    * Sauvegarde des résultats après édition manuelle

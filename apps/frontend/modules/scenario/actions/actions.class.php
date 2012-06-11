@@ -236,180 +236,69 @@ class scenarioActions extends kcatoesActions
     
   	switch($scenarioAction)
   	{
-  		case 'rapport_simple':
-  			$this->redirect('resultatScenario', array( 'id'   => $scenario->getId(), 
-  			                                           'mode' => 'simple'));
-  			break;
-  			
-  		case 'rapport_detaille':
-  			$this->redirect('resultatScenario', array( 'id'   => $scenario->getId(), 
-  			                                           'mode' => 'riche'));
-  			break;
+      case 'rapport_simple':
+        $this->redirect('resultatScenario', array( 'id'   => $scenario->getId(), 
+                                                   'mode' => 'simple'));
+      break;
+      	
+      case 'rapport_detaille':
+        $this->redirect('resultatScenario', array( 'id'   => $scenario->getId(), 
+                                                   'mode' => 'riche'));
+      break;
   			
   		case 'execute_test':
 		
-	  	    $ajax = $request->getParameter('ajax');
-	        if ($ajax)
-	        {
-	          // Requête AJAX
-	
-	          // Retourne l'état actuel de l'exécution (FIXME)
-	          echo json_encode(array('executes'=>1, 'total'=>10));
-	          return sfView::NONE;
-	        }
-	        else 
-	        {
-	    			// Programme la redirection
-	    			// false en 2eme paramètre pour éviter une double redirection
-	    			$this->getUser()->setFlash('redirectTo', 'scenarioDetail'                      , false);
-	    			$this->getUser()->setFlash('redirectParams', array('id' => $scenario->getId()) , false);
-	    			
-	    			$this->forward('eval', 'executeTests');
-	        }
-	  			break;
+        $ajax = $request->getParameter('ajax');
+        if ($ajax)
+        {
+          // Requête AJAX
+          
+          // Retourne l'état actuel de l'exécution (FIXME)
+          echo json_encode(array('executes'=>1, 'total'=>10));
+          return sfView::NONE;
+        }
+        else 
+        {
+          // Programme la redirection
+          // false en 2eme paramètre pour éviter une double redirection
+          $this->getUser()->setFlash('redirectTo', 'scenarioDetail'                      , false);
+          $this->getUser()->setFlash('redirectParams', array('id' => $scenario->getId()) , false);
+          
+          $this->forward('eval', 'executeTests');
+        }
+      break;
 	  		
 		case 'execute_test2':
-			$this->actionTitle = 'Tests';
-				
-			$extracts = implode(',', $extractIds);
-			$scenarioId =$scenario->getId();
-			
+      $this->actionTitle = 'Tests';
+      	
+      $extracts = implode(',', $extractIds);
+      $scenarioId =$scenario->getId();
+      
       $args = 'sId='.$scenarioId.' eIds='.$extracts;
       $scriptPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'test.php';
       
-			$outPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenarioId;
-			
-			
-			
-			if (substr(php_uname(), 0, 7) == "Windows"){
-				// see: http://de2.php.net/manual/en/function.exec.php#35731
-				//var_dump("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath);die();
+      $outPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenarioId;
+      
+      
+      if (substr(php_uname(), 0, 7) == "Windows"){
+        // see: http://de2.php.net/manual/en/function.exec.php#35731
+        //var_dump("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath);die();
         pclose(popen("start \"tests\" \"" . $scriptPath . "\" " . $args.' > '.$outPath, "r"));   
       }
       else
       {
         exec($scriptPath . " " . $args . ' >'.$outPath.'&');   
       } 
-			
-			//pclose(popen("start \"bla\" \"" . $exe . "\" " . escapeshellarg($args), "r")); 
-			//exec('php '.$scriptPath.' '.$args.' >'.$outPath.'&');
-		
-			$this->redirect('scenarioDetail', $scenario);
-			break;
-  		default:
-  			$this->actionTitle = 'Action non prévue';
-  	}
-  }
-  
-  /**
-   * Exécution d'un tir de tests (limité dans le temps)
-   * @param sfWebRequest $request
-   */
-  public function executeLaunch(sfWebRequest $request)
-  {
-    
-    // Temps maximal d'exécution de l'action (en µs)
-    // TODO : paramétrable en conf
-    $TIME_MAX   = 2 * 1000000; 
-    
-    // Temps total d'exécution de l'action (en µs)
-    $timeTotal = 0;
-    
-    // Inclusion des classes de test
-    TestsHelper::getRequired();
-    
-    // Extractions à prendre en compte
-    $extractIds = $request->getParameterHolder()->get('extracts');
-    
-    $extracts = Doctrine::getTable('WebPageExtract')->findByDql('id in ?', array($extractIds));
-    
-    $extractionsTotal = count($extractIds); 
-
-    // Récupération de tous les tests
-    $allTests = TestsHelper::getAllTestsFromDir();
-    $testsTotal = count($allTests);
-    
-    $total = $testsTotal * $extractionsTotal;
-    
-    // Index courant
-    $currentIndex    = $request->getParameterHolder()->get('index');    
-
-    // Exécution des tests, tant qu'il en reste et qu'on n'a pas dépassé le temps imparti
-    while ($timeTotal < $TIME_MAX && $currentIndex < $total)
-    {
-      $timeStart = microtime(true);
       
-      // Mise à jour des index
-      $extractionIndex = floor($currentIndex / $testsTotal);
-      $testsIndex      = $currentIndex % $testsTotal;
+      //pclose(popen("start \"bla\" \"" . $exe . "\" " . escapeshellarg($args), "r")); 
+      //exec('php '.$scriptPath.' '.$args.' >'.$outPath.'&');
       
-      // Exécution du prochain test
-      // TODO : à faire dans un try{} (il faut impérativement capturer toutes les erreurs 
-      // pour retourner toujours la sortie en JSON)
-      
-      // Instanciation du wrapper
-      $extract = $extracts[$extractionIndex];
-      $test = $allTests[$testsIndex];
-      $kcatoes = new KcatoesWrapper(array($test), $extract->getSrc());
-
-      // Lancement du prochain test
-      // TODO : factoriser (intégrer à quelque chose dans /lib/, KCatoesWrapper ou autre)
-      $results  = $kcatoes->run();
-      $this->resTests = $kcatoes->getResTests();
-
-      // Sauvegarde en base
-      foreach($this->resTests as $resTest)
-      {
-        // Suppression des résultats précédents
-        // TODO : optimisation
-        $resPrec = $extract->getCollectionResults();
-        foreach($resPrec as $r)
-        {
-          $r->delete();
-        }
-        
-        // Nouvel enregistrement pour le résultat global
-        $result = new TestResult();
-        $result->setWebPageExtractId($extract->getId());
-        $result->setClass(get_class($resTest));
-        $result->setNumCategorie($resTest::getNumeroCategorie());
-        $result->setNumTest($resTest::getNumeroTest());
-        $result->setResult($resTest->getMainResult());
-        $result->save();
-        
-        // Parcours du détail des résultats
-        foreach($resTest->getTestResults() as $res)
-        {
-          // Nouvelle ligne de résultat
-          $rLine = new TestResultLine();
-          
-          $rLine->setTestResult($result);
-          
-          $rLine->setResult($res['result']);
-          $rLine->setComment($res['comment']);
-          $rLine->setXpath($res['xpath']);
-          $rLine->setCssSelector($res['cssSelector']);
-          $rLine->setSource($res['source']);
-          $rLine->setPrettySource($res['prettySource']);
-          if (is_object($res['node'])) {
-            $rLine->setTextContent($res['node']->textContent);
-          }
-          $rLine->save();
-        }
-      }
-      
-      // Calcul du temps d'exécution
-      $timeEnd = microtime(true);
-      $timeTotal += ($timeEnd - $timeStart) * 1000000;
-      
-      // Mise à jour du compteur
-      $currentIndex++;
+      $this->redirect('scenarioDetail', $scenario);
+    break;
+    
+    default:
+      $this->actionTitle = 'Action non prévue';
     }
-    
-    // Retour du résultats
-    echo json_encode(array('executes'=>$currentIndex, 'total'=>$total));
-    
-    return sfView::NONE;
   }
   
   public function executeTest(sfWebRequest $request)
