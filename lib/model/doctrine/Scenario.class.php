@@ -25,5 +25,34 @@ class Scenario extends BaseScenario
     
 		return $pageInfo;
 	}
-	
+
+	/**
+	 * Rappatrie les pages, les extraction, les tests et leur résultat global filtré selon
+	 * une liste d'extraction
+	 * @param array $extractIds: liste des id des extractions
+	 * @throws KcatoesException
+	 */
+	public function getScenarioPagesForExtractsWithGlobalResult(array $extractIds = null){
+    if (is_null($extractIds))
+    {
+    	throw new KcatoesException('required $extractIds is null');
+    }
+    else
+    {
+	    $pages = Doctrine_Query::create()
+	      ->select('sp.required, sp.nom, wp.url, e.type, t.class as test, t.result')
+	      ->from('ScenarioPage sp')
+	      ->leftJoin('sp.WebPage wp, wp.CollectionExtracts e, e.CollectionResults t')
+	      ->where('sp.scenario_id = ?', $this->getId())
+	      ->andWhereIn('e.id', $extractIds)
+	      ->orderBy('sp.created_at ASC, e.type ASC')
+	      //->fetchArray();
+	      ->execute();
+    
+//	      echo '<pre>';
+//	      print_r($pages);
+//	      echo '</pre>';
+      return $pages;
+    }
+	}
 }
