@@ -274,12 +274,7 @@ var handleTestExecution = function(parent)
 var launchTests = function(parent)
 {
   console.log('Lancement des tests');
-  console.log('Parent : ' + parent);
-  
-  /*
-  stopped  = false;
-  pourcent = 0;
-   */
+
   var pourcent = 0;
   var nb_tests_txt = '';
   
@@ -303,12 +298,8 @@ var launchTests = function(parent)
     if (index === undefined) { index = 0; }
     
     jQuery.ajax({
-  
       type: "POST", async: true,
-      
-      // FIXME : sans le frontend_dev.php (configurer l'environnement par défaut ?)
-      url: "/frontend_dev.php/scenario/launch?ajax=1&index=" + index,
-      
+      url: GLOBAL.launchTestsUrl + "?ajax=1&index=" + index,
       data: jQuery("form").serialize(),
       dataType: "json",
       success: function(result){

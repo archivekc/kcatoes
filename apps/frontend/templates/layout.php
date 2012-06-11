@@ -10,6 +10,7 @@
     <script type="text/javascript">
     var GLOBAL = {
       loginUrl: '<?php echo url_for('sf_guard_signin') ?>'
+    , launchTestsUrl: '<?php echo url_for('executionTests') ?>'
     };
     </script>
   </head>
