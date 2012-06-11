@@ -62,6 +62,15 @@ EOF;
     // Chemin du fichier de flag (indiquant l'exécution et la progression des tests en cours)
     $this->flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $options['scenario'];
     
+    
+    // Verrou
+    $fp = fopen($this->flagFile.'_lock', "c");
+    if(!flock($fp, LOCK_EX | LOCK_NB)) {
+      throw new sfException('La tâche est déjà en cours d\'exécution pour ce scénario');
+      exit(-1);
+    }
+
+
     // *****
     
     // *** Récupération des extractions
@@ -130,8 +139,14 @@ EOF;
       
     } // fin parcours des tests à exécuter
     
+    
     $this->deleteFlag();
     echo "\n";
+    
+    // Libère le verrou
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    unlink($this->flagFile.'_lock');
     
   }
   
@@ -141,7 +156,7 @@ EOF;
   protected function writeFlag()
   {
     $f = fopen($this->flagFile, 'wb');
-    fwrite($f, $this->currentIndex.'/'.$this->total); 
+    fwrite($f, $this->currentIndex.'/'.$this->total);
     fclose($f);
   }
   
@@ -153,6 +168,5 @@ EOF;
   {
     unlink($this->flagFile);
   }
-  
   
 }
