@@ -31,6 +31,33 @@
               <?php echo $addPageForm['web_page_id']->renderLabel()?>
               <?php echo $addPageForm['web_page_id']->render()?>
             </div>
+            
+            <div>
+              Ou ajouter une nouvelle page : 
+            </div>
+              
+            <div class="subForm">
+              <?php $webPageForm = $addPageForm['newWebPage']; ?>
+              <div>
+                <?php echo $webPageForm->renderHiddenFields()?>
+              </div>
+              <div>
+                <?php echo $webPageForm['url']->renderError()?>
+                <?php echo $webPageForm['url']->renderLabel()?>
+                <?php echo $webPageForm['url']->render()?>
+              </div>
+              <div>
+                <?php echo $webPageForm['src']->renderError()?>
+                <?php echo $webPageForm['src']->renderLabel()?>
+                <?php echo $webPageForm['src']->render()?>
+              </div>
+              <div>
+                <?php echo $webPageForm['description']->renderError()?>
+                <?php echo $webPageForm['description']->renderLabel()?>
+                <?php echo $webPageForm['description']->render()?>
+              </div>
+            </div>
+            
             <div class="submit">
               <input type="submit" value="Ajouter"/>
             </div>

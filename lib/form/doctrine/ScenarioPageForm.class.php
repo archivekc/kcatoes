@@ -39,5 +39,36 @@ class ScenarioPageForm extends BaseScenarioPageForm
     
     $this->widgetSchema->setNameFormat('scenarioPage[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    
+    // Formulaire de nouvelle page web
+    $webPageForm = new WebPageForm();
+
+    // Pas obligatoire ici
+    $webPageForm->getValidator('url')->setOption('required', false);
+
+    $this->embedForm('newWebPage', $webPageForm);
+  }
+  
+  /**
+   * Supprime le formulaire de WebPage si vide
+   * ou si une URL est saisie dans la liste déroulante
+   */
+  public function saveEmbeddedForms($con = null, $forms = null)
+  {
+    if (null === $forms)
+    {
+      
+      sfContext::getInstance()->getLogger()->warning("DEBUG - saveEmbeddedForms");
+      
+      $newWebPage = $this->getValue('newWebPage');
+
+      if ($this->getValue('web_page_id') || !isset($newWebPage['url']))
+      {
+        sfContext::getInstance()->getLogger()->warning("DEBUG - saveEmbeddedForms - pas d'URL, on unset l'embeddedForm");
+        unset($this->embeddedForms['newWebPage']);  
+      }
+    }
+   
+    return parent::saveEmbeddedForms($con, $forms);
   }
 }

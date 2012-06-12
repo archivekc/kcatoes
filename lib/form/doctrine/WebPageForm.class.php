@@ -23,18 +23,25 @@ class WebPageForm extends BaseWebPageForm
   public function configure()
   {
   	$this->setWidgets(array(
-  	 'url' => new sfWidgetFormInputText()
+  	 'url'          => new sfWidgetFormInputText()
   	 ,'description' => new sfWidgetFormTextarea()
-  	 ,'id' => new sfWidgetFormInputHidden()
-  	 ,'src' => new sfWidgetFormTextarea()
+  	 ,'id'          => new sfWidgetFormInputHidden()
+  	 ,'src'         => new sfWidgetFormTextarea()
     ));
     
-    $this->setValidator('url', new KcatoesUrlValidator());
+    $this->widgetSchema->setLabels(array('url'         => 'URL',
+                                         'src'         => 'Code source',
+                                         'description' => 'Description' ));
+    
+    $this->setValidator('url', new KcatoesUrlValidator(array('required' => true), 
+                                                       array('required' => "L'URL est obligatoire",
+                                                             'invalid'  => "L'URL est invalide")));
     $this->setValidator('src', new sfValidatorPass(array('required' => false)));
-    $this->widgetSchema->setLabels(array('src' => 'Code source'));
     
     $this->widgetSchema->setNameFormat('webPages[%s]');
+    
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    
     parent::configure();
   }
 }

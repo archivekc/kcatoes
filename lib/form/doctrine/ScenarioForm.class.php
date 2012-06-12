@@ -35,6 +35,7 @@ class ScenarioForm extends BaseScenarioForm
     
     $this->widgetSchema->setNameFormat('scenario[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
     parent::configure();
   }
 }

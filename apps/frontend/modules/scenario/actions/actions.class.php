@@ -111,6 +111,19 @@ class scenarioActions extends kcatoesActions
 	      {
 	        $page = $this->addPageForm->save();
 	        $page->setScenario($this->scenario);
+	        
+          // Association de la page si nouvellement créée
+	        $embeddedForms = $this->addPageForm->getEmbeddedForms();
+	        if (isset($embeddedForms['newWebPage']))
+	        {
+            sfContext::getInstance()->getLogger()->warning("DEBUG - executeDetail - nouvelle page -> setWebPage manuel ");
+            $newWebPage = $this->addPageForm->getEmbeddedForm('newWebPage')->getObject();
+  	        $page->setWebPage($newWebPage);
+	        }
+	        else {
+            sfContext::getInstance()->getLogger()->warning("DEBUG - executeDetail - pas de page nouvellement créée");
+	        }
+
 	        $page->save();
 	        $this->redirect('scenarioDetail', $this->scenario);
 	      }
