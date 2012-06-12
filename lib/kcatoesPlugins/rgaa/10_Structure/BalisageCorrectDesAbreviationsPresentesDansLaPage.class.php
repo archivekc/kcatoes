@@ -42,7 +42,7 @@ class BalisageCorrectDesAbreviationsPresentesDansLaPage extends \ASource
     $nodes = $crawler->filter($elements);
 
     if (count($nodes) == 0) {
-       $this->addResult(null, \Resultat::MANUEL, 'Vérifier qne le texte ne
+       $this->addResult(null, \Resultat::MANUEL, 'Vérifier que le texte ne
        contiendrait pas d\'abbréviations non définies');
     }
     else {
