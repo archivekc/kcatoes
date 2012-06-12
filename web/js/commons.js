@@ -164,27 +164,24 @@ var handlePopupScreen = function(parent){
 		parent = $('body');
 	}
 	$('.popupScreen', parent).click(function(e){
-		console.log()
-      $.ajax({
-      	type: 'get'
-      	,url: this.href
-      	,success: function(data){
-    	  popup(data);
-      	}
-      	,error: function(errObj, errType, errTxt){
-    	  	switch(errObj.status){
-    	  		case 401:
-    	  			var msg = "Permission non accordée. Si votre session a expirée, vous devez vous reconnecter !";
-    	  			var link = '<a href="'+GLOBAL.loginUrl+'" class="ico connexion">Accéder au formulaire de connexion</a>';
-    	  			var content = $('<div class="block popupscreenError"><h1>Erreur</h1><p>'+msg+'</p>'+link+'</div>');
-    	  			break;
-    	  		default:
-    	  			console.log(arguments);
-    	  	}
-    	  	popup(content);
-	    }
-      });
-      e.preventDefault();
+    $.ajax({
+    	type: 'get'
+    	,url: this.href
+    	,success: function(data){
+  	  popup(data);
+    	}
+    	,error: function(errObj, errType, errTxt){
+  	  	switch(errObj.status){
+  	  		case 401:
+  	  			var msg = "Permission non accordée. Si votre session a expirée, vous devez vous reconnecter !";
+  	  			var link = '<a href="'+GLOBAL.loginUrl+'" class="ico connexion">Accéder au formulaire de connexion</a>';
+  	  			var content = $('<div class="block popupscreenError"><h1>Erreur</h1><p>'+msg+'</p>'+link+'</div>');
+  	  			break;
+  	  	}
+  	  	popup(content);
+    }
+    });
+    e.preventDefault();
 	});
 };
 
@@ -200,7 +197,6 @@ var handleNav = function(){
       	,type: 'html'
       	,success: function(data){
       		$('#page').html(data);
-      		console.log('loaded');
       	}
       });
 	});

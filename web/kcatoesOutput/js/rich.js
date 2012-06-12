@@ -243,10 +243,6 @@ $(function(){
 			,background: '#EEE'
 		});
 		
-		// accès à l'élément depuis le highlighter
-		$(highlighter).click(function(){
-			//console.log($(this).data('relatedElem'));
-		});
 		return this;
 		
 	};
