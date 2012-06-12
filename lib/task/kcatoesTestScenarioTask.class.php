@@ -60,8 +60,8 @@ EOF;
     }
     
     // Chemin du fichier de flag (indiquant l'exécution et la progression des tests en cours)
+    // TODO : configurable
     $this->flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $options['scenario'];
-    
     
     // Verrou
     $fp = fopen($this->flagFile.'_lock', "c");
@@ -69,7 +69,6 @@ EOF;
       throw new sfException('La tâche est déjà en cours d\'exécution pour ce scénario');
       exit(-1);
     }
-
 
     // *****
     

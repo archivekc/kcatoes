@@ -1,2 +1,6 @@
 avancementSuccess:
-  layout: false
+  layout:     iframeAvancement
+  
+  stylesheets: [-*, iframeAvancement.css]
+  javascripts: [-*, lib/jquery-1.7.1.min.js, lib/jquery-ui-1.8.21.custom.min.js]
+ 

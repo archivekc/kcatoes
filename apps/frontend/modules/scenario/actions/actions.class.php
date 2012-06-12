@@ -90,23 +90,15 @@ class scenarioActions extends kcatoesActions
     
     $this->pages = $this->scenario->getScenarioPagesInfo();
     
+    // TODO : configurable
+    $dir = sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'runningTests';
+    $flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $this->scenario->getId();
+    $lockFile = $flagFile.'_lock';
     
-    $testOut = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$this->scenario->getId();
-    $testDone = $testOut.'DONE';
-    
-    clearstatcache($testOut);
-    clearstatcache($testDone);
-    
-    if (file_exists($testOut) && file_exists($testDone))
-    {
-    	unlink($testOut);
-    	unlink($testDone);
-    }
-    
-    clearstatcache($testOut);
-    clearstatcache($testDone);
-    
-    $this->pendingTesting = file_exists($testOut);
+    clearstatcache($flagFile);
+    clearstatcache($lockFile);
+
+    $this->pendingTesting = file_exists($flagFile) && file_exists($lockFile);
     
     // soumission
     if ($request->isMethod('post'))
@@ -136,9 +128,6 @@ class scenarioActions extends kcatoesActions
         	  	$templatePage->setScenarioTemplateId($scenarioTemplate->getId());
         	  	$templatePage->save();
         	  }
-//          $page = $this->addPageForm->save();
-//          $page->setScenario($this->scenario);
-//          $page->save();
 
           $this->redirect('scenarioDetail', $this->scenario);
         }
@@ -146,18 +135,34 @@ class scenarioActions extends kcatoesActions
     }
   }
 
+  /**
+   * Affichage de l'avancement de l'exécution des tests
+   * @param sfWebRequest $request
+   */
   public function executeAvancement(sfWebRequest $request)
   {
   	$scenario = $this->getRoute()->getObject();
-  	$testOut = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenario->getId();
-  	$testDone = $testOut.'DONE';
   	
-  	if (!file_exists($testDone))
+  	sfConfig::set('sf_web_debug', false);
+  	
+  	$dir = sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'runningTests';
+  	$flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $scenario->getId();
+    $lockFile = $flagFile.'_lock';
+    
+  	if (file_exists($lockFile) && file_exists($flagFile))
   	{
-  		$this->getResponse()->addHttpMeta('refresh','1', false);
+      $avancement = file_get_contents($flagFile);
+      
+      $this->count = strtok($avancement, '/');
+      $this->total = strtok('/');
+      $this->pourcent = round(100 * $this->count / $this->total);
+      
+      // Rafraichissement automatique de l'iframe
+  		$this->getResponse()->addHttpMeta('refresh','2', false);
   	}
-  	
-  	$this->count = strlen(file_get_contents($testOut));
+  	else {
+  	  return sfView::NONE;
+  	}
 
   }
   
@@ -248,18 +253,6 @@ class scenarioActions extends kcatoesActions
   			
   		case 'execute_test':
 		
-        $ajax = $request->getParameter('ajax');
-        
-        // Requête AJAX
-        if ($ajax)  
-        {
-          $this->forward('eval', 'executionTests');
-        }
-        // Processus en tâche de fond
-        else 
-        {
-          $this->actionTitle = 'Tests';
-          
           $scenarioId = $scenario->getId();
           $extracts = implode(',', $extractIds);
 
@@ -268,8 +261,6 @@ class scenarioActions extends kcatoesActions
           $args     = '--scenario='.$scenarioId.' --extracts='.$extracts;
           
           $command  = 'php'.' '.$symfony.' '.$taskName.' '.$args;
-          
-          //$outPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'pendingTesting'.DIRECTORY_SEPARATOR.$scenarioId;
           
           if (substr(php_uname(), 0, 7) == "Windows"){
             // see: http://de2.php.net/manual/en/function.exec.php#35731
@@ -283,29 +274,14 @@ class scenarioActions extends kcatoesActions
           {
             exec($scriptPath . " " . $args . ' >'.$outPath.'&');   
           } 
-                   
+          
           $this->redirect('scenarioDetail', $scenario);
           
-        }
       break;
 
-    
     default:
       $this->actionTitle = 'Action non prévue';
     }
   }
-  
-  public function executeTest(sfWebRequest $request)
-  {
 
-  }
-  
-  public function executeAction(sfWebRequest $request){
-  	echo exec('php '.dirname(__FILE__).'/test.php >'.dirname(__FILE__).'/../templates/testViewSuccess.php&');
-  }
-
-  public function executeTestView(sfWebRequest $request){
-  	$this->refresh = 2;
-  	$this->getResponse()->addHttpMeta('refresh','1', false);
-  }
 }

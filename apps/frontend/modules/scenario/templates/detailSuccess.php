@@ -151,29 +151,31 @@
       </ul>
       
       <div id="scenarioDetailActions">
-	      <h2 class="title">Actions sur le scenario</h2>
-	      <div class="highlight">
-	      	<?php if (!$pendingTesting):?>
-		  	  <?php echo userMsg('Les actions ci-dessous seront faites sur les extractions sélectionnées.', 'info')?>
-		  	  <div class="submit">
-		  	  <!--[if !IE]> -->
-		  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
-		  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
-		  	    <button type="submit" name="scenarioAction" value="execute_test" id="execute_test">Lancer les tests (AJAX)</button>
-		  	    <button type="submit" name="scenarioAction" value="execute_test">Lancer les tests (sans JS)</button>
-		  	  <!-- <![endif]-->
-          <!--[if IE]> 
-            <input type="submit" name="scenarioAction" value="rapport_detaille"/>
-            <input type="submit" name="scenarioAction" value="rapport_simple"/>
-            <input type="submit" name="scenarioAction" value="execute_test" id="execute_test"/>
-            <input type="submit" name="scenarioAction" value="execute_test"/>
-          <![endif]-->
-          	<?php else:?>
+      
+        <?php if (!$pendingTesting):?>
+          
+  	      <h2 class="title">Actions sur le scenario</h2>
+  	      <div class="highlight">
+  		  	  <?php echo userMsg('Les actions ci-dessous seront faites sur les extractions sélectionnées.', 'info')?>
+  		  	  <div class="submit">
+  		  	  <!--[if !IE]> -->
+  		  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
+  		  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
+  		  	    <button type="submit" name="scenarioAction" value="execute_test">Lancer les tests</button>
+  		  	  <!-- <![endif]-->
+            <!--[if IE]> 
+              <input type="submit" name="scenarioAction" value="rapport_detaille"/>
+              <input type="submit" name="scenarioAction" value="rapport_simple"/>
+              <input type="submit" name="scenarioAction" value="execute_test"/>
+            <![endif]-->
+  		  	  </div>
+  		  	</div>
+        
+        <?php else:?>
           	<iframe id="avancementScenario" src="<?php echo url_for('scenarioAvancement', array('id'=>$scenario->getId()))?>">
           	</iframe>
-          	<?php endif?>
-		  	  </div>
-		  	</div>
+        <?php endif?>
+        
   	  </div>
     </form>
     <?php endif ?>
