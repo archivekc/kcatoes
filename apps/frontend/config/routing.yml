@@ -61,7 +61,7 @@ pageIndex:
   param:    { module: page, action: index }
 
 pageDetail:
-  url:      /page/voir/:id
+  url:      /page/:id
   param:    { module: page, action: detail }
   class:    sfDoctrineRoute
   options:  { model: WebPage, type: object }
@@ -69,7 +69,7 @@ pageDetail:
     id:     \d+
 
 pageEdit:
-  url:      /page/modifier/:id
+  url:      /page/:id/modifier
   param:    { module: page, action: edit }
   class:    sfDoctrineRoute
   options:  { model: WebPage, type: object }
@@ -78,29 +78,47 @@ pageEdit:
     sf_method: [GET, POST]
 
 pageDelete:
-  url:      /page/supprimer/:id
+  url:      /page/:id/supprimer
   param:    { module: page, action: delete }
   class:    sfDoctrineRoute
   options:  { model: WebPage, type: object }
   requirements: 
     id:     \d+
 
-pageExecuteTests:
-  url:      /page/tests/execute/:id
-  param:    { module: page, action: executeTests }
-  class:    sfDoctrineRoute
-  options:  { model: WebPageExtract, type: object }
-  requirements: 
-    id:     \d+
-    
-pageTests:
-  url:      /page/tests/:id
-  param:    { module: page, action: tests }
+pageConfigurationTests:
+  url:      /page/:id/configuration-tests
+  param:    { module: page, action: configurationTests }
   class:    sfDoctrineRoute
   options:  { model: WebPage, type: object }
   requirements: 
     id:     \d+
     sf_method: [GET, POST]
+
+pageExtracts:
+  url: /page/:id/assistant-extraction
+  param:    { module: page, action: extractWizard }
+  class:    sfDoctrineRoute
+  options:  { model: WebPage, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [GET, POST]
+
+pageExtractSrc:
+  url: page/assistant-extraction/source/:id
+  param:    { module: page, action: extractSrc }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements:
+    id: \d+
+    sf_method: [GET]
+    
+pageExecutionTests:
+  url:      /page/execute-tests/:id
+  param:    { module: page, action: executionTests }
+  class:    sfDoctrineRoute
+  options:  { model: WebPageExtract, type: object }
+  requirements: 
+    id:     \d+
 
 pageSource:
   url:      /page/source/:id
@@ -110,47 +128,30 @@ pageSource:
   requirements: 
     id:     \d+
 
-pageExtracts:
-  url: /assistant-extraction/:id
-  param:    { module: page, action: extractWizard }
-  class:    sfDoctrineRoute
-  options:  { model: WebPage, type: object }
-  requirements: 
-    id:     \d+
-    sf_method: [GET, POST]
-
-pageExtractSrc:
-  url: /assistant-extraction/source/:id
-  param:    { module: page, action: extractSrc }
-  class:    sfDoctrineRoute
-  options:  { model: WebPageExtract, type: object }
-  requirements:
-    id: \d+
-    sf_method: [GET]
-
 # ##########
 # EVALUATION
 # ##########
-pageResultatTestsRiche:
-  url:      /page/tests/resultat/riche/:id
-  param:    { module: eval, action: resultatTestsRiche }
+
+evaluation:
+  url:      /evaluation/:id
+  param:    { module: eval, action: evaluation }
   class:    sfDoctrineRoute
   options:  { model: WebPageExtract, type: object }
   requirements: 
     id:     \d+
     
-sauvegardeResultat:
-  url:      /page/tests/resultat/save/:id
-  param:    { module: eval, action: sauvegardeResultat }
+evaluationSauvegarde:
+  url:      /evaluation/:id/save
+  param:    { module: eval, action: evaluationSauvegarde }
   class:    sfDoctrineRoute
   options:  { model: WebPageExtract, type: object }
   requirements: 
     id:     \d+
     sf_method: [POST]
     
-pageResultatTests:
-  url:      /page/tests/resultat/:id
-  param:    { module: eval, action: resultatTests }
+evaluationSimple:
+  url:      /evaluation/:id/simple
+  param:    { module: eval, action: evaluationSimple }
   class:    sfDoctrineRoute
   options:  { model: WebPageExtract, type: object }
   requirements: 
@@ -168,7 +169,7 @@ scenarioTemplateIndex:
   param:    { module: scenario, action: templateIndex }
 
 scenarioTemplateDelete:
-  url:      /scenario/supprimer-modele-de-scenario/:id
+  url:      /modele-de-scenario/:id/supprimer
   param:    { module: scenario, action: templateDelete }
   class:    sfDoctrineRoute
   options:  { model: ScenarioTemplate, type: object }
@@ -176,7 +177,7 @@ scenarioTemplateDelete:
     id:     \d+
 
 scenarioDetail:
-  url:      /scenario/voir/:id
+  url:      /scenario/:id
   param:    { module: scenario, action: detail }
   class:    sfDoctrineRoute
   options:  { model: Scenario, type: object }
@@ -185,7 +186,7 @@ scenarioDetail:
     sf_method: [GET, POST]
 
 scenarioAvancement:
-  url:      /scenario/avancement/:id
+  url:      /scenario/:id/avancement
   param:    { module: scenario, action: avancement }
   class:    sfDoctrineRoute
   options:  { model: Scenario, type: object }
@@ -194,7 +195,7 @@ scenarioAvancement:
     sf_method: [GET]
 
 scenarioEdit:
-  url:      /scenario/modifier/:id
+  url:      /scenario/:id/modifier
   param:    { module: scenario, action: edit }
   class:    sfDoctrineRoute
   options:  { model: Scenario, type: object }
@@ -203,12 +204,21 @@ scenarioEdit:
     sf_method: [GET, POST]
 
 scenarioDelete:
-  url:      /scenario/supprimer/:id
+  url:      /scenario/:id/supprimer
   param:    { module: scenario, action: delete }
   class:    sfDoctrineRoute
   options:  { model: Scenario, type: object }
   requirements: 
     id:     \d+
+
+scenarioActions:
+  url:      /scenario/:id/action
+  param:    { module: scenario, action: actions }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements: 
+    id:     \d+
+    sf_method: [POST]
 
 scenarioPageEdit:
   url:      /scenario/modifier-page/:id
@@ -226,15 +236,6 @@ scenarioPageDelete:
   options:  { model: ScenarioPage, type: object }
   requirements: 
     id:     \d+
-
-scenarioActions:
-  url:      /scenario/action/:id
-  param:    { module: scenario, action: actions }
-  class:    sfDoctrineRoute
-  options:  { model: Scenario, type: object }
-  requirements: 
-    id:     \d+
-    sf_method: [POST]
 
 # ######################
 # RESULTATS (Génériques)

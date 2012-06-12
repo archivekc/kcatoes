@@ -15,7 +15,7 @@ class evalActions extends kcatoesActions
    * Affichage des résultats d'un test
    * @param sfWebRequest $request
    */
-  public function executeResultatTests(sfWebRequest $request)
+  public function executeEvaluationSimple(sfWebRequest $request)
   {
     $this->extraction = $this->getRoute()->getObject();
     $this->page       = $this->extraction->getWebPage();
@@ -30,7 +30,7 @@ class evalActions extends kcatoesActions
    * Interface riche
    * @param sfWebRequest $request
    */
-  public function executeResultatTestsRiche(sfWebRequest $request)
+  public function executeEvaluation(sfWebRequest $request)
   {
     $this->extraction = $this->getRoute()->getObject();
     $this->page       = $this->extraction->getWebPage();
@@ -184,7 +184,7 @@ class evalActions extends kcatoesActions
    * 
    * @param sfWebRequest $request
    */
-  public function executeSauvegardeResultat(sfWebRequest $request)
+  public function executeEvaluationSauvegarde(sfWebRequest $request)
   {
     $this->extraction = $this->getRoute()->getObject();
     
@@ -227,6 +227,6 @@ class evalActions extends kcatoesActions
       $this->getUser()->setFlash('error', 'Erreur lors de l\'enregistrement');      
     }
     
-    $this->redirect('pageResultatTestsRiche', $this->extraction);
+    $this->redirect('evaluation', $this->extraction);
   }
 }

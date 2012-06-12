@@ -11,7 +11,7 @@
   </head>
   <body>
 		<?php if ($history): ?>
-		  <form method="post" action="<?php echo url_for('sauvegardeResultat', $extraction) ?>" >
+		  <form method="post" action="<?php echo url_for('evaluationSauvegarde', $extraction) ?>" >
 
 		<?php endif ?>
     <h1 id="rapportTitle">

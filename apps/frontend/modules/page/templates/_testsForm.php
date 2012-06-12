@@ -1,4 +1,4 @@
-  <form method="post" action="<?php echo url_for('pageTests',array('id'=>$page->getId()))?>" 
+  <form method="post" action="<?php echo url_for('pageConfigurationTests',array('id'=>$page->getId()))?>" 
         class="block testForm">
     <h2>Tests</h2>
     <div class="fields">

@@ -26,7 +26,7 @@
             ?>
 
             <?php if ($rapport['total']['total'] > 0):?>
-            <?php echo link_to('Fiche d\'évaluation', 'pageResultatTestsRiche',
+            <?php echo link_to('Fiche d\'évaluation', 'evaluation',
                                       array('id' => $extract->getId()),
                                       array('popup'=>true)) ?>
             <?php endif ?>

@@ -156,7 +156,7 @@
   	                    <span class="nbTest"><?php echo $testPassed ?> test(s) passé(s)</span>
   	                  </label>
   	                  <?php if ($testPassed>0):?>
-  	                  <?php echo link_to('Fiche d\'évaluation', 'pageResultatTestsRiche', 
+  	                  <?php echo link_to('Fiche d\'évaluation', 'evaluation', 
                                 array('id' => $extract->getId()), 
                                 array('popup'=>true)) ?>
                       <?php endif ?>

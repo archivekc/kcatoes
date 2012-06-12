@@ -116,6 +116,8 @@ class pageActions extends kcatoesActions
   {
     $this->extraction = $this->getRoute()->getObject();
     
+    sfConfig::set('sf_web_debug', false);
+    
     $baseUrl = $this->extraction->getWebPage()->getUrl();
     
     // Ajout de <base ... /> pour affichage dans une iframe
@@ -161,7 +163,7 @@ class pageActions extends kcatoesActions
    * Configuration des tests d'une page
    * @param sfWebRequest $request
    */
-  public function executeTests(sfWebRequest $request) 
+  public function executeConfigurationTests(sfWebRequest $request) 
   {
   	$this->page = $this->getRoute()->getObject();
 
@@ -207,7 +209,7 @@ class pageActions extends kcatoesActions
    * Lancement des tests sur une extraction donnée
    * @param sfWebRequest $request
    */
-  public function executeExecuteTests(sfWebRequest $request)
+  public function executeExecutionTests(sfWebRequest $request)
   {
     $this->extraction = $this->getRoute()->getObject();
     $this->page       = $this->extraction->getWebPage();
@@ -253,8 +255,8 @@ class pageActions extends kcatoesActions
     }
     
     // Vers les résultats
-    //$this->redirect('pageResultatTests', $this->extraction);
-    //$this->redirect('pageResultatTestsRiche', $this->extraction);
+    //$this->redirect('evaluationSimple', $this->extraction);
+    //$this->redirect('evaluation', $this->extraction);
     $this->redirect('pageDetail', $this->page);
     
   }
