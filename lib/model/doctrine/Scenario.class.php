@@ -46,12 +46,8 @@ class Scenario extends BaseScenario
 	      ->where('sp.scenario_id = ?', $this->getId())
 	      ->andWhereIn('e.id', $extractIds)
 	      ->orderBy('sp.created_at ASC, e.type ASC')
-	      //->fetchArray();
 	      ->execute();
     
-//	      echo '<pre>';
-//	      print_r($pages);
-//	      echo '</pre>';
       return $pages;
     }
 	}

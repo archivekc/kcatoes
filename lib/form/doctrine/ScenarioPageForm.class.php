@@ -49,22 +49,18 @@ class ScenarioPageForm extends BaseScenarioPageForm
     $this->embedForm('newWebPage', $webPageForm);
   }
   
+  
   /**
-   * Supprime le formulaire de WebPage si vide
-   * ou si une URL est saisie dans la liste déroulante
+   * Redéfinition de l'enregistrement des éléments des sous-formulaires
+   * On supprime le formulaire de WebPage si vide ou si une URL est saisie dans la liste déroulante
    */
   public function saveEmbeddedForms($con = null, $forms = null)
   {
     if (null === $forms)
     {
-      
-      sfContext::getInstance()->getLogger()->warning("DEBUG - saveEmbeddedForms");
-      
       $newWebPage = $this->getValue('newWebPage');
-
       if ($this->getValue('web_page_id') || !isset($newWebPage['url']))
       {
-        sfContext::getInstance()->getLogger()->warning("DEBUG - saveEmbeddedForms - pas d'URL, on unset l'embeddedForm");
         unset($this->embeddedForms['newWebPage']);  
       }
     }

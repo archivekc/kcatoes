@@ -4,32 +4,32 @@
   <div class="topAction">
   <?php if ($sf_user->hasCredential('gestion scenario')):?>
       <span>Ajout d'un type de page</span>
-      <form method="post" id="scenarioAddPageForm" action="<?php echo url_for('scenarioDetail', array('id'=>$scenario->getId()))?>" class="block <?php echo !$addPageForm->hasErrors()?'quickAddForm':'' ?>">
+      <form method="post" id="scenarioAddPageForm" action="<?php echo url_for('scenarioDetail', array('id'=>$scenario->getId()))?>" class="block <?php echo !$scenarioPageForm->hasErrors()?'quickAddForm':'' ?>">
         <h2>Ajout d'un type de page</h2>
         <div>
           <div class="fields">
-            <?php if ($addPageForm->hasGlobalErrors()):?>
+            <?php if ($scenarioPageForm->hasGlobalErrors()):?>
             <div>
-              <?php $addPageForm->renderGlobalErrors() ?>
+              <?php $scenarioPageForm->renderGlobalErrors() ?>
             </div>
             <?php endif ?>
             <div>
-              <?php echo $addPageForm->renderHiddenFields()?>
+              <?php echo $scenarioPageForm->renderHiddenFields()?>
             </div>
             <div>
-              <?php echo $addPageForm['nom']->renderError()?>
-              <?php echo $addPageForm['nom']->renderLabel()?>
-              <?php echo $addPageForm['nom']->render()?>
+              <?php echo $scenarioPageForm['nom']->renderError()?>
+              <?php echo $scenarioPageForm['nom']->renderLabel()?>
+              <?php echo $scenarioPageForm['nom']->render()?>
             </div>
             <div>
-              <?php echo $addPageForm['required']->renderError()?>
-              <?php echo $addPageForm['required']->renderLabel()?>
-              <?php echo $addPageForm['required']->render()?>
+              <?php echo $scenarioPageForm['required']->renderError()?>
+              <?php echo $scenarioPageForm['required']->renderLabel()?>
+              <?php echo $scenarioPageForm['required']->render()?>
             </div>
             <div>
-              <?php echo $addPageForm['web_page_id']->renderError()?>
-              <?php echo $addPageForm['web_page_id']->renderLabel()?>
-              <?php echo $addPageForm['web_page_id']->render()?>
+              <?php echo $scenarioPageForm['web_page_id']->renderError()?>
+              <?php echo $scenarioPageForm['web_page_id']->renderLabel()?>
+              <?php echo $scenarioPageForm['web_page_id']->render()?>
             </div>
             
             <div>
@@ -37,7 +37,7 @@
             </div>
               
             <div class="subForm">
-              <?php $webPageForm = $addPageForm['newWebPage']; ?>
+              <?php $webPageForm = $scenarioPageForm['newWebPage']; ?>
               <div>
                 <?php echo $webPageForm->renderHiddenFields()?>
               </div>

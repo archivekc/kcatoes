@@ -82,4 +82,49 @@ class WebPage extends BaseWebPage
     return false;
   }
   
+  /**
+   * Réalise l'extraction initiale de la source de la page 
+   * @return unknown_type
+   */
+  public function doExtract($source='')
+  {
+    
+    // Récupère la source si pas fournie
+    if (trim($source) == '' )
+    {
+      $source = file_get_contents($this->getUrl());
+    }
+    
+    // encodage UTF-8
+    //$source = ExtractHelper::utf8convert($source);
+    $source = ExtractHelper::fix_latin($source);
+    
+    // Récupération du DOCTYPE
+    $doctype = null;
+    $matches = array();
+    $pattern = '/(<!DOCTYPE[^>]*>)/i';
+    preg_match($pattern, $source, $matches);
+    if (isset($matches[1]) && $matches[1] != '') {
+      $doctype = $matches[1];
+    }
+    $this->setDoctype($doctype);
+    
+    // Enregistrement des sources de base
+    $baseExtract = new WebPageExtract();
+    $baseExtract->setWebPage($this);
+    $baseExtract->setSrc($source);
+    $baseExtract->setType('base');
+    $baseExtract->save();          
+    
+    // enregistrement des sources sans JS
+    $noJsSrc = ExtractHelper::fix_latin(ExtractHelper::removeJS($source, $doctype));
+    $noJsExtract = new WebPageExtract();
+    $noJsExtract->setWebPage($this);
+    $noJsExtract->setSrc($noJsSrc);
+    $noJsExtract->setType('Sans JavaScript');
+    $noJsExtract->save();    
+    
+  }
+
+  
 }

@@ -38,6 +38,17 @@ class WebPageForm extends BaseWebPageForm
                                                              'invalid'  => "L'URL est invalide")));
     $this->setValidator('src', new sfValidatorPass(array('required' => false)));
     
+    
+    // sfValidatorDoctrineUnique
+
+    /*
+    $this->validatorSchema->getPostValidator()->configure(
+      array(),
+      array('invalid' => 'Une page avec la même "%column%" existe déjà.')
+    );
+     */
+    $this->validatorSchema->getPostValidator()->setMessage('invalid', 'Une page avec la même URL existe déjà.');
+    
     $this->widgetSchema->setNameFormat('webPages[%s]');
     
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

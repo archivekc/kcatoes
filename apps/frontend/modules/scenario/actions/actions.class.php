@@ -27,13 +27,13 @@ class scenarioActions extends kcatoesActions
       	if ( $tplId != '')
       	{
       		$tpl = Doctrine::getTable('ScenarioTemplate')->findOneById($tplId);
-      		$pages = $tpl->getCollectionPages();
-      		foreach ($pages as $page)
+      		$templatePages = $tpl->getCollectionPages();
+      		foreach ($templatePages as $templatePage)
       		{
       			$scenarioPage = new ScenarioPage();
       			$scenarioPage->setScenarioId($scenario->getId());
-      			$scenarioPage->setNom($page->getNom());
-      			$scenarioPage->setRequired($page->getRequired());
+      			$scenarioPage->setNom($templatePage->getNom());
+      			$scenarioPage->setRequired($templatePage->getRequired());
       			$scenarioPage->save();
       		}
       	}
@@ -84,7 +84,7 @@ class scenarioActions extends kcatoesActions
   public function executeDetail(sfWebRequest $request)
   {
     $this->scenario = $this->getRoute()->getObject();
-    $this->addPageForm = new ScenarioPageForm();
+    $this->scenarioPageForm = new ScenarioPageForm();
     
     $this->setAsTemplateForm = new ScenarioTemplateForm();
     
@@ -107,24 +107,23 @@ class scenarioActions extends kcatoesActions
     	if ($parameters->get('scenarioPage', false))
     	{
     		// soumission d'une page web
-	      if ($this->processForm($request, $this->addPageForm))
+	      if ($this->processForm($request, $this->scenarioPageForm))
 	      {
-	        $page = $this->addPageForm->save();
-	        $page->setScenario($this->scenario);
+	        $scenarioPage = $this->scenarioPageForm->save();
+	        $scenarioPage->setScenario($this->scenario);
 	        
           // Association de la page si nouvellement créée
-	        $embeddedForms = $this->addPageForm->getEmbeddedForms();
+	        $embeddedForms = $this->scenarioPageForm->getEmbeddedForms();
 	        if (isset($embeddedForms['newWebPage']))
 	        {
-            sfContext::getInstance()->getLogger()->warning("DEBUG - executeDetail - nouvelle page -> setWebPage manuel ");
-            $newWebPage = $this->addPageForm->getEmbeddedForm('newWebPage')->getObject();
-  	        $page->setWebPage($newWebPage);
-	        }
-	        else {
-            sfContext::getInstance()->getLogger()->warning("DEBUG - executeDetail - pas de page nouvellement créée");
+            $newWebPage = $embeddedForms['newWebPage']->getObject();
+            $source = $embeddedForms['newWebPage']->getValue('src');
+            $newWebPage->doExtract($source);
+            
+  	        $scenarioPage->setWebPage($newWebPage);
 	        }
 
-	        $page->save();
+	        $scenarioPage->save();
 	        $this->redirect('scenarioDetail', $this->scenario);
 	      }
     	}
@@ -134,10 +133,10 @@ class scenarioActions extends kcatoesActions
         if ($this->processForm($request, $this->setAsTemplateForm))
         {
         	  $scenarioTemplate = $this->setAsTemplateForm->save();
-        	  foreach($this->scenario->getScenarioPages() as $page){
+        	  foreach($this->scenario->getScenarioPages() as $scenarioPage){
         	  	$templatePage = new scenarioTemplatePage();
-        	  	$templatePage->setNom($page->getNom());
-        	  	$templatePage->setRequired($page->getRequired());
+        	  	$templatePage->setNom($scenarioPage->getNom());
+        	  	$templatePage->setRequired($scenarioPage->getRequired());
         	  	$templatePage->setScenarioTemplateId($scenarioTemplate->getId());
         	  	$templatePage->save();
         	  }
