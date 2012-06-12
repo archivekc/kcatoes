@@ -39,6 +39,7 @@ class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \AS
     }
     else {
       foreach($nodes as $node) {
+
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier si les segments de
         textes sont contenus dans un élément th');
       }

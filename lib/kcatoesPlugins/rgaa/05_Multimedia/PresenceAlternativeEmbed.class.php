@@ -5,20 +5,20 @@ namespace Kcatoes\rgaa;
 
 class PresenceAlternativeEmbed extends \ASource
 {
-  
+
   const testName = 'Présence d\'une alternative aux éléments embed';
   const testId = '5.12';
   protected static $testProc = array(
-     'Si l\'élément mentionné dans le champ d\'application est présent dans la page, 
+     'Si l\'élément mentionné dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément apporte de l\'information, poursuivre le test, sinon le test est 
+    ,'Si l\'élément apporte de l\'information, poursuivre le test, sinon le test est
       non applicable.'
-    ,'Si le contenu visuel animé, sonore ou le média synchronisé n\'est pas une alternative 
-      animée, sonore ou synchronisée à un contenu textuel présent dans la page, qui est 
-      identifiée en tant que tel et qui n\'apporte pas plus d\'information que le contenu textuel, 
+    ,'Si le contenu visuel animé, sonore ou le média synchronisé n\'est pas une alternative
+      animée, sonore ou synchronisée à un contenu textuel présent dans la page, qui est
+      identifiée en tant que tel et qui n\'apporte pas plus d\'information que le contenu textuel,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si le contenu n\'est pas consulté dans un environnement informatique maitrisé 
-      permettant la restitution des contenus affichés au travers de l\'élément embed, 
+    ,'Si le contenu n\'est pas consulté dans un environnement informatique maitrisé
+      permettant la restitution des contenus affichés au travers de l\'élément embed,
       poursuivre le test, sinon le test est non applicable.'
     ,'Si une alternative à l\'élément embed est disponible dans un des cas suivants :'
     ,array(
@@ -41,15 +41,15 @@ class PresenceAlternativeEmbed extends \ASource
     ,'thematique' => 'Multimédia'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément embed ou tout code javascript générant un élément embed.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -59,10 +59,10 @@ class PresenceAlternativeEmbed extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

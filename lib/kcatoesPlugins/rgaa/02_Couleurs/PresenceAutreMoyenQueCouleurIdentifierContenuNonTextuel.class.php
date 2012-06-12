@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceAutreMoyenQueCouleurIdentifierContenuNonTextuel extends \ASource
 {
-  
+
   const testName = 'Présence d\'un autre moyen que la couleur pour identifier un contenu auquel il est fait référence dans un élément non textuel';
   const testId = '2.2';
   protected static $testProc = array(
@@ -16,13 +16,13 @@ class PresenceAutreMoyenQueCouleurIdentifierContenuNonTextuel extends \ASource
   protected static $testDocLinks = array(
     'H92' => 'http://www.w3.org/TR/WCAG20-TECHS/H92'
   );
-  
+
   protected static $testGroups = array(
      'niveau'     => 'A'
     ,'thematique' => 'Couleurs'
     ,'profils'    => array('Rédacteur', 'Contributeur', 'Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
 
@@ -30,17 +30,17 @@ class PresenceAutreMoyenQueCouleurIdentifierContenuNonTextuel extends \ASource
      Champ d'application
 
       Tout élément :
-      
+
           img
           input de type image
           applet
           object
           embed
           ou code javascript générant un des éléments précédents
-    
+
      */
-    
-    
+
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -50,11 +50,11 @@ class PresenceAutreMoyenQueCouleurIdentifierContenuNonTextuel extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-     
-     
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
+
+
   }
 }

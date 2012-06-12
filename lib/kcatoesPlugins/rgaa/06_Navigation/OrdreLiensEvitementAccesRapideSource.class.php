@@ -5,15 +5,15 @@ namespace Kcatoes\rgaa;
 
 class OrdreLiensEvitementAccesRapideSource extends \ASource
 {
-  
+
   const testName = 'Ordre des liens d\'évitement ou d\'accès rapide dans le code source des pages';
   const testId = '6.33';
   protected static $testProc = array(
-     'Si l\'élément mentionné dans le champ d\'application est présent au moins 
+     'Si l\'élément mentionné dans le champ d\'application est présent au moins
       deux fois dans la page, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'activation de l\'élément permet d\'accéder à un groupe de liens 
+    ,'Si l\'activation de l\'élément permet d\'accéder à un groupe de liens
       importants, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'ordre de l\'élément dans le code source est identique sur toutes 
+    ,'Si l\'ordre de l\'élément dans le code source est identique sur toutes
       les pages, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -25,15 +25,15 @@ class OrdreLiensEvitementAccesRapideSource extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément a.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -43,10 +43,10 @@ class OrdreLiensEvitementAccesRapideSource extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

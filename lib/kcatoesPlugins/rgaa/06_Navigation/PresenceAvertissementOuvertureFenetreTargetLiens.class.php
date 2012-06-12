@@ -5,18 +5,18 @@ namespace Kcatoes\rgaa;
 
 class PresenceAvertissementOuvertureFenetreTargetLiens extends \ASource
 {
-  
+
   const testName = 'Présence d\'un avertissement préalable à l\'ouverture de nouvelle fenêtre lors de l\'utilisation de l\'attribut target sur les liens textuels et les formulaires';
   const testId = '6.2';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément possède un attribut target, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le contenu de l\'attribut target est différent de _top, _parent, _self, poursuivre 
+    ,'Si le contenu de l\'attribut target est différent de _top, _parent, _self, poursuivre
       le test, sinon le test est non applicable.'
-    ,'Si l\'élément n\'a pas pour unique enfant un élément img, poursuivre le test sinon le test 
+    ,'Si l\'élément n\'a pas pour unique enfant un élément img, poursuivre le test sinon le test
       est non applicable.'
-    ,'Si un avertissement signalant l\'ouverture dans une nouvelle fenêtre se trouve dans le 
+    ,'Si un avertissement signalant l\'ouverture dans une nouvelle fenêtre se trouve dans le
       contenu de l\'élément seul ou dans le contenu seul additionné à un contenu récupérable dans au moins un des contextes suivants  :'
     ,array(
        'contenu de son élément html parent si il s\'agit d\'un élément p ou li'
@@ -38,18 +38,18 @@ class PresenceAvertissementOuvertureFenetreTargetLiens extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément :
-      
+
           a
           form
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -59,10 +59,10 @@ class PresenceAvertissementOuvertureFenetreTargetLiens extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

@@ -5,16 +5,16 @@ namespace Kcatoes\rgaa;
 
 class CompatibiliteElementsProgrammablesAidesTechniques extends \ASource
 {
-  
+
   const testName = 'Compatibilité des éléments programmables avec les aides techniques';
   const testId = '5.16';
   protected static $testProc = array(
-     'Si l\'un des élément mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des élément mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément n\'est pas accessible aux aides techniques par l\'intermédiaire d\'une API 
-      d\'accessibilité ou des fonctionnalités d\'accessibilité, poursuivre le test, sinon le 
+    ,'Si l\'élément n\'est pas accessible aux aides techniques par l\'intermédiaire d\'une API
+      d\'accessibilité ou des fonctionnalités d\'accessibilité, poursuivre le test, sinon le
       test est non applicable.'
-    ,'Si les fonctionnalités contenues dans l\'élément sont disponibles sous forme d\'une 
+    ,'Si les fonctionnalités contenues dans l\'élément sont disponibles sous forme d\'une
       alternative accessible, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -29,19 +29,19 @@ class CompatibiliteElementsProgrammablesAidesTechniques extends \ASource
     ,'thematique' => 'Multimédia'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément :
-      
+
           objet
           applet
           embed
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -51,10 +51,10 @@ class CompatibiliteElementsProgrammablesAidesTechniques extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

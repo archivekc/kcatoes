@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceBasisageGroupesLiensImportants extends \ASource
 {
-  
+
   const testName = 'Présence d\'un balisage permettant d\'identifier les groupes de liens importants';
   const testId = '6.30';
   protected static $testProc = array(
@@ -27,15 +27,15 @@ class PresenceBasisageGroupesLiensImportants extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément HTML contenant un groupe de liens importants (zone de navigation, zone de contenu global ou partie de contenu, zone d'outils, etc).
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -45,10 +45,10 @@ class PresenceBasisageGroupesLiensImportants extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

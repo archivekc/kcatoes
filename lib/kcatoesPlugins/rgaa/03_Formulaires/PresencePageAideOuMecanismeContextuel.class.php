@@ -5,14 +5,14 @@ namespace Kcatoes\rgaa;
 
 class PresencePageAideOuMecanismeContextuel extends \ASource
 {
-  
+
   const testName = 'Présence d\'une page d\'aide ou d\'un mécanisme d\'aide contextuelle pour la saisie des formulaires';
   const testId = '3.16';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément permet de saisir des données, poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'utilisateur à la possibilité d\'obtenir une aide contextuelle propre à chacun des champs de 
+    ,'Si l\'utilisateur à la possibilité d\'obtenir une aide contextuelle propre à chacun des champs de
       saisie par au moins un des mécanismes suivant :'
     ,array('présence d\'une page d\'aide'
           ,'présence d\'un assistant de saisie'
@@ -28,25 +28,25 @@ class PresencePageAideOuMecanismeContextuel extends \ASource
     ,'G193' => 'http://www.w3.org/TR/WCAG20-TECHS/G193'
     ,'G194' => 'http://www.w3.org/TR/WCAG20-TECHS/G194'
   );
-  
+
   protected static $testGroups = array(
      'niveau'     => 'AAA'
     ,'thematique' => 'Formulaires'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
 
     /*
     Champ d'application
-    
+
     Tout élément :
-    
+
         input type="text"
         textarea
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -56,10 +56,10 @@ class PresencePageAideOuMecanismeContextuel extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-          
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
+
   }
 }

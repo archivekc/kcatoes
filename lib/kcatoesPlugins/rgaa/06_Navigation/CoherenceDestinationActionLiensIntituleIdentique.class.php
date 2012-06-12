@@ -5,15 +5,15 @@ namespace Kcatoes\rgaa;
 
 class CoherenceDestinationActionLiensIntituleIdentique extends \ASource
 {
-  
+
   const testName = 'Cohérence de la destination ou de l\'action des liens ayant un intitulé identique';
   const testId = '6.15';
   protected static $testProc = array(
-     'Si au moins deux éléments mentionnés dans le champ d\'application sont présents dans la page, 
+     'Si au moins deux éléments mentionnés dans le champ d\'application sont présents dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si les éléments ont le même intitulé et pointent sur une destination ou entrainent une action 
+    ,'Si les éléments ont le même intitulé et pointent sur une destination ou entrainent une action
       différente, poursuivre le test, sinon le test est non applicable.'
-    ,'Si les éléments ont un intitulé identique lorsque l\'on leur additionne un contenu récupérable 
+    ,'Si les éléments ont un intitulé identique lorsque l\'on leur additionne un contenu récupérable
       dans au moins un des contextes suivants :'
     ,array(
        'contenu de leur élément html parent si il s\'agit d\'un élément p ou li'
@@ -22,8 +22,8 @@ class CoherenceDestinationActionLiensIntituleIdentique extends \ASource
       ,'contenu des éléments de listes parents des éléments dans une liste arborescente (ul,ol,dl)'
     )
     ,'qui pointent sur une destination ou entrainent une action différente, poursuivre le test, sinon le test est non applicable.'
-    ,'Si les éléments ont un attribut title dont le contenu est différent les uns des autres, 
-      qu\'il est plus long que l\'intitulé du lien lui-même et que sa lecture seule permet de comprendre 
+    ,'Si les éléments ont un attribut title dont le contenu est différent les uns des autres,
+      qu\'il est plus long que l\'intitulé du lien lui-même et que sa lecture seule permet de comprendre
       l\'action ou d\'identifier la destination du lien, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -38,14 +38,14 @@ class CoherenceDestinationActionLiensIntituleIdentique extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément :
-      
+
           a
           area
           button
@@ -53,7 +53,7 @@ class CoherenceDestinationActionLiensIntituleIdentique extends \ASource
           input type="submit"
           input type="reset"
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -63,10 +63,10 @@ class CoherenceDestinationActionLiensIntituleIdentique extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PertinenceDescriptionLongue extends \ASource
 {
-  
+
   const testName = 'Pertinence de la description longue pour les images le nécessitant';
   const testId = '4.8';
   protected static $testProc = array(
@@ -19,22 +19,22 @@ class PertinenceDescriptionLongue extends \ASource
     ,'G92' => 'http://www.w3.org/TR/WCAG20-TECHS/G92'
     ,'F67' => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F67'
   );
-  
+
   protected static $testGroups = array(
      'niveau'     => 'A'
     ,'thematique' => 'Images'
     ,'profils'    => array('Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
 
     /*
       Champ d'application
-      
+
       Tout élément img ou tout code javascript générant un élément img.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -44,10 +44,10 @@ class PertinenceDescriptionLongue extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-          
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
+
   }
 }

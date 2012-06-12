@@ -5,15 +5,15 @@ namespace Kcatoes\rgaa;
 
 class AbsenceElementsMouvementsAutoPasArretes extends \ASource
 {
-  
+
   const testName = 'Absence d\'éléments affichant des mouvements déclenchés automatiquement ne pouvant pas être arrêtés';
   const testId = '5.24';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément affiche des mouvements qui se déclenchent sans action préalable de l\'utilisateur, 
+    ,'Si l\'élément affiche des mouvements qui se déclenchent sans action préalable de l\'utilisateur,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si le mouvement n\'apporte en lui même aucune information ou qu\'il s\'agit d\'une fonctionnalité 
+    ,'Si le mouvement n\'apporte en lui même aucune information ou qu\'il s\'agit d\'une fonctionnalité
       qu\'il serait possible de reproduire sans mouvement, poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'utilisateur à le contrôle des mouvements par au moins un des mécanismes suivants :'
     ,array(
@@ -25,7 +25,7 @@ class AbsenceElementsMouvementsAutoPasArretes extends \ASource
     ,'le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
-     'G4'   => 'http://www.w3.org/TR/WCAG20-TECHS/G4' 
+     'G4'   => 'http://www.w3.org/TR/WCAG20-TECHS/G4'
     ,'G152' => 'http://www.w3.org/TR/WCAG20-TECHS/G152'
     ,'G186' => 'http://www.w3.org/TR/WCAG20-TECHS/G186'
     ,'F16'  => 'http://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/F16'
@@ -36,20 +36,20 @@ class AbsenceElementsMouvementsAutoPasArretes extends \ASource
     ,'thematique' => 'Multimédia'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément :
-      
+
           object
           embed
           applet
           img au format gif, apng ou mng
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -59,10 +59,10 @@ class AbsenceElementsMouvementsAutoPasArretes extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

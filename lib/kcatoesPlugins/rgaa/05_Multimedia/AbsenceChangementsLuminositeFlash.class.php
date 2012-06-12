@@ -5,17 +5,17 @@ namespace Kcatoes\rgaa;
 
 class AbsenceChangementsLuminositeFlash extends \ASource
 {
-  
+
   const testName = 'Absence d\'éléments provoquant des changements brusques de luminosité ou des effets de flash rouge à fréquence élevée';
   const testId = '5.13';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément provoque des changements brusques de luminosité ou des effets de flash rouge, 
+    ,'Si l\'élément provoque des changements brusques de luminosité ou des effets de flash rouge,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si les changements brusques de luminosité ou les effets de flash rouge se font à une 
-      fréquence inférieure ou égale à 3 par seconde ou que la surface totale d\'affichage cumulée 
-      des changements brusques de luminosité ou des effets de flash rouge dans une zone de 341 x 256 pixels 
+    ,'Si les changements brusques de luminosité ou les effets de flash rouge se font à une
+      fréquence inférieure ou égale à 3 par seconde ou que la surface totale d\'affichage cumulée
+      des changements brusques de luminosité ou des effets de flash rouge dans une zone de 341 x 256 pixels
       est inférieure à 25% de celle-ci (21 284 pixels), le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -28,20 +28,20 @@ class AbsenceChangementsLuminositeFlash extends \ASource
     ,'thematique' => 'Multimédia'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément :
-      
+
           object
           embed
           applet
           img au format gif , apng ou mng
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -51,10 +51,10 @@ class AbsenceChangementsLuminositeFlash extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

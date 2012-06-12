@@ -5,13 +5,13 @@ namespace Kcatoes\rgaa;
 
 class PresenceAvertissementOuvertureFenetreJs extends \ASource
 {
-  
+
   const testName = 'Présence d\'un avertissement préalable à l\'ouverture de nouvelle fenêtre lors de l\'utilisation de code javascript';
   const testId = '6.4';
   protected static $testProc = array(
      'Si du code javascript est présent dans la page, poursuivre le test, sinon le test est non applicable.'
     ,'Si le code javascript déclenche l\'ouverture dans une nouvelle fenêtre, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le contenu de l\'élément sur lequel est appliqué le code javascript ne signale pas l\'ouverture 
+    ,'Si le contenu de l\'élément sur lequel est appliqué le code javascript ne signale pas l\'ouverture
       dans une nouvelle fenêtre, poursuivre le test, sinon le test est non applicable.'
     ,'Si le contenu de l\'élément faisant office d\'intitulé, récupéré dans un des contextes suivants :'
     ,array(
@@ -34,15 +34,15 @@ class PresenceAvertissementOuvertureFenetreJs extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout code javascript utilisé dans la page.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -52,10 +52,10 @@ class PresenceAvertissementOuvertureFenetreJs extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

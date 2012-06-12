@@ -24,7 +24,7 @@ class PresenceIndicationPositionCouranteNavigation extends \ASource
 
   public function execute()
   {
-     $this->addResult(null, \Resultat::NON_EXEC, 'S\'assurer que la présente page
+     $this->addResult(null, \Resultat::MANUEL, 'S\'assurer que la présente page
      a une mise en forme diffétence dans la barre de navigation.');
   }
 }

@@ -5,11 +5,11 @@ namespace Kcatoes\rgaa;
 
 class PresenceMecanismesVerificationToutesDonnees extends \ASource
 {
-  
+
   const testName = 'Présence de mécanismes permettant de vérifier, modifier ou confirmer tous types de données saisie par l\'utilisateur';
   const testId = '3.15';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
       poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'élément permet de saisir des données, poursuivre le test, sinon le test est non applicable.'
     ,'Si l\'utilisateur a au moins une des possibilités suivantes :'
@@ -28,22 +28,22 @@ class PresenceMecanismesVerificationToutesDonnees extends \ASource
     ,'G164' => 'http://www.w3.org/TR/WCAG20-TECHS/G164'
     ,'G168' => 'http://www.w3.org/TR/WCAG20-TECHS/G168'
   );
-  
+
   protected static $testGroups = array(
      'niveau'     => 'AAA'
     ,'thematique' => 'Formulaires'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
 
     /*
       Champ d'application
-      
+
       Tout élément form.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -53,10 +53,10 @@ class PresenceMecanismesVerificationToutesDonnees extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-          
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
+
   }
 }

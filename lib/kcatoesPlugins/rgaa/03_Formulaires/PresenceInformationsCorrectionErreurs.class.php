@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceInformationsCorrectionErreurs extends \ASource
 {
-  
+
   const testName = 'Présence d\'informations ou de suggestions facilitant la correction des erreurs de saisie';
   const testId = '3.13';
   protected static $testProc = array(
@@ -19,22 +19,22 @@ class PresenceInformationsCorrectionErreurs extends \ASource
     ,'G85'  => 'http://www.w3.org/TR/WCAG20-TECHS/G85'
     ,'G177' => 'http://www.w3.org/TR/WCAG20-TECHS/G177'
   );
-  
+
   protected static $testGroups = array(
      'niveau'     => 'AA'
     ,'thematique' => 'Formulaires'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Graphiste', 'Ergonome')
   );
-  
+
   public function execute()
   {
 
     /*
       Champ d'application
-      
+
       Tout élément form.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -44,10 +44,10 @@ class PresenceInformationsCorrectionErreurs extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
-          
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
+
   }
 }

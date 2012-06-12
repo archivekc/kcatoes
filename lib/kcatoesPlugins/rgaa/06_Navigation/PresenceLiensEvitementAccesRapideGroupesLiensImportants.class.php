@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceLiensEvitementAccesRapideGroupesLiensImportants extends \ASource
 {
-  
+
   const testName = 'Présence de liens d\'évitement ou d\'accès rapide aux groupes de liens importants';
   const testId = '6.31';
   protected static $testProc = array(
@@ -23,15 +23,15 @@ class PresenceLiensEvitementAccesRapideGroupesLiensImportants extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Tout élément HTML contenant un groupe de liens importants (zone de navigation, zone de contenu global ou partie de contenu, zone d'outils, etc) et identifié par une ancre.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -41,10 +41,10 @@ class PresenceLiensEvitementAccesRapideGroupesLiensImportants extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

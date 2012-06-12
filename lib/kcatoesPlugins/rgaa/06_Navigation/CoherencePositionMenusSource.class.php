@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class CoherencePositionMenusSource extends \ASource
 {
-  
+
   const testName = 'Cohérence de la position des menus et barres de navigation dans le code source de la structure HTML';
   const testId = '6.22';
   protected static $testProc = array(
@@ -24,15 +24,15 @@ class CoherencePositionMenusSource extends \ASource
     ,'thematique' => 'Navigation'
     ,'profils'    => array('Développeur', 'Intégrateur')
   );
-  
+
   public function execute()
   {
     /*
       Champ d'application
-      
+
       Groupe d'éléments a permettant la navigation dans le site ou dans une page.
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -42,10 +42,10 @@ class CoherencePositionMenusSource extends \ASource
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

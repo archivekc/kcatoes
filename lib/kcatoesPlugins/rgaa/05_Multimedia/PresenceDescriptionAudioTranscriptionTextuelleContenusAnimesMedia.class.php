@@ -5,26 +5,26 @@ namespace Kcatoes\rgaa;
 
 class PresenceDescriptionAudioTranscriptionTextuelleContenusAnimesMedia extends \ASource
 {
-  
+
   const testName = 'Présence d\'une description audio synchronisée ou d\'une transcription textuelle pour les contenus visuels animés et les médias synchronisés';
   const testId = '5.4';
   protected static $testProc = array(
-     'Si l\'un des éléments mentionnés dans le champ d\'application est présent ou utilisé dans la page, 
+     'Si l\'un des éléments mentionnés dans le champ d\'application est présent ou utilisé dans la page,
       poursuivre le test, sinon le test est non applicable.'
-    ,'Si l\'élément permet de télécharger ou de restituer un contenu visuel animé ou multimédia qui 
+    ,'Si l\'élément permet de télécharger ou de restituer un contenu visuel animé ou multimédia qui
       apporte de l\'information, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le contenu visuel animé ou le média synchronisé n\'est pas une alternative animée ou synchronisée 
-      à un contenu textuel présent dans la page, qui est identifiée en tant que tel et qui n\'apporte pas 
+    ,'Si le contenu visuel animé ou le média synchronisé n\'est pas une alternative animée ou synchronisée
+      à un contenu textuel présent dans la page, qui est identifiée en tant que tel et qui n\'apporte pas
       plus d\'information que le contenu textuel, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le contenu visuel animé ou le média synchronisé n\'a pas déjà une transcription textuelle restituant 
+    ,'Si le contenu visuel animé ou le média synchronisé n\'a pas déjà une transcription textuelle restituant
       l\'ensemble des informations, poursuivre le test, sinon le test est non applicable.'
-    ,'Si le contenu de l\'élément nécessite l\'utilisation d\'une description audio synchronisée pour le rendre 
+    ,'Si le contenu de l\'élément nécessite l\'utilisation d\'une description audio synchronisée pour le rendre
       compréhensible, poursuivre le test, sinon le test est non applicable.'
-    ,'Si au moins une version de l\'élément mis à disposition utilise une description audio synchronisée, 
+    ,'Si au moins une version de l\'élément mis à disposition utilise une description audio synchronisée,
       le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
-     'G78'  => 'http://www.w3.org/TR/WCAG20-TECHS/G78' 
+     'G78'  => 'http://www.w3.org/TR/WCAG20-TECHS/G78'
     ,'G173' => 'http://www.w3.org/TR/WCAG20-TECHS/G173'
     ,'SM1'  => 'http://www.w3.org/TR/WCAG20-TECHS/SM1'
     ,'SM2'  => 'http://www.w3.org/TR/WCAG20-TECHS/SM2'
@@ -38,15 +38,15 @@ class PresenceDescriptionAudioTranscriptionTextuelleContenusAnimesMedia extends 
     ,'thematique' => 'Multimédia'
     ,'profils'    => array('Développeur', 'Intégrateur', 'Rédacteur', 'Contributeur')
   );
-  
+
   public function execute()
   {
 
     /*
       Champ d'application
-      
+
       Tout élément :
-      
+
           a
           area
           applet
@@ -54,7 +54,7 @@ class PresenceDescriptionAudioTranscriptionTextuelleContenusAnimesMedia extends 
           embed
           tout code javascript générant un des éléments précédents ou déclenchant un téléchargement
      */
-    
+
     /*
       $crawler = $this->page->crawler;
       $elements = '';
@@ -64,10 +64,10 @@ class PresenceDescriptionAudioTranscriptionTextuelleContenusAnimesMedia extends 
       $this->addResult($node, \Resultat::REUSSITE, '');
       $this->addResult(null,  \Resultat::NA, '');
       $this->addResult($node, \Resultat::MANUEL, '');
-      
+
      */
-      
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

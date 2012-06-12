@@ -38,7 +38,7 @@ class NavigationClavierOrdreLogique extends \ASource
 
      */
 
-     $this->addResult(null, \Resultat::NON_EXEC, 'Pas implémenté');
+     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
 
   }
 }

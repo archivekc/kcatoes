@@ -32,7 +32,7 @@ class AbsencePiegeNavigationClavier extends \ASource
 
   public function execute()
   {
-     $this->addResult(null, \Resultat::NON_EXEC, 'Vérifier l\'absence de piège
+     $this->addResult(null, \Resultat::MANUEL, 'Vérifier l\'absence de piège
      lors de la navigation au clavier');
   }
 }
