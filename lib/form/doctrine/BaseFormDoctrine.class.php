@@ -12,5 +12,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
 {
   public function setup()
   {
+    sfValidatorBase::setDefaultMessage('required', 'Obligatoire');
+    sfValidatorBase::setDefaultMessage('invalid',  'Invalide');
   }
 }
