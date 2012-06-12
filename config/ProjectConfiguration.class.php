@@ -34,12 +34,12 @@ class ProjectConfiguration extends sfProjectConfiguration
   /**
    *
    * Autoloading des fichiers sources de tests
-   */
+   *//*
   private function autoloadTest()
   {
     require_once sfConfig::get('sf_data_dir').'/implementation/autoload.php';
   }
-
+*/
 
 
   /**
