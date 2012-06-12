@@ -251,6 +251,16 @@ resultatScenario:
     mode:   \w+
     sf_method: [GET, POST]
 
+resultatScenarioPage:
+  url:      /rapport/scenario/:id/:mode/page/:idPage/extractions/:extractIds
+  param:    { module: rapport, action: rapportScenarioPage }
+  class:    sfDoctrineRoute
+  options:  { model: Scenario, type: object }
+  requirements:
+    id:     \d+
+    idPage:     \d+
+    mode:   \w+
+    sf_method: [GET, POST]
 
 # #################
 # PAGES EDITORIALES

@@ -24,6 +24,19 @@
 		}
 	};
 	
+	var handleReportDisplay = function(parent){
+		if (!parent){
+			parent = $('body');
+		}
+		var collapsables = $('.reportBythematique');
+		collapsables.each(function(){
+			collapser = $(this).prev();
+			collapsable = this;
+			makeCollapsable(collapser, collapsable);
+		});
+		
+	};
+	
 	var initScreen = function(parent){
 		if (!parent){
 			parent = $('body');
@@ -34,6 +47,7 @@
 		handlePopupScreen(parent);
 		handleDropdownUserMenu(parent);
 //		handleNav();
+		handleReportDisplay(parent);
 	};
 	
 	initScreen();

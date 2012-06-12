@@ -695,3 +695,21 @@ ul.rapport span.score {
   background: #767676;
   color: #FFF;
 }
+
+/* page en construction */
+.pageConstruction img {
+  vertical-align: middle;
+}
+.pageConstruction {
+  display: block;
+  margin: 1em auto;
+  border: .1em solid #DDD;
+  border-radius: 1em;
+  padding: 1em;
+  width: 30em;
+  text-align: center;
+  background: #EEE;
+}
+.pageConstruction strong {
+  font-size: 1.5em;
+}
