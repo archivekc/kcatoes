@@ -39,10 +39,47 @@ class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \AS
     }
     else {
       foreach($nodes as $node) {
-
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier si les segments de
-        textes sont contenus dans un élément th');
+        $bFound = $this->FindTh($node->firstChild);
+        if($bFound){
+        $this->addResult($node, \Resultat::REUSSITE, 'Des éléments th sont
+        présents dans ce tableau');
+        }
+        else{
+          $this->addResult($node, \Resultat::MANUEL, 'Si cet élément est un
+          tableau de données, il ne contient pas de balise d\'en-tête');
+        }
       }
     }
+  }
+
+  private function FindTh($node)
+  {
+  	$bFound = false;
+
+  	//Est-ce le node que nous cherchons ?
+  	if($node->nodeName == 'th'){
+  		return true;
+  	}else{
+  		//On s'assure de ne pas empiéter sur un autre tableau
+  		if($node->nodeName != 'table'){
+	  		//Sinon on prospecte chez ses enfants...
+	  		if($node->firstChild != null){
+	  			$bFound = $this->FindTh($node->firstChild);
+	  			if($bFound){
+	  				return true;
+	  			}
+	  		}
+	  		if($node->nodeName != 'table'){
+	  			//...mais aussi chez ses frères
+	  			if($node->nextSibling != null){
+	  			  $bFound = $this->FindTh($node->nextSibling);
+	          if($bFound){
+	            return true;
+	          }
+	  			}
+	  		}
+  		}
+  	}
+  	return $bFound;
   }
 }
