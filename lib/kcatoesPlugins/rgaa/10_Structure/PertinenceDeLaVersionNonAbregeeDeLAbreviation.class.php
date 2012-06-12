@@ -40,8 +40,10 @@ class PertinenceDeLaVersionNonAbregeeDeLAbreviation extends \ASource
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'La version complète de
-         l\'abréviation est-elle pertinente?');
+      	if(strlen($node->getAttribute('title')) > 0){
+          $this->addResult($node, \Resultat::MANUEL, 'La version complète de
+            l\'abréviation est-elle pertinente?');
+      	}
       }
     }
   }
