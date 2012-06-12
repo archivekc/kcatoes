@@ -3,7 +3,7 @@
 <h1>Page&nbsp;: <strong><?php echo $page->getUrl()?></strong></h1>
 <?php if (strlen($page->getDescription()) > 0):?>
   <p class="description">
-    <?php $page->getDescription() ?>
+    <?php echo $page->getDescription() ?>
   </p>
 <?php endif ?>
 <div class="twoParts">
