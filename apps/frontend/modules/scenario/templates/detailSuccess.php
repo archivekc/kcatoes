@@ -179,7 +179,7 @@
       
       <div id="scenarioDetailActions">
       
-        <?php if (!$pendingTesting):?>
+        <?php if (!$testsRunning):?>
           
   	      <h2 class="title">Actions sur le scenario</h2>
   	      <div class="highlight">
@@ -188,12 +188,12 @@
   		  	  <!--[if !IE]> -->
   		  	    <button type="submit" name="scenarioAction" value="rapport_detaille">Rapport détaillé</button>
   		  	    <button type="submit" name="scenarioAction" value="rapport_simple">Rapport simple</button>
-  		  	    <button type="submit" name="scenarioAction" value="execute_test">Lancer les tests</button>
+  		  	    <button type="submit" name="scenarioAction" value="execute_tests">Lancer les tests</button>
   		  	  <!-- <![endif]-->
             <!--[if IE]> 
               <input type="submit" name="scenarioAction" value="rapport_detaille"/>
               <input type="submit" name="scenarioAction" value="rapport_simple"/>
-              <input type="submit" name="scenarioAction" value="execute_test"/>
+              <input type="submit" name="scenarioAction" value="execute_tests"/>
             <![endif]-->
   		  	  </div>
   		  	</div>
@@ -201,6 +201,18 @@
         <?php else:?>
           	<iframe id="avancementScenario" src="<?php echo url_for('scenarioAvancement', array('id'=>$scenario->getId()))?>">
           	</iframe>
+            
+            <div class="submit">
+            <!--[if !IE]> -->
+              <button type="submit" name="scenarioAction" value="annule_tests">Annuler l'exécution</button>
+            <!-- <![endif]-->
+            <!--[if IE]> 
+              <input type="submit" name="scenarioAction" value="annule_tests"/>
+            <![endif]-->
+            </div>
+            
+            
+            
         <?php endif?>
         
   	  </div>

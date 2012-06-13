@@ -49,4 +49,13 @@ class SystemHelper
     } 
   }
   
+  /**
+   * Création d'un fichier de flag (pour communiquer avec la tâche d'exécution des tests)
+   */
+  static public function createFlagFile($fileName)
+  {
+    $filePath = sfConfig::get('app_flagfilepath').DIRECTORY_SEPARATOR.$fileName;
+    fclose(fopen($filePath, 'a'));
+  }
+
 }

@@ -53,22 +53,23 @@ EOF;
     }
     
     // Vérification de la présence du répertoire de fichiers flags
-    $dir = sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'runningTests';
-    if (! is_dir($dir))
-    {
-      mkdir($dir);
-    }
+    $dir = sfConfig::get('app_flagfilepath');
+    if (! is_dir($dir)) { mkdir($dir); }
     
     // Chemin du fichier de flag (indiquant l'exécution et la progression des tests en cours)
     // TODO : configurable
     $this->flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $options['scenario'];
+    $this->lockFile = $this->flagFile.'_lock';
+    $this->abortFile = $this->flagFile.'_abort';
+    $this->initFile  = $this->flagFile.'_init';
+
+    // Nettoyage initial
+    if (file_exists($this->initFile))  { unlink($this->initFile); }
+    if (file_exists($this->flagFile))  { unlink($this->flagFile); }
+    if (file_exists($this->abortFile)) { unlink($this->abortFile); }
     
-    // Verrou
-    $fp = fopen($this->flagFile.'_lock', "c");
-    if(!flock($fp, LOCK_EX | LOCK_NB)) {
-      throw new sfException('La tâche est déjà en cours d\'exécution pour ce scénario');
-      exit(-1);
-    }
+    // Création du verrou
+    $this->lock();
 
     // *****
     
@@ -91,6 +92,9 @@ EOF;
     
     while($this->currentIndex < $this->total)
     {
+      
+      $this->checkIfAbort();
+      
       // Mise à jour des index
       $extractionIndex = floor($this->currentIndex / $testsTotal);
       $testsIndex      = $this->currentIndex % $testsTotal;
@@ -135,18 +139,39 @@ EOF;
       {
         echo "\n";
       }
-      
+
     } // fin parcours des tests à exécuter
     
     
     $this->deleteFlag();
     echo "\n";
     
-    // Libère le verrou
+    // Libération du verrou
+    $this->unlock();
+
+    
+  }
+  
+  /**
+   * Création du verrou 
+   */
+  protected function lock()
+  {
+    $fp = fopen($this->lockFile, "c");
+    if(!flock($fp, LOCK_EX | LOCK_NB)) {
+      throw new sfException('La tâche est déjà en cours d\'exécution pour ce scénario');
+      exit(-1);
+    }
+  }
+  
+  /**
+   * Libération du verrou
+   */
+  protected function unlock()
+  {
     flock($fp, LOCK_UN);
     fclose($fp);
-    unlink($this->flagFile.'_lock');
-    
+    unlink($this->lockFile);    
   }
   
   /**
@@ -159,13 +184,29 @@ EOF;
     fclose($f);
   }
   
-  
   /**
    * Supprime le fichier de flag 
    */
   protected function deleteFlag()
   {
     unlink($this->flagFile);
+  }
+
+  /**
+   * Vérifie si on a demandé l'annulation de la tâche
+   * Le cas échéant, interrompt l'exécution et libère les verrous. 
+   * @return mixed
+   */
+  protected function checkIfAbort()
+  {
+    if (file_exists($this->abortFile))
+    {
+      unlink($this->abortFile);
+      $this->deleteFlag();
+      $this->unlock();
+      exit(-2);
+    }
+    return false;
   }
   
 }

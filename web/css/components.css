@@ -330,4 +330,6 @@ ul.tags li.tag {
 #avancementScenario {
   width : 60%;
   margin-left : 20%;
+  overflow: hidden;
+  height: 10.5em;
 }

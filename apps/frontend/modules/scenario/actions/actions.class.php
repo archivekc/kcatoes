@@ -84,26 +84,20 @@ class scenarioActions extends kcatoesActions
   public function executeDetail(sfWebRequest $request)
   {
     $this->scenario = $this->getRoute()->getObject();
-    $this->scenarioPageForm = new ScenarioPageForm();
     
+    $this->scenarioPageForm = new ScenarioPageForm();
     $this->setAsTemplateForm = new ScenarioTemplateForm();
     
     $this->pages = $this->scenario->getScenarioPagesInfo();
     
-    // TODO : configurable
-    $dir = sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'runningTests';
-    $flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $this->scenario->getId();
-    $lockFile = $flagFile.'_lock';
+    $this->testsRunning = $this->areTestsRunning($this->scenario->getId());
     
-    clearstatcache($flagFile);
-    clearstatcache($lockFile);
-
-    $this->pendingTesting = file_exists($flagFile) && file_exists($lockFile);
-    
-    // soumission
+    // Soumission
     if ($request->isMethod('post'))
     {
-    	$parameters = $request->getParameterHolder(); 
+    	$parameters = $request->getParameterHolder();
+    	
+    	// *** Ajout d'une page web
     	if ($parameters->get('scenarioPage', false))
     	{
     		// soumission d'une page web
@@ -127,6 +121,8 @@ class scenarioActions extends kcatoesActions
 	        $this->redirect('scenarioDetail', $this->scenario);
 	      }
     	}
+    	
+      // *** Enregistrement d'un template
     	if ($parameters->get('scenarioTemplate', false))
     	{
         // soumission d'un modele
@@ -157,19 +153,15 @@ class scenarioActions extends kcatoesActions
   	
   	sfConfig::set('sf_web_debug', false);
   	
-  	$dir = sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'runningTests';
-  	$flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $this->scenario->getId();
-    $lockFile = $flagFile.'_lock';
-    
     $this->done = false;
     
     $this->count = 0;
     $this->total = 0;
     $this->pourcent = 0;
       
-  	if (file_exists($lockFile) && file_exists($flagFile))
+  	if ($this->areTestsRunning())
   	{
-      $avancement = file_get_contents($flagFile);
+      $avancement = file_get_contents($this->getFlagFile());
       
       $this->count = strtok($avancement, '/');
       $this->total = strtok('/');
@@ -252,7 +244,6 @@ class scenarioActions extends kcatoesActions
    */
   public function executeActions(sfWebRequest $request)
   {
-  	//$this->scenario = Doctrine::getTable('scenario')->findOneById($request->getParameter('id'));
   	$scenario = $this->getRoute()->getObject();
   	$scenarioAction = $request->getParameterHolder()->get('scenarioAction');
   	$extractIds = $request->getParameterHolder()->get('extracts');
@@ -271,21 +262,59 @@ class scenarioActions extends kcatoesActions
                                                    'mode' => 'riche'));
       break;
   			
-  		case 'execute_test':
-		
-          $scenarioId = $scenario->getId();
-          $extracts = implode(',', $extractIds);
+  		case 'execute_tests':
 
-          SystemHelper::launchSfTask('kcatoes:test-scenario', 
-                                     array('--scenario' => $scenarioId,
-                                           '--extracts' => $extracts ));
+        // Indique qu'on démarre la tâche (utile pour déterminer si on l'a lancée 
+        // alors que la tâche n'a pas encore créé les verrous)
+  		  SystemHelper::createFlagFile('execution_scenario_'.$scenario->getId().'_init');
+  		  
+  		  // Lancement de la tâche d'exécution des tests
+        SystemHelper::launchSfTask('kcatoes:test-scenario', 
+                                   array('--scenario' => $scenario->getId(),
+                                         '--extracts' => implode(',', $extractIds) ));
 
-          $this->redirect('scenarioDetail', $scenario);
+        $this->redirect('scenarioDetail', $scenario);
       break;
+      
+  		case 'annule_tests':
+  		  // Crée un fichier indiquant à la tâche de s'interrompre
+  		  SystemHelper::createFlagFile('execution_scenario_'.$scenario->getId().'_abort');
+  		  
+        $this->redirect('scenarioDetail', $scenario);
+  		break;
 
     default:
       $this->actionTitle = 'Action non prévue';
     }
   }
 
+  /**
+   * Indique si la tâche d'exécution des tests est en cours
+   * @return boolean
+   */
+  private function areTestsRunning()
+  {
+    $flagFile = self::getFlagFile();
+    $initFile = $flagFile.'_init';
+    $lockFile = $flagFile.'_lock';
+    $abortFile = $flagFile.'_abort';
+    
+    clearstatcache($initFile);
+    clearstatcache($flagFile);
+    clearstatcache($lockFile);
+    clearstatcache($abortFile);
+
+    return (  (file_exists($initFile) || file_exists($flagFile) || file_exists($lockFile)) 
+            && !file_exists($abortFile) ); 
+  }
+  
+  /**
+   * Retourne le chemin du fichier de flag indiquant l'avancement de l'exécution des tests
+   * @return unknown_type
+   */
+  private function getFlagFile()
+  {
+    return sfConfig::get('app_flagfilepath').DIRECTORY_SEPARATOR.'execution_scenario_'.$this->scenario->getId();
+  }
+  
 }

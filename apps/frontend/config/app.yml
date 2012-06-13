@@ -5,3 +5,5 @@ all:
 
   pluginpath: '<?php echo sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins' ?>'
   outputpath: '<?php echo sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'output' ?>'
+
+  flagfilepath: '<?php echo sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'runningTests' ?>'
