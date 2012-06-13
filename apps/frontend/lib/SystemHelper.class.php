@@ -3,7 +3,12 @@
 class SystemHelper
 {
   
-  
+  /**
+   * Lancement d'une tâche symfony dans un processus détaché
+   * @param string $taskName Le nom de la tâche
+   * @param string $args     Les arguments de la tâche
+   * @return mixed
+   */
   static public function launchSfTask($taskName, $args=array())
   {
     $symfony  = sfConfig::get('sf_root_dir').DIRECTORY_SEPARATOR.'symfony';
