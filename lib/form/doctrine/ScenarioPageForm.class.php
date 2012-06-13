@@ -10,18 +10,11 @@
  */
 class ScenarioPageForm extends BaseScenarioPageForm
 {
-	public function setup(){
-    parent::setup();
-    unset(
-      $this['created_at']
-      ,$this['updated_at']
-    );
-  }
-  
-	
+
   public function configure()
   {
-    parent::configure();
+    $this->useFields(array('id', 'nom', 'required', 'web_page_id', 'scenario_id'));
+    
     $this->setWidgets(array(
      'nom' => new sfWidgetFormInputText()
      ,'required' => new sfWidgetFormInputCheckbox()
@@ -37,16 +30,16 @@ class ScenarioPageForm extends BaseScenarioPageForm
     
     $this->setValidator('nom', new sfValidatorString(array('required' => true)));
     
+    // Formulaire de nouvelle page web
+    $webPageForm = new WebPageForm();
+    // Désactive le caractère obligatoire de l'URL pour le sous-formulaire
+    $webPageForm->getValidator('url')->setOption('required', false);
+    $this->embedForm('newWebPage', $webPageForm);
+    
     $this->widgetSchema->setNameFormat('scenarioPage[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
     
-    // Formulaire de nouvelle page web
-    $webPageForm = new WebPageForm();
-
-    // Pas obligatoire ici
-    $webPageForm->getValidator('url')->setOption('required', false);
-
-    $this->embedForm('newWebPage', $webPageForm);
+    parent::configure();
   }
   
   

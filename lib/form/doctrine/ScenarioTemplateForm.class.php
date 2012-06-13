@@ -10,14 +10,11 @@
  */
 class ScenarioTemplateForm extends BaseScenarioTemplateForm
 {
-	public function setup()
-	{
-		parent::setup();
-		unset($this['created_at'],$this['updated_at']);
-	}
-	
+
   public function configure()
   {
+    $this->useFields(array('id', 'nom'));
+    
     $this->setWidgets(array(
      'nom' => new sfWidgetFormInputText()
     ));

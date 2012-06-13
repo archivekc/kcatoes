@@ -1,19 +1,11 @@
 <?php
 class addExtractForm extends BaseWebPageExtractForm
 {
-  public function setup(){
-    parent::setup();
-    unset(
-      $this['id']
-      ,$this['created_at']
-      ,$this['updated_at']
-      ,$this['type']
-    );    
-  }
     
   public function configure()
   {
-  	parent::configure();
+    $this->useFields(array('web_page_id', 'src'));
+
   	$this->setWidgets(array(
   	  'web_page_id' => new sfWidgetFormInputHidden()
   	  ,'src' => new sfWidgetFormInputHidden()
@@ -27,5 +19,6 @@ class addExtractForm extends BaseWebPageExtractForm
     
     $this->widgetSchema->setNameFormat('webPageExtract[%s]');
     
+  	parent::configure();
   }
 }

@@ -20,6 +20,8 @@ class TestConfigForm extends BaseTestConfigForm
   
   public function configure()
   {
+    $this->useFields(array('id', 'libelle', 'description'));
+    
     $this->setWidgets(array(
      'libelle' => new sfWidgetFormInputText()
      ,'description' => new sfWidgetFormTextarea()

@@ -10,18 +10,11 @@
  */
 class WebPageForm extends BaseWebPageForm
 {
-	public function setup(){
-		parent::setup();
-		unset(
-		  $this['created_at']
-		  ,$this['updated_at']
-		  ,$this['doctype']
-		  ,$this['basesrc']
-	  );
-	}
-	
+
   public function configure()
   {
+    $this->useFields(array('id', 'url', 'description'));
+    
   	$this->setWidgets(array(
   	 'url'          => new sfWidgetFormInputText()
   	 ,'description' => new sfWidgetFormTextarea()
@@ -40,13 +33,6 @@ class WebPageForm extends BaseWebPageForm
     
     
     // sfValidatorDoctrineUnique
-
-    /*
-    $this->validatorSchema->getPostValidator()->configure(
-      array(),
-      array('invalid' => 'Une page avec la même "%column%" existe déjà.')
-    );
-     */
     $this->validatorSchema->getPostValidator()->setMessage('invalid', 'Une page avec la même URL existe déjà.');
     
     $this->widgetSchema->setNameFormat('webPages[%s]');

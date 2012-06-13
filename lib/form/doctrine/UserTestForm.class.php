@@ -15,22 +15,12 @@ class UserTestForm extends BaseSfGuardGroupForm
 		parent:: __construct($defaults, $options, $CSRFSecret);
 		$this->tests = $tests;
 	}
-	
-  public function setup(){
-    parent::setup();
-    unset(
-      $this['created_at']
-      ,$this['updated_at']
-      ,$this['doctype']
-      ,$this['basesrc']
 
-      ,$this['url']
-      ,$this['description']
-    );    
-  }
-  
+
   public function configure()
   {
+    $this->useFields(array('id'));
+      
     $this->setWidgets(array(
       'id' => new sfWidgetFormInputHidden()
     ));
@@ -51,13 +41,11 @@ class UserTestForm extends BaseSfGuardGroupForm
     	if ($isProfilLinked)
     	{
 	      $this->widgetSchema[$testClass]    = new sfWidgetFormInputCheckbox(array(), array('checked' => 'checked', 'disabled' => 'disabled'));
-    		
     	}
     	else
     	{
     		$this->widgetSchema[$testClass]    = new sfWidgetFormInputCheckbox(s);
     	}
-    	
 
       // TODO : validation
       $this->validatorSchema[$testClass] = new sfValidatorPass(array('required' => false));

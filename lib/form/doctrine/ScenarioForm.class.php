@@ -10,16 +10,11 @@
  */
 class ScenarioForm extends BaseScenarioForm
 {
-  public function setup(){
-    parent::setup();
-    unset(
-      $this['created_at']
-      ,$this['updated_at']
-    );
-  }
-	
+
   public function configure()
   {
+    $this->useFields(array('id', 'nom'));
+    
     $this->widgetSchema['nom'] = new sfWidgetFormInputText();
     $this->widgetSchema['template'] = new sfWidgetFormDoctrineChoice(array(
         'model' => 'scenarioTemplate'
@@ -32,9 +27,6 @@ class ScenarioForm extends BaseScenarioForm
     $this->validatorSchema['template'] = new sfValidatorPass(array('required' => false));
     
     $this->widgetSchema->setLabels(array('template' => 'Utiliser un modèle de scénario'));
-    
-    $this->widgetSchema->setNameFormat('scenario[%s]');
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::configure();
   }

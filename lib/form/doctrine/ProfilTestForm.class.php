@@ -10,21 +10,11 @@
  */
 class ProfilTestForm extends BaseSfGuardGroupForm
 {
-  public function setup(){
-    parent::setup();
-    unset(
-      $this['created_at']
-      ,$this['updated_at']
-      ,$this['doctype']
-      ,$this['basesrc']
-
-      ,$this['url']
-      ,$this['description']
-    );    
-  }
   
   public function configure()
   {
+    $this->useFields(array('id'));
+    
     $this->setWidgets(array(
       'id' => new sfWidgetFormInputHidden()
     ));
