@@ -32,7 +32,7 @@ class AccesLiensTextuelsDoublantZonesCliquablesServeur extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements = 'img, [input type="image"]';
+    $elements = 'img, input[type="image"]';
 
     $nodes = $crawler->filter($elements);
 
