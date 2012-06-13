@@ -21,7 +21,7 @@ WebPage:
     - Timestampable
   columns:
     id:          { type: integer, primary: true, autoincrement: true }
-    url:         { type: varchar(5000), notnull: true, unique: true }
+    url:         { type: varchar(255), notnull: true, unique: true }
     doctype:     { type: varchar(500), notnull: false }
     description: { type: varchar(5000), notnull: false }
      
@@ -196,7 +196,7 @@ ScenarioTemplatePage:
     - Timestampable
   columns:
     id:          { type: integer, primary: true, autoincrement: true }
-    scenario_template_id: { type: integer, primary: true, autoincrement: true }
+    scenario_template_id: { type: integer, primary: true }
     nom:        { type: varchar(500), notnull: true }
     required:    { type: boolean, default: false }
   relations: 
@@ -212,7 +212,7 @@ UserTest:
   tableName: user_test
   columns:
     id:             { type: integer, primary: true, autoincrement: true }
-    user_id:        { type: integer, primary: true, autoincrement: true }
+    user_id:        { type: integer, primary: true }
     class:          { type: varchar(500) }
   relations:
     sfGuardUser:
