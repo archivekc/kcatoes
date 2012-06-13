@@ -171,6 +171,7 @@ ScenarioPage:
       local:        scenario_id
       foreign:      id
       foreignAlias: ScenarioPages
+      onDelete:     CASCADE
     WebPage:
       local:        web_page_id
       foreign:      id
