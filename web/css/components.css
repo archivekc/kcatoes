@@ -1,4 +1,5 @@
-﻿﻿/* general */
+﻿/* general */
+
 /*
 button.trigger {
   font: inherit;
@@ -321,9 +322,9 @@ ul.tags li.tag {
   margin-left: -40%;
 }
 .popup .collapser {
-  position: relative;
-  left: 50%;
-  margin: 0.5em 0 0 -3em;
+  position: absolute;
+  right: .5em;
+  top: .5em;
 }
 
 /* rapports */
@@ -374,7 +375,7 @@ ul.tags li.tag {
   margin: .5em 0;
 }
 
-/* Avancement de l'exécution des tests */
+/* Avancement de l'ex�cution des tests */
 #avancementScenario {
   width : 60%;
   margin-left : 20%;

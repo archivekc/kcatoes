@@ -59,7 +59,7 @@
 	                              ,array('id'=>$scenario->getId())
 	                              ,array('class'=> 'ico supprimer'
 	                                    ,'title'=> 'Supprimer le scénario '.$scenario['nom']
-	                                    ,'confirm'=>'Êtes-vous sûr ?')) 
+	                                    ,'confirm'=>'Êtes-vous sûr ?\n Cela supprimera les types de pages du scénario mais pas les pages web associées')) 
 	           ?>
 	         <?php endif ?>
         </li>
