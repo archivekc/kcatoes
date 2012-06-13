@@ -41,17 +41,11 @@ class evalActions extends kcatoesActions
     $this->title    = 'KCatoès - Rapport de test';
     $this->subtitle = $this->page->getUrl(); // TODO : date du test
     
-    $this->output = '';
-    
     $this->score = ''; // TODO { was: $kcatoes->getScore()*100;) }
     
     $fields = array();
-
-    $output = '';
     $fields['select'] = array();
     $fields['textarea'] = array();
-
-    $this->results = $this->extraction->getCollectionResults();
 
     // 
     $this->history = true;
@@ -59,16 +53,63 @@ class evalActions extends kcatoesActions
     // Champs pour formulaire d'historisation
     $cptLine = -1;
     
-    $userTest = $this->getUser()->getGuardUser()->getProfilAndUserTest();
+    // Tests accessibles par l'utilisateur
+    $userTests = $this->getUser()->getGuardUser()->getAllAvailableTests();
     
+    
+    // Filtres du formulaire
+    $this->thematiqueFilter = $this->getUser()->getFlash('thematiqueFilter', '');
+    $this->resultatFilter   = $this->getUser()->getFlash('resultatFilter', '');
+   
+    
+    $this->thematiqueFilterArray = array(
+       ''             => '(tous)'
+      ,'Cadres'       => '1 - Cadres'
+      ,'Couleurs'     => '2 - Couleurs'
+      ,'Formulaires'  => '3 - Formulaires'
+      ,'Images'       => '4 - Images'
+      ,'Multimedia'   => '5 - Multimedia'
+      ,'Navigation'   => '6 - Navigation'
+      ,'Presentation' => '7 - Presentation'
+      ,'Scripts'      => '8 - Scripts'
+      ,'Standards'    => '9 - Standards'
+      ,'Structure'    => '10 - Structure'
+      ,'Tableaux'     => '11 - Tableaux'
+      ,'Textes'       => '12 - Textes'
+    );
+    
+    $this->resultatFilterArray   = array(
+       ''         => '(tous)'
+      ,'REUSSITE' => 'Réussite'
+      ,'ECHEC'    => 'Echec'
+      ,'NA'       => 'N/A'
+      ,'MANUEL'   => 'Manuel'
+      ,'ERREUR'   => 'Erreur d\'exécution'
+    );
+    
+    
+    $this->results = $this->extraction->getCollectionResults();
     $subResult = array();
     
+    // Parcours des résultats de l'extraction
     foreach($this->results as $result)
     {
-    	if (in_array($result->getClass(), $userTest))
+      $test       = $result->getClass();
+      $thematique = $test::getGroup('thematique');
+      $resultat   = $result->getResult();
+      
+      // Filtrage par thématique
+      if (   $this->thematiqueFilter != ''
+          && $this->thematiqueFilter != $thematique ) { continue; }
+
+      // Filtrage par résultat
+      if (   $this->resultatFilter != ''
+          && Resultat::getValue($this->resultatFilter) != $resultat ) { continue; }
+      
+      // Filtrage des tests accessibles par l'utilisateur
+    	if (isset($userTests[$result->getClass()]))
     	{
 	      $cptLine++;
-	      $test = $result->getClass();
 	      $fields['select'][]   = Tester::computeIdForTest('mainResult_'.$test::testId);
 	      $fields['select'][]   = Tester::computeIdForTest('subResult'.$cptLine.'_'.$test::testId);
 	      $fields['textarea'][] = Tester::computeIdForTest('annot'.$cptLine.'_'.$test::testId);
@@ -76,7 +117,7 @@ class evalActions extends kcatoesActions
     	}
     }
     
-    // tri par id de test (ordre naturel)
+    // Tri par id de test (ordre naturel)
     $subSubResult = array();
     $keys = array_keys($subResult);
     natsort($keys);
@@ -84,7 +125,6 @@ class evalActions extends kcatoesActions
     {
       array_push($subSubResult, $subResult[$key]);    	
     }
-    
     
     $this->results = $subSubResult;
   }
@@ -99,43 +139,57 @@ class evalActions extends kcatoesActions
   {
     $this->extraction = $this->getRoute()->getObject();
     
-    // *** Récupération des résultats *actuels* associés à l'extraction
-    $results = $this->extraction->getResultsForUpdate();
-    
-    // Parcours des résultats de test
-    foreach($results as $result)
+    if ($request->isMethod('post'))
     {
-      // Réupération du résultat envoyé
-      $newTestResult = $request->getParameter('mainResult_'.$result->getId(), 'ERREUR');
+      // *** Récupération des résultats *actuels* associés à l'extraction
+      $results = $this->extraction->getResultsForUpdate();
       
-      // Enregistrement
-      $result->setResult(Resultat::getValue($newTestResult));
-      
-      // Parcours des lignes de résultats de test
-      $collectionLines = $result->getCollectionLines(); 
-      foreach ($collectionLines  as $resultLine)
+      // *** Parcours des résultats de test
+      foreach($results as $result)
       {
-        // Réupération du sous-résultat envoyé
-        $newTestSubResult = $request->getParameter('subResult_'.$resultLine->getId(), 'ERREUR');
+        // Réupération du résultat envoyé
+        // TODO : test si le paramètre existe ?
         
-        // Réupération de l'annotation envoyée
-        $newTestAnnot = $request->getParameter('annot_'.$resultLine->getId(), '');
-        
-        // Enregistrement  
-        $resultLine->setResult(Resultat::getValue($newTestSubResult));
-        $resultLine->setAnnotation($newTestAnnot);
-      } 
-    }
-    
-    // Sauvegarde en base
-    try
-    {
-      $results->save();
-      $this->getUser()->setFlash('success', 'Résultats enregistrés');
-    }
-    catch(Exception $e) 
-    {
-      $this->getUser()->setFlash('error', 'Erreur lors de l\'enregistrement');      
+        // Si le résultat du test courant est fourni dans la requête 
+        if ($request->hasParameter('mainResult_'.$result->getId()))
+        {
+          $newTestResult = $request->getParameter('mainResult_'.$result->getId(), 'ERREUR');
+          
+          // Enregistrement
+          $result->setResult(Resultat::getValue($newTestResult));
+          
+          // Parcours des lignes de résultats de test
+          $collectionLines = $result->getCollectionLines(); 
+          foreach ($collectionLines  as $resultLine)
+          {
+            // Réupération du sous-résultat envoyé
+            $newTestSubResult = $request->getParameter('subResult_'.$resultLine->getId(), 'ERREUR');
+            
+            // Réupération de l'annotation envoyée
+            $newTestAnnot = $request->getParameter('annot_'.$resultLine->getId(), '');
+            
+            // Enregistrement  
+            $resultLine->setResult(Resultat::getValue($newTestSubResult));
+            $resultLine->setAnnotation($newTestAnnot);
+          }
+        }
+      }
+      
+      // *** Sauvegarde en base
+      try
+      {
+        $results->save();
+        $this->getUser()->setFlash('success', 'Résultats enregistrés');
+      }
+      catch(Exception $e) 
+      {
+        $this->getUser()->setFlash('error', 'Erreur lors de l\'enregistrement');      
+      }
+
+      // *** Gestion du filtrage
+      $this->getUser()->setFlash('thematiqueFilter', $request->getParameter('thematiqueFilter', ''));
+      $this->getUser()->setFlash('resultatFilter',   $request->getParameter('resultatFilter', ''));
+      
     }
     
     $this->redirect('evaluation', $this->extraction);

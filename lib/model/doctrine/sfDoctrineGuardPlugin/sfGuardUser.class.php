@@ -57,4 +57,30 @@ class sfGuardUser extends PluginsfGuardUser
 		
 		return array_merge($user, $profil);
 	}
+	
+	/**
+	 * Retourne tous les tests accessibles par l'utilisateur, sous forme de hash.
+	 * Les clés sont les classes de test
+	 * @return array
+	 */
+	public function getAllAvailableTests()
+	{
+	  // Tests associés aux profils de l'utilisateur
+	  $allTests = $this->getProfilTest();
+	  
+    // Tests associés associés spécifiquement à l'utilisateur
+	  $userTests = $this->getCollectionTests();
+    foreach($userTests as $test){
+      $class = $test->getClass();
+      if (!isset($allTests[$class]))
+      {
+        $allTests[$class] = 'user';
+      }
+    };
+	  
+    return $allTests;
+	}
+	
+	
+	
 }

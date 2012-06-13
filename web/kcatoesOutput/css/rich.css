@@ -428,9 +428,15 @@ strong {
 
 .saveMessage {
   display: inline-block;
-  float: right;
-  font-size: 1.1em;
-  margin: 3em 10em 0 0;
+  font-size: 0.8em;
+  margin: 0.5em 0 0 1em;
+  position: absolute;
 }
+
+.saveMessage img {
+  position: relative;
+  vertical-align: middle;
+}
+
 
 /* FIXME : mettre à jour dans lib/kcatoesoutput */

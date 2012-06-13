@@ -1,4 +1,5 @@
-<?php use_helper('Partial') 
+<?php use_helper('Partial');
+      use_helper('Ihm');
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -10,10 +11,11 @@
     <script type="text/javascript" src="/kcatoesOutput/js/rich.js"></script>
   </head>
   <body>
+  
 		<?php if ($history): ?>
 		  <form method="post" action="<?php echo url_for('evaluationSauvegarde', $extraction) ?>" >
-
-		<?php endif ?>
+		<?php endif; ?>
+    
     <h1 id="rapportTitle">
       <img alt="" src="/kcatoesOutput/img/kcatoes.png"/>
       <?php echo $title ?>
@@ -25,8 +27,87 @@
 			      <input type="hidden" id="filename" name="filename" value="output.html" />
 			      <input type="hidden" id="score" name="score" readonly="readonly" value="'.$this->getScore().'"/>
 			    </span>
-			<?php endif ?>
+			<?php endif; ?>
+      
+      <?php if ($sf_user->hasFlash('success')): ?>
+        <?php echo userMsg($sf_user->getFlash('success') , 'success', 'span', array('class' => 'saveMessage'));?>
+      <?php endif; ?>
+      <?php if ($sf_user->hasFlash('error')): ?>
+        <?php echo userMsg($sf_user->getFlash('error') , 'error', 'span', array('class' => 'saveMessage'));?>
+      <?php endif; ?>
+
     </h1>
+    
+    <style type="text/css">
+    
+    /*
+        FIXME : à intégrer au .css 
+     */ 
+    
+      #rapportFilter{
+        background: none repeat scroll 0 0 #DDDDFF;
+        
+        border-bottom: 0.2em solid #666666;
+        
+        color: #000000;
+        font-size: 1.2em;
+        height: 2.6em;
+        
+        line-height: 2;
+        margin-bottom: 0.5em;
+        
+        padding:0; margin:0;
+        overflow: auto;
+        position: absolute;
+        top: 4.2em;
+        width: 100%;
+      }
+    
+      #rapportFilter legend,
+      #rapportFilter select,
+      #rapportFilter input
+      {
+        display : inline-block;
+        margin : 0.3em 1em;
+      }
+      
+      #rapportFilter legend{       
+        float: left;
+        margin: 0.05em 1.5em;
+        font-family: Tahoma,Arial,sans-serif;
+        font-size: 1.3em;
+        font-weight: bold;
+      }
+      
+      #output, #tested, #resizeHandler {
+          top: 8.40em;
+      }
+      
+    </style>
+    
+    <div id="rapportFilter">
+      <fieldset>
+        <legend>Filtres</legend>
+        <label for="thematiqueFilter">Thématique : </label>
+        <select name="thematiqueFilter" id="thematiqueFilter">
+          <?php foreach($thematiqueFilterArray as $key => $value):?>
+            <?php $t_selected = ($key == $thematiqueFilter) ? ' selected="SELECTED"' : '' ?>
+            <option value="<?php echo $key ?>" <?php echo $t_selected ?>><?php echo $value ?></option>
+          <?php endforeach; ?>
+        </select>
+        
+        <label for="resultatFilter">Résultat : </label>
+        <select name="resultatFilter" id="resultatFilter">
+          <?php foreach($resultatFilterArray as $key => $value):?>
+            <?php $r_selected = ($key == $resultatFilter) ? ' selected="SELECTED"' : '' ?>
+            <option value="<?php echo $key ?>" <?php echo $r_selected ?>><?php echo $value ?></option>
+          <?php endforeach; ?>
+        </select>
+        
+        <input type="submit" name="filter" id="filterButton" value="Sauvegarder et filtrer" />
+      </fieldset>
+    </div>
+    
     <div id="output">
       <div class="inner">
         <?php include_partial('testsResults', array('extraction' => $extraction,
