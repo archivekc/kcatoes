@@ -1,7 +1,7 @@
 all:
   version: 1.0.0
   versions_compatibles: 0.3.0
-  date: 06/06/2012
+  date: 13/06/2012
 
   pluginpath: '<?php echo sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins' ?>'
   outputpath: '<?php echo sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'output' ?>'
