@@ -66,7 +66,6 @@ class pageActions extends kcatoesActions
     $addExtract = new WebPageExtract();
     $addExtract->setWebPageId($this->page->getId());
     
-    
     // soumission
     if ($request->isMethod('post'))
     {
@@ -91,7 +90,7 @@ class pageActions extends kcatoesActions
       }
     } else {
 	    $this->addExtractForm = new addExtractForm($addExtract);
-    }  
+    }
   }
   
   /**
@@ -99,13 +98,13 @@ class pageActions extends kcatoesActions
    */
   public function executeExtractSrc(sfWebRequest $request)
   {
-  	$extract = $this->getRoute()->getObject();
-  	$baseUrl = $extract->getWebPage()->getUrl();
-  	$this->src = $extract->getSrc();
-  	
-  	$this->src = preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'"></base>', $this->src);
-  	
-  	$this->setLayout(false);
+    $extract = $this->getRoute()->getObject();
+    $baseUrl = $extract->getWebPage()->getUrl();
+    $this->src = $extract->getSrc();
+    
+    $this->src = preg_replace('#(<head[^>]*>)#i', "$1".'<base href="'.$baseUrl.'"></base>', $this->src);
+    
+    sfConfig::set('sf_web_debug', false);
   }
 
   /**
