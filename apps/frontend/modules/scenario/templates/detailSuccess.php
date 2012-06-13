@@ -39,9 +39,6 @@
             <div class="subForm">
               <?php $webPageForm = $scenarioPageForm['newWebPage']; ?>
               <div>
-                <?php echo $webPageForm->renderHiddenFields()?>
-              </div>
-              <div>
                 <?php echo $webPageForm['url']->renderError()?>
                 <?php echo $webPageForm['url']->renderLabel()?>
                 <?php echo $webPageForm['url']->render()?>
