@@ -34,7 +34,7 @@
 	      <a href="<?php echo $url?>" target="_blank">Voir cette extraction dans une nouvelle fenêtre</a>
 	    </iframe>
     </div>
-    <a href="#extracts" class="skipLink">Retour au sommaire</a>
+    <!-- <a href="#extracts" class="skipLink">Retour à la liste des extractions</a>  -->
   </div>
 <?php endforeach ?>
 
