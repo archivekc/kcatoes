@@ -153,27 +153,35 @@ class scenarioActions extends kcatoesActions
    */
   public function executeAvancement(sfWebRequest $request)
   {
-  	$scenario = $this->getRoute()->getObject();
+  	$this->scenario = $this->getRoute()->getObject();
   	
   	sfConfig::set('sf_web_debug', false);
   	
   	$dir = sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'runningTests';
-  	$flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $scenario->getId();
+  	$flagFile = $dir . DIRECTORY_SEPARATOR . 'execution_scenario_' . $this->scenario->getId();
     $lockFile = $flagFile.'_lock';
     
+    $this->done = false;
+    
+    $this->count = 0;
+    $this->total = 0;
+    $this->pourcent = 0;
+      
   	if (file_exists($lockFile) && file_exists($flagFile))
   	{
       $avancement = file_get_contents($flagFile);
       
       $this->count = strtok($avancement, '/');
       $this->total = strtok('/');
-      $this->pourcent = round(100 * $this->count / $this->total);
-      
+      if ($this->total > 0)
+      {
+        $this->pourcent = round(100 * $this->count / $this->total);
+      }
       // Rafraichissement automatique de l'iframe
   		$this->getResponse()->addHttpMeta('refresh','2', false);
   	}
   	else {
-  	  return sfView::NONE;
+      $this->done = true;
   	}
 
   }
@@ -268,27 +276,11 @@ class scenarioActions extends kcatoesActions
           $scenarioId = $scenario->getId();
           $extracts = implode(',', $extractIds);
 
-          $symfony  = sfConfig::get('sf_root_dir').DIRECTORY_SEPARATOR.'symfony';
-          $taskName = 'kcatoes:test-scenario';
-          $args     = '--scenario='.$scenarioId.' --extracts='.$extracts;
-          
-          $command  = 'php'.' '.$symfony.' '.$taskName.' '.$args;
-          
-          if (substr(php_uname(), 0, 7) == "Windows"){
-            // see: http://de2.php.net/manual/en/function.exec.php#35731
-            
-            $WshShell = new COM("WScript.Shell");
-            $oExec = $WshShell->Run('cmd /C '.$command, 0, false);
-            
-            //pclose(popen('start "tests" "' . $command . '"', "r")); 
-          }
-          else
-          {
-            exec($scriptPath . " " . $args . ' >'.$outPath.'&');   
-          } 
-          
+          SystemHelper::launchSfTask('kcatoes:test-scenario', 
+                                     array('--scenario' => $scenarioId,
+                                           '--extracts' => $extracts ));
+
           $this->redirect('scenarioDetail', $scenario);
-          
       break;
 
     default:
