@@ -157,8 +157,8 @@ EOF;
    */
   protected function lock()
   {
-    $fp = fopen($this->lockFile, "c");
-    if(!flock($fp, LOCK_EX | LOCK_NB)) {
+    $this->lockFP = fopen($this->lockFile, "c");
+    if(!flock($this->lockFP, LOCK_EX | LOCK_NB)) {
       throw new sfException('La tâche est déjà en cours d\'exécution pour ce scénario');
       exit(-1);
     }
@@ -169,8 +169,8 @@ EOF;
    */
   protected function unlock()
   {
-    flock($fp, LOCK_UN);
-    fclose($fp);
+    flock($this->lockFP, LOCK_UN);
+    fclose($this->lockFP);
     unlink($this->lockFile);    
   }
   
@@ -179,9 +179,8 @@ EOF;
    */
   protected function writeFlag()
   {
-    $f = fopen($this->flagFile, 'wb');
-    fwrite($f, $this->currentIndex.'/'.$this->total);
-    fclose($f);
+    $content = $this->currentIndex.'/'.$this->total;
+    file_put_contents($this->flagFile, $content);
   }
   
   /**
