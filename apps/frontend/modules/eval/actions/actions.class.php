@@ -8,9 +8,45 @@
  */
 class evalActions extends kcatoesActions
 {
+
   public function preExecute()
   {
+    // Filtres du formulaire
+    $this->filters = array(
+       'thematique' => array('value'=>'', 'label' => 'Thématique',
+                             'choices' => array(
+                                         ''             => '(tous)'
+                                        ,'Cadres'       => '1 - Cadres'
+                                        ,'Couleurs'     => '2 - Couleurs'
+                                        ,'Formulaires'  => '3 - Formulaires'
+                                        ,'Images'       => '4 - Images'
+                                        ,'Multimedia'   => '5 - Multimedia'
+                                        ,'Navigation'   => '6 - Navigation'
+                                        ,'Presentation' => '7 - Presentation'
+                                        ,'Scripts'      => '8 - Scripts'
+                                        ,'Standards'    => '9 - Standards'
+                                        ,'Structure'    => '10 - Structure'
+                                        ,'Tableaux'     => '11 - Tableaux'
+                                        ,'Textes'       => '12 - Textes' ))
+
+      ,'niveau'     => array('value'=>'', 'label' => 'Niveau',
+                             'choices' => array(
+                                         ''    => '(tous)'
+                                        ,'A'   => 'A'
+                                        ,'AA'  => 'AA'
+                                        ,'AAA' => 'AAA' ))
+
+      ,'resultat'   => array('value'=>'', 'label' => 'Résultat',
+                             'choices' => array(
+                                         ''         => '(tous)'
+                                        ,'REUSSITE' => 'Réussite'
+                                        ,'ECHEC'    => 'Echec'
+                                        ,'NA'       => 'N/A'
+                                        ,'MANUEL'   => 'Manuel'
+                                        ,'ERREUR'   => 'Erreur d\'exécution' ))
+    );
   }
+  
  /**
    * Affichage des résultats d'un test
    * @param sfWebRequest $request
@@ -53,40 +89,13 @@ class evalActions extends kcatoesActions
     // Champs pour formulaire d'historisation
     $cptLine = -1;
     
-    // Tests accessibles par l'utilisateur
+    // Récupération des tests accessibles par l'utilisateur
     $userTests = $this->getUser()->getGuardUser()->getAllAvailableTests();
     
-    
-    // Filtres du formulaire
-    $this->thematiqueFilter = $this->getUser()->getFlash('thematiqueFilter', '');
-    $this->resultatFilter   = $this->getUser()->getFlash('resultatFilter', '');
-   
-    
-    $this->thematiqueFilterArray = array(
-       ''             => '(tous)'
-      ,'Cadres'       => '1 - Cadres'
-      ,'Couleurs'     => '2 - Couleurs'
-      ,'Formulaires'  => '3 - Formulaires'
-      ,'Images'       => '4 - Images'
-      ,'Multimedia'   => '5 - Multimedia'
-      ,'Navigation'   => '6 - Navigation'
-      ,'Presentation' => '7 - Presentation'
-      ,'Scripts'      => '8 - Scripts'
-      ,'Standards'    => '9 - Standards'
-      ,'Structure'    => '10 - Structure'
-      ,'Tableaux'     => '11 - Tableaux'
-      ,'Textes'       => '12 - Textes'
-    );
-    
-    $this->resultatFilterArray   = array(
-       ''         => '(tous)'
-      ,'REUSSITE' => 'Réussite'
-      ,'ECHEC'    => 'Echec'
-      ,'NA'       => 'N/A'
-      ,'MANUEL'   => 'Manuel'
-      ,'ERREUR'   => 'Erreur d\'exécution'
-    );
-    
+    // Récupération des valeurs des filtres
+    foreach($this->filters as $key => $filter){
+      $this->filters[$key]['value'] = $this->getUser()->getFlash($key.'Filter', '');
+    }
     
     $this->results = $this->extraction->getCollectionResults();
     $subResult = array();
@@ -98,13 +107,21 @@ class evalActions extends kcatoesActions
       $thematique = $test::getGroup('thematique');
       $resultat   = $result->getResult();
       
-      // Filtrage par thématique
-      if (   $this->thematiqueFilter != ''
-          && $this->thematiqueFilter != $thematique ) { continue; }
-
-      // Filtrage par résultat
-      if (   $this->resultatFilter != ''
-          && Resultat::getValue($this->resultatFilter) != $resultat ) { continue; }
+      $resultFilterValues = array(
+         'thematique' => $test::getGroup('thematique')
+        ,'niveau'     => $test::getGroup('niveau')
+        ,'resultat'   => Resultat::getCode($result->getResult())
+      );
+      
+      // Application des filtres
+      $doFilter = false;
+      foreach($this->filters as $key => $filter){
+        if (   $filter['value'] != ''
+            && $filter['value'] != $resultFilterValues[$key] ) {
+            $doFilter = true;
+        }
+      }
+      if ($doFilter) { continue; }
       
       // Filtrage des tests accessibles par l'utilisateur
     	if (isset($userTests[$result->getClass()]))
@@ -187,8 +204,9 @@ class evalActions extends kcatoesActions
       }
 
       // *** Gestion du filtrage
-      $this->getUser()->setFlash('thematiqueFilter', $request->getParameter('thematiqueFilter', ''));
-      $this->getUser()->setFlash('resultatFilter',   $request->getParameter('resultatFilter', ''));
+      foreach($this->filters as $key => $filter){
+        $this->getUser()->setFlash($key.'Filter', $request->getParameter($key.'Filter', ''));
+      }
       
     }
     

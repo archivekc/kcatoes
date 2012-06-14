@@ -40,21 +40,17 @@
     <div id="rapportFilter">
       <fieldset>
         <legend>Filtres</legend>
-        <label for="thematiqueFilter">Thématique : </label>
-        <select name="thematiqueFilter" id="thematiqueFilter">
-          <?php foreach($thematiqueFilterArray as $key => $value):?>
-            <?php $t_selected = ($key == $thematiqueFilter) ? ' selected="SELECTED"' : '' ?>
-            <option value="<?php echo $key ?>" <?php echo $t_selected ?>><?php echo $value ?></option>
-          <?php endforeach; ?>
-        </select>
         
-        <label for="resultatFilter">Résultat : </label>
-        <select name="resultatFilter" id="resultatFilter">
-          <?php foreach($resultatFilterArray as $key => $value):?>
-            <?php $r_selected = ($key == $resultatFilter) ? ' selected="SELECTED"' : '' ?>
-            <option value="<?php echo $key ?>" <?php echo $r_selected ?>><?php echo $value ?></option>
-          <?php endforeach; ?>
-        </select>
+        <?php foreach($filters as $fKey => $filter): ?>
+          <?php $field = $fKey.'Filter' ?>
+          <label for="<?php echo $field ?>"><?php echo $filter['label'] ?> : </label>
+          <select name="<?php echo $field ?>" id="<?php echo $field ?>">
+            <?php foreach($filter['choices'] as $value => $label):?>
+              <?php $selected = ($value == $filter['value']) ? ' selected="SELECTED"' : '' ?>
+              <option value="<?php echo $value ?>" <?php echo $selected ?>><?php echo $label ?></option>
+            <?php endforeach; ?>
+          </select>
+        <?php endforeach; ?>
         
         <input type="submit" name="filter" id="filterButton" value="Sauvegarder et filtrer" />
       </fieldset>

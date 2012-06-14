@@ -46,7 +46,7 @@ body {
 #rapportFilter input
 {
   display : inline-block;
-  margin : 0.3em 1em;
+  margin : .3em 1em .3em 0em;
 }
 
 #rapportFilter legend{       
