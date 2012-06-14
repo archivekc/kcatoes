@@ -4,7 +4,7 @@
 dev:
   doctrine:
     param:
-#      dsn:      mysql:host=localhost;dbname=kcatoes_dev
+#     dsn:      mysql:host=localhost;dbname=kcatoes_dev
       dsn:      pgsql:host=localhost;dbname=kcatoes_dev
       username: kcatoes
       password: kcatoes
@@ -12,16 +12,17 @@ dev:
 prod:
   doctrine:
     param:
-      dsn:      mysql:host=localhost;dbname=kcatoes_prod
-      username: root
-      password: 
+      dsn:      mysql:host=localhost;dbname=kcatoes
+#     dsn:      pgsql:host=localhost;dbname=kcatoes
+      username: kcatoes
+      password: kcatoes
 
 test:
   doctrine:
     param:
-      dsn:       mysql:host=localhost;dbname=kcatoes_test
-      username:  root
-      password: 
+      dsn:      mysql:host=localhost;dbname=kcatoes_test
+      username: kcatoes
+      password: kcatoes 
 
 all:
   doctrine:
