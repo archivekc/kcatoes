@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"> 
+<html>
+<head>
+	<title>rgaa 11.2C</title>
+</head>
+	<body>
+	  <table border="1">
+		  <tr>
+			<th scope="colgroup" id="presentation">Présentation</th>
+			<th scope="col" id="exemple">Exemple</th>
+		  </tr>
+		  <tr>
+			<td headers="presentation"> Verticale </td>
+			<td  headers="exemple">
+				<table border="1">
+				  <tr>
+					<th scope="col" id="pays">Pays</th>
+					<th id="capitale"" >Capitale</th>
+				  </tr>
+				  <tr>
+					<td headers="pays">France</td>
+					<td headers="capitale">Paris</td>
+				  </tr>
+				  <tr>
+					<td headers="pays">Pologne</td>
+					<td headers="capitale">Varsovie</td>
+				  </tr>
+				  <tr>
+					<td>Ukraine</td>
+					<td headers="capitale">Kiev</td>
+				  </tr>
+				</table>
+			</td>
+		  </tr>
+		  <tr>
+			<td headers="presentation"> Horizontale </td>
+			<td headers="exemple">
+				<table border="1">
+				  <tr>
+					<th scope="row" id="pays">Pays</th>
+					<td headers="pays">Belgique</td>
+					<td headers="pays">Grèce</td>
+					<td headers="capitale">Espagne</td>
+				  </tr>
+				  <tr>
+					<th scope="row" id="capitale">Capitale</th>
+					<td headers="capitale">Bruxelles</td>
+					<td headers="capitale">Athènes</td>
+					<td headers="capitale">Madrid</td>
+				  </tr>
+				</table>
+			</td>
+		  </tr>
+		</table>
+		
+		Les tableaux imbriqués sont là pour s'assurer que le résultat d'un tableau
+		n'influe pas sur le résultat pour le tableau qui le contient.<br>
+		Le résultat doit donner deux échecs - un scope non défini et un mauvais header -
+		et une non applicabilité du test avec une valeur de scope qui ne concerne pas
+		notre test.
+	</body>
+</html>
