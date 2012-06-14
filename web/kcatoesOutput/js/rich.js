@@ -254,6 +254,14 @@ $(function(){
 		}
 		return this;
 	};
+  
+  // Masquage du message de sauvegarde
+  window.setTimeout(function(){
+    $('.saveMessage').each(function(){
+      $(this).fadeOut(1000);
+    })
+  }, 3000);
+  
 });
 
 // ///// //

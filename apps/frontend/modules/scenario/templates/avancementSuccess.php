@@ -18,10 +18,15 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#refreshLink').click(function(){
+      var doReload = function (){
         parent.location.reload();
         return false;
+      }
+      $('#refreshLink').click(function(){
+        return doReload();
       });
+      
+      parent.setTimeout(doReload, 5000);
     });
   </script>
 
