@@ -1,0 +1,245 @@
+baseUrl:   http://www.w3.org/Translations/NOTE-UNDERSTANDING-WCAG20-fr/
+
+regles:
+  "1.1":
+    titre:    "Les équivalents textuels"
+    url:      text-equiv.html
+    criteres:
+      "1.1.1":
+        titre:    "Contenu non textuel"
+        url:      text-equiv-all.html
+
+  "1.2":
+    titre:    "Média temporel"
+    url:      media-equiv.html
+    criteres:
+      "1.2.1":
+        titre:    "Contenu seulement audio ou vidéo (pré-enregistré)"
+        url:      media-equiv-av-only-alt.html
+      "1.2.2":
+        titre:    "Sous-titres (pré-enregistrés)"
+        url:      media-equiv-captions.html
+      "1.2.3":
+        titre:    "Audio-description ou version de remplacement pour un média temporel (pré-enregistré)"
+        url:      media-equiv-audio-desc.html
+      "1.2.4":
+        titre:    "Sous-titres (en direct)"
+        url:      media-equiv-real-time-captions.html
+      "1.2.5":
+        titre:    "Audio-description (pré-enregistrée)"
+        url:      media-equiv-audio-desc-only.html
+      "1.2.6":
+        titre:    "Langue des signes (pré-enregistrée)"
+        url:      media-equiv-sign.html
+      "1.2.7":
+        titre:    "Audio-description étendue (pré-enregistrée)"
+        url:      media-equiv-extended-ad.html
+      "1.2.8":
+        titre:    "Version de remplacement pour un média temporel (pré-enregistrée)"
+        url:      media-equiv-text-doc.html
+      "1.2.9":
+        titre:    "Seulement audio (en direct)"
+        url:      media-equiv-live-audio-only.html
+
+  "1.3":
+    titre:    "Adaptable"
+    url:      content-structure-separation.html
+    criteres:
+      "1.3.1":
+        titre:    "Information et relations"
+        url:      content-structure-separation-programmatic.html
+      "1.3.2":
+        titre:    "Ordre séquentiel logique"
+        url:      content-structure-separation-sequence.html
+      "1.3.3":
+        titre:    "Caractéristiques sensorielles"
+        url:      content-structure-separation-understanding.html
+
+  "1.4":
+    titre:    "Distinguable"
+    url:      visual-audio-contrast.html
+    criteres:
+      "1.4.1":
+        titre:    "Utilisation de la couleur"
+        url:      visual-audio-contrast-without-color.html
+      "1.4.2":
+        titre:    "Contrôle du son"
+        url:      visual-audio-contrast-dis-audio.html
+      "1.4.3":
+        titre:    "Contraste (Minimum)"
+        url:      visual-audio-contrast-contrast.html
+      "1.4.4":
+        titre:    "Redimensionnement du texte"
+        url:      visual-audio-contrast-scale.html
+      "1.4.5":
+        titre:    "Texte sous forme d'image"
+        url:      visual-audio-contrast-text-presentation.html
+      "1.4.6":
+        titre:    "Contraste (amélioré)"
+        url:      visual-audio-contrast7.html
+      "1.4.7":
+        titre:    "Arrière-plan sonore de faible volume ou absent"
+        url:      visual-audio-contrast-noaudio.html
+      "1.4.8":
+        titre:    "Présentation visuelle"
+        url:      visual-audio-contrast-visual-presentation.html
+      "1.4.9":
+        titre:    "Texte sous forme d'image (sans exception)"
+        url:      visual-audio-contrast-text-images.html
+
+  "2.1":
+    titre:    "Accessibilité au clavier"
+    url:      keyboard-operation.html
+    criteres:
+      "2.1.1":
+        titre:    "Clavier"
+        url:      keyboard-operation-keyboard-operable.html
+      "2.1.2":
+        titre:    "Pas de piège au clavier"
+        url:      keyboard-operation-trapping.html
+      "2.1.3":
+        titre:    "Clavier (sans exception)"
+        url:      keyboard-operation-all-funcs.html
+
+  "2.2":
+    titre:    "Délai suffisant"
+    url:      time-limits.html
+    criteres:
+      "2.2.1":
+        titre:    "Réglage du délai"
+        url:      time-limits-required-behaviors.html
+      "2.2.2":
+        titre:    "Mettre en pause, arrêter, masquer"
+        url:      time-limits-pause.html
+      "2.2.3":
+        titre:    "Pas de délai d'exécution"
+        url:      time-limits-no-exceptions.html
+      "2.2.4":
+        titre:    "Interruptions"
+        url:      time-limits-postponed.html
+      "2.2.5":
+        titre:    "Nouvelle authentification"
+        url:      time-limits-server-timeout.html
+
+  "2.3":
+    titre:    "Crises"
+    url:      seizure.html
+    criteres:
+      "2.3.1":
+        titre:    "Pas plus de trois flashs ou sous le seuil critique"
+        url:      seizure-does-not-violate.html
+      "2.3.2":
+        titre:    "Trois flashs"
+        url:      seizure-three-times.html
+
+  "2.4":
+    titre:    "Navigable"
+    url:      navigation-mechanisms.html
+    criteres:
+      "2.4.1":
+        titre:    "Contourner des blocs"
+        url:      navigation-mechanisms-skip.html
+      "2.4.2":
+        titre:    "Titre de page"
+        url:      navigation-mechanisms-title.html
+      "2.4.3":
+        titre:    "Parcours du focus"
+        url:      navigation-mechanisms-focus-order.html
+      "2.4.4":
+        titre:    "Fonction du lien (selon le contexte)"
+        url:      navigation-mechanisms-refs.html
+      "2.4.5":
+        titre:    "Accès multiples"
+        url:      navigation-mechanisms-mult-loc.html
+      "2.4.6":
+        titre:    "En-têtes et étiquettes"
+        url:      navigation-mechanisms-descriptive.html
+      "2.4.7":
+        titre:    "Visibilité du focus"
+        url:      navigation-mechanisms-focus-visible.html
+      "2.4.8":
+        titre:    "Localisation"
+        url:      navigation-mechanisms-location.html
+      "2.4.9":
+        titre:    "Fonction du lien (lien uniquement)"
+        url:      navigation-mechanisms-link.html
+      "2.4.10":
+        titre:    "En-têtes de section"
+        url:      navigation-mechanisms-headings.html
+
+  "3.1":
+    titre:    "Lisible"
+    url:      meaning.html
+    criteres:
+      "3.1.1":
+        titre:    "Langue de la page"
+        url:      meaning-doc-lang-id.html
+      "3.1.2":
+        titre:    "Langue d'un passage"
+        url:      meaning-other-lang-id.html
+      "3.1.3":
+        titre:    "Mots rares"
+        url:      meaning-idioms.html
+      "3.1.4":
+        titre:    "Abréviations"
+        url:      meaning-located.html
+      "3.1.5":
+        titre:    "Niveau de lecture"
+        url:      meaning-supplements.html
+      "3.1.6":
+        titre:    "Prononciation"
+        url:      meaning-pronunciation.html
+
+  "3.2":
+    titre:    "Prévisible"
+    url:      consistent-behavior.html
+    criteres:
+      "3.2.1":
+        titre:    "Au focus"
+        url:      consistent-behavior-receive-focus.html
+      "3.2.2":
+        titre:    "À la saisie"
+        url:      consistent-behavior-unpredictable-change.html
+      "3.2.3":
+        titre:    "Navigation cohérente"
+        url:      consistent-behavior-consistent-locations.html
+      "3.2.4":
+        titre:    "Identification cohérente"
+        url:      consistent-behavior-consistent-functionality.html
+      "3.2.5":
+        titre:    "Changement à la demande"
+        url:      consistent-behavior-no-extreme-changes-context.html
+
+  "3.3":
+    titre:    "Assistance à la saisie"
+    url:      minimize-error.html
+    criteres:
+      "3.3.1":
+        titre:    "Identification des erreurs"
+        url:      minimize-error-identified.html
+      "3.3.2":
+        titre:    "Étiquettes ou instructions"
+        url:      minimize-error-cues.html
+      "3.3.3":
+        titre:    "Suggestion après une erreur"
+        url:      minimize-error-suggestions.html
+      "3.3.4":
+        titre:    "Prévention des erreurs (juridiques, financières, de données)"
+        url:      minimize-error-reversible.html
+      "3.3.5":
+        titre:    "Aide"
+        url:      minimize-error-context-help.html
+      "3.3.6":
+        titre:    "Prévention des erreurs (toutes)"
+        url:      minimize-error-reversible-all.html
+
+  "4.1":
+    titre:    "Compatible"
+    url:      ensure-compat.html
+    criteres:
+      "4.1.1":
+        titre:    "Analyse syntaxique"
+        url:      ensure-compat-parses.html
+      "4.1.2":
+        titre:    "Nom, rôle et valeur"
+        url:      ensure-compat-rsv.html

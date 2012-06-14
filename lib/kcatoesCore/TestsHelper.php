@@ -30,6 +30,15 @@ class TestsHelper {
     return $allPlugins; 
   }
   
+  public static function getReferencesFromYaml()
+  {
+    $allPluginPath = sfConfig::get('app_pluginpath');
+    $referencesFile = $allPluginPath.DIRECTORY_SEPARATOR.'references.yml';
+    $references = sfYaml::load(file_get_contents($referencesFile));
+
+    return $references;
+  }
+  
   /**
    * Recherche la liste des tests disponibles dans le répertoire de plugins
    * et la retourne sous la forme : 
