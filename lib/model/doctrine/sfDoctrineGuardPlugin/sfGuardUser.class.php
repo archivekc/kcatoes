@@ -17,21 +17,27 @@ class sfGuardUser extends PluginsfGuardUser
 	 */
 	public function getProfilTest()
 	{
-    $profilTest = Doctrine_Query::create()
-      ->select('pt.class, p.name')
-      ->from('ProfilTest pt')
-      ->innerJoin('pt.sfGuardGroup p')
-      ->whereIn('p.name', $this->getGroupNames())
-      ->execute();
-    
     $testAndProfils = array();
-    foreach ($profilTest as $test){
-	    if (!isset($testAndProfils[$test->getClass()]))
-	    {
-	      $testAndProfils[$test->getClass()] = array();
-	    }
-	    array_push($testAndProfils[$test->getClass()], $test->getSfGuardGroup()->getName());
-    }
+	  
+	  $groupNames = $this->getGroupNames();
+	  
+	  if ($groupNames)
+	  {
+      $profilTest = Doctrine_Query::create()
+        ->select('pt.class, p.name')
+        ->from('ProfilTest pt')
+        ->innerJoin('pt.sfGuardGroup p')
+        ->whereIn('p.name', $this->getGroupNames())
+        ->execute();
+      
+      foreach ($profilTest as $test){
+  	    if (!isset($testAndProfils[$test->getClass()]))
+  	    {
+  	      $testAndProfils[$test->getClass()] = array();
+  	    }
+  	    array_push($testAndProfils[$test->getClass()], $test->getSfGuardGroup()->getName());
+      }
+	  }
     return $testAndProfils;
       
 	}

@@ -250,6 +250,7 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
       {
         $this->_permissions[$permission->getName()] = $permission;
       }
+      if (!$this->_permissions){ $this->_permissions = array(); }
     }
     
     if (!$this->_groups)
@@ -259,6 +260,7 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
       {
         $this->_groups[$group->getName()] = $group;
       }
+      if (!$this->_groups){ $this->_groups = array(); }
     }
   }
 
