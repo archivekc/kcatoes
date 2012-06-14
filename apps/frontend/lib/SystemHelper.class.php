@@ -34,18 +34,15 @@ class SystemHelper
   {
     // Windows
     if (substr(php_uname(), 0, 7) == "Windows"){
-      // see: http://de2.php.net/manual/en/function.exec.php#35731
-      
       $WshShell = new COM("WScript.Shell");
       return $oExec = $WshShell->Run('cmd /C '.$command, 0, false);
-      
-      //pclose(popen('start "tests" "' . $command . '"', "r")); 
     }
     
     // unices
     else
     {
-      return exec($scriptPath . " " . $args . ' >'.$outPath.'&');   
+      $logFile = sfConfig::get('sf_log_dir').DIRECTORY_SEPARATOR.'exec_'.date('Y-m-d_H:i:s').'.log';
+      return exec("$command > $logFile &");
     } 
   }
   
