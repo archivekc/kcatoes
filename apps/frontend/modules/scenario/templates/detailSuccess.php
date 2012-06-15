@@ -73,5 +73,5 @@
     </form>
   <?php endif ?>
   
-  <a class="ico liste" href="<?php echo url_for('scenarioIndex')?>">Retour à la liste des scenarii</a>
+  <a class="ico liste" href="<?php echo url_for('scenarioIndex')?>">Retour à la liste des scénarios</a>
 </div>

@@ -31,14 +31,14 @@
     <?php endif ?>
 
 
-    <?php $nbScenario = count($scenarii)?>
-    <?php if($nbScenario == 0):?>
+    <?php $nbScenarios = count($scenarios)?>
+    <?php if($nbScenarios == 0):?>
       <p class="zeroFound">
         Aucun scénario trouvé
       </p>
     <?php else: ?>
     <ul class="listItem" id="scenarioList">
-      <?php foreach($scenarii as $scenario):?>
+      <?php foreach($scenarios as $scenario):?>
         <li class="highlight">
           <h2>
             <span class="nom"><?php echo $scenario->getNom()?></span>

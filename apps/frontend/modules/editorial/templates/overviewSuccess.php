@@ -14,7 +14,7 @@
 			<h2>Fonctionnalités principales</h2>
 			<ul>
 			  <li>Gestion de pages</li>
-			  <li>Gestion de scenarii</li>
+			  <li>Gestion de scénarios</li>
 			  <li>Évaluations automatiques de l'accessibilité</li>
 			</ul>
 			

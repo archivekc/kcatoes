@@ -40,13 +40,13 @@ class scenarioActions extends kcatoesActions
         //$this->redirect('scenario/index');
       }
     }
-    // Scenarios
+    // Scénarios
     $q = Doctrine_Query::create()
      ->from('Scenario s')
      ->leftJoin('s.ScenarioPages')
      ->orderBy('updated_at DESC');
      
-    $this->scenarii = $q->execute();
+    $this->scenarios = $q->execute();
   }
 
   
