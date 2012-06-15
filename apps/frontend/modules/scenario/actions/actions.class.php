@@ -270,7 +270,8 @@ class scenarioActions extends kcatoesActions
   		  
   		  // Lancement de la tâche d'exécution des tests
         SystemHelper::launchSfTask('kcatoes:test-scenario', 
-                                   array('--scenario' => $scenario->getId(),
+                                   array('--env'      => sfConfig::get('sf_environment'),
+                                         '--scenario' => $scenario->getId(),
                                          '--extracts' => implode(',', $extractIds) ));
 
         $this->redirect('scenarioDetail', $scenario);
