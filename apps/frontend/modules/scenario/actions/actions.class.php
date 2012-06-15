@@ -153,6 +153,9 @@ class scenarioActions extends kcatoesActions
   	
   	sfConfig::set('sf_web_debug', false);
   	
+  	
+  	
+  	
     $this->done = false;
     
     $this->count = 0;
@@ -170,10 +173,26 @@ class scenarioActions extends kcatoesActions
         $this->pourcent = round(100 * $this->count / $this->total);
       }
       // Rafraichissement automatique de l'iframe
-  		$this->getResponse()->addHttpMeta('refresh','2', false);
+  		//$this->getResponse()->addHttpMeta('refresh','2', false);
   	}
   	else {
       $this->done = true;
+  	}
+
+  	// Si requête AJAX
+  	if ($request->isXmlHttpRequest()){
+      $response = array(
+         'count'    => $this->count
+        ,'total'    => $this->total
+        ,'pourcent' => $this->pourcent
+        ,'done'     => $this->done
+      );
+      echo json_encode($response);
+
+      // TODO : Pas nécessaire si layout désactivé sur isXmlHttpRequest
+      //        cf. kcatoesActions.class.php
+      //        @Cyril : Y-a-t-il une raison à la désactivation ?
+      return sfView::NONE;
   	}
 
   }

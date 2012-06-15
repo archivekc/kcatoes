@@ -4,6 +4,7 @@
     <?php include_http_metas() ?>
     <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
+    <noscript><meta http-equiv="Refresh" content="2" /></noscript>
   </head>
   <body>
     <?php echo $sf_content ?>    
