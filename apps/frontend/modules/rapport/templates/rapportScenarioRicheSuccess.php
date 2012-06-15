@@ -52,4 +52,6 @@
 
   <?php endforeach; ?>
 
+  <a class="ico liste" href="<?php echo url_for('scenarioDetail', $scenario)?>">Retour au scénario</a>
+
 </div>

@@ -37,6 +37,6 @@ $('td').each(function(){
   <?php include_partial('simpleResult', array( 'resultData' => $sf_data->getRaw('scenarioResult')
                                                ,'depth' => 2
                                                ,'showExecError' => false)) ?>
-  
-  
+
+  <a class="ico liste" href="<?php echo url_for('scenarioDetail', $scenario)?>">Retour au scénario</a>
 </div>

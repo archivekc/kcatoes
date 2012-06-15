@@ -333,6 +333,7 @@ ul.tags li.tag {
 }
 #wrap .reportBythematique {
   overflow: hidden;
+  margin-bottom: 1.5em;
 }
 .reportBythematique>div {
   float: left;
