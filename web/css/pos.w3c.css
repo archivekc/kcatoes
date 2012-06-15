@@ -598,7 +598,10 @@ form input[type=submit],
   width: 50em;
 }
 
-
+#scenarioAddPageForm input[type=text],
+#scenarioAddPageForm textarea {
+  width: 30em;
+}
 
 /* blocks */
 #connexionBlock {
