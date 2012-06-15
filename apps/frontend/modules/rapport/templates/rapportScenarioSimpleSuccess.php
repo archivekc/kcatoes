@@ -1,4 +1,4 @@
-﻿<?php  /*?> 
+<?php  /*?>
 HIGHLIGHT CELL with 0:
 
 $('td').each(function(){
