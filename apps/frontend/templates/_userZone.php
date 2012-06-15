@@ -14,7 +14,7 @@
                   </ul>
                 </li>
                 <li>
-                    <a href="<?php echo url_for('userTest')?>">Paramètres utilisateurs</a>
+                    <a href="<?php echo url_for('userTest')?>">Paramètres utilisateur</a>
                 </li>
                 <li id="logoutBtn">
                   <a class="actionButton" href="<?php echo url_for('sf_guard_signout')?>">Déconnexion</a>

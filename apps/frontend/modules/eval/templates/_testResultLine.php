@@ -31,9 +31,8 @@
 		    <div class="testStatus"><?php echo Resultat::getLabel($result['result']) ?></div>
 		  <?php endif ?>
 		  </div>
-		</div>  
-		  
-		  
+		</div>
+    
 	  <?php if ($nbLigne > 0): ?>
 	    <h3>Résultat par élément</h3>
 	    <ul class="elemsResult">

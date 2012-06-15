@@ -90,7 +90,7 @@ class evalActions extends kcatoesActions
     $cptLine = -1;
     
     // Récupération des tests accessibles par l'utilisateur
-    $userTests = $this->getUser()->getGuardUser()->getAllAvailableTests();
+    $this->userTests = $this->getUser()->getGuardUser()->getAllAvailableTests();
     
     // Récupération des valeurs des filtres
     foreach($this->filters as $key => $filter){
@@ -124,7 +124,7 @@ class evalActions extends kcatoesActions
       if ($doFilter) { continue; }
       
       // Filtrage des tests accessibles par l'utilisateur
-    	if (isset($userTests[$result->getClass()]))
+    	if (isset($this->userTests[$result->getClass()]))
     	{
 	      $cptLine++;
 	      $fields['select'][]   = Tester::computeIdForTest('mainResult_'.$test::testId);

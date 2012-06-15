@@ -60,7 +60,8 @@
       <div class="inner">
         <?php include_partial('testsResults', array('extraction' => $extraction,
                                                     'results'    => $results,
-                                                    'history'    => $history)) ?>
+                                                    'history'    => $history,
+                                                    'userTests'  => $userTests )) ?>
       </div>
     </div>
     <div id="resizeHandler"></div>
