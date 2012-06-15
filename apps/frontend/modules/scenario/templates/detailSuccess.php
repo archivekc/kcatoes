@@ -155,7 +155,7 @@
   	                  <?php if ($testPassed>0):?>
   	                  <?php echo link_to('Fiche d\'évaluation', 'evaluation', 
                                 array('id' => $extract->getId()), 
-                                array('popup'=>true)) ?>
+                                array('class' => 'evalLink', 'popup'=>true)) ?>
                       <?php endif ?>
   	               </li>
   	             <?php endforeach ?>

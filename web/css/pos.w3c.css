@@ -514,6 +514,9 @@ form input[type=submit],
   list-style: none;
   margin: 0;
 }
+#page .scenarioPageExtractList ul li {
+  display:inline-block;
+}
 
 .scenarioPages .headPage {
   margin: 1em 0 .5em;
@@ -559,7 +562,7 @@ form input[type=submit],
   display: inline-block;
 }
 #scenarioDetail .scenarioPages .type {
-  width: 12em;
+  width: 10em;
 }
 #scenarioDetail .scenarioPages .nbTest {
 	width: 10em;

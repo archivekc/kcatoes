@@ -85,6 +85,10 @@ table thead th {
 /* scenarios */
 #page .scenarioPages .url {
   font-weight: bold;
+  word-wrap: break-word;
+}
+.scenarioPageExtractList .evalLink{
+  display: inline-block;
 }
 
 /* rapports */
