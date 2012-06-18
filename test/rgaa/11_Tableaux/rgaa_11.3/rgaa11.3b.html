@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"> 
+<html>
+<head>
+	<title>rgaa 11.2B</title>
+</head>
+	<body>
+	<table border="1">
+      <tr>
+       <th scope="col" id="presentation">Pr&eacute;sentation</th>
+       <th scope="col" id="exemple">Exemple</th>
+      </tr>
+      <tr>
+      <td headers="presentation"> Verticale </td>
+      <td  headers="exemple">
+        <table border="1">
+          <tr>
+           <th scope="col" id="pays">Pays</th>
+           <th scope="col" id="capitale">Capitale</th>
+          </tr>
+          <tr>
+           <td headers="pays">France</td>
+           <td headers="capitale">Paris</td>
+          </tr>
+          <tr>
+           <td headers="pays">Pologne</td>
+           <td headers="capitale">Varsovie</td>
+          </tr>
+          <tr>
+           <td headers="pays">Ukraine</td>
+           <td headers="capitale">Kiev</td>
+          </tr>
+          <tr>
+           <th scope="col" id="couleur">Couleur</th>
+           <th scope="col" id="signification">Signification</th>
+          </tr>
+          <tr>
+           <td headers="pays">bleu</td>
+           <td headers="signification">royaut&eacute;</td>
+          </tr>
+          <tr>
+           <td headers="couleur">rouge</td>
+           <td headers="signification">armoirie</td>
+          </tr>
+          <tr>
+           <td headers="couleur">jaune</td>
+           <td headers="signification">bl&eacute;</td>
+          </tr>
+        </table>
+      </td>
+      </tr>
+      <tr>
+      <td headers="presentation"> Horizontale </td>
+      <td headers="exemple">
+        <table border="1">
+          <tr>
+            <th scope="row" id="pays">Pays</th>
+            <td headers="pays">France</td>
+            <td headers="pays">Pologne</td>
+            <td headers="pays">Ukraine</td>
+            <th scope="row" id="couleur">Couleur</th>
+            <td headers="couleur">bleu</td>
+            <td headers="couleur">rouge</td>
+            <td headers="couleur">jaune</td>
+          </tr>
+          <tr>
+            <th scope="row" id="capitale">Capitale</th>
+            <td headers="capitale">Paris</td>
+            <td headers="capitale">Varsovie</td>
+            <td headers="capitale">Kiev</td>
+            <th scope="col" id="signification">Signification</th>
+            <td headers="signification">royaut&eacute;</td>
+            <td headers="signification">armoirie</td>
+            <td headers="signification">bl&eacute;</td>
+          </tr>
+        </table>
+      </td>
+      </tr>
+    </table>
+		
+		Les tableaux imbriqu&eacute;s sont l&agrave; pour s'assurer que le r&eacute;sultat d'un tableau
+    n'influe pas sur le r&eacute;sultat pour le tableau qui le contient.<br>
+		Le r&eacute;sultat doit donner une r&eacute;ussite pour le tableau externe et deux &eacute;checs 
+		dans les tableaux imbriqu&eacute;s avec une mauvaise valeur de header 
+		(valeur attendue "couleur" et non "pays"), un &eacute;l&eacute;ment d'en-t&ecirc;te sans attribut id
+		et un &eacute;l&eacute;ment td sans attribut headers.
+	</body>
+</html>

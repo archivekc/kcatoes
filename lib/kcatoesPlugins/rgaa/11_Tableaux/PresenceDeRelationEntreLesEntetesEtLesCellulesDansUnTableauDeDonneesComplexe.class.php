@@ -83,7 +83,7 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
             }else{
               //mauvais header
               $this->addResult($node, \Resultat::ECHEC, 'Mauvais header, valeur
-              attendue :' . $headers($currentCol));
+	              attendue :' . $headers[$currentCol]);
               return false;
             }
           }elseif($scope == 'row'){
