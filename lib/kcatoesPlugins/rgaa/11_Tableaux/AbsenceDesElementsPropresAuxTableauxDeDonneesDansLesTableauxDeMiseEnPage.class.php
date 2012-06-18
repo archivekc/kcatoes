@@ -1,12 +1,10 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class AbsenceDesElementsPropresAuxTableauxDeDonneesDansLesTableauxDeMiseEnPage extends \ASource
 {
-  const testName = 'Présence d’une relation entre les en-têtes (th) et les cellules (td)
-  qui s’y rattachent dans un tableau de données complexe grâce aux attributs id et headers';
+  const testName = 'Absence des éléments propres aux tableaux de données dans
+    les tableaux de mise en page';
   const testId = '11.4';
   protected static $testProc = array(
     'Si l’élément mentionné dans le champ d’application est présent dans la page,
@@ -37,11 +35,91 @@ class AbsenceDesElementsPropresAuxTableauxDeDonneesDansLesTableauxDeMiseEnPage e
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément ne
-        possède pas d’attribut summary ou possède un attribut summary vide
-        (summary=""), et qu’il ne contient aucun des éléments ou attributs suivants :
-        th, caption, thead, tfoot, colgroup, scope, headers, axis');
+        $bFound = $this->CheckNode($node);
+        if($bFound){
+          $this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un tableau
+          de mise en page, le test est validé.');
+        }else{
+        	$this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un tableau
+          de mise en page, le test est invalidé.');
+        }
       }
     }
+  }
+
+  private function CheckNode($node)
+  {
+    $bFound = true;
+    $nodeName = strtolower($node->nodeName);
+
+    if($nodeName == 'table'){
+        if(strlen($node->getAttribute('summary')) > 0){
+         $this->addResult($node, \Resultat::MANUEL, 'L\'attribut summary ne
+         devrait pas être rempli dans un tableau de mise en page');
+         return false;
+        }
+    }
+    //Est-ce une cellule de données?
+    if($nodeName == 'td'){
+    	$attributes = array('headers','axis','scope', );
+      //On vérifie l'absence des attributs de la iste ci-dessus
+      foreach($attributes as $attribute)
+      {
+	      if(strlen($node->getAttribute($attribute)) > 0){
+	       $this->addResult($node, \Resultat::MANUEL, 'L\'attribut'. $attribut
+	        .' ne devrait pas être présent dans une cellule d\'un tableau de mise en page');
+	       return false;
+	      }
+      }
+    }
+
+    //Sinon on prospecte chez ses enfants...
+    if($node->hasChildNodes())
+    {
+      $children = $node->childNodes;
+      foreach($children as $child){
+        //Est-ce un node d'en-tête ?
+        $childName = strtolower($child->nodeName);
+        if($childName == 'th'){
+        $this->addResult($node, \Resultat::MANUEL, 'Un élément d\'en-tête
+         ne devrait pas être présent dans un tableau de mise en page');
+          $bFound = false;
+        } elseif($childName == 'tr' || $child->nodeName == 'td'){
+          $bFound = $this->CheckNode($child);
+        }else{
+          $unwantedCells = array('caption','colgroup','thead', 'tfoot');
+		      foreach($unwantedCells as $cellType){
+		        if($childName == $cellType){
+		        $this->addResult($child, \Resultat::MANUEL, 'L\'élément '. $childName
+		         . ' ne devrait pas être présent dans un tableau de mise en page');
+		          return false;
+		        }
+		      }
+        }
+        if(!$bFound){
+          return false;
+        }
+      }
+    }
+
+     //...mais aussi chez les frères des éléments TR puisque leurs enfants sont déjà passés en revue
+    if($node->nextSibling != null && $nodeName != 'table'){
+      $sibling = $node->nextSibling;
+      $siblingName = strtolower($sibling->nodeName);
+      if($siblingName == 'tr'){
+        $bFound = $this->CheckNode($sibling);
+      }
+      if(!$bFound) return false;
+
+      $unwantedCells = array('caption','colgroup','thead', 'tfoot');
+      foreach($unwantedCells as $cellType){
+        if($siblingName == $cellType){
+        $this->addResult($sibling, \Resultat::MANUEL, 'L\'élément '. $siblingName
+         . ' ne devrait pas être présent dans un tableau de mise en page');
+          return false;
+        }
+      }
+    }
+    return $bFound;
   }
 }

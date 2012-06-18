@@ -57,7 +57,7 @@ class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \AS
   	$bFound = false;
 
   	//Est-ce le node que nous cherchons ?
-  	if($node->nodeName == 'th'){
+  	if(strtolower($node->nodeName) == 'th'){
   		return true;
   	}else{
   		//On s'assure de ne pas empiéter sur un autre tableau
@@ -69,7 +69,7 @@ class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \AS
 	  				return true;
 	  			}
 	  		}
-	  		if($node->nodeName != 'table'){
+	  		if(strtolower($node->nodeName) != 'table'){
 	  			//...mais aussi chez ses frères
 	  			if($node->nextSibling != null){
 	  			  $bFound = $this->FindTh($node->nextSibling);

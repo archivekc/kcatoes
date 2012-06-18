@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesSimple extends \ASource
 {
   const testName = 'Présence d’une relation entre les en-têtes (th) et les cellules (td)
@@ -80,7 +78,7 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesSimple
             }else{
             	//mauvais header
             	$this->addResult($node, \Resultat::ECHEC, 'Mauvais header, valeur
-            	attendue :' . $headers($currentCol));
+            	attendue :' . $headers[$currentCol]);
             	return false;
             }
           }elseif($scope == 'row'){
@@ -152,10 +150,17 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesSimple
       if(strlen($node->getAttribute('scope'))>0){
         //le scope a-t-il été déjà défini ?
         if(strlen($scope) == 0){
-          $scope = $node->getAttribute('scope');
+          $scope = strtolower($node->getAttribute('scope'));
           //On s'assure que le scope est correctement défini
-          if(!($scope == 'row' || $scope == 'col' ||
-           $scope == 'rowgroup' || $scope == 'colgroup')){
+          $scopeValues = array('row', 'col', 'rowgroup', 'colgroup');
+          $bOK = false;
+          foreach($scopeValues as $value){
+            if($scope ==  $value){
+              $bOK = true;
+              break;
+            }
+          }
+          if(!$bOK){
             $this->addResult($node, \Resultat::ECHEC, 'Le scope n\'a pas une valeur
              attendue');
             return false;
@@ -166,7 +171,7 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesSimple
           }
         }else{
           //On s'assure que le scope est consistant au sein du tableau
-          if( $scope != $node->getAttribute('scope')){
+          if( $scope != strtolower($node->getAttribute('scope'))){
             $this->addResult($node, \Resultat::ECHEC, 'Le scope a déjà été défini
              avec la valeur ' . $scope);
             return false;

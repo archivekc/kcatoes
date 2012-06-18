@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComplexe extends \ASource
 {
   const testName = 'Présence d’une relation entre les en-têtes (th) et les cellules (td)
@@ -55,15 +53,16 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
   private function CheckNode($node, &$headers, &$scope, &$currentCol, &$currentRow, &$bHdrActive)
   {
     $bFound = true;
+    $nodeName = strtolower($node->nodeName);
 
     //Est-ce un nouvelle ligne?
-    if($node->nodeName == 'tr'){
+    if($nodeName == 'tr'){
       $currentRow = $currentRow + 1;
       $currentCol = 0;
     }
 
     //Est-ce une cellule de données?
-    if($node->nodeName == 'td'){
+    if($nodeName == 'td'){
     	//La déclaration des headers est finie, on les rend actifs
     	if(!$bHdrActive){
     		$bHdrActive = true;
@@ -110,17 +109,18 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
     }
 
     //On s'assure de ne pas empiéter sur un autre tableau
-    if($node->nodeName != 'table'){
+    if($nodeName != 'table'){
       //Sinon on prospecte chez ses enfants...
       if($node->hasChildNodes())
       {
         $children = $node->childNodes;
         foreach($children as $child)
         {
+        	$childName = strtolower($child->nodeName);
           //Est-ce un node d'en-tête ?
-          if($child->nodeName == 'th'){
+          if($childName == 'th'){
             $bFound = $this->CheckNodeTH($child, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
-          } elseif($child->nodeName == 'tr' || $child->nodeName == 'td'){
+          } elseif($childName == 'tr' || $childName == 'td'){
             $bFound = $this->CheckNode($child, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
           }
           if(!$bFound){
@@ -132,17 +132,18 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
       //...mais aussi chez les frères des éléments TR puisque leurs enfants sont déjà passés en revue
       if($node->nextSibling != null){
         $sibling = $node->nextSibling;
-        $siblingName = $sibling->nodeName;
+        $siblingName = strtolower($sibling->nodeName);
         if($siblingName == 'tr'){
           $bFound = $this->CheckNode($sibling, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
         }
-        if($siblingName == 'tbody' || $siblingName == 'caption' ||
-            $siblingName == 'colgroup' || $siblingName == 'thead'){
-          $this->addResult($sibling, \Resultat::NA, 'Elément non applicable à ce test');
-          $bFound = false;
-       }
-      if(!$bFound){
-          return false;
+        if(!$bFound) return false;
+
+        $unwantedCells = array('tbody','caption','colgroup','thead','tfoot');
+        foreach($unwantedCells as $cellType){
+          if($siblingName == $cellType){
+            $this->addResult($sibling, \Resultat::NA, 'Elément non applicable à ce test');
+            return false;
+          }
         }
       }
     }
@@ -162,10 +163,17 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
       if(strlen($node->getAttribute('scope'))>0){
         //le scope a-t-il été déjà défini ?
         if(strlen($scope) == 0){
-          $scope = $node->getAttribute('scope');
+          $scope = strtolower($node->getAttribute('scope'));
           //On s'assure que le scope est correctement défini
-          if(!($scope == 'row' || $scope == 'col' ||
-           $scope == 'rowgroup' || $scope == 'colgroup')){
+          $scopeValues = array('row', 'col', 'rowgroup', 'colgroup');
+          $bOK = false;
+          foreach($scopeValues as $value){
+          	if($scope ==  $value){
+          		$bOK = true;
+          		break;
+          	}
+          }
+          if(!$bOK){
             $this->addResult($node, \Resultat::ECHEC, 'Le scope n\'a pas une valeur
              attendue');
             return false;
@@ -176,7 +184,7 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
           }
         }else{
           //On s'assure que le scope est consistant au sein du tableau
-          if( $scope != $node->getAttribute('scope')){
+          if( $scope != strtolower($node->getAttribute('scope'))){
             $this->addResult($node, \Resultat::ECHEC, 'Le scope a déjà été défini
              avec la valeur ' . $scope);
             return false;
