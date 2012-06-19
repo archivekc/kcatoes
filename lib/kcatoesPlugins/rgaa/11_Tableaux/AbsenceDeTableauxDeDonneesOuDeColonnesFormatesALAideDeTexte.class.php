@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class AbsenceDeTableauxDeDonneesOuDeColonnesFormatesALAideDeTexte extends \ASource
 {
   const testName = 'Absence de tableaux de données ou de colonnes formatés à l’aide de texte';
@@ -26,7 +24,7 @@ class AbsenceDeTableauxDeDonneesOuDeColonnesFormatesALAideDeTexte extends \ASour
   {
   	$crawler = $this->page->crawler;
 
-    $elements   = 'table, pre';
+    $elements   = 'pre';
 
     $nodes = $crawler->filter($elements);
 
@@ -35,9 +33,8 @@ class AbsenceDeTableauxDeDonneesOuDeColonnesFormatesALAideDeTexte extends \ASour
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément n’est
-         pas utilisé afin de formater visuellement des colonnes ou un tableau de
-          données');
+        $this->addResult($node, \Resultat::MANUEL, 'Cet élément est-t-il utilisé
+         pour former des colonnes ou un tableau ?');
       }
     }
   }

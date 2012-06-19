@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDUnTitrePourLesTableauxDeDonnees extends \ASource
 {
   const testName = 'Présence d’un titre pour les tableaux de données';
@@ -26,7 +24,7 @@ class PresenceDUnTitrePourLesTableauxDeDonnees extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements   = 'table';
+    $elements = 'table';
 
     $nodes = $crawler->filter($elements);
 
@@ -35,9 +33,45 @@ class PresenceDUnTitrePourLesTableauxDeDonnees extends \ASource
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier qu\'est présent un
-        élément caption');
+      	$bFound = $this->FindCaption($node);
+      	if($bFound){
+      		$this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un tableau
+      		de données, le test est validé');
+      	}else{
+      		$this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un tableau
+          de données, le test n\'est PAS validé ');
+      	}
       }
     }
+  }
+
+  private function FindCaption($node)
+  {
+    $bFound = false;
+    $nodeName = strtolower($node->nodeName);
+    //Est-ce le node que nous cherchons ?
+    if($nodeName == 'caption'){
+      return true;
+    }else{
+      //On s'assure de ne pas empiéter sur un autre tableau
+      if($nodeName == 'table' ){
+        //Sinon on prospecte chez ses enfants...
+        if($node->firstChild != null){
+          $bFound = $this->FindCaption($node->firstChild);
+          if($bFound){
+            return true;
+          }
+        }
+      }else{
+        //...mais aussi chez ses frères
+        if($node->nextSibling != null){
+          $bFound = $this->FindCaption($node->nextSibling);
+          if($bFound){
+            return true;
+          }
+        }
+      }
+    }
+    return $bFound;
   }
 }

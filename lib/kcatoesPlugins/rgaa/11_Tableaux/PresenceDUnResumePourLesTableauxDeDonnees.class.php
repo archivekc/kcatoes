@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDUnResumePourLesTableauxDeDonnees extends \ASource
 {
   const testName = 'Présence d’un résumé pour les tableaux de données';
@@ -35,8 +33,13 @@ class PresenceDUnResumePourLesTableauxDeDonnees extends \ASource
    }
    else {
      foreach($nodes as $node) {
-       $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’élément possède
-        un attribut summary');
+     	if(strlen($node->getAttribute('summary')) > 0 ){
+       $this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un tableau
+          de données, le test est validé');
+      }else{
+       $this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un tableau
+          de données, le test n\'est PAS validé ');
+     	}
      }
    }
   }

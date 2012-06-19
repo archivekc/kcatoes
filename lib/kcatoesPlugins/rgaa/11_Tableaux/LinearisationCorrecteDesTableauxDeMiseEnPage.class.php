@@ -36,10 +36,8 @@ class LinearisationCorrecteDesTableauxDeMiseEnPage extends \ASource
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la lecture
-        linéaire du contenu du tableau (cellule après cellule, dans l’ordre du
-        code source) conserve les associations logiques présentes dans son
-        rendu affiché');
+        $this->addResult($node, \Resultat::MANUEL, 'La lecture du code du tableau
+        conserve-t-elle les associations logiques présentes dans son rendu affiché');
       }
     }
   }
