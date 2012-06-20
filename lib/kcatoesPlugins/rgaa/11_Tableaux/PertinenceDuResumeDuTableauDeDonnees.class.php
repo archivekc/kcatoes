@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PertinenceDuResumeDuTableauDeDonnees extends \ASource
 {
   const testName = 'Pertinence du résumé du tableau de données';
