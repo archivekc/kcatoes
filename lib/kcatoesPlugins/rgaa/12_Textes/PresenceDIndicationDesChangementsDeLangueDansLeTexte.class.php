@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceDIndicationDesChangementsDeLangueDansLeTexte extends \ASource
 {
-  const testName = 'Présence d’un titre pour les tableaux de données';
+  const testName = 'Présence de l’indication des changements de langue dans le texte';
   const testId = '12.1';
   protected static $testProc = array(
     'Si un segment de texte mentionné dans le champ d’application est présent dans la page,
@@ -35,7 +35,7 @@ class PresenceDIndicationDesChangementsDeLangueDansLeTexte extends \ASource
   {
     $crawler = $this->page->crawler;
 
-    $elements = 'lang';
+    $elements = '[lang]';
 
     $nodes = $crawler->filter($elements);
 
@@ -44,9 +44,11 @@ class PresenceDIndicationDesChangementsDeLangueDansLeTexte extends \ASource
       traitement de langue soit justifiée.');
     }
     else {
-        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'indication
+    	foreach($nodes as $node){
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'indication
         de changement de langue correspond bien au langage utilisé dans le texte
         balisé concerné');
+    	}
     }
   }
 }

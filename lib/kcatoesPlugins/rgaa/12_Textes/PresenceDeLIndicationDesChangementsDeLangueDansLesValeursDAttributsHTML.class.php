@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDeLIndicationDesChangementsDeLangueDansLesValeursDAttributsHTML extends \ASource
 {
   const testName = 'Présence de l’indication des changements de langue dans les valeurs d’attributs HTML';
@@ -33,7 +31,28 @@ class PresenceDeLIndicationDesChangementsDeLangueDansLesValeursDAttributsHTML ex
 
   public function execute()
   {
-  	 $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'indication
-       de changement de langue ou son absence correspond bien au langage utilisé');
+  	$crawler = $this->page->crawler;
+    $elements = '[alt], [summary], meta[content], option[label], frame[value],
+     iframe[value], [name], [title], object[standby]';
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'absence de
+      traitement de langue soit justifiée.');
+    }
+    else {
+      foreach($nodes as $node){
+      if(strlen($node->getAttribute('lang'))>0){
+          $this->addResult($node, \Resultat::MANUEL, 'La langue est-elle
+          correctement renseignée ?');
+        }elseif(strlen($node->parentNode->getAttribute('lang'))>0){
+          $this->addResult($node->parentNode, \Resultat::MANUEL, 'La langue est-elle
+          correctement renseignée ?');
+        }else{
+        	$this->addResult($node, \Resultat::ECHEC, 'La langue n\'est pas renseignée
+        	à proximité de cet élément ');
+        }
+      }
+    }
   }
 }
