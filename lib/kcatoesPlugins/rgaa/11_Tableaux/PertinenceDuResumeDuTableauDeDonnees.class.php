@@ -37,8 +37,12 @@ class PertinenceDuResumeDuTableauDeDonnees extends \ASource
     }
     else {
       foreach($nodes as $node) {
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’attribut
-        summary est pertinent');
+      	if(strlen($node->getAttribute('summary'))>0){
+      		$this->addResult($node, \Resultat::MANUEL, 'Vérifier que le résumé
+      		 est pertinent');
+      	}else{
+      		$this->addResult($node, \Resultat::NA, 'Pas de résumé présent');
+      	}
       }
     }
   }
