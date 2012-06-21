@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDUnAutreMoyenQueLaFormeOuLaPositionPourIdentifierUnContenuAuquelIlEstFaitReferenceDansUnElementNonTextuel extends \ASource
 {
   const testName = 'Présence d’un autre moyen que la forme ou la position pour identifier un contenu

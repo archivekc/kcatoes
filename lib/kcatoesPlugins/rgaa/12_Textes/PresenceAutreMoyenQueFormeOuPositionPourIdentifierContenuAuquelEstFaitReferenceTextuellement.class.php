@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceAutreMoyenQueFormeOuPositionPourIdentifierContenuAuquelEstFaitReferenceTextuellement
  extends \ASource
 {

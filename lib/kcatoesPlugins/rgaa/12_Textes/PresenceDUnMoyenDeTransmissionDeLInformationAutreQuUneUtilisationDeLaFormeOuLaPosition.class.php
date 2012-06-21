@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDUnMoyenDeTransmissionDeLInformationAutreQuUneUtilisationDeLaFormeOuLaPosition extends \ASource
 {
   const testName = 'Présence d’un moyen de transmission de l’information autre qu’une utilisation
@@ -29,7 +27,6 @@ class PresenceDUnMoyenDeTransmissionDeLInformationAutreQuUneUtilisationDeLaForme
 
   public function execute()
   {
-
     $crawler = $this->page->crawler;
 
     $elements = 'img, input[type=image], applet, object, embed';
@@ -40,9 +37,10 @@ class PresenceDUnMoyenDeTransmissionDeLInformationAutreQuUneUtilisationDeLaForme
       $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
-        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que si les éléments
-        affichent des zones dont leur forme ou leur position donne de l’information,
-        celle-ci est accessible par un autre moyen');
+    	foreach($nodes as $node){
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’information
+        est accessible par un autre moyen');
+    	}
     }
   }
 }
