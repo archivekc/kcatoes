@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class EquivalenceDeLInformationMiseADispositionDansLaVersionAlternative extends \ASource
 {
   const testName = 'Équivalence de l’information mise à disposition dans la version alternative';
@@ -30,7 +28,18 @@ class EquivalenceDeLInformationMiseADispositionDansLaVersionAlternative extends 
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'information est
-    équivalente entre les différentes versions de la page');
+  $crawler = $this->page->crawler;
+    $elements = 'object,applet,embed';
+    $nodes = $crawler->filter($elements);
+
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node){
+        $this->addResult($node, \Resultat::MANUEL, 'La version alternative de cet
+        élément est-elle équivalente?');
+      }
+    }
   }
 }
