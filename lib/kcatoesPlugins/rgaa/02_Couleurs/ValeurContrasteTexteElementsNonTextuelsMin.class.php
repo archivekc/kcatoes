@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class ValeurContrasteTexteElementsNonTextuelsMin extends \ASource
 {
 
@@ -30,35 +28,21 @@ class ValeurContrasteTexteElementsNonTextuelsMin extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-         Champ d'application
+    $elements = 'img, input[type=image], applet, object, embed';
 
-        Tout élément :
+    $nodes = $crawler->filter($elements);
 
-            img
-            input de type image
-            applet
-            object
-            embed
-
-        ou propriété CSS générant un des éléments précédents,ou code javascript générant un des éléments précédents.
-     */
-
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node){
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le rapport de
+        contraste entre la couleur du texte et celle de son arrière plan est
+        supérieur ou égal à 4.5');
+      }
+    }
   }
 }

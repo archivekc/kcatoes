@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceInformationAutreQueCouleurNonTextuel extends \ASource
 {
 
@@ -27,34 +25,21 @@ class PresenceInformationAutreQueCouleurNonTextuel extends \ASource
 
   public function execute()
   {
-    /*
-      Champ d'application
+    $crawler = $this->page->crawler;
 
-      Tout élément :
+    $elements = 'img, input[type=image], applet, object, embed';
 
-          img
-          input de type image
-          applet
-          object
-          embed
+    $nodes = $crawler->filter($elements);
 
-      ou code javascript générant un des éléments précédents.
-     */
-
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node){
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’information
+        donnée par la zone de couleur, si il y en a une, est accessible par un
+        autre moyen');
+      }
+    }
   }
 }
