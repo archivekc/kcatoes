@@ -1,11 +1,8 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PositionnementCorrectEtiquettes extends \ASource
 {
-
   const testName = 'Positionnement correct des étiquettes par rapport aux champs dans les formulaires';
   const testId = '3.3';
   protected static $testProc = array(
@@ -28,34 +25,27 @@ class PositionnementCorrectEtiquettes extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements = 'input[type=text], input[type=checkbox], input[type=radio],
+    input[type=file], input[type=password], select, textarea';
 
-      Tout élément :
+    $nodes = $crawler->filter($elements);
 
-          input type="text"
-          input type="password"
-          input type="checkbox"
-          input type="file"
-          input type="radio"
-          select
-          textarea
-     */
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
-  }
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node){
+          if(strlen($node->getAttribute('name')) >0 ){
+	          $this->addResult($node->parentNode, \Resultat::MANUEL, 'Y a-t-il une
+	          &eacute;tiquette visuellement associée au contrôle ' .
+	          $node->getAttribute('name') . '?');
+          }else{
+          	$this->addResult($node, \Resultat::MANUEL, 'Y a-t-il une
+            &eacute;tiquette visuellement associée à ce contrôle?');
+          }
+      }
+	  }
+	}
 }

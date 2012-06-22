@@ -1,11 +1,8 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceInformationCaractereObligatoireEtFormat extends \ASource
 {
-
   const testName = 'Présence d\'information préalable sur le caractère obligatoire de certains champs de saisie et du type/format de saisie attendue si nécessaire';
   const testId = '3.2';
   protected static $testProc = array(
@@ -36,34 +33,72 @@ class PresenceInformationCaractereObligatoireEtFormat extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements = 'input[type=text], input[type=checkbox], input[type=radio],
+    input[type=file], input[type=password], select, textarea';
 
-      Tout élément :
+    $nodes = $crawler->filter($elements);
 
-          input type="text"
-          input type="checkbox"
-          input type="file"
-          input type="radio"
-          input type="password"
-          select
-          textarea
-     */
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Test non applicable');
+    }
+    else {
+      foreach($nodes as $node){
+      	//On vérifie que l'élément a bien un id
+      	if(strlen($node->getAttribute('id')) > 0){
+	      	$nodeName = $node->nodeName;
+	      	$inputType = $node->getAttribute('type');
+	        //Détermination de l'élément
+	      	if($inputType == 'checkbox' || $inputType == 'radio'){
+	      			//Dans le cas d'une checkbox ou d'un bouton radio, on cherche le label
+	      			// après l'élément
+      				$this->CheckLabelAfter($node);
+	      	}
+	      	else{
+	      		$this->CheckLabelBefore($node);
+	      	}
+      	}else{
+      		$this->addResult($node, \Resultat::ECHEC, 'Sans id défini, on ne peut
+      		trouver un label associé');
+      	}
+      }
+    }
+  }
 
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+  private function CheckLabelBefore($node){
+    $id = $node->getAttribute('id');
+    if(null != $node->previousSibling->previousSibling){
+    	$sibling = $node->previousSibling->previousSibling;
+    	if(strtolower($sibling->nodeName) == 'label'){
+    		if($sibling->getAttribute('for') == $id){
+    			$this->addResult($sibling, \Resultat::MANUEL, 'L\'utilisateur est-il averti
+    			du caractère obligatoire de l\'élément '. $node->nodeName . ' qui le
+    			suit ?');
+    		}
+    	}else{
+    		$this->addResult($node, \Resultat::ECHEC, 'Pas de label trouvé à proximité, '. $sibling->nodeName);
+    	}
+    }else{
+    	$this->addResult($node, \Resultat::ECHEC, 'Pas de label trouvé à proximité');
+    }
+  }
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+  private function CheckLabelAfter($node){
+    $id = $node->getAttribute('id');
+    if(null != $node->nextSibling){
+      $sibling = $node->nextSibling;
+      if(strtolower($sibling->nodeName) == 'label'){
+        if($sibling->getAttribute('for') == $id){
+          $this->addResult($sibling, \Resultat::MANUEL, 'L\'utilisateur est-il averti
+          du caractère obligatoire de l\'élément '. $node->nodeName . ' qui le
+          précède ?');
+        }
+      }else{
+        $this->addResult($node, \Resultat::ECHEC, 'Pas de label trouvé à proximité');
+      }
+    }else{
+      $this->addResult($node, \Resultat::ECHEC, 'Pas de label trouvé à proximité');
+    }
   }
 }

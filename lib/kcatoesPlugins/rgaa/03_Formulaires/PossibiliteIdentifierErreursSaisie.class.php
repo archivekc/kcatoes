@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PossibiliteIdentifierErreursSaisie extends \ASource
 {
 
@@ -32,26 +30,20 @@ class PossibiliteIdentifierErreursSaisie extends \ASource
   public function execute()
   {
 
-    /*
-      Champ d'application
+    $crawler = $this->page->crawler;
 
-      Tout élément form.
-     */
+    $elements = 'form';
 
+    $nodes = $crawler->filter($elements);
 
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Pas de formulaire: test non applicable');
+    }
+    else {
+      foreach($nodes as $node){
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le contrôle de
+        saisie, si il existe, permet d\'identifier le champ qui pose problème');
+      }
+    }
   }
 }

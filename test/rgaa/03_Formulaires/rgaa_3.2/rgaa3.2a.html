@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> 
+<html>
+<head>
+<title>RGAA 3.2A</title>
+</head>
+<body>
+<form>
+  <label for="nom">Nom du voyageur</label>
+  <input type="text" id="nom" name="nomVoyageur"/><br />
+  <input type="checkbox" id="surplus" name="chkSurplus"/>
+  <label for="surplus">Vous envisagez un surplus de bagages ?</label><br />
+  <label for="pass">Photocopie du passeport</label>
+  <input type="file" id="pass" name="filePass"/><br />
+  <input type="radio" name="sex" id="homme" /><label for="homme">Homme</label>
+  <br />
+  <input type="radio" name="sex" id="femme" /><label for="femme">Femme</label>
+  <br />
+  <label for="airport">A&eacute;roport d'arriv&eacute;e</label>
+  <select id="airport" name="sltarrivee">
+  <option lang="eng" label="CDG">Paris-Charles-de-Gaulle[CDG]</option>
+  <option lang="eng" label="JFK">John F. Kennedy - New York[JFK]</option>
+  <option lang="eng" label="SYD">Sydney[SYD]</option>
+  <option lang="eng" label="HND">Tokyo-Haneda[HND]</option>
+  <option lang="eng" label="BUE">Buenos Aires[BUE]</option>
+  <option lang="eng" label="YUL">Montr&eacute;al-Trudeau[YUL]</option>
+  <option lang="eng" label="WAW">Fr&eacute;d&eacute;ric Chopin de Varsovie[WAW]</option>
+  </select><br />
+  <label for="rmq">Remarques:</label>
+  <textarea rows="5" cols="25" id="rmq"></textarea><br />
+  <label for="valid">Validation des informations par le mot de passe fourni &agrave;
+  la pr&eacute;-r&eacute;servation:</label>
+  <input type="password" id="valid" name="validationPreReservation"/>
+</form>
+Le r&eacute;sultat doit demander huit v&eacute;rifications manuelles des divers
+composants de ce formulaire.
+</body>
+</html>
