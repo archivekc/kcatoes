@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class RegroupementElementsFormViaFieldset extends \ASource
 {
 
@@ -30,26 +28,55 @@ class RegroupementElementsFormViaFieldset extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements = 'form';
 
-      Tout élément form.
-     */
+    $nodes = $crawler->filter($elements);
 
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de formulaire');
+    }
+    else {
+      foreach($nodes as $node){
+        $bFound = $this->FindFieldset($node);
+        if($bFound){
+          $this->addResult($node, \Resultat::NA, 'Fieldset présent, test non
+          applicable');
+        }else{
+        	$this->addResult($node, \Resultat::MANUEL, 'Vérifier que le formulaire
+          ne nécessite pas que certains champs soient regroupés.');
+        }
+      }
+    }
+  }
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
+  private function FindFieldset($node)
+  {
+    $bFound = false;
+    $nodeName = strtolower($node->nodeName);
+    //Est-ce le node que nous cherchons ?
+    if($nodeName == 'fieldset'){
+      return true;
+    }
 
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    if($nodeName == 'form' ){
+        //Sinon on prospecte chez ses enfants...
+        if($node->firstChild != null){
+          $bFound = $this->FindFieldset($node->firstChild);
+          if($bFound){
+            return true;
+          }
+        }
+    }else{
+      //...mais aussi chez ses frères
+      if($node->nextSibling != null){
+        $bFound = $this->FindFieldset($node->nextSibling);
+        if($bFound){
+          return true;
+        }
+      }
+    }
+    return $bFound;
   }
 }
