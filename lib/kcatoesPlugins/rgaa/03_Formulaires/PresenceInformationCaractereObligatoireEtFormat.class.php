@@ -68,8 +68,12 @@ class PresenceInformationCaractereObligatoireEtFormat extends \ASource
 
   private function CheckLabelBefore($node){
     $id = $node->getAttribute('id');
-    if(null != $node->previousSibling->previousSibling){
-    	$sibling = $node->previousSibling->previousSibling;
+    if(null != $node->previousSibling){
+    	$sibling = $node->previousSibling;
+    	//On vérifie que le noeud précédent est bien un noeud élément
+    	if($sibling->nodeType != 1 && $sibling->previousSibling != null){
+    		$sibling = $sibling->previousSibling;
+    	}
     	if(strtolower($sibling->nodeName) == 'label'){
     		if($sibling->getAttribute('for') == $id){
     			$this->addResult($sibling, \Resultat::MANUEL, 'L\'utilisateur est-il averti
@@ -88,6 +92,8 @@ class PresenceInformationCaractereObligatoireEtFormat extends \ASource
     $id = $node->getAttribute('id');
     if(null != $node->nextSibling){
       $sibling = $node->nextSibling;
+      //On vérifie que le noeud suivant est bien un noeud élément
+      if($sibling->nodeType != 1 && $sibling->nextSibling != null) $sibling = $sibling->nextSibling;
       if(strtolower($sibling->nodeName) == 'label'){
         if($sibling->getAttribute('for') == $id){
           $this->addResult($sibling, \Resultat::MANUEL, 'L\'utilisateur est-il averti
