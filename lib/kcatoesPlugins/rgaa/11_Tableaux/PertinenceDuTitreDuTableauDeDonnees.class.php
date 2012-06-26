@@ -50,29 +50,23 @@ class PertinenceDuTitreDuTableauDeDonnees extends \ASource
   private function FindCaption($node)
   {
     $bFound = false;
-    $nodeName = strtolower($node->nodeName);
     //Est-ce le node que nous cherchons ?
-    if($nodeName == 'caption'){
+    if(strtolower($node->nodeName) == 'caption'){
     	$this->addResult($node, \Resultat::MANUEL, 'Le titre de ce tableau est-t-il
     	 pertinent?');
       return true;
-    }
-
-    if($nodeName == 'table' ){
-        //Sinon on prospecte chez ses enfants...
-        if($node->firstChild != null){
-          $bFound = $this->FindCaption($node->firstChild);
-          if($bFound){
-            return true;
-          }
-        }
     }else{
-      //...mais aussi chez ses frères
-      if($node->nextSibling != null){
-      	$bFound = $this->FindCaption($node->nextSibling);
-        if($bFound){
-          return true;
-        }
+    	//Sinon on prospecte chez ses enfants...
+      if($node->hasChildNodes()){
+      	$children = $node->childNodes;
+      	foreach($children as $child){
+	      	if($child->nodeName != 'table' && $child->nodeType == 1){
+	        $bFound = $this->FindCaption($node->firstChild);
+	        if($bFound){
+	            return true;
+	          }
+	        }
+      	}
       }
     }
     return $bFound;
