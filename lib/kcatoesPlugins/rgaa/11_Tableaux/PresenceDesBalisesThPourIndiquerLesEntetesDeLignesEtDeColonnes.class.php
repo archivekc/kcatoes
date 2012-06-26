@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \ASource
 {
   const testName = 'Présence des balises th pour indiquer les en-têtes de lignes
@@ -39,7 +37,7 @@ class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \AS
     }
     else {
       foreach($nodes as $node) {
-        $bFound = $this->FindTh($node->firstChild);
+        $bFound = $this->FindTh($node);
         if($bFound){
         $this->addResult($node, \Resultat::REUSSITE, 'Des éléments th sont
         présents dans ce tableau');
@@ -55,30 +53,23 @@ class PresenceDesBalisesThPourIndiquerLesEntetesDeLignesEtDeColonnes extends \AS
   private function FindTh($node)
   {
   	$bFound = false;
-
-  	//Est-ce le node que nous cherchons ?
+    //Est-ce le node que nous cherchons ?
   	if(strtolower($node->nodeName) == 'th'){
   		return true;
   	}else{
-  		//On s'assure de ne pas empiéter sur un autre tableau
-  		if($node->nodeName != 'table'){
-	  		//Sinon on prospecte chez ses enfants...
-	  		if($node->firstChild != null){
-	  			$bFound = $this->FindTh($node->firstChild);
-	  			if($bFound){
-	  				return true;
+  			//Sinon on prospecte chez ses enfants
+	  		if($node->hasChildNodes()){
+	  			$children = $node->childNodes;
+	  			foreach($children as $child){
+	  				//On s'assure de ne pas empiéter sur un autre tableau
+	  				if(strtolower($child->nodeName) != 'table' && $child->nodeType == 1){
+		  				$bFound = $this->FindTh($child);
+			  			if($bFound){
+			  				return true;
+			  			}
+	  				}
 	  			}
 	  		}
-	  		if(strtolower($node->nodeName) != 'table'){
-	  			//...mais aussi chez ses frères
-	  			if($node->nextSibling != null){
-	  			  $bFound = $this->FindTh($node->nextSibling);
-	          if($bFound){
-	            return true;
-	          }
-	  			}
-	  		}
-  		}
   	}
   	return $bFound;
   }
