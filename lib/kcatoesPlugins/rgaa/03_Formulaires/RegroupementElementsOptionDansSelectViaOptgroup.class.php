@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class RegroupementElementsOptionDansSelectViaOptgroup extends \ASource
 {
 
@@ -29,26 +27,34 @@ class RegroupementElementsOptionDansSelectViaOptgroup extends \ASource
 
   public function execute()
   {
+  $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements  = 'select';
 
-      Tout élément select.
-     */
+    $nodes = $crawler->filter($elements);
 
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    if (count($nodes) == 0) {
+      $this->addResult(null, \Resultat::NA, 'Aucun élément select');
+    }
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    foreach ($nodes as $node)
+    {
+    	$bContientOpt = false;
+      $options = $node->childNodes;
+      foreach($options as $option){
+      	if($option->nodeName == 'optgroup'){
+      		$bContientOpt = true;
+      		break;
+      	}
+      }
+      if ($bContientOpt) {
+        $this->addResult($node, \Resultat::NA, 'L\'élément contient des groupes
+         d\'options');
+      }
+      else {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'élément n\'a
+        pas besoin d\'au moins deux groupes d\'options');
+      }
+    }
   }
 }
