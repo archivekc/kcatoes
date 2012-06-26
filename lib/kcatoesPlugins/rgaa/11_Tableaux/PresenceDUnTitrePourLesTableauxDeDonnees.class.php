@@ -53,22 +53,16 @@ class PresenceDUnTitrePourLesTableauxDeDonnees extends \ASource
     if($nodeName == 'caption'){
       return true;
     }else{
-      //On s'assure de ne pas empiéter sur un autre tableau
-      if($nodeName == 'table' ){
-        //Sinon on prospecte chez ses enfants...
-        if($node->firstChild != null){
-          $bFound = $this->FindCaption($node->firstChild);
-          if($bFound){
-            return true;
-          }
-        }
-      }else{
-        //...mais aussi chez ses frères
-        if($node->nextSibling != null){
-          $bFound = $this->FindCaption($node->nextSibling);
-          if($bFound){
-            return true;
-          }
+       //On prospecte chez ses enfants...
+       if($node->hasChildNodes()){
+        $children = $node->childNodes;
+        foreach($children as $child){
+        	if($child->nodeName != 'table' && $child->nodeType == 1){
+	        	$bFound = $this->FindCaption($child);
+	          if($bFound){
+	            return true;
+	          }
+        	}
         }
       }
     }
