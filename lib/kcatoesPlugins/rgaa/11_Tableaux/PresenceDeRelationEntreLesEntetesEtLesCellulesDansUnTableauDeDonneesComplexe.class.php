@@ -41,7 +41,7 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
         $col = 0;
         $row = 0;
         $bHdrActive = false;
-        $bFound = $this->CheckNode($node->firstChild, $headers, $scope, $col, $row, $bHdrActive);
+        $bFound = $this->CheckNode($node, $headers, $scope, $col, $row, $bHdrActive);
         if($bFound){
         $this->addResult($node, \Resultat::REUSSITE, 'Toutes les cellules du tableau
         sont bien en relation avec leurs entêtes');
@@ -61,96 +61,45 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
       $currentCol = 0;
     }
 
+    //Est-ce un node d'en-tête ?
+    if($nodeName == 'th'){
+      $bFound = $this->CheckNodeTH($node, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
+    }
+
     //Est-ce une cellule de données?
     if($nodeName == 'td'){
-    	//La déclaration des headers est finie, on les rend actifs
-    	if(!$bHdrActive){
-    		$bHdrActive = true;
-    	}
-      $currentCol = $currentCol + 1;
-      //On vérifie son attribut headers
-      if(strlen($node->getAttribute('headers'))>0){
-        if( $scope == 'col'){
-            if( $headers[$currentCol] == $node->getAttribute('headers')){
-              //On ne veut valider le tableau qu'en s'étant assuré que toutes les
-              // cellules sont correctement formatées
-              if($node->firstChild == null && null == $node->nextSibling){
-                return true;
-              }else{
-                $bFound = true;
-              }
-            }else{
-              //mauvais header
-              $this->addResult($node, \Resultat::ECHEC, 'Mauvais header, valeur
-	              attendue :' . $headers[$currentCol]);
-              return false;
-            }
-          }elseif($scope == 'row'){
-            if( $headers[$currentRow] == $node->getAttribute('headers')){
-              //On ne veut valider le tableau qu'en s'étant assuré que toutes les
-              // cellules sont correctement formatées
-              if($node->firstChild == null && null == $node->nextSibling){
-                return true;
-              }else{
-                $bFound = true;
-              }
-            }else{
-              //mauvais header
-              $this->addResult($node, \Resultat::ECHEC, 'Mauvais header, valeur
-              attendue :' . $headers[$currentRow]);
-              return false;
-            }
-          }
-      }else{
-        //pas de headers
-        $this->addResult($node, \Resultat::ECHEC, 'Pas d\'attribut headers');
+    	$bFound = $this->CheckNodeTD($node, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
+    }
+
+    if(!$bFound){
+      return false;
+    }
+
+    $unwantedCells = array('tbody','caption','colgroup','thead','tfoot');
+    foreach($unwantedCells as $cellType){
+      if($nodeName == $cellType){
+        $this->addResult($node, \Resultat::NA, 'Elément non applicable à ce test');
         return false;
       }
     }
 
-    //On s'assure de ne pas empiéter sur un autre tableau
-    if($nodeName != 'table'){
-      //Sinon on prospecte chez ses enfants...
-      if($node->hasChildNodes())
-      {
-        $children = $node->childNodes;
-        foreach($children as $child)
-        {
-        	$childName = strtolower($child->nodeName);
-          //Est-ce un node d'en-tête ?
-          if($childName == 'th'){
-            $bFound = $this->CheckNodeTH($child, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
-          } elseif($childName == 'tr' || $childName == 'td'){
-            $bFound = $this->CheckNode($child, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
-          }
-          if(!$bFound){
-            return false;
-          }
+    //Sinon on prospecte chez ses enfants...
+    if($node->hasChildNodes()){
+      $children = $node->childNodes;
+      foreach($children as $child){
+      	//On s'assure de ne pas empiéter sur un autre tableau
+      	if($child->nodeName != 'table' && $child->nodeType == 1){
+          $bFound = $this->CheckNode($child, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
         }
-      }
-
-      //...mais aussi chez les frères des éléments TR puisque leurs enfants sont déjà passés en revue
-      if($node->nextSibling != null){
-        $sibling = $node->nextSibling;
-        $siblingName = strtolower($sibling->nodeName);
-        if($siblingName == 'tr'){
-          $bFound = $this->CheckNode($sibling, $headers, $scope, $currentCol, $currentRow, $bHdrActive);
-        }
-        if(!$bFound) return false;
-
-        $unwantedCells = array('tbody','caption','colgroup','thead','tfoot');
-        foreach($unwantedCells as $cellType){
-          if($siblingName == $cellType){
-            $this->addResult($sibling, \Resultat::NA, 'Elément non applicable à ce test');
-            return false;
-          }
+        if(!$bFound){
+          return false;
         }
       }
     }
     return $bFound;
   }
 
-  private function CheckNodeTH ($node, &$headers, &$scope, &$currentCol, &$currentRow, &$bHdrActive)
+  private function CheckNodeTH($node, &$headers, &$scope, &$currentCol, &$currentRow, &$bHdrActive)
   {
       $currentCol = $currentCol + 1;
       //Si les headers sont déjà actifs, il y a du renouvellement dans l'air
@@ -205,6 +154,54 @@ class PresenceDeRelationEntreLesEntetesEtLesCellulesDansUnTableauDeDonneesComple
       }else{
         //pas de scope
         $this->addResult($node, \Resultat::ECHEC, 'Pas de scope');
+        return false;
+      }
+      return true;
+  }
+
+  private function CheckNodeTD($node, &$headers, &$scope, &$currentCol, &$currentRow, &$bHdrActive)
+  {
+      //La déclaration des headers est finie, on les rend actifs
+      if(!$bHdrActive){
+        $bHdrActive = true;
+      }
+      $currentCol = $currentCol + 1;
+      //On vérifie son attribut headers
+      if(strlen($node->getAttribute('headers'))>0){
+        if( $scope == 'col'){
+            if( $headers[$currentCol] == $node->getAttribute('headers')){
+              //On ne veut valider le tableau qu'en s'étant assuré que toutes les
+              // cellules sont correctement formatées
+              if($node->firstChild == null && null == $node->nextSibling){
+                return true;
+              }else{
+                $bFound = true;
+              }
+            }else{
+              //mauvais header
+              $this->addResult($node, \Resultat::ECHEC, 'Mauvais header, valeur
+                attendue :' . $headers[$currentCol]);
+              return false;
+            }
+          }elseif($scope == 'row'){
+            if( $headers[$currentRow] == $node->getAttribute('headers')){
+              //On ne veut valider le tableau qu'en s'étant assuré que toutes les
+              // cellules sont correctement formatées
+              if($node->firstChild == null && null == $node->nextSibling){
+                return true;
+              }else{
+                $bFound = true;
+              }
+            }else{
+              //mauvais header
+              $this->addResult($node, \Resultat::ECHEC, 'Mauvais header, valeur
+              attendue :' . $headers[$currentRow]);
+              return false;
+            }
+          }
+      }else{
+        //pas de headers
+        $this->addResult($node, \Resultat::ECHEC, 'Pas d\'attribut headers');
         return false;
       }
       return true;
