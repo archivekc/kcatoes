@@ -59,6 +59,13 @@ class AbsenceDesElementsPropresAuxTableauxDeDonneesDansLesTableauxDeMiseEnPage e
          return false;
         }
     }
+
+    if($nodeName == 'th'){
+        $this->addResult($node, \Resultat::MANUEL, 'Un élément d\'en-tête
+         ne devrait pas être présent dans un tableau de mise en page');
+        return false;
+    }
+
     //Est-ce une cellule de données?
     if($nodeName == 'td'){
     	$attributes = array('headers','axis','scope', );
@@ -73,49 +80,25 @@ class AbsenceDesElementsPropresAuxTableauxDeDonneesDansLesTableauxDeMiseEnPage e
       }
     }
 
+    //Vérifions qu'il ne s'agit pas d'un node indésirable
+    $unwantedCells = array('caption','colgroup','thead', 'tfoot');
+    foreach($unwantedCells as $cellType){
+      if($nodeName == $cellType){
+        $this->addResult($node, \Resultat::MANUEL, 'L\'élément '. $nodeName
+         . ' ne devrait pas être présent dans un tableau de mise en page');
+        return false;
+      }
+    }
+
     //Sinon on prospecte chez ses enfants...
     if($node->hasChildNodes())
     {
       $children = $node->childNodes;
       foreach($children as $child){
-        //Est-ce un node d'en-tête ?
-        $childName = strtolower($child->nodeName);
-        if($childName == 'th'){
-        $this->addResult($node, \Resultat::MANUEL, 'Un élément d\'en-tête
-         ne devrait pas être présent dans un tableau de mise en page');
-          $bFound = false;
-        } elseif($childName == 'tr' || $child->nodeName == 'td'){
+        if($child->nodeName != 'table' && $child->nodeType == 1){
           $bFound = $this->CheckNode($child);
-        }else{
-          $unwantedCells = array('caption','colgroup','thead', 'tfoot');
-		      foreach($unwantedCells as $cellType){
-		        if($childName == $cellType){
-		        $this->addResult($child, \Resultat::MANUEL, 'L\'élément '. $childName
-		         . ' ne devrait pas être présent dans un tableau de mise en page');
-		          return false;
-		        }
-		      }
         }
         if(!$bFound){
-          return false;
-        }
-      }
-    }
-
-     //...mais aussi chez les frères des éléments TR puisque leurs enfants sont déjà passés en revue
-    if($node->nextSibling != null && $nodeName != 'table'){
-      $sibling = $node->nextSibling;
-      $siblingName = strtolower($sibling->nodeName);
-      if($siblingName == 'tr'){
-        $bFound = $this->CheckNode($sibling);
-      }
-      if(!$bFound) return false;
-
-      $unwantedCells = array('caption','colgroup','thead', 'tfoot');
-      foreach($unwantedCells as $cellType){
-        if($siblingName == $cellType){
-        $this->addResult($sibling, \Resultat::MANUEL, 'L\'élément '. $siblingName
-         . ' ne devrait pas être présent dans un tableau de mise en page');
           return false;
         }
       }
