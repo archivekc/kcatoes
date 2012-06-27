@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PresenceMecanismesVerificationDonneesPerso extends \ASource
 {
 
@@ -38,26 +36,22 @@ class PresenceMecanismesVerificationDonneesPerso extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements  = 'form';
 
-      Tout élément form.
-     */
+    $nodes = $crawler->filter($elements);
 
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    if (count($nodes) == 0) {
+       $this->addResult(null, \Resultat::NA, 'Il n\'y a pas de formulaire');
+    }
+    else {
+      foreach ($nodes as $node)
+      {
+        $this->addResult($node, \Resultat::MANUEL, 'Le formulaire permet-t-il de
+        vérifier, modifier ou confirmer les données à caractère juridique, financier,
+        personnel ?');
+      }
+    }
   }
 }
