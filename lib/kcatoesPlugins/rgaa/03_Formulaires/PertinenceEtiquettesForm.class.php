@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PertinenceEtiquettesForm extends \ASource
 {
 
@@ -33,26 +31,31 @@ class PertinenceEtiquettesForm extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d\'application
+    $elements  = 'label';
 
-      Tout élément label.
-     */
+    $nodes = $crawler->filter($elements);
 
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
+    $nbNode = 0;
+    foreach ($nodes as $node)
+    {
+      $title = $node->getAttribute('title');
+      $nodeValue = $node->nodeValue;
+      if (strlen(trim($nodeValue)) > 0){
+        $nbNode++;
+        $this->addResult($node, \Resultat::MANUEL, 'Le texte est-il pertinent ? : '
+        .$nodeValue);
+      }elseif (strlen(trim($title)) > 0){
+      	$nbNode++;
+        $this->addResult($node, \Resultat::MANUEL, 'L\'attribut title est-il
+        pertinent ? : '.$title);
+      }
+    }
 
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    if ($nbNode == 0)
+    {
+      $this->addResult(null, \Resultat::NA, 'Aucun label non vide dans le document');
+    }
   }
 }
