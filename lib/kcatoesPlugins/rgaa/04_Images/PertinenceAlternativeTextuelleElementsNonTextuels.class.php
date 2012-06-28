@@ -1,7 +1,7 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
+// TODO : éléments générés par JavaScript
 
 class PertinenceAlternativeTextuelleElementsNonTextuels extends \ASource
 {
@@ -47,32 +47,15 @@ class PertinenceAlternativeTextuelleElementsNonTextuels extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements = 'img, applet, object, embed';
 
-      Tout élément :
-
-          img
-          applet
-          object
-          embed
-          tout code javascript générant un des éléments précédents
-     */
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    $nodes = $crawler->filter($elements);
+    foreach ($nodes as $node)
+    {
+      $this->addResult($node, \Resultat::MANUEL, 'L’information véhiculée par
+        l’élément est retranscrite dans sa description');
+    }
   }
 }
