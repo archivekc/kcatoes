@@ -32,7 +32,6 @@ class PertinenceAlternativeVideElementsDecoratifs extends \ASource
     $elements = 'img, applet';
 
     $nodes = $crawler->filter($elements);
-    $bProcessed = false;
     foreach ($nodes as $node)
     {
       $parent = $node->parentNode;
