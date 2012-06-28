@@ -1,11 +1,8 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class PertinenceAlternativeVideElementsDecoratifs extends \ASource
 {
-
   const testName = 'Pertinence de l\'alternative vide aux éléments décoratifs';
   const testId = '4.5';
   protected static $testProc = array(
@@ -30,30 +27,28 @@ class PertinenceAlternativeVideElementsDecoratifs extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements = 'img, applet';
 
-      Tout élément :
-
-          img
-          applet
-          tout code javascript générant un des éléments précédents
-     */
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    $nodes = $crawler->filter($elements);
+    $bProcessed = false;
+    foreach ($nodes as $node)
+    {
+      $parent = $node->parentNode;
+      if($parent->nodeName == 'a' || $parent->nodeName == 'button' ){
+        $this->addResult($node, \Resultat::NA, 'Non applicable à cet élément');
+      }else{
+        $alt = trim($node->getAttribute('alt'));
+        if (strlen($alt) > 0) {
+          $this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un
+          élément décoratif, le test n\'est PAS validé');
+        }
+        else {
+          $this->addResult($node, \Resultat::MANUEL, 'Si il s\'agit d\'un
+          élément décoratif, le test est validé');
+        }
+      }
+    }
   }
 }
