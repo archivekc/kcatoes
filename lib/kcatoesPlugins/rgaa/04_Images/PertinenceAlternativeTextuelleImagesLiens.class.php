@@ -39,23 +39,30 @@ class PertinenceAlternativeTextuelleImagesLiens extends \ASource
     $elements = 'img';
 
     $nodes = $crawler->filter($elements);
-
+    $bProcessed = false;
     foreach ($nodes as $node)
     {
     	$parent = $node->parentNode;
     	if($parent->nodeName == 'a' || $parent->nodeName == 'button' ){
-	    	$alt = trim($node->getAttribute('alt'));
+	    	$bProcessed = true;
+    		$alt = trim($node->getAttribute('alt'));
 	      if (strlen($alt) > 0) {
-	        $this->addResult($node, \Resultat::REUSSITE, 'L\'élément possède un attribut alt non vide : '.$alt);
+	        $this->addResult($node, \Resultat::MANUEL, 'L\'attribut alt ('.$alt.')
+	        permet-t-il d’identifier la destination du lien ou l’action déclenchée?');
 	      }
 	      else {
-	        $this->addResult($node, \Resultat::ECHEC, 'L\'élément ne possède pas d\'attribut alt ou celui-ci est vide');
+	        $this->addResult($node, \Resultat::MANUEL, 'Y a-t-il un contenu textuel
+	        attenant à l\'image qui permettrait d’identifier la destination du lien
+	        ou l’action déclenchée?');
 	      }
     	}
     }
 
     if (count($nodes) == 0) {
-      $this->addResult(null, \Resultat::NA, 'Aucun élément img, area, input type="image" ou applet');
+      $this->addResult(null, \Resultat::NA, 'Aucun élément img');
+    }elseif(!$bProcessed){
+    	$this->addResult(null, \Resultat::NA, 'Aucun des éléments img trouvés n\'est
+    	applicable au test');
     }
   }
 }
