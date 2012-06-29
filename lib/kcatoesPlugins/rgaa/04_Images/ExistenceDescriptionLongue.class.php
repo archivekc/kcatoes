@@ -1,7 +1,7 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
+// TODO : Gérer les images générées par un javascript
 
 class ExistenceDescriptionLongue extends \ASource
 {
@@ -31,25 +31,15 @@ class ExistenceDescriptionLongue extends \ASource
 
   public function execute()
   {
-    /*
-      Champ d'application
+    $crawler = $this->page->crawler;
 
-      Tout élément img ou tout code javascript générant un élément img.
-     */
+    $elements = 'img';
 
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    $nodes = $crawler->filter($elements);
+    foreach ($nodes as $node)
+    {
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que sa description
+        longue est dans la même page');
+    }
   }
 }
