@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta lang="fr" name="auteur" content="Geoffroy GUERITOT"/>
+	<title>rgaa 4.11</title>
+</head>
+	<body>		
+	  <applet width="350" height="350" alt="applet vide">
+	   Test
+	  </applet> 
+    <img src="w3c.jpg" alt="w3c logo" height="96" width="96" />
+    <input type="image" src="w3c.jpg" alt=""/><br>
+    <img src ="browsers.jpg" width="520" height="97" alt="Browsers logos" 
+    usemap ="#browsermap" />
+		<map name="browsermap">
+		  <area shape="circle" coords="52,48,48" alt="Chrome" />
+		  <area shape="circle" coords="156,48,48" alt="Firefox" />
+		  <area shape="circle" coords="260,48,48" alt="Opera" />
+		  <area shape="circle" coords="364,48,48" alt="Safari" />
+		  <area shape="circle" coords="468,48,48" alt="Internet Explorer" />
+		</map>
+		<object width="400" height="400"
+    standby="Vous pouvez attendre autant que vous voulez"></object> 
+    <br>
+    <form>
+		  <fieldset title="Infos Voyageur">    
+		    <label for="nomVoyageur">Nom du voyageur</label>
+		    <input type="text" id="nom" name="nomVoyageur"/><br />
+		    <input type="checkbox" id="surplus" />
+		    <label for="surplus">Vous envisagez un surplus de bagages ?</label><br />
+		    <label for="pass">Photocopie du passeport</label>
+		    <input type="file" id="pass" name="filePass"/><br />
+		    <input type="radio" name="sex" id="homme" /><label for="homme">Homme</label>
+		    <br />
+		    <input type="radio" name="sex" id="femme" /><label for="femme">Femme</label>
+		  </fieldset>
+		  <label for="airport">A&eacute;roport d'arriv&eacute;e</label>
+		  <select id="airport" >
+		    <optgroup label="Europe">
+		      <option lang="eng" label="CDG">Paris-Charles-de-Gaulle[CDG]</option>
+		      <option lang="eng" label="WAW">Fr&eacute;d&eacute;ric Chopin de Varsovie[WAW]</option>
+		    </optgroup>
+		    <optgroup label="Am&eacute;riques">
+		      <option lang="eng" label="JFK">John F. Kennedy - New York[JFK]</option>
+		      <option lang="eng" label="BUE">Buenos Aires[BUE]</option>
+		      <option lang="eng" label="YUL">Montr&eacute;al-Trudeau[YUL]</option>
+		    </optgroup>
+		    <optgroup label="Asie">
+		      <option lang="eng" label="HND">Pekin[PEK]</option>
+		      <option lang="eng" label="HND">Tokyo-Haneda[HND]</option>
+		    </optgroup>
+		    <optgroup >
+		      <option lang="eng" label="SYD">Sydney[SYD]</option>
+		    </optgroup>
+		  </select><br />
+		  <label for="rmq">Remarques:</label>
+		  <textarea rows="5" cols="25" id="rmq"></textarea><br />
+		  <label for="valid">Validation des informations par le mot de passe fourni &agrave;
+		  la pr&eacute;-r&eacute;servation:</label>
+		  <input type="password" id="valid" name="validationPreReservation"/>
+    </form>
+    Les divers composants de cette page devraient demander treize v&eacute;rifications
+    manuelles.
+	</body>
+</html>

@@ -31,39 +31,14 @@ class CoherenceIdentificationAlternativesTextuellesEtEtiquettes extends \ASource
 
   public function execute()
   {
-    /*
-      Champ d'application
-
-      Toute barre de navigation.
-
-      Tout élément :
-
-          applet
-          object
-          img
-          input type="image"
-          input type="text"
-          input type="checkbox"
-          input type="file"
-          input type="radio"
-          input type="password"
-          select
-          textarea
-     */
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    $crawler = $this->page->crawler;
+    $elements = 'applet, object, img, input[type=image], input[type=text],
+          input[type=checkbox], input[type=file], input[type=radio],
+          input[type=password],  select, textarea';
+    $nodes = $crawler->filter($elements);
+    foreach($nodes as $node){
+      $this->addResult($node, \Resultat::MANUEL, 'Cet élément est-il identifiable
+      de façon cohérente?');
+    }
   }
 }
