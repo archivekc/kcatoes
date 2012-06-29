@@ -1,7 +1,7 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
+//TODO : Gérer les images générées par un javascript
 
 class PresenceAttributLongdescRelationImageDescription extends \ASource
 {
@@ -38,26 +38,23 @@ class PresenceAttributLongdescRelationImageDescription extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements = 'img';
 
-      Tout élément img ou tout code javascript générant un élément img.
-     */
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    $nodes = $crawler->filter($elements);
+    $bProcessed = false;
+    foreach ($nodes as $node)
+    {
+        $alt = trim($node->getAttribute('alt'));
+        $longdesc = trim($node->getAttribute('longdesc'));
+        if (strlen($alt) > 0 || strlen($longdesc) > 0) {
+          $this->addResult($node, \Resultat::MANUEL, 'L\'attribut alt ou longdesc
+          permet-t-il de localiser la description longue?');
+        }
+        else {
+          $this->addResult($node, \Resultat::NA, 'Attribut alt ou longdesc vide');
+        }
+    }
   }
 }
