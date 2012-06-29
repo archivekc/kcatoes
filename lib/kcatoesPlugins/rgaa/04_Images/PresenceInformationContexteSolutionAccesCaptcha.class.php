@@ -1,7 +1,7 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
+// TODO : Gérer le javascript
 
 class PresenceInformationContexteSolutionAccesCaptcha extends \ASource
 {
@@ -34,33 +34,12 @@ class PresenceInformationContexteSolutionAccesCaptcha extends \ASource
 
   public function execute()
   {
-
-    /*
-      Champ d'application
-
-      Tout élément :
-
-          img
-          applet
-          embed
-          object
-          input type="image"
-          tout code javascript générant un des éléments précédents
-     */
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    $crawler = $this->page->crawler;
+    $elements = 'img, applet, embed, object, input[type=image]';
+    $nodes = $crawler->filter($elements);
+    foreach($nodes as $node){
+    	$this->addResult($node, \Resultat::MANUEL, 'Y a-t-il une alternative à ce
+    	captcha?');
+    }
   }
 }
