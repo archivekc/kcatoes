@@ -1,8 +1,6 @@
 <?php
 namespace Kcatoes\rgaa;
 
-// FIXME : test à implémenter
-
 class LongueurContenuAlternativesTextuelles extends \ASource
 {
 
@@ -28,26 +26,20 @@ class LongueurContenuAlternativesTextuelles extends \ASource
 
   public function execute()
   {
+    $crawler = $this->page->crawler;
 
-    /*
-      Champ d'application
+    $elements = '[alt]';
 
-      Tout élément ayant un attribut alt.
-     */
-
-    /*
-      $crawler = $this->page->crawler;
-      $elements = '';
-      $nodes = $crawler->filter($elements);
-
-      $this->addResult($node, \Resultat::ECHEC, '');
-      $this->addResult($node, \Resultat::REUSSITE, '');
-      $this->addResult(null,  \Resultat::NA, '');
-      $this->addResult($node, \Resultat::MANUEL, '');
-
-     */
-
-     $this->addResult(null, \Resultat::MANUEL, 'Pas implémenté');
-
+    $nodes = $crawler->filter($elements);
+    foreach ($nodes as $node)
+    {
+    	$alt = $node->getAttribute('alt');
+    	if(strlen($alt)>0){
+    		$this->addResult($node, \Resultat::MANUEL, 'Le texte ('.$alt.') est-il
+    		assez concis?');
+    	}else{
+    	  $this->addResult($node, \Resultat::NA, 'Attribut alt vide');
+      }
+    }
   }
 }
