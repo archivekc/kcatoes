@@ -49,7 +49,7 @@ class PresenceInformationsLangueTelechargement extends \ASource
     else {
       foreach($nodes as $node) {
         $this->addResult($node, \Resultat::MANUEL, 'Si cet élément provoque
-        provoque le téléchargement d’un document, qu\'on puisse savoir quel en
+        provoque le téléchargement d\'un document, qu\'on puisse savoir quel en
         est la langue' );
       }
     }

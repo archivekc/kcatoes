@@ -48,12 +48,12 @@ class PertinenceAlternativeTextuelleImagesLiens extends \ASource
     		$alt = trim($node->getAttribute('alt'));
 	      if (strlen($alt) > 0) {
 	        $this->addResult($node, \Resultat::MANUEL, 'L\'attribut alt ('.$alt.')
-	        permet-t-il d’identifier la destination du lien ou l’action déclenchée?');
+	        permet-t-il d\'identifier la destination du lien ou l\'action déclenchée?');
 	      }
 	      else {
 	        $this->addResult($node, \Resultat::MANUEL, 'Y a-t-il un contenu textuel
-	        attenant à l\'image qui permettrait d’identifier la destination du lien
-	        ou l’action déclenchée?');
+	        attenant à l\'image qui permettrait d\'identifier la destination du lien
+	        ou l\'action déclenchée?');
 	      }
     	}
     }

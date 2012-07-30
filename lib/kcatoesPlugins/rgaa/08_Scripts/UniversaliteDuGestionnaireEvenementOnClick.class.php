@@ -5,20 +5,20 @@ namespace Kcatoes\rgaa;
 
 class UniversaliteDuGestionnaireEvenementOnClick extends \ASource
 {
-  const testName = 'Universalité du gestionnaire d’évènement onclick';
+  const testName = 'Universalité du gestionnaire d\'évènement onclick';
   const testId = '8.2';
   protected static $testProc = array(
-    'Si l’élément mentionné dans le champ d’application est présent dans la page,
+    'Si l\'élément mentionné dans le champ d\'application est présent dans la page,
      poursuivre le test, sinon le test est non applicable.',
-    'Si le gestionnaire d’évènement n’est pas utilisé sur un élément a, area, button
+    'Si le gestionnaire d\'évènement n\'est pas utilisé sur un élément a, area, button
      ou input type button, submit, reset, file, image, password, radio, checkbox,
       poursuivre le test, sinon le test est non applicable.',
-    'Si l’activation du gestionnaire d’évènement permet d’accéder à de l’information,
+    'Si l\'activation du gestionnaire d\'évènement permet d\'accéder à de l\'information,
      poursuivre le test, sinon le test est non applicable',
-    'Si l’élément HTML sur lequel est utilisé le gestionnaire d’évènement onclick possède
-     également un gestionnaire d’évènement onkeypress dont l’activation permet d’accéder
-      aux mêmes informations ou qu’un autre élément HTML utilisable sans le gestionnaire
-       d’évènement concerné est présent dans le code source de la page pour réaliser
+    'Si l\'élément HTML sur lequel est utilisé le gestionnaire d\'évènement onclick possède
+     également un gestionnaire d\'évènement onkeypress dont l\'activation permet d\'accéder
+      aux mêmes informations ou qu\'un autre élément HTML utilisable sans le gestionnaire
+       d\'évènement concerné est présent dans le code source de la page pour réaliser
         une action identique, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

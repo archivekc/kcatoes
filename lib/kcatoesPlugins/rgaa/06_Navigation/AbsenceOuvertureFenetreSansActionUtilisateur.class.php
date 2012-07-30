@@ -40,8 +40,8 @@ class AbsenceOuvertureFenetreSansActionUtilisateur extends \ASource
     }
     else {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le code
-        javascript ne déclenche pas, sans intervention de l’utilisateur,
-        l’ouverture d’une nouvelle fenêtre');
+        javascript ne déclenche pas, sans intervention de l\'utilisateur,
+        l\'ouverture d\'une nouvelle fenêtre');
     }
   }
 }

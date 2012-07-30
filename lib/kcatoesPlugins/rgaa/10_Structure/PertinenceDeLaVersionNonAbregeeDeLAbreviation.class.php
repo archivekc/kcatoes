@@ -5,12 +5,12 @@ namespace Kcatoes\rgaa;
 
 class PertinenceDeLaVersionNonAbregeeDeLAbreviation extends \ASource
 {
-  const testName = 'Pertinence de la version non abrégée de l’abréviation';
+  const testName = 'Pertinence de la version non abrégée de l\'abréviation';
   const testId = '10.11';
   protected static $testProc = array(
-    'Si l’élément est mentionné dans le champ d’application est présent dans la page,
+    'Si l\'élément est mentionné dans le champ d\'application est présent dans la page,
      poursuivre le test, sinon le test est non applicable.',
-    'Si le contenu de l’attribut title donne accès la version non abrégée de l’abréviation,
+    'Si le contenu de l\'attribut title donne accès la version non abrégée de l\'abréviation,
      le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

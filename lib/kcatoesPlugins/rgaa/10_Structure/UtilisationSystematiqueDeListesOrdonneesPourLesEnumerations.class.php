@@ -10,7 +10,7 @@ class UtilisationSystematiqueDeListesOrdonneesPourLesEnumerations extends \ASour
      poursuivre le test, sinon le test est non applicable.',
     'Si les segments de texte nécessitent un classement ordonné, poursuivre le test,
      sinon le test est non applicable.',
-    'Si les segments de texte sont regroupés dans un élément ol et qu’ils sont placés
+    'Si les segments de texte sont regroupés dans un élément ol et qu\'ils sont placés
      dans des éléments li, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

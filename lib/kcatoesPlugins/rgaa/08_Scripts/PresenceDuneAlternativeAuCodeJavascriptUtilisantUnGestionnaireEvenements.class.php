@@ -5,17 +5,17 @@ namespace Kcatoes\rgaa;
 
 class PresenceDuneAlternativeAuCodeJavascriptUtilisantUnGestionnaireEvenements extends \ASource
 {
-  const testName = 'Présence d’une alternative au code javascript utilisant un gestionnaire d\’événements
+  const testName = 'Présence d\'une alternative au code javascript utilisant un gestionnaire d\'événements
    sans équivalent universel ou une propriété propre à un périphérique';
   const testId = '8.8';
   protected static $testProc = array(
     'Si du code javascript est utilisé dans la page, poursuivre le test, sinon le test est non applicable.',
-    'Si le code javascript utilise un gestionnaire d’événements sans équivalent universel
+    'Si le code javascript utilise un gestionnaire d\'événements sans équivalent universel
      ou une propriété propre à un périphérique, poursuivre le test, sinon le test est non applicable.',
-    'Si le code javascript est nécessaire pour avoir accès à l’information, poursuivre le test,
+    'Si le code javascript est nécessaire pour avoir accès à l\'information, poursuivre le test,
      sinon le test est non applicable.',
-    'Si l’information disponible grâce au javascript a une alternative accessible
-    permettant d’avoir accès à une information équivalente situé dans la page ou atteignable
+    'Si l\'information disponible grâce au javascript a une alternative accessible
+    permettant d\'avoir accès à une information équivalente situé dans la page ou atteignable
     depuis la page, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -29,10 +29,10 @@ class PresenceDuneAlternativeAuCodeJavascriptUtilisantUnGestionnaireEvenements e
 
   public function execute()
   {
-    $this->addResult(null, \Resultat::MANUEL, 'l’information disponible grâce au
-     javascript utilisant un gestionnaire d’événements sans équivalent universel
+    $this->addResult(null, \Resultat::MANUEL, 'l\'information disponible grâce au
+     javascript utilisant un gestionnaire d\'événements sans équivalent universel
      ou une propriété propre à un périphérique a une alternative accessible
-     permettant d’avoir accès à une information équivalente situé dans la page
+     permettant d\'avoir accès à une information équivalente situé dans la page
      ou atteignable depuis la page');
   }
 }

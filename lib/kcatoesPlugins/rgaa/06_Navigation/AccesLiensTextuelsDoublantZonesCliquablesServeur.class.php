@@ -40,7 +40,7 @@ class AccesLiensTextuelsDoublantZonesCliquablesServeur extends \ASource
        $this->addResult(null, \Resultat::NA, 'Test non applicable');
     }
     else {
-        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l’élément est
+        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que l\'élément est
         doublé d\'un lien situé juste après');
     }
   }

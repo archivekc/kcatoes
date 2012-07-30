@@ -39,9 +39,9 @@ class RestitutionCorrecteLecteursEcranElementsMasques extends \ASource
        $this->addResult(null, \Resultat::NA, 'Test non applicable');
     //}
     //else {
-        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que les éléments cachés n’ont
-        pas vocation à être restitués par les lecteurs d’écran ou que leur
-        restitution devient possible moyennant une interaction de l’utilisateur
+        $this->addResult(null, \Resultat::MANUEL, 'Vérifier que les éléments cachés n\'ont
+        pas vocation à être restitués par les lecteurs d\'écran ou que leur
+        restitution devient possible moyennant une interaction de l\'utilisateur
         avec un élément dans la page');
     //}
   }

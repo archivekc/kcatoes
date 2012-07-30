@@ -9,10 +9,10 @@ class AccessibiliteDesContenusDynamiquesEnJavascript extends \ASource
   const testId = '8.13';
   protected static $testProc = array(
     'Si du code javascript est utilisé dans la page, poursuivre le test, sinon le test est non applicable.',
-    'Si le code javascript génère ou met à jour un contenu dans la page avec ou sans action de l’utilisateur,
+    'Si le code javascript génère ou met à jour un contenu dans la page avec ou sans action de l\'utilisateur,
     poursuivre le test, sinon le test est non applicable.',
     'Si le code généré ou mis à jour comporte tous les attributs et éléments le rendant accessible
-     notamment par l’utilisation des fonctions DOM lorsque cela est possible, le test est validé,
+     notamment par l\'utilisation des fonctions DOM lorsque cela est possible, le test est validé,
      sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -39,7 +39,7 @@ class AccessibiliteDesContenusDynamiquesEnJavascript extends \ASource
     else {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le code généré
         ou mis à jour comporte tous les attributs et éléments le rendant
-        accessible notamment par l’utilisation des fonctions DOM lorsque cela
+        accessible notamment par l\'utilisation des fonctions DOM lorsque cela
         est possible');
     }
   }

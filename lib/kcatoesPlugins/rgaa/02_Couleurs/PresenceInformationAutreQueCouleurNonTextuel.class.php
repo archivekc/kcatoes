@@ -36,7 +36,7 @@ class PresenceInformationAutreQueCouleurNonTextuel extends \ASource
     }
     else {
       foreach($nodes as $node){
-        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l’information
+        $this->addResult($node, \Resultat::MANUEL, 'Vérifier que l\'information
         donnée par la zone de couleur, si il y en a une, est accessible par un
         autre moyen');
       }

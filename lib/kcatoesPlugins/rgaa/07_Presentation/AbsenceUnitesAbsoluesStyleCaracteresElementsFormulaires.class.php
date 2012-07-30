@@ -41,7 +41,7 @@ class AbsenceUnitesAbsoluesStyleCaracteresElementsFormulaires extends \ASource
     }
     else {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que la propriété
-        CSS utilisant cette valeur n’est pas utilisée pour le media screen,
+        CSS utilisant cette valeur n\'est pas utilisée pour le media screen,
         projection, handheld ou tv');
     }
   }

@@ -32,7 +32,7 @@ class LargeurBlocsTexte extends \ASource
      $this->addResult(null, \Resultat::MANUEL, 'Vérifier qu\'un bloc de texte
      a une largeur inférieure ou égale à 80 caractères (40 glyphes pour le
      Chinois, Japonais ou Coréen) ou si sa largeur peut être réduite à 80
-     caractères ou moins lorsque l’utilisateur redimensionne la fenêtre de son
+     caractères ou moins lorsque l\'utilisateur redimensionne la fenêtre de son
      navigateur');
   }
 }

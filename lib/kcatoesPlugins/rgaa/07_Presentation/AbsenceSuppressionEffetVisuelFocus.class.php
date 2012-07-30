@@ -39,7 +39,7 @@ class AbsenceSuppressionEffetVisuelFocus extends \ASource
     }
     else {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que cette propriété
-        n’est pas utilisée pour supprimer l’effet visuel rendu lorsqu’un élément
+        n\'est pas utilisée pour supprimer l\'effet visuel rendu lorsqu\'un élément
         reçoit le focus');
     }
   }

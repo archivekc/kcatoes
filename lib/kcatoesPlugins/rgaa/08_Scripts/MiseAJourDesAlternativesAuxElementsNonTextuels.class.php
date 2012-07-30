@@ -9,10 +9,10 @@ class MiseAJourDesAlternativesAuxElementsNonTextuels extends \ASource
 	const testId = '8.1';
   protected static $testProc = array(
     'Si du code javascript est utilisé dans la page, poursuivre le test, sinon le test est non applicable.',
-    'Si le code javascript déclenche la mise à jour d’un élément non textuel dans au moins une des situations suivantes :
+    'Si le code javascript déclenche la mise à jour d\'un élément non textuel dans au moins une des situations suivantes :
     dans le contenu de la page, dans un iframe, dans un frame, poursuivre le test,
     sinon le test est non applicable.',
-    'Si après chaque mise à jour, l’alternative de l’élément non textuel ayant subit la mise à jour
+    'Si après chaque mise à jour, l\'alternative de l\'élément non textuel ayant subit la mise à jour
      a également été mise à jour, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

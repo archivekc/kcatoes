@@ -13,7 +13,7 @@ class AbsenceDeSimulationVisuelleDeListeNonOrdonnee extends \ASource
     'Si les segments de texte sont mis en forme visuellement par un marqueur de liste
      (-, >, #, *, image ou image de fond représentant un marqueur de liste, etc.),
      poursuivre le test, sinon le test est non applicable.',
-    'Si les segments de texte sont regroupés dans un élément ul et qu’ils sont placés
+    'Si les segments de texte sont regroupés dans un élément ul et qu\'ils sont placés
      dans des éléments li, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
@@ -30,6 +30,6 @@ class AbsenceDeSimulationVisuelleDeListeNonOrdonnee extends \ASource
   {
     $this->addResult(null, \Resultat::MANUEL, 'Vérifier que si des éléments de
     texte sont mis en forme visuellement par un marqueur de liste, ces derniers
-    sont regroupés dans un élément ul et qu’ils sont placés dans des éléments li.');
+    sont regroupés dans un élément ul et qu\'ils sont placés dans des éléments li.');
   }
 }

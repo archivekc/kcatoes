@@ -8,10 +8,10 @@ class BalisageCorrectDesAcronymesPresentsDansLaPage extends \ASource
   const testName = 'Balisage correct des acronymes présents dans la page';
   const testId = '10.10';
   protected static $testProc = array(
-    'Si un segment de texte mentionné dans le champ d’application est présent dans la page,
+    'Si un segment de texte mentionné dans le champ d\'application est présent dans la page,
      poursuivre le test, sinon le test est non applicable.',
-    'Si au minimum lors la première occurrence de chaque segment de texte, rencontrée dans l’ordre
-     du code source de la page, l’utilisateur n’a pas accès à la version complète du segment de texte
+    'Si au minimum lors la première occurrence de chaque segment de texte, rencontrée dans l\'ordre
+     du code source de la page, l\'utilisateur n\'a pas accès à la version complète du segment de texte
      par au moins un des mécanismes suivants : la version complète du segment de texte est donnée
      de façon adjacente à celui-ci,le segment de texte est un lien vers sa version complète,
      le segment de texte est un lien avec un attribut title donnant sa version complète,

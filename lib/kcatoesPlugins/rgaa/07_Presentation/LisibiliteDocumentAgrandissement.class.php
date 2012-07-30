@@ -26,6 +26,6 @@ class LisibiliteDocumentAgrandissement extends \ASource
   public function execute()
   {
      $this->addResult(null, \Resultat::MANUEL, 'Vérifier que le document reste lisible sans
-      perte d’information avec la taille du texte augmentée à 200%');
+      perte d\'information avec la taille du texte augmentée à 200%');
   }
 }

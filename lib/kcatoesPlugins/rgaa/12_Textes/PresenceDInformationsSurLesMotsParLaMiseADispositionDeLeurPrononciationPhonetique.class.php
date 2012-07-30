@@ -5,7 +5,7 @@ namespace Kcatoes\rgaa;
 
 class PresenceDInformationsSurLesMotsParLaMiseADispositionDeLeurPrononciationPhonetique extends \ASource
 {
-  const testName = 'Présence d’informations sur les mots par la mise à disposition de
+  const testName = 'Présence d\'informations sur les mots par la mise à disposition de
    leur prononciation phonétique';
   const testId = '12.6';
   protected static $testProc = array(
@@ -13,7 +13,7 @@ class PresenceDInformationsSurLesMotsParLaMiseADispositionDeLeurPrononciationPho
     'Si la compréhension de certains mots composant le segment de texte peut présenter des difficultés
     lors de la lecture de celui-ci, poursuivre le test, sinon le test est non applicable.',
     'Si la prononciation phonétique des mots posant des difficultés est présente de façon
-    adjacente à ces mots ou qu’ils pointent vers leur prononciation phonétique par le biais de lien,
+    adjacente à ces mots ou qu\'ils pointent vers leur prononciation phonétique par le biais de lien,
     le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

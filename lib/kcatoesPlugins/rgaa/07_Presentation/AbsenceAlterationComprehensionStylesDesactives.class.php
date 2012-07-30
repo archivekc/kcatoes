@@ -28,7 +28,7 @@ class AbsenceAlterationComprehensionStylesDesactives extends \ASource
   public function execute()
   {
     $this->addResult(null, \Resultat::MANUEL, 'Vérifier que les blocs d\'
-    informations peuvent être lus sans qu’un autre bloc d’informations ne vienne
+    informations peuvent être lus sans qu\'un autre bloc d\'informations ne vienne
     nuire à leur compréhension et sans que les relations logiques avec les
     autres blocs ne soient plus perceptibles');
   }

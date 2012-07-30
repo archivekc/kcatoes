@@ -5,10 +5,10 @@ namespace Kcatoes\rgaa;
 
 class PresenceDUneHierarchieDeTitresComplete extends \ASource
 {
-  const testName = 'Présence d’une hiérarchie de titres complète';
+  const testName = 'Présence d\'une hiérarchie de titres complète';
   const testId = '10.4';
   protected static $testProc = array(
-    'Si le contenu mentionné dans le champ d’application est présent dans la page,
+    'Si le contenu mentionné dans le champ d\'application est présent dans la page,
      poursuivre le test, sinon le test est non applicable.',
     'Si le contenu nécessite une structuration hiérarchique au-delà du seul h1,
     poursuivre le test, sinon le test est non applicable.',

@@ -45,7 +45,7 @@ class MaintienDistinctionVisuelleLiens extends \ASource
     else {
         $this->addResult($node, \Resultat::MANUEL, 'Vérifier que le ratio de
         contraste entre la couleur du texte des liens et celle du texte à
-        proximité des liens est supérieur ou égal à 3 et qu’un élément de
+        proximité des liens est supérieur ou égal à 3 et qu\'un élément de
         distinction autre que la couleur est visible lors du focus des liens
         (graisse, soulignement, icône,etc)');
     }

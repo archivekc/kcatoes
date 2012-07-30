@@ -30,7 +30,7 @@ class AbsenceApparitionBarreDefilementHorizontalePleinEcran extends \ASource
   public function execute()
   {
      $this->addResult(null, \Resultat::MANUEL, 'Vérifier qu\'un un mécanisme
-     permet de changer la mise en forme permet d’afficher le contenu sans barre
+     permet de changer la mise en forme permet d\'afficher le contenu sans barre
      de défilement en affichage plein écran' );
   }
 }

@@ -12,7 +12,7 @@ class AbsenceDeSyntaxesCryptiquesParRapportAuContenuDeVotreSite extends \ASource
     'Si le segment de texte est écrit dans une syntaxe ne permettant pas facilement sa compréhension,
     poursuivre le test, sinon le test est non applicable.',
     'Si le segment de texte cryptique a une alternative textuelle permettant sa compréhension,
-    par le biais d’un attribut title ou par un segment de texte adjacent dans une syntaxe
+    par le biais d\'un attribut title ou par un segment de texte adjacent dans une syntaxe
     non cryptique, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

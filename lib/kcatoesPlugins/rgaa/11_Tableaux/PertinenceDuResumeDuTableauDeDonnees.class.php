@@ -6,10 +6,10 @@ class PertinenceDuResumeDuTableauDeDonnees extends \ASource
   const testName = 'Pertinence du résumé du tableau de données';
   const testId = '11.10';
   protected static $testProc = array(
-    'Si l’élément mentionné dans le champ d’application est présent dans la page,
+    'Si l\'élément mentionné dans le champ d\'application est présent dans la page,
     poursuivre le test, sinon le test est non applicable.',
-    'Si l’élément possède un attribut summary non vide, poursuivre le test, sinon le test est non applicable.',
-    'Si le contenu de l’attribut summary explicite l’organisation des données dans le tableau,
+    'Si l\'élément possède un attribut summary non vide, poursuivre le test, sinon le test est non applicable.',
+    'Si le contenu de l\'attribut summary explicite l\'organisation des données dans le tableau,
     le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

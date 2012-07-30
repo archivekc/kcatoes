@@ -5,14 +5,14 @@ namespace Kcatoes\rgaa;
 
 class AbsenceDePerteInformationsAExpirationDesSessionsAuthentifiees extends \ASource
 {
-  const testName = 'Absence de perte d’informations lors de l’expiration des sessions authentifiées';
+  const testName = 'Absence de perte d\'informations lors de l\'expiration des sessions authentifiées';
   const testId = '8.11';
   protected static $testProc = array(
-    'Si l’un des éléments mentionnés dans le champ d’application est utilisé sur le site,
+    'Si l\'un des éléments mentionnés dans le champ d\'application est utilisé sur le site,
      poursuivre le test, sinon le test est non applicable.',
-    'Si un mécanisme prévoit l’expiration ou la fermeture non sollicité de la session,
+    'Si un mécanisme prévoit l\'expiration ou la fermeture non sollicité de la session,
      poursuivre le test, sinon le test est non applicable.',
-    'Si les données saisies par l’utilisateur avant l’expiration ou la fermeture non sollicité
+    'Si les données saisies par l\'utilisateur avant l\'expiration ou la fermeture non sollicité
      de la session sont conservées après que celui-ci se soit ré-authentifié,
      le test est validé, sinon le test est invalidé.'
   );
@@ -30,7 +30,7 @@ class AbsenceDePerteInformationsAExpirationDesSessionsAuthentifiees extends \ASo
   public function execute()
   {
     $this->addResult(null, \Resultat::MANUEL, 'Vérifier que les données saisies
-    par l’utilisateur avant l’expiration ou la fermeture non sollicité de la
+    par l\'utilisateur avant l\'expiration ou la fermeture non sollicité de la
     session sont conservées après que celui-ci se soit ré-authentifié');
   }
 }

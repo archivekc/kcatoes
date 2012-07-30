@@ -29,6 +29,6 @@ class CoherencePlanSite extends \ASource
   {
      $this->addResult(null, \Resultat::MANUEL, 'S\'assurer que les liens du plan
       du site exposant la structure générale du site renvoient bien vers les
-      pages indiquées par l’intitulé des liens');
+      pages indiquées par l\'intitulé des liens');
   }
 }

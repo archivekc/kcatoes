@@ -6,12 +6,12 @@ namespace Kcatoes\rgaa;
 class UtilisationDUnStyleDeRedactionSimpleEtComprehensibleDeTous
  extends \ASource
 {
-  const testName = 'Utilisation d’un style de rédaction simple et compréhensible de tous';
+  const testName = 'Utilisation d\'un style de rédaction simple et compréhensible de tous';
   const testId = '12.10';
   protected static $testProc = array(
     'Si un segment de texte est présent dans la page, poursuivre le test,
     sinon le test est non applicable.',
-    'Si la compréhension du segment de texte nécessite un niveau d’éducation plus avancé
+    'Si la compréhension du segment de texte nécessite un niveau d\'éducation plus avancé
     que celui obtenu environ neuf ans après le début de la scolarisation (environ niveau 3ème),
     après la suppression des noms propres et des titres, poursuivre le test,
     sinon le test est non applicable.',
@@ -21,7 +21,7 @@ class UtilisationDUnStyleDeRedactionSimpleEtComprehensibleDeTous
     illustrations visuelles, symboles ou images facilitant la compréhension des contenus,
     version en langue des signes française, version sonore du segment de texte,
     résumé rédigé de manière à ce que sa compréhension ne requiert pas de capacité de
-    lecture supérieure au premier cycle de l’enseignement secondaire,
+    lecture supérieure au premier cycle de l\'enseignement secondaire,
     le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(

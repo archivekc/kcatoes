@@ -5,17 +5,17 @@ namespace Kcatoes\rgaa;
 
 class UniversaliteDesGestionnairesEvenements extends \ASource
 {
-  const testName = 'Universalité des gestionnaires d’évènements';
+  const testName = 'Universalité des gestionnaires d\'évènements';
   const testId = '8.3';
   protected static $testProc = array(
-    'Si l’un des éléments mentionnés dans le champ d’application est présent dans la page,
+    'Si l\'un des éléments mentionnés dans le champ d\'application est présent dans la page,
      poursuivre le test, sinon le test est non applicable.',
-    'Si l’activation du gestionnaire d’évènement permet d’accéder à de l’information,
+    'Si l\'activation du gestionnaire d\'évènement permet d\'accéder à de l\'information,
      poursuivre le test, sinon le test est non applicable.',
-    'Si l’élément HTML sur lequel est utilisé le gestionnaire d’évènement possède
-     également le gestionnaire d’évènement qui lui est associé dans la liste suivante :
+    'Si l\'élément HTML sur lequel est utilisé le gestionnaire d\'évènement possède
+     également le gestionnaire d\'évènement qui lui est associé dans la liste suivante :
     onmousedown / onkeydown, onmouseup / onkeyup, onmouseover / onfocus, onmouseout / onblur,
-    ou qu’un autre élément HTML utilisable sans le gestionnaire d’évènement concerné
+    ou qu\'un autre élément HTML utilisable sans le gestionnaire d\'évènement concerné
      est présent dans le code source de la page pour réaliser une action identique,
       le test est validé, sinon le test est invalidé.'
   );

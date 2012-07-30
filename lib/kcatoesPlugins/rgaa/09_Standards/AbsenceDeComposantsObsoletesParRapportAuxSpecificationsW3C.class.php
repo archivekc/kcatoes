@@ -8,7 +8,7 @@ class AbsenceDeComposantsObsoletesParRapportAuxSpecificationsW3C extends \ASourc
   const testName = 'Absence de composants obsolètes par rapport à la version des spécifications W3C utilisée';
   const testId = '9.5';
   protected static $testProc = array(
-    'Si aucun des composants mentionnés dans le champ d’application n’est déclaré obsolète
+    'Si aucun des composants mentionnés dans le champ d\'application n\'est déclaré obsolète
     par rapport à la version des spécifications du W3C utilisée, le test est validé, sinon le test est invalidé.'
   );
   protected static $testDocLinks = array(
