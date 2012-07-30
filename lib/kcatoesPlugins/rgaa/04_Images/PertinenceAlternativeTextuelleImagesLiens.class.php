@@ -16,7 +16,7 @@ class PertinenceAlternativeTextuelleImagesLiens extends \ASource
       sinon le test est non applicable.'
     ,'Si l\'élément n\'est pas utilisé comme captcha ou ne fait pas partie d\'un test
       qui deviendrait inutile si l\'alternative textuelle était présente, poursuivre
-      le test, sinon le test est non applicable, poursuivre le test, sinon le test est non applicable.'
+      le test, sinon le test est non applicable.'
     ,'Si l\'élément possède un attribut alt, poursuivre le test, sinon le test
       est non applicable.'
     ,'Si le contenu de l\'attribut alt seul ou associé au contenu textuel qui
