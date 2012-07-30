@@ -5,5 +5,7 @@ all:
 
   pluginpath: '<?php echo sfConfig::get('sf_lib_dir').DIRECTORY_SEPARATOR.'kcatoesPlugins' ?>'
   outputpath: '<?php echo sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'output' ?>'
+  gendocpath: '<?php echo sfConfig::get('sf_root_dir').DIRECTORY_SEPARATOR.'gendoc' ?>'
 
   flagfilepath: '<?php echo sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'runningTests' ?>'
+  

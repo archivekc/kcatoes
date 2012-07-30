@@ -348,5 +348,103 @@ EOT;
     return 0;
   }
   
+   /******************************************************************************************
+   * Fonctions pour génération de doc 
+   */
+  public static function getTestsAutoState()
+  {
+    self::getRequired();
+    
+    $allTests = array();
+    
+    $allPluginPath = sfConfig::get('app_pluginpath');
+    
+    if ($handleAll = opendir($allPluginPath))
+    {
+      // Parcours des plugins (ex: rgaa)
+      while (false !== ($plugin = readdir($handleAll)))
+      {
+      	$pluginPath = $allPluginPath.DIRECTORY_SEPARATOR.$plugin;
+      	if ($plugin == '.' || $plugin == '..') continue;
+        if (is_dir($pluginPath))
+        {
+        	if ($handlePlugin = opendir($pluginPath))
+        	{
+	        	// Parcours des thématiques et tests
+	        	while (false !== ($pluginContent = readdir($handlePlugin)))
+	        	{
+	        		if ($pluginContent == '.' || $pluginContent == '..') continue;
+	        		$pluginContentPath = $pluginPath.DIRECTORY_SEPARATOR.$pluginContent; 
+	            if (is_dir($pluginContentPath))
+	            {
+	            	// thematique
+	            	if ($handlePluginContent = opendir($pluginContentPath))
+	            	{
+	            		// parcours des tests
+                  while (false !== ($test = readdir($handlePluginContent)))
+                  {
+                  	if ($test == '.' || $test == '..') continue;
+                  	array_push($allTests, self::getTestInfo($plugin, $pluginContentPath.DIRECTORY_SEPARATOR.$test));
+                  }
+	            	}
+	            }
+	            else
+	            {
+	            	// test
+	            	$allTests[$plugin]['__NO_THEMATIQUE__'][] = $pluginContent;
+	            }
+	          }
+        		
+        	}
+        }
+      }
+    }
+    
+    return $allTests;
+  }
   
+  
+  public static function getTestInfo($plugin, $test)
+  {
+  	require_once $test;
+  	// code source sans les commentaires
+  	$source = file_get_contents($test);
+  	$source = preg_replace('!/\*.*?\*/!s', '', $source);
+    $source = preg_replace('/\n\s*\n/', "\n", $source);
+    $source = preg_replace('!//.*$!m', '', $source);
+    
+    $isECHEC = (strpos($source, 'Resultat::ECHEC') !== false);
+    $isREUSSITE = (strpos($source, 'Resultat::REUSSITE') !== false);
+    $isMANUEL = (strpos($source, 'Resultat::MANUEL') !== false);
+    $isNA = (strpos($source, 'Resultat::NA') !== false);
+    
+  	$class = substr(strrchr(str_replace('.class.php', '', $test), DIRECTORY_SEPARATOR), 1);
+  	$nsClass = 'Kcatoes'.'\\'.$plugin.'\\'.$class;
+  	return array(
+  	   'class' => $class
+  	   ,'NsClass' => $nsClass
+  	   ,'name' => $nsClass::testName
+  	   ,'id' => $nsClass::testId
+  	   ,'niveau' => !is_null($niveau = $nsClass::getGroup('niveau'))?$niveau:'NA'
+  	   ,'thematique' => !is_null($thematique = $nsClass::getGroup('thematique'))?$thematique:'NA'
+  	   ,'auto_full' => !$isMANUEL?'oui':'non'
+  	   ,'auto_partial' => ($isMANUEL && ($isECHEC || $isREUSSITE))?'oui':'non'
+  	   ,'auto_no' => ($isMANUEL && !$isECHEC && !$isREUSSITE)?'oui':'non'
+  	);
+  	
+  }
+  public static function getTestInfoHeader()
+  {
+  	return array(
+       'class' => 'class'
+       ,'NsClass' => 'NsClass'
+       ,'name' => 'name'
+       ,'id' => 'id'
+       ,'niveau' => 'niveau'
+       ,'thematique' => 'thematique'
+       ,'auto_full' => 'auto_full'
+       ,'auto_partial' => 'auto_partial'
+       ,'auto_no' => 'auto_no'
+    );
+  }
 }
