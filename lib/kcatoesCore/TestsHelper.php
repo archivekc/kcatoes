@@ -421,30 +421,30 @@ EOT;
   	$class = substr(strrchr(str_replace('.class.php', '', $test), DIRECTORY_SEPARATOR), 1);
   	$nsClass = 'Kcatoes'.'\\'.$plugin.'\\'.$class;
   	return array(
-  	   'class' => $class
-  	   ,'NsClass' => $nsClass
-  	   ,'name' => $nsClass::testName
+  	   'plugin' => $plugin
   	   ,'id' => $nsClass::testId
-  	   ,'niveau' => !is_null($niveau = $nsClass::getGroup('niveau'))?$niveau:'NA'
   	   ,'thematique' => !is_null($thematique = $nsClass::getGroup('thematique'))?$thematique:'NA'
+  	   ,'name' => $nsClass::testName
+  	   ,'niveau' => !is_null($niveau = $nsClass::getGroup('niveau'))?$niveau:'NA'
   	   ,'auto_full' => !$isMANUEL?'oui':'non'
   	   ,'auto_partial' => ($isMANUEL && ($isECHEC || $isREUSSITE))?'oui':'non'
   	   ,'auto_no' => ($isMANUEL && !$isECHEC && !$isREUSSITE)?'oui':'non'
+  	   ,'class' => $class
   	);
   	
   }
   public static function getTestInfoHeader()
   {
   	return array(
-       'class' => 'class'
-       ,'NsClass' => 'NsClass'
-       ,'name' => 'name'
+  	   'plugin' => 'Extension'
        ,'id' => 'id'
-       ,'niveau' => 'niveau'
        ,'thematique' => 'thematique'
-       ,'auto_full' => 'auto_full'
-       ,'auto_partial' => 'auto_partial'
-       ,'auto_no' => 'auto_no'
+       ,'name' => 'Nom'
+       ,'niveau' => 'niveau'
+       ,'auto_full' => 'Auto complet'
+       ,'auto_partial' => 'Auto partiel'
+       ,'auto_no' => 'Auto non'
+       ,'class' => 'Classe'
     );
   }
 }
