@@ -13,3 +13,4 @@ web/download/config/*.yml
 web/uploads/config/*.yml
 web/uploads/html/*.htm*
 web/output/*
+gendoc/*
