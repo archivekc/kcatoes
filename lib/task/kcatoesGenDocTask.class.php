@@ -42,7 +42,7 @@ EOF;
 		$csv = stream_get_contents($buffer);
 		fclose($buffer);
 		$csv = mb_convert_encoding( $csv, 'UTF-16LE', 'UTF-8');
-		file_put_contents(sfConfig::get('app_gendocpath').DIRECTORY_SEPARATOR.'auto_state.csv', $csv);
+		file_put_contents(sfConfig::get('app_gendocpath').DIRECTORY_SEPARATOR.'v'.sfConfig::get('app_version').'-auto_state.csv', $csv);
 //   TestsHelper::getTestsAutoState();
   }
 }
