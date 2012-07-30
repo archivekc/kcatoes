@@ -30,55 +30,6 @@ EOF;
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
-    // add your code here
-    
-    // Inclusion des classes de test
-//    TestsHelper::getRequired();
-    
-    // Récupération des profils existants
-//    $allProfils = sfGuardGroupTable::getInstance()->findAll();
-    
-    // Rangement des profils sous forme de hash
-//    $tabAllProfils = array();
-//    foreach($allProfils as $profil)
-//    {
-//      $tabAllProfils[$profil->getName()] = $profil;
-//      $profil->getCollectionTests()->delete();
-//    }
-
-    // Récupération des tests existants
-//    $allTests   = TestsHelper::getAllTestsFromDir();
-    
-    // Parcours des tests    
-//    foreach($allTests as $test)
-//    {      
-//      $profils = $test::getGroup('profils');
-//      
-//      echo $test::testId . ' ' . $test::testName . "\n";
-//      foreach($profils as $profil)
-//      {
-//        echo "   profil : $profil\n";
-//        if (!isset($tabAllProfils[$profil]))
-//        {
-//          // Création du nouveau profil
-//          $tabAllProfils[$profil] = new sfGuardGroup();
-//          $tabAllProfils[$profil]->setName($profil);
-//          $tabAllProfils[$profil]->setDescription($profil);
-//          $tabAllProfils[$profil]->save();
-//          
-//          //TODO : une permission particulière ?
-//          //$tabAllProfils[$profil]->setPermissions();
-//        }
-//        
-//        // cRéation de l'association Profil / Test
-//        $profilTest = new ProfilTest();
-//        $profilTest->setClass($test);
-//        $profilTest->setSfGuardGroup($tabAllProfils[$profil]);
-//        $profilTest->save();
-//      }
-//      
-//    }
-    iconv_set_encoding("internal_encoding", "UTF-8");
     $testAutoState = TestsHelper::getTestsAutoState();
   
     $buffer = fopen('php://temp', 'r+');
@@ -87,7 +38,6 @@ EOF;
     {
 			fputcsv($buffer, $testAutoState[$i], ';');
     }
-    //fputcsv($buffer, $testAutoState, ',', '"');
 		rewind($buffer);
 		$csv = stream_get_contents($buffer);
 		fclose($buffer);
