@@ -58,6 +58,7 @@ Installation
 3. Configurer les identifiants de la base de données de l'environnement dans /config/databases.yml
 
 4. Initialiser un Virtualhost Apache :
+```
        <VirtualHost *:80>
           ServerName <nom du serveur>
           RewriteEngine On
@@ -75,7 +76,7 @@ Installation
              Allow from all
           </Directory>
        </VirtualHost>
-    		
+```    		
 
 5. Redémarrer le serveur Apache
 
