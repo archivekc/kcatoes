@@ -42,8 +42,10 @@ Installation
 
 1. Déposer le code source sur un serveur
 
-  à partir de l'archive KCatoes_vx.y.z.tar.gz
+  à partir de l'archive
+  
   OU
+  
   git clone https://github.com/key-consulting/kcatoes.git
   
 2. Se déplacer à la racine du projet et lancer le script d'installation des bibliothèques et du framework :
